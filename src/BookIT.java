@@ -3,10 +3,13 @@
 // File     : BookIT.java
 
 // Packages
+
 import Login.LoginGUI;
+import Reservation.ReservationGUI;
+import javafx.application.Application;
 
 public class BookIT {
     public static void main(String[] args){
-        LoginGUI login = new LoginGUI();
+        javafx.application.Application.launch(ReservationGUI.class);
     }
 }

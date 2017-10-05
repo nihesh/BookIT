@@ -2,8 +2,8 @@
 // Date     : 4 Oct, 2017
 // File     : BookIT.java
 
-package Login;
+package Reservation;
 
-public class LoginGUIController {
+public class ReservationGUIController {
 
 }
