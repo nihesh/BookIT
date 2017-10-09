@@ -4,12 +4,11 @@
 
 // Packages
 
-import Login.LoginGUI;
 import Reservation.ReservationGUI;
-import javafx.application.Application;
 
 public class BookIT {
     public static void main(String[] args){
+
         javafx.application.Application.launch(ReservationGUI.class);
     }
 }
