@@ -5,5 +5,4 @@
 package Reservation;
 
 public class ReservationGUIController {
-
 }
