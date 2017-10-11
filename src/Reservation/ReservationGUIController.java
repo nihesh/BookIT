@@ -7,6 +7,7 @@ package Reservation;
 import javafx.fxml.FXML;
 import javafx.scene.layout.*;
 import javafx.scene.control.*;
+import javafx.event.Event;
 
 
 
@@ -15,8 +16,34 @@ public class ReservationGUIController {
     private StackPane HoverPane;
     @FXML
     private Label RoomNo;
-    public void showReadOnlyBookings(){
-        RoomNo.setText("C01");
+    public void openBooking(Event action){
+        Button current = (Button) action.getSource();
+        RoomNo.setText(current.getText());
+        try {
+            Thread.sleep(100);
+        }
+        catch(Exception e){
+            System.out.println("Error in ReservationGUIController: ShowReadOnlyBookings");
+        }
+        HoverPane.setVisible(true);
+        HoverPane.setDisable(false);
+        HoverPane.setOpacity(1);
+    }
+    public void closeBooking(Event action){
+        try {
+            Thread.sleep(100);
+        }
+        catch(Exception e){
+            System.out.println("Error in ReservationGUIController: ShowReadOnlyBookings");
+        }
+        HoverPane.setVisible(false);
+        HoverPane.setDisable(false);
+        HoverPane.setOpacity(1);
+        RoomNo.setText("Not Set");
+    }
+    public void showReadOnlyBookings(Event action){
+        Button current = (Button) action.getSource();
+        RoomNo.setText(current.getText());
         try {
             Thread.sleep(100);
         }
@@ -27,7 +54,7 @@ public class ReservationGUIController {
         HoverPane.setDisable(true);
         HoverPane.setOpacity(0.95);
     }
-    public void exitReadOnlyBookings(){
+    public void exitReadOnlyBookings(Event action){
         try {
             Thread.sleep(100);
         }

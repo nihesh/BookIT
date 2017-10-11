@@ -60,30 +60,30 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Button mnemonicParsing="false" onMouseEntered="#showReadOnlyBookings" opacity="0.76" prefHeight="54.0" prefWidth="225.0" stylesheets="@button.css" text="C01" GridPane.halignment="CENTER" />
-                  <Button mnemonicParsing="false" onMouseEntered="#showReadOnlyBookings" opacity="0.76" prefHeight="54.0" prefWidth="225.0" stylesheets="@button.css" text="C12" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                  <Button mnemonicParsing="false" onMouseClicked="#openBooking" onMouseEntered="#showReadOnlyBookings" opacity="0.76" prefHeight="54.0" prefWidth="225.0" stylesheets="@button.css" text="C01" GridPane.halignment="CENTER" />
+                  <Button mnemonicParsing="false" onMouseClicked="#openBooking" onMouseEntered="#showReadOnlyBookings" opacity="0.76" prefHeight="54.0" prefWidth="225.0" stylesheets="@button.css" text="C12" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                      <GridPane.margin>
                         <Insets />
                      </GridPane.margin>
                   </Button>
-                  <Button mnemonicParsing="false" onMouseEntered="#showReadOnlyBookings" opacity="0.76" prefHeight="54.0" prefWidth="225.0" stylesheets="@button.css" text="C23" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
-                  <Button mnemonicParsing="false" onMouseEntered="#showReadOnlyBookings" opacity="0.76" prefHeight="54.0" prefWidth="225.0" stylesheets="@button.css" text="LR3" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
-                  <Button mnemonicParsing="false" onMouseEntered="#showReadOnlyBookings" opacity="0.76" prefHeight="54.0" prefWidth="225.0" stylesheets="@button.css" text="L33" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
-                  <Button mnemonicParsing="false" onMouseEntered="#showReadOnlyBookings" opacity="0.76" prefHeight="54.0" prefWidth="225.0" stylesheets="@button.css" text="C02" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
-                  <Button mnemonicParsing="false" onMouseEntered="#showReadOnlyBookings" opacity="0.76" prefHeight="54.0" prefWidth="225.0" stylesheets="@button.css" text="C13" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-                  <Button mnemonicParsing="false" onMouseEntered="#showReadOnlyBookings" opacity="0.76" prefHeight="54.0" prefWidth="225.0" stylesheets="@button.css" text="C24" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
-                  <Button mnemonicParsing="false" onMouseEntered="#showReadOnlyBookings" opacity="0.76" prefHeight="54.0" prefWidth="225.0" stylesheets="@button.css" text="L21" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
-                  <Button mnemonicParsing="false" onMouseEntered="#showReadOnlyBookings" opacity="0.76" prefHeight="54.0" prefWidth="225.0" stylesheets="@button.css" text="S21" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
-                  <Button mnemonicParsing="false" onMouseEntered="#showReadOnlyBookings" opacity="0.76" prefHeight="54.0" prefWidth="225.0" stylesheets="@button.css" text="C03" GridPane.columnIndex="2" GridPane.halignment="CENTER" />
-                  <Button mnemonicParsing="false" onMouseEntered="#showReadOnlyBookings" opacity="0.76" prefHeight="54.0" prefWidth="225.0" stylesheets="@button.css" text="C21" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-                  <Button mnemonicParsing="false" onMouseEntered="#showReadOnlyBookings" opacity="0.76" prefHeight="54.0" prefWidth="225.0" stylesheets="@button.css" text="LR1" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
-                  <Button mnemonicParsing="false" onMouseEntered="#showReadOnlyBookings" opacity="0.76" prefHeight="54.0" prefWidth="225.0" stylesheets="@button.css" text="L22" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
-                  <Button mnemonicParsing="false" onMouseEntered="#showReadOnlyBookings" opacity="0.76" prefHeight="54.0" prefWidth="225.0" stylesheets="@button.css" text="S22" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
-                  <Button mnemonicParsing="false" onMouseEntered="#showReadOnlyBookings" opacity="0.76" prefHeight="54.0" prefWidth="225.0" stylesheets="@button.css" text="C11" GridPane.columnIndex="3" GridPane.halignment="CENTER" />
-                  <Button mnemonicParsing="false" onMouseEntered="#showReadOnlyBookings" opacity="0.76" prefHeight="54.0" prefWidth="225.0" stylesheets="@button.css" text="C22" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-                  <Button mnemonicParsing="false" onMouseEntered="#showReadOnlyBookings" opacity="0.76" prefHeight="54.0" prefWidth="225.0" stylesheets="@button.css" text="LR2" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
-                  <Button mnemonicParsing="false" onMouseEntered="#showReadOnlyBookings" opacity="0.76" prefHeight="54.0" prefWidth="225.0" stylesheets="@button.css" text="L23" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
-                  <Button mnemonicParsing="false" onMouseEntered="#showReadOnlyBookings" opacity="0.76" prefHeight="54.0" prefWidth="225.0" stylesheets="@button.css" text="S23" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
+                  <Button mnemonicParsing="false" onMouseClicked="#openBooking" onMouseEntered="#showReadOnlyBookings" opacity="0.76" prefHeight="54.0" prefWidth="225.0" stylesheets="@button.css" text="C23" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+                  <Button mnemonicParsing="false" onMouseClicked="#openBooking" onMouseEntered="#showReadOnlyBookings" opacity="0.76" prefHeight="54.0" prefWidth="225.0" stylesheets="@button.css" text="LR3" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+                  <Button mnemonicParsing="false" onMouseClicked="#openBooking" onMouseEntered="#showReadOnlyBookings" opacity="0.76" prefHeight="54.0" prefWidth="225.0" stylesheets="@button.css" text="L33" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
+                  <Button mnemonicParsing="false" onMouseClicked="#openBooking" onMouseEntered="#showReadOnlyBookings" opacity="0.76" prefHeight="54.0" prefWidth="225.0" stylesheets="@button.css" text="C02" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
+                  <Button mnemonicParsing="false" onMouseClicked="#openBooking" onMouseEntered="#showReadOnlyBookings" opacity="0.76" prefHeight="54.0" prefWidth="225.0" stylesheets="@button.css" text="C13" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+                  <Button mnemonicParsing="false" onMouseClicked="#openBooking" onMouseEntered="#showReadOnlyBookings" opacity="0.76" prefHeight="54.0" prefWidth="225.0" stylesheets="@button.css" text="C24" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+                  <Button mnemonicParsing="false" onMouseClicked="#openBooking" onMouseEntered="#showReadOnlyBookings" opacity="0.76" prefHeight="54.0" prefWidth="225.0" stylesheets="@button.css" text="L21" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+                  <Button mnemonicParsing="false" onMouseClicked="#openBooking" onMouseEntered="#showReadOnlyBookings" opacity="0.76" prefHeight="54.0" prefWidth="225.0" stylesheets="@button.css" text="S21" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
+                  <Button mnemonicParsing="false" onMouseClicked="#openBooking" onMouseEntered="#showReadOnlyBookings" opacity="0.76" prefHeight="54.0" prefWidth="225.0" stylesheets="@button.css" text="C03" GridPane.columnIndex="2" GridPane.halignment="CENTER" />
+                  <Button mnemonicParsing="false" onMouseClicked="#openBooking" onMouseEntered="#showReadOnlyBookings" opacity="0.76" prefHeight="54.0" prefWidth="225.0" stylesheets="@button.css" text="C21" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+                  <Button mnemonicParsing="false" onMouseClicked="#openBooking" onMouseEntered="#showReadOnlyBookings" opacity="0.76" prefHeight="54.0" prefWidth="225.0" stylesheets="@button.css" text="LR1" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+                  <Button mnemonicParsing="false" onMouseClicked="#openBooking" onMouseEntered="#showReadOnlyBookings" opacity="0.76" prefHeight="54.0" prefWidth="225.0" stylesheets="@button.css" text="L22" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+                  <Button mnemonicParsing="false" onMouseClicked="#openBooking" onMouseEntered="#showReadOnlyBookings" opacity="0.76" prefHeight="54.0" prefWidth="225.0" stylesheets="@button.css" text="S22" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
+                  <Button mnemonicParsing="false" onMouseClicked="#openBooking" onMouseEntered="#showReadOnlyBookings" opacity="0.76" prefHeight="54.0" prefWidth="225.0" stylesheets="@button.css" text="C11" GridPane.columnIndex="3" GridPane.halignment="CENTER" />
+                  <Button mnemonicParsing="false" onMouseClicked="#openBooking" onMouseEntered="#showReadOnlyBookings" opacity="0.76" prefHeight="54.0" prefWidth="225.0" stylesheets="@button.css" text="C22" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+                  <Button mnemonicParsing="false" onMouseClicked="#openBooking" onMouseEntered="#showReadOnlyBookings" opacity="0.76" prefHeight="54.0" prefWidth="225.0" stylesheets="@button.css" text="LR2" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+                  <Button mnemonicParsing="false" onMouseClicked="#openBooking" onMouseEntered="#showReadOnlyBookings" opacity="0.76" prefHeight="54.0" prefWidth="225.0" stylesheets="@button.css" text="L23" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+                  <Button mnemonicParsing="false" onMouseClicked="#openBooking" onMouseEntered="#showReadOnlyBookings" opacity="0.76" prefHeight="54.0" prefWidth="225.0" stylesheets="@button.css" text="S23" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
                </children>
                <StackPane.margin>
                   <Insets bottom="100.0" left="350.0" right="350.0" top="200.0" />
@@ -349,7 +349,7 @@
                               <Font size="16.0" />
                            </font>
                         </Label>
-                        <Label alignment="CENTER" prefHeight="40.0" prefWidth="238.0" style="-fx-background-color: #708090; -fx-border-color: #2F4F4F;" text="0800AM - 0830AM" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="TOP">
+                        <Label alignment="CENTER" prefHeight="40.0" prefWidth="238.0" style="-fx-background-color: #708090; -fx-border-color: #2F4F4F;" text="0830AM - 0900AM" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="TOP">
                            <font>
                               <Font size="16.0" />
                            </font>
@@ -357,7 +357,7 @@
                               <Insets left="5.0" right="5.0" top="5.0" />
                            </GridPane.margin>
                         </Label>
-                        <Label alignment="CENTER" prefHeight="40.0" prefWidth="238.0" style="-fx-background-color: #708090; -fx-border-color: #2F4F4F;" text="0800AM - 0830AM" GridPane.columnIndex="2" GridPane.rowIndex="1" GridPane.valignment="TOP">
+                        <Label alignment="CENTER" prefHeight="40.0" prefWidth="238.0" style="-fx-background-color: #708090; -fx-border-color: #2F4F4F;" text="0900AM - 0930AM" GridPane.columnIndex="2" GridPane.rowIndex="1" GridPane.valignment="TOP">
                            <font>
                               <Font size="16.0" />
                            </font>
@@ -365,7 +365,7 @@
                               <Insets left="5.0" right="5.0" top="5.0" />
                            </GridPane.margin>
                         </Label>
-                        <Label alignment="CENTER" prefHeight="40.0" prefWidth="238.0" style="-fx-background-color: #708090; -fx-border-color: #2F4F4F;" text="0800AM - 0830AM" GridPane.columnIndex="3" GridPane.rowIndex="1" GridPane.valignment="TOP">
+                        <Label alignment="CENTER" prefHeight="40.0" prefWidth="238.0" style="-fx-background-color: #708090; -fx-border-color: #2F4F4F;" text="0930AM - 1000AM" GridPane.columnIndex="3" GridPane.rowIndex="1" GridPane.valignment="TOP">
                            <font>
                               <Font size="16.0" />
                            </font>
@@ -373,7 +373,7 @@
                               <Insets left="5.0" right="5.0" top="5.0" />
                            </GridPane.margin>
                         </Label>
-                        <Label alignment="CENTER" prefHeight="40.0" prefWidth="238.0" style="-fx-background-color: #708090; -fx-border-color: #2F4F4F;" text="0800AM - 0830AM" GridPane.columnIndex="4" GridPane.rowIndex="1" GridPane.valignment="TOP">
+                        <Label alignment="CENTER" prefHeight="40.0" prefWidth="238.0" style="-fx-background-color: #708090; -fx-border-color: #2F4F4F;" text="1000AM - 1030AM" GridPane.columnIndex="4" GridPane.rowIndex="1" GridPane.valignment="TOP">
                            <font>
                               <Font size="16.0" />
                            </font>
@@ -381,7 +381,7 @@
                               <Insets left="5.0" right="5.0" top="5.0" />
                            </GridPane.margin>
                         </Label>
-                        <Label alignment="CENTER" prefHeight="40.0" prefWidth="238.0" style="-fx-background-color: #708090; -fx-border-color: #2F4F4F;" text="0800AM - 0830AM" GridPane.columnIndex="5" GridPane.rowIndex="1" GridPane.valignment="TOP">
+                        <Label alignment="CENTER" prefHeight="40.0" prefWidth="238.0" style="-fx-background-color: #708090; -fx-border-color: #2F4F4F;" text="1030AM - 1100AM" GridPane.columnIndex="5" GridPane.rowIndex="1" GridPane.valignment="TOP">
                            <font>
                               <Font size="16.0" />
                            </font>
@@ -389,7 +389,7 @@
                               <Insets left="5.0" right="5.0" top="5.0" />
                            </GridPane.margin>
                         </Label>
-                        <Label alignment="CENTER" prefHeight="40.0" prefWidth="238.0" style="-fx-background-color: #708090; -fx-border-color: #2F4F4F;" text="0800AM - 0830AM" GridPane.columnIndex="6" GridPane.rowIndex="1" GridPane.valignment="TOP">
+                        <Label alignment="CENTER" prefHeight="40.0" prefWidth="238.0" style="-fx-background-color: #708090; -fx-border-color: #2F4F4F;" text="1100AM - 1130AM" GridPane.columnIndex="6" GridPane.rowIndex="1" GridPane.valignment="TOP">
                            <font>
                               <Font size="16.0" />
                            </font>
@@ -397,7 +397,7 @@
                               <Insets left="5.0" right="5.0" top="5.0" />
                            </GridPane.margin>
                         </Label>
-                        <Label alignment="CENTER" prefHeight="40.0" prefWidth="238.0" style="-fx-background-color: #708090; -fx-border-color: #2F4F4F;" text="0800AM - 0830AM" GridPane.rowIndex="2" GridPane.valignment="TOP">
+                        <Label alignment="CENTER" prefHeight="40.0" prefWidth="238.0" style="-fx-background-color: #708090; -fx-border-color: #2F4F4F;" text="1130AM - 1200PM" GridPane.rowIndex="2" GridPane.valignment="TOP">
                            <font>
                               <Font size="16.0" />
                            </font>
@@ -405,7 +405,7 @@
                               <Insets left="5.0" right="5.0" top="5.0" />
                            </GridPane.margin>
                         </Label>
-                        <Label alignment="CENTER" prefHeight="40.0" prefWidth="238.0" style="-fx-background-color: #708090; -fx-border-color: #2F4F4F;" text="0800AM - 0830AM" GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.valignment="TOP">
+                        <Label alignment="CENTER" prefHeight="40.0" prefWidth="238.0" style="-fx-background-color: #708090; -fx-border-color: #2F4F4F;" text="1200PM - 1230PM" GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.valignment="TOP">
                            <font>
                               <Font size="16.0" />
                            </font>
@@ -413,7 +413,7 @@
                               <Insets left="5.0" right="5.0" top="5.0" />
                            </GridPane.margin>
                         </Label>
-                        <Label alignment="CENTER" prefHeight="40.0" prefWidth="238.0" style="-fx-background-color: #708090; -fx-border-color: #2F4F4F;" text="0800AM - 0830AM" GridPane.columnIndex="2" GridPane.rowIndex="2" GridPane.valignment="TOP">
+                        <Label alignment="CENTER" prefHeight="40.0" prefWidth="238.0" style="-fx-background-color: #708090; -fx-border-color: #2F4F4F;" text="1230PM - 0100PM" GridPane.columnIndex="2" GridPane.rowIndex="2" GridPane.valignment="TOP">
                            <font>
                               <Font size="16.0" />
                            </font>
@@ -421,7 +421,7 @@
                               <Insets left="5.0" right="5.0" top="5.0" />
                            </GridPane.margin>
                         </Label>
-                        <Label alignment="CENTER" prefHeight="40.0" prefWidth="238.0" style="-fx-background-color: #708090; -fx-border-color: #2F4F4F;" text="0800AM - 0830AM" GridPane.columnIndex="3" GridPane.rowIndex="2" GridPane.valignment="TOP">
+                        <Label alignment="CENTER" prefHeight="40.0" prefWidth="238.0" style="-fx-background-color: #708090; -fx-border-color: #2F4F4F;" text="0100PM - 0130PM" GridPane.columnIndex="3" GridPane.rowIndex="2" GridPane.valignment="TOP">
                            <font>
                               <Font size="16.0" />
                            </font>
@@ -429,7 +429,7 @@
                               <Insets left="5.0" right="5.0" top="5.0" />
                            </GridPane.margin>
                         </Label>
-                        <Label alignment="CENTER" prefHeight="40.0" prefWidth="238.0" style="-fx-background-color: #708090; -fx-border-color: #2F4F4F;" text="0800AM - 0830AM" GridPane.columnIndex="4" GridPane.rowIndex="2" GridPane.valignment="TOP">
+                        <Label alignment="CENTER" prefHeight="40.0" prefWidth="238.0" style="-fx-background-color: #708090; -fx-border-color: #2F4F4F;" text="0130PM - 0200PM" GridPane.columnIndex="4" GridPane.rowIndex="2" GridPane.valignment="TOP">
                            <font>
                               <Font size="16.0" />
                            </font>
@@ -437,7 +437,7 @@
                               <Insets left="5.0" right="5.0" top="5.0" />
                            </GridPane.margin>
                         </Label>
-                        <Label alignment="CENTER" prefHeight="40.0" prefWidth="238.0" style="-fx-background-color: #708090; -fx-border-color: #2F4F4F;" text="0800AM - 0830AM" GridPane.columnIndex="5" GridPane.rowIndex="2" GridPane.valignment="TOP">
+                        <Label alignment="CENTER" prefHeight="40.0" prefWidth="238.0" style="-fx-background-color: #708090; -fx-border-color: #2F4F4F;" text="0200PM - 0230PM" GridPane.columnIndex="5" GridPane.rowIndex="2" GridPane.valignment="TOP">
                            <font>
                               <Font size="16.0" />
                            </font>
@@ -445,7 +445,7 @@
                               <Insets left="5.0" right="5.0" top="5.0" />
                            </GridPane.margin>
                         </Label>
-                        <Label alignment="CENTER" prefHeight="40.0" prefWidth="238.0" style="-fx-background-color: #708090; -fx-border-color: #2F4F4F;" text="0800AM - 0830AM" GridPane.columnIndex="6" GridPane.rowIndex="2" GridPane.valignment="TOP">
+                        <Label alignment="CENTER" prefHeight="40.0" prefWidth="238.0" style="-fx-background-color: #708090; -fx-border-color: #2F4F4F;" text="0230PM - 0300PM" GridPane.columnIndex="6" GridPane.rowIndex="2" GridPane.valignment="TOP">
                            <font>
                               <Font size="16.0" />
                            </font>
@@ -453,7 +453,7 @@
                               <Insets left="5.0" right="5.0" top="5.0" />
                            </GridPane.margin>
                         </Label>
-                        <Label alignment="CENTER" prefHeight="40.0" prefWidth="238.0" style="-fx-background-color: #708090; -fx-border-color: #2F4F4F;" text="0800AM - 0830AM" GridPane.rowIndex="3" GridPane.valignment="TOP">
+                        <Label alignment="CENTER" prefHeight="40.0" prefWidth="238.0" style="-fx-background-color: #708090; -fx-border-color: #2F4F4F;" text="0300PM - 0330PM" GridPane.rowIndex="3" GridPane.valignment="TOP">
                            <font>
                               <Font size="16.0" />
                            </font>
@@ -461,7 +461,7 @@
                               <Insets left="5.0" right="5.0" top="5.0" />
                            </GridPane.margin>
                         </Label>
-                        <Label alignment="CENTER" prefHeight="40.0" prefWidth="238.0" style="-fx-background-color: #708090; -fx-border-color: #2F4F4F;" text="0800AM - 0830AM" GridPane.columnIndex="1" GridPane.rowIndex="3" GridPane.valignment="TOP">
+                        <Label alignment="CENTER" prefHeight="40.0" prefWidth="238.0" style="-fx-background-color: #708090; -fx-border-color: #2F4F4F;" text="0330PM - 0400PM" GridPane.columnIndex="1" GridPane.rowIndex="3" GridPane.valignment="TOP">
                            <font>
                               <Font size="16.0" />
                            </font>
@@ -469,7 +469,7 @@
                               <Insets left="5.0" right="5.0" top="5.0" />
                            </GridPane.margin>
                         </Label>
-                        <Label alignment="CENTER" prefHeight="40.0" prefWidth="238.0" style="-fx-background-color: #708090; -fx-border-color: #2F4F4F;" text="0800AM - 0830AM" GridPane.columnIndex="2" GridPane.rowIndex="3" GridPane.valignment="TOP">
+                        <Label alignment="CENTER" prefHeight="40.0" prefWidth="238.0" style="-fx-background-color: #708090; -fx-border-color: #2F4F4F;" text="0400PM - 0430PM" GridPane.columnIndex="2" GridPane.rowIndex="3" GridPane.valignment="TOP">
                            <font>
                               <Font size="16.0" />
                            </font>
@@ -477,7 +477,7 @@
                               <Insets left="5.0" right="5.0" top="5.0" />
                            </GridPane.margin>
                         </Label>
-                        <Label alignment="CENTER" prefHeight="40.0" prefWidth="238.0" style="-fx-background-color: #708090; -fx-border-color: #2F4F4F;" text="0800AM - 0830AM" GridPane.columnIndex="3" GridPane.rowIndex="3" GridPane.valignment="TOP">
+                        <Label alignment="CENTER" prefHeight="40.0" prefWidth="238.0" style="-fx-background-color: #708090; -fx-border-color: #2F4F4F;" text="0430PM - 0500PM" GridPane.columnIndex="3" GridPane.rowIndex="3" GridPane.valignment="TOP">
                            <font>
                               <Font size="16.0" />
                            </font>
@@ -485,7 +485,7 @@
                               <Insets left="5.0" right="5.0" top="5.0" />
                            </GridPane.margin>
                         </Label>
-                        <Label alignment="CENTER" prefHeight="40.0" prefWidth="238.0" style="-fx-background-color: #708090; -fx-border-color: #2F4F4F;" text="0800AM - 0830AM" GridPane.columnIndex="4" GridPane.rowIndex="3" GridPane.valignment="TOP">
+                        <Label alignment="CENTER" prefHeight="40.0" prefWidth="238.0" style="-fx-background-color: #708090; -fx-border-color: #2F4F4F;" text="0500PM - 0530PM" GridPane.columnIndex="4" GridPane.rowIndex="3" GridPane.valignment="TOP">
                            <font>
                               <Font size="16.0" />
                            </font>
@@ -493,7 +493,7 @@
                               <Insets left="5.0" right="5.0" top="5.0" />
                            </GridPane.margin>
                         </Label>
-                        <Label alignment="CENTER" prefHeight="40.0" prefWidth="238.0" style="-fx-background-color: #708090; -fx-border-color: #2F4F4F;" text="0800AM - 0830AM" GridPane.columnIndex="5" GridPane.rowIndex="3" GridPane.valignment="TOP">
+                        <Label alignment="CENTER" prefHeight="40.0" prefWidth="238.0" style="-fx-background-color: #708090; -fx-border-color: #2F4F4F;" text="0530PM - 0600PM" GridPane.columnIndex="5" GridPane.rowIndex="3" GridPane.valignment="TOP">
                            <font>
                               <Font size="16.0" />
                            </font>
@@ -501,7 +501,7 @@
                               <Insets left="5.0" right="5.0" top="5.0" />
                            </GridPane.margin>
                         </Label>
-                        <Label alignment="CENTER" prefHeight="40.0" prefWidth="238.0" style="-fx-background-color: #708090; -fx-border-color: #2F4F4F;" text="0800AM - 0830AM" GridPane.columnIndex="6" GridPane.rowIndex="3" GridPane.valignment="TOP">
+                        <Label alignment="CENTER" prefHeight="40.0" prefWidth="238.0" style="-fx-background-color: #708090; -fx-border-color: #2F4F4F;" text="0600PM - 0630PM" GridPane.columnIndex="6" GridPane.rowIndex="3" GridPane.valignment="TOP">
                            <font>
                               <Font size="16.0" />
                            </font>
@@ -509,7 +509,7 @@
                               <Insets left="5.0" right="5.0" top="5.0" />
                            </GridPane.margin>
                         </Label>
-                        <Label alignment="CENTER" prefHeight="40.0" prefWidth="238.0" style="-fx-background-color: #708090; -fx-border-color: #2F4F4F;" text="0800AM - 0830AM" GridPane.rowIndex="4" GridPane.valignment="TOP">
+                        <Label alignment="CENTER" prefHeight="40.0" prefWidth="238.0" style="-fx-background-color: #708090; -fx-border-color: #2F4F4F;" text="0630PM - 0700PM" GridPane.rowIndex="4" GridPane.valignment="TOP">
                            <font>
                               <Font size="16.0" />
                            </font>
@@ -517,7 +517,7 @@
                               <Insets left="5.0" right="5.0" top="5.0" />
                            </GridPane.margin>
                         </Label>
-                        <Label alignment="CENTER" prefHeight="40.0" prefWidth="238.0" style="-fx-background-color: #708090; -fx-border-color: #2F4F4F;" text="0800AM - 0830AM" GridPane.columnIndex="1" GridPane.rowIndex="4" GridPane.valignment="TOP">
+                        <Label alignment="CENTER" prefHeight="40.0" prefWidth="238.0" style="-fx-background-color: #708090; -fx-border-color: #2F4F4F;" text="0700PM - 0730PM" GridPane.columnIndex="1" GridPane.rowIndex="4" GridPane.valignment="TOP">
                            <font>
                               <Font size="16.0" />
                            </font>
@@ -525,7 +525,7 @@
                               <Insets left="5.0" right="5.0" top="5.0" />
                            </GridPane.margin>
                         </Label>
-                        <Label alignment="CENTER" prefHeight="40.0" prefWidth="238.0" style="-fx-background-color: #708090; -fx-border-color: #2F4F4F;" text="0800AM - 0830AM" GridPane.columnIndex="2" GridPane.rowIndex="4" GridPane.valignment="TOP">
+                        <Label alignment="CENTER" prefHeight="40.0" prefWidth="238.0" style="-fx-background-color: #708090; -fx-border-color: #2F4F4F;" text="0730PM - 0800PM" GridPane.columnIndex="2" GridPane.rowIndex="4" GridPane.valignment="TOP">
                            <font>
                               <Font size="16.0" />
                            </font>
@@ -533,7 +533,7 @@
                               <Insets left="5.0" right="5.0" top="5.0" />
                            </GridPane.margin>
                         </Label>
-                        <Label alignment="CENTER" prefHeight="40.0" prefWidth="238.0" style="-fx-background-color: #708090; -fx-border-color: #2F4F4F;" text="0800AM - 0830AM" GridPane.columnIndex="3" GridPane.rowIndex="4" GridPane.valignment="TOP">
+                        <Label alignment="CENTER" prefHeight="40.0" prefWidth="238.0" style="-fx-background-color: #708090; -fx-border-color: #2F4F4F;" text="0800PM - 0830PM" GridPane.columnIndex="3" GridPane.rowIndex="4" GridPane.valignment="TOP">
                            <font>
                               <Font size="16.0" />
                            </font>
@@ -541,7 +541,7 @@
                               <Insets left="5.0" right="5.0" top="5.0" />
                            </GridPane.margin>
                         </Label>
-                        <Label alignment="CENTER" prefHeight="40.0" prefWidth="238.0" style="-fx-background-color: #708090; -fx-border-color: #2F4F4F;" text="0800AM - 0830AM" GridPane.columnIndex="4" GridPane.rowIndex="4" GridPane.valignment="TOP">
+                        <Label alignment="CENTER" prefHeight="40.0" prefWidth="238.0" style="-fx-background-color: #708090; -fx-border-color: #2F4F4F;" text="0830PM - 0900PM" GridPane.columnIndex="4" GridPane.rowIndex="4" GridPane.valignment="TOP">
                            <font>
                               <Font size="16.0" />
                            </font>
@@ -549,7 +549,7 @@
                               <Insets left="5.0" right="5.0" top="5.0" />
                            </GridPane.margin>
                         </Label>
-                        <Label alignment="CENTER" prefHeight="40.0" prefWidth="238.0" style="-fx-background-color: #708090; -fx-border-color: #2F4F4F;" text="0800AM - 0830AM" GridPane.columnIndex="5" GridPane.rowIndex="4" GridPane.valignment="TOP">
+                        <Label alignment="CENTER" prefHeight="40.0" prefWidth="238.0" style="-fx-background-color: #708090; -fx-border-color: #2F4F4F;" text="0900PM - 0930PM" GridPane.columnIndex="5" GridPane.rowIndex="4" GridPane.valignment="TOP">
                            <font>
                               <Font size="16.0" />
                            </font>
@@ -557,7 +557,7 @@
                               <Insets left="5.0" right="5.0" top="5.0" />
                            </GridPane.margin>
                         </Label>
-                        <Label alignment="CENTER" prefHeight="40.0" prefWidth="238.0" style="-fx-background-color: #708090; -fx-border-color: #2F4F4F;" text="0800AM - 0830AM" GridPane.columnIndex="6" GridPane.rowIndex="4" GridPane.valignment="TOP">
+                        <Label alignment="CENTER" prefHeight="40.0" prefWidth="238.0" style="-fx-background-color: #708090; -fx-border-color: #2F4F4F;" text="0930PM - 1000PM" GridPane.columnIndex="6" GridPane.rowIndex="4" GridPane.valignment="TOP">
                            <font>
                               <Font size="16.0" />
                            </font>
