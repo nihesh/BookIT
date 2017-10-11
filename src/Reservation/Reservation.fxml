@@ -8,6 +8,7 @@
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -37,8 +38,50 @@
           </Menu>
         </menus>
       </MenuBar>
-      <StackPane onMouseEntered="#exitReadOnlyBookings" prefHeight="382.0" prefWidth="1920.0" />
-      <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="0.0" prefWidth="1920.0">
+      <StackPane onMouseEntered="#exitReadOnlyBookings" prefHeight="382.0" prefWidth="1920.0">
+         <children>
+            <StackPane prefHeight="312.0" prefWidth="1652.0">
+               <StackPane.margin>
+                  <Insets right="1270.0" />
+               </StackPane.margin>
+            </StackPane>
+            <SplitPane disable="true" dividerPositions="0.29797979797979796" prefHeight="312.0" prefWidth="2003.0">
+              <items>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" />
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" />
+              </items>
+               <StackPane.margin>
+                  <Insets left="650.0" right="1260.0" />
+               </StackPane.margin>
+            </SplitPane>
+            <StackPane layoutX="10.0" layoutY="10.0" prefHeight="312.0" prefWidth="1652.0">
+               <StackPane.margin>
+                  <Insets left="660.0" right="660.0" />
+               </StackPane.margin>
+               <children>
+                  <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: #000000;">
+                     <children>
+                        <ImageView fx:id="logo" fitHeight="310.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true" />
+                     </children>
+                  </StackPane>
+               </children>
+            </StackPane>
+            <SplitPane disable="true" dividerPositions="0.29797979797979796" layoutX="660.0" layoutY="10.0" prefHeight="312.0" prefWidth="2003.0">
+               <items>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" />
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" />
+               </items>
+               <StackPane.margin>
+                  <Insets left="1260.0" right="650.0" />
+               </StackPane.margin>
+            </SplitPane>
+            <StackPane layoutX="670.0" layoutY="10.0" prefHeight="312.0" prefWidth="1652.0">
+               <StackPane.margin>
+                  <Insets left="1270.0" />
+               </StackPane.margin>
+            </StackPane>
+         </children></StackPane>
+      <SplitPane disable="true" dividerPositions="0.5" orientation="VERTICAL" prefHeight="0.0" prefWidth="1920.0">
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="242.0" prefWidth="1918.0" />
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" />
