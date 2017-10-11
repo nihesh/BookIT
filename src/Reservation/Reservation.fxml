@@ -7,6 +7,7 @@
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -124,6 +125,9 @@
                            <font>
                               <Font size="21.0" />
                            </font>
+                           <tooltip>
+                              <Tooltip text="Click to select this slot for booking. Click again to cancel" />
+                           </tooltip>
                         </Button>
                         <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="234.0" style="-fx-background-color: #fff5ee; -fx-border-color: #2F4F4F;" text="Free" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
                            <font>
@@ -132,6 +136,9 @@
                            <GridPane.margin>
                               <Insets bottom="5.0" left="5.0" right="5.0" />
                            </GridPane.margin>
+                           <tooltip>
+                              <Tooltip text="Click to select this slot for booking. Click again to cancel" />
+                           </tooltip>
                         </Button>
                         <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="234.0" style="-fx-background-color: #fff5ee; -fx-border-color: #2F4F4F;" text="Free" GridPane.columnIndex="2" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
                            <font>
@@ -140,6 +147,9 @@
                            <GridPane.margin>
                               <Insets bottom="5.0" left="5.0" right="5.0" />
                            </GridPane.margin>
+                           <tooltip>
+                              <Tooltip text="Click to select this slot for booking. Click again to cancel" />
+                           </tooltip>
                         </Button>
                         <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="234.0" style="-fx-background-color: #fff5ee; -fx-border-color: #2F4F4F;" text="Free" GridPane.columnIndex="3" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
                            <font>
@@ -148,6 +158,9 @@
                            <GridPane.margin>
                               <Insets bottom="5.0" left="5.0" right="5.0" />
                            </GridPane.margin>
+                           <tooltip>
+                              <Tooltip text="Click to select this slot for booking. Click again to cancel" />
+                           </tooltip>
                         </Button>
                         <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="234.0" style="-fx-background-color: #fff5ee; -fx-border-color: #2F4F4F;" text="Free" GridPane.columnIndex="4" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
                            <font>
@@ -156,6 +169,9 @@
                            <GridPane.margin>
                               <Insets bottom="5.0" left="5.0" right="5.0" />
                            </GridPane.margin>
+                           <tooltip>
+                              <Tooltip text="Click to select this slot for booking. Click again to cancel" />
+                           </tooltip>
                         </Button>
                         <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="234.0" style="-fx-background-color: #fff5ee; -fx-border-color: #2F4F4F;" text="Free" GridPane.columnIndex="5" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
                            <font>
@@ -164,6 +180,9 @@
                            <GridPane.margin>
                               <Insets bottom="5.0" left="5.0" right="5.0" />
                            </GridPane.margin>
+                           <tooltip>
+                              <Tooltip text="Click to select this slot for booking. Click again to cancel" />
+                           </tooltip>
                         </Button>
                         <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="234.0" style="-fx-background-color: #fff5ee; -fx-border-color: #2F4F4F;" text="Free" GridPane.columnIndex="6" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
                            <font>
@@ -172,6 +191,9 @@
                            <GridPane.margin>
                               <Insets bottom="5.0" left="5.0" right="5.0" />
                            </GridPane.margin>
+                           <tooltip>
+                              <Tooltip text="Click to select this slot for booking. Click again to cancel" />
+                           </tooltip>
                         </Button>
                         <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="234.0" style="-fx-background-color: #fff5ee; -fx-border-color: #2F4F4F;" text="Free" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
                            <font>
@@ -180,6 +202,9 @@
                            <GridPane.margin>
                               <Insets bottom="5.0" left="5.0" right="5.0" />
                            </GridPane.margin>
+                           <tooltip>
+                              <Tooltip text="Click to select this slot for booking. Click again to cancel" />
+                           </tooltip>
                         </Button>
                         <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="234.0" style="-fx-background-color: #fff5ee; -fx-border-color: #2F4F4F;" text="Free" GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
                            <font>
@@ -188,6 +213,9 @@
                            <GridPane.margin>
                               <Insets bottom="5.0" left="5.0" right="5.0" />
                            </GridPane.margin>
+                           <tooltip>
+                              <Tooltip text="Click to select this slot for booking. Click again to cancel" />
+                           </tooltip>
                         </Button>
                         <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="234.0" style="-fx-background-color: #fff5ee; -fx-border-color: #2F4F4F;" text="Free" GridPane.columnIndex="2" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
                            <font>
@@ -196,6 +224,9 @@
                            <GridPane.margin>
                               <Insets bottom="5.0" left="5.0" right="5.0" />
                            </GridPane.margin>
+                           <tooltip>
+                              <Tooltip text="Click to select this slot for booking. Click again to cancel" />
+                           </tooltip>
                         </Button>
                         <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="234.0" style="-fx-background-color: #fff5ee; -fx-border-color: #2F4F4F;" text="Free" GridPane.columnIndex="3" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
                            <font>
@@ -204,6 +235,9 @@
                            <GridPane.margin>
                               <Insets bottom="5.0" left="5.0" right="5.0" />
                            </GridPane.margin>
+                           <tooltip>
+                              <Tooltip text="Click to select this slot for booking. Click again to cancel" />
+                           </tooltip>
                         </Button>
                         <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="234.0" style="-fx-background-color: #fff5ee; -fx-border-color: #2F4F4F;" text="Free" GridPane.columnIndex="4" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
                            <font>
@@ -212,6 +246,9 @@
                            <GridPane.margin>
                               <Insets bottom="5.0" left="5.0" right="5.0" />
                            </GridPane.margin>
+                           <tooltip>
+                              <Tooltip text="Click to select this slot for booking. Click again to cancel" />
+                           </tooltip>
                         </Button>
                         <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="234.0" style="-fx-background-color: #fff5ee; -fx-border-color: #2F4F4F;" text="Free" GridPane.columnIndex="5" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
                            <font>
@@ -220,6 +257,9 @@
                            <GridPane.margin>
                               <Insets bottom="5.0" left="5.0" right="5.0" />
                            </GridPane.margin>
+                           <tooltip>
+                              <Tooltip text="Click to select this slot for booking. Click again to cancel" />
+                           </tooltip>
                         </Button>
                         <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="234.0" style="-fx-background-color: #fff5ee; -fx-border-color: #2F4F4F;" text="Free" GridPane.columnIndex="6" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
                            <font>
@@ -228,6 +268,9 @@
                            <GridPane.margin>
                               <Insets bottom="5.0" left="5.0" right="5.0" />
                            </GridPane.margin>
+                           <tooltip>
+                              <Tooltip text="Click to select this slot for booking. Click again to cancel" />
+                           </tooltip>
                         </Button>
                         <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="234.0" style="-fx-background-color: #fff5ee; -fx-border-color: #2F4F4F;" text="Free" GridPane.rowIndex="3" GridPane.valignment="BOTTOM">
                            <font>
@@ -236,6 +279,9 @@
                            <GridPane.margin>
                               <Insets bottom="5.0" left="5.0" right="5.0" />
                            </GridPane.margin>
+                           <tooltip>
+                              <Tooltip text="Click to select this slot for booking. Click again to cancel" />
+                           </tooltip>
                         </Button>
                         <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="234.0" style="-fx-background-color: #fff5ee; -fx-border-color: #2F4F4F;" text="Free" GridPane.columnIndex="1" GridPane.rowIndex="3" GridPane.valignment="BOTTOM">
                            <font>
@@ -244,6 +290,9 @@
                            <GridPane.margin>
                               <Insets bottom="5.0" left="5.0" right="5.0" />
                            </GridPane.margin>
+                           <tooltip>
+                              <Tooltip text="Click to select this slot for booking. Click again to cancel" />
+                           </tooltip>
                         </Button>
                         <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="234.0" style="-fx-background-color: #fff5ee; -fx-border-color: #2F4F4F;" text="Free" GridPane.columnIndex="2" GridPane.rowIndex="3" GridPane.valignment="BOTTOM">
                            <font>
@@ -252,6 +301,9 @@
                            <GridPane.margin>
                               <Insets bottom="5.0" left="5.0" right="5.0" />
                            </GridPane.margin>
+                           <tooltip>
+                              <Tooltip text="Click to select this slot for booking. Click again to cancel" />
+                           </tooltip>
                         </Button>
                         <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="234.0" style="-fx-background-color: #fff5ee; -fx-border-color: #2F4F4F;" text="Free" GridPane.columnIndex="3" GridPane.rowIndex="3" GridPane.valignment="BOTTOM">
                            <font>
@@ -260,6 +312,9 @@
                            <GridPane.margin>
                               <Insets bottom="5.0" left="5.0" right="5.0" />
                            </GridPane.margin>
+                           <tooltip>
+                              <Tooltip text="Click to select this slot for booking. Click again to cancel" />
+                           </tooltip>
                         </Button>
                         <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="234.0" style="-fx-background-color: #fff5ee; -fx-border-color: #2F4F4F;" text="Free" GridPane.columnIndex="4" GridPane.rowIndex="3" GridPane.valignment="BOTTOM">
                            <font>
@@ -268,6 +323,9 @@
                            <GridPane.margin>
                               <Insets bottom="5.0" left="5.0" right="5.0" />
                            </GridPane.margin>
+                           <tooltip>
+                              <Tooltip text="Click to select this slot for booking. Click again to cancel" />
+                           </tooltip>
                         </Button>
                         <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="234.0" style="-fx-background-color: #fff5ee; -fx-border-color: #2F4F4F;" text="Free" GridPane.columnIndex="5" GridPane.rowIndex="3" GridPane.valignment="BOTTOM">
                            <font>
@@ -276,6 +334,9 @@
                            <GridPane.margin>
                               <Insets bottom="5.0" left="5.0" right="5.0" />
                            </GridPane.margin>
+                           <tooltip>
+                              <Tooltip text="Click to select this slot for booking. Click again to cancel" />
+                           </tooltip>
                         </Button>
                         <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="234.0" style="-fx-background-color: #fff5ee; -fx-border-color: #2F4F4F;" text="Free" GridPane.columnIndex="6" GridPane.rowIndex="3" GridPane.valignment="BOTTOM">
                            <font>
@@ -284,6 +345,9 @@
                            <GridPane.margin>
                               <Insets bottom="5.0" left="5.0" right="5.0" />
                            </GridPane.margin>
+                           <tooltip>
+                              <Tooltip text="Click to select this slot for booking. Click again to cancel" />
+                           </tooltip>
                         </Button>
                         <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="234.0" style="-fx-background-color: #fff5ee; -fx-border-color: #2F4F4F;" text="Free" GridPane.rowIndex="4" GridPane.valignment="BOTTOM">
                            <font>
@@ -292,6 +356,9 @@
                            <GridPane.margin>
                               <Insets bottom="5.0" left="5.0" right="5.0" />
                            </GridPane.margin>
+                           <tooltip>
+                              <Tooltip text="Click to select this slot for booking. Click again to cancel" />
+                           </tooltip>
                         </Button>
                         <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="234.0" style="-fx-background-color: #fff5ee; -fx-border-color: #2F4F4F;" text="Free" GridPane.columnIndex="1" GridPane.rowIndex="4" GridPane.valignment="BOTTOM">
                            <font>
@@ -300,6 +367,9 @@
                            <GridPane.margin>
                               <Insets bottom="5.0" left="5.0" right="5.0" />
                            </GridPane.margin>
+                           <tooltip>
+                              <Tooltip text="Click to select this slot for booking. Click again to cancel" />
+                           </tooltip>
                         </Button>
                         <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="234.0" style="-fx-background-color: #fff5ee; -fx-border-color: #2F4F4F;" text="Free" GridPane.columnIndex="2" GridPane.rowIndex="4" GridPane.valignment="BOTTOM">
                            <font>
@@ -308,6 +378,9 @@
                            <GridPane.margin>
                               <Insets bottom="5.0" left="5.0" right="5.0" />
                            </GridPane.margin>
+                           <tooltip>
+                              <Tooltip text="Click to select this slot for booking. Click again to cancel" />
+                           </tooltip>
                         </Button>
                         <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="234.0" style="-fx-background-color: #fff5ee; -fx-border-color: #2F4F4F;" text="Free" GridPane.columnIndex="3" GridPane.rowIndex="4" GridPane.valignment="BOTTOM">
                            <font>
@@ -316,6 +389,9 @@
                            <GridPane.margin>
                               <Insets bottom="5.0" left="5.0" right="5.0" />
                            </GridPane.margin>
+                           <tooltip>
+                              <Tooltip text="Click to select this slot for booking. Click again to cancel" />
+                           </tooltip>
                         </Button>
                         <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="234.0" style="-fx-background-color: #fff5ee; -fx-border-color: #2F4F4F;" text="Free" GridPane.columnIndex="4" GridPane.rowIndex="4" GridPane.valignment="BOTTOM">
                            <font>
@@ -324,6 +400,9 @@
                            <GridPane.margin>
                               <Insets bottom="5.0" left="5.0" right="5.0" />
                            </GridPane.margin>
+                           <tooltip>
+                              <Tooltip text="Click to select this slot for booking. Click again to cancel" />
+                           </tooltip>
                         </Button>
                         <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="234.0" style="-fx-background-color: #fff5ee; -fx-border-color: #2F4F4F;" text="Free" GridPane.columnIndex="5" GridPane.rowIndex="4" GridPane.valignment="BOTTOM">
                            <font>
@@ -332,6 +411,9 @@
                            <GridPane.margin>
                               <Insets bottom="5.0" left="5.0" right="5.0" />
                            </GridPane.margin>
+                           <tooltip>
+                              <Tooltip text="Click to select this slot for booking. Click again to cancel" />
+                           </tooltip>
                         </Button>
                         <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="234.0" style="-fx-background-color: #fff5ee; -fx-border-color: #2F4F4F;" text="Free" GridPane.columnIndex="6" GridPane.rowIndex="4" GridPane.valignment="BOTTOM">
                            <font>
@@ -340,6 +422,9 @@
                            <GridPane.margin>
                               <Insets bottom="5.0" left="5.0" right="5.0" />
                            </GridPane.margin>
+                           <tooltip>
+                              <Tooltip text="Click to select this slot for booking. Click again to cancel" />
+                           </tooltip>
                         </Button>
                         <Label alignment="CENTER" prefHeight="40.0" prefWidth="238.0" style="-fx-background-color: #708090; -fx-border-color: #2F4F4F;" text="0800AM - 0830AM" GridPane.rowIndex="1" GridPane.valignment="TOP">
                            <GridPane.margin>
@@ -567,12 +652,12 @@
                         </Label>
                      </children>
                   </GridPane>
-                  <Button mnemonicParsing="false" onMouseClicked="#flyRight" prefHeight="47.0" prefWidth="133.0" style="-fx-background-color: linear-gradient(#3f3f3f,#545454);" stylesheets="@button.css" text="&lt; Back" StackPane.alignment="TOP_LEFT">
+                  <Button fx:id="BackBtn" mnemonicParsing="false" onMouseClicked="#flyRight" prefHeight="47.0" prefWidth="133.0" style="-fx-background-color: linear-gradient(#3f3f3f,#545454);" stylesheets="@button.css" text="&lt; Back" StackPane.alignment="TOP_LEFT">
                      <StackPane.margin>
                         <Insets left="30.0" top="30.0" />
                      </StackPane.margin>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="47.0" prefWidth="133.0" style="-fx-background-color: linear-gradient(#3f3f3f,#545454);" stylesheets="@button.css" text="Book &gt;" StackPane.alignment="TOP_RIGHT">
+                  <Button fx:id="BookBtn" mnemonicParsing="false" prefHeight="47.0" prefWidth="133.0" style="-fx-background-color: linear-gradient(#3f3f3f,#545454);" stylesheets="@button.css" text="Book &gt;" StackPane.alignment="TOP_RIGHT">
                      <StackPane.margin>
                         <Insets right="30.0" top="30.0" />
                      </StackPane.margin>

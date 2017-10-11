@@ -5,26 +5,28 @@
 package Reservation;
 
 import javafx.animation.FadeTransition;
-import javafx.animation.PathTransition;
+import javafx.animation.ParallelTransition;
 import javafx.animation.SequentialTransition;
 import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
-import javafx.scene.Group;
 import javafx.scene.layout.*;
 import javafx.scene.control.*;
 import javafx.event.Event;
-import javafx.scene.shape.HLineTo;
-import javafx.scene.shape.MoveTo;
-import javafx.scene.shape.Path;
 import javafx.util.Duration;
+
+import java.awt.print.Book;
 
 
 public class ReservationGUIController {
-    int appearAfter_HoverPane = 200;
+    private int appearAfter_HoverPane = 200;
     @FXML
     private StackPane HoverPane;
     @FXML
     private Label RoomNo;
+    @FXML
+    private Button BackBtn;
+    @FXML
+    private Button BookBtn;
     private void induceDelay(long time){
         try {
             Thread.sleep(time);
@@ -48,11 +50,15 @@ public class ReservationGUIController {
         }
         sequence.play();
         sequence.setOnFinished(e->{
-            HoverPane.setTranslateX(0);
             exitReadOnlyBookings();
         });
     }
     public void openBooking(Event action){
+        HoverPane.setTranslateX(0);
+        BackBtn.setVisible(true);
+        BookBtn.setVisible(true);
+        BookBtn.setOpacity(0);
+        BackBtn.setOpacity(0);
         Button current = (Button) action.getSource();
         RoomNo.setText(current.getText());
         induceDelay(appearAfter_HoverPane);
@@ -60,9 +66,17 @@ public class ReservationGUIController {
         HoverPane.setDisable(false);
         FadeTransition appear = new FadeTransition(Duration.millis(1000), HoverPane);
         appear.setToValue(1);
-        appear.play();
+        FadeTransition appearBookBtn = new FadeTransition(Duration.millis(1000), BookBtn);
+        appearBookBtn.setToValue(1);
+        FadeTransition appearBackBtn = new FadeTransition(Duration.millis(1000), BackBtn);
+        appearBackBtn.setToValue(1);
+        ParallelTransition inParallel = new ParallelTransition(appear, appearBookBtn, appearBackBtn);
+        inParallel.play();
     }
     public void showReadOnlyBookings(Event action){
+        HoverPane.setTranslateX(0);
+        BackBtn.setVisible(false);
+        BookBtn.setVisible(false);
         double opacitySaturation = 0.92;
         Button current = (Button) action.getSource();
         RoomNo.setText(current.getText());
@@ -81,9 +95,14 @@ public class ReservationGUIController {
     }
     public void exitReadOnlyBookings(){
         induceDelay(appearAfter_HoverPane);
-        HoverPane.setVisible(false);
-        HoverPane.setDisable(false);
-        HoverPane.setOpacity(1);
-        RoomNo.setText("Not Set");
+        FadeTransition appear = new FadeTransition(Duration.millis(700), HoverPane);
+        appear.setToValue(0);
+        appear.play();
+        appear.setOnFinished(e->{
+            HoverPane.setVisible(false);
+            HoverPane.setDisable(false);
+            HoverPane.setOpacity(1);
+            RoomNo.setText("Not Set");
+        });
     }
 }
