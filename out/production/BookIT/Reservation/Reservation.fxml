@@ -567,6 +567,16 @@
                         </Label>
                      </children>
                   </GridPane>
+                  <Button mnemonicParsing="false" onMouseClicked="#flyRight" prefHeight="47.0" prefWidth="133.0" style="-fx-background-color: linear-gradient(#3f3f3f,#545454);" stylesheets="@button.css" text="&lt; Back" StackPane.alignment="TOP_LEFT">
+                     <StackPane.margin>
+                        <Insets left="30.0" top="30.0" />
+                     </StackPane.margin>
+                  </Button>
+                  <Button mnemonicParsing="false" prefHeight="47.0" prefWidth="133.0" style="-fx-background-color: linear-gradient(#3f3f3f,#545454);" stylesheets="@button.css" text="Book &gt;" StackPane.alignment="TOP_RIGHT">
+                     <StackPane.margin>
+                        <Insets right="30.0" top="30.0" />
+                     </StackPane.margin>
+                  </Button>
                </children>
             </StackPane>
          </children>
