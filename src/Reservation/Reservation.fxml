@@ -17,9 +17,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Reservation.ReservationGUIController">
+<VBox fx:id="rootPane" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Reservation.ReservationGUIController">
    <children>
-      <MenuBar>
+      <MenuBar fx:id="menuBar">
         <menus>
           <Menu mnemonicParsing="false" text="File">
             <items>
@@ -35,9 +35,9 @@
       </MenuBar>
       <StackPane onMouseEntered="#exitReadOnlyBookings" prefHeight="382.0" prefWidth="1920.0">
          <children>
-            <StackPane prefHeight="312.0" prefWidth="1652.0">
+            <StackPane fx:id="leftPane" prefHeight="312.0" prefWidth="1652.0" style="-fx-background-color: #2C3E50;">
                <StackPane.margin>
-                  <Insets right="1270.0" />
+                  <Insets right="1275.0" />
                </StackPane.margin>
             </StackPane>
             <SplitPane disable="true" dividerPositions="0.29797979797979796" prefHeight="312.0" prefWidth="2003.0">
@@ -46,17 +46,17 @@
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" />
               </items>
                <StackPane.margin>
-                  <Insets left="650.0" right="1260.0" />
+                  <Insets left="645.0" right="1265.0" />
                </StackPane.margin>
             </SplitPane>
             <StackPane layoutX="10.0" layoutY="10.0" prefHeight="312.0" prefWidth="1652.0">
                <StackPane.margin>
-                  <Insets left="660.0" right="660.0" />
+                  <Insets left="655.0" right="655.0" />
                </StackPane.margin>
                <children>
-                  <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: #000000;">
+                  <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: #2C3E50;">
                      <children>
-                        <ImageView fx:id="logo" fitHeight="310.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="logo" fitHeight="311.0" fitWidth="610.0" opacity="0.8" pickOnBounds="true" preserveRatio="true" />
                      </children>
                   </StackPane>
                </children>
@@ -67,12 +67,12 @@
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" />
                </items>
                <StackPane.margin>
-                  <Insets left="1260.0" right="650.0" />
+                  <Insets left="1265.0" right="645.0" />
                </StackPane.margin>
             </SplitPane>
-            <StackPane layoutX="670.0" layoutY="10.0" prefHeight="312.0" prefWidth="1652.0">
+            <StackPane fx:id="rightPane" layoutX="670.0" layoutY="10.0" prefHeight="312.0" prefWidth="1652.0" style="-fx-background-color: #2C3E50;">
                <StackPane.margin>
-                  <Insets left="1270.0" />
+                  <Insets left="1275.0" />
                </StackPane.margin>
             </StackPane>
          </children>
@@ -83,9 +83,9 @@
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" />
         </items>
       </SplitPane>
-      <StackPane prefHeight="720.0" prefWidth="1920.0" style="-fx-background-color: linear-gradient(#181818, #B0B0B0, #181818);">
+      <StackPane prefHeight="720.0" prefWidth="1920.0" style="-fx-background-color: linear-gradient( #2C3E50,#1B2631);">
          <children>
-            <GridPane alignment="CENTER" prefHeight="233.0" prefWidth="324.0" StackPane.alignment="CENTER">
+            <GridPane fx:id="roomGrid" alignment="CENTER" prefHeight="233.0" prefWidth="324.0" StackPane.alignment="CENTER">
               <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -129,7 +129,7 @@
                   <Insets bottom="100.0" left="350.0" right="350.0" top="200.0" />
                </StackPane.margin>
             </GridPane>
-            <StackPane fx:id="HoverPane" prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: linear-gradient(#517693, #63B8FF, #517693); visibility: false;">
+            <StackPane fx:id="HoverPane" prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: linear-gradient(#CD6155 ,#E6B0AA,#CD6155); visibility: false;">
                <children>
                   <GridPane>
                     <columnConstraints>
@@ -152,12 +152,12 @@
                         <Insets bottom="100.0" left="200.0" right="200.0" top="50.0" />
                      </StackPane.margin>
                      <children>
-                        <Label fx:id="RoomNo" alignment="CENTER" contentDisplay="CENTER" prefHeight="54.0" prefWidth="284.0" style="-fx-background-color: #2B4F81;" text="Label" textFill="WHITE" GridPane.columnIndex="3" GridPane.valignment="TOP">
+                        <Label fx:id="RoomNo" alignment="CENTER" contentDisplay="CENTER" prefHeight="54.0" prefWidth="284.0" style="-fx-background-color: linear-gradient(#2E86C1,#21618C); -fx-border-color: #186A3B; -fx-border-width: 3;" text="Label" textFill="WHITE" GridPane.columnIndex="3" GridPane.valignment="TOP">
                            <font>
                               <Font size="32.0" />
                            </font>
                         </Label>
-                        <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="234.0" style="-fx-background-color: #fff5ee; -fx-border-color: #2F4F4F;" text="Free" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+                        <Button disable="true" mnemonicParsing="false" onMouseClicked="#addSlotToBookQueue" prefHeight="50.0" prefWidth="234.0" style="-fx-background-color: #424949;" stylesheets="@button.css" text="Booked" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
                            <GridPane.margin>
                               <Insets bottom="5.0" left="5.0" right="5.0" />
                            </GridPane.margin>
@@ -168,7 +168,7 @@
                               <Tooltip text="Click to select this slot for booking. Click again to cancel" />
                            </tooltip>
                         </Button>
-                        <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="234.0" style="-fx-background-color: #fff5ee; -fx-border-color: #2F4F4F;" text="Free" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+                        <Button mnemonicParsing="false" onMouseClicked="#addSlotToBookQueue" prefHeight="50.0" prefWidth="234.0" style="-fx-background-color: #424949;" stylesheets="@button.css" text="Free" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
                            <font>
                               <Font size="21.0" />
                            </font>
@@ -179,7 +179,7 @@
                               <Tooltip text="Click to select this slot for booking. Click again to cancel" />
                            </tooltip>
                         </Button>
-                        <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="234.0" style="-fx-background-color: #fff5ee; -fx-border-color: #2F4F4F;" text="Free" GridPane.columnIndex="2" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+                        <Button mnemonicParsing="false" onMouseClicked="#addSlotToBookQueue" prefHeight="50.0" prefWidth="234.0" style="-fx-background-color: #424949;" stylesheets="@button.css" text="Free" GridPane.columnIndex="2" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
                            <font>
                               <Font size="21.0" />
                            </font>
@@ -190,7 +190,7 @@
                               <Tooltip text="Click to select this slot for booking. Click again to cancel" />
                            </tooltip>
                         </Button>
-                        <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="234.0" style="-fx-background-color: #fff5ee; -fx-border-color: #2F4F4F;" text="Free" GridPane.columnIndex="3" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+                        <Button mnemonicParsing="false" onMouseClicked="#addSlotToBookQueue" prefHeight="50.0" prefWidth="234.0" style="-fx-background-color: #424949;" stylesheets="@button.css" text="Free" GridPane.columnIndex="3" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
                            <font>
                               <Font size="21.0" />
                            </font>
@@ -201,7 +201,7 @@
                               <Tooltip text="Click to select this slot for booking. Click again to cancel" />
                            </tooltip>
                         </Button>
-                        <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="234.0" style="-fx-background-color: #fff5ee; -fx-border-color: #2F4F4F;" text="Free" GridPane.columnIndex="4" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+                        <Button mnemonicParsing="false" onMouseClicked="#addSlotToBookQueue" prefHeight="50.0" prefWidth="234.0" style="-fx-background-color: #424949;" stylesheets="@button.css" text="Free" GridPane.columnIndex="4" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
                            <font>
                               <Font size="21.0" />
                            </font>
@@ -212,7 +212,7 @@
                               <Tooltip text="Click to select this slot for booking. Click again to cancel" />
                            </tooltip>
                         </Button>
-                        <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="234.0" style="-fx-background-color: #fff5ee; -fx-border-color: #2F4F4F;" text="Free" GridPane.columnIndex="5" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+                        <Button mnemonicParsing="false" onMouseClicked="#addSlotToBookQueue" prefHeight="50.0" prefWidth="234.0" style="-fx-background-color: #424949;" stylesheets="@button.css" text="Free" GridPane.columnIndex="5" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
                            <font>
                               <Font size="21.0" />
                            </font>
@@ -223,7 +223,7 @@
                               <Tooltip text="Click to select this slot for booking. Click again to cancel" />
                            </tooltip>
                         </Button>
-                        <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="234.0" style="-fx-background-color: #fff5ee; -fx-border-color: #2F4F4F;" text="Free" GridPane.columnIndex="6" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+                        <Button mnemonicParsing="false" onMouseClicked="#addSlotToBookQueue" prefHeight="50.0" prefWidth="234.0" style="-fx-background-color: #424949;" stylesheets="@button.css" text="Free" GridPane.columnIndex="6" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
                            <font>
                               <Font size="21.0" />
                            </font>
@@ -234,7 +234,7 @@
                               <Tooltip text="Click to select this slot for booking. Click again to cancel" />
                            </tooltip>
                         </Button>
-                        <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="234.0" style="-fx-background-color: #fff5ee; -fx-border-color: #2F4F4F;" text="Free" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
+                        <Button mnemonicParsing="false" onMouseClicked="#addSlotToBookQueue" prefHeight="50.0" prefWidth="234.0" style="-fx-background-color: #424949;" stylesheets="@button.css" text="Free" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
                            <font>
                               <Font size="21.0" />
                            </font>
@@ -245,7 +245,7 @@
                               <Tooltip text="Click to select this slot for booking. Click again to cancel" />
                            </tooltip>
                         </Button>
-                        <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="234.0" style="-fx-background-color: #fff5ee; -fx-border-color: #2F4F4F;" text="Free" GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
+                        <Button mnemonicParsing="false" onMouseClicked="#addSlotToBookQueue" prefHeight="50.0" prefWidth="234.0" style="-fx-background-color: #424949;" stylesheets="@button.css" text="Free" GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
                            <font>
                               <Font size="21.0" />
                            </font>
@@ -256,7 +256,7 @@
                               <Tooltip text="Click to select this slot for booking. Click again to cancel" />
                            </tooltip>
                         </Button>
-                        <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="234.0" style="-fx-background-color: #fff5ee; -fx-border-color: #2F4F4F;" text="Free" GridPane.columnIndex="2" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
+                        <Button mnemonicParsing="false" onMouseClicked="#addSlotToBookQueue" prefHeight="50.0" prefWidth="234.0" style="-fx-background-color: #424949;" stylesheets="@button.css" text="Free" GridPane.columnIndex="2" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
                            <font>
                               <Font size="21.0" />
                            </font>
@@ -267,7 +267,7 @@
                               <Tooltip text="Click to select this slot for booking. Click again to cancel" />
                            </tooltip>
                         </Button>
-                        <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="234.0" style="-fx-background-color: #fff5ee; -fx-border-color: #2F4F4F;" text="Free" GridPane.columnIndex="3" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
+                        <Button mnemonicParsing="false" onMouseClicked="#addSlotToBookQueue" prefHeight="50.0" prefWidth="234.0" style="-fx-background-color: #424949;" stylesheets="@button.css" text="Free" GridPane.columnIndex="3" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
                            <font>
                               <Font size="21.0" />
                            </font>
@@ -278,7 +278,7 @@
                               <Tooltip text="Click to select this slot for booking. Click again to cancel" />
                            </tooltip>
                         </Button>
-                        <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="234.0" style="-fx-background-color: #fff5ee; -fx-border-color: #2F4F4F;" text="Free" GridPane.columnIndex="4" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
+                        <Button mnemonicParsing="false" onMouseClicked="#addSlotToBookQueue" prefHeight="50.0" prefWidth="234.0" style="-fx-background-color: #424949;" stylesheets="@button.css" text="Free" GridPane.columnIndex="4" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
                            <font>
                               <Font size="21.0" />
                            </font>
@@ -289,7 +289,7 @@
                               <Tooltip text="Click to select this slot for booking. Click again to cancel" />
                            </tooltip>
                         </Button>
-                        <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="234.0" style="-fx-background-color: #fff5ee; -fx-border-color: #2F4F4F;" text="Free" GridPane.columnIndex="5" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
+                        <Button mnemonicParsing="false" onMouseClicked="#addSlotToBookQueue" prefHeight="50.0" prefWidth="234.0" style="-fx-background-color: #424949;" stylesheets="@button.css" text="Free" GridPane.columnIndex="5" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
                            <font>
                               <Font size="21.0" />
                            </font>
@@ -300,7 +300,7 @@
                               <Tooltip text="Click to select this slot for booking. Click again to cancel" />
                            </tooltip>
                         </Button>
-                        <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="234.0" style="-fx-background-color: #fff5ee; -fx-border-color: #2F4F4F;" text="Free" GridPane.columnIndex="6" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
+                        <Button mnemonicParsing="false" onMouseClicked="#addSlotToBookQueue" prefHeight="50.0" prefWidth="234.0" style="-fx-background-color: #424949;" stylesheets="@button.css" text="Free" GridPane.columnIndex="6" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
                            <font>
                               <Font size="21.0" />
                            </font>
@@ -311,7 +311,7 @@
                               <Tooltip text="Click to select this slot for booking. Click again to cancel" />
                            </tooltip>
                         </Button>
-                        <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="234.0" style="-fx-background-color: #fff5ee; -fx-border-color: #2F4F4F;" text="Free" GridPane.rowIndex="3" GridPane.valignment="BOTTOM">
+                        <Button mnemonicParsing="false" onMouseClicked="#addSlotToBookQueue" prefHeight="50.0" prefWidth="234.0" style="-fx-background-color: #424949;" stylesheets="@button.css" text="Free" GridPane.rowIndex="3" GridPane.valignment="BOTTOM">
                            <font>
                               <Font size="21.0" />
                            </font>
@@ -322,7 +322,7 @@
                               <Tooltip text="Click to select this slot for booking. Click again to cancel" />
                            </tooltip>
                         </Button>
-                        <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="234.0" style="-fx-background-color: #fff5ee; -fx-border-color: #2F4F4F;" text="Free" GridPane.columnIndex="1" GridPane.rowIndex="3" GridPane.valignment="BOTTOM">
+                        <Button mnemonicParsing="false" onMouseClicked="#addSlotToBookQueue" prefHeight="50.0" prefWidth="234.0" style="-fx-background-color: #424949;" stylesheets="@button.css" text="Free" GridPane.columnIndex="1" GridPane.rowIndex="3" GridPane.valignment="BOTTOM">
                            <font>
                               <Font size="21.0" />
                            </font>
@@ -333,7 +333,7 @@
                               <Tooltip text="Click to select this slot for booking. Click again to cancel" />
                            </tooltip>
                         </Button>
-                        <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="234.0" style="-fx-background-color: #fff5ee; -fx-border-color: #2F4F4F;" text="Free" GridPane.columnIndex="2" GridPane.rowIndex="3" GridPane.valignment="BOTTOM">
+                        <Button mnemonicParsing="false" onMouseClicked="#addSlotToBookQueue" prefHeight="50.0" prefWidth="234.0" style="-fx-background-color: #424949;" stylesheets="@button.css" text="Free" GridPane.columnIndex="2" GridPane.rowIndex="3" GridPane.valignment="BOTTOM">
                            <font>
                               <Font size="21.0" />
                            </font>
@@ -344,7 +344,7 @@
                               <Tooltip text="Click to select this slot for booking. Click again to cancel" />
                            </tooltip>
                         </Button>
-                        <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="234.0" style="-fx-background-color: #fff5ee; -fx-border-color: #2F4F4F;" text="Free" GridPane.columnIndex="3" GridPane.rowIndex="3" GridPane.valignment="BOTTOM">
+                        <Button mnemonicParsing="false" onMouseClicked="#addSlotToBookQueue" prefHeight="50.0" prefWidth="234.0" style="-fx-background-color: #424949;" stylesheets="@button.css" text="Free" GridPane.columnIndex="3" GridPane.rowIndex="3" GridPane.valignment="BOTTOM">
                            <font>
                               <Font size="21.0" />
                            </font>
@@ -355,7 +355,7 @@
                               <Tooltip text="Click to select this slot for booking. Click again to cancel" />
                            </tooltip>
                         </Button>
-                        <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="234.0" style="-fx-background-color: #fff5ee; -fx-border-color: #2F4F4F;" text="Free" GridPane.columnIndex="4" GridPane.rowIndex="3" GridPane.valignment="BOTTOM">
+                        <Button mnemonicParsing="false" onMouseClicked="#addSlotToBookQueue" prefHeight="50.0" prefWidth="234.0" style="-fx-background-color: #424949;" stylesheets="@button.css" text="Free" GridPane.columnIndex="4" GridPane.rowIndex="3" GridPane.valignment="BOTTOM">
                            <font>
                               <Font size="21.0" />
                            </font>
@@ -366,7 +366,7 @@
                               <Tooltip text="Click to select this slot for booking. Click again to cancel" />
                            </tooltip>
                         </Button>
-                        <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="234.0" style="-fx-background-color: #fff5ee; -fx-border-color: #2F4F4F;" text="Free" GridPane.columnIndex="5" GridPane.rowIndex="3" GridPane.valignment="BOTTOM">
+                        <Button mnemonicParsing="false" onMouseClicked="#addSlotToBookQueue" prefHeight="50.0" prefWidth="234.0" style="-fx-background-color: #424949;" stylesheets="@button.css" text="Free" GridPane.columnIndex="5" GridPane.rowIndex="3" GridPane.valignment="BOTTOM">
                            <font>
                               <Font size="21.0" />
                            </font>
@@ -377,7 +377,7 @@
                               <Tooltip text="Click to select this slot for booking. Click again to cancel" />
                            </tooltip>
                         </Button>
-                        <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="234.0" style="-fx-background-color: #fff5ee; -fx-border-color: #2F4F4F;" text="Free" GridPane.columnIndex="6" GridPane.rowIndex="3" GridPane.valignment="BOTTOM">
+                        <Button mnemonicParsing="false" onMouseClicked="#addSlotToBookQueue" prefHeight="50.0" prefWidth="234.0" style="-fx-background-color: #424949;" stylesheets="@button.css" text="Free" GridPane.columnIndex="6" GridPane.rowIndex="3" GridPane.valignment="BOTTOM">
                            <font>
                               <Font size="21.0" />
                            </font>
@@ -388,7 +388,7 @@
                               <Tooltip text="Click to select this slot for booking. Click again to cancel" />
                            </tooltip>
                         </Button>
-                        <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="234.0" style="-fx-background-color: #fff5ee; -fx-border-color: #2F4F4F;" text="Free" GridPane.rowIndex="4" GridPane.valignment="BOTTOM">
+                        <Button mnemonicParsing="false" onMouseClicked="#addSlotToBookQueue" prefHeight="50.0" prefWidth="234.0" style="-fx-background-color: #424949;" stylesheets="@button.css" text="Free" GridPane.rowIndex="4" GridPane.valignment="BOTTOM">
                            <font>
                               <Font size="21.0" />
                            </font>
@@ -399,7 +399,7 @@
                               <Tooltip text="Click to select this slot for booking. Click again to cancel" />
                            </tooltip>
                         </Button>
-                        <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="234.0" style="-fx-background-color: #fff5ee; -fx-border-color: #2F4F4F;" text="Free" GridPane.columnIndex="1" GridPane.rowIndex="4" GridPane.valignment="BOTTOM">
+                        <Button mnemonicParsing="false" onMouseClicked="#addSlotToBookQueue" prefHeight="50.0" prefWidth="234.0" style="-fx-background-color: #424949;" stylesheets="@button.css" text="Free" GridPane.columnIndex="1" GridPane.rowIndex="4" GridPane.valignment="BOTTOM">
                            <font>
                               <Font size="21.0" />
                            </font>
@@ -410,7 +410,7 @@
                               <Tooltip text="Click to select this slot for booking. Click again to cancel" />
                            </tooltip>
                         </Button>
-                        <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="234.0" style="-fx-background-color: #fff5ee; -fx-border-color: #2F4F4F;" text="Free" GridPane.columnIndex="2" GridPane.rowIndex="4" GridPane.valignment="BOTTOM">
+                        <Button mnemonicParsing="false" onMouseClicked="#addSlotToBookQueue" prefHeight="50.0" prefWidth="234.0" style="-fx-background-color: #424949;" stylesheets="@button.css" text="Free" GridPane.columnIndex="2" GridPane.rowIndex="4" GridPane.valignment="BOTTOM">
                            <font>
                               <Font size="21.0" />
                            </font>
@@ -421,7 +421,7 @@
                               <Tooltip text="Click to select this slot for booking. Click again to cancel" />
                            </tooltip>
                         </Button>
-                        <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="234.0" style="-fx-background-color: #fff5ee; -fx-border-color: #2F4F4F;" text="Free" GridPane.columnIndex="3" GridPane.rowIndex="4" GridPane.valignment="BOTTOM">
+                        <Button mnemonicParsing="false" onMouseClicked="#addSlotToBookQueue" prefHeight="50.0" prefWidth="234.0" style="-fx-background-color: #424949;" stylesheets="@button.css" text="Free" GridPane.columnIndex="3" GridPane.rowIndex="4" GridPane.valignment="BOTTOM">
                            <font>
                               <Font size="21.0" />
                            </font>
@@ -432,7 +432,7 @@
                               <Tooltip text="Click to select this slot for booking. Click again to cancel" />
                            </tooltip>
                         </Button>
-                        <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="234.0" style="-fx-background-color: #fff5ee; -fx-border-color: #2F4F4F;" text="Free" GridPane.columnIndex="4" GridPane.rowIndex="4" GridPane.valignment="BOTTOM">
+                        <Button mnemonicParsing="false" onMouseClicked="#addSlotToBookQueue" prefHeight="50.0" prefWidth="234.0" style="-fx-background-color: #424949;" stylesheets="@button.css" text="Free" GridPane.columnIndex="4" GridPane.rowIndex="4" GridPane.valignment="BOTTOM">
                            <font>
                               <Font size="21.0" />
                            </font>
@@ -443,7 +443,7 @@
                               <Tooltip text="Click to select this slot for booking. Click again to cancel" />
                            </tooltip>
                         </Button>
-                        <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="234.0" style="-fx-background-color: #fff5ee; -fx-border-color: #2F4F4F;" text="Free" GridPane.columnIndex="5" GridPane.rowIndex="4" GridPane.valignment="BOTTOM">
+                        <Button mnemonicParsing="false" onMouseClicked="#addSlotToBookQueue" prefHeight="50.0" prefWidth="234.0" style="-fx-background-color: #424949;" stylesheets="@button.css" text="Free" GridPane.columnIndex="5" GridPane.rowIndex="4" GridPane.valignment="BOTTOM">
                            <font>
                               <Font size="21.0" />
                            </font>
@@ -454,7 +454,7 @@
                               <Tooltip text="Click to select this slot for booking. Click again to cancel" />
                            </tooltip>
                         </Button>
-                        <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="234.0" style="-fx-background-color: #fff5ee; -fx-border-color: #2F4F4F;" text="Free" GridPane.columnIndex="6" GridPane.rowIndex="4" GridPane.valignment="BOTTOM">
+                        <Button mnemonicParsing="false" onMouseClicked="#addSlotToBookQueue" prefHeight="50.0" prefWidth="234.0" style="-fx-background-color: #424949;" stylesheets="@button.css" text="Free" GridPane.columnIndex="6" GridPane.rowIndex="4" GridPane.valignment="BOTTOM">
                            <font>
                               <Font size="21.0" />
                            </font>
@@ -465,225 +465,225 @@
                               <Tooltip text="Click to select this slot for booking. Click again to cancel" />
                            </tooltip>
                         </Button>
-                        <Label alignment="CENTER" prefHeight="40.0" prefWidth="238.0" style="-fx-background-color: #708090; -fx-border-color: #2F4F4F;" text="0800AM - 0830AM" GridPane.rowIndex="1" GridPane.valignment="TOP">
+                        <Label alignment="CENTER" prefHeight="42.0" prefWidth="238.0" style="-fx-background-color: #B03A2E; -fx-border-color: white; -fx-border-width: 4;" text="0800AM - 0830AM" GridPane.rowIndex="1" GridPane.valignment="TOP">
                            <GridPane.margin>
                               <Insets left="5.0" right="5.0" top="5.0" />
                            </GridPane.margin>
                            <font>
-                              <Font size="16.0" />
+                              <Font name="System Bold" size="16.0" />
                            </font>
                         </Label>
-                        <Label alignment="CENTER" prefHeight="40.0" prefWidth="238.0" style="-fx-background-color: #708090; -fx-border-color: #2F4F4F;" text="0830AM - 0900AM" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="TOP">
+                        <Label alignment="CENTER" prefHeight="42.0" prefWidth="238.0" style="-fx-background-color: #B03A2E; -fx-border-color: white; -fx-border-width: 4;" text="0830AM - 0900AM" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="TOP">
                            <font>
-                              <Font size="16.0" />
-                           </font>
-                           <GridPane.margin>
-                              <Insets left="5.0" right="5.0" top="5.0" />
-                           </GridPane.margin>
-                        </Label>
-                        <Label alignment="CENTER" prefHeight="40.0" prefWidth="238.0" style="-fx-background-color: #708090; -fx-border-color: #2F4F4F;" text="0900AM - 0930AM" GridPane.columnIndex="2" GridPane.rowIndex="1" GridPane.valignment="TOP">
-                           <font>
-                              <Font size="16.0" />
+                              <Font name="System Bold" size="16.0" />
                            </font>
                            <GridPane.margin>
                               <Insets left="5.0" right="5.0" top="5.0" />
                            </GridPane.margin>
                         </Label>
-                        <Label alignment="CENTER" prefHeight="40.0" prefWidth="238.0" style="-fx-background-color: #708090; -fx-border-color: #2F4F4F;" text="0930AM - 1000AM" GridPane.columnIndex="3" GridPane.rowIndex="1" GridPane.valignment="TOP">
+                        <Label alignment="CENTER" prefHeight="42.0" prefWidth="238.0" style="-fx-background-color: #B03A2E; -fx-border-color: white; -fx-border-width: 4;" text="0900AM - 0930AM" GridPane.columnIndex="2" GridPane.rowIndex="1" GridPane.valignment="TOP">
                            <font>
-                              <Font size="16.0" />
+                              <Font name="System Bold" size="16.0" />
                            </font>
                            <GridPane.margin>
                               <Insets left="5.0" right="5.0" top="5.0" />
                            </GridPane.margin>
                         </Label>
-                        <Label alignment="CENTER" prefHeight="40.0" prefWidth="238.0" style="-fx-background-color: #708090; -fx-border-color: #2F4F4F;" text="1000AM - 1030AM" GridPane.columnIndex="4" GridPane.rowIndex="1" GridPane.valignment="TOP">
+                        <Label alignment="CENTER" prefHeight="42.0" prefWidth="238.0" style="-fx-background-color: #B03A2E; -fx-border-color: white; -fx-border-width: 4;" text="0930AM - 1000AM" GridPane.columnIndex="3" GridPane.rowIndex="1" GridPane.valignment="TOP">
                            <font>
-                              <Font size="16.0" />
+                              <Font name="System Bold" size="16.0" />
                            </font>
                            <GridPane.margin>
                               <Insets left="5.0" right="5.0" top="5.0" />
                            </GridPane.margin>
                         </Label>
-                        <Label alignment="CENTER" prefHeight="40.0" prefWidth="238.0" style="-fx-background-color: #708090; -fx-border-color: #2F4F4F;" text="1030AM - 1100AM" GridPane.columnIndex="5" GridPane.rowIndex="1" GridPane.valignment="TOP">
+                        <Label alignment="CENTER" prefHeight="42.0" prefWidth="238.0" style="-fx-background-color: #B03A2E; -fx-border-color: white; -fx-border-width: 4;" text="1000AM - 1030AM" GridPane.columnIndex="4" GridPane.rowIndex="1" GridPane.valignment="TOP">
                            <font>
-                              <Font size="16.0" />
+                              <Font name="System Bold" size="16.0" />
                            </font>
                            <GridPane.margin>
                               <Insets left="5.0" right="5.0" top="5.0" />
                            </GridPane.margin>
                         </Label>
-                        <Label alignment="CENTER" prefHeight="40.0" prefWidth="238.0" style="-fx-background-color: #708090; -fx-border-color: #2F4F4F;" text="1100AM - 1130AM" GridPane.columnIndex="6" GridPane.rowIndex="1" GridPane.valignment="TOP">
+                        <Label alignment="CENTER" prefHeight="42.0" prefWidth="238.0" style="-fx-background-color: #B03A2E; -fx-border-color: white; -fx-border-width: 4;" text="1030AM - 1100AM" GridPane.columnIndex="5" GridPane.rowIndex="1" GridPane.valignment="TOP">
                            <font>
-                              <Font size="16.0" />
+                              <Font name="System Bold" size="16.0" />
                            </font>
                            <GridPane.margin>
                               <Insets left="5.0" right="5.0" top="5.0" />
                            </GridPane.margin>
                         </Label>
-                        <Label alignment="CENTER" prefHeight="40.0" prefWidth="238.0" style="-fx-background-color: #708090; -fx-border-color: #2F4F4F;" text="1130AM - 1200PM" GridPane.rowIndex="2" GridPane.valignment="TOP">
+                        <Label alignment="CENTER" prefHeight="42.0" prefWidth="238.0" style="-fx-background-color: #B03A2E; -fx-border-color: white; -fx-border-width: 4;" text="1100AM - 1130AM" GridPane.columnIndex="6" GridPane.rowIndex="1" GridPane.valignment="TOP">
                            <font>
-                              <Font size="16.0" />
+                              <Font name="System Bold" size="16.0" />
                            </font>
                            <GridPane.margin>
                               <Insets left="5.0" right="5.0" top="5.0" />
                            </GridPane.margin>
                         </Label>
-                        <Label alignment="CENTER" prefHeight="40.0" prefWidth="238.0" style="-fx-background-color: #708090; -fx-border-color: #2F4F4F;" text="1200PM - 1230PM" GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.valignment="TOP">
+                        <Label alignment="CENTER" prefHeight="42.0" prefWidth="238.0" style="-fx-background-color: #B03A2E; -fx-border-color: white; -fx-border-width: 4;" text="1130AM - 1200PM" GridPane.rowIndex="2" GridPane.valignment="TOP">
                            <font>
-                              <Font size="16.0" />
+                              <Font name="System Bold" size="16.0" />
                            </font>
                            <GridPane.margin>
                               <Insets left="5.0" right="5.0" top="5.0" />
                            </GridPane.margin>
                         </Label>
-                        <Label alignment="CENTER" prefHeight="40.0" prefWidth="238.0" style="-fx-background-color: #708090; -fx-border-color: #2F4F4F;" text="1230PM - 0100PM" GridPane.columnIndex="2" GridPane.rowIndex="2" GridPane.valignment="TOP">
+                        <Label alignment="CENTER" prefHeight="42.0" prefWidth="238.0" style="-fx-background-color: #B03A2E; -fx-border-color: white; -fx-border-width: 4;" text="1200PM - 1230PM" GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.valignment="TOP">
                            <font>
-                              <Font size="16.0" />
+                              <Font name="System Bold" size="16.0" />
                            </font>
                            <GridPane.margin>
                               <Insets left="5.0" right="5.0" top="5.0" />
                            </GridPane.margin>
                         </Label>
-                        <Label alignment="CENTER" prefHeight="40.0" prefWidth="238.0" style="-fx-background-color: #708090; -fx-border-color: #2F4F4F;" text="0100PM - 0130PM" GridPane.columnIndex="3" GridPane.rowIndex="2" GridPane.valignment="TOP">
+                        <Label alignment="CENTER" prefHeight="42.0" prefWidth="238.0" style="-fx-background-color: #B03A2E; -fx-border-color: white; -fx-border-width: 4;" text="1230PM - 0100PM" GridPane.columnIndex="2" GridPane.rowIndex="2" GridPane.valignment="TOP">
                            <font>
-                              <Font size="16.0" />
+                              <Font name="System Bold" size="16.0" />
                            </font>
                            <GridPane.margin>
                               <Insets left="5.0" right="5.0" top="5.0" />
                            </GridPane.margin>
                         </Label>
-                        <Label alignment="CENTER" prefHeight="40.0" prefWidth="238.0" style="-fx-background-color: #708090; -fx-border-color: #2F4F4F;" text="0130PM - 0200PM" GridPane.columnIndex="4" GridPane.rowIndex="2" GridPane.valignment="TOP">
+                        <Label alignment="CENTER" prefHeight="42.0" prefWidth="238.0" style="-fx-background-color: #B03A2E; -fx-border-color: white; -fx-border-width: 4;" text="0100PM - 0130PM" GridPane.columnIndex="3" GridPane.rowIndex="2" GridPane.valignment="TOP">
                            <font>
-                              <Font size="16.0" />
+                              <Font name="System Bold" size="16.0" />
                            </font>
                            <GridPane.margin>
                               <Insets left="5.0" right="5.0" top="5.0" />
                            </GridPane.margin>
                         </Label>
-                        <Label alignment="CENTER" prefHeight="40.0" prefWidth="238.0" style="-fx-background-color: #708090; -fx-border-color: #2F4F4F;" text="0200PM - 0230PM" GridPane.columnIndex="5" GridPane.rowIndex="2" GridPane.valignment="TOP">
+                        <Label alignment="CENTER" prefHeight="42.0" prefWidth="238.0" style="-fx-background-color: #B03A2E; -fx-border-color: white; -fx-border-width: 4;" text="0130PM - 0200PM" GridPane.columnIndex="4" GridPane.rowIndex="2" GridPane.valignment="TOP">
                            <font>
-                              <Font size="16.0" />
+                              <Font name="System Bold" size="16.0" />
                            </font>
                            <GridPane.margin>
                               <Insets left="5.0" right="5.0" top="5.0" />
                            </GridPane.margin>
                         </Label>
-                        <Label alignment="CENTER" prefHeight="40.0" prefWidth="238.0" style="-fx-background-color: #708090; -fx-border-color: #2F4F4F;" text="0230PM - 0300PM" GridPane.columnIndex="6" GridPane.rowIndex="2" GridPane.valignment="TOP">
+                        <Label alignment="CENTER" prefHeight="42.0" prefWidth="238.0" style="-fx-background-color: #B03A2E; -fx-border-color: white; -fx-border-width: 4;" text="0200PM - 0230PM" GridPane.columnIndex="5" GridPane.rowIndex="2" GridPane.valignment="TOP">
                            <font>
-                              <Font size="16.0" />
+                              <Font name="System Bold" size="16.0" />
                            </font>
                            <GridPane.margin>
                               <Insets left="5.0" right="5.0" top="5.0" />
                            </GridPane.margin>
                         </Label>
-                        <Label alignment="CENTER" prefHeight="40.0" prefWidth="238.0" style="-fx-background-color: #708090; -fx-border-color: #2F4F4F;" text="0300PM - 0330PM" GridPane.rowIndex="3" GridPane.valignment="TOP">
+                        <Label alignment="CENTER" prefHeight="42.0" prefWidth="238.0" style="-fx-background-color: #B03A2E; -fx-border-color: white; -fx-border-width: 4;" text="0230PM - 0300PM" GridPane.columnIndex="6" GridPane.rowIndex="2" GridPane.valignment="TOP">
                            <font>
-                              <Font size="16.0" />
+                              <Font name="System Bold" size="16.0" />
                            </font>
                            <GridPane.margin>
                               <Insets left="5.0" right="5.0" top="5.0" />
                            </GridPane.margin>
                         </Label>
-                        <Label alignment="CENTER" prefHeight="40.0" prefWidth="238.0" style="-fx-background-color: #708090; -fx-border-color: #2F4F4F;" text="0330PM - 0400PM" GridPane.columnIndex="1" GridPane.rowIndex="3" GridPane.valignment="TOP">
+                        <Label alignment="CENTER" prefHeight="42.0" prefWidth="238.0" style="-fx-background-color: #B03A2E; -fx-border-color: white; -fx-border-width: 4;" text="0300PM - 0330PM" GridPane.rowIndex="3" GridPane.valignment="TOP">
                            <font>
-                              <Font size="16.0" />
+                              <Font name="System Bold" size="16.0" />
                            </font>
                            <GridPane.margin>
                               <Insets left="5.0" right="5.0" top="5.0" />
                            </GridPane.margin>
                         </Label>
-                        <Label alignment="CENTER" prefHeight="40.0" prefWidth="238.0" style="-fx-background-color: #708090; -fx-border-color: #2F4F4F;" text="0400PM - 0430PM" GridPane.columnIndex="2" GridPane.rowIndex="3" GridPane.valignment="TOP">
+                        <Label alignment="CENTER" prefHeight="42.0" prefWidth="238.0" style="-fx-background-color: #B03A2E; -fx-border-color: white; -fx-border-width: 4;" text="0330PM - 0400PM" GridPane.columnIndex="1" GridPane.rowIndex="3" GridPane.valignment="TOP">
                            <font>
-                              <Font size="16.0" />
+                              <Font name="System Bold" size="16.0" />
                            </font>
                            <GridPane.margin>
                               <Insets left="5.0" right="5.0" top="5.0" />
                            </GridPane.margin>
                         </Label>
-                        <Label alignment="CENTER" prefHeight="40.0" prefWidth="238.0" style="-fx-background-color: #708090; -fx-border-color: #2F4F4F;" text="0430PM - 0500PM" GridPane.columnIndex="3" GridPane.rowIndex="3" GridPane.valignment="TOP">
+                        <Label alignment="CENTER" prefHeight="42.0" prefWidth="238.0" style="-fx-background-color: #B03A2E; -fx-border-color: white; -fx-border-width: 4;" text="0400PM - 0430PM" GridPane.columnIndex="2" GridPane.rowIndex="3" GridPane.valignment="TOP">
                            <font>
-                              <Font size="16.0" />
+                              <Font name="System Bold" size="16.0" />
                            </font>
                            <GridPane.margin>
                               <Insets left="5.0" right="5.0" top="5.0" />
                            </GridPane.margin>
                         </Label>
-                        <Label alignment="CENTER" prefHeight="40.0" prefWidth="238.0" style="-fx-background-color: #708090; -fx-border-color: #2F4F4F;" text="0500PM - 0530PM" GridPane.columnIndex="4" GridPane.rowIndex="3" GridPane.valignment="TOP">
+                        <Label alignment="CENTER" prefHeight="42.0" prefWidth="238.0" style="-fx-background-color: #B03A2E; -fx-border-color: white; -fx-border-width: 4;" text="0430PM - 0500PM" GridPane.columnIndex="3" GridPane.rowIndex="3" GridPane.valignment="TOP">
                            <font>
-                              <Font size="16.0" />
+                              <Font name="System Bold" size="16.0" />
                            </font>
                            <GridPane.margin>
                               <Insets left="5.0" right="5.0" top="5.0" />
                            </GridPane.margin>
                         </Label>
-                        <Label alignment="CENTER" prefHeight="40.0" prefWidth="238.0" style="-fx-background-color: #708090; -fx-border-color: #2F4F4F;" text="0530PM - 0600PM" GridPane.columnIndex="5" GridPane.rowIndex="3" GridPane.valignment="TOP">
+                        <Label alignment="CENTER" prefHeight="42.0" prefWidth="238.0" style="-fx-background-color: #B03A2E; -fx-border-color: white; -fx-border-width: 4;" text="0500PM - 0530PM" GridPane.columnIndex="4" GridPane.rowIndex="3" GridPane.valignment="TOP">
                            <font>
-                              <Font size="16.0" />
+                              <Font name="System Bold" size="16.0" />
                            </font>
                            <GridPane.margin>
                               <Insets left="5.0" right="5.0" top="5.0" />
                            </GridPane.margin>
                         </Label>
-                        <Label alignment="CENTER" prefHeight="40.0" prefWidth="238.0" style="-fx-background-color: #708090; -fx-border-color: #2F4F4F;" text="0600PM - 0630PM" GridPane.columnIndex="6" GridPane.rowIndex="3" GridPane.valignment="TOP">
+                        <Label alignment="CENTER" prefHeight="42.0" prefWidth="238.0" style="-fx-background-color: #B03A2E; -fx-border-color: white; -fx-border-width: 4;" text="0530PM - 0600PM" GridPane.columnIndex="5" GridPane.rowIndex="3" GridPane.valignment="TOP">
                            <font>
-                              <Font size="16.0" />
+                              <Font name="System Bold" size="16.0" />
                            </font>
                            <GridPane.margin>
                               <Insets left="5.0" right="5.0" top="5.0" />
                            </GridPane.margin>
                         </Label>
-                        <Label alignment="CENTER" prefHeight="40.0" prefWidth="238.0" style="-fx-background-color: #708090; -fx-border-color: #2F4F4F;" text="0630PM - 0700PM" GridPane.rowIndex="4" GridPane.valignment="TOP">
+                        <Label alignment="CENTER" prefHeight="42.0" prefWidth="238.0" style="-fx-background-color: #B03A2E; -fx-border-color: white; -fx-border-width: 4;" text="0600PM - 0630PM" GridPane.columnIndex="6" GridPane.rowIndex="3" GridPane.valignment="TOP">
                            <font>
-                              <Font size="16.0" />
+                              <Font name="System Bold" size="16.0" />
                            </font>
                            <GridPane.margin>
                               <Insets left="5.0" right="5.0" top="5.0" />
                            </GridPane.margin>
                         </Label>
-                        <Label alignment="CENTER" prefHeight="40.0" prefWidth="238.0" style="-fx-background-color: #708090; -fx-border-color: #2F4F4F;" text="0700PM - 0730PM" GridPane.columnIndex="1" GridPane.rowIndex="4" GridPane.valignment="TOP">
+                        <Label alignment="CENTER" prefHeight="42.0" prefWidth="238.0" style="-fx-background-color: #B03A2E; -fx-border-color: white; -fx-border-width: 4;" text="0630PM - 0700PM" GridPane.rowIndex="4" GridPane.valignment="TOP">
                            <font>
-                              <Font size="16.0" />
+                              <Font name="System Bold" size="16.0" />
                            </font>
                            <GridPane.margin>
                               <Insets left="5.0" right="5.0" top="5.0" />
                            </GridPane.margin>
                         </Label>
-                        <Label alignment="CENTER" prefHeight="40.0" prefWidth="238.0" style="-fx-background-color: #708090; -fx-border-color: #2F4F4F;" text="0730PM - 0800PM" GridPane.columnIndex="2" GridPane.rowIndex="4" GridPane.valignment="TOP">
+                        <Label alignment="CENTER" prefHeight="42.0" prefWidth="238.0" style="-fx-background-color: #B03A2E; -fx-border-color: white; -fx-border-width: 4;" text="0700PM - 0730PM" GridPane.columnIndex="1" GridPane.rowIndex="4" GridPane.valignment="TOP">
                            <font>
-                              <Font size="16.0" />
+                              <Font name="System Bold" size="16.0" />
                            </font>
                            <GridPane.margin>
                               <Insets left="5.0" right="5.0" top="5.0" />
                            </GridPane.margin>
                         </Label>
-                        <Label alignment="CENTER" prefHeight="40.0" prefWidth="238.0" style="-fx-background-color: #708090; -fx-border-color: #2F4F4F;" text="0800PM - 0830PM" GridPane.columnIndex="3" GridPane.rowIndex="4" GridPane.valignment="TOP">
+                        <Label alignment="CENTER" prefHeight="42.0" prefWidth="238.0" style="-fx-background-color: #B03A2E; -fx-border-color: white; -fx-border-width: 4;" text="0730PM - 0800PM" GridPane.columnIndex="2" GridPane.rowIndex="4" GridPane.valignment="TOP">
                            <font>
-                              <Font size="16.0" />
+                              <Font name="System Bold" size="16.0" />
                            </font>
                            <GridPane.margin>
                               <Insets left="5.0" right="5.0" top="5.0" />
                            </GridPane.margin>
                         </Label>
-                        <Label alignment="CENTER" prefHeight="40.0" prefWidth="238.0" style="-fx-background-color: #708090; -fx-border-color: #2F4F4F;" text="0830PM - 0900PM" GridPane.columnIndex="4" GridPane.rowIndex="4" GridPane.valignment="TOP">
+                        <Label alignment="CENTER" prefHeight="42.0" prefWidth="238.0" style="-fx-background-color: #B03A2E; -fx-border-color: white; -fx-border-width: 4;" text="0800PM - 0830PM" GridPane.columnIndex="3" GridPane.rowIndex="4" GridPane.valignment="TOP">
                            <font>
-                              <Font size="16.0" />
+                              <Font name="System Bold" size="16.0" />
                            </font>
                            <GridPane.margin>
                               <Insets left="5.0" right="5.0" top="5.0" />
                            </GridPane.margin>
                         </Label>
-                        <Label alignment="CENTER" prefHeight="40.0" prefWidth="238.0" style="-fx-background-color: #708090; -fx-border-color: #2F4F4F;" text="0900PM - 0930PM" GridPane.columnIndex="5" GridPane.rowIndex="4" GridPane.valignment="TOP">
+                        <Label alignment="CENTER" prefHeight="42.0" prefWidth="238.0" style="-fx-background-color: #B03A2E; -fx-border-color: white; -fx-border-width: 4;" text="0830PM - 0900PM" GridPane.columnIndex="4" GridPane.rowIndex="4" GridPane.valignment="TOP">
                            <font>
-                              <Font size="16.0" />
+                              <Font name="System Bold" size="16.0" />
                            </font>
                            <GridPane.margin>
                               <Insets left="5.0" right="5.0" top="5.0" />
                            </GridPane.margin>
                         </Label>
-                        <Label alignment="CENTER" prefHeight="40.0" prefWidth="238.0" style="-fx-background-color: #708090; -fx-border-color: #2F4F4F;" text="0930PM - 1000PM" GridPane.columnIndex="6" GridPane.rowIndex="4" GridPane.valignment="TOP">
+                        <Label alignment="CENTER" prefHeight="42.0" prefWidth="238.0" style="-fx-background-color: #B03A2E; -fx-border-color: white; -fx-border-width: 4;" text="0900PM - 0930PM" GridPane.columnIndex="5" GridPane.rowIndex="4" GridPane.valignment="TOP">
                            <font>
-                              <Font size="16.0" />
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                           <GridPane.margin>
+                              <Insets left="5.0" right="5.0" top="5.0" />
+                           </GridPane.margin>
+                        </Label>
+                        <Label alignment="CENTER" prefHeight="42.0" prefWidth="238.0" style="-fx-background-color: #B03A2E; -fx-border-color: white; -fx-border-width: 4;" text="0930PM - 1000PM" GridPane.columnIndex="6" GridPane.rowIndex="4" GridPane.valignment="TOP">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
                            </font>
                            <GridPane.margin>
                               <Insets left="5.0" right="5.0" top="5.0" />
@@ -691,21 +691,21 @@
                         </Label>
                      </children>
                   </GridPane>
-                  <Button fx:id="BackBtn" mnemonicParsing="false" onMouseClicked="#flyRight" prefHeight="47.0" prefWidth="133.0" style="-fx-background-color: linear-gradient(#3f3f3f,#545454);" stylesheets="@button.css" text="&lt; Back" StackPane.alignment="TOP_LEFT">
+                  <Button fx:id="BackBtn" mnemonicParsing="false" onMouseClicked="#flyRight" prefHeight="55.0" prefWidth="148.0" style="-fx-background-color: linear-gradient(#3f3f3f,#545454);" stylesheets="@button.css" text="&lt; Back" StackPane.alignment="TOP_LEFT">
                      <StackPane.margin>
                         <Insets left="30.0" top="30.0" />
                      </StackPane.margin>
                   </Button>
-                  <Button fx:id="BookBtn" mnemonicParsing="false" onMouseClicked="#pullDownReservationPane" prefHeight="47.0" prefWidth="133.0" style="-fx-background-color: linear-gradient(#3f3f3f,#545454);" stylesheets="@button.css" text="Book &gt;" StackPane.alignment="TOP_RIGHT">
+                  <Button fx:id="BookBtn" mnemonicParsing="false" onMouseClicked="#pullDownReservationPane" prefHeight="55.0" prefWidth="120.0" style="-fx-background-color: linear-gradient(#3f3f3f,#545454);" stylesheets="@button.css" text="Book" StackPane.alignment="TOP_RIGHT">
                      <StackPane.margin>
                         <Insets right="30.0" top="30.0" />
                      </StackPane.margin>
                   </Button>
                </children>
             </StackPane>
-            <StackPane fx:id="pullDownPane" prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: linear-gradient(#517693, #63B8FF, #517693);">
+            <StackPane fx:id="pullDownPane" prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: #2a2a2a; visibility: false;">
                <StackPane.margin>
-                  <Insets bottom="150.0" left="300.0" right="300.0" />
+                  <Insets bottom="50.0" left="300.0" right="300.0" />
                </StackPane.margin>
             </StackPane>
          </children>

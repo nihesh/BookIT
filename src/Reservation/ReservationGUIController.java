@@ -36,7 +36,9 @@ public class ReservationGUIController implements Initializable{
     private ImageView logo;
     @FXML
     private StackPane pullDownPane;
-    private int pullDownPaneInitial = -850;
+    @FXML
+    private GridPane roomGrid;
+    private int pullDownPaneInitial = -955;
     @Override
     public void initialize(URL location, ResourceBundle resources){
         File file = new File("./src/BookIT_logo.jpg");
@@ -52,11 +54,23 @@ public class ReservationGUIController implements Initializable{
             System.out.println("Error in ReservationGUIController: InduceDelay");
         }
     }
+    public void addSlotToBookQueue(Event e){
+        Button currentBtn = (Button) e.getSource();
+        if(currentBtn.getText().equals("")){
+            currentBtn.setText("Free");
+            currentBtn.setStyle("-fx-background-color:  #424949");
+        }
+        else{
+            currentBtn.setText("");
+            currentBtn.setStyle("-fx-background-color:  linear-gradient(#229954,#27AE60,#229954)");
+        }
+    }
     public void pullDownReservationPane(){
+        pullDownPane.setVisible(true);
         SequentialTransition sequence = new SequentialTransition();
         int step=1;
         int location=pullDownPaneInitial;
-        while(location<-400) {
+        while(location<-350) {
             TranslateTransition translate = new TranslateTransition();
             translate.setNode(pullDownPane);
             translate.setToY(location);
@@ -66,6 +80,8 @@ public class ReservationGUIController implements Initializable{
             sequence.getChildren().add(translate);
         }
         sequence.play();
+        HoverPane.setDisable(true);
+        roomGrid.setVisible(false);
     }
     public void flyRight(){
         SequentialTransition sequence = new SequentialTransition();
