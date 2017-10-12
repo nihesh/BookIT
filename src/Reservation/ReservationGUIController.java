@@ -34,11 +34,15 @@ public class ReservationGUIController implements Initializable{
     private Button BookBtn;
     @FXML
     private ImageView logo;
+    @FXML
+    private StackPane pullDownPane;
+    private int pullDownPaneInitial = -850;
     @Override
     public void initialize(URL location, ResourceBundle resources){
         File file = new File("./src/BookIT_logo.jpg");
         Image image = new Image(file.toURI().toString());
         logo.setImage(image);
+        pullDownPane.setTranslateY(pullDownPaneInitial);
     }
     private void induceDelay(long time){
         try {
@@ -48,6 +52,21 @@ public class ReservationGUIController implements Initializable{
             System.out.println("Error in ReservationGUIController: InduceDelay");
         }
     }
+    public void pullDownReservationPane(){
+        SequentialTransition sequence = new SequentialTransition();
+        int step=1;
+        int location=pullDownPaneInitial;
+        while(location<-400) {
+            TranslateTransition translate = new TranslateTransition();
+            translate.setNode(pullDownPane);
+            translate.setToY(location);
+            translate.setDuration(Duration.millis(15));
+            step++;
+            location+=step;
+            sequence.getChildren().add(translate);
+        }
+        sequence.play();
+    }
     public void flyRight(){
         SequentialTransition sequence = new SequentialTransition();
         int step=1;
@@ -56,7 +75,7 @@ public class ReservationGUIController implements Initializable{
             TranslateTransition translate = new TranslateTransition();
             translate.setNode(HoverPane);
             translate.setToX(location);
-            translate.setDuration(Duration.millis(10));
+            translate.setDuration(Duration.millis(15));
             step++;
             location+=step;
             sequence.getChildren().add(translate);
