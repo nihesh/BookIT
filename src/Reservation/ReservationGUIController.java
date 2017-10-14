@@ -19,6 +19,7 @@ import javafx.util.Duration;
 
 import java.io.File;
 import java.net.URL;
+import java.util.HashMap;
 import java.util.ResourceBundle;
 
 
@@ -38,13 +39,56 @@ public class ReservationGUIController implements Initializable{
     private StackPane pullDownPane;
     @FXML
     private GridPane roomGrid;
-    private int pullDownPaneInitial = -955;
+    @FXML
+    private StackPane roomGridPane;
+    @FXML
+    private StackPane classStatus;
+    @FXML
+    private ImageView classStatusBG;
+    @FXML
+    private Label statusRoomID;
+    @FXML
+    private StackPane topPane;
+    private int pullDownPaneInitial = 650;
+    private HashMap<Button,Integer> selection = new HashMap<Button,Integer>();
     @Override
     public void initialize(URL location, ResourceBundle resources){
         File file = new File("./src/BookIT_logo.jpg");
         Image image = new Image(file.toURI().toString());
         logo.setImage(image);
+        file = new File("./src/Reservation/classStatusBG.jpg");
+        image = new Image(file.toURI().toString());
+        classStatusBG.setImage(image);
         pullDownPane.setTranslateY(pullDownPaneInitial);
+        pullDownPane.setVisible(true);
+    }
+    private void updateClassStatus(Event e){
+        hideLogo();
+        Button current = (Button) e.getSource();
+        statusRoomID.setText(current.getText());
+        FadeTransition appear = new FadeTransition(Duration.millis(1000), classStatus);
+        classStatus.setOpacity(0);
+        classStatus.setVisible(true);
+        appear.setFromValue(0);
+        appear.setToValue(1);
+        appear.play();
+    }
+    private void closeClassStatus(){
+        if(classStatus.isVisible()) {
+            classStatus.setVisible(false);
+            showLogo();
+        }
+    }
+    private void showLogo(){
+        FadeTransition appear = new FadeTransition(Duration.millis(1000), logo);
+        logo.setOpacity(0);
+        logo.setVisible(true);
+        appear.setFromValue(0);
+        appear.setToValue(1);
+        appear.play();
+    }
+    private void hideLogo(){
+        logo.setVisible(false);
     }
     private void induceDelay(long time){
         try {
@@ -61,16 +105,16 @@ public class ReservationGUIController implements Initializable{
             currentBtn.setStyle("-fx-background-color:  #424949");
         }
         else{
+            selection.put(currentBtn,1);
             currentBtn.setText("");
             currentBtn.setStyle("-fx-background-color:  linear-gradient(#229954,#27AE60,#229954)");
         }
     }
-    public void pullDownReservationPane(){
-        pullDownPane.setVisible(true);
+    public void closeReservationPane(){
         SequentialTransition sequence = new SequentialTransition();
         int step=1;
-        int location=pullDownPaneInitial;
-        while(location<-350) {
+        double location=pullDownPane.getTranslateY();
+        while(location<pullDownPaneInitial+20) {
             TranslateTransition translate = new TranslateTransition();
             translate.setNode(pullDownPane);
             translate.setToY(location);
@@ -80,8 +124,46 @@ public class ReservationGUIController implements Initializable{
             sequence.getChildren().add(translate);
         }
         sequence.play();
+        FadeTransition appearBookBtn = new FadeTransition(Duration.millis(1000), BookBtn);
+        appearBookBtn.setToValue(1);
+        FadeTransition appearBackBtn = new FadeTransition(Duration.millis(1000), BackBtn);
+        appearBackBtn.setToValue(1);
+        ParallelTransition inParallel = new ParallelTransition(appearBookBtn, appearBackBtn);
+        inParallel.play();
+        sequence.setOnFinished(e->{
+            pullDownPane.setTranslateY(pullDownPaneInitial);
+            topPane.setDisable(false);
+            HoverPane.setDisable(false);
+            roomGridPane.setDisable(false);
+            roomGridPane.setVisible(true);
+            pullDownPane.setVisible(false);
+        });
+    }
+    public void pullDownReservationPane(){
         HoverPane.setDisable(true);
-        roomGrid.setVisible(false);
+        topPane.setDisable(true);
+        roomGridPane.setDisable(true);
+        roomGridPane.setVisible(false);
+        pullDownPane.setVisible(true);
+        SequentialTransition sequence = new SequentialTransition();
+        int step=1;
+        int location=pullDownPaneInitial;
+        while(location>40) {
+            TranslateTransition translate = new TranslateTransition();
+            translate.setNode(pullDownPane);
+            translate.setToY(location);
+            translate.setDuration(Duration.millis(15));
+            step++;
+            location-=step;
+            sequence.getChildren().add(translate);
+        }
+        sequence.play();
+        FadeTransition appearBookBtn = new FadeTransition(Duration.millis(1000), BookBtn);
+        appearBookBtn.setToValue(0);
+        FadeTransition appearBackBtn = new FadeTransition(Duration.millis(1000), BackBtn);
+        appearBackBtn.setToValue(0);
+        ParallelTransition inParallel = new ParallelTransition(appearBookBtn, appearBackBtn);
+        inParallel.play();
     }
     public void flyRight(){
         SequentialTransition sequence = new SequentialTransition();
@@ -97,6 +179,7 @@ public class ReservationGUIController implements Initializable{
             sequence.getChildren().add(translate);
         }
         sequence.play();
+        closeClassStatus();
         sequence.setOnFinished(e->{
             exitReadOnlyBookings();
         });
@@ -122,6 +205,7 @@ public class ReservationGUIController implements Initializable{
         inParallel.play();
     }
     public void showReadOnlyBookings(Event action){
+        updateClassStatus(action);
         HoverPane.setTranslateX(0);
         BackBtn.setVisible(false);
         BookBtn.setVisible(false);
@@ -146,6 +230,12 @@ public class ReservationGUIController implements Initializable{
         FadeTransition appear = new FadeTransition(Duration.millis(700), HoverPane);
         appear.setToValue(0);
         appear.play();
+        closeClassStatus();
+        selection.forEach((currentBtn, val)->{
+            currentBtn.setText("Free");
+            currentBtn.setStyle("-fx-background-color:  #424949");
+            selection = new HashMap<Button,Integer>();
+        });
         appear.setOnFinished(e->{
             HoverPane.setVisible(false);
             HoverPane.setDisable(false);
