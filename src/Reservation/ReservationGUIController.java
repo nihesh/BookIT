@@ -10,18 +10,23 @@ import javafx.animation.SequentialTransition;
 import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.control.*;
 import javafx.event.Event;
+import javafx.scene.text.Font;
 import javafx.util.Duration;
 
 import java.io.File;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 
+import static java.lang.Math.max;
 
 public class ReservationGUIController implements Initializable{
     private int appearAfter_HoverPane = 200;
@@ -38,8 +43,6 @@ public class ReservationGUIController implements Initializable{
     @FXML
     private StackPane pullDownPane;
     @FXML
-    private GridPane roomGrid;
-    @FXML
     private StackPane roomGridPane;
     @FXML
     private StackPane classStatus;
@@ -49,6 +52,16 @@ public class ReservationGUIController implements Initializable{
     private Label statusRoomID;
     @FXML
     private StackPane topPane;
+    @FXML
+    private AnchorPane selectedSlotsScrollPane;
+    @FXML
+    private Button btn1,btn2,btn3,btn4,btn5,btn6,btn7,btn8,btn9,btn10,btn11,btn12,btn13,btn14,btn15,btn16,btn17,btn18,btn19,btn20,btn21,btn22,btn23,btn24,btn25,btn26,btn27,btn28;
+    @FXML
+    private Label error1;
+    @FXML
+    private ComboBox courseDropDown, facultyDropDown;
+
+    private Button[] slotButtons = {btn1,btn2,btn3,btn4,btn5,btn6,btn7,btn8,btn9,btn10,btn11,btn12,btn13,btn14,btn15,btn16,btn17,btn18,btn19,btn20,btn21,btn22,btn23,btn24,btn25,btn26,btn27,btn28};
     private int pullDownPaneInitial = 650;
     private HashMap<Button,Integer> selection = new HashMap<Button,Integer>();
     @Override
@@ -61,6 +74,67 @@ public class ReservationGUIController implements Initializable{
         classStatusBG.setImage(image);
         pullDownPane.setTranslateY(pullDownPaneInitial);
         pullDownPane.setVisible(true);
+    }
+    private String getReserveButtonInfo(String buttonID){
+        switch(buttonID){
+            case "btn1":
+                return "0800AM - 0830AM";
+            case "btn2":
+                return "0830AM - 0900AM";
+            case "btn3":
+                return "0900AM - 0930AM";
+            case "btn4":
+                return "0930AM - 1000AM";
+            case "btn5":
+                return "1000AM - 1030AM";
+            case "btn6":
+                return "1030AM - 1100AM";
+            case "btn7":
+                return "1100AM - 1130AM";
+            case "btn8":
+                return "1130AM - 1200PM";
+            case "btn9":
+                return "1200PM - 1230PM";
+            case "btn10":
+                return "1230PM - 0100PM";
+            case "btn11":
+                return "0100PM - 0130PM";
+            case "btn12":
+                return "0130PM - 0200PM";
+            case "btn13":
+                return "0200PM - 0230PM";
+            case "btn14":
+                return "0230PM - 0300PM";
+            case "btn15":
+                return "0300PM - 0330PM";
+            case "btn16":
+                return "0330PM - 0400PM";
+            case "btn17":
+                return "0400PM - 0430PM";
+            case "btn18":
+                return "0430PM - 0500PM";
+            case "btn19":
+                return "0500PM - 0530PM";
+            case "btn20":
+                return "0530PM - 0600PM";
+            case "btn21":
+                return "0600PM - 0630PM";
+            case "btn22":
+                return "0630PM - 0700PM";
+            case "btn23":
+                return "0700PM - 0730PM";
+            case "btn24":
+                return "0730PM - 0800PM";
+            case "btn25":
+                return "0800PM - 0830PM";
+            case "btn26":
+                return "0830PM - 0900PM";
+            case "btn27":
+                return "0900PM - 0930PM";
+            case "btn28":
+                return "0930PM - 1000PM";
+        }
+        return "";
     }
     private void updateClassStatus(Event e){
         hideLogo();
@@ -103,11 +177,20 @@ public class ReservationGUIController implements Initializable{
         if(currentBtn.getText().equals("")){
             currentBtn.setText("Free");
             currentBtn.setStyle("-fx-background-color:  #424949");
+            selection.remove(currentBtn);
         }
         else{
             selection.put(currentBtn,1);
             currentBtn.setText("");
             currentBtn.setStyle("-fx-background-color:  linear-gradient(#229954,#27AE60,#229954)");
+        }
+        if(selection.size()==0){
+            BookBtn.setDisable(true);
+            error1.setVisible(true);
+        }
+        else{
+            BookBtn.setDisable(false);
+            error1.setVisible(false);
         }
     }
     public void closeReservationPane(){
@@ -145,6 +228,31 @@ public class ReservationGUIController implements Initializable{
         roomGridPane.setDisable(true);
         roomGridPane.setVisible(false);
         pullDownPane.setVisible(true);
+        Label[] label = new Label[30];
+        ArrayList<Button> items = new ArrayList<Button>();
+        selection.forEach((btn, num)->{
+            items.add(btn);
+        });
+        selectedSlotsScrollPane.getChildren().clear();
+        int i=0;
+        while(i<items.size()){
+            label[i] = new Label();
+            label[i].setText(getReserveButtonInfo(items.get(i).getId()));
+            label[i].setPrefSize(494, 50);
+            label[i].setAlignment(Pos.CENTER);
+            label[i].setTranslateY(i*50);
+            label[i].setStyle("-fx-background-color: white; -fx-border-color:  #2a2a2a; -fx-border-width:3");
+            label[i].setFont(new Font(22));
+            selectedSlotsScrollPane.getChildren().add(label[i]);
+            i++;
+        }
+        selectedSlotsScrollPane.setPrefSize(494,max(474,50*i));
+        for(int j=0;j<50;j++) {
+            courseDropDown.getItems().add("Choice " + Integer.toString(j));
+        }
+        for(int j=0;j<50;j++) {
+            facultyDropDown.getItems().add("Choice " + Integer.toString(j));
+        }
         SequentialTransition sequence = new SequentialTransition();
         int step=1;
         int location=pullDownPaneInitial;
@@ -164,6 +272,10 @@ public class ReservationGUIController implements Initializable{
         appearBackBtn.setToValue(0);
         ParallelTransition inParallel = new ParallelTransition(appearBookBtn, appearBackBtn);
         inParallel.play();
+    }
+    public void bookingCompleted(){
+        closeReservationPane();
+        flyRight();
     }
     public void flyRight(){
         SequentialTransition sequence = new SequentialTransition();
@@ -186,6 +298,8 @@ public class ReservationGUIController implements Initializable{
     }
     public void openBooking(Event action){
         HoverPane.setTranslateX(0);
+        error1.setVisible(true);
+        BookBtn.setDisable(true);
         BackBtn.setVisible(true);
         BookBtn.setVisible(true);
         BookBtn.setOpacity(0);
@@ -233,9 +347,9 @@ public class ReservationGUIController implements Initializable{
         closeClassStatus();
         selection.forEach((currentBtn, val)->{
             currentBtn.setText("Free");
-            currentBtn.setStyle("-fx-background-color:  #424949");
-            selection = new HashMap<Button,Integer>();
+            currentBtn.setStyle("-fx-background-color:  #424949;");
         });
+        selection = new HashMap<Button, Integer>();
         appear.setOnFinished(e->{
             HoverPane.setVisible(false);
             HoverPane.setDisable(false);
