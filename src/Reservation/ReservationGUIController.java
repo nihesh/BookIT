@@ -58,7 +58,7 @@ public class ReservationGUIController implements Initializable{
     @FXML
     private StackPane topPane,leftPane,rightPane;
     @FXML
-    private AnchorPane selectedSlotsScrollPane;
+    private AnchorPane selectedSlotsScrollPane, myCoursesScrollPane;
     @FXML
     private Button btn1,btn2,btn3,btn4,btn5,btn6,btn7,btn8,btn9,btn10,btn11,btn12,btn13,btn14,btn15,btn16,btn17,btn18,btn19,btn20,btn21,btn22,btn23,btn24,btn25,btn26,btn27,btn28;
     @FXML
@@ -74,8 +74,10 @@ public class ReservationGUIController implements Initializable{
     private Button[] slotButtons = {btn1,btn2,btn3,btn4,btn5,btn6,btn7,btn8,btn9,btn10,btn11,btn12,btn13,btn14,btn15,btn16,btn17,btn18,btn19,btn20,btn21,btn22,btn23,btn24,btn25,btn26,btn27,btn28};
     private int pullDownPaneInitial = 650;
     private HashMap<Button,Integer> selection = new HashMap<Button,Integer>();
+    private Boolean isActiveReservation;
     @Override
     public void initialize(URL location, ResourceBundle resources){
+        isActiveReservation = false;
         File file = new File("./src/BookIT_logo.jpg");
         Image image = new Image(file.toURI().toString());
         logo.setImage(image);
@@ -104,6 +106,7 @@ public class ReservationGUIController implements Initializable{
         datePicker.setValue(LocalDate.now());
         activeDate=LocalDate.now();
         setDate(activeDate);
+        loadCourses();
     }
     private void setDate(LocalDate d){
         String date = Integer.toString(d.getDayOfMonth());
@@ -192,6 +195,26 @@ public class ReservationGUIController implements Initializable{
         }
         return "";
     }
+    public void loadCourses(){
+        myCoursesScrollPane.getChildren().clear();
+        Label[] label = new Label[100];
+        ArrayList<String> items = new ArrayList<String>();
+        items.add("Course 1");
+        items.add("Course 2");
+        int i=0;
+        while(i<items.size()){
+            label[i] = new Label();
+            label[i].setText(items.get(i));
+            label[i].setPrefSize(543, 35);
+            label[i].setAlignment(Pos.CENTER);
+            label[i].setTranslateY(i*35);
+            label[i].setStyle("-fx-background-color: #229954; -fx-border-color:  white; -fx-border-width:2");
+            label[i].setFont(new Font(16));
+            myCoursesScrollPane.getChildren().add(label[i]);
+            i++;
+        }
+        myCoursesScrollPane.setPrefSize(543,max(170,34*i));
+    }
     public void showSlotInfo(Event e){
         slotInfoPane.setVisible(true);
         Label curLabel = (Label) e.getSource();
@@ -263,6 +286,7 @@ public class ReservationGUIController implements Initializable{
         }
     }
     public void closeReservationPane(){
+        isActiveReservation = false;
         hideSlotPane();
         SequentialTransition sequence = new SequentialTransition();
         int step=1;
@@ -285,7 +309,7 @@ public class ReservationGUIController implements Initializable{
         inParallel.play();
         sequence.setOnFinished(e->{
             pullDownPane.setTranslateY(pullDownPaneInitial);
-            topPane.setDisable(false);
+            rightPane.setDisable(false);
             HoverPane.setDisable(false);
             roomGridPane.setDisable(false);
             roomGridPane.setVisible(true);
@@ -293,9 +317,10 @@ public class ReservationGUIController implements Initializable{
         });
     }
     public void pullDownReservationPane(){
+        isActiveReservation = true;
         hideSlotPane();
         HoverPane.setDisable(true);
-        topPane.setDisable(true);
+        rightPane.setDisable(true);
         roomGridPane.setDisable(true);
         roomGridPane.setVisible(false);
         pullDownPane.setVisible(true);
@@ -363,6 +388,7 @@ public class ReservationGUIController implements Initializable{
         }
         sequence.play();
         closeClassStatus();
+        rightPane.setDisable(false);
         sequence.setOnFinished(e->{
             exitReadOnlyBookings();
         });
@@ -412,22 +438,24 @@ public class ReservationGUIController implements Initializable{
         appear.play();
     }
     public void exitReadOnlyBookings(){
-        induceDelay(appearAfter_HoverPane);
-        FadeTransition appear = new FadeTransition(Duration.millis(700), HoverPane);
-        appear.setToValue(0);
-        appear.play();
-        closeClassStatus();
-        selection.forEach((currentBtn, val)->{
-            currentBtn.setText("Free");
-            currentBtn.setStyle("-fx-background-color:  #424949;");
-        });
-        selection = new HashMap<Button, Integer>();
-        appear.setOnFinished(e->{
-            HoverPane.setVisible(false);
-            HoverPane.setDisable(false);
-            HoverPane.setOpacity(1);
-            rightPane.setDisable(false);
-            RoomNo.setText("Not Set");
-        });
+        if(!isActiveReservation) {
+            induceDelay(appearAfter_HoverPane);
+            FadeTransition appear = new FadeTransition(Duration.millis(700), HoverPane);
+            appear.setToValue(0);
+            appear.play();
+            closeClassStatus();
+            selection.forEach((currentBtn, val) -> {
+                currentBtn.setText("Free");
+                currentBtn.setStyle("-fx-background-color:  #424949;");
+            });
+            selection = new HashMap<Button, Integer>();
+            appear.setOnFinished(e -> {
+                HoverPane.setVisible(false);
+                HoverPane.setDisable(false);
+                HoverPane.setOpacity(1);
+                rightPane.setDisable(false);
+                RoomNo.setText("Not Set");
+            });
+        }
     }
 }

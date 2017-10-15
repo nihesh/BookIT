@@ -44,6 +44,32 @@
                <StackPane.margin>
                   <Insets right="1275.0" />
                </StackPane.margin>
+               <children>
+                  <ScrollPane prefHeight="541.0" prefWidth="1209.0">
+                     <content>
+                        <AnchorPane fx:id="myCoursesScrollPane" minHeight="170.0" minWidth="0.0" prefWidth="543.0" style="-fx-background-color: #424949;" />
+                     </content>
+                     <StackPane.margin>
+                        <Insets bottom="20.0" left="50.0" right="50.0" top="120.0" />
+                     </StackPane.margin>
+                  </ScrollPane>
+                  <Label alignment="CENTER" contentDisplay="CENTER" opacity="0.95" prefHeight="46.0" prefWidth="545.0" style="-fx-background-color: #CD6155; -fx-border-color: white; -fx-border-width: 2;" text="Enrolled Courses">
+                     <font>
+                        <Font size="23.0" />
+                     </font>
+                     <StackPane.margin>
+                        <Insets bottom="130.0" />
+                     </StackPane.margin>
+                  </Label>
+                  <Label alignment="CENTER" contentDisplay="CENTER" opacity="0.95" prefHeight="46.0" prefWidth="200.0" style="-fx-background-color: #CD6155; -fx-border-color: white; -fx-border-width: 2;" text="BT2016">
+                     <font>
+                        <Font size="23.0" />
+                     </font>
+                     <StackPane.margin>
+                        <Insets bottom="219.0" />
+                     </StackPane.margin>
+                  </Label>
+               </children>
             </StackPane>
             <SplitPane disable="true" dividerPositions="0.29797979797979796" prefHeight="312.0" prefWidth="2003.0">
               <items>
@@ -356,7 +382,7 @@
                   </GridPane>
                </children>
             </StackPane>
-            <StackPane fx:id="HoverPane" prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: linear-gradient(#CD6155 ,#E6B0AA,#CD6155); visibility: true;">
+            <StackPane fx:id="HoverPane" prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: linear-gradient(#CD6155 ,#E6B0AA,#CD6155); visibility: false;">
                <children>
                   <GridPane>
                     <columnConstraints>
