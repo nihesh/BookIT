@@ -8,6 +8,7 @@ import javafx.animation.FadeTransition;
 import javafx.animation.ParallelTransition;
 import javafx.animation.SequentialTransition;
 import javafx.animation.TranslateTransition;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
@@ -18,12 +19,15 @@ import javafx.scene.layout.*;
 import javafx.scene.control.*;
 import javafx.event.Event;
 import javafx.scene.text.Font;
+import javafx.util.Callback;
 import javafx.util.Duration;
 
 import java.awt.print.Book;
 import java.io.File;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 
@@ -52,7 +56,7 @@ public class ReservationGUIController implements Initializable{
     @FXML
     private Label statusRoomID, slotInfo;
     @FXML
-    private StackPane topPane;
+    private StackPane topPane,leftPane,rightPane;
     @FXML
     private AnchorPane selectedSlotsScrollPane;
     @FXML
@@ -61,7 +65,12 @@ public class ReservationGUIController implements Initializable{
     private Label error1;
     @FXML
     private ComboBox courseDropDown, facultyDropDown;
+    @FXML
+    private DatePicker datePicker;
+    @FXML
+    private Label curDate,curMon,curYear;
 
+    private LocalDate activeDate;
     private Button[] slotButtons = {btn1,btn2,btn3,btn4,btn5,btn6,btn7,btn8,btn9,btn10,btn11,btn12,btn13,btn14,btn15,btn16,btn17,btn18,btn19,btn20,btn21,btn22,btn23,btn24,btn25,btn26,btn27,btn28};
     private int pullDownPaneInitial = 650;
     private HashMap<Button,Integer> selection = new HashMap<Button,Integer>();
@@ -76,6 +85,51 @@ public class ReservationGUIController implements Initializable{
         slotStatusBG.setImage(image);
         pullDownPane.setTranslateY(pullDownPaneInitial);
         pullDownPane.setVisible(true);
+        datePicker.setValue(LocalDate.now());
+        Callback<DatePicker, DateCell> dayCellFactory = dp -> new DateCell()
+        {
+            @Override
+            public void updateItem(LocalDate item, boolean empty)
+            {
+                super.updateItem(item, empty);
+
+                if(item.isBefore(LocalDate.of(2017,8,1)) || item.isAfter(LocalDate.of(2017,12,5)))
+                {
+                    setStyle("-fx-background-color: #ffc0cb;");
+                    Platform.runLater(() -> setDisable(true));
+                }
+            }
+        };
+        datePicker.setDayCellFactory(dayCellFactory);
+        datePicker.setValue(LocalDate.now());
+        activeDate=LocalDate.now();
+        setDate(activeDate);
+    }
+    private void setDate(LocalDate d){
+        String date = Integer.toString(d.getDayOfMonth());
+        String month = Integer.toString(d.getMonthValue());
+        String year = Integer.toString(d.getYear());
+        if(date.length() == 1){
+            date = "0"+date;
+        }
+        if(month.length() == 1){
+            month = "0"+month;
+        }
+        curDate.setText(date);
+        curMon.setText(month);
+        curYear.setText(year);
+    }
+    public void loadDate(){
+        LocalDate date = datePicker.getValue();
+        if(date.isAfter(LocalDate.of(2017,8,1)) && date.isBefore(LocalDate.of(2017,12,5))){
+            activeDate = date;
+            datePicker.setValue(activeDate);
+            setDate(activeDate);
+        }
+        else{
+            datePicker.setValue(activeDate);
+            setDate(activeDate);
+        }
     }
     private String getReserveButtonInfo(String buttonID){
         switch(buttonID){
@@ -315,6 +369,7 @@ public class ReservationGUIController implements Initializable{
     }
     public void openBooking(Event action){
         HoverPane.setTranslateX(0);
+        rightPane.setDisable(true);
         error1.setVisible(true);
         BookBtn.setDisable(true);
         BackBtn.setVisible(true);
@@ -371,6 +426,7 @@ public class ReservationGUIController implements Initializable{
             HoverPane.setVisible(false);
             HoverPane.setDisable(false);
             HoverPane.setOpacity(1);
+            rightPane.setDisable(false);
             RoomNo.setText("Not Set");
         });
     }
