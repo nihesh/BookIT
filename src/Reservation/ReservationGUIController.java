@@ -20,6 +20,7 @@ import javafx.event.Event;
 import javafx.scene.text.Font;
 import javafx.util.Duration;
 
+import java.awt.print.Book;
 import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
@@ -45,11 +46,11 @@ public class ReservationGUIController implements Initializable{
     @FXML
     private StackPane roomGridPane;
     @FXML
-    private StackPane classStatus;
+    private StackPane classStatus, slotInfoPane;
     @FXML
-    private ImageView classStatusBG;
+    private ImageView classStatusBG, slotStatusBG;
     @FXML
-    private Label statusRoomID;
+    private Label statusRoomID, slotInfo;
     @FXML
     private StackPane topPane;
     @FXML
@@ -72,6 +73,7 @@ public class ReservationGUIController implements Initializable{
         file = new File("./src/Reservation/classStatusBG.jpg");
         image = new Image(file.toURI().toString());
         classStatusBG.setImage(image);
+        slotStatusBG.setImage(image);
         pullDownPane.setTranslateY(pullDownPaneInitial);
         pullDownPane.setVisible(true);
     }
@@ -136,8 +138,17 @@ public class ReservationGUIController implements Initializable{
         }
         return "";
     }
-    private void updateClassStatus(Event e){
+    public void showSlotInfo(Event e){
+        slotInfoPane.setVisible(true);
+        Label curLabel = (Label) e.getSource();
+        slotInfo.setText(curLabel.getText());
+    }
+    private void hideSlotPane(){
+        slotInfoPane.setVisible(false);
+    }
+    public void updateClassStatus(Event e){
         hideLogo();
+        hideSlotPane();
         Button current = (Button) e.getSource();
         statusRoomID.setText(current.getText());
         FadeTransition appear = new FadeTransition(Duration.millis(1000), classStatus);
@@ -149,6 +160,7 @@ public class ReservationGUIController implements Initializable{
     }
     private void closeClassStatus(){
         if(classStatus.isVisible()) {
+            hideSlotPane();
             classStatus.setVisible(false);
             showLogo();
         }
@@ -173,6 +185,7 @@ public class ReservationGUIController implements Initializable{
         }
     }
     public void addSlotToBookQueue(Event e){
+        hideSlotPane();
         Button currentBtn = (Button) e.getSource();
         if(currentBtn.getText().equals("")){
             currentBtn.setText("Free");
@@ -186,14 +199,17 @@ public class ReservationGUIController implements Initializable{
         }
         if(selection.size()==0){
             BookBtn.setDisable(true);
+            BookBtn.setVisible(true);
             error1.setVisible(true);
         }
         else{
+            BookBtn.setVisible(true);
             BookBtn.setDisable(false);
             error1.setVisible(false);
         }
     }
     public void closeReservationPane(){
+        hideSlotPane();
         SequentialTransition sequence = new SequentialTransition();
         int step=1;
         double location=pullDownPane.getTranslateY();
@@ -223,6 +239,7 @@ public class ReservationGUIController implements Initializable{
         });
     }
     public void pullDownReservationPane(){
+        hideSlotPane();
         HoverPane.setDisable(true);
         topPane.setDisable(true);
         roomGridPane.setDisable(true);
