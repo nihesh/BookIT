@@ -2,7 +2,7 @@
 // Date     : 4 Oct, 2017
 // File     : BookIT.java
 
-package Reservation;
+package AdminReservation;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -13,11 +13,11 @@ import javafx.stage.Stage;
 
 import java.io.File;
 
-public class ReservationGUI extends Application {
+public class AdminReservationGUI extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("Reservation.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("AdminReservation.fxml"));
         File file = new File("./src/BookIT_icon.jpg");
         primaryStage.getIcons().add(new Image(file.toURI().toString()));
         primaryStage.setTitle("BookIT");

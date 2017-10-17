@@ -2,7 +2,7 @@
 // Date     : 4 Oct, 2017
 // File     : BookIT.java
 
-package Reservation;
+package AdminReservation;
 
 import javafx.animation.FadeTransition;
 import javafx.animation.ParallelTransition;
@@ -30,14 +30,14 @@ import java.util.ResourceBundle;
 
 import static java.lang.Math.max;
 
-public class ReservationGUIController implements Initializable{
+public class AdminReservationGUIController implements Initializable{
     private int appearAfter_HoverPane = 200;
     @FXML
     private StackPane HoverPane;
     @FXML
     private Label RoomNo;
     @FXML
-    private Button BackBtn;
+    private Button BackBtn, cancelSlotBooking;
     @FXML
     private Button BookBtn;
     @FXML
@@ -49,7 +49,7 @@ public class ReservationGUIController implements Initializable{
     @FXML
     private StackPane classStatus, slotInfoPane, changePasswordPane;
     @FXML
-    private ImageView classStatusBG, slotStatusBG, changePasswordBG;
+    private ImageView classStatusBG, slotStatusBG, changePasswordBG, cancelSlotBookingImage;
     @FXML
     private Label statusRoomID, slotInfo;
     @FXML
@@ -72,13 +72,14 @@ public class ReservationGUIController implements Initializable{
     private int pullDownPaneInitial = 650;
     private HashMap<Button,Integer> selection = new HashMap<Button,Integer>();
     private Boolean isActiveReservation;
+    private Event classEvent;
     @Override
     public void initialize(URL location, ResourceBundle resources){
         isActiveReservation = false;
         File file = new File("./src/BookIT_logo.jpg");
         Image image = new Image(file.toURI().toString());
         logo.setImage(image);
-        file = new File("./src/Reservation/classStatusBG.jpg");
+        file = new File("./src/AdminReservation/classStatusBG.jpg");
         image = new Image(file.toURI().toString());
         classStatusBG.setImage(image);
         slotStatusBG.setImage(image);
@@ -104,7 +105,13 @@ public class ReservationGUIController implements Initializable{
         datePicker.setValue(LocalDate.now());
         activeDate=LocalDate.now();
         setDate(activeDate);
+        file = new File("./src/AdminReservation/cancel.png");
+        image = new Image(file.toURI().toString());
+        cancelSlotBookingImage.setImage(image);
         loadCourses();
+    }
+    public void cancelSlotBooking(){
+        updateClassStatus(classEvent);
     }
     public void openChangePassword(){
         hideLogo();
@@ -278,7 +285,7 @@ public class ReservationGUIController implements Initializable{
             Thread.sleep(time);
         }
         catch(Exception e){
-            System.out.println("Error in ReservationGUIController: InduceDelay");
+            System.out.println("Error in AdminReservationGUIController: InduceDelay");
         }
     }
     public void addSlotToBookQueue(Event e){
@@ -409,13 +416,16 @@ public class ReservationGUIController implements Initializable{
         sequence.play();
         closeClassStatus();
         rightPane.setDisable(false);
+        leftPane.setDisable(false);
         sequence.setOnFinished(e->{
             exitReadOnlyBookings();
         });
     }
     public void openBooking(Event action){
+        classEvent = action;
         HoverPane.setTranslateX(0);
         rightPane.setDisable(true);
+        leftPane.setDisable(true);
         error1.setVisible(true);
         BookBtn.setDisable(true);
         BackBtn.setVisible(true);
@@ -474,6 +484,7 @@ public class ReservationGUIController implements Initializable{
                 HoverPane.setDisable(false);
                 HoverPane.setOpacity(1);
                 rightPane.setDisable(false);
+                leftPane.setDisable(false);
                 RoomNo.setText("Not Set");
             });
         }
