@@ -9,6 +9,7 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TextArea?>
@@ -212,6 +213,77 @@
                               </ScrollPane>
                            </children>
                         </StackPane>
+                        <StackPane fx:id="changePasswordPane" prefHeight="150.0" prefWidth="200.0" style="visibility: false;">
+                           <children>
+                              <ImageView fx:id="changePasswordBG" fitHeight="311.0" fitWidth="610.0" opacity="0.8" pickOnBounds="true" preserveRatio="true" />
+                              <Label alignment="CENTER" prefHeight="45.0" prefWidth="573.0" style="-fx-background-color: #641E16;" text="Change Password" textAlignment="CENTER" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="28.0" />
+                                 </font>
+                                 <StackPane.margin>
+                                    <Insets bottom="170.0" left="2.0" />
+                                 </StackPane.margin>
+                              </Label>
+                              <Label prefHeight="36.0" prefWidth="217.0" style="-fx-background-color: #922B21;" text="Old Password" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets left="10.0" />
+                                 </padding>
+                                 <StackPane.margin>
+                                    <Insets bottom="70.0" right="352.0" />
+                                 </StackPane.margin>
+                              </Label>
+                              <Label prefHeight="36.0" prefWidth="217.0" style="-fx-background-color: #922B21;" text="New Password" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets left="10.0" />
+                                 </padding>
+                                 <StackPane.margin>
+                                    <Insets right="352.0" top="10.0" />
+                                 </StackPane.margin>
+                              </Label>
+                              <Label prefHeight="36.0" prefWidth="217.0" style="-fx-background-color: #922B21;" text="Re-enter Password" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets left="10.0" />
+                                 </padding>
+                                 <StackPane.margin>
+                                    <Insets right="352.0" top="90.0" />
+                                 </StackPane.margin>
+                              </Label>
+                              <PasswordField prefHeight="36.0" prefWidth="217.0" style="-fx-background-color: #922B21;">
+                                 <StackPane.margin>
+                                    <Insets bottom="70.0" left="245.0" right="18.0" />
+                                 </StackPane.margin>
+                              </PasswordField>
+                              <PasswordField prefHeight="36.0" prefWidth="217.0" style="-fx-background-color: #922B21;">
+                                 <StackPane.margin>
+                                    <Insets left="245.0" right="18.0" top="10.0" />
+                                 </StackPane.margin>
+                              </PasswordField>
+                              <PasswordField prefHeight="36.0" prefWidth="217.0" style="-fx-background-color: #922B21;">
+                                 <StackPane.margin>
+                                    <Insets left="245.0" right="18.0" top="90.0" />
+                                 </StackPane.margin>
+                              </PasswordField>
+                              <Button mnemonicParsing="false" onMouseClicked="#saveChangePassword" prefHeight="36.0" prefWidth="115.0" stylesheets="@buttonChangePwd.css" text="Save">
+                                 <StackPane.margin>
+                                    <Insets left="130.0" top="180.0" />
+                                 </StackPane.margin>
+                              </Button>
+                              <Button mnemonicParsing="false" onMouseClicked="#cancelChangePassword" prefHeight="36.0" prefWidth="115.0" stylesheets="@buttonChangePwd.css" text="Cancel">
+                                 <StackPane.margin>
+                                    <Insets right="130.0" top="180.0" />
+                                 </StackPane.margin>
+                              </Button>
+                           </children>
+                        </StackPane>
                      </children>
                   </StackPane>
                </children>
@@ -257,7 +329,7 @@
                         <Insets bottom="20.0" top="250.0" />
                      </StackPane.margin>
                      <children>
-                        <Button mnemonicParsing="false" opacity="0.95" prefHeight="47.0" prefWidth="194.0" stylesheets="@buttonControl.css" text="Change Pwd">
+                        <Button mnemonicParsing="false" onMouseClicked="#openChangePassword" opacity="0.95" prefHeight="47.0" prefWidth="194.0" stylesheets="@buttonControl.css" text="Change Pwd">
                            <StackPane.margin>
                               <Insets bottom="2.0" left="400.0" />
                            </StackPane.margin>
@@ -332,7 +404,7 @@
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" />
         </items>
       </SplitPane>
-      <StackPane prefHeight="720.0" prefWidth="1920.0" style="-fx-background-color: linear-gradient( #2C3E50,#1B2631);">
+      <StackPane fx:id="mainPane" prefHeight="720.0" prefWidth="1920.0" style="-fx-background-color: linear-gradient( #2C3E50,#1B2631);">
          <children>
             <StackPane fx:id="roomGridPane" prefHeight="150.0" prefWidth="200.0">
                <children>

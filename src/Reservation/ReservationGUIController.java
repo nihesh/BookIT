@@ -11,7 +11,6 @@ import javafx.animation.TranslateTransition;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -22,12 +21,10 @@ import javafx.scene.text.Font;
 import javafx.util.Callback;
 import javafx.util.Duration;
 
-import java.awt.print.Book;
 import java.io.File;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 
@@ -50,13 +47,13 @@ public class ReservationGUIController implements Initializable{
     @FXML
     private StackPane roomGridPane;
     @FXML
-    private StackPane classStatus, slotInfoPane;
+    private StackPane classStatus, slotInfoPane, changePasswordPane;
     @FXML
-    private ImageView classStatusBG, slotStatusBG;
+    private ImageView classStatusBG, slotStatusBG, changePasswordBG;
     @FXML
     private Label statusRoomID, slotInfo;
     @FXML
-    private StackPane topPane,leftPane,rightPane;
+    private StackPane topPane,leftPane,rightPane,mainPane;
     @FXML
     private AnchorPane selectedSlotsScrollPane, myCoursesScrollPane;
     @FXML
@@ -85,6 +82,7 @@ public class ReservationGUIController implements Initializable{
         image = new Image(file.toURI().toString());
         classStatusBG.setImage(image);
         slotStatusBG.setImage(image);
+        changePasswordBG.setImage(image);
         pullDownPane.setTranslateY(pullDownPaneInitial);
         pullDownPane.setVisible(true);
         datePicker.setValue(LocalDate.now());
@@ -107,6 +105,28 @@ public class ReservationGUIController implements Initializable{
         activeDate=LocalDate.now();
         setDate(activeDate);
         loadCourses();
+    }
+    public void openChangePassword(){
+        hideLogo();
+        rightPane.setDisable(true);
+        mainPane.setDisable(true);
+        FadeTransition appear = new FadeTransition(Duration.millis(1000), changePasswordPane);
+        changePasswordPane.setVisible(true);
+        appear.setFromValue(0);
+        appear.setToValue(1);
+        appear.play();
+    }
+    public void cancelChangePassword(){
+        changePasswordPane.setVisible(false);
+        rightPane.setDisable(false);
+        mainPane.setDisable(false);
+        showLogo();
+    }
+    public void saveChangePassword(){
+        changePasswordPane.setVisible(false);
+        rightPane.setDisable(false);
+        mainPane.setDisable(false);
+        showLogo();
     }
     private void setDate(LocalDate d){
         String date = Integer.toString(d.getDayOfMonth());
