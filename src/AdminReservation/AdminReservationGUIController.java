@@ -53,9 +53,9 @@ public class AdminReservationGUIController implements Initializable{
     @FXML
     private Label statusRoomID, slotInfo;
     @FXML
-    private StackPane topPane,leftPane,rightPane,mainPane;
+    private StackPane topPane,leftPane,rightPane,mainPane, pullDownPane2;
     @FXML
-    private AnchorPane selectedSlotsScrollPane, myCoursesScrollPane;
+    private AnchorPane selectedSlotsScrollPane, requestedSlotsScrollPane;
     @FXML
     private Button btn1,btn2,btn3,btn4,btn5,btn6,btn7,btn8,btn9,btn10,btn11,btn12,btn13,btn14,btn15,btn16,btn17,btn18,btn19,btn20,btn21,btn22,btn23,btn24,btn25,btn26,btn27,btn28;
     @FXML
@@ -71,11 +71,13 @@ public class AdminReservationGUIController implements Initializable{
     private Button[] slotButtons = {btn1,btn2,btn3,btn4,btn5,btn6,btn7,btn8,btn9,btn10,btn11,btn12,btn13,btn14,btn15,btn16,btn17,btn18,btn19,btn20,btn21,btn22,btn23,btn24,btn25,btn26,btn27,btn28};
     private int pullDownPaneInitial = 650;
     private HashMap<Button,Integer> selection = new HashMap<Button,Integer>();
-    private Boolean isActiveReservation;
+    private Boolean isActiveReservation,requestProcessing,changepassProcessing;
     private Event classEvent;
     @Override
     public void initialize(URL location, ResourceBundle resources){
         isActiveReservation = false;
+        requestProcessing = false;
+        changepassProcessing = false;
         File file = new File("./src/BookIT_logo.jpg");
         Image image = new Image(file.toURI().toString());
         logo.setImage(image);
@@ -108,13 +110,14 @@ public class AdminReservationGUIController implements Initializable{
         file = new File("./src/AdminReservation/cancel.png");
         image = new Image(file.toURI().toString());
         cancelSlotBookingImage.setImage(image);
-        loadCourses();
     }
     public void cancelSlotBooking(){
         updateClassStatus(classEvent);
     }
     public void openChangePassword(){
+        changepassProcessing = true;
         hideLogo();
+        leftPane.setDisable(true);
         rightPane.setDisable(true);
         mainPane.setDisable(true);
         FadeTransition appear = new FadeTransition(Duration.millis(1000), changePasswordPane);
@@ -124,12 +127,16 @@ public class AdminReservationGUIController implements Initializable{
         appear.play();
     }
     public void cancelChangePassword(){
+        changepassProcessing = false;
         changePasswordPane.setVisible(false);
         rightPane.setDisable(false);
+        leftPane.setDisable(false);
         mainPane.setDisable(false);
         showLogo();
     }
     public void saveChangePassword(){
+        changepassProcessing = false;
+        leftPane.setDisable(false);
         changePasswordPane.setVisible(false);
         rightPane.setDisable(false);
         mainPane.setDisable(false);
@@ -222,25 +229,66 @@ public class AdminReservationGUIController implements Initializable{
         }
         return "";
     }
-    public void loadCourses(){
-        myCoursesScrollPane.getChildren().clear();
-        Label[] label = new Label[100];
-        ArrayList<String> items = new ArrayList<String>();
-        items.add("Course 1");
-        items.add("Course 2");
+    public void showRequests(){
+        requestProcessing = true;
+        leftPane.setDisable(true);
+        rightPane.setDisable(true);
+        roomGridPane.setDisable(true);
+        requestedSlotsScrollPane.getChildren().clear();
         int i=0;
+        ArrayList<String> items = new ArrayList<String>();
+        items.add("Slot 1");
+        items.add("Slot 2");
+        Label[] label = new Label[50];
         while(i<items.size()){
             label[i] = new Label();
             label[i].setText(items.get(i));
-            label[i].setPrefSize(543, 35);
+            label[i].setPrefSize(494, 50);
             label[i].setAlignment(Pos.CENTER);
-            label[i].setTranslateY(i*35);
-            label[i].setStyle("-fx-background-color: #229954; -fx-border-color:  white; -fx-border-width:2");
-            label[i].setFont(new Font(16));
-            myCoursesScrollPane.getChildren().add(label[i]);
+            label[i].setTranslateY(i*49);
+            label[i].setStyle("-fx-background-color: white; -fx-border-color:  #2a2a2a; -fx-border-width:3");
+            label[i].setFont(new Font(22));
+            requestedSlotsScrollPane.getChildren().add(label[i]);
             i++;
         }
-        myCoursesScrollPane.setPrefSize(543,max(170,34*i));
+        requestedSlotsScrollPane.setPrefSize(494,max(474,49*i));
+        SequentialTransition sequence = new SequentialTransition();
+        int step=1;
+        int location=pullDownPaneInitial;
+        pullDownPane2.setTranslateY(location);
+        pullDownPane2.setVisible(true);
+        while(location>40) {
+            TranslateTransition translate = new TranslateTransition();
+            translate.setNode(pullDownPane2);
+            translate.setToY(location);
+            translate.setDuration(Duration.millis(15));
+            step++;
+            location-=step;
+            sequence.getChildren().add(translate);
+        }
+        sequence.play();
+    }
+    public void hideRequests(){
+        requestProcessing = false;
+        SequentialTransition sequence = new SequentialTransition();
+        int step=1;
+        double location=pullDownPane2.getTranslateY();
+        while(location<pullDownPaneInitial+20) {
+            TranslateTransition translate = new TranslateTransition();
+            translate.setNode(pullDownPane2);
+            translate.setToY(location);
+            translate.setDuration(Duration.millis(15));
+            step++;
+            location+=step;
+            sequence.getChildren().add(translate);
+        }
+        sequence.play();
+        sequence.setOnFinished(e->{
+            pullDownPane2.setVisible(false);
+            leftPane.setDisable(false);
+            rightPane.setDisable(false);
+            roomGridPane.setDisable(false);
+        });
     }
     public void showSlotInfo(Event e){
         slotInfoPane.setVisible(true);
@@ -337,6 +385,7 @@ public class AdminReservationGUIController implements Initializable{
         sequence.setOnFinished(e->{
             pullDownPane.setTranslateY(pullDownPaneInitial);
             rightPane.setDisable(false);
+            leftPane.setDisable(false);
             HoverPane.setDisable(false);
             roomGridPane.setDisable(false);
             roomGridPane.setVisible(true);
@@ -348,6 +397,7 @@ public class AdminReservationGUIController implements Initializable{
         hideSlotPane();
         HoverPane.setDisable(true);
         rightPane.setDisable(true);
+        leftPane.setDisable(true);
         roomGridPane.setDisable(true);
         roomGridPane.setVisible(false);
         pullDownPane.setVisible(true);
@@ -424,8 +474,6 @@ public class AdminReservationGUIController implements Initializable{
     public void openBooking(Event action){
         classEvent = action;
         HoverPane.setTranslateX(0);
-        rightPane.setDisable(true);
-        leftPane.setDisable(true);
         error1.setVisible(true);
         BookBtn.setDisable(true);
         BackBtn.setVisible(true);
@@ -468,7 +516,7 @@ public class AdminReservationGUIController implements Initializable{
         appear.play();
     }
     public void exitReadOnlyBookings(){
-        if(!isActiveReservation) {
+        if(!isActiveReservation && !requestProcessing) {
             induceDelay(appearAfter_HoverPane);
             FadeTransition appear = new FadeTransition(Duration.millis(700), HoverPane);
             appear.setToValue(0);
@@ -486,6 +534,15 @@ public class AdminReservationGUIController implements Initializable{
                 rightPane.setDisable(false);
                 leftPane.setDisable(false);
                 RoomNo.setText("Not Set");
+                if(changepassProcessing){
+                    leftPane.setDisable(true);
+                    rightPane.setDisable(true);
+                }
+                if(requestProcessing){
+                    leftPane.setDisable(true);
+                    rightPane.setDisable(true);
+                    pullDownPane2.setVisible(true);
+                }
             });
         }
     }

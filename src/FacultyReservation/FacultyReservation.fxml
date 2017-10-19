@@ -23,7 +23,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox fx:id="rootPane" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="AdminReservation.AdminReservationGUIController">
+<VBox fx:id="rootPane" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FacultyReservation.FacultyReservationGUIController">
    <children>
       <MenuBar fx:id="menuBar">
         <menus>
@@ -342,12 +342,12 @@
                               <Insets bottom="2.0" left="400.0" />
                            </StackPane.margin>
                         </Button>
-                        <Button mnemonicParsing="false" opacity="0.95" prefHeight="47.0" prefWidth="194.0" stylesheets="@buttonControl.css" text="Add Course">
+                        <Button mnemonicParsing="false" opacity="0.95" prefHeight="47.0" prefWidth="194.0" stylesheets="@buttonControl.css">
                            <StackPane.margin>
                               <Insets bottom="2.0" />
                            </StackPane.margin>
                         </Button>
-                        <Button mnemonicParsing="false" opacity="0.95" prefHeight="47.0" prefWidth="194.0" stylesheets="@buttonControl.css" text="Time Table">
+                        <Button mnemonicParsing="false" opacity="0.95" prefHeight="47.0" prefWidth="194.0" stylesheets="@buttonControl.css">
                            <StackPane.margin>
                               <Insets bottom="2.0" right="400.0" />
                            </StackPane.margin>
@@ -1112,7 +1112,7 @@
                               <Font size="20.0" />
                            </font>
                         </TextArea>
-                        <Button mnemonicParsing="false" onMouseClicked="#bookingCompleted" stylesheets="@button.css" text="Send Request">
+                        <Button mnemonicParsing="false" onMouseClicked="#bookingCompleted" stylesheets="@button.css" text="Confirm Booking">
                            <StackPane.margin>
                               <Insets left="540.0" top="500.0" />
                            </StackPane.margin>

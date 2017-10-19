@@ -71,11 +71,12 @@ public class FacultyReservationGUIController implements Initializable{
     private Button[] slotButtons = {btn1,btn2,btn3,btn4,btn5,btn6,btn7,btn8,btn9,btn10,btn11,btn12,btn13,btn14,btn15,btn16,btn17,btn18,btn19,btn20,btn21,btn22,btn23,btn24,btn25,btn26,btn27,btn28};
     private int pullDownPaneInitial = 650;
     private HashMap<Button,Integer> selection = new HashMap<Button,Integer>();
-    private Boolean isActiveReservation;
+    private Boolean isActiveReservation, changepassProcessing;
     private Event classEvent;
     @Override
     public void initialize(URL location, ResourceBundle resources){
         isActiveReservation = false;
+        changepassProcessing = false;
         File file = new File("./src/BookIT_logo.jpg");
         Image image = new Image(file.toURI().toString());
         logo.setImage(image);
@@ -114,7 +115,9 @@ public class FacultyReservationGUIController implements Initializable{
         updateClassStatus(classEvent);
     }
     public void openChangePassword(){
+        changepassProcessing = true;
         hideLogo();
+        leftPane.setDisable(true);
         rightPane.setDisable(true);
         mainPane.setDisable(true);
         FadeTransition appear = new FadeTransition(Duration.millis(1000), changePasswordPane);
@@ -124,12 +127,16 @@ public class FacultyReservationGUIController implements Initializable{
         appear.play();
     }
     public void cancelChangePassword(){
+        changepassProcessing = false;
         changePasswordPane.setVisible(false);
         rightPane.setDisable(false);
+        leftPane.setDisable(false);
         mainPane.setDisable(false);
         showLogo();
     }
     public void saveChangePassword(){
+        changepassProcessing = false;
+        leftPane.setDisable(false);
         changePasswordPane.setVisible(false);
         rightPane.setDisable(false);
         mainPane.setDisable(false);
@@ -337,6 +344,7 @@ public class FacultyReservationGUIController implements Initializable{
         sequence.setOnFinished(e->{
             pullDownPane.setTranslateY(pullDownPaneInitial);
             rightPane.setDisable(false);
+            leftPane.setDisable(false);
             HoverPane.setDisable(false);
             roomGridPane.setDisable(false);
             roomGridPane.setVisible(true);
@@ -347,6 +355,7 @@ public class FacultyReservationGUIController implements Initializable{
         isActiveReservation = true;
         hideSlotPane();
         HoverPane.setDisable(true);
+        leftPane.setDisable(true);
         rightPane.setDisable(true);
         roomGridPane.setDisable(true);
         roomGridPane.setVisible(false);
@@ -424,8 +433,6 @@ public class FacultyReservationGUIController implements Initializable{
     public void openBooking(Event action){
         classEvent = action;
         HoverPane.setTranslateX(0);
-        rightPane.setDisable(true);
-        leftPane.setDisable(true);
         error1.setVisible(true);
         BookBtn.setDisable(true);
         BackBtn.setVisible(true);
@@ -486,6 +493,10 @@ public class FacultyReservationGUIController implements Initializable{
                 rightPane.setDisable(false);
                 leftPane.setDisable(false);
                 RoomNo.setText("Not Set");
+                if(changepassProcessing){
+                    leftPane.setDisable(true);
+                    rightPane.setDisable(true);
+                }
             });
         }
     }

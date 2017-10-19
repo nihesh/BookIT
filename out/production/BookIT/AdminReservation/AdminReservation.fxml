@@ -45,32 +45,6 @@
                <StackPane.margin>
                   <Insets right="1275.0" />
                </StackPane.margin>
-               <children>
-                  <ScrollPane prefHeight="541.0" prefWidth="1209.0">
-                     <content>
-                        <AnchorPane fx:id="myCoursesScrollPane" minHeight="170.0" minWidth="0.0" prefWidth="543.0" style="-fx-background-color: #424949;" />
-                     </content>
-                     <StackPane.margin>
-                        <Insets bottom="20.0" left="50.0" right="50.0" top="120.0" />
-                     </StackPane.margin>
-                  </ScrollPane>
-                  <Label alignment="CENTER" contentDisplay="CENTER" opacity="0.95" prefHeight="46.0" prefWidth="545.0" style="-fx-background-color: #CD6155; -fx-border-color: white; -fx-border-width: 2;" text="Enrolled Courses">
-                     <font>
-                        <Font size="23.0" />
-                     </font>
-                     <StackPane.margin>
-                        <Insets bottom="130.0" />
-                     </StackPane.margin>
-                  </Label>
-                  <Label alignment="CENTER" contentDisplay="CENTER" opacity="0.95" prefHeight="46.0" prefWidth="200.0" style="-fx-background-color: #CD6155; -fx-border-color: white; -fx-border-width: 2;" text="BT2016">
-                     <font>
-                        <Font size="23.0" />
-                     </font>
-                     <StackPane.margin>
-                        <Insets bottom="219.0" />
-                     </StackPane.margin>
-                  </Label>
-               </children>
             </StackPane>
             <SplitPane disable="true" dividerPositions="0.29797979797979796" prefHeight="312.0" prefWidth="2003.0">
               <items>
@@ -342,12 +316,12 @@
                               <Insets bottom="2.0" left="400.0" />
                            </StackPane.margin>
                         </Button>
-                        <Button mnemonicParsing="false" opacity="0.95" prefHeight="47.0" prefWidth="194.0" stylesheets="@buttonControl.css" text="Add Course">
+                        <Button mnemonicParsing="false" opacity="0.95" prefHeight="47.0" prefWidth="194.0" stylesheets="@buttonControl.css" text="Join Code">
                            <StackPane.margin>
                               <Insets bottom="2.0" />
                            </StackPane.margin>
                         </Button>
-                        <Button mnemonicParsing="false" opacity="0.95" prefHeight="47.0" prefWidth="194.0" stylesheets="@buttonControl.css" text="Time Table">
+                        <Button mnemonicParsing="false" onMouseClicked="#showRequests" opacity="0.95" prefHeight="47.0" prefWidth="194.0" stylesheets="@buttonControl.css" text="Requests">
                            <StackPane.margin>
                               <Insets bottom="2.0" right="400.0" />
                            </StackPane.margin>
@@ -1112,7 +1086,7 @@
                               <Font size="20.0" />
                            </font>
                         </TextArea>
-                        <Button mnemonicParsing="false" onMouseClicked="#bookingCompleted" stylesheets="@button.css" text="Send Request">
+                        <Button mnemonicParsing="false" onMouseClicked="#bookingCompleted" stylesheets="@button.css" text="Confirm Booking">
                            <StackPane.margin>
                               <Insets left="540.0" top="500.0" />
                            </StackPane.margin>
@@ -1120,6 +1094,103 @@
                      </children></StackPane>
                   <Button alignment="TOP_CENTER" contentDisplay="TOP" mnemonicParsing="false" onMouseClicked="#closeReservationPane" opacity="0.5" prefHeight="12.0" prefWidth="1320.0" stylesheets="@buttonDropDown.css" text="v" textAlignment="CENTER" StackPane.alignment="TOP_CENTER" />
                </children>
+            </StackPane>
+            <StackPane fx:id="pullDownPane2" layoutX="310.0" layoutY="10.0" prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: #2a2a2a; visibility: false;">
+               <children>
+                  <StackPane prefHeight="150.0" prefWidth="1320.0" style="-fx-border-width: 2; -fx-border-color: white;" StackPane.alignment="CENTER">
+                     <children>
+                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="54.0" prefWidth="495.0" text="Requested Slots" textAlignment="CENTER" textFill="WHITE" StackPane.alignment="CENTER">
+                           <StackPane.margin>
+                              <Insets left="-630.0" top="-460.0" />
+                           </StackPane.margin>
+                           <font>
+                              <Font name="LMMonoCaps10-Oblique" size="29.0" />
+                           </font>
+                        </Label>
+                        <ScrollPane prefHeight="541.0" prefWidth="1209.0">
+                           <content>
+                              <AnchorPane fx:id="requestedSlotsScrollPane" minHeight="0.0" minWidth="0.0" prefHeight="474.0" prefWidth="494.0" style="-fx-background-color: #424949;" />
+                           </content>
+                           <StackPane.margin>
+                              <Insets bottom="20.0" left="95.0" right="725.0" top="100.0" />
+                           </StackPane.margin>
+                        </ScrollPane>
+                        <Label prefHeight="45.0" prefWidth="155.0" text="Course" textFill="WHITE">
+                           <StackPane.margin>
+                              <Insets bottom="400.0" left="150.0" />
+                           </StackPane.margin>
+                           <font>
+                              <Font size="27.0" />
+                           </font>
+                        </Label>
+                        <Label prefHeight="45.0" prefWidth="155.0" text="Faculty" textFill="WHITE">
+                           <font>
+                              <Font size="27.0" />
+                           </font>
+                           <StackPane.margin>
+                              <Insets bottom="285.0" left="150.0" />
+                           </StackPane.margin>
+                        </Label>
+                        <Label prefHeight="45.0" prefWidth="155.0" text="Message" textFill="WHITE">
+                           <font>
+                              <Font size="27.0" />
+                           </font>
+                           <StackPane.margin>
+                              <Insets bottom="175.0" left="150.0" />
+                           </StackPane.margin>
+                        </Label>
+                        <Button mnemonicParsing="false" stylesheets="@button.css" text="Accept">
+                           <StackPane.margin>
+                              <Insets left="300.0" top="500.0" />
+                           </StackPane.margin>
+                        </Button>
+                        <Label fx:id="AccRejCourseName" prefHeight="38.0" prefWidth="331.0" text="&lt;course name&gt;" textFill="WHITE">
+                           <StackPane.margin>
+                              <Insets bottom="400.0" left="750.0" />
+                           </StackPane.margin>
+                           <font>
+                              <Font size="21.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="AccRejCourseName1" prefHeight="38.0" prefWidth="331.0" text="&lt;faculty name&gt;" textFill="WHITE">
+                           <font>
+                              <Font size="21.0" />
+                           </font>
+                           <StackPane.margin>
+                              <Insets bottom="290.0" left="750.0" />
+                           </StackPane.margin>
+                        </Label>
+                        <ScrollPane prefHeight="200.0" prefWidth="200.0">
+                          <content>
+                            <AnchorPane minHeight="234.0" minWidth="0.0" prefWidth="543.0" style="-fx-background-color: white;">
+                                 <children>
+                                    <Label alignment="TOP_LEFT" prefWidth="543.0" style="-fx-background-color: white;" text="Messages associated with the request will be displayed here!" wrapText="true">
+                                       <font>
+                                          <Font size="17.0" />
+                                       </font>
+                                       <padding>
+                                          <Insets left="10.0" right="10.0" top="10.0" />
+                                       </padding>
+                                    </Label>
+                                 </children>
+                              </AnchorPane>
+                          </content>
+                           <StackPane.margin>
+                              <Insets bottom="110.0" left="655.0" right="115.0" top="250.0" />
+                           </StackPane.margin>
+                        </ScrollPane>
+                        <Button mnemonicParsing="false" stylesheets="@button.css" text="Reject">
+                           <StackPane.margin>
+                              <Insets left="800.0" top="500.0" />
+                           </StackPane.margin>
+                        </Button>
+                     </children>
+                  </StackPane>
+                  <Button alignment="TOP_CENTER" contentDisplay="TOP" mnemonicParsing="false" onMouseClicked="#hideRequests" opacity="0.5" prefHeight="12.0" prefWidth="1320.0" stylesheets="@buttonDropDown.css" text="v" textAlignment="CENTER" StackPane.alignment="TOP_CENTER" />
+               </children>
+               <StackPane.margin>
+                  <Insets bottom="50.0" left="300.0" right="300.0" />
+               </StackPane.margin>
             </StackPane>
          </children>
          <VBox.margin>

@@ -6,9 +6,11 @@
 
 import AdminReservation.AdminReservationGUI;
 import FacultyReservation.FacultyReservationGUI;
+import LoginSignup.LoginSignupGUI;
+import StudentReservation.StudentReservationGUI;
 
 public class BookIT {
     public static void main(String[] args){
-        javafx.application.Application.launch(FacultyReservationGUI.class);
+        javafx.application.Application.launch(AdminReservationGUI.class);
     }
 }
