@@ -1,4 +1,4 @@
-package application;
+package LoginSignup;
 	
 
 import javafx.application.Application;
@@ -7,7 +7,7 @@ import javafx.stage.Stage;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
-public class Main extends Application {
+public class LoginSignupGUI extends Application {
 		@Override
 	public void start(Stage primaryStage) {
 		try {
@@ -15,7 +15,7 @@ public class Main extends Application {
 			Scene scene = new Scene(root,600,400);
 			primaryStage.setScene(scene);
 			primaryStage.setResizable(false);
-			primaryStage.getIcons().add(new Image("./application/BookIT_icon.jpg"));
+			primaryStage.getIcons().add(new Image("./LoginSignup/BookIT_icon.jpg"));
 			primaryStage.setTitle("BookIT-Login"); 
 			
 			primaryStage.show();

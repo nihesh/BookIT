@@ -1,4 +1,4 @@
-package application;
+package LoginSignup;
 
 
 import javafx.animation.FadeTransition;
@@ -19,7 +19,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
-public class LoginSignupController{
+public class LoginSignupGUIController {
 	double initOpacity=0.84;
 	int Signup_TransX=570;
 	
