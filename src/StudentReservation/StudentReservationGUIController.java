@@ -24,6 +24,7 @@ import javafx.util.Duration;
 
 import java.io.File;
 import java.net.URL;
+import java.sql.Time;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -54,13 +55,13 @@ public class StudentReservationGUIController implements Initializable{
     @FXML
     private Label statusRoomID, slotInfo;
     @FXML
-    private StackPane topPane,leftPane,rightPane,mainPane, fetchCoursesPane;
+    private StackPane topPane,leftPane,rightPane,mainPane, fetchCoursesPane, TimeTablePane, TTinfoPane;
     @FXML
     private AnchorPane selectedSlotsScrollPane, myCoursesScrollPane, shortlistedCourses;
     @FXML
     private Button btn1,btn2,btn3,btn4,btn5,btn6,btn7,btn8,btn9,btn10,btn11,btn12,btn13,btn14,btn15,btn16,btn17,btn18,btn19,btn20,btn21,btn22,btn23,btn24,btn25,btn26,btn27,btn28;
     @FXML
-    private Label error1;
+    private Label error1, slotTTinfo;
     @FXML
     private ComboBox courseDropDown, facultyDropDown;
     @FXML
@@ -72,7 +73,7 @@ public class StudentReservationGUIController implements Initializable{
     private Button[] slotButtons = {btn1,btn2,btn3,btn4,btn5,btn6,btn7,btn8,btn9,btn10,btn11,btn12,btn13,btn14,btn15,btn16,btn17,btn18,btn19,btn20,btn21,btn22,btn23,btn24,btn25,btn26,btn27,btn28};
     private int pullDownPaneInitial = 650;
     private HashMap<Button,Integer> selection = new HashMap<Button,Integer>();
-    private Boolean isActiveReservation, changepassProcessing, fetchCoursesProcessing, listCoursesProcessing;
+    private Boolean isActiveReservation, changepassProcessing, fetchCoursesProcessing, listCoursesProcessing,timetableprocessing;
     @Override
     public void initialize(URL location, ResourceBundle resources){
         listCoursesProcessing = false;
@@ -132,6 +133,45 @@ public class StudentReservationGUIController implements Initializable{
         listCoursesProcessing = false;
         listCoursesPane.setVisible(false);
         showLogo();
+    }
+    public void OpenTimeTable(){
+        timetableprocessing = true;
+        TimeTablePane.setVisible(true);
+        FadeTransition appear = new FadeTransition(Duration.millis(1000), TimeTablePane);
+        appear.setFromValue(0);
+        appear.setToValue(1);
+        appear.play();
+        rightPane.setDisable(true);
+        leftPane.setDisable(true);
+        roomGridPane.setDisable(true);
+    }
+    public void showTTslotinfo(Event action){
+        hideLogo();
+        TTinfoPane.setVisible(true);
+        Button current = (Button) action.getSource();
+        String id = current.getId();
+        String slotDuration = getReserveButtonInfo(id.substring(0,id.length()-1));
+        System.out.println(slotDuration);
+        slotTTinfo.setText(slotDuration+" | Cxx");
+    }
+    public void CloseTimeTable(){
+        timetableprocessing = false;
+        showLogo();
+        FadeTransition appear = new FadeTransition(Duration.millis(1000), TimeTablePane);
+        appear.setFromValue(1);
+        appear.setToValue(0);
+        appear.play();
+        TTinfoPane.setVisible(false);
+        if(!logo.isVisible()){
+            showLogo();
+        }
+        showLogo();
+        appear.setOnFinished(e->{
+            TimeTablePane.setVisible(false);
+            rightPane.setDisable(false);
+            leftPane.setDisable(false);
+            roomGridPane.setDisable(false);
+        });
     }
     public void openFetchCourses(){
         fetchCoursesProcessing = true;
@@ -565,6 +605,11 @@ public class StudentReservationGUIController implements Initializable{
                     leftPane.setDisable(true);
                     rightPane.setDisable(true);
                     mainPane.setDisable(true);
+                }
+                if(timetableprocessing){
+                    rightPane.setDisable(true);
+                    leftPane.setDisable(true);
+                    roomGridPane.setDisable(true);
                 }
             });
         }
