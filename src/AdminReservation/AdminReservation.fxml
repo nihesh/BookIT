@@ -3,6 +3,7 @@
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
@@ -45,6 +46,13 @@
                <StackPane.margin>
                   <Insets right="1275.0" />
                </StackPane.margin>
+               <children>
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="195.0" prefWidth="440.0" text="Admin Panel">
+                     <font>
+                        <Font size="61.0" />
+                     </font>
+                  </Label>
+               </children>
             </StackPane>
             <SplitPane disable="true" dividerPositions="0.29797979797979796" prefHeight="312.0" prefWidth="2003.0">
               <items>
@@ -268,6 +276,53 @@
                         </StackPane>
                      </children>
                   </StackPane>
+                  <StackPane fx:id="joiningCodePane" prefHeight="150.0" prefWidth="200.0" style="visibility: false;">
+                     <children>
+                        <ImageView fx:id="joiningCodeBG" fitHeight="311.0" fitWidth="610.0" opacity="0.8" pickOnBounds="true" preserveRatio="true" />
+                        <Label alignment="CENTER" prefHeight="40.0" prefWidth="500.0" style="-fx-background-color: #641E16;" text="Generate Joining Code" textFill="WHITE">
+                           <StackPane.margin>
+                              <Insets bottom="200.0" />
+                           </StackPane.margin>
+                           <font>
+                              <Font size="26.0" />
+                           </font>
+                        </Label>
+                        <Label prefHeight="35.0" prefWidth="209.0" style="-fx-background-color: #922B21;" text="  User Type" textFill="WHITE">
+                           <font>
+                              <Font size="22.0" />
+                           </font>
+                           <StackPane.margin>
+                              <Insets bottom="100.0" right="290.0" />
+                           </StackPane.margin>
+                        </Label>
+                        <ChoiceBox fx:id="joinCodeDropDown" prefHeight="33.0" prefWidth="280.0" style="-fx-background-color: #922B21;">
+                           <StackPane.margin>
+                              <Insets bottom="100.0" left="220.0" />
+                           </StackPane.margin>
+                        </ChoiceBox>
+                        <Button mnemonicParsing="false" onMouseClicked="#generateCode" prefHeight="28.0" prefWidth="159.0" stylesheets="@buttonChangePwd.css" text="Generate">
+                           <StackPane.margin>
+                              <Insets right="120.0" top="20.0" />
+                           </StackPane.margin>
+                           <tooltip>
+                              <Tooltip text="Click to generate another code" />
+                           </tooltip>
+                        </Button>
+                        <Label fx:id="joiningCodeMessage" alignment="CENTER" prefHeight="43.0" prefWidth="610.0" style="-fx-background-color: #922B21;" textFill="WHITE">
+                           <StackPane.margin>
+                              <Insets top="200.0" />
+                           </StackPane.margin>
+                           <font>
+                              <Font size="23.0" />
+                           </font>
+                        </Label>
+                        <Button mnemonicParsing="false" onMouseClicked="#hideJoiningCodePane" prefHeight="38.0" prefWidth="121.0" stylesheets="@buttonChangePwd.css" text="Close">
+                           <StackPane.margin>
+                              <Insets left="180.0" top="20.0" />
+                           </StackPane.margin>
+                        </Button>
+                     </children>
+                  </StackPane>
                </children>
             </StackPane>
             <SplitPane disable="true" dividerPositions="0.29797979797979796" layoutX="660.0" layoutY="10.0" prefHeight="312.0" prefWidth="2003.0">
@@ -316,7 +371,7 @@
                               <Insets bottom="2.0" left="400.0" />
                            </StackPane.margin>
                         </Button>
-                        <Button mnemonicParsing="false" opacity="0.95" prefHeight="47.0" prefWidth="194.0" stylesheets="@buttonControl.css" text="Join Code">
+                        <Button mnemonicParsing="false" onMouseClicked="#showJoiningCodePane" opacity="0.95" prefHeight="47.0" prefWidth="194.0" stylesheets="@buttonControl.css" text="Join Code">
                            <StackPane.margin>
                               <Insets bottom="2.0" />
                            </StackPane.margin>

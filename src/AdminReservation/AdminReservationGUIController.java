@@ -12,6 +12,8 @@ import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
@@ -21,6 +23,7 @@ import javafx.scene.text.Font;
 import javafx.util.Callback;
 import javafx.util.Duration;
 
+import java.awt.*;
 import java.io.File;
 import java.net.URL;
 import java.time.LocalDate;
@@ -35,7 +38,7 @@ public class AdminReservationGUIController implements Initializable{
     @FXML
     private StackPane HoverPane;
     @FXML
-    private Label RoomNo;
+    private Label RoomNo, joiningCodeMessage;
     @FXML
     private Button BackBtn, cancelSlotBooking;
     @FXML
@@ -47,9 +50,9 @@ public class AdminReservationGUIController implements Initializable{
     @FXML
     private StackPane roomGridPane;
     @FXML
-    private StackPane classStatus, slotInfoPane, changePasswordPane;
+    private StackPane classStatus, slotInfoPane, changePasswordPane, joiningCodePane;
     @FXML
-    private ImageView classStatusBG, slotStatusBG, changePasswordBG, cancelSlotBookingImage;
+    private ImageView classStatusBG, slotStatusBG, changePasswordBG, cancelSlotBookingImage, joiningCodeBG;
     @FXML
     private Label statusRoomID, slotInfo;
     @FXML
@@ -66,15 +69,18 @@ public class AdminReservationGUIController implements Initializable{
     private DatePicker datePicker;
     @FXML
     private Label curDate,curMon,curYear;
+    @FXML
+    private ChoiceBox joinCodeDropDown;
 
     private LocalDate activeDate;
     private Button[] slotButtons = {btn1,btn2,btn3,btn4,btn5,btn6,btn7,btn8,btn9,btn10,btn11,btn12,btn13,btn14,btn15,btn16,btn17,btn18,btn19,btn20,btn21,btn22,btn23,btn24,btn25,btn26,btn27,btn28};
     private int pullDownPaneInitial = 650;
     private HashMap<Button,Integer> selection = new HashMap<Button,Integer>();
-    private Boolean isActiveReservation,requestProcessing,changepassProcessing;
+    private Boolean isActiveReservation,requestProcessing,changepassProcessing, joinCodeProcessing;
     private Event classEvent;
     @Override
     public void initialize(URL location, ResourceBundle resources){
+        joinCodeProcessing = false;
         isActiveReservation = false;
         requestProcessing = false;
         changepassProcessing = false;
@@ -86,6 +92,7 @@ public class AdminReservationGUIController implements Initializable{
         classStatusBG.setImage(image);
         slotStatusBG.setImage(image);
         changePasswordBG.setImage(image);
+        joiningCodeBG.setImage(image);
         pullDownPane.setTranslateY(pullDownPaneInitial);
         pullDownPane.setVisible(true);
         datePicker.setValue(LocalDate.now());
@@ -110,9 +117,37 @@ public class AdminReservationGUIController implements Initializable{
         file = new File("./src/AdminReservation/cancel.png");
         image = new Image(file.toURI().toString());
         cancelSlotBookingImage.setImage(image);
+        joinCodeDropDown.getItems().add("Student");
+        joinCodeDropDown.getItems().add("Faculty");
+        joinCodeDropDown.getItems().add("Admin");
+        joinCodeDropDown.getSelectionModel().selectFirst();
+        joinCodeDropDown.setStyle("-fx-font-size : 13pt;-fx-background-color: #922B21;");
     }
     public void cancelSlotBooking(){
         updateClassStatus(classEvent);
+    }
+    public void generateCode(){
+        joiningCodeMessage.setText("Joining Code will be displayed here");
+    }
+    public void showJoiningCodePane(){
+        joinCodeProcessing = true;
+        joiningCodePane.setVisible(true);
+        leftPane.setDisable(true);
+        rightPane.setDisable(true);
+        mainPane.setDisable(true);
+        hideLogo();
+        FadeTransition appear = new FadeTransition(Duration.millis(1000), joiningCodePane);
+        appear.setFromValue(0);
+        appear.setToValue(1);
+        appear.play();
+    }
+    public void hideJoiningCodePane(){
+        joinCodeProcessing = false;
+        joiningCodePane.setVisible(false);
+        leftPane.setDisable(false);
+        rightPane.setDisable(false);
+        mainPane.setDisable(false);
+        showLogo();
     }
     public void openChangePassword(){
         changepassProcessing = true;
@@ -542,6 +577,11 @@ public class AdminReservationGUIController implements Initializable{
                     leftPane.setDisable(true);
                     rightPane.setDisable(true);
                     pullDownPane2.setVisible(true);
+                }
+                if(joinCodeProcessing){
+                    leftPane.setDisable(true);
+                    rightPane.setDisable(true);
+                    mainPane.setDisable(true);
                 }
             });
         }
