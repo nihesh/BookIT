@@ -11,6 +11,6 @@ import StudentReservation.StudentReservationGUI;
 
 public class BookIT {
     public static void main(String[] args){
-        javafx.application.Application.launch(AdminReservationGUI.class);
+        javafx.application.Application.launch(LoginSignupGUI.class);
     }
 }

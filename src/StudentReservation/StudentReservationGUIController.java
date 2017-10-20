@@ -11,6 +11,7 @@ import javafx.animation.TranslateTransition;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -33,7 +34,7 @@ import static java.lang.Math.max;
 public class StudentReservationGUIController implements Initializable{
     private int appearAfter_HoverPane = 200;
     @FXML
-    private StackPane HoverPane;
+    private StackPane HoverPane, listCoursesPane;
     @FXML
     private Label RoomNo;
     @FXML
@@ -49,13 +50,13 @@ public class StudentReservationGUIController implements Initializable{
     @FXML
     private StackPane classStatus, slotInfoPane, changePasswordPane;
     @FXML
-    private ImageView classStatusBG, slotStatusBG, changePasswordBG;
+    private ImageView classStatusBG, slotStatusBG, changePasswordBG, addCoursesBG,listCoursesBG;
     @FXML
     private Label statusRoomID, slotInfo;
     @FXML
-    private StackPane topPane,leftPane,rightPane,mainPane;
+    private StackPane topPane,leftPane,rightPane,mainPane, fetchCoursesPane;
     @FXML
-    private AnchorPane selectedSlotsScrollPane, myCoursesScrollPane;
+    private AnchorPane selectedSlotsScrollPane, myCoursesScrollPane, shortlistedCourses;
     @FXML
     private Button btn1,btn2,btn3,btn4,btn5,btn6,btn7,btn8,btn9,btn10,btn11,btn12,btn13,btn14,btn15,btn16,btn17,btn18,btn19,btn20,btn21,btn22,btn23,btn24,btn25,btn26,btn27,btn28;
     @FXML
@@ -71,11 +72,13 @@ public class StudentReservationGUIController implements Initializable{
     private Button[] slotButtons = {btn1,btn2,btn3,btn4,btn5,btn6,btn7,btn8,btn9,btn10,btn11,btn12,btn13,btn14,btn15,btn16,btn17,btn18,btn19,btn20,btn21,btn22,btn23,btn24,btn25,btn26,btn27,btn28};
     private int pullDownPaneInitial = 650;
     private HashMap<Button,Integer> selection = new HashMap<Button,Integer>();
-    private Boolean isActiveReservation, changepassProcessing;
+    private Boolean isActiveReservation, changepassProcessing, fetchCoursesProcessing, listCoursesProcessing;
     @Override
     public void initialize(URL location, ResourceBundle resources){
+        listCoursesProcessing = false;
         isActiveReservation = false;
         changepassProcessing = false;
+        fetchCoursesProcessing = false;
         File file = new File("./src/BookIT_logo.jpg");
         Image image = new Image(file.toURI().toString());
         logo.setImage(image);
@@ -83,7 +86,9 @@ public class StudentReservationGUIController implements Initializable{
         image = new Image(file.toURI().toString());
         classStatusBG.setImage(image);
         slotStatusBG.setImage(image);
+        addCoursesBG.setImage(image);
         changePasswordBG.setImage(image);
+        listCoursesBG.setImage(image);
         pullDownPane.setTranslateY(pullDownPaneInitial);
         pullDownPane.setVisible(true);
         datePicker.setValue(LocalDate.now());
@@ -106,6 +111,69 @@ public class StudentReservationGUIController implements Initializable{
         activeDate=LocalDate.now();
         setDate(activeDate);
         loadCourses();
+    }
+    public void openCoursesList(){
+        fetchCoursesProcessing = false;
+        listCoursesProcessing = true;
+        fetchCoursesPane.setVisible(false);
+        listCoursesPane.setVisible(true);
+        leftPane.setDisable(true);
+        rightPane.setDisable(true);
+        mainPane.setDisable(true);
+        FadeTransition appear = new FadeTransition(Duration.millis(1000), listCoursesPane);
+        appear.setFromValue(0);
+        appear.setToValue(1);
+        appear.play();
+    }
+    public void closeCoursesList(){
+        leftPane.setDisable(false);
+        rightPane.setDisable(false);
+        mainPane.setDisable(false);
+        listCoursesProcessing = false;
+        listCoursesPane.setVisible(false);
+        showLogo();
+    }
+    public void openFetchCourses(){
+        fetchCoursesProcessing = true;
+        rightPane.setDisable(true);
+        leftPane.setDisable(true);
+        mainPane.setDisable(true);
+        hideLogo();
+        fetchCoursesPane.setVisible(true);
+        ArrayList<String> items = new ArrayList<String>();
+        items.add("Course 1");
+        items.add("Course 2");
+        CheckBox[] label = new CheckBox[100];
+        int i=0;
+        while(i<items.size()){
+            label[i] = new CheckBox();
+            label[i].setText(items.get(i));
+            label[i].setPrefSize(578, 35);
+            label[i].setAlignment(Pos.CENTER);
+            label[i].setTranslateY(i*35);
+            label[i].setStyle("-fx-background-color: #229954; -fx-border-color:  white; -fx-border-width:2");
+            label[i].setFont(new Font(16));
+            shortlistedCourses.getChildren().add(label[i]);
+            i++;
+        }
+        shortlistedCourses.setPrefSize(578,max(235,34*i));
+        FadeTransition appear = new FadeTransition(Duration.millis(1000), fetchCoursesPane);
+        appear.setFromValue(0);
+        appear.setToValue(1);
+        appear.play();
+    }
+    public void closeFetchCourses(){
+        fetchCoursesProcessing = false;
+        rightPane.setDisable(false);
+        leftPane.setDisable(false);
+        mainPane.setDisable(false);
+        fetchCoursesPane.setVisible(false);
+        showLogo();
+    }
+    public void gobackFetchCourses(){
+        fetchCoursesProcessing = false;
+        listCoursesPane.setVisible(false);
+        openFetchCourses();
     }
     public void openChangePassword(){
         changepassProcessing = true;
@@ -487,6 +555,16 @@ public class StudentReservationGUIController implements Initializable{
                 if(changepassProcessing){
                     leftPane.setDisable(true);
                     rightPane.setDisable(true);
+                }
+                if(fetchCoursesProcessing){
+                    rightPane.setDisable(false);
+                    leftPane.setDisable(false);
+                    mainPane.setDisable(false);
+                }
+                if(listCoursesProcessing){
+                    leftPane.setDisable(true);
+                    rightPane.setDisable(true);
+                    mainPane.setDisable(true);
                 }
             });
         }
