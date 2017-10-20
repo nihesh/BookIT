@@ -93,7 +93,6 @@ public class LoginSignupGUIController {
 	@FXML
 	private void backS() {
 		if(Signup_password.isVisible()==true) {
-			System.out.println(1);
 			Signup_email.getStyleClass().remove("text-field2");
 			Signup_password.getStyleClass().remove("text-field2");
 			CnfPass.getStyleClass().remove("text-field2");
@@ -107,7 +106,7 @@ public class LoginSignupGUIController {
 			CnfPass.clear();
 		}
 		else if(Signup_password.isVisible()==false && Signup_joincode.isVisible()==true){
-			System.out.println(2);
+			//System.out.println(2);
 			Signup_joincode.getStyleClass().remove("text-field2");
 			Signup_password.getStyleClass().remove("text-field2");
 			Signup_password.setVisible(true);
@@ -121,7 +120,7 @@ public class LoginSignupGUIController {
 			CnfPass.clear();
 		}
 		else {
-			System.out.println(3);
+			//System.out.println(3);
 			Signup_joincode.clear();
 			Signup_joincode.setVisible(false);
 			Branch.setVisible(false);
