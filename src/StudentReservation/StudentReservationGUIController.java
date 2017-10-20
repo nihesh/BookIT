@@ -151,7 +151,6 @@ public class StudentReservationGUIController implements Initializable{
         Button current = (Button) action.getSource();
         String id = current.getId();
         String slotDuration = getReserveButtonInfo(id.substring(0,id.length()-1));
-        System.out.println(slotDuration);
         slotTTinfo.setText(slotDuration+" | Cxx");
     }
     public void CloseTimeTable(){
