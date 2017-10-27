@@ -2,11 +2,13 @@ package HelperClasses;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Created by nihesh on 27/10/17.
  */
 public class Course implements java.io.Serializable{
+    private static final long serialVersionUID = 1L
     private String name;
     private Faculty instructor;
     private ArrayList<String> postCondition;

@@ -4,6 +4,7 @@ package HelperClasses;
  * Created by nihesh on 27/10/17.
  */
 public class Reservation implements java.io.Serializable{
+    private static final long serialVersionUID = 1L
     private String Message;
     private Course course;
     private Faculty faculty;
