@@ -7,9 +7,6 @@ import java.util.ArrayList;
  * Created by nihesh on 27/10/17.
  */
 public class Course {
-    private int year=2017;
-    private int firstMonth=8;
-    private int firstDay=1;
     private String name;
     private Faculty instructor;
     private ArrayList<String> postCondition;
@@ -43,8 +40,8 @@ public class Course {
     }
     public Boolean checkCollision(Course b){
         for(int i=0;i<7;i++){
-            Reservation[] s1 = this.getSchedule(LocalDate.of(year,firstMonth,firstDay+5+i));
-            Reservation[] s2 = b.getSchedule(LocalDate.of(year,firstMonth,firstDay+5+i));
+            Reservation[] s1 = this.getSchedule(LocalDate.now().plusDays(i+1));
+            Reservation[] s2 = b.getSchedule(LocalDate.now().plusDays(i+1));
             for(int j=0;j<28;j++){
                 if(s1[j]!=null && s2[j]!=null){
                     return false;
