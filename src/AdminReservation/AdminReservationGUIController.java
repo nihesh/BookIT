@@ -193,7 +193,7 @@ public class AdminReservationGUIController implements Initializable{
     }
     public void loadDate(){
         LocalDate date = datePicker.getValue();
-        if(date.isAfter(LocalDate.of(2017,8,1)) && date.isBefore(LocalDate.of(2017,12,5))){
+        if(date.isAfter(LocalDate.of(2017,8,1)) && date.isBefore(LocalDate.of(2017,12,15))){
             activeDate = date;
             datePicker.setValue(activeDate);
             setDate(activeDate);
