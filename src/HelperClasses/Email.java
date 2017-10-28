@@ -18,13 +18,17 @@ public class Email implements Serializable{
 			}
 		}
 		String y=x.toString();
+		
 		if(y.contains(domain) && 
 				!y.contains(check) && 
 				(y.indexOf(domain)+12==y.length())) {
 			String[] temp=y.split("@");
 			if(temp[1].equals("iiitd.ac.in") && temp[0].length()>1) {
 				if(Character.isLetter(temp[0].charAt(0))){
-					return temp[0].matches("[A-Za-z0-9]+");
+					if(temp[0].matches("[A-Za-z0-9]+")) {
+						this.emailID=y;
+						return true;
+					}
 			}
 			
 		}

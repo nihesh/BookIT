@@ -1,4 +1,7 @@
 package HelperClasses;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.Date;
 public class User implements Serializable{
@@ -25,7 +28,7 @@ public class User implements Serializable{
 					boolean b=newPassword.matches("[A-Za-z0-9]+");
 					if(b) {
 						Password=newPassword;
-						
+						serialize();
 						return true;
 					}
 		}
@@ -33,7 +36,22 @@ public class User implements Serializable{
 		return false;
 	}
 	public void serialize() {
-		
+		try{
+            ObjectOutputStream out = null;
+            try{
+                out = new ObjectOutputStream(new FileOutputStream("./AppData/User/"+this.emailID+".txt"));
+                out.writeObject(this);
+            }
+            finally {
+                if(out!=null){
+                    out.close();
+                }
+            }
+
+        }
+        catch (IOException e){
+            System.out.println("file not found");
+        }
 	}
 	public void logout() {
 		
