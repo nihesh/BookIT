@@ -1,0 +1,92 @@
+import HelperClasses.Course;
+import HelperClasses.Reservation;
+import HelperClasses.Room;
+
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Scanner;
+
+/**
+ * Created by nihesh on 28/10/17.
+ */
+public class setup {
+    public static ArrayList<Integer> getSlots(String startTime, String endTime){
+        String[] slots = {"0800AM","0830AM","0900AM","0930AM","1000AM","1030AM","1100AM","1130AM","1200PM","1230PM","0100PM","0130PM","0200PM","0230PM","0300PM","0330PM","0400PM","0430PM","0500PM","0530PM","0600PM","0630PM","0700PM","0730PM","0800PM","0830PM","0900PM","0930PM","1000PM"};
+        int counter=0;
+        while(!startTime.equals(slots[counter])){
+            counter++;
+            continue;
+        }
+        ArrayList<Integer> listOfSlots = new ArrayList<Integer>();
+        listOfSlots.add(counter);
+        counter++;
+        while(!endTime.equals(slots[counter])){
+            listOfSlots.add(counter);
+            counter++;
+        }
+        return listOfSlots;
+    }
+    public static void loadRoomObjects() throws IOException,FileNotFoundException{
+        Scanner file = new Scanner(new FileReader("./src/AppData/StaticTimeTable/TimeTable.csv"));
+        HashMap<String, Room > roomData = new HashMap<String, Room >();
+        HashMap<String, Course> courseData = new HashMap<String, Course>();
+        file.useDelimiter(",|\\n");
+        int flag=0;
+        while(file.hasNext()){
+            String type,name,code,instructor,credits,acronym,day,startTime,endTime,group,message,venue;
+            type = file.next();
+            name = file.next();
+            code = file.next();
+            instructor = file.next();
+            credits = file.next();
+            acronym = file.next();
+            day = file.next().toLowerCase();
+            startTime = file.next();
+            endTime = file.next();
+            group = file.next();
+            message = file.next();
+            venue = file.next();
+            if(flag==0){
+                flag=1;
+                continue;
+            }
+            if(!courseData.containsKey(name)){
+                ArrayList<String> postCondition = new ArrayList<String>();          // Fill this
+                HashMap<LocalDate, Reservation[]> Schedule = new HashMap<LocalDate, Reservation[]>();
+                LocalDate currentDate = LocalDate.of(2017,8,1);
+                LocalDate endDate = LocalDate.of(2017,12,16);
+                while(!currentDate.equals(endDate)){
+                    Reservation[] r = new Reservation[30];
+                    Schedule.put(currentDate, r);
+                    currentDate = currentDate.plusDays(1);
+                }
+                Course newCourse = new Course(name, null, postCondition, Schedule);
+                courseData.put(name,newCourse);
+            }
+            if(!roomData.containsKey(venue)){
+                HashMap<LocalDate, Reservation[]> Schedule = new HashMap<LocalDate, Reservation[]>();
+                LocalDate currentDate = LocalDate.of(2017,8,1);
+                LocalDate endDate = LocalDate.of(2017,12,16);
+                while(!currentDate.equals(endDate)){
+                    Reservation[] r = new Reservation[30];
+                    Schedule.put(currentDate, r);
+                    currentDate = currentDate.plusDays(1);
+                }
+                Room newRoom = new Room(venue,Schedule,40);
+                roomData.put(venue,newRoom);
+            }
+            ArrayList<Integer> listOfSlots = getSlots(startTime, endTime);
+            for(int i=0;i<listOfSlots.size();i++){
+                int currentSlot = listOfSlots.get(i);
+                Reservation r = new Reservation(message, courseData.get(name), null, roomData.get(venue));
+            }
+        }
+    }
+    public static void main(String[] args)throws IOException,FileNotFoundException{
+        loadRoomObjects();
+    }
+}

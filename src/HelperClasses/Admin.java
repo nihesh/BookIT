@@ -9,7 +9,7 @@ public class Admin extends User{
 		super(name,password,emailID,userType);
 	}
 	public ArrayList<Reservation> getRequest(){
-		
+
 	}
 	public boolean acceptRequest(ArrayList<Reservation> r){
 		return true;

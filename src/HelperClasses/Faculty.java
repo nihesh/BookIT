@@ -14,9 +14,9 @@ public class Faculty extends User{
 		return myCourses;
 	}
 	public boolean cancelBooking(Date queryDate,int slotID) {
-		
+
 	}
 	public boolean bookRoom(Date queryDate,int slot, Reservation r) {
-		
+
 	}
 }

@@ -1,5 +1,8 @@
 package HelperClasses;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -8,8 +11,9 @@ import java.util.HashMap;
  * Created by nihesh on 27/10/17.
  */
 public class Course implements java.io.Serializable{
-    private static final long serialVersionUID = 1L
+    private static final long serialVersionUID = 1L;
     private String name;
+    private String acronym;
     private Faculty instructor;
     private ArrayList<String> postCondition;
     private HashMap<LocalDate, Reservation[]> Schedule;
@@ -38,7 +42,7 @@ public class Course implements java.io.Serializable{
         return matchQuotient;
     }
     public Reservation[] getSchedule(LocalDate queryDate){
-        return Schedule[queryDate];
+        return Schedule.get(queryDate);
     }
     public Boolean checkCollision(Course b){
         for(int i=0;i<7;i++){
@@ -51,5 +55,38 @@ public class Course implements java.io.Serializable{
             }
         }
         return true;
+    }
+    public String getAcronym(){
+        return this.acronym;
+    }
+    public void serialize(){
+        try{
+            ObjectOutputStream out = null;
+            try{
+                out = new ObjectOutputStream(new FileOutputStream("./src/AppData/Course/"+this.name+".dat"));
+                out.writeObject(this);
+            }
+            finally {
+                if(out!=null){
+                    out.close();
+                }
+            }
+
+        }
+        catch (IOException e){
+            ;
+        }
+    }
+    public void setInstructor(Faculty f){
+        this.instructor = f;
+    }
+    public Boolean addReservation(LocalDate date, int slot, Reservation r){
+        if(Schedule.get(date)[slot] == null){
+            Schedule.get(date)[slot] = r;
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 }

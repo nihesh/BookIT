@@ -12,13 +12,13 @@ public class Student extends User{
 		this.myCourses = myCourses;
 	}
 	public boolean sendReservationRequest(ArrayList<Reservation> r) {
-		
+
 	}
 	public ArrayList<Course> searchCourse(String keyword){
-		
+
 	}
 	public void addCourse(Course c) {
-		
+
 	}
 	public String getBatch() {
 		return Batch;
