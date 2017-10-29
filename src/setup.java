@@ -10,6 +10,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
+import static jdk.nashorn.internal.ir.debug.ObjectSizeCalculator.getObjectSize;
+
 /**
  * Created by nihesh on 28/10/17.
  */
@@ -81,27 +83,34 @@ public class setup {
                 Room newRoom = new Room(venue,Schedule,40);
                 roomData.put(venue,newRoom);
             }
-            Reservation r = new Reservation(message, group, name, "", venue, message);
             ArrayList<Integer> listOfSlots = getSlots(startTime, endTime);
             for(int i=0;i<listOfSlots.size();i++){
+                Reservation r = new Reservation(message, group, name, "", venue, message);
                 int currentSlot = listOfSlots.get(i);
                 LocalDate currentDate = StartDate;
-                while(!currentDate.equals(EndDate))
+                while(!currentDate.isBefore(EndDate))
                 {
                     if(day.equals(currentDate.getDayOfWeek().toString().toLowerCase())) {
                         courseData.get(name).addReservation(currentDate, currentSlot, r);
+                        currentDate = currentDate.plusDays(7);
                     }
-                    currentDate = currentDate.plusDays(1);
+                    else {
+                        currentDate = currentDate.plusDays(1);
+                    }
                 }
             }
+            Reservation r = new Reservation(message, group, name, "", venue, message);
             for(int i=0;i<listOfSlots.size();i++){
                 int currentSlot = listOfSlots.get(i);
                 LocalDate currentDate = StartDate;
-                while(!currentDate.equals(EndDate)) {
+                while(!currentDate.isBefore(EndDate)) {
                     if(day.equals(currentDate.getDayOfWeek().toString().toLowerCase())) {
                         roomData.get(venue).addReservation(currentDate, currentSlot, r);
+                        currentDate = currentDate.plusDays(7);
                     }
-                    currentDate = currentDate.plusDays(1);
+                    else {
+                        currentDate = currentDate.plusDays(1);
+                    }
                 }
             }
         }

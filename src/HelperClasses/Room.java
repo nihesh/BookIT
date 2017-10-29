@@ -36,6 +36,7 @@ public class Room implements java.io.Serializable{
         this.RoomID = RoomID;
         this.Schedule = Schedule;
         this.Capacity = Capacity;
+        serialize();
     }
     public Reservation[] getSchedule(LocalDate queryDate){
         return Schedule.get(queryDate);
@@ -67,6 +68,7 @@ public class Room implements java.io.Serializable{
     public Boolean addReservation(LocalDate date, int slot, Reservation r){
         if(Schedule.get(date)[slot] == null){
             Schedule.get(date)[slot] = r;
+            serialize();
             return true;
         }
         else{

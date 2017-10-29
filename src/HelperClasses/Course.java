@@ -5,6 +5,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import static java.lang.System.exit;
+
 /**
  * Created by nihesh on 27/10/17.
  */
@@ -40,6 +42,7 @@ public class Course implements java.io.Serializable{
         this.instructorEmail = instructorEmail;
         this.postCondition = postCondition;
         this.Schedule = Schedule;
+        serialize();
     }
     public String getName(){
         return this.name;
@@ -106,11 +109,13 @@ public class Course implements java.io.Serializable{
         if(Schedule.get(date)[slot] == null){
             r.processForCourse();
             Schedule.get(date)[slot] = r;
+            serialize();
             return true;
         }
         else{
             if(Schedule.get(date)[slot].getCourseName().equals(r.getCourseName())){
                 Schedule.get(date)[slot].addGroup(r.getTargetGroup(),r.getVenueName(),r.getMessage());
+                serialize();
                 return true;
             }
             else {
