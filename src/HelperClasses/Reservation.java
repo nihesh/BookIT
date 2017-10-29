@@ -1,6 +1,7 @@
 package HelperClasses;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 /**
  * Created by nihesh on 27/10/17.
@@ -10,14 +11,14 @@ public class Reservation implements java.io.Serializable{
     private String Message;
     private Course course;
     private Faculty faculty;
-    private LocalDate creationDate;
+    private LocalDateTime creationDate;
     private Room room;
     public Reservation(String Message, Course course, Faculty faculty, Room room){
         this.Message = Message;
         this.course = course;
         this.faculty = faculty;
         this.room = room;
-        creationDate = LocalDate.now();
+        creationDate = LocalDateTime.now();
     }
     public String getMessage(){
         return this.Message;
@@ -31,7 +32,7 @@ public class Reservation implements java.io.Serializable{
     public Room getRoom(){
         return this.room;
     }
-    public LocalDate getCreationDate(){
+    public LocalDateTime getCreationDate(){
         return this.creationDate;
     }
 }
