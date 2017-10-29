@@ -8,9 +8,9 @@ public class Admin extends User{
 	public Admin(String name, String password, Email emailID, String userType) {
 		super(name,password,emailID,userType);
 	}
-	public ArrayList<Reservation> getRequest(){
-
-	}
+//	public ArrayList<Reservation> getRequest(){
+//
+//	}
 	public boolean acceptRequest(ArrayList<Reservation> r){
 		return true;
 	}

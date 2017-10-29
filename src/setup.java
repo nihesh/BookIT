@@ -14,6 +14,8 @@ import java.util.Scanner;
  * Created by nihesh on 28/10/17.
  */
 public class setup {
+    public static LocalDate StartDate = LocalDate.of(2017,8,1);
+    public static LocalDate EndDate = LocalDate.of(2017,12,16);
     public static ArrayList<Integer> getSlots(String startTime, String endTime){
         String[] slots = {"0800AM","0830AM","0900AM","0930AM","1000AM","1030AM","1100AM","1130AM","1200PM","1230PM","0100PM","0130PM","0200PM","0230PM","0300PM","0330PM","0400PM","0430PM","0500PM","0530PM","0600PM","0630PM","0700PM","0730PM","0800PM","0830PM","0900PM","0930PM","1000PM"};
         int counter=0;
@@ -57,20 +59,20 @@ public class setup {
             if(!courseData.containsKey(name)){
                 ArrayList<String> postCondition = new ArrayList<String>();          // Fill this
                 HashMap<LocalDate, Reservation[]> Schedule = new HashMap<LocalDate, Reservation[]>();
-                LocalDate currentDate = LocalDate.of(2017,8,1);
-                LocalDate endDate = LocalDate.of(2017,12,16);
+                LocalDate currentDate = StartDate;
+                LocalDate endDate = EndDate;
                 while(!currentDate.equals(endDate)){
                     Reservation[] r = new Reservation[30];
                     Schedule.put(currentDate, r);
                     currentDate = currentDate.plusDays(1);
                 }
-                Course newCourse = new Course(name, null, postCondition, Schedule);
+                Course newCourse = new Course(name, "", postCondition, Schedule);
                 courseData.put(name,newCourse);
             }
             if(!roomData.containsKey(venue)){
                 HashMap<LocalDate, Reservation[]> Schedule = new HashMap<LocalDate, Reservation[]>();
-                LocalDate currentDate = LocalDate.of(2017,8,1);
-                LocalDate endDate = LocalDate.of(2017,12,16);
+                LocalDate currentDate = StartDate;
+                LocalDate endDate = EndDate;
                 while(!currentDate.equals(endDate)){
                     Reservation[] r = new Reservation[30];
                     Schedule.put(currentDate, r);
@@ -79,12 +81,31 @@ public class setup {
                 Room newRoom = new Room(venue,Schedule,40);
                 roomData.put(venue,newRoom);
             }
+            Reservation r = new Reservation(message, group, name, "", venue, message);
             ArrayList<Integer> listOfSlots = getSlots(startTime, endTime);
             for(int i=0;i<listOfSlots.size();i++){
                 int currentSlot = listOfSlots.get(i);
-                Reservation r = new Reservation(message, courseData.get(name), null, roomData.get(venue));
+                LocalDate currentDate = StartDate;
+                while(!currentDate.equals(EndDate))
+                {
+                    if(day.equals(currentDate.getDayOfWeek().toString().toLowerCase())) {
+                        courseData.get(name).addReservation(currentDate, currentSlot, r);
+                    }
+                    currentDate = currentDate.plusDays(1);
+                }
+            }
+            for(int i=0;i<listOfSlots.size();i++){
+                int currentSlot = listOfSlots.get(i);
+                LocalDate currentDate = StartDate;
+                while(!currentDate.equals(EndDate)) {
+                    if(day.equals(currentDate.getDayOfWeek().toString().toLowerCase())) {
+                        roomData.get(venue).addReservation(currentDate, currentSlot, r);
+                    }
+                    currentDate = currentDate.plusDays(1);
+                }
             }
         }
+//        System.out.println(roomData.get("C21").getSchedule(LocalDate.of(2017,8,3))[7].getType());
     }
     public static void main(String[] args)throws IOException,FileNotFoundException{
         loadRoomObjects();

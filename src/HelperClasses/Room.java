@@ -1,8 +1,6 @@
 package HelperClasses;
 
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
+import java.io.*;
 import java.time.LocalDate;
 import java.util.HashMap;
 
@@ -14,6 +12,26 @@ public class Room implements java.io.Serializable{
     private String RoomID;
     private HashMap<LocalDate, Reservation[]> Schedule;
     private int Capacity;
+    public static Room deserializeRoom(String name){
+        ObjectInputStream in = null;
+        try{
+            in = new ObjectInputStream(new FileInputStream("./src/AppData/Room/"+name+".dat"));
+            return (Room)in.readObject();
+        }
+        catch (Exception e){
+            System.out.println("Exception occured while deserialising Room");
+            return null;
+        }
+        finally {
+            try {
+                if (in != null)
+                    in.close();
+            }
+            catch(IOException f){
+                ;
+            }
+        }
+    }
     public Room(String RoomID, HashMap<LocalDate, Reservation[]> Schedule, int Capacity){
         this.RoomID = RoomID;
         this.Schedule = Schedule;
@@ -32,7 +50,7 @@ public class Room implements java.io.Serializable{
         try{
             ObjectOutputStream out = null;
             try{
-                out = new ObjectOutputStream(new FileOutputStream("./src/AppData/Room/"+RoomID+".dat"));
+                out = new ObjectOutputStream(new FileOutputStream("./src/AppData/Room/"+RoomID+".dat", false));
                 out.writeObject(this);
             }
             finally {

@@ -1,8 +1,6 @@
 package HelperClasses;
 
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
+import java.io.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -14,12 +12,32 @@ public class Course implements java.io.Serializable{
     private static final long serialVersionUID = 1L;
     private String name;
     private String acronym;
-    private Faculty instructor;
+    private String instructorEmail;
     private ArrayList<String> postCondition;
     private HashMap<LocalDate, Reservation[]> Schedule;
-    public Course(String name, Faculty instructor, ArrayList<String> postCondition, HashMap<LocalDate, Reservation[]> Schedule){
+    public static Course deserializeCourse(String name){
+        ObjectInputStream in = null;
+        try{
+            in = new ObjectInputStream(new FileInputStream("./src/AppData/Course/"+name+".dat"));
+            return (Course)in.readObject();
+        }
+        catch (Exception e){
+            System.out.println("Exception occured while deserialising Course");
+            return null;
+        }
+        finally {
+            try {
+                if (in != null)
+                    in.close();
+            }
+            catch(IOException f){
+                ;
+            }
+        }
+    }
+    public Course(String name, String instructorEmail, ArrayList<String> postCondition, HashMap<LocalDate, Reservation[]> Schedule){
         this.name = name;
-        this.instructor = instructor;
+        this.instructorEmail = instructorEmail;
         this.postCondition = postCondition;
         this.Schedule = Schedule;
     }
@@ -27,7 +45,10 @@ public class Course implements java.io.Serializable{
         return this.name;
     }
     public Faculty getInstructor(){
-        return this.instructor;
+        if(this.instructorEmail.equals("")){
+            return null;
+        }
+        return User.getUser(this.instructorEmail);
     }
     public int keyMatch(ArrayList<String> query){
         int matchQuotient=0;
@@ -50,7 +71,8 @@ public class Course implements java.io.Serializable{
             Reservation[] s2 = b.getSchedule(LocalDate.now().plusDays(i+1));
             for(int j=0;j<28;j++){
                 if(s1[j]!=null && s2[j]!=null){
-                    return false;
+                    if(s1[j].getType().equals("Lecture") && s2[j].getType().equals("Lecture"))
+                        return false;
                 }
             }
         }
@@ -63,7 +85,7 @@ public class Course implements java.io.Serializable{
         try{
             ObjectOutputStream out = null;
             try{
-                out = new ObjectOutputStream(new FileOutputStream("./src/AppData/Course/"+this.name+".dat"));
+                out = new ObjectOutputStream(new FileOutputStream("./src/AppData/Course/"+this.name+".dat", false));
                 out.writeObject(this);
             }
             finally {
@@ -77,16 +99,23 @@ public class Course implements java.io.Serializable{
             ;
         }
     }
-    public void setInstructor(Faculty f){
-        this.instructor = f;
+    public void setInstructor(String f){
+        this.instructorEmail = f;
     }
     public Boolean addReservation(LocalDate date, int slot, Reservation r){
         if(Schedule.get(date)[slot] == null){
+            r.processForCourse();
             Schedule.get(date)[slot] = r;
             return true;
         }
         else{
-            return false;
+            if(Schedule.get(date)[slot].getCourseName().equals(r.getCourseName())){
+                Schedule.get(date)[slot].addGroup(r.getTargetGroup(),r.getVenueName(),r.getMessage());
+                return true;
+            }
+            else {
+                return false;
+            }
         }
     }
 }

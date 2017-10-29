@@ -13,10 +13,10 @@ public class Faculty extends User{
 	public ArrayList<Course> getCourses() {
 		return myCourses;
 	}
-	public boolean cancelBooking(Date queryDate,int slotID) {
-
-	}
-	public boolean bookRoom(Date queryDate,int slot, Reservation r) {
-
-	}
+//	public boolean cancelBooking(Date queryDate,int slotID) {
+//
+//	}
+//	public boolean bookRoom(Date queryDate,int slot, Reservation r) {
+//
+//	}
 }

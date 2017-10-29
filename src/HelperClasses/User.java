@@ -54,7 +54,10 @@ public class User implements Serializable{
         }
 	}
 	public void logout() {
-		
+
+	}
+	public static Faculty getUser(String name){			// remove this
+		return null;
 	}
 	public String getName() {
 		return Name;
