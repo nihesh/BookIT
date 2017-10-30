@@ -1,4 +1,7 @@
 Mandatory/Elective,Course Name,Course Code,Instructor,Credits,Acronym,Day,Start Time,End Time,Group,Message,Venue
+Mandatory,Discrete Mathematics,CSE121,Donghoon Chang,4,DM,Tuesday,0130PM,0300PM,0,Lecture,C21
+Mandatory,Discrete Mathematics,CSE121,Donghoon Chang,4,DM,Friday,1130AM,0100PM,0,Lecture,C21
+Mandatory,Discrete Mathematics,CSE121,Donghoon Chang,4,DM,Wednesday,0400PM,0530PM,1,Tutorial,S01
 Mandatory,Discrete Mathematics,CSE121,Donghoon Chang,4,DM,Friday,0400PM,0530PM,2,Tutorial,LR1
 Mandatory,Discrete Mathematics,CSE121,Donghoon Chang,4,DM,Friday,0400PM,0530PM,3,Tutorial,LR2
 Mandatory,Discrete Mathematics,CSE121,Donghoon Chang,4,DM,Friday,0400PM,0530PM,4,Tutorial,LR3

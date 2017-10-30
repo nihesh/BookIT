@@ -24,6 +24,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
+<?import java.util.ArrayList?>
 <VBox fx:id="rootPane" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="StudentReservation.StudentReservationGUIController">
    <children>
       <MenuBar fx:id="menuBar">
@@ -932,6 +933,38 @@
                               <Tooltip text="Click to select this slot for booking. Click again to cancel" />
                            </tooltip>
                         </Button>
+                        <fx:define>
+                           <ArrayList fx:id="slotButtons">
+                              <fx:reference source="btn1" />
+                              <fx:reference source="btn2" />
+                              <fx:reference source="btn3" />
+                              <fx:reference source="btn4" />
+                              <fx:reference source="btn5" />
+                              <fx:reference source="btn6" />
+                              <fx:reference source="btn7" />
+                              <fx:reference source="btn8" />
+                              <fx:reference source="btn9" />
+                              <fx:reference source="btn10" />
+                              <fx:reference source="btn11" />
+                              <fx:reference source="btn12" />
+                              <fx:reference source="btn13" />
+                              <fx:reference source="btn14" />
+                              <fx:reference source="btn15" />
+                              <fx:reference source="btn16" />
+                              <fx:reference source="btn17" />
+                              <fx:reference source="btn18" />
+                              <fx:reference source="btn19" />
+                              <fx:reference source="btn20" />
+                              <fx:reference source="btn21" />
+                              <fx:reference source="btn22" />
+                              <fx:reference source="btn23" />
+                              <fx:reference source="btn24" />
+                              <fx:reference source="btn25" />
+                              <fx:reference source="btn26" />
+                              <fx:reference source="btn27" />
+                              <fx:reference source="btn28" />
+                           </ArrayList>
+                        </fx:define>
                         <Label alignment="CENTER" onMouseClicked="#showSlotInfo" prefHeight="42.0" prefWidth="238.0" style="-fx-background-color: #B03A2E; -fx-border-color: white; -fx-border-width: 4;" text="0800AM - 0830AM" GridPane.rowIndex="1" GridPane.valignment="TOP">
                            <GridPane.margin>
                               <Insets left="5.0" right="5.0" top="5.0" />

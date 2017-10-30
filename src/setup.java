@@ -114,9 +114,9 @@ public class setup {
                 }
             }
         }
-//        roomData.forEach((name, room)->{
-//            room.serialize();
-//        });
+        roomData.forEach((name, room)->{
+            room.serialize();
+        });
 //        courseData.forEach((name, course)->{
 //            course.serialize();
 //        });
