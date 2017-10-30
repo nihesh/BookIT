@@ -34,7 +34,7 @@ public class setup {
         }
         return listOfSlots;
     }
-    public static void loadRoomObjects() throws IOException,FileNotFoundException{
+    public static void loadRoomAndCourseObjects() throws IOException,FileNotFoundException{
         Scanner file = new Scanner(new FileReader("./src/AppData/StaticTimeTable/TimeTable.csv"));
         HashMap<String, Room > roomData = new HashMap<String, Room >();
         HashMap<String, Course> courseData = new HashMap<String, Course>();
@@ -88,10 +88,10 @@ public class setup {
                 Reservation r = new Reservation(message, group, name, "", venue, message);
                 int currentSlot = listOfSlots.get(i);
                 LocalDate currentDate = StartDate;
-                while(!currentDate.isBefore(EndDate))
+                while(currentDate.isBefore(EndDate))
                 {
                     if(day.equals(currentDate.getDayOfWeek().toString().toLowerCase())) {
-                        courseData.get(name).addReservation(currentDate, currentSlot, r);
+                        courseData.get(name).addReservation(currentDate, currentSlot, r, false);
                         currentDate = currentDate.plusDays(7);
                     }
                     else {
@@ -103,9 +103,9 @@ public class setup {
             for(int i=0;i<listOfSlots.size();i++){
                 int currentSlot = listOfSlots.get(i);
                 LocalDate currentDate = StartDate;
-                while(!currentDate.isBefore(EndDate)) {
+                while(currentDate.isBefore(EndDate)) {
                     if(day.equals(currentDate.getDayOfWeek().toString().toLowerCase())) {
-                        roomData.get(venue).addReservation(currentDate, currentSlot, r);
+                        roomData.get(venue).addReservation(currentDate, currentSlot, r, false);
                         currentDate = currentDate.plusDays(7);
                     }
                     else {
@@ -114,9 +114,14 @@ public class setup {
                 }
             }
         }
-//        System.out.println(roomData.get("C21").getSchedule(LocalDate.of(2017,8,3))[7].getType());
+//        roomData.forEach((name, room)->{
+//            room.serialize();
+//        });
+//        courseData.forEach((name, course)->{
+//            course.serialize();
+//        });
     }
     public static void main(String[] args)throws IOException,FileNotFoundException{
-        loadRoomObjects();
+        loadRoomAndCourseObjects();                    // Creates Room and Course Objects for all rooms and courses in AppData. This should be used for initialisation only
     }
 }

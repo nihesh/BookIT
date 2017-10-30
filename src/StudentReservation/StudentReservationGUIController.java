@@ -4,6 +4,8 @@
 
 package StudentReservation;
 
+import HelperClasses.Reservation;
+import HelperClasses.Room;
 import javafx.animation.FadeTransition;
 import javafx.animation.ParallelTransition;
 import javafx.animation.SequentialTransition;
@@ -80,6 +82,7 @@ public class StudentReservationGUIController implements Initializable{
         isActiveReservation = false;
         changepassProcessing = false;
         fetchCoursesProcessing = false;
+        timetableprocessing = false;
         File file = new File("./src/BookIT_logo.jpg");
         Image image = new Image(file.toURI().toString());
         logo.setImage(image);

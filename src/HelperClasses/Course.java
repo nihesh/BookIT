@@ -105,17 +105,19 @@ public class Course implements java.io.Serializable{
     public void setInstructor(String f){
         this.instructorEmail = f;
     }
-    public Boolean addReservation(LocalDate date, int slot, Reservation r){
+    public Boolean addReservation(LocalDate date, int slot, Reservation r, Boolean serialize){
         if(Schedule.get(date)[slot] == null){
             r.processForCourse();
             Schedule.get(date)[slot] = r;
-            serialize();
+            if(serialize)
+                serialize();
             return true;
         }
         else{
             if(Schedule.get(date)[slot].getCourseName().equals(r.getCourseName())){
                 Schedule.get(date)[slot].addGroup(r.getTargetGroup(),r.getVenueName(),r.getMessage());
-                serialize();
+                if(serialize)
+                    serialize();
                 return true;
             }
             else {
