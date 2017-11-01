@@ -17,6 +17,7 @@ public class Reservation implements java.io.Serializable{
     private ArrayList<String> groupVenue;
     private LocalDateTime creationDate;
     private String targetGroup;
+    private LocalDate targetDate;
     private String room;
     public Reservation(String Message, String group, String course, String facultyEmail, String room, String type){
         this.type = type;
@@ -28,6 +29,12 @@ public class Reservation implements java.io.Serializable{
         this.groups = new ArrayList<String>();
         this.groupVenue = new ArrayList<String>();
         this.targetGroup = group;
+    }
+    public LocalDate getTargetDate(){
+        return this.targetDate;
+    }
+    public void setTargetDate(LocalDate date){
+        this.targetDate = date;
     }
     public String getTargetGroup(){
         return this.targetGroup;

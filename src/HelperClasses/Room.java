@@ -67,6 +67,7 @@ public class Room implements java.io.Serializable{
     }
     public Boolean addReservation(LocalDate date, int slot, Reservation r, Boolean serialize){
         if(Schedule.get(date)[slot] == null){
+            r.setTargetDate(date);
             Schedule.get(date)[slot] = r;
             if(serialize)
                 serialize();

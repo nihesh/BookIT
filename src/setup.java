@@ -99,8 +99,8 @@ public class setup {
                     }
                 }
             }
-            Reservation r = new Reservation(message, group, name, "", venue, message);
             for(int i=0;i<listOfSlots.size();i++){
+                Reservation r = new Reservation(message, group, name, "", venue, message);
                 int currentSlot = listOfSlots.get(i);
                 LocalDate currentDate = StartDate;
                 while(currentDate.isBefore(EndDate)) {
