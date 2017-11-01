@@ -107,7 +107,7 @@ public class Course implements java.io.Serializable{
     }
     public Boolean addReservation(LocalDate date, int slot, Reservation r, Boolean serialize){
         if(Schedule.get(date)[slot] == null){
-            r.processForCourse();
+            r.addGroup(r.getTargetGroup(),r.getRoomName(),r.getMessage());
             r.setTargetDate(date);
             Schedule.get(date)[slot] = r;
             if(serialize)

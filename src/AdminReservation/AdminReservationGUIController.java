@@ -4,6 +4,8 @@
 
 package AdminReservation;
 
+import HelperClasses.Reservation;
+import HelperClasses.Room;
 import javafx.animation.FadeTransition;
 import javafx.animation.ParallelTransition;
 import javafx.animation.SequentialTransition;
@@ -71,9 +73,12 @@ public class AdminReservationGUIController implements Initializable{
     private Label curDate,curMon,curYear;
     @FXML
     private ChoiceBox joinCodeDropDown;
+    @FXML
+    private ArrayList<Button> slotButtons;
+    @FXML
+    private Label slotInfoFaculty, slotInfoCourse, slotInfoMessage;
 
     private LocalDate activeDate;
-    private Button[] slotButtons = {btn1,btn2,btn3,btn4,btn5,btn6,btn7,btn8,btn9,btn10,btn11,btn12,btn13,btn14,btn15,btn16,btn17,btn18,btn19,btn20,btn21,btn22,btn23,btn24,btn25,btn26,btn27,btn28};
     private int pullDownPaneInitial = 650;
     private HashMap<Button,Integer> selection = new HashMap<Button,Integer>();
     private Boolean isActiveReservation,requestProcessing,changepassProcessing, joinCodeProcessing;
@@ -329,6 +334,18 @@ public class AdminReservationGUIController implements Initializable{
         slotInfoPane.setVisible(true);
         Label curLabel = (Label) e.getSource();
         slotInfo.setText(curLabel.getText());
+        Room r = Room.deserializeRoom(statusRoomID.getText());          // GUI-Helper Integration starts
+        Reservation[] bookings = r.getSchedule(activeDate);
+        if(bookings[Reservation.getSlotID(curLabel.getText())]!=null) {
+            slotInfoFaculty.setText("~~~~");                // To be implemented
+            slotInfoCourse.setText(bookings[Reservation.getSlotID(curLabel.getText())].getCourseName());
+            slotInfoMessage.setText(bookings[Reservation.getSlotID(curLabel.getText())].getMessage());
+        }
+        else{
+            slotInfoFaculty.setText("N/A");
+            slotInfoCourse.setText("N/A");
+            slotInfoMessage.setText("N/A");
+        }                                                               // GUI-Helper Integration ends
     }
     private void hideSlotPane(){
         slotInfoPane.setVisible(false);
@@ -517,6 +534,18 @@ public class AdminReservationGUIController implements Initializable{
         BackBtn.setOpacity(0);
         Button current = (Button) action.getSource();
         RoomNo.setText(current.getText());
+        Room r = Room.deserializeRoom(current.getText());                               // Loading buttons
+        Reservation[] reservation = r.getSchedule(activeDate);
+        for(int i=0;i<28;i++){
+            if(reservation[i] != null){
+                slotButtons.get(i).setText("Booked");
+                slotButtons.get(i).setDisable(true);
+            }
+            else{
+                slotButtons.get(i).setText("Free");
+                slotButtons.get(i).setDisable(false);
+            }
+        }                                                                               // Loading ends
         induceDelay(appearAfter_HoverPane);
         HoverPane.setVisible(true);
         HoverPane.setDisable(false);
@@ -537,6 +566,18 @@ public class AdminReservationGUIController implements Initializable{
         double opacitySaturation = 0.92;
         Button current = (Button) action.getSource();
         RoomNo.setText(current.getText());
+        Room r = Room.deserializeRoom(current.getText());                               // Loading buttons
+        Reservation[] reservation = r.getSchedule(activeDate);
+        for(int i=0;i<28;i++){
+            if(reservation[i] != null){
+                slotButtons.get(i).setText("Booked");
+                slotButtons.get(i).setDisable(true);
+            }
+            else{
+                slotButtons.get(i).setText("Free");
+                slotButtons.get(i).setDisable(false);
+            }
+        }                                                                               // Loading ends
         induceDelay(appearAfter_HoverPane);
         HoverPane.setVisible(true);
         HoverPane.setDisable(true);

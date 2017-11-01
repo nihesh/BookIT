@@ -72,6 +72,8 @@ public class StudentReservationGUIController implements Initializable{
     private Label curDate,curMon,curYear;
     @FXML
     private ArrayList<Button> slotButtons;
+    @FXML
+    private Label slotInfoCourse, slotInfoMessage, slotInfoFaculty;
 
     private LocalDate activeDate;
      private int pullDownPaneInitial = 650;
@@ -357,6 +359,18 @@ public class StudentReservationGUIController implements Initializable{
         slotInfoPane.setVisible(true);
         Label curLabel = (Label) e.getSource();
         slotInfo.setText(curLabel.getText());
+        Room r = Room.deserializeRoom(statusRoomID.getText());          // GUI-Helper Integration starts
+        Reservation[] bookings = r.getSchedule(activeDate);
+        if(bookings[Reservation.getSlotID(curLabel.getText())]!=null) {
+            slotInfoFaculty.setText("~~~~");                // To be implemented
+            slotInfoCourse.setText(bookings[Reservation.getSlotID(curLabel.getText())].getCourseName());
+            slotInfoMessage.setText(bookings[Reservation.getSlotID(curLabel.getText())].getMessage());
+        }
+        else{
+            slotInfoFaculty.setText("N/A");
+            slotInfoCourse.setText("N/A");
+            slotInfoMessage.setText("N/A");
+        }                                                               // GUI-Helper Integration ends
     }
     private void hideSlotPane(){
         slotInfoPane.setVisible(false);
@@ -543,6 +557,18 @@ public class StudentReservationGUIController implements Initializable{
         BackBtn.setOpacity(0);
         Button current = (Button) action.getSource();
         RoomNo.setText(current.getText());
+        Room r = Room.deserializeRoom(current.getText());                               // Loading buttons
+        Reservation[] reservation = r.getSchedule(activeDate);
+        for(int i=0;i<28;i++){
+            if(reservation[i] != null){
+                slotButtons.get(i).setText("Booked");
+                slotButtons.get(i).setDisable(true);
+            }
+            else{
+                slotButtons.get(i).setText("Free");
+                slotButtons.get(i).setDisable(false);
+            }
+        }                                                                               // Loading ends
         induceDelay(appearAfter_HoverPane);
         HoverPane.setVisible(true);
         HoverPane.setDisable(false);

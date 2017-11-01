@@ -25,7 +25,7 @@
 <?import javafx.scene.text.Font?>
 
 <?import java.util.ArrayList?>
-<VBox fx:id="rootPane" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="StudentReservation.StudentReservationGUIController">
+<VBox fx:id="rootPane" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="StudentReservation.StudentReservationGUIController">
    <children>
       <MenuBar fx:id="menuBar">
         <menus>
@@ -169,7 +169,7 @@
                                     <Insets bottom="130.0" right="372.0" />
                                  </StackPane.margin>
                               </Label>
-                              <Label prefHeight="36.0" prefWidth="367.0" style="-fx-background-color: #922B21;" text="N/A" textFill="WHITE">
+                              <Label fx:id="slotInfoCourse" prefHeight="36.0" prefWidth="367.0" style="-fx-background-color: #922B21;" text="N/A" textFill="WHITE">
                                  <font>
                                     <Font size="21.0" />
                                  </font>
@@ -180,7 +180,7 @@
                                     <Insets bottom="130.0" left="208.0" />
                                  </StackPane.margin>
                               </Label>
-                              <Label prefHeight="36.0" prefWidth="367.0" style="-fx-background-color: #922B21;" text="N/A" textFill="WHITE">
+                              <Label fx:id="slotInfoFaculty" prefHeight="36.0" prefWidth="367.0" style="-fx-background-color: #922B21;" text="N/A" textFill="WHITE">
                                  <font>
                                     <Font size="21.0" />
                                  </font>
@@ -195,7 +195,7 @@
                                 <content>
                                   <AnchorPane minHeight="132.0" minWidth="0.0" prefWidth="563.0" style="-fx-background-color: #922B21;">
                                        <children>
-                                          <Label alignment="TOP_LEFT" prefWidth="555.0" text="No information available" textFill="WHITE" wrapText="true">
+                                          <Label fx:id="slotInfoMessage" alignment="TOP_LEFT" prefWidth="555.0" text="No information available" textFill="WHITE" wrapText="true">
                                              <font>
                                                 <Font size="20.0" />
                                              </font>

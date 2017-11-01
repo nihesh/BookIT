@@ -85,12 +85,12 @@ public class setup {
             }
             ArrayList<Integer> listOfSlots = getSlots(startTime, endTime);
             for(int i=0;i<listOfSlots.size();i++){
-                Reservation r = new Reservation(message, group, name, "", venue, message);
                 int currentSlot = listOfSlots.get(i);
                 LocalDate currentDate = StartDate;
                 while(currentDate.isBefore(EndDate))
                 {
                     if(day.equals(currentDate.getDayOfWeek().toString().toLowerCase())) {
+                        Reservation r = new Reservation(message, group, name, "", venue, message);
                         courseData.get(name).addReservation(currentDate, currentSlot, r, false);
                         currentDate = currentDate.plusDays(7);
                     }
@@ -100,11 +100,11 @@ public class setup {
                 }
             }
             for(int i=0;i<listOfSlots.size();i++){
-                Reservation r = new Reservation(message, group, name, "", venue, message);
                 int currentSlot = listOfSlots.get(i);
                 LocalDate currentDate = StartDate;
                 while(currentDate.isBefore(EndDate)) {
                     if(day.equals(currentDate.getDayOfWeek().toString().toLowerCase())) {
+                        Reservation r = new Reservation(message, group, name, "", venue, message);
                         roomData.get(venue).addReservation(currentDate, currentSlot, r, false);
                         currentDate = currentDate.plusDays(7);
                     }
@@ -117,9 +117,9 @@ public class setup {
         roomData.forEach((name, room)->{
             room.serialize();
         });
-//        courseData.forEach((name, course)->{
-//            course.serialize();
-//        });
+        courseData.forEach((name, course)->{
+            course.serialize();
+        });
     }
     public static void main(String[] args)throws IOException,FileNotFoundException{
         loadRoomAndCourseObjects();                    // Creates Room and Course Objects for all rooms and courses in AppData. This should be used for initialisation only
