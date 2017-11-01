@@ -51,7 +51,7 @@ public class Course implements java.io.Serializable{
         if(this.instructorEmail.equals("")){
             return null;
         }
-        return User.getUser(this.instructorEmail);
+        return (Faculty)User.getUser(this.instructorEmail);
     }
     public int keyMatch(ArrayList<String> query){
         int matchQuotient=0;
@@ -75,11 +75,11 @@ public class Course implements java.io.Serializable{
             for(int j=0;j<28;j++){
                 if(s1[j]!=null && s2[j]!=null){
                     if(s1[j].getType().equals("Lecture") && s2[j].getType().equals("Lecture"))
-                        return false;
+                        return true;
                 }
             }
         }
-        return true;
+        return false;
     }
     public String getAcronym(){
         return this.acronym;
