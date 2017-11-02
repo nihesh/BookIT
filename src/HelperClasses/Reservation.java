@@ -9,7 +9,7 @@ import java.util.ArrayList;
  */
 public class Reservation implements java.io.Serializable{
     private static final long serialVersionUID = 1L;
-    private String message;
+    private ArrayList<String> message;
     private String course;
     private String facultyEmail;
     private String type;
@@ -20,8 +20,10 @@ public class Reservation implements java.io.Serializable{
     private LocalDate targetDate;
     private String room;
     public Reservation(String Message, String group, String course, String facultyEmail, String room, String type){
+        message = new ArrayList<String>();
         this.type = type;
-        this.message = Message;
+        if(!Message.equals(""))
+            this.message.add(Message);
         this.course = course;
         this.facultyEmail = facultyEmail;
         this.room = room;
@@ -46,7 +48,13 @@ public class Reservation implements java.io.Serializable{
         return this.type;
     }
     public String getMessage(){
-        return this.message;
+        String actualMessage="";
+        for(int i=0;i<message.size()-1;i++){
+            if(!message.get(i).equals(message.get(i+1)))
+                actualMessage+=message.get(i)+"\n";
+        }
+        actualMessage+=message.get(message.size()-1)+"\n";
+        return actualMessage;
     }
     public String getCourseName(){
         return this.course;
@@ -69,20 +77,16 @@ public class Reservation implements java.io.Serializable{
         }
         return Room.deserializeRoom(room);
     }
-    public ArrayList<String> getGroups(){
-        return this.groups;
-    }
-    public ArrayList<String> getGroupVenue(){
-        return this.groupVenue;
-    }
     public void addGroup(String group, String venue, String message){
         if(group.equals("0")){
-            this.message = message;
+            this.message.add(message);
         }
         else {
             groups.add(group);
             groupVenue.add(venue);
-            this.message += message + "\n" + "Group: " + group + "\nVenue: " + venue + "\n";
+            this.message.add(message);
+            this.message.add("Group: "+group);
+            this.message.add("Venue"+venue);
         }
     }
     public String getRoomName(){

@@ -338,7 +338,7 @@ public class AdminReservationGUIController implements Initializable{
         Reservation[] bookings = r.getSchedule(activeDate);
         if(bookings[Reservation.getSlotID(curLabel.getText())]!=null) {
             slotInfoFaculty.setText("~~~~");                // To be implemented
-            slotInfoCourse.setText(bookings[Reservation].getSlotID(curLabel.getText())].getCourseName());
+            slotInfoCourse.setText(bookings[Reservation.getSlotID(curLabel.getText())].getCourseName());
             slotInfoMessage.setText(bookings[Reservation.getSlotID(curLabel.getText())].getMessage());
         }
         else{
