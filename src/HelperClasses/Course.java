@@ -127,4 +127,17 @@ public class Course implements java.io.Serializable{
             }
         }
     }
+    public Boolean checkReservation(LocalDate date, int slot, Reservation r){
+        if(Schedule.get(date)[slot] == null){
+            return true;
+        }
+        else{
+            if(Schedule.get(date)[slot].getCourseName().equals(r.getCourseName())){
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+    }
 }
