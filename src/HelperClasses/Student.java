@@ -84,13 +84,6 @@ public class Student extends User{
 	public ArrayList<String> getMyCourses() {
 		return myCourses;
 	}
-	public static void main(String[] args) {
-		ArrayList<String> s=new ArrayList<String>();
-		s.add("or");
-		ArrayList<String> t=searchCourse(s);
-		for (String string : t) {
-			System.out.println(string);
-		}
-	}
+	
 	
 }
