@@ -1,6 +1,8 @@
 package HelperClasses;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.Date;
@@ -16,7 +18,27 @@ public class User implements Serializable{
 		this.emailID = emailID;
 		this.userType = userType;
 	}
-	public boolean authenticate(String password) {
+	public static User getUser(String email) {
+		ObjectInputStream in = null;
+        try{
+            in = new ObjectInputStream(new FileInputStream("./src/AppData/User/"+email+".txt"));
+            return (User)in.readObject();
+        }
+        catch (Exception e){
+            System.out.println("Exception occured while deserialising Course");
+            return null;
+        }
+        finally {
+            try {
+                if (in != null)
+                    in.close();
+            }
+            catch(IOException f){
+                ;
+            }
+        }
+	}
+	public boolean authenticate(String password) {   //login version
 		if(this.Password.equals(password)) {
 			return true;
 		}
@@ -39,7 +61,7 @@ public class User implements Serializable{
 		try{
             ObjectOutputStream out = null;
             try{
-                out = new ObjectOutputStream(new FileOutputStream("./AppData/User/"+this.emailID+".txt"));
+                out = new ObjectOutputStream(new FileOutputStream("./src/AppData/User/"+this.emailID.getEmailID()+".txt"));
                 out.writeObject(this);
             }
             finally {
@@ -54,10 +76,7 @@ public class User implements Serializable{
         }
 	}
 	public void logout() {
-
-	}
-	public static Faculty getUser(String name){			// remove this
-		return null;
+		
 	}
 	public String getName() {
 		return Name;
@@ -70,5 +89,10 @@ public class User implements Serializable{
 	}
 	public String getUsertype() {
 		return userType;
+	}
+	public static void main(String[] args) {
+		Email e=new Email("ha rsh1  6041 @iiit d.ac.in");
+		User u=new User("Harsh Pathak", "abcd", e, "Admin");
+		System.out.println(u.changePassword("abcd", "abcd"));
 	}
 }

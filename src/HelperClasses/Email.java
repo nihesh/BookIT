@@ -1,5 +1,5 @@
 package HelperClasses;
-
+import java.io.File;
 import java.io.Serializable;
 
 public class Email implements Serializable{
@@ -8,9 +8,15 @@ public class Email implements Serializable{
 	private static String check="@@iiitd.ac.in";
 	private String emailID;
 	public Email(String x) {
-		emailID=x;
+		StringBuilder y=new StringBuilder();
+		for(int i=0;i<x.length();i++) {
+			if(!(x.charAt(i)==' ')) {
+				y.append(x.charAt(i));
+			}
+		}
+		emailID=y.toString();
 	}
-	public boolean validate() {
+	public int validateSignup() {
 		StringBuilder x=new StringBuilder();
 		for(int i=0;i<emailID.length();i++) {
 			if(!(emailID.charAt(i)==' ')) {
@@ -18,7 +24,12 @@ public class Email implements Serializable{
 			}
 		}
 		String y=x.toString();
-		
+		File a = new File("./src/AppData/User/"+y+".txt");
+		System.out.println(a.getAbsolutePath());
+		boolean exists = a.exists();
+		if(exists) {
+			return 1; //user already exists
+		}
 		if(y.contains(domain) && 
 				!y.contains(check) && 
 				(y.indexOf(domain)+12==y.length())) {
@@ -27,15 +38,25 @@ public class Email implements Serializable{
 				if(Character.isLetter(temp[0].charAt(0))){
 					if(temp[0].matches("[A-Za-z0-9]+")) {
 						this.emailID=y;
-						return true;
-					}
-			}
-			
+						return 0; //okay proceed
+					}}
 		}
-			
+		}
+		return 2; //bad email including special characters or missing @
 	}
-		return false;
-	}
+	public boolean validateLogin() {
+		StringBuilder x=new StringBuilder();
+		for(int i=0;i<emailID.length();i++) {
+			if(!(emailID.charAt(i)==' ')) {
+				x.append(emailID.charAt(i));
+			}
+		}
+		String y=x.toString();
+		File a = new File("./src/AppData/User/"+y+".txt");
+		System.out.println(a.getAbsolutePath());
+		boolean exists = a.exists();
+		return exists;
+	}	
 	public String getEmailID() {
 		return emailID;
 	}
