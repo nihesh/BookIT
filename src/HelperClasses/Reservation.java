@@ -16,30 +16,45 @@ public class Reservation implements java.io.Serializable{
     private ArrayList<String> groups;
     private ArrayList<String> groupVenue;
     private LocalDateTime creationDate;
-    private String targetGroup;
     private LocalDate targetDate;
     private String room;
-    public Reservation(String Message, String group, String course, String facultyEmail, String room, String type){
-        message = new ArrayList<String>();
+    private int slotID;
+    public Reservation(String Message, String group, String course, String facultyEmail, String room, String type, int slotID){
+        this.slotID = slotID;
+        this.message = new ArrayList<String>();
         this.type = type;
         if(!Message.equals(""))
             this.message.add(Message);
         this.course = course;
         this.facultyEmail = facultyEmail;
         this.room = room;
-        creationDate = LocalDateTime.now();
+        this.creationDate = LocalDateTime.now();
         this.groups = new ArrayList<String>();
         this.groupVenue = new ArrayList<String>();
-        this.targetGroup = group;
+        this.groups.add(group);
+        this.groupVenue.add(room);
+    }
+    public int getReservationSlot(){
+        return this.slotID;
     }
     public LocalDate getTargetDate(){
         return this.targetDate;
     }
+    public void deleteGroup(String g){
+        int i=0;
+        for(;i<groups.size();i++){
+            if(groups.get(i).equals(g)){
+                break;
+            }
+        }
+        groups.remove(i);
+        groupVenue.remove(i);
+    }
+    public String getTopGroup(){
+        return this.groups.get(0);
+    }
     public void setTargetDate(LocalDate date){
         this.targetDate = date;
-    }
-    public String getTargetGroup(){
-        return this.targetGroup;
     }
     public String getVenueName(){
         return this.room;
@@ -49,11 +64,11 @@ public class Reservation implements java.io.Serializable{
     }
     public String getMessage(){
         String actualMessage="";
-        for(int i=0;i<message.size()-1;i++){
-            if(!message.get(i).equals(message.get(i+1)))
-                actualMessage+=message.get(i)+"\n";
+        for(int i=0;i<message.size();i++){
+            actualMessage+=message.get(i)+"\n";
+            actualMessage+="Group: "+groups.get(i)+"\n";
+            actualMessage+="Venue: "+groupVenue.get(i)+"\n";
         }
-        actualMessage+=message.get(message.size()-1)+"\n";
         return actualMessage;
     }
     public String getCourseName(){
@@ -78,16 +93,9 @@ public class Reservation implements java.io.Serializable{
         return Room.deserializeRoom(room);
     }
     public void addGroup(String group, String venue, String message){
-        if(group.equals("0")){
-            this.message.add(message);
-        }
-        else {
-            groups.add(group);
-            groupVenue.add(venue);
-            this.message.add(message);
-            this.message.add("Group: "+group);
-            this.message.add("Venue"+venue);
-        }
+        this.groups.add(group);
+        this.groupVenue.add(venue);
+        this.message.add(message);
     }
     public String getRoomName(){
         return this.room;

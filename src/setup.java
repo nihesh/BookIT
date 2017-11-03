@@ -68,7 +68,7 @@ public class setup {
                     Schedule.put(currentDate, r);
                     currentDate = currentDate.plusDays(1);
                 }
-                Course newCourse = new Course(name, "", postCondition, Schedule);
+                Course newCourse = new Course(name, "", postCondition, Schedule, acronym);
                 courseData.put(name,newCourse);
             }
             if(!roomData.containsKey(venue)){
@@ -90,7 +90,8 @@ public class setup {
                 while(currentDate.isBefore(EndDate))
                 {
                     if(day.equals(currentDate.getDayOfWeek().toString().toLowerCase())) {
-                        Reservation r = new Reservation(message, group, name, "", venue, message);
+                        Reservation r = new Reservation(message, group, name, "", venue, message, currentSlot);
+                        r.setTargetDate(currentDate);
                         courseData.get(name).addReservation(currentDate, currentSlot, r, false);
                         currentDate = currentDate.plusDays(7);
                     }
@@ -104,7 +105,8 @@ public class setup {
                 LocalDate currentDate = StartDate;
                 while(currentDate.isBefore(EndDate)) {
                     if(day.equals(currentDate.getDayOfWeek().toString().toLowerCase())) {
-                        Reservation r = new Reservation(message, group, name, "", venue, message);
+                        Reservation r = new Reservation(message, group, name, "", venue, message, currentSlot);
+                        r.setTargetDate(currentDate);
                         roomData.get(venue).addReservation(currentDate, currentSlot, r, false);
                         currentDate = currentDate.plusDays(7);
                     }
