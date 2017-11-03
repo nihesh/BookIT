@@ -45,7 +45,7 @@ public class Room implements java.io.Serializable{
         return this.RoomID;
     }
     public int getCapacity(){
-        return this.getCapacity();
+        return this.Capacity;
     }
     public void serialize(){
         try{

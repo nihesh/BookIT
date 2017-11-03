@@ -55,7 +55,7 @@ public class StudentReservationGUIController implements Initializable{
     @FXML
     private ImageView classStatusBG, slotStatusBG, changePasswordBG, addCoursesBG,listCoursesBG;
     @FXML
-    private Label statusRoomID, slotInfo;
+    private Label statusRoomID, slotInfo,statusClassSize, statusFreeSlots;
     @FXML
     private StackPane topPane,leftPane,rightPane,mainPane, fetchCoursesPane, TimeTablePane, TTinfoPane;
     @FXML
@@ -380,6 +380,16 @@ public class StudentReservationGUIController implements Initializable{
         hideSlotPane();
         Button current = (Button) e.getSource();
         statusRoomID.setText(current.getText());
+        Room r = Room.deserializeRoom(current.getText());                                  // GUI-Helper integration begins here
+        statusClassSize.setText("  "+Integer.toString(r.getCapacity()));
+        Reservation[] reservation = r.getSchedule(activeDate);
+        int freeSlots=0;
+        for(int i=0;i<28;i++){
+            if(reservation[i] == null){
+                freeSlots++;
+            }
+        }
+        statusFreeSlots.setText("  "+Integer.toString(freeSlots));                         // GUI-Helper integration ends here
         FadeTransition appear = new FadeTransition(Duration.millis(1000), classStatus);
         classStatus.setOpacity(0);
         classStatus.setVisible(true);

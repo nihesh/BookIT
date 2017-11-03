@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
-import static jdk.nashorn.internal.ir.debug.ObjectSizeCalculator.getObjectSize;
 
 /**
  * Created by nihesh on 28/10/17.

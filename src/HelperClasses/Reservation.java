@@ -66,7 +66,10 @@ public class Reservation implements java.io.Serializable{
         String actualMessage="";
         for(int i=0;i<message.size();i++){
             actualMessage+=message.get(i)+"\n";
-            actualMessage+="Group: "+groups.get(i)+"\n";
+            if(groups.get(i).equals("0"))
+                actualMessage+="Group: All groups\n";
+            else
+                actualMessage+="Group: "+groups.get(i)+"\n";
             actualMessage+="Venue: "+groupVenue.get(i)+"\n";
         }
         return actualMessage;
@@ -84,7 +87,7 @@ public class Reservation implements java.io.Serializable{
         if(facultyEmail.equals("")){
             return null;
         }
-        return User.getUser(this.facultyEmail);
+        return (Faculty)User.getUser(this.facultyEmail);
     }
     public Room getRoom(){
         if(room.equals("")){
