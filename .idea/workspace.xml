@@ -426,7 +426,7 @@
     <property name="project.structure.side.proportion" value="0.0" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
-  <component name="RunManager" selected="Application.Main">
+  <component name="RunManager" selected="Application.setup">
     <configuration default="false" name="AdminReservationGUI" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
@@ -738,9 +738,9 @@
     </list>
     <recent_temporary>
       <list size="4">
-        <item index="0" class="java.lang.String" itemvalue="Application.AdminReservationGUI" />
-        <item index="1" class="java.lang.String" itemvalue="Application.FacultyReservationGUI" />
-        <item index="2" class="java.lang.String" itemvalue="Application.setup" />
+        <item index="0" class="java.lang.String" itemvalue="Application.setup" />
+        <item index="1" class="java.lang.String" itemvalue="Application.AdminReservationGUI" />
+        <item index="2" class="java.lang.String" itemvalue="Application.FacultyReservationGUI" />
         <item index="3" class="java.lang.String" itemvalue="Application.StudentReservationGUI" />
       </list>
     </recent_temporary>
