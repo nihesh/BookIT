@@ -2,7 +2,7 @@ package HelperClasses;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
+
 
 public class Faculty extends User{
 	private static final long serialVersionUID = 1L;
@@ -21,7 +21,7 @@ public class Faculty extends User{
 		Course c=r.getCourse();
 		if(c!=null) {
 			if(myCourses.contains(r.getCourseName())) {
-				temp.getSchedule(queryDate)[slotID]=null;
+				temp.deleteReservation(queryDate, slotID);
 				 c.deleteReservation(queryDate, slotID,r.getTopGroup());
 				 return true;
 			}

@@ -11,7 +11,6 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.PriorityQueue;
 
 public class Admin extends User{
@@ -22,7 +21,7 @@ public class Admin extends User{
 	public Admin(String name, String password, Email emailID, String userType) {
 		super(name,password,emailID,userType);
 	}
-	public boolean generateJoincode(String type) {
+	public String generateJoincode(String type) {
 		try {
 		StringBuilder sb=new StringBuilder();
 		if(type.equals("Admin")) {
@@ -41,7 +40,7 @@ public class Admin extends User{
 			}
 			a++;
 			if(a>=1000) {
-				return false;
+				return "failed";
 			}
 		}
 		else if(type.equals("Student")) {
@@ -60,7 +59,7 @@ public class Admin extends User{
 			}
 			s++;
 			if(s>=1000) {
-				return false;
+				return "failed";
 			}
 		}
 		else {
@@ -79,16 +78,16 @@ public class Admin extends User{
 			}
 			f++;
 			if(f>=1000) {
-				return false;
+				return "failed";
 			}
 		}
 		String temp=sb.toString();
 		File file=new File("./src/AppData/JoinCodes/"+temp+".txt");
 		file.createNewFile();
-		return true;}
+		return temp;}
 		catch(IOException e) {
 			System.out.println(e);
-			return false;
+			return "failed";
 		}
 	}
 	@SuppressWarnings("unchecked")
@@ -181,7 +180,7 @@ public class Admin extends User{
 	public boolean cancelBooking(LocalDate queryDate,int slotID,String RoomID) {
 		Room temp=Room.deserializeRoom(RoomID);
 		Reservation r=temp.getSchedule(queryDate)[slotID];
-		temp.getSchedule(queryDate)[slotID]=null;
+		temp.deleteReservation(queryDate, slotID);
 		Course c=r.getCourse();
 		if(c!=null) {
 			c.deleteReservation(queryDate, slotID,r.getTopGroup());
