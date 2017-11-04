@@ -72,7 +72,11 @@ public class StudentReservationGUIController implements Initializable{
     @FXML
     private ArrayList<Button> slotButtons;
     @FXML
-    private Label slotInfoCourse, slotInfoMessage, slotInfoFaculty;
+    private Label slotInfoCourse, slotInfoMessage, slotInfoFaculty,batchLabel;
+    @FXML
+    private PasswordField oldPass, newPass, renewPass;
+    @FXML
+    private TextField courseKeywordSearch;
 
     private LocalDate activeDate;
     private int pullDownPaneInitial = 650;
@@ -82,6 +86,7 @@ public class StudentReservationGUIController implements Initializable{
     @Override
     public void initialize(URL location, ResourceBundle resources){
         activeUser = (Student)User.getActiveUser();
+        batchLabel.setText(activeUser.getBatch());
         listCoursesProcessing = false;
         isActiveReservation = false;
         changepassProcessing = false;
@@ -121,6 +126,26 @@ public class StudentReservationGUIController implements Initializable{
         loadCourses();
     }
     public void openCoursesList(){
+        String keyword = courseKeywordSearch.getText();
+        ArrayList<String> keywordTokens = new ArrayList<String>();
+        for(String word : keyword.split(" ")) {
+            keywordTokens.add(word);
+        }
+        ArrayList<String> items = Student.searchCourse(keywordTokens);
+        CheckBox[] label = new CheckBox[100];
+        int i=0;
+        while(i<items.size()){
+            label[i] = new CheckBox();
+            label[i].setText(items.get(i));
+            label[i].setPrefSize(578, 35);
+            label[i].setAlignment(Pos.CENTER);
+            label[i].setTranslateY(i*35);
+            label[i].setStyle("-fx-background-color: #229954; -fx-border-color:  white; -fx-border-width:2");
+            label[i].setFont(new Font(16));
+            shortlistedCourses.getChildren().add(label[i]);
+            i++;
+        }
+        shortlistedCourses.setPrefSize(578,max(235,34*i));
         fetchCoursesProcessing = false;
         listCoursesProcessing = true;
         fetchCoursesPane.setVisible(false);
@@ -180,35 +205,20 @@ public class StudentReservationGUIController implements Initializable{
         });
     }
     public void openFetchCourses(){
+        courseKeywordSearch.clear();
         fetchCoursesProcessing = true;
         rightPane.setDisable(true);
         leftPane.setDisable(true);
         mainPane.setDisable(true);
         hideLogo();
         fetchCoursesPane.setVisible(true);
-        ArrayList<String> items = new ArrayList<String>();
-        items.add("Course 1");
-        items.add("Course 2");
-        CheckBox[] label = new CheckBox[100];
-        int i=0;
-        while(i<items.size()){
-            label[i] = new CheckBox();
-            label[i].setText(items.get(i));
-            label[i].setPrefSize(578, 35);
-            label[i].setAlignment(Pos.CENTER);
-            label[i].setTranslateY(i*35);
-            label[i].setStyle("-fx-background-color: #229954; -fx-border-color:  white; -fx-border-width:2");
-            label[i].setFont(new Font(16));
-            shortlistedCourses.getChildren().add(label[i]);
-            i++;
-        }
-        shortlistedCourses.setPrefSize(578,max(235,34*i));
         FadeTransition appear = new FadeTransition(Duration.millis(1000), fetchCoursesPane);
         appear.setFromValue(0);
         appear.setToValue(1);
         appear.play();
     }
     public void closeFetchCourses(){
+        courseKeywordSearch.clear();
         fetchCoursesProcessing = false;
         rightPane.setDisable(false);
         leftPane.setDisable(false);
@@ -217,6 +227,7 @@ public class StudentReservationGUIController implements Initializable{
         showLogo();
     }
     public void gobackFetchCourses(){
+        courseKeywordSearch.clear();
         fetchCoursesProcessing = false;
         listCoursesPane.setVisible(false);
         openFetchCourses();
@@ -234,6 +245,9 @@ public class StudentReservationGUIController implements Initializable{
         appear.play();
     }
     public void cancelChangePassword(){
+        oldPass.clear();
+        newPass.clear();
+        renewPass.clear();
         changepassProcessing = false;
         changePasswordPane.setVisible(false);
         rightPane.setDisable(false);
@@ -242,12 +256,24 @@ public class StudentReservationGUIController implements Initializable{
         showLogo();
     }
     public void saveChangePassword(){
-        changepassProcessing = false;
-        leftPane.setDisable(false);
-        changePasswordPane.setVisible(false);
-        rightPane.setDisable(false);
-        mainPane.setDisable(false);
-        showLogo();
+        String oldPassString = oldPass.getText();
+        String newPassString = newPass.getText();
+        String renewPassString = renewPass.getText();
+        if(newPassString.equals(renewPassString)) {
+            Boolean status = activeUser.changePassword(oldPassString, newPassString);
+            System.out.println(status);
+            if(status) {
+                changepassProcessing = false;
+                leftPane.setDisable(false);
+                changePasswordPane.setVisible(false);
+                rightPane.setDisable(false);
+                mainPane.setDisable(false);
+                showLogo();
+            }
+        }
+        oldPass.clear();
+        newPass.clear();
+        renewPass.clear();
     }
     private void setDate(LocalDate d){
         String date = Integer.toString(d.getDayOfMonth());
@@ -339,9 +365,7 @@ public class StudentReservationGUIController implements Initializable{
     public void loadCourses(){
         myCoursesScrollPane.getChildren().clear();
         Label[] label = new Label[100];
-        ArrayList<String> items = new ArrayList<String>();
-        items.add("Course 1");
-        items.add("Course 2");
+        ArrayList<String> items = activeUser.getMyCourses();
         int i=0;
         while(i<items.size()){
             label[i] = new Label();

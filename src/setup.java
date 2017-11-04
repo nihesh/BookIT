@@ -129,7 +129,7 @@ public class setup {
         Email masterEmail = new Email("student@iiitd.ac.in");
         ArrayList<String> courses = new ArrayList<>();
         courses.add("Discrete Mathematics");
-        Student master = new Student("IIITDStudent","studentiiitd",masterEmail,"Student", "BT2016",courses  );
+        Student master = new Student("IIITDStudent","studentiiitd",masterEmail,"Student", "BT2017",courses  );
         master.setActiveUser();
     }
     public static void main(String[] args)throws IOException,FileNotFoundException{

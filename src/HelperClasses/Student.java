@@ -55,8 +55,8 @@ public class Student extends User{
 		File directory= new File("./src/AppData/Course");
 		File[] courseFiles=directory.listFiles();
 		for(int i=0;i<courseFiles.length;i++) {
-			System.out.println(courseFiles[i].getName());
-			Course temp=Course.deserializeCourse(courseFiles[i].getName());
+			String courseName = courseFiles[i].getName().substring(0,courseFiles[i].getName().length()-4);
+			Course temp=Course.deserializeCourse(courseName);
 			int match=temp.keyMatch(keyword);
 			if(match > 0) {
 				arr.get(match).add(courseFiles[i].getName());

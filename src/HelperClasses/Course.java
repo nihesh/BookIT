@@ -58,9 +58,11 @@ public class Course implements java.io.Serializable{
         int matchQuotient=0;
         for(int i=0;i<query.size();i++){
             String keyword = query.get(i).toLowerCase();
-            for(int j=0;j<postCondition.size();j++){
-                if(postCondition.get(i).toLowerCase().equals(keyword)){
-                    matchQuotient++;
+            if(postCondition!=null) {
+                for (int j = 0; j < postCondition.size(); j++) {
+                    if (postCondition.get(i).toLowerCase().equals(keyword)) {
+                        matchQuotient++;
+                    }
                 }
             }
         }

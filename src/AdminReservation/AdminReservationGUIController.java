@@ -190,7 +190,6 @@ public class AdminReservationGUIController implements Initializable{
         String oldPassString = oldPass.getText();
         String newPassString = newPass.getText();
         String renewPassString = renewPass.getText();
-        System.out.println(oldPassString+" "+newPassString+" "+renewPassString);
         if(newPassString.equals(renewPassString)) {
             Boolean status = activeUser.changePassword(oldPassString, newPassString);
             System.out.println(status);
