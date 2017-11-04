@@ -91,6 +91,7 @@ public class User implements Serializable{
 					if(b) {
 						Password=newPassword;
 						serialize();
+						this.setActiveUser();
 						return true;
 					}
 		}

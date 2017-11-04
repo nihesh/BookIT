@@ -1,0 +1,1 @@
+This file contains serialised room objects for different rooms.

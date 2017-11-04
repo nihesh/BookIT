@@ -69,13 +69,15 @@ public class Student extends User{
 		}
 		return temp2;
 	}
-	public boolean addCourse(Course c) {
+	public boolean addCourse(String c) {
+		Course c2=Course.deserializeCourse(c);
 		for (String string : myCourses) {
 			Course temp=Course.deserializeCourse(string);
-			if(!c.checkCollision(temp)) {
+			if(!c2.checkCollision(temp)) {
 				return false; //cannot add course since there is a collision
 			}
 		}
+		myCourses.add(c);
 		return true;
 	}
 	public String getBatch() {
