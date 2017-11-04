@@ -45,7 +45,7 @@ public class User implements Serializable{
             return (User)in.readObject();
         }
         catch (Exception e){
-            System.out.println("Exception occured while deserialising Course");
+            System.out.println("Exception occured while deserialising User");
             return null;
         }
         finally {

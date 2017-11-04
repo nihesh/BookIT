@@ -4,8 +4,7 @@
 
 package StudentReservation;
 
-import HelperClasses.Reservation;
-import HelperClasses.Room;
+import HelperClasses.*;
 import javafx.animation.FadeTransition;
 import javafx.animation.ParallelTransition;
 import javafx.animation.SequentialTransition;
@@ -76,7 +75,7 @@ public class StudentReservationGUIController implements Initializable{
     private Label slotInfoCourse, slotInfoMessage, slotInfoFaculty;
 
     private LocalDate activeDate;
-     private int pullDownPaneInitial = 650;
+    private int pullDownPaneInitial = 650;
     private HashMap<Button,Integer> selection = new HashMap<Button,Integer>();
     private Boolean isActiveReservation, changepassProcessing, fetchCoursesProcessing, listCoursesProcessing,timetableprocessing;
     @Override

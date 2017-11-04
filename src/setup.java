@@ -1,6 +1,4 @@
-import HelperClasses.Course;
-import HelperClasses.Reservation;
-import HelperClasses.Room;
+import HelperClasses.*;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -122,7 +120,13 @@ public class setup {
             course.serialize();
         });
     }
+    public static void createFirstAdmin(){
+        Email masterEmail = new Email("admin@iiitd.ac.in");
+        Admin master = new Admin("IIITDadmin","adminiiitd",masterEmail,"Admin");
+        master.setActiveUser();
+    }
     public static void main(String[] args)throws IOException,FileNotFoundException{
-        loadRoomAndCourseObjects();                    // Creates Room and Course Objects for all rooms and courses in AppData. This should be used for initialisation only
+//        loadRoomAndCourseObjects();                    // Creates Room and Course Objects for all rooms and courses in AppData. This should be used for initialisation only
+        createFirstAdmin();
     }
 }

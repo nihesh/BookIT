@@ -4,8 +4,10 @@
 
 package AdminReservation;
 
+import HelperClasses.Admin;
 import HelperClasses.Reservation;
 import HelperClasses.Room;
+import HelperClasses.User;
 import javafx.animation.FadeTransition;
 import javafx.animation.ParallelTransition;
 import javafx.animation.SequentialTransition;
@@ -77,14 +79,18 @@ public class AdminReservationGUIController implements Initializable{
     private ArrayList<Button> slotButtons;
     @FXML
     private Label slotInfoFaculty, slotInfoCourse, slotInfoMessage;
+    @FXML
+    private PasswordField oldPass, newPass, renewPass;
 
     private LocalDate activeDate;
+    private Admin activeUser;
     private int pullDownPaneInitial = 650;
     private HashMap<Button,Integer> selection = new HashMap<Button,Integer>();
     private Boolean isActiveReservation,requestProcessing,changepassProcessing, joinCodeProcessing;
     private Event classEvent;
     @Override
     public void initialize(URL location, ResourceBundle resources){
+        activeUser = (Admin) User.getActiveUser();
         joinCodeProcessing = false;
         isActiveReservation = false;
         requestProcessing = false;
@@ -167,6 +173,9 @@ public class AdminReservationGUIController implements Initializable{
         appear.play();
     }
     public void cancelChangePassword(){
+        oldPass.clear();
+        newPass.clear();
+        renewPass.clear();
         changepassProcessing = false;
         changePasswordPane.setVisible(false);
         rightPane.setDisable(false);
@@ -175,12 +184,25 @@ public class AdminReservationGUIController implements Initializable{
         showLogo();
     }
     public void saveChangePassword(){
-        changepassProcessing = false;
-        leftPane.setDisable(false);
-        changePasswordPane.setVisible(false);
-        rightPane.setDisable(false);
-        mainPane.setDisable(false);
-        showLogo();
+        String oldPassString = oldPass.getText();
+        String newPassString = newPass.getText();
+        String renewPassString = renewPass.getText();
+        System.out.println(oldPassString+" "+newPassString+" "+renewPassString);
+        if(newPassString.equals(renewPassString)) {
+            Boolean status = activeUser.changePassword(oldPassString, newPassString);
+            System.out.println(status);
+            if(status) {
+                changepassProcessing = false;
+                leftPane.setDisable(false);
+                changePasswordPane.setVisible(false);
+                rightPane.setDisable(false);
+                mainPane.setDisable(false);
+                showLogo();
+            }
+        }
+        oldPass.clear();
+        newPass.clear();
+        renewPass.clear();
     }
     private void setDate(LocalDate d){
         String date = Integer.toString(d.getDayOfMonth());

@@ -248,17 +248,17 @@
                                     <Insets right="352.0" top="90.0" />
                                  </StackPane.margin>
                               </Label>
-                              <PasswordField prefHeight="36.0" prefWidth="217.0" style="-fx-background-color: #922B21;">
+                              <PasswordField fx:id="oldPass" prefHeight="36.0" prefWidth="217.0" style="-fx-background-color: #922B21;">
                                  <StackPane.margin>
                                     <Insets bottom="70.0" left="245.0" right="18.0" />
                                  </StackPane.margin>
                               </PasswordField>
-                              <PasswordField prefHeight="36.0" prefWidth="217.0" style="-fx-background-color: #922B21;">
+                              <PasswordField fx:id="newPass" prefHeight="36.0" prefWidth="217.0" style="-fx-background-color: #922B21;">
                                  <StackPane.margin>
                                     <Insets left="245.0" right="18.0" top="10.0" />
                                  </StackPane.margin>
                               </PasswordField>
-                              <PasswordField prefHeight="36.0" prefWidth="217.0" style="-fx-background-color: #922B21;">
+                              <PasswordField fx:id="renewPass" prefHeight="36.0" prefWidth="217.0" style="-fx-background-color: #922B21;">
                                  <StackPane.margin>
                                     <Insets left="245.0" right="18.0" top="90.0" />
                                  </StackPane.margin>
