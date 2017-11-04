@@ -76,10 +76,12 @@ public class StudentReservationGUIController implements Initializable{
 
     private LocalDate activeDate;
     private int pullDownPaneInitial = 650;
+    private Student activeUser;
     private HashMap<Button,Integer> selection = new HashMap<Button,Integer>();
     private Boolean isActiveReservation, changepassProcessing, fetchCoursesProcessing, listCoursesProcessing,timetableprocessing;
     @Override
     public void initialize(URL location, ResourceBundle resources){
+        activeUser = (Student)User.getActiveUser();
         listCoursesProcessing = false;
         isActiveReservation = false;
         changepassProcessing = false;

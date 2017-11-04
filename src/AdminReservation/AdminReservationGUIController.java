@@ -138,7 +138,9 @@ public class AdminReservationGUIController implements Initializable{
         updateClassStatus(classEvent);
     }
     public void generateCode(){
-        joiningCodeMessage.setText("Joining Code will be displayed here");
+        String type = (String)joinCodeDropDown.getSelectionModel().getSelectedItem();
+        String joiningCode = activeUser.generateJoincode(type);
+        joiningCodeMessage.setText(joiningCode);
     }
     public void showJoiningCodePane(){
         joinCodeProcessing = true;
@@ -153,6 +155,7 @@ public class AdminReservationGUIController implements Initializable{
         appear.play();
     }
     public void hideJoiningCodePane(){
+        joiningCodeMessage.setText("");
         joinCodeProcessing = false;
         joiningCodePane.setVisible(false);
         leftPane.setDisable(false);

@@ -24,7 +24,7 @@ public class User implements Serializable{
 		try{
             ObjectOutputStream out = null;
             try{
-                out = new ObjectOutputStream(new FileOutputStream("./src/AppData/ActiveUser/ActiveUser.txt"));
+                out = new ObjectOutputStream(new FileOutputStream("./src/AppData/ActiveUser/ActiveUser.txt", false));
                 out.writeObject(this);
             }
             finally {
@@ -101,7 +101,7 @@ public class User implements Serializable{
 		try{
             ObjectOutputStream out = null;
             try{
-                out = new ObjectOutputStream(new FileOutputStream("./src/AppData/User/"+this.emailID.getEmailID()+".txt"));
+                out = new ObjectOutputStream(new FileOutputStream("./src/AppData/User/"+this.emailID.getEmailID()+".txt", false));
                 out.writeObject(this);
             }
             finally {

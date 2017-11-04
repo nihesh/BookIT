@@ -125,8 +125,16 @@ public class setup {
         Admin master = new Admin("IIITDadmin","adminiiitd",masterEmail,"Admin");
         master.setActiveUser();
     }
+    public static void createFirstStudent(){
+        Email masterEmail = new Email("student@iiitd.ac.in");
+        ArrayList<String> courses = new ArrayList<>();
+        courses.add("Discrete Mathematics");
+        Student master = new Student("IIITDStudent","studentiiitd",masterEmail,"Student", "BT2016",courses  );
+        master.setActiveUser();
+    }
     public static void main(String[] args)throws IOException,FileNotFoundException{
 //        loadRoomAndCourseObjects();                    // Creates Room and Course Objects for all rooms and courses in AppData. This should be used for initialisation only
-        createFirstAdmin();
+//        createFirstAdmin();
+        createFirstStudent();
     }
 }
