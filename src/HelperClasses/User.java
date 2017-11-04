@@ -18,6 +18,7 @@ public class User implements Serializable{
 		Password = password;
 		this.emailID = emailID;
 		this.userType = userType;
+		
 	}
 	public void setActiveUser() {
 		try{
@@ -114,10 +115,16 @@ public class User implements Serializable{
             System.out.println("file not found");
         }
 	}
-	public void logout() throws IOException {
+	public void logout() throws LoggedOutException{
+		try {
 		File file=new File("./src/AppData/ActiveUser/ActiveUser.txt");
 		file.delete();
 		file.createNewFile();
+		throw new LoggedOutException();
+		}
+		catch(IOException e) {
+			System.out.println("file not found");
+		}
 	}
 	public String getName() {
 		return Name;
