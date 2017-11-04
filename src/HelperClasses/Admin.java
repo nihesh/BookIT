@@ -1,5 +1,6 @@
 package HelperClasses;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -14,9 +15,81 @@ import java.util.Date;
 import java.util.PriorityQueue;
 
 public class Admin extends User{
+	private static Integer a=0;
+	private static Integer s=0;
+	private static Integer f=0;
 	private static final long serialVersionUID = 1L;
 	public Admin(String name, String password, Email emailID, String userType) {
 		super(name,password,emailID,userType);
+	}
+	public boolean generateJoincode(String type) {
+		try {
+		StringBuilder sb=new StringBuilder();
+		if(type.equals("Admin")) {
+			sb.append("A");
+			if(a<10) {
+				sb.append("0");
+				sb.append("0");
+				sb.append(a.toString());
+			}
+			else if(a<100) {
+				sb.append("0");
+				sb.append(a.toString());
+			}
+			else if(a<1000) {
+				sb.append(a.toString());
+			}
+			a++;
+			if(a>=1000) {
+				return false;
+			}
+		}
+		else if(type.equals("Student")) {
+			sb.append("S");
+			if(s<10) {
+				sb.append("0");
+				sb.append("0");
+				sb.append(s.toString());
+			}
+			else if(s<100) {
+				sb.append("0");
+				sb.append(s.toString());
+			}
+			else if(s<1000) {
+				sb.append(s.toString());
+			}
+			s++;
+			if(s>=1000) {
+				return false;
+			}
+		}
+		else {
+			sb.append("F");
+			if(f<10) {
+				sb.append("0");
+				sb.append("0");
+				sb.append(f.toString());
+			}
+			else if(f<100) {
+				sb.append("0");
+				sb.append(f.toString());
+			}
+			else if(f<1000) {
+				sb.append(f.toString());
+			}
+			f++;
+			if(f>=1000) {
+				return false;
+			}
+		}
+		String temp=sb.toString();
+		File file=new File("./src/AppData/JoinCodes/"+temp+".txt");
+		file.createNewFile();
+		return true;}
+		catch(IOException e) {
+			System.out.println(e);
+			return false;
+		}
 	}
 	@SuppressWarnings("unchecked")
 	public static PriorityQueue<ArrayList<Reservation>> deserializeRequestsQueue() throws FileNotFoundException, IOException, ClassNotFoundException {
@@ -126,4 +199,5 @@ public class Admin extends User{
 		}
 		return false;
 	}
+	
 }
