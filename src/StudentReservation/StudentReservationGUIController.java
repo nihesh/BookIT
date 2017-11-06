@@ -166,6 +166,10 @@ public class StudentReservationGUIController implements Initializable{
                 selectedCourses.add(courseLabels.get(i).getText());
             }
         }
+        for(int i=0;i<selectedCourses.size();i++){
+            System.out.println(activeUser.addCourse(selectedCourses.get(i));
+        }
+        loadCourses();
         leftPane.setDisable(false);
         rightPane.setDisable(false);
         mainPane.setDisable(false);

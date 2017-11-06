@@ -73,7 +73,7 @@ public class Student extends User{
 		Course c2=Course.deserializeCourse(c);
 		for (String string : myCourses) {
 			Course temp=Course.deserializeCourse(string);
-			if(!c2.checkCollision(temp)) {
+			if(c2.checkCollision(temp)) {
 				return false; //cannot add course since there is a collision
 			}
 		}
