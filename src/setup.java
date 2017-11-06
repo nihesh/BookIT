@@ -1,11 +1,10 @@
 import HelperClasses.*;
 
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.PriorityQueue;
 import java.util.Scanner;
 
 
@@ -132,9 +131,22 @@ public class setup {
         Student master = new Student("IIITDStudent","studentiiitd",masterEmail,"Student", "BT2017",courses  );
         master.setActiveUser();
     }
-    public static void main(String[] args)throws IOException,FileNotFoundException{
+    public static void serialiseEmptyPriorityQueue() throws IOException, ClassNotFoundException{
+        PriorityQueue<ArrayList<Reservation>> p = new PriorityQueue<>();
+        ObjectOutputStream out = null;
+        try {
+            out = new ObjectOutputStream(new FileOutputStream("./src/AppData/Requests/requests.txt", false));
+            out.writeObject(p);
+        } finally {
+            if (out != null) {
+                out.close();
+            }
+        }
+    }
+    public static void main(String[] args)throws IOException,FileNotFoundException, ClassNotFoundException{
 //        loadRoomAndCourseObjects();                    // Creates Room and Course Objects for all rooms and courses in AppData. This should be used for initialisation only
 //        createFirstAdmin();
-        createFirstStudent();
+//        createFirstStudent();
+        serialiseEmptyPriorityQueue();
     }
 }
