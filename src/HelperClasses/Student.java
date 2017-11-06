@@ -21,28 +21,32 @@ public class Student extends User{
 		this.myCourses = myCourses;
 	}
 	@SuppressWarnings("unchecked")
-	public boolean sendReservationRequest(ArrayList<Reservation> r) throws IOException, ClassNotFoundException{
-		PriorityQueue<ArrayList<Reservation>> p=null;
-		ObjectInputStream in=null;
-		ObjectOutputStream out=null;
-		try
-	        {   
-			 in = new ObjectInputStream(new FileInputStream("./src/AppData/Requests/requests.txt"));
-	         p = ((PriorityQueue<ArrayList<Reservation>>)in.readObject());  
-	         p.add(r);
-	         out = new ObjectOutputStream(new FileOutputStream("./src/AppData/Requests/requests.txt"));
-	         out.writeObject(p);
-	         }
-		
-		 finally {
-			 if(in!=null) {
-				 in.close();
-				 }
-			 if(out!=null) {
-				 out.close();
-			 }
-			 
-		 }
+	public boolean sendReservationRequest(ArrayList<Reservation> r){
+		try {
+			PriorityQueue<ArrayList<Reservation>> p = null;
+			ObjectInputStream in = null;
+			ObjectOutputStream out = null;
+			try {
+				in = new ObjectInputStream(new FileInputStream("./src/AppData/Requests/requests.txt"));
+				p = ((PriorityQueue<ArrayList<Reservation>>) in.readObject());
+				p.add(r);
+				out = new ObjectOutputStream(new FileOutputStream("./src/AppData/Requests/requests.txt", false));
+				out.writeObject(p);
+			} finally {
+				if (in != null) {
+					in.close();
+				}
+				if (out != null) {
+					out.close();
+				}
+			}
+		}
+		catch(IOException e){
+			System.out.println("IO Exception while deserialising priority queue");
+		}
+		catch (ClassNotFoundException f){
+			System.out.println("Class not found exception while deserialising priority queue");
+		}
 		return true;
 	}
 	//marker need to check

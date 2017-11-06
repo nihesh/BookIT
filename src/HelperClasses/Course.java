@@ -58,11 +58,8 @@ public class Course implements java.io.Serializable{
     public String getName(){
         return this.name;
     }
-    public Faculty getInstructor(){
-        if(this.instructorEmail.equals("")){
-            return null;
-        }
-        return (Faculty)User.getUser(this.instructorEmail);
+    public String getInstructorEmail(){
+        return this.instructorEmail;
     }
     public int keyMatch(ArrayList<String> query){
         int matchQuotient=0;

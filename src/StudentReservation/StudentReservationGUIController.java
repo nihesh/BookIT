@@ -64,7 +64,7 @@ public class StudentReservationGUIController implements Initializable{
     @FXML
     private Label error1, slotTTinfo;
     @FXML
-    private ComboBox courseDropDown, facultyDropDown;
+    private ComboBox courseDropDown, purposeDropDown, groupDropDown;
     @FXML
     private DatePicker datePicker;
     @FXML
@@ -77,11 +77,15 @@ public class StudentReservationGUIController implements Initializable{
     private PasswordField oldPass, newPass, renewPass;
     @FXML
     private TextField courseKeywordSearch;
+    @FXML
+    private TextArea requestMessage;
 
     private LocalDate activeDate;
+    private ArrayList<Integer> chosenSlots;
     private ArrayList<CheckBox> courseLabels = new ArrayList<>();
     private int pullDownPaneInitial = 650;
     private Student activeUser;
+    private String activeRoom;
     private HashMap<Button,Integer> selection = new HashMap<Button,Integer>();
     private Boolean isActiveReservation, changepassProcessing, fetchCoursesProcessing, listCoursesProcessing,timetableprocessing;
     @Override
@@ -516,6 +520,7 @@ public class StudentReservationGUIController implements Initializable{
         });
     }
     public void pullDownReservationPane(){
+        chosenSlots = new ArrayList<>();
         isActiveReservation = true;
         hideSlotPane();
         HoverPane.setDisable(true);
@@ -534,6 +539,7 @@ public class StudentReservationGUIController implements Initializable{
         while(i<items.size()){
             label[i] = new Label();
             label[i].setText(getReserveButtonInfo(items.get(i).getId()));
+            chosenSlots.add(Reservation.getSlotID(getReserveButtonInfo(items.get(i).getId())));
             label[i].setPrefSize(494, 50);
             label[i].setAlignment(Pos.CENTER);
             label[i].setTranslateY(i*50);
@@ -547,8 +553,11 @@ public class StudentReservationGUIController implements Initializable{
         for(int j=0;j<allCourses.size();j++) {
             courseDropDown.getItems().add(allCourses.get(j));
         }
-        for(int j=0;j<0;j++) {
-            facultyDropDown.getItems().add("Choice " + Integer.toString(j));
+        purposeDropDown.getItems().add("Lecture");
+        purposeDropDown.getItems().add("Lab");
+        purposeDropDown.getItems().add("Tutorial");
+        for(int j=0;j<6;j++) {
+            groupDropDown.getItems().add(Integer.toString(j+1));
         }                                                                       // GUI Integration Ends
         SequentialTransition sequence = new SequentialTransition();
         int step=1;
@@ -571,6 +580,47 @@ public class StudentReservationGUIController implements Initializable{
         inParallel.play();
     }
     public void bookingCompleted(){
+        String chosenCourse;
+        Course courseObject = null;
+        Room roomObject = Room.deserializeRoom(activeRoom);
+        try {
+            chosenCourse = courseDropDown.getSelectionModel().getSelectedItem().toString();
+        }
+        catch(NullPointerException e){
+            chosenCourse = "";
+        }
+        String chosenGroup;
+        try {
+            chosenGroup = groupDropDown.getSelectionModel().getSelectedItem().toString();
+        }
+        catch(NullPointerException e){
+            chosenGroup = "";
+        }
+        String chosenPurpose;
+        try {
+            chosenPurpose = purposeDropDown.getSelectionModel().getSelectedItem().toString();
+        }
+        catch(NullPointerException e){
+            chosenPurpose = "";
+        }
+        String chosenFaculty;
+        if(chosenCourse == ""){
+            chosenFaculty = "";
+        }
+        else{
+            courseObject = Course.deserializeCourse(chosenCourse);
+            chosenFaculty = courseObject.getInstructorEmail();
+        }
+        String chosenMessage;
+        chosenMessage = requestMessage.getText();
+        ArrayList<Reservation> listOfReservations = new ArrayList<>();
+        for(int i=0;i<chosenSlots.size();i++){              // GUI Integration Begins
+            Reservation r;
+            r = new Reservation(chosenMessage, chosenGroup, chosenCourse, chosenFaculty, activeRoom, chosenPurpose, chosenSlots.get(i));
+            r.setTargetDate(activeDate);
+            listOfReservations.add(r);
+        }                                                   // GUI Integration Ends
+        activeUser.sendReservationRequest(listOfReservations);
         closeReservationPane();
         flyRight();
     }
@@ -604,6 +654,7 @@ public class StudentReservationGUIController implements Initializable{
         BackBtn.setOpacity(0);
         Button current = (Button) action.getSource();
         RoomNo.setText(current.getText());
+        activeRoom = current.getText();
         Room r = Room.deserializeRoom(current.getText());                               // Loading buttons
         Reservation[] reservation = r.getSchedule(activeDate);
         for(int i=0;i<28;i++){
