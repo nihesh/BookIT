@@ -167,7 +167,7 @@ public class StudentReservationGUIController implements Initializable{
             }
         }
         for(int i=0;i<selectedCourses.size();i++){
-            activeUser.addCourse(selectedCourses.get(i);
+            activeUser.addCourse(selectedCourses.get(i));
         }
         loadCourses();
         leftPane.setDisable(false);
@@ -543,12 +543,13 @@ public class StudentReservationGUIController implements Initializable{
             i++;
         }
         selectedSlotsScrollPane.setPrefSize(494,max(474,50*i));
-        for(int j=0;j<50;j++) {
-            courseDropDown.getItems().add("Choice " + Integer.toString(j));
+        ArrayList<String> allCourses = Course.getAllCourses();                  // GUI Integration
+        for(int j=0;j<allCourses.size();j++) {
+            courseDropDown.getItems().add(allCourses.get(j));
         }
-        for(int j=0;j<50;j++) {
+        for(int j=0;j<0;j++) {
             facultyDropDown.getItems().add("Choice " + Integer.toString(j));
-        }
+        }                                                                       // GUI Integration Ends
         SequentialTransition sequence = new SequentialTransition();
         int step=1;
         int location=pullDownPaneInitial;

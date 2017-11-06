@@ -45,6 +45,16 @@ public class Course implements java.io.Serializable{
         this.acronym = acronym;
         serialize();
     }
+    public static ArrayList<String> getAllCourses(){
+        File directory= new File("./src/AppData/Course");
+        ArrayList<String> courses = new ArrayList<>();
+        File[] courseFiles=directory.listFiles();
+        for(int i=0;i<courseFiles.length;i++) {
+            String courseName = courseFiles[i].getName().substring(0, courseFiles[i].getName().length() - 4);
+            courses.add(courseName);
+        }
+        return courses;
+    }
     public String getName(){
         return this.name;
     }
