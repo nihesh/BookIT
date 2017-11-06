@@ -3,6 +3,7 @@ import HelperClasses.*;
 import java.io.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.PriorityQueue;
 import java.util.Scanner;
@@ -132,7 +133,7 @@ public class setup {
         master.setActiveUser();
     }
     public static void serialiseEmptyPriorityQueue() throws IOException, ClassNotFoundException{
-        PriorityQueue<ArrayList<Reservation>> p = new PriorityQueue<>();
+        PriorityQueue<ArrayList<Reservation>> p = new PriorityQueue<>(new RequestCompare());
         ObjectOutputStream out = null;
         try {
             out = new ObjectOutputStream(new FileOutputStream("./src/AppData/Requests/requests.txt", false));
@@ -149,4 +150,27 @@ public class setup {
 //        createFirstStudent();
         serialiseEmptyPriorityQueue();
     }
+}
+
+class RequestCompare implements Comparator<ArrayList<Reservation>>{
+
+	@Override
+	public int compare(ArrayList<Reservation> o1, ArrayList<Reservation> o2) {
+		// TODO Auto-generated method stub
+		if(o1.get(0).getCreationDate().isBefore(o2.get(0).getCreationDate())) {
+			return -1;
+		}
+		else if(o1.get(0).getCreationDate().isAfter(o2.get(0).getCreationDate())) {
+			return 1;
+		}
+		if(o1.get(0).getTargetDate().isBefore(o2.get(0).getTargetDate())) {
+				return -1;
+		}
+		else if(o1.get(0).getTargetDate().isAfter(o2.get(0).getTargetDate())){
+				return 1;
+		}
+		return 0;
+		
+	}
+	
 }
