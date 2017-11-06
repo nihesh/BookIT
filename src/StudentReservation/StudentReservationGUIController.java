@@ -79,6 +79,7 @@ public class StudentReservationGUIController implements Initializable{
     private TextField courseKeywordSearch;
 
     private LocalDate activeDate;
+    private ArrayList<CheckBox> courseLabels = new ArrayList<>();
     private int pullDownPaneInitial = 650;
     private Student activeUser;
     private HashMap<Button,Integer> selection = new HashMap<Button,Integer>();
@@ -126,23 +127,23 @@ public class StudentReservationGUIController implements Initializable{
         loadCourses();
     }
     public void openCoursesList(){
+        courseLabels.clear();
         String keyword = courseKeywordSearch.getText();
         ArrayList<String> keywordTokens = new ArrayList<String>();
         for(String word : keyword.split(" ")) {
             keywordTokens.add(word);
         }
         ArrayList<String> items = Student.searchCourse(keywordTokens);
-        CheckBox[] label = new CheckBox[100];
         int i=0;
         while(i<items.size()){
-            label[i] = new CheckBox();
-            label[i].setText(items.get(i));
-            label[i].setPrefSize(578, 35);
-            label[i].setAlignment(Pos.CENTER);
-            label[i].setTranslateY(i*35);
-            label[i].setStyle("-fx-background-color: #229954; -fx-border-color:  white; -fx-border-width:2");
-            label[i].setFont(new Font(16));
-            shortlistedCourses.getChildren().add(label[i]);
+            courseLabels.add(new CheckBox());
+            courseLabels.get(i).setText(items.get(i));
+            courseLabels.get(i).setPrefSize(578, 35);
+            courseLabels.get(i).setAlignment(Pos.CENTER);
+            courseLabels.get(i).setTranslateY(i*35);
+            courseLabels.get(i).setStyle("-fx-background-color: #229954; -fx-border-color:  white; -fx-border-width:2");
+            courseLabels.get(i).setFont(new Font(16));
+            shortlistedCourses.getChildren().add(courseLabels.get(i));
             i++;
         }
         shortlistedCourses.setPrefSize(578,max(235,34*i));
@@ -159,6 +160,12 @@ public class StudentReservationGUIController implements Initializable{
         appear.play();
     }
     public void closeCoursesList(){
+        ArrayList<String> selectedCourses = new ArrayList<>();
+        for(int i=0;i<courseLabels.size();i++){
+            if(courseLabels.get(i).isSelected()){
+                selectedCourses.add(courseLabels.get(i).getText());
+            }
+        }
         leftPane.setDisable(false);
         rightPane.setDisable(false);
         mainPane.setDisable(false);

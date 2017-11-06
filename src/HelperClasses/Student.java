@@ -48,8 +48,8 @@ public class Student extends User{
 	//marker need to check
 	public static ArrayList<String> searchCourse(ArrayList<String> keyword){
 		ArrayList<ArrayList<String>> arr=new ArrayList<ArrayList<String>>();
-		for (ArrayList<String> arrayList : arr) {
-			arrayList=new ArrayList<String>();
+		for (int i=0;i<300;i++) {
+			arr.add(new ArrayList<String>());
 		}
 		ArrayList<String> temp2=new ArrayList<String>();
 		File directory= new File("./src/AppData/Course");
@@ -58,8 +58,8 @@ public class Student extends User{
 			String courseName = courseFiles[i].getName().substring(0,courseFiles[i].getName().length()-4);
 			Course temp=Course.deserializeCourse(courseName);
 			int match=temp.keyMatch(keyword);
-			if(match > 0) {
-				arr.get(match).add(courseFiles[i].getName());
+			if(match >= 0) {
+				arr.get(match).add(courseFiles[i].getName().substring(0,courseFiles[i].getName().length()-4));
 			}
 		}
 		for(int i=arr.size()-1;i>=0;i--) {

@@ -29,6 +29,7 @@ import javafx.util.Duration;
 
 import java.awt.*;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -138,9 +139,14 @@ public class AdminReservationGUIController implements Initializable{
         updateClassStatus(classEvent);
     }
     public void generateCode(){
-        String type = (String)joinCodeDropDown.getSelectionModel().getSelectedItem();
-        String joiningCode = activeUser.generateJoincode(type);
-        joiningCodeMessage.setText(joiningCode);
+        try {
+            String type = (String) joinCodeDropDown.getSelectionModel().getSelectedItem();
+            String joiningCode = activeUser.generateJoincode(type);
+            joiningCodeMessage.setText(joiningCode);
+        }
+        catch(Exception e){
+            System.out.println("Exception occured in generateCode function");
+        }
     }
     public void showJoiningCodePane(){
         joinCodeProcessing = true;
