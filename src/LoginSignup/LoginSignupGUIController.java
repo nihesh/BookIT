@@ -1,6 +1,8 @@
 package LoginSignup;
 
 
+import HelperClasses.Email;
+import HelperClasses.User;
 import javafx.animation.FadeTransition;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
@@ -22,7 +24,8 @@ import javafx.util.Duration;
 public class LoginSignupGUIController {
 	double initOpacity=0.84;
 	int Signup_TransX=570;
-	
+	Email email;
+	User user;
 	@FXML
 		private ComboBox<String> Branch;
 	@FXML
@@ -69,6 +72,7 @@ public class LoginSignupGUIController {
 	private Button Signup_done_btn;
 	@FXML
 	public void initialize() {
+		
 		// TODO Auto-generated method stub
 		Branch.getItems().removeAll(Branch.getItems());
 		Branch.getItems().addAll("Option A", "Option B", "Option C");
@@ -146,7 +150,8 @@ public class LoginSignupGUIController {
 	private void Login_NEXT() {
 			//put some email validate code here to check user email
 		AccCre.setVisible(false);
-		if(!Login_email.getText().equals("")) {
+		email=new Email(Login_email.getText());
+		if(!Login_email.getText().equals("") && email.validateLogin()) {
 			if(Login_email.getStyleClass().contains("text-field2")) {
 				if(!Login_email.getStyleClass().contains("text-field1")) {
 					Login_email.getStyleClass().add("text-field1");
@@ -177,6 +182,7 @@ public class LoginSignupGUIController {
 			Lback_btn.setVisible(true);
 		}
 			else {
+				email=null;
 				if(!Login_email.getStyleClass().contains("text-field2")) {
 					Login_email.getStyleClass().add("text-field2");
 				}
@@ -187,7 +193,9 @@ public class LoginSignupGUIController {
 	}
 	@FXML
 	private void Login_NEXT2() {
-		if(!Login_password.getText().equals("")) {
+		user=User.getUser(email.getEmailID());
+		//System.out.println(user.getPassword());
+		if(user.authenticate(Login_password.getText())) {
 			if(Login_password.getStyleClass().contains("text-field2")) {
 				Login_password.getStyleClass().remove("text-field2");
 				if(!Login_password.getStyleClass().contains("text-field1")) {
@@ -197,9 +205,11 @@ public class LoginSignupGUIController {
 			Login_password.clear();
 			Login_password.setTranslateY(0);
 			 Stage stage = (Stage) Login_password_btn.getScene().getWindow();
-			 stage.close();
+			stage.close();
 		}
 		else {
+			Login_password.clear();
+			user=null;
 			if(!Login_password.getStyleClass().contains("text-field2")) {
 				Login_password.getStyleClass().add("text-field2");
 			}
@@ -208,9 +218,11 @@ public class LoginSignupGUIController {
 	}
 	@FXML
 	private void Signup_NEXT() {
-		
+		email=new Email(Signup_email.getText());
+		int state=email.validateSignup();
+		System.out.println(state);
 		//put some email validate code here to check user email
-		if(!Signup_email.getText().equals("")) {
+		if(!Signup_email.getText().equals("") && state==0) {
 			if(Signup_email.getStyleClass().contains("text-field2")) {
 				if(!Signup_email.getStyleClass().contains("text-field1")) {
 					Signup_email.getStyleClass().add("text-field1");
@@ -225,15 +237,19 @@ public class LoginSignupGUIController {
 		Signup_email_btn.setVisible(false);
 		Sback_btn.setVisible(true);
 		}
-		if(!Signup_email.getStyleClass().contains("text-field2")) {
+		else {
+		email=null;
+			if(!Signup_email.getStyleClass().contains("text-field2")) {
 			Signup_email.getStyleClass().add("text-field2");
+		}
 		}
 	}
 	
 	@FXML
 	private void Signup_NEXT2() {
 		//put some email validate code here to check user email
-		if((!Signup_password.getText().equals("")) && Signup_password.getText().equals(CnfPass.getText())) {
+		if((Signup_password.getText().matches("[A-Za-z0-9]+")) && Signup_password.getText().equals(CnfPass.getText())) {
+			user=new User(" ", CnfPass.getText(), email, " ");
 			if(Signup_password.getStyleClass().contains("text-field2")) {
 				if(!Signup_password.getStyleClass().contains("text-field1")) {
 					Signup_password.getStyleClass().add("text-field1");
@@ -248,6 +264,9 @@ public class LoginSignupGUIController {
 		Signup_joincode_btn.setVisible(true);
 		}
 		else {
+			user=null;
+			Signup_password.clear();
+			CnfPass.clear();
 			if(!Signup_password.getStyleClass().contains("text-field2")) {
 				Signup_password.getStyleClass().add("text-field2");
 			

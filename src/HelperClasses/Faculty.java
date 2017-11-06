@@ -1,5 +1,6 @@
 package HelperClasses;
 
+import java.io.File;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -13,6 +14,19 @@ public class Faculty extends User{
 	}
 	public ArrayList<String> getCourses() {
 		return myCourses;
+	}
+	public static ArrayList<String> getInstructorEmails(){
+		ArrayList<String> mails=new ArrayList<String>();
+		File file=new File("./src/AppData/User");
+		File[] temp=file.listFiles();
+		for(int i=0;i<temp.length;i++) {
+			String temp2=temp[i].getName();
+			if(getUser(temp2.substring(0, temp2.length()-4)).userType.equals("Faculty")) {
+				mails.add(temp2.substring(0, temp2.length()-4));
+				System.out.println(temp2.substring(0, temp2.length()-4));
+			}
+		}
+		return mails;
 	}
 	public boolean cancelBooking(LocalDate queryDate,int slotID, String RoomID) {
 		Room temp=Room.deserializeRoom(RoomID);
@@ -37,5 +51,8 @@ public class Faculty extends User{
 			return true;
 		}
 		return false;
+	}
+	public static void main(String[] args) {
+		getInstructorEmails();
 	}
 }
