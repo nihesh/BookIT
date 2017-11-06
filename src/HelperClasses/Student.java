@@ -78,6 +78,8 @@ public class Student extends User{
 			}
 		}
 		myCourses.add(c);
+		this.serialize();
+		this.setActiveUser();
 		return true;
 	}
 	public String getBatch() {
