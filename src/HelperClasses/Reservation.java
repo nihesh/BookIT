@@ -65,12 +65,13 @@ public class Reservation implements java.io.Serializable{
     public String getMessage(){
         String actualMessage="";
         for(int i=0;i<message.size();i++){
-            actualMessage+=message.get(i)+"\n";
             if(groups.get(i).equals("0"))
                 actualMessage+="Group: All groups\n";
             else
-                actualMessage+="Group: "+groups.get(i)+"\n";
-            actualMessage+="Venue: "+groupVenue.get(i)+"\n";
+                actualMessage+="Group   : "+groups.get(i)+"\n";
+            actualMessage+="Venue   : "+groupVenue.get(i)+"\n";
+            actualMessage+="Purpose : "+this.type+"\n";
+            actualMessage+=message.get(i)+"\n";
         }
         return actualMessage;
     }
@@ -105,6 +106,10 @@ public class Reservation implements java.io.Serializable{
     }
     public LocalDateTime getCreationDate(){
         return this.creationDate;
+    }
+    public static String getSlotRange(int slotID){
+        String[] data = {"0800AM - 0830AM","0830AM - 0900AM","0900AM - 0930AM","0930AM - 1000AM","1000AM - 1030AM","1030AM - 1100AM","1100AM - 1130AM","1130AM - 1200PM","1200PM - 1230PM","1230PM - 0100PM","0100PM - 0130PM","0130PM - 0200PM","0200PM - 0230PM","0230PM - 0300PM","0300PM - 0330PM","0330PM - 0400PM","0400PM - 0430PM","0430PM - 0500PM","0500PM - 0530PM","0530PM - 0600PM","0600PM - 0630PM","0630PM - 0700PM","0700PM - 0730PM","0730PM - 0800PM","0800PM - 0830PM","0830PM - 0900PM","0900PM - 0930PM","0930PM - 1000PM"};
+        return data[slotID];
     }
     public static int getSlotID(String buttonID){
         switch(buttonID){

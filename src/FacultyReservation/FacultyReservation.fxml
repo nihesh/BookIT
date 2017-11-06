@@ -23,7 +23,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<?import java.util.ArrayList?>
 <VBox fx:id="rootPane" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FacultyReservation.FacultyReservationGUIController">
    <children>
       <MenuBar fx:id="menuBar">
@@ -1080,7 +1079,7 @@
                   </Label>
                </children>
             </StackPane>
-            <StackPane fx:id="pullDownPane" prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: #2a2a2a; visibility: false;">
+            <StackPane fx:id="pullDownPane" prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: #2a2a2a; visibility: true;">
                <StackPane.margin>
                   <Insets bottom="50.0" left="300.0" right="300.0" />
                </StackPane.margin>
@@ -1103,25 +1102,25 @@
                               <Insets bottom="20.0" left="20.0" right="800.0" top="100.0" />
                            </StackPane.margin>
                         </ScrollPane>
-                        <ComboBox fx:id="courseDropDown" prefHeight="38.0" prefWidth="331.0" promptText="Choose Course (Optional)">
+                        <ComboBox fx:id="courseDropDown" prefHeight="38.0" prefWidth="331.0" promptText="Choose Group (Optional)">
                            <StackPane.margin>
-                              <Insets bottom="350.0" left="750.0" />
+                              <Insets bottom="320.0" left="750.0" />
                            </StackPane.margin>
                         </ComboBox>
-                        <ComboBox fx:id="facultyDropDown" prefHeight="38.0" prefWidth="331.0" promptText="Choose Faculty (Optional)">
+                        <ComboBox fx:id="facultyDropDown" prefHeight="38.0" prefWidth="331.0" promptText="Choose Purpose (Optional)">
                            <StackPane.margin>
                               <Insets bottom="220.0" left="750.0" />
                            </StackPane.margin>
                         </ComboBox>
-                        <Label prefHeight="45.0" prefWidth="155.0" text="Course" textFill="WHITE">
+                        <Label prefHeight="45.0" prefWidth="155.0" text="Group" textFill="WHITE">
                            <StackPane.margin>
-                              <Insets bottom="345.0" left="150.0" />
+                              <Insets bottom="320.0" left="150.0" />
                            </StackPane.margin>
                            <font>
                               <Font size="27.0" />
                            </font>
                         </Label>
-                        <Label prefHeight="45.0" prefWidth="155.0" text="Faculty" textFill="WHITE">
+                        <Label prefHeight="45.0" prefWidth="155.0" text="Purpose" textFill="WHITE">
                            <font>
                               <Font size="27.0" />
                            </font>
@@ -1150,6 +1149,19 @@
                               <Insets left="540.0" top="500.0" />
                            </StackPane.margin>
                         </Button>
+                        <ComboBox fx:id="courseDropDown1" prefHeight="38.0" prefWidth="331.0" promptText="Choose Course (Optional)">
+                           <StackPane.margin>
+                              <Insets bottom="420.0" left="750.0" />
+                           </StackPane.margin>
+                        </ComboBox>
+                        <Label prefHeight="45.0" prefWidth="155.0" text="Course" textFill="WHITE">
+                           <font>
+                              <Font size="27.0" />
+                           </font>
+                           <StackPane.margin>
+                              <Insets bottom="420.0" left="150.0" />
+                           </StackPane.margin>
+                        </Label>
                      </children></StackPane>
                   <Button alignment="TOP_CENTER" contentDisplay="TOP" mnemonicParsing="false" onMouseClicked="#closeReservationPane" opacity="0.5" prefHeight="12.0" prefWidth="1320.0" stylesheets="@buttonDropDown.css" text="v" textAlignment="CENTER" StackPane.alignment="TOP_CENTER" />
                </children>

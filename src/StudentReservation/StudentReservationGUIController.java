@@ -594,7 +594,7 @@ public class StudentReservationGUIController implements Initializable{
             chosenGroup = groupDropDown.getSelectionModel().getSelectedItem().toString();
         }
         catch(NullPointerException e){
-            chosenGroup = "";
+            chosenGroup = "0";
         }
         String chosenPurpose;
         try {

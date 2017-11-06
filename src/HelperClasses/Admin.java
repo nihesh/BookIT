@@ -119,19 +119,31 @@ public class Admin extends User{
         }
 	}
 
-	public ArrayList<Reservation> getRequest() throws FileNotFoundException, ClassNotFoundException, IOException{
-		PriorityQueue<ArrayList<Reservation>> p=deserializeRequestsQueue();
-		ArrayList<Reservation> temp=p.peek();
-		while(temp!=null && temp.get(0).getCreationDate().plusDays(5).isBefore(LocalDateTime.now())) {
-			p.poll();
-			temp=p.peek();
+	public ArrayList<Reservation> getRequest(){
+		try {
+			PriorityQueue<ArrayList<Reservation>> p = deserializeRequestsQueue();
+			ArrayList<Reservation> temp = p.peek();
+			while (temp != null && temp.get(0).getCreationDate().plusDays(5).isBefore(LocalDateTime.now())) {
+				p.poll();
+				temp = p.peek();
+			}
+			while (temp != null && temp.get(0).getTargetDate().isBefore(LocalDate.now())) {
+				p.poll();
+				temp = p.peek();
+			}
+			serializeRequestsQueue(p);
+			return temp;
 		}
-		while(temp!=null && temp.get(0).getTargetDate().isBefore(LocalDate.now())) {
-			p.poll();
-			temp=p.peek();
+		catch (FileNotFoundException fe){
+			System.out.println("File not found exception occured while getting request");
 		}
-		serializeRequestsQueue(p);
-		return temp;
+		catch (ClassNotFoundException ce){
+			System.out.println("Class not found exception occured while getting request");
+		}
+		catch (IOException ie){
+			System.out.println("IOException occured while getting request");
+		}
+		return null;
 	}
 	public boolean acceptRequest(ArrayList<Reservation> r) throws FileNotFoundException, ClassNotFoundException, IOException{
 		if(r==null) {

@@ -43,7 +43,7 @@ public class AdminReservationGUIController implements Initializable{
     @FXML
     private StackPane HoverPane;
     @FXML
-    private Label RoomNo, joiningCodeMessage;
+    private Label RoomNo, joiningCodeMessage, AccRejCourseName, AccRejDate, AccRejVenue, AccRejMessage;
     @FXML
     private Button BackBtn, cancelSlotBooking;
     @FXML
@@ -300,16 +300,37 @@ public class AdminReservationGUIController implements Initializable{
         return "";
     }
     public void showRequests(){
+        ArrayList<Reservation> requests = activeUser.getRequest();              // GUI Integration begins
+        if(requests == null){
+            return;
+        }
         requestProcessing = true;
         leftPane.setDisable(true);
         rightPane.setDisable(true);
         roomGridPane.setDisable(true);
         requestedSlotsScrollPane.getChildren().clear();
-        int i=0;
+        Reservation firstRequest = requests.get(0);
+        AccRejCourseName.setText(firstRequest.getCourseName());
+        AccRejDate.setText(firstRequest.getTargetDate().toString());
+        AccRejVenue.setText(firstRequest.getVenueName());
+        String group = firstRequest.getTopGroup();
+        if(group.equals("")){
+            group="N/A";
+        }
+        if(group.equals("0")){
+            group.equals("All groups");
+        }
+        String purpose = firstRequest.getType();
+        if(purpose.equals("")){
+            purpose = "N/A";
+        }
+        AccRejMessage.setText(firstRequest.getMessage());
         ArrayList<String> items = new ArrayList<String>();
-        items.add("Slot 1");
-        items.add("Slot 2");
+        for(int j=0;j<requests.size();j++){
+            items.add(Reservation.getSlotRange(requests.get(j).getReservationSlot()));
+        }                                                                                               // GUI Integration Ends
         Label[] label = new Label[50];
+        int i=0;
         while(i<items.size()){
             label[i] = new Label();
             label[i].setText(items.get(i));

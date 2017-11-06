@@ -148,11 +148,11 @@ public class setup {
 //        loadRoomAndCourseObjects();                    // Creates Room and Course Objects for all rooms and courses in AppData. This should be used for initialisation only
 //        createFirstAdmin();
 //        createFirstStudent();
-        serialiseEmptyPriorityQueue();
+//        serialiseEmptyPriorityQueue();
     }
 }
 
-class RequestCompare implements Comparator<ArrayList<Reservation>>{
+class RequestCompare implements Comparator<ArrayList<Reservation>>,java.io.Serializable{
 
 	@Override
 	public int compare(ArrayList<Reservation> o1, ArrayList<Reservation> o2) {
@@ -164,10 +164,10 @@ class RequestCompare implements Comparator<ArrayList<Reservation>>{
 			return 1;
 		}
 		if(o1.get(0).getTargetDate().isBefore(o2.get(0).getTargetDate())) {
-				return -1;
+            return -1;
 		}
 		else if(o1.get(0).getTargetDate().isAfter(o2.get(0).getTargetDate())){
-				return 1;
+            return 1;
 		}
 		return 0;
 		
