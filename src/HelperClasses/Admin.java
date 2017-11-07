@@ -65,7 +65,7 @@ public class Admin extends User{
 			sb.append(type);
 			while (true) {
 				while (sb.length() != 7) {
-					sb.append(rnd.nextFloat() * JoinString.length());
+					sb.append(JoinString.charAt(((int)rnd.nextFloat() * JoinString.length())));
 				}
 				if (codes.containsKey(sb.toString()) && codes.get(sb.toString()) == 1) {
 					sb = new StringBuilder();
@@ -140,6 +140,7 @@ public class Admin extends User{
 				p.poll();
 				temp = p.peek();
 			}
+			
 			serializeRequestsQueue(p);
 			return temp;
 		}
