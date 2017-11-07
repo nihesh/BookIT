@@ -299,16 +299,7 @@ public class AdminReservationGUIController implements Initializable{
         }
         return "";
     }
-    public void showRequests(){
-        ArrayList<Reservation> requests = activeUser.getRequest();              // GUI Integration begins
-        if(requests == null){
-            return;
-        }
-        requestProcessing = true;
-        leftPane.setDisable(true);
-        rightPane.setDisable(true);
-        roomGridPane.setDisable(true);
-        requestedSlotsScrollPane.getChildren().clear();
+    private void loadRequest(ArrayList<Reservation> requests){
         Reservation firstRequest = requests.get(0);
         AccRejCourseName.setText(firstRequest.getCourseName());
         AccRejDate.setText(firstRequest.getTargetDate().toString());
@@ -320,15 +311,11 @@ public class AdminReservationGUIController implements Initializable{
         if(group.equals("0")){
             group.equals("All groups");
         }
-        String purpose = firstRequest.getType();
-        if(purpose.equals("")){
-            purpose = "N/A";
-        }
         AccRejMessage.setText(firstRequest.getMessage());
         ArrayList<String> items = new ArrayList<String>();
         for(int j=0;j<requests.size();j++){
             items.add(Reservation.getSlotRange(requests.get(j).getReservationSlot()));
-        }                                                                                               // GUI Integration Ends
+        }
         Label[] label = new Label[50];
         int i=0;
         while(i<items.size()){
@@ -343,6 +330,27 @@ public class AdminReservationGUIController implements Initializable{
             i++;
         }
         requestedSlotsScrollPane.setPrefSize(494,max(474,49*i));
+    }
+    public void acceptRequest(){
+        ArrayList<Reservation> requests = activeUser.getRequest();              // GUI Integration begins
+        if(requests == null){
+            hideRequests();
+            return;
+        }
+        activeUser.acceptRequest();
+        loadRequest(requests);
+    }
+    public void showRequests(){
+        ArrayList<Reservation> requests = activeUser.getRequest();              // GUI Integration begins
+        if(requests == null){
+            return;
+        }
+        requestProcessing = true;
+        leftPane.setDisable(true);
+        rightPane.setDisable(true);
+        roomGridPane.setDisable(true);
+        requestedSlotsScrollPane.getChildren().clear();
+        loadRequest(requests);                                                 // GUI Integration Ends
         SequentialTransition sequence = new SequentialTransition();
         int step=1;
         int location=pullDownPaneInitial;

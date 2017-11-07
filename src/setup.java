@@ -12,6 +12,30 @@ import java.util.Scanner;
 /**
  * Created by nihesh on 28/10/17.
  */
+
+class RequestCompare implements Comparator<ArrayList<Reservation>>,java.io.Serializable{
+
+    @Override
+    public int compare(ArrayList<Reservation> o1, ArrayList<Reservation> o2) {
+        // TODO Auto-generated method stub
+        if(o1.get(0).getCreationDate().isBefore(o2.get(0).getCreationDate())) {
+            return -1;
+        }
+        else if(o1.get(0).getCreationDate().isAfter(o2.get(0).getCreationDate())) {
+            return 1;
+        }
+        if(o1.get(0).getTargetDate().isBefore(o2.get(0).getTargetDate())) {
+            return -1;
+        }
+        else if(o1.get(0).getTargetDate().isAfter(o2.get(0).getTargetDate())){
+            return 1;
+        }
+        return 0;
+
+    }
+
+}
+
 public class setup {
     public static LocalDate StartDate = LocalDate.of(2017,8,1);
     public static LocalDate EndDate = LocalDate.of(2017,12,16);
@@ -152,25 +176,3 @@ public class setup {
     }
 }
 
-class RequestCompare implements Comparator<ArrayList<Reservation>>,java.io.Serializable{
-
-	@Override
-	public int compare(ArrayList<Reservation> o1, ArrayList<Reservation> o2) {
-		// TODO Auto-generated method stub
-		if(o1.get(0).getCreationDate().isBefore(o2.get(0).getCreationDate())) {
-			return -1;
-		}
-		else if(o1.get(0).getCreationDate().isAfter(o2.get(0).getCreationDate())) {
-			return 1;
-		}
-		if(o1.get(0).getTargetDate().isBefore(o2.get(0).getTargetDate())) {
-            return -1;
-		}
-		else if(o1.get(0).getTargetDate().isAfter(o2.get(0).getTargetDate())){
-            return 1;
-		}
-		return 0;
-		
-	}
-	
-}

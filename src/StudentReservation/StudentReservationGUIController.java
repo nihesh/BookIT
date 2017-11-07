@@ -521,6 +521,7 @@ public class StudentReservationGUIController implements Initializable{
     }
     public void pullDownReservationPane(){
         chosenSlots = new ArrayList<>();
+        requestMessage.clear();
         isActiveReservation = true;
         hideSlotPane();
         HoverPane.setDisable(true);

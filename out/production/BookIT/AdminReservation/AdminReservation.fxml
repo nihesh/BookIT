@@ -1240,7 +1240,7 @@
                               <Insets bottom="150.0" left="150.0" />
                            </StackPane.margin>
                         </Label>
-                        <Button mnemonicParsing="false" stylesheets="@button.css" text="Accept">
+                        <Button mnemonicParsing="false" onMouseClicked="#acceptRequest" stylesheets="@button.css" text="Accept">
                            <StackPane.margin>
                               <Insets left="300.0" top="500.0" />
                            </StackPane.margin>

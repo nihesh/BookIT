@@ -145,30 +145,41 @@ public class Admin extends User{
 		}
 		return null;
 	}
-	public boolean acceptRequest(ArrayList<Reservation> r) throws FileNotFoundException, ClassNotFoundException, IOException{
-		if(r==null) {
-			return false;
-		}
-		PriorityQueue<ArrayList<Reservation>> p=deserializeRequestsQueue();
-		p.poll();
-		serializeRequestsQueue(p);
-		Room temp = Room.deserializeRoom(r.get(0).getRoomName());
-		Course ctemp=Course.deserializeCourse(r.get(0).getCourseName());
-		for (Reservation reservation : r) {
-			if(!temp.checkReservation(r.get(0).getTargetDate(), reservation.getReservationSlot(), reservation)) {
+	public boolean acceptRequest(){
+		try {
+			PriorityQueue<ArrayList<Reservation>> p = deserializeRequestsQueue();
+			ArrayList<Reservation> r = p.peek();
+			if (r == null) {
 				return false;
 			}
-			
-		}
-		for (Reservation reservation : r) {
-			temp.addReservation(r.get(0).getTargetDate(), reservation.getReservationSlot(), reservation, true);
-			if(ctemp!=null) {
-				ctemp.addReservation(r.get(0).getTargetDate(), reservation.getReservationSlot(), reservation, true);
+			p.poll();
+			serializeRequestsQueue(p);
+			Room temp = Room.deserializeRoom(r.get(0).getRoomName());
+			Course ctemp = Course.deserializeCourse(r.get(0).getCourseName());
+			for (Reservation reservation : r) {
+				if (!temp.checkReservation(r.get(0).getTargetDate(), reservation.getReservationSlot(), reservation)) {
+					return false;
+				}
+
 			}
-			
+			for (Reservation reservation : r) {
+				temp.addReservation(r.get(0).getTargetDate(), reservation.getReservationSlot(), reservation, true);
+				if (ctemp != null) {
+					ctemp.addReservation(r.get(0).getTargetDate(), reservation.getReservationSlot(), reservation, true);
+				}
+			}
+			return true;
 		}
-		
-		return true;
+		catch (FileNotFoundException fe){
+			System.out.println("File not found exception occured while accepting requesst");
+		}
+		catch (ClassNotFoundException ce){
+			System.out.println("Class not found exception occured while accepting requesst");
+		}
+		catch(IOException ie){
+			System.out.println("IO exception occured while accepting requesst");
+		}
+		return false;
 	}
 	public boolean rejectRequest(ArrayList<Reservation> r) throws FileNotFoundException, ClassNotFoundException, IOException {
 		if(r==null) {
