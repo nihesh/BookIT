@@ -1102,12 +1102,12 @@
                               <Insets bottom="20.0" left="20.0" right="800.0" top="100.0" />
                            </StackPane.margin>
                         </ScrollPane>
-                        <ComboBox fx:id="courseDropDown" prefHeight="38.0" prefWidth="331.0" promptText="Choose Group (Optional)">
+                        <ComboBox fx:id="groupDropDown" prefHeight="38.0" prefWidth="331.0" promptText="Choose Group (Optional)">
                            <StackPane.margin>
                               <Insets bottom="320.0" left="750.0" />
                            </StackPane.margin>
                         </ComboBox>
-                        <ComboBox fx:id="facultyDropDown" prefHeight="38.0" prefWidth="331.0" promptText="Choose Purpose (Optional)">
+                        <ComboBox fx:id="purposeDropDown" prefHeight="38.0" prefWidth="331.0" promptText="Choose Purpose (Optional)">
                            <StackPane.margin>
                               <Insets bottom="220.0" left="750.0" />
                            </StackPane.margin>
@@ -1136,7 +1136,7 @@
                               <Insets bottom="85.0" left="150.0" />
                            </StackPane.margin>
                         </Label>
-                        <TextArea prefHeight="200.0" prefWidth="200.0" promptText="Mention the purpose of booking this slot. Note that this message will be displayed on the time-table.">
+                        <TextArea fx:id="requestMessage" prefHeight="200.0" prefWidth="200.0" promptText="Mention the purpose of booking this slot. Note that this message will be displayed on the time-table.">
                            <StackPane.margin>
                               <Insets bottom="100.0" left="655.0" right="115.0" top="290.0" />
                            </StackPane.margin>
@@ -1149,7 +1149,7 @@
                               <Insets left="540.0" top="500.0" />
                            </StackPane.margin>
                         </Button>
-                        <ComboBox fx:id="courseDropDown1" prefHeight="38.0" prefWidth="331.0" promptText="Choose Course (Optional)">
+                        <ComboBox fx:id="courseDropDown" prefHeight="38.0" prefWidth="331.0" promptText="Choose Course (Optional)">
                            <StackPane.margin>
                               <Insets bottom="420.0" left="750.0" />
                            </StackPane.margin>

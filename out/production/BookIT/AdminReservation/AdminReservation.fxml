@@ -1137,7 +1137,7 @@
                               <Insets bottom="420.0" left="750.0" />
                            </StackPane.margin>
                         </ComboBox>
-                        <ComboBox fx:id="facultyDropDown" prefHeight="38.0" prefWidth="331.0" promptText="Choose Group (Optional)">
+                        <ComboBox fx:id="groupDropDown" prefHeight="38.0" prefWidth="331.0" promptText="Choose Group (Optional)">
                            <StackPane.margin>
                               <Insets bottom="320.0" left="750.0" />
                            </StackPane.margin>
@@ -1166,7 +1166,7 @@
                               <Insets bottom="85.0" left="150.0" />
                            </StackPane.margin>
                         </Label>
-                        <TextArea prefHeight="200.0" prefWidth="200.0" promptText="Mention the purpose of booking this slot. Note that this message will be displayed on the time-table.">
+                        <TextArea fx:id="requestMessage" prefHeight="200.0" prefWidth="200.0" promptText="Mention the purpose of booking this slot. Note that this message will be displayed on the time-table.">
                            <StackPane.margin>
                               <Insets bottom="100.0" left="655.0" right="115.0" top="290.0" />
                            </StackPane.margin>
@@ -1187,7 +1187,7 @@
                               <Insets bottom="215.0" left="150.0" />
                            </StackPane.margin>
                         </Label>
-                        <ComboBox fx:id="facultyDropDown1" prefHeight="38.0" prefWidth="331.0" promptText="Choose Purpose (Optional)">
+                        <ComboBox fx:id="purposeDropDown" prefHeight="38.0" prefWidth="331.0" promptText="Choose Purpose (Optional)">
                            <StackPane.margin>
                               <Insets bottom="220.0" left="750.0" />
                            </StackPane.margin>
@@ -1196,7 +1196,7 @@
                   <Button alignment="TOP_CENTER" contentDisplay="TOP" mnemonicParsing="false" onMouseClicked="#closeReservationPane" opacity="0.5" prefHeight="12.0" prefWidth="1320.0" stylesheets="@buttonDropDown.css" text="v" textAlignment="CENTER" StackPane.alignment="TOP_CENTER" />
                </children>
             </StackPane>
-            <StackPane fx:id="pullDownPane2" layoutX="310.0" layoutY="10.0" prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: #2a2a2a; visibility: true;">
+            <StackPane fx:id="pullDownPane2" layoutX="310.0" layoutY="10.0" prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: #2a2a2a; visibility: false;">
                <children>
                   <StackPane prefHeight="150.0" prefWidth="1320.0" style="-fx-border-width: 2; -fx-border-color: white;" StackPane.alignment="CENTER">
                      <children>

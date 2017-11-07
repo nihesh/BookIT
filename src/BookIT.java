@@ -6,6 +6,7 @@
 
 import AdminReservation.AdminReservationGUI;
 import FacultyReservation.FacultyReservationGUI;
+import HelperClasses.Admin;
 import HelperClasses.Student;
 import LoginSignup.LoginSignupGUI;
 import StudentReservation.StudentReservationGUI;

@@ -60,8 +60,6 @@ public class StudentReservationGUIController implements Initializable{
     @FXML
     private AnchorPane selectedSlotsScrollPane, myCoursesScrollPane, shortlistedCourses;
     @FXML
-    private Button btn1,btn2,btn3,btn4,btn5,btn6,btn7,btn8,btn9,btn10,btn11,btn12,btn13,btn14,btn15,btn16,btn17,btn18,btn19,btn20,btn21,btn22,btn23,btn24,btn25,btn26,btn27,btn28;
-    @FXML
     private Label error1, slotTTinfo;
     @FXML
     private ComboBox courseDropDown, purposeDropDown, groupDropDown;
@@ -586,7 +584,6 @@ public class StudentReservationGUIController implements Initializable{
     public void bookingCompleted(){
         String chosenCourse;
         Course courseObject = null;
-        Room roomObject = Room.deserializeRoom(activeRoom);
         try {
             chosenCourse = courseDropDown.getSelectionModel().getSelectedItem().toString();
         }

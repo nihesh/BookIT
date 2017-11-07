@@ -24,6 +24,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
+<?import java.util.ArrayList?>
 <VBox fx:id="rootPane" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="AdminReservation.AdminReservationGUIController">
    <children>
       <MenuBar fx:id="menuBar">
@@ -1136,7 +1137,7 @@
                               <Insets bottom="420.0" left="750.0" />
                            </StackPane.margin>
                         </ComboBox>
-                        <ComboBox fx:id="facultyDropDown" prefHeight="38.0" prefWidth="331.0" promptText="Choose Group (Optional)">
+                        <ComboBox fx:id="groupDropDown" prefHeight="38.0" prefWidth="331.0" promptText="Choose Group (Optional)">
                            <StackPane.margin>
                               <Insets bottom="320.0" left="750.0" />
                            </StackPane.margin>
@@ -1165,7 +1166,7 @@
                               <Insets bottom="85.0" left="150.0" />
                            </StackPane.margin>
                         </Label>
-                        <TextArea prefHeight="200.0" prefWidth="200.0" promptText="Mention the purpose of booking this slot. Note that this message will be displayed on the time-table.">
+                        <TextArea fx:id="requestMessage" prefHeight="200.0" prefWidth="200.0" promptText="Mention the purpose of booking this slot. Note that this message will be displayed on the time-table.">
                            <StackPane.margin>
                               <Insets bottom="100.0" left="655.0" right="115.0" top="290.0" />
                            </StackPane.margin>
@@ -1186,7 +1187,7 @@
                               <Insets bottom="215.0" left="150.0" />
                            </StackPane.margin>
                         </Label>
-                        <ComboBox fx:id="facultyDropDown1" prefHeight="38.0" prefWidth="331.0" promptText="Choose Purpose (Optional)">
+                        <ComboBox fx:id="purposeDropDown" prefHeight="38.0" prefWidth="331.0" promptText="Choose Purpose (Optional)">
                            <StackPane.margin>
                               <Insets bottom="220.0" left="750.0" />
                            </StackPane.margin>
