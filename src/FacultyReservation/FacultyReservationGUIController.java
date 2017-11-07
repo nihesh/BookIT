@@ -72,6 +72,8 @@ public class FacultyReservationGUIController implements Initializable{
     private Label slotInfoFaculty, slotInfoCourse, slotInfoMessage;
     @FXML
     private TextArea requestMessage;
+    @FXML
+    private PasswordField oldPass, newPass, renewPass;
 
     private LocalDate activeDate;
     private int pullDownPaneInitial = 650;
@@ -79,6 +81,7 @@ public class FacultyReservationGUIController implements Initializable{
     private Boolean isActiveReservation, changepassProcessing;
     private Faculty activeUser;
     private Event classEvent;
+    private String currentlyShowingSlot;
     private String activeRoom;
     private ArrayList<Integer> chosenSlots;
     @Override
@@ -121,6 +124,10 @@ public class FacultyReservationGUIController implements Initializable{
         loadCourses();
     }
     public void cancelSlotBooking(){
+        activeUser.cancelBooking(activeDate,Reservation.getSlotID(currentlyShowingSlot),activeRoom);
+        Button current = slotButtons.get(Reservation.getSlotID(currentlyShowingSlot));
+        current.setDisable(false);
+        current.setText("Free");
         updateClassStatus(classEvent);
     }
     public void openChangePassword(){
@@ -136,6 +143,9 @@ public class FacultyReservationGUIController implements Initializable{
         appear.play();
     }
     public void cancelChangePassword(){
+        oldPass.clear();
+        newPass.clear();
+        renewPass.clear();
         changepassProcessing = false;
         changePasswordPane.setVisible(false);
         rightPane.setDisable(false);
@@ -144,12 +154,23 @@ public class FacultyReservationGUIController implements Initializable{
         showLogo();
     }
     public void saveChangePassword(){
-        changepassProcessing = false;
-        leftPane.setDisable(false);
-        changePasswordPane.setVisible(false);
-        rightPane.setDisable(false);
-        mainPane.setDisable(false);
-        showLogo();
+        String oldPassString = oldPass.getText();
+        String newPassString = newPass.getText();
+        String renewPassString = renewPass.getText();
+        if(newPassString.equals(renewPassString)) {
+            Boolean status = activeUser.changePassword(oldPassString, newPassString);
+            if(status) {
+                changepassProcessing = false;
+                leftPane.setDisable(false);
+                changePasswordPane.setVisible(false);
+                rightPane.setDisable(false);
+                mainPane.setDisable(false);
+                showLogo();
+            }
+        }
+        oldPass.clear();
+        newPass.clear();
+        renewPass.clear();
     }
     private void setDate(LocalDate d){
         String date = Integer.toString(d.getDayOfMonth());
@@ -241,9 +262,7 @@ public class FacultyReservationGUIController implements Initializable{
     public void loadCourses(){
         myCoursesScrollPane.getChildren().clear();
         Label[] label = new Label[100];
-        ArrayList<String> items = new ArrayList<String>();
-        items.add("Course 1");
-        items.add("Course 2");
+        ArrayList<String> items = activeUser.getCourses();
         int i=0;
         while(i<items.size()){
             label[i] = new Label();
@@ -262,14 +281,28 @@ public class FacultyReservationGUIController implements Initializable{
         slotInfoPane.setVisible(true);
         Label curLabel = (Label) e.getSource();
         slotInfo.setText(curLabel.getText());
+        currentlyShowingSlot = curLabel.getText();
         Room r = Room.deserializeRoom(statusRoomID.getText());          // GUI-Helper Integration starts
         Reservation[] bookings = r.getSchedule(activeDate);
         if(bookings[Reservation.getSlotID(curLabel.getText())]!=null) {
-            slotInfoFaculty.setText("~~~~");                // To be implemented
+            String facultyName="~~~~";
+            if (!bookings[Reservation.getSlotID(curLabel.getText())].getFacultyEmail().equals("")){
+                Faculty f = (Faculty)User.getUser(bookings[Reservation.getSlotID(curLabel.getText())].getFacultyEmail());
+                facultyName = f.getName();
+            }
+            slotInfoFaculty.setText(facultyName);
             slotInfoCourse.setText(bookings[Reservation.getSlotID(curLabel.getText())].getCourseName());
             slotInfoMessage.setText(bookings[Reservation.getSlotID(curLabel.getText())].getMessage());
+            String currentUserEmail = activeUser.getEmail().getEmailID();
+            if(currentUserEmail.equals(bookings[Reservation.getSlotID(curLabel.getText())].getFacultyEmail()) || currentUserEmail.equals(bookings[Reservation.getSlotID(curLabel.getText())].getReserverEmail())){
+                cancelSlotBooking.setDisable(false);
+            }
+            else{
+                cancelSlotBooking.setDisable(true);
+            }
         }
         else{
+            cancelSlotBooking.setDisable(true);
             slotInfoFaculty.setText("N/A");
             slotInfoCourse.setText("N/A");
             slotInfoMessage.setText("N/A");
@@ -480,10 +513,10 @@ public class FacultyReservationGUIController implements Initializable{
             Reservation r;
             r = new Reservation(chosenMessage, chosenGroup, chosenCourse, chosenFaculty, activeRoom, chosenPurpose, chosenSlots.get(i));
             r.setTargetDate(activeDate);
+            r.setReserverEmail(activeUser.getEmail().getEmailID());
             listOfReservations.add(r);
         }                                                   // GUI Integration Ends
         for(int i=0;i<listOfReservations.size();i++){
-            System.out.println("hi");
             activeUser.bookRoom(listOfReservations.get(i).getTargetDate(), listOfReservations.get(i).getReservationSlot(), listOfReservations.get(i));
         }
         closeReservationPane();

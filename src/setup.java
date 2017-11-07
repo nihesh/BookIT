@@ -190,7 +190,7 @@ public class setup {
 //        loadRoomAndCourseObjects();                    // Creates Room and Course Objects for all rooms and courses in AppData. This should be used for initialisation only
 //        createFirstAdmin();
 //        createFirstStudent();
-        createFirstFaculty();
+//        createFirstFaculty();
 //        serialiseEmptyPriorityQueue();
 //        serialiseEmptyJoinCodeMap();
     }
