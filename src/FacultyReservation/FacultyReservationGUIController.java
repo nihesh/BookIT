@@ -72,6 +72,8 @@ public class FacultyReservationGUIController implements Initializable{
     private Label slotInfoFaculty, slotInfoCourse, slotInfoMessage;
     @FXML
     private TextArea requestMessage;
+    @FXML
+    private PasswordField oldPass, newPass, renewPass;
 
     private LocalDate activeDate;
     private int pullDownPaneInitial = 650;
@@ -136,6 +138,9 @@ public class FacultyReservationGUIController implements Initializable{
         appear.play();
     }
     public void cancelChangePassword(){
+        oldPass.clear();
+        newPass.clear();
+        renewPass.clear();
         changepassProcessing = false;
         changePasswordPane.setVisible(false);
         rightPane.setDisable(false);
@@ -144,12 +149,24 @@ public class FacultyReservationGUIController implements Initializable{
         showLogo();
     }
     public void saveChangePassword(){
-        changepassProcessing = false;
-        leftPane.setDisable(false);
-        changePasswordPane.setVisible(false);
-        rightPane.setDisable(false);
-        mainPane.setDisable(false);
-        showLogo();
+        String oldPassString = oldPass.getText();
+        String newPassString = newPass.getText();
+        String renewPassString = renewPass.getText();
+        if(newPassString.equals(renewPassString)) {
+            Boolean status = activeUser.changePassword(oldPassString, newPassString);
+            System.out.println(status);
+            if(status) {
+                changepassProcessing = false;
+                leftPane.setDisable(false);
+                changePasswordPane.setVisible(false);
+                rightPane.setDisable(false);
+                mainPane.setDisable(false);
+                showLogo();
+            }
+        }
+        oldPass.clear();
+        newPass.clear();
+        renewPass.clear();
     }
     private void setDate(LocalDate d){
         String date = Integer.toString(d.getDayOfMonth());

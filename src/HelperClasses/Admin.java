@@ -226,11 +226,24 @@ public class Admin extends User{
 	}
 	public boolean bookRoom(LocalDate queryDate,int slot, Reservation r) {
 		Room room=Room.deserializeRoom(r.getRoomName());
-		Course course=Course.deserializeCourse(r.getCourseName()+".dat");
-		if(course.checkReservation(queryDate,slot,r)==true && room.checkReservation(queryDate,slot,r)==true) {
-			course.addReservation(queryDate,slot,r,true);
-			room.addReservation(queryDate,slot,r,true);
-			return true;
+		Boolean addToCourse = true;
+		if(r.getCourseName().equals("")){
+			addToCourse = false;
+		}
+		Course course;
+		if(addToCourse) {
+			course = Course.deserializeCourse(r.getCourseName());
+			if(course.checkReservation(queryDate,slot,r)==true && room.checkReservation(queryDate,slot,r)==true) {
+				course.addReservation(queryDate,slot,r,true);
+				room.addReservation(queryDate,slot,r,true);
+				return true;
+			}
+		}
+		else{
+			if(room.checkReservation(queryDate,slot,r)==true){
+				room.addReservation(queryDate,slot,r,true);
+				return true;
+			}
 		}
 		return false;
 	}
