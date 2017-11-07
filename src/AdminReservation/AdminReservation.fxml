@@ -24,7 +24,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<?import java.util.ArrayList?>
 <VBox fx:id="rootPane" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="AdminReservation.AdminReservationGUIController">
    <children>
       <MenuBar fx:id="menuBar">
@@ -1196,7 +1195,7 @@
                   <Button alignment="TOP_CENTER" contentDisplay="TOP" mnemonicParsing="false" onMouseClicked="#closeReservationPane" opacity="0.5" prefHeight="12.0" prefWidth="1320.0" stylesheets="@buttonDropDown.css" text="v" textAlignment="CENTER" StackPane.alignment="TOP_CENTER" />
                </children>
             </StackPane>
-            <StackPane fx:id="pullDownPane2" layoutX="310.0" layoutY="10.0" prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: #2a2a2a; visibility: true;">
+            <StackPane fx:id="pullDownPane2" layoutX="310.0" layoutY="10.0" prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: #2a2a2a; visibility: false;">
                <children>
                   <StackPane prefHeight="150.0" prefWidth="1320.0" style="-fx-border-width: 2; -fx-border-color: white;" StackPane.alignment="CENTER">
                      <children>
