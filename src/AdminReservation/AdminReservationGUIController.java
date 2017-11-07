@@ -88,6 +88,7 @@ public class AdminReservationGUIController implements Initializable{
 
     private LocalDate activeDate;
     private String activeRoom;
+    private String currentlyShowingSlot;
     private ArrayList<Integer> chosenSlots;
     private Admin activeUser;
     private int pullDownPaneInitial = 650;
@@ -141,6 +142,10 @@ public class AdminReservationGUIController implements Initializable{
         joinCodeDropDown.setStyle("-fx-font-size : 13pt;-fx-background-color: #922B21;");
     }
     public void cancelSlotBooking(){
+        activeUser.cancelBooking(activeDate,Reservation.getSlotID(currentlyShowingSlot),activeRoom);
+        Button current = slotButtons.get(Reservation.getSlotID(currentlyShowingSlot));
+        current.setDisable(false);
+        current.setText("Free");
         updateClassStatus(classEvent);
     }
     public void generateCode(){
@@ -203,7 +208,6 @@ public class AdminReservationGUIController implements Initializable{
         String renewPassString = renewPass.getText();
         if(newPassString.equals(renewPassString)) {
             Boolean status = activeUser.changePassword(oldPassString, newPassString);
-            System.out.println(status);
             if(status) {
                 changepassProcessing = false;
                 leftPane.setDisable(false);
@@ -407,14 +411,21 @@ public class AdminReservationGUIController implements Initializable{
         slotInfoPane.setVisible(true);
         Label curLabel = (Label) e.getSource();
         slotInfo.setText(curLabel.getText());
+        currentlyShowingSlot = curLabel.getText();
         Room r = Room.deserializeRoom(statusRoomID.getText());          // GUI-Helper Integration starts
         Reservation[] bookings = r.getSchedule(activeDate);
         if(bookings[Reservation.getSlotID(curLabel.getText())]!=null) {
-            slotInfoFaculty.setText("~~~~");                // To be implemented
+            String facultyName="~~~~";
+            if (!bookings[Reservation.getSlotID(curLabel.getText())].getFacultyEmail().equals("")){
+                Faculty f = (Faculty)User.getUser(bookings[Reservation.getSlotID(curLabel.getText())].getFacultyEmail());
+                facultyName = f.getName();
+            }
+            slotInfoFaculty.setText(facultyName);
             slotInfoCourse.setText(bookings[Reservation.getSlotID(curLabel.getText())].getCourseName());
             slotInfoMessage.setText(bookings[Reservation.getSlotID(curLabel.getText())].getMessage());
         }
         else{
+            cancelSlotBooking.setDisable(true);
             slotInfoFaculty.setText("N/A");
             slotInfoCourse.setText("N/A");
             slotInfoMessage.setText("N/A");
