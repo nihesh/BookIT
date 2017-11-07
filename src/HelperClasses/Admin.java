@@ -26,26 +26,23 @@ public class Admin extends User{
 		HashMap<String, Integer> p=null;
 		ObjectInputStream in=null;
 		try
-	        {   
-			 in = new ObjectInputStream(new FileInputStream("./src/AppData/JoinCodes/Codes.txt"));
-	         p = (HashMap<String, Integer>)in.readObject();  
-	         }
-		
-		 finally {
-			 if(in!=null) {
-				 in.close();
-				 }
-			 
-		 }
+		{
+			in = new ObjectInputStream(new FileInputStream("./src/AppData/JoinCodes/Codes.txt"));
+			p = (HashMap<String, Integer>)in.readObject();
+		}
+		finally {
+			if(in!=null) {
+				in.close();
+			}
+		}
 		return p;
-	
 	}
 	
 	public static void serializeJoinCode(HashMap<String, Integer> r) {
 		try{
             ObjectOutputStream out = null;
             try{
-                out = new ObjectOutputStream(new FileOutputStream("./src/AppData/JoinCodes/Codes.txt"));
+                out = new ObjectOutputStream(new FileOutputStream("./src/AppData/JoinCodes/Codes.txt", false));
                 out.writeObject(r);
             }
             finally {
@@ -59,26 +56,38 @@ public class Admin extends User{
             System.out.println("file not found");
         }
 	}
-	public String generateJoincode(String type) throws FileNotFoundException, ClassNotFoundException, IOException {
-		type=type.substring(0, 1).toUpperCase();
-		Random rnd=new Random();
-		StringBuilder sb=new StringBuilder();
-		HashMap<String, Integer> codes=deserializeJoinCodes();
-		sb.append(type);
-		while(true) {
-		while(sb.length()!=7) {
-			sb.append(rnd.nextFloat()*JoinString.length());
+	public String generateJoincode(String type){
+		try {
+			type = type.substring(0, 1).toUpperCase();
+			Random rnd = new Random();
+			StringBuilder sb = new StringBuilder();
+			HashMap<String, Integer> codes = deserializeJoinCodes();
+			sb.append(type);
+			while (true) {
+				while (sb.length() != 7) {
+					sb.append(rnd.nextFloat() * JoinString.length());
+				}
+				if (codes.containsKey(sb.toString()) && codes.get(sb.toString()) == 1) {
+					sb = new StringBuilder();
+					sb.append(type);
+				} else {
+					break;
+				}
+			}
+			codes.put(sb.toString(), 1);
+			serializeJoinCode(codes);
+			return sb.toString();
 		}
-		if(codes.containsKey(sb.toString()) && codes.get(sb.toString())==1) {
-			sb=new StringBuilder();sb.append(type);
+		catch (FileNotFoundException fe){
+			System.out.println("File not found exception occured while getting request");
 		}
-		else {
-			break;
+		catch (ClassNotFoundException ce){
+			System.out.println("Class not found exception occured while getting request");
 		}
+		catch (IOException ie){
+			System.out.println("IOException occured while getting request");
 		}
-		codes.put(sb.toString(), 1);
-		serializeJoinCode(codes);
-		return sb.toString();
+		return null;
 	}
 	@SuppressWarnings("unchecked")
 	public static PriorityQueue<ArrayList<Reservation>> deserializeRequestsQueue() throws FileNotFoundException, IOException, ClassNotFoundException {
@@ -171,24 +180,36 @@ public class Admin extends User{
 			return true;
 		}
 		catch (FileNotFoundException fe){
-			System.out.println("File not found exception occured while accepting requesst");
+			System.out.println("File not found exception occured while accepting request");
 		}
 		catch (ClassNotFoundException ce){
-			System.out.println("Class not found exception occured while accepting requesst");
+			System.out.println("Class not found exception occured while accepting request");
 		}
 		catch(IOException ie){
-			System.out.println("IO exception occured while accepting requesst");
+			System.out.println("IO exception occured while accepting request");
 		}
 		return false;
 	}
-	public boolean rejectRequest(ArrayList<Reservation> r) throws FileNotFoundException, ClassNotFoundException, IOException {
-		if(r==null) {
-			return false;
+	public boolean rejectRequest(){
+		try{
+			PriorityQueue<ArrayList<Reservation>> p = deserializeRequestsQueue();
+			if (p.size() == 0) {
+				return false;
+			}
+			p.poll();
+			serializeRequestsQueue(p);
+			return true;
 		}
-		PriorityQueue<ArrayList<Reservation>> p=deserializeRequestsQueue();
-		p.poll();
-		serializeRequestsQueue(p);
-		return true;
+		catch (FileNotFoundException fe){
+			System.out.println("File not found exception occured while rejecting request");
+		}
+		catch (ClassNotFoundException ce){
+			System.out.println("Class not found exception occured while rejecting request");
+		}
+		catch(IOException ie){
+			System.out.println("IO exception occured while rejecting request");
+		}
+		return false;
 	}
 	public boolean cancelBooking(LocalDate queryDate,int slotID,String RoomID) {
 		Room temp=Room.deserializeRoom(RoomID);

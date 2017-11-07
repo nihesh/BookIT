@@ -332,12 +332,21 @@ public class AdminReservationGUIController implements Initializable{
         requestedSlotsScrollPane.setPrefSize(494,max(474,49*i));
     }
     public void acceptRequest(){
-        ArrayList<Reservation> requests = activeUser.getRequest();              // GUI Integration begins
+        activeUser.acceptRequest();                                             // Throw not accepted warning...
+        ArrayList<Reservation> requests = activeUser.getRequest();
         if(requests == null){
             hideRequests();
             return;
         }
-        activeUser.acceptRequest();
+        loadRequest(requests);
+    }
+    public void deleteRequest(){
+        activeUser.rejectRequest();
+        ArrayList<Reservation> requests = activeUser.getRequest();
+        if(requests == null){
+            hideRequests();
+            return;
+        }
         loadRequest(requests);
     }
     public void showRequests(){

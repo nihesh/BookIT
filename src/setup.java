@@ -168,11 +168,24 @@ public class setup {
             }
         }
     }
-    public static void main(String[] args)throws IOException,FileNotFoundException, ClassNotFoundException{
+    public static void serialiseEmptyJoinCodeMap() throws IOException, ClassNotFoundException{
+        HashMap<String, Integer> p = new HashMap<String, Integer>();
+        ObjectOutputStream out = null;
+        try {
+            out = new ObjectOutputStream(new FileOutputStream("./src/AppData/JoinCodes/Codes.txt", false));
+            out.writeObject(p);
+        } finally {
+            if (out != null) {
+                out.close();
+            }
+        }
+    }
+    public static void main(String[] args)throws IOException,FileNotFoundException, ClassNotFoundException {
 //        loadRoomAndCourseObjects();                    // Creates Room and Course Objects for all rooms and courses in AppData. This should be used for initialisation only
 //        createFirstAdmin();
 //        createFirstStudent();
 //        serialiseEmptyPriorityQueue();
+//        serialiseEmptyJoinCodeMap();
     }
 }
 

@@ -1280,7 +1280,7 @@
                               <Insets bottom="110.0" left="655.0" right="115.0" top="250.0" />
                            </StackPane.margin>
                         </ScrollPane>
-                        <Button mnemonicParsing="false" stylesheets="@button.css" text="Reject">
+                        <Button mnemonicParsing="false" onMouseClicked="#deleteRequest" stylesheets="@button.css" text="Reject">
                            <StackPane.margin>
                               <Insets left="800.0" top="500.0" />
                            </StackPane.margin>
