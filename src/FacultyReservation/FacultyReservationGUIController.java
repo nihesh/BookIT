@@ -402,6 +402,7 @@ public class FacultyReservationGUIController implements Initializable{
         while(i<items.size()){
             label[i] = new Label();
             label[i].setText(getReserveButtonInfo(items.get(i).getId()));
+            chosenSlots.add(Reservation.getSlotID(getReserveButtonInfo(items.get(i).getId())));
             label[i].setPrefSize(494, 50);
             label[i].setAlignment(Pos.CENTER);
             label[i].setTranslateY(i*50);
@@ -411,7 +412,7 @@ public class FacultyReservationGUIController implements Initializable{
             i++;
         }
         selectedSlotsScrollPane.setPrefSize(494,max(474,50*i));
-        ArrayList<String> allCourses = Course.getAllCourses();                  // GUI Integration
+        ArrayList<String> allCourses = Course.getAllCourses(    );                  // GUI Integration
         for(int j=0;j<allCourses.size();j++) {
             courseDropDown.getItems().add(allCourses.get(j));
         }
@@ -482,6 +483,7 @@ public class FacultyReservationGUIController implements Initializable{
             listOfReservations.add(r);
         }                                                   // GUI Integration Ends
         for(int i=0;i<listOfReservations.size();i++){
+            System.out.println("hi");
             activeUser.bookRoom(listOfReservations.get(i).getTargetDate(), listOfReservations.get(i).getReservationSlot(), listOfReservations.get(i));
         }
         closeReservationPane();

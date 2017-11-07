@@ -7,12 +7,13 @@
 import AdminReservation.AdminReservationGUI;
 import FacultyReservation.FacultyReservationGUI;
 import HelperClasses.Admin;
+import HelperClasses.Faculty;
 import HelperClasses.Student;
 import LoginSignup.LoginSignupGUI;
 import StudentReservation.StudentReservationGUI;
 
 public class BookIT {
     public static void main(String[] args){
-        javafx.application.Application.launch(AdminReservationGUI.class);
+        javafx.application.Application.launch(FacultyReservationGUI.class);
     }
 }

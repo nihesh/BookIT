@@ -59,21 +59,23 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Admin.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Admin.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/HelperClasses/Admin.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="144">
-              <caret line="218" column="21" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="239" selection-end-column="0" />
-              <folding />
+            <state relative-caret-position="216">
+              <caret line="58" column="48" lean-forward="true" selection-start-line="58" selection-start-column="48" selection-end-line="58" selection-end-column="48" />
+              <folding>
+                <element signature="e#2707#2737#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="FacultyReservationGUIController.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="FacultyReservationGUIController.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/FacultyReservation/FacultyReservationGUIController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1881">
-              <caret line="518" column="30" lean-forward="true" selection-start-line="518" selection-start-column="30" selection-end-line="518" selection-end-column="30" />
+            <state relative-caret-position="304">
+              <caret line="404" column="95" lean-forward="false" selection-start-line="404" selection-start-column="95" selection-end-line="404" selection-end-column="95" />
               <folding />
             </state>
           </provider>
@@ -83,10 +85,8 @@
         <entry file="file://$PROJECT_DIR$/src/FacultyReservation/FacultyReservation.fxml">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="270">
-              <caret line="801" column="33" lean-forward="false" selection-start-line="801" selection-start-column="33" selection-end-line="801" selection-end-column="33" />
-              <folding>
-                <marker date="1510053258780" expanded="true" signature="83351:83549" ph="..." />
-              </folding>
+              <caret line="802" column="33" lean-forward="false" selection-start-line="802" selection-start-column="33" selection-end-line="802" selection-end-column="33" />
+              <folding />
             </state>
           </provider>
           <provider editor-type-id="JavaFX-Scene-Builder">
@@ -97,11 +97,11 @@
       <file leaf-file-name="BookIT.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/BookIT.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="162">
-              <caret line="18" column="0" lean-forward="true" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+            <state relative-caret-position="108">
+              <caret line="16" column="53" lean-forward="false" selection-start-line="16" selection-start-column="53" selection-end-line="16" selection-end-column="53" />
               <folding>
-                <element signature="e#397#398#0" expanded="true" />
-                <element signature="e#477#478#0" expanded="true" />
+                <element signature="e#427#428#0" expanded="true" />
+                <element signature="e#509#510#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -110,8 +110,18 @@
       <file leaf-file-name="AdminReservationGUIController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/AdminReservation/AdminReservationGUIController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="268">
-              <caret line="666" column="42" lean-forward="true" selection-start-line="666" selection-start-column="42" selection-end-line="667" selection-end-column="39" />
+            <state relative-caret-position="178">
+              <caret line="603" column="17" lean-forward="false" selection-start-line="603" selection-start-column="12" selection-end-line="603" selection-end-column="17" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Faculty.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/HelperClasses/Faculty.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="334">
+              <caret line="48" column="55" lean-forward="false" selection-start-line="48" selection-start-column="55" selection-end-line="48" selection-end-column="55" />
               <folding />
             </state>
           </provider>
@@ -120,8 +130,8 @@
       <file leaf-file-name="setup.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/setup.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="356">
-              <caret line="193" column="13" lean-forward="false" selection-start-line="193" selection-start-column="13" selection-end-line="193" selection-end-column="13" />
+            <state relative-caret-position="212">
+              <caret line="158" column="44" lean-forward="false" selection-start-line="158" selection-start-column="44" selection-end-line="158" selection-end-column="44" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -168,6 +178,8 @@
       <find>bookingCom</find>
       <find>Arra</find>
       <find>activeRoom</find>
+      <find>chose</find>
+      <find>chosenSl</find>
     </findStrings>
   </component>
   <component name="FindManager">
@@ -198,7 +210,6 @@
         <option value="$PROJECT_DIR$/src/FacultyReservation/FacultyReservationGUI.java" />
         <option value="$PROJECT_DIR$/src/Controller/CommonController.java" />
         <option value="$PROJECT_DIR$/src/CommonController.java" />
-        <option value="$PROJECT_DIR$/src/HelperClasses/Faculty.java" />
         <option value="$PROJECT_DIR$/src/HelperClasses/User.java" />
         <option value="$PROJECT_DIR$/src/StudentReservation/StudentReservation.fxml" />
         <option value="$PROJECT_DIR$/src/HelperClasses/Student.java" />
@@ -206,13 +217,14 @@
         <option value="$PROJECT_DIR$/src/HelperClasses/Room.java" />
         <option value="$PROJECT_DIR$/src/HelperClasses/Course.java" />
         <option value="$PROJECT_DIR$/src/AdminReservation/AdminReservation.fxml" />
-        <option value="$PROJECT_DIR$/src/AdminReservation/AdminReservationGUIController.java" />
-        <option value="$PROJECT_DIR$/src/HelperClasses/Admin.java" />
-        <option value="$PROJECT_DIR$/src/FacultyReservation/FacultyReservation.fxml" />
         <option value="$PROJECT_DIR$/src/StudentReservation/StudentReservationGUIController.java" />
-        <option value="$PROJECT_DIR$/src/FacultyReservation/FacultyReservationGUIController.java" />
-        <option value="$PROJECT_DIR$/src/setup.java" />
+        <option value="$PROJECT_DIR$/src/HelperClasses/Admin.java" />
         <option value="$PROJECT_DIR$/src/BookIT.java" />
+        <option value="$PROJECT_DIR$/src/FacultyReservation/FacultyReservation.fxml" />
+        <option value="$PROJECT_DIR$/src/setup.java" />
+        <option value="$PROJECT_DIR$/src/HelperClasses/Faculty.java" />
+        <option value="$PROJECT_DIR$/src/AdminReservation/AdminReservationGUIController.java" />
+        <option value="$PROJECT_DIR$/src/FacultyReservation/FacultyReservationGUIController.java" />
       </list>
     </option>
   </component>
@@ -737,7 +749,7 @@
     <option name="totallyTimeSpent" value="1302000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="36" width="1920" height="1044" extended-state="0" />
+    <frame x="0" y="36" width="1920" height="1044" extended-state="1" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -948,14 +960,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/HelperClasses/Faculty.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="738">
-          <caret line="45" column="56" lean-forward="false" selection-start-line="45" selection-start-column="56" selection-end-line="45" selection-end-column="56" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/HelperClasses/Course.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="18">
@@ -1008,19 +1012,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/FacultyReservation/FacultyReservation.fxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="801" column="33" lean-forward="false" selection-start-line="801" selection-start-column="33" selection-end-line="801" selection-end-column="33" />
-          <folding>
-            <marker date="1510053258780" expanded="true" signature="83351:83549" ph="..." />
-          </folding>
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/StudentReservation/StudentReservationGUIController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-696">
@@ -1029,47 +1020,68 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/FacultyReservation/FacultyReservationGUIController.java">
+    <entry file="file://$PROJECT_DIR$/src/HelperClasses/Admin.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1881">
-          <caret line="518" column="30" lean-forward="true" selection-start-line="518" selection-start-column="30" selection-end-line="518" selection-end-column="30" />
+        <state relative-caret-position="216">
+          <caret line="58" column="48" lean-forward="true" selection-start-line="58" selection-start-column="48" selection-end-line="58" selection-end-column="48" />
+          <folding>
+            <element signature="e#2707#2737#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/BookIT.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="16" column="53" lean-forward="false" selection-start-line="16" selection-start-column="53" selection-end-line="16" selection-end-column="53" />
+          <folding>
+            <element signature="e#427#428#0" expanded="true" />
+            <element signature="e#509#510#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/FacultyReservation/FacultyReservation.fxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="802" column="33" lean-forward="false" selection-start-line="802" selection-start-column="33" selection-end-line="802" selection-end-column="33" />
           <folding />
         </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/setup.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="356">
-          <caret line="193" column="13" lean-forward="false" selection-start-line="193" selection-start-column="13" selection-end-line="193" selection-end-column="13" />
+        <state relative-caret-position="212">
+          <caret line="158" column="44" lean-forward="false" selection-start-line="158" selection-start-column="44" selection-end-line="158" selection-end-column="44" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AdminReservation/AdminReservationGUIController.java">
+    <entry file="file://$PROJECT_DIR$/src/HelperClasses/Faculty.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="268">
-          <caret line="666" column="42" lean-forward="true" selection-start-line="666" selection-start-column="42" selection-end-line="667" selection-end-column="39" />
+        <state relative-caret-position="334">
+          <caret line="48" column="55" lean-forward="false" selection-start-line="48" selection-start-column="55" selection-end-line="48" selection-end-column="55" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/BookIT.java">
+    <entry file="file://$PROJECT_DIR$/src/AdminReservation/AdminReservationGUIController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="18" column="0" lean-forward="true" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
-          <folding>
-            <element signature="e#397#398#0" expanded="true" />
-            <element signature="e#477#478#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="178">
+          <caret line="603" column="17" lean-forward="false" selection-start-line="603" selection-start-column="12" selection-end-line="603" selection-end-column="17" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/HelperClasses/Admin.java">
+    <entry file="file://$PROJECT_DIR$/src/FacultyReservation/FacultyReservationGUIController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="218" column="21" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="239" selection-end-column="0" />
+        <state relative-caret-position="304">
+          <caret line="404" column="95" lean-forward="false" selection-start-line="404" selection-start-column="95" selection-end-line="404" selection-end-column="95" />
           <folding />
         </state>
       </provider>

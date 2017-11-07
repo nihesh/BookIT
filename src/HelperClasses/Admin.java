@@ -79,13 +79,13 @@ public class Admin extends User{
 			return sb.toString();
 		}
 		catch (FileNotFoundException fe){
-			System.out.println("File not found exception occured while getting request");
+			System.out.println("File not found exception occurred while getting request");
 		}
 		catch (ClassNotFoundException ce){
-			System.out.println("Class not found exception occured while getting request");
+			System.out.println("Class not found exception occurred while getting request");
 		}
 		catch (IOException ie){
-			System.out.println("IOException occured while getting request");
+			System.out.println("IOException occurred while getting request");
 		}
 		return null;
 	}

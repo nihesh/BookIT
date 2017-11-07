@@ -44,10 +44,10 @@ public class Faculty extends User{
 	}
 	public boolean bookRoom(LocalDate queryDate,int slot, Reservation r) {
 		Room room=Room.deserializeRoom(r.getRoomName());
-		Course course=Course.deserializeCourse(r.getCourseName()+".dat");
+		Course course=Course.deserializeCourse(r.getCourseName());
 		if(course.checkReservation(queryDate,slot,r)==true && room.checkReservation(queryDate,slot,r)==true) {
-			course.addReservation(queryDate,slot,r,true);
 			room.addReservation(queryDate,slot,r,true);
+			course.addReservation(queryDate,slot,r,true);
 			return true;
 		}
 		return false;

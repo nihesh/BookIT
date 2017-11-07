@@ -156,12 +156,12 @@ public class setup {
         Student master = new Student("IIITDStudent","studentiiitd",masterEmail,"Student", "BT2017",courses  );
         master.setActiveUser();
     }
-//    public static void createFirstStudent(){
-//        Email masterEmail = new Email("student@iiitd.ac.in");
-//        ArrayList<String> courses = new ArrayList<>();
-//        Faculty master = new Faculty("IIITDStudent","studentiiitd",masterEmail,"Student", "BT2017",courses  );
-//        master.setActiveUser();
-//    }
+    public static void createFirstFaculty(){
+        Email masterEmail = new Email("faculty@iiitd.ac.in");
+        ArrayList<String> courses = new ArrayList<>();
+        Faculty master = new Faculty("IIITDFaculty","facultyiiitd",masterEmail,"Faculty", courses);
+        master.setActiveUser();
+    }
     public static void serialiseEmptyPriorityQueue() throws IOException, ClassNotFoundException{
         PriorityQueue<ArrayList<Reservation>> p = new PriorityQueue<>(new RequestCompare());
         ObjectOutputStream out = null;
@@ -190,7 +190,7 @@ public class setup {
 //        loadRoomAndCourseObjects();                    // Creates Room and Course Objects for all rooms and courses in AppData. This should be used for initialisation only
 //        createFirstAdmin();
 //        createFirstStudent();
-//        createFirstFaculty();
+        createFirstFaculty();
 //        serialiseEmptyPriorityQueue();
 //        serialiseEmptyJoinCodeMap();
     }
