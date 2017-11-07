@@ -65,7 +65,8 @@ public class Admin extends User{
 			sb.append(type);
 			while (true) {
 				while (sb.length() != 7) {
-					sb.append(JoinString.charAt(((int)rnd.nextFloat() * JoinString.length())));
+					System.out.println();
+					sb.append(JoinString.charAt(((int)(rnd.nextFloat() * JoinString.length()))));
 				}
 				if (codes.containsKey(sb.toString()) && codes.get(sb.toString()) == 1) {
 					sb = new StringBuilder();
@@ -79,13 +80,13 @@ public class Admin extends User{
 			return sb.toString();
 		}
 		catch (FileNotFoundException fe){
-			System.out.println("File not found exception occurred while getting request");
+			System.out.println("File not found exception occured while getting request");
 		}
 		catch (ClassNotFoundException ce){
-			System.out.println("Class not found exception occurred while getting request");
+			System.out.println("Class not found exception occured while getting request");
 		}
 		catch (IOException ie){
-			System.out.println("IOException occurred while getting request");
+			System.out.println("IOException occured while getting request");
 		}
 		return null;
 	}
@@ -225,7 +226,7 @@ public class Admin extends User{
 	}
 	public boolean bookRoom(LocalDate queryDate,int slot, Reservation r) {
 		Room room=Room.deserializeRoom(r.getRoomName());
-		Course course=Course.deserializeCourse(r.getCourseName());
+		Course course=Course.deserializeCourse(r.getCourseName()+".dat");
 		if(course.checkReservation(queryDate,slot,r)==true && room.checkReservation(queryDate,slot,r)==true) {
 			course.addReservation(queryDate,slot,r,true);
 			room.addReservation(queryDate,slot,r,true);
