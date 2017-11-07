@@ -1,7 +1,20 @@
 package LoginSignup;
 
 
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+
+import HelperClasses.Admin;
 import HelperClasses.Email;
+import HelperClasses.Faculty;
+import HelperClasses.Student;
 import HelperClasses.User;
 import javafx.animation.FadeTransition;
 import javafx.animation.KeyFrame;
@@ -25,6 +38,7 @@ public class LoginSignupGUIController {
 	double initOpacity=0.84;
 	int Signup_TransX=570;
 	Email email;
+	String joincode;
 	User user;
 	@FXML
 		private ComboBox<String> Branch;
@@ -72,11 +86,31 @@ public class LoginSignupGUIController {
 	private Button Signup_done_btn;
 	@FXML
 	public void initialize() {
-		
+		ArrayList<String> temp=new ArrayList<>();
 		// TODO Auto-generated method stub
 		Branch.getItems().removeAll(Branch.getItems());
-		Branch.getItems().addAll("Option A", "Option B", "Option C");
-	    Branch.getSelectionModel().select("Option B");
+		BufferedReader r;
+		try {
+			r=new BufferedReader(new FileReader("src/AppData/Year/StudentYear.txt"));
+			
+			try {
+				String x=r.readLine();
+				while(x!=null) {
+				temp.add(x); x=r.readLine();
+				}
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		for (String string : temp) {
+			Branch.getItems().add(string);
+		}
+		Branch.getSelectionModel().select(temp.get(0));
+		
 	}
 	@FXML
 	private void backL() {
@@ -280,7 +314,14 @@ public class LoginSignupGUIController {
 	@FXML
 	private void Signup_NEXT3() {
 		//validate the joining code as well as identify student/teacher/admin
-		if(!Signup_joincode.getText().equals("")) {
+		HashMap<String, Integer> temp;
+		String t=Signup_joincode.getText().toUpperCase();
+		try {
+			temp = Admin.deserializeJoinCodes();
+		
+		if(temp.containsKey(t)) {
+			joincode=t;
+			//Admin.serializeJoinCode(temp);
 			if(Signup_joincode.getStyleClass().contains("text-field2")) {
 				if(!Signup_joincode.getStyleClass().contains("text-field1")) {
 					Signup_joincode.getStyleClass().add("text-field1");
@@ -290,9 +331,16 @@ public class LoginSignupGUIController {
 		Signup_joincode.setVisible(false);
 		Signup_joincode_btn.setVisible(false);
 		Name.setVisible(true);
-		if(Signup_joincode.getText().equals("1")) { //identifies student
+		if(Signup_joincode.getText().toUpperCase().charAt(0)=='S') { //identifies student
+			user=new User(user.getName(), user.getPassword(), user.getEmail(), "Student");
 			Branch.setVisible(true);
 			Signup_done_btn.setTranslateY(35);
+		}
+		else if(Signup_joincode.getText().toUpperCase().charAt(0)=='A') {
+			user=new User(user.getName(), user.getPassword(), user.getEmail(), "Admin");
+		}
+		else if(Signup_joincode.getText().toUpperCase().charAt(0)=='F') {
+			user=new User(user.getName(), user.getPassword(), user.getEmail(), "Faculty");
 		}
 		//put else's here if want to associate something with teacher and faculty
 		Signup_done_btn.setVisible(true);
@@ -302,18 +350,39 @@ public class LoginSignupGUIController {
 				Signup_joincode.getStyleClass().add("text-field2");
 			}
 		}
+		}
+
+		catch(Exception e) {
+			System.out.println("excetpion occured");
+		}
 	}
 	@FXML
 	private Label AccCre;
 	@FXML
 	private void Signup_NEXT4() {
-		if(!Name.getText().equals("")) {
+		try {
+		if(!Name.getText().equals("") && Name.getText().matches("^[\\p{L} .'-]+$")) {
+			
+			HashMap<String,Integer> temp = Admin.deserializeJoinCodes();
+			temp.remove(joincode);
+			Admin.serializeJoinCode(temp);
+			user=new User(Name.getText().trim(), user.getPassword(), user.getEmail(), user.getUsertype());
 			if(Name.getStyleClass().contains("text-field2")) {
 				if(!Name.getStyleClass().contains("text-field1")) {
 					Name.getStyleClass().add("text-field1");
 				}
 				Name.getStyleClass().remove("text-field2");
 			}
+			if(Branch.isVisible()==true){
+				user=new Student(user.getName(), user.getPassword(), user.getEmail(), user.getUsertype(), Branch.getValue(), new ArrayList<String>());
+			}
+			else if(user.getUsertype().equals("Faculty")) {
+				user=new Faculty(user.getName(), user.getPassword(), user.getEmail(), user.getUsertype(), new ArrayList<String>());
+				}
+			else {
+				user=new Admin(user.getName(), user.getPassword(), user.getEmail(), user.getUsertype());
+			}
+			user.serialize();
 		Signup_TranslateRight();
 		AccCre.setVisible(true);
 		}
@@ -321,6 +390,10 @@ public class LoginSignupGUIController {
 			if(!Name.getStyleClass().contains("text-field2")) {
 				Name.getStyleClass().add("text-field2");
 			}
+		}
+		}
+		catch(Exception e) {
+			System.out.println("error");
 		}
 	}
 	@FXML
@@ -344,7 +417,14 @@ public class LoginSignupGUIController {
 		t.play();
 	}
 	@FXML
-	private void CleanLogin() {         //throw all login info collected so far
+	private void CleanLogin() {
+		//throw all login info collected so far
+		if(email!=null) {
+			email=null;
+		}
+		if(user!=null) {
+			user=null;
+		}
 		Login_email.setVisible(true);Login_email.clear();
 		Login_password.setVisible(false);Login_password.clear();
 		Login_email_btn.setVisible(true);;
@@ -359,6 +439,13 @@ public class LoginSignupGUIController {
 	}
 	@FXML
 	private void CleanSignup() {     //make sure to throw all signup information collected so
+		if(email!=null) {
+			email=null;
+		}
+		if(user!=null) {
+			user=null;
+		}
+		joincode=null;
 		Name.clear();					//far
 		Name.setVisible(false);
 		Name.getStyleClass().remove("text-field2");
