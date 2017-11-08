@@ -236,9 +236,11 @@ public class LoginSignupGUIController {
 					Login_password.getStyleClass().add("text-field1");
 				}
 			}
+			user.setActiveUser();
 			Login_password.clear();
 			Login_password.setTranslateY(0);
-			 Stage stage = (Stage) Login_password_btn.getScene().getWindow();
+			
+			Stage stage = (Stage) Login_password_btn.getScene().getWindow();
 			stage.close();
 		}
 		else {
