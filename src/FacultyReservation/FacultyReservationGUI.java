@@ -16,14 +16,19 @@ import java.io.File;
 public class FacultyReservationGUI extends Application {
 
     @Override
-    public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("FacultyReservation.fxml"));
-        File file = new File("./src/BookIT_icon.jpg");
-        primaryStage.getIcons().add(new Image(file.toURI().toString()));
-        primaryStage.setTitle("BookIT");
-        primaryStage.setResizable(false);
-        primaryStage.setScene(new Scene(root, 1920, 1000));
-        primaryStage.show();
+    public void start(Stage primaryStage){
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("FacultyReservation.fxml"));
+            File file = new File("./src/BookIT_icon.jpg");
+            primaryStage.getIcons().add(new Image(file.toURI().toString()));
+            primaryStage.setTitle("BookIT");
+            primaryStage.setResizable(false);
+            primaryStage.setScene(new Scene(root, 1920, 1000));
+            primaryStage.showAndWait();
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
     }
 
 }

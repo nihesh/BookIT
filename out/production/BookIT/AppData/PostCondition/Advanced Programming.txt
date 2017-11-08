@@ -1,0 +1,5 @@
+1: Able to demonstrate understanding of Java by implementing relatively large programs.    
+2: Able to discuss object oriented paradigm. 
+3: Able to analyze the problem in terms of use cases and create object oriented design for it.  Able to present the design in UML or other related tools. 
+4: Able to apply pattern oriented program design and implement using design patterns.    
+5: Able to carry out unit testing and test driven development.

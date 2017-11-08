@@ -12,38 +12,52 @@ import HelperClasses.Student;
 import HelperClasses.User;
 import LoginSignup.LoginSignupGUI;
 import StudentReservation.StudentReservationGUI;
+import javafx.application.Application;
+import javafx.application.Platform;
+import javafx.embed.swing.JFXPanel;
+import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.ObjectInputStream;
 
-public class BookIT {
-    public static void launchLoginGUI(){
-        javafx.application.Application.launch(LoginSignupGUI.class);
+public class BookIT extends Application{
+    public static void launchLoginGUI(Stage primaryStage){
+        LoginSignupGUI l = new LoginSignupGUI();
+        l.start(primaryStage);
     }
-    public static void reservationGUI(){
+    public static void reservationGUI(Stage primaryStage){
         User activeUser = User.getActiveUser();
         if(activeUser.getUsertype().equals("Student")){
-            javafx.application.Application.launch(StudentReservationGUI.class);
+            StudentReservationGUI student = new StudentReservationGUI();
+            student.start(primaryStage);
         }
         else if(activeUser.getUsertype().equals("Faculty")){
-            javafx.application.Application.launch(FacultyReservationGUI.class);
+            FacultyReservationGUI faculty = new FacultyReservationGUI();
+            faculty.start(primaryStage);
         }
         else{
-            javafx.application.Application.launch(StudentReservationGUI.class);
+            AdminReservationGUI admin = new AdminReservationGUI();
+            admin.start(primaryStage);
         }
     }
-    public static void main(String[] args){
+    public void start(Stage primaryStage){
         while(true) {
+            Stage stage = new Stage();
             File file = new File("./src/AppData/ActiveUser/ActiveUser.txt");
             if (!file.exists()) {
-                launchLoginGUI();
+                launchLoginGUI(stage);
+
             }
             file = new File("./src/AppData/ActiveUser/ActiveUser.txt");
             if(!file.exists()){
                 break;
             }
-            reservationGUI();
+            reservationGUI(stage);
+            break;                      // Change later
         }
+    }
+    public static void main(String[] args){
+        launch(args);
     }
 }

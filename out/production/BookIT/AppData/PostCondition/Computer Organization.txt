@@ -1,0 +1,4 @@
+1: Able to demonstrate basic computer organization and components of the computer. Role of system S/W's and CO. Design and Development of Reprogramable Computer. 
+2: Able to explain the  Design of the CPU:-  Instructions & its addressing modes, Floating point operations, design of ALU, data path, control unit, pipelining . RISC vs CISC & ARM architure and prog.
+3: Able to compare performance of cache memory, compare caches with different configuration, virtual memory and its techniques . Interrupts and its implemenation with in the application.
+4: Able to simulate and compare performance of cache memory, compare caches with different configulation
