@@ -4,6 +4,8 @@
 
 package StudentReservation;
 
+import HelperClasses.Student;
+import HelperClasses.User;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -21,7 +23,8 @@ public class StudentReservationGUI extends Application {
             Parent root = FXMLLoader.load(getClass().getResource("StudentReservation.fxml"));
             File file = new File("./src/BookIT_icon.jpg");
             primaryStage.getIcons().add(new Image(file.toURI().toString()));
-            primaryStage.setTitle("BookIT");
+            User activeUser = (User) User.getActiveUser();
+            primaryStage.setTitle("BookIT - "+activeUser.getEmail().getEmailID());
             primaryStage.setResizable(false);
             primaryStage.setScene(new Scene(root, 1920, 1000));
             primaryStage.showAndWait();

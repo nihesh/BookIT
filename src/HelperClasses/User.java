@@ -22,6 +22,8 @@ public class User implements Serializable{
 	}
 	public void setActiveUser() {
 		try{
+			File file=new File("./src/AppData/ActiveUser/ActiveUser.txt");
+			file.createNewFile();
             ObjectOutputStream out = null;
             try{
                 out = new ObjectOutputStream(new FileOutputStream("./src/AppData/ActiveUser/ActiveUser.txt", false));
@@ -117,15 +119,9 @@ public class User implements Serializable{
         }
 	}
 	public void logout() throws LoggedOutException{
-		try {
 		File file=new File("./src/AppData/ActiveUser/ActiveUser.txt");
 		file.delete();
-		file.createNewFile();
 		throw new LoggedOutException();
-		}
-		catch(IOException e) {
-			System.out.println("file not found");
-		}
 	}
 	public String getName() {
 		return Name;

@@ -47,14 +47,16 @@ public class BookIT extends Application{
             File file = new File("./src/AppData/ActiveUser/ActiveUser.txt");
             if (!file.exists()) {
                 launchLoginGUI(stage);
-
             }
             file = new File("./src/AppData/ActiveUser/ActiveUser.txt");
             if(!file.exists()){
                 break;
             }
             reservationGUI(stage);
-            break;                      // Change later
+            file = new File("./src/AppData/ActiveUser/ActiveUser.txt");
+            if(file.exists()){
+                break;
+            }
         }
     }
     public static void main(String[] args){

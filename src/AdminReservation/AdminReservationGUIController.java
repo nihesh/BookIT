@@ -23,6 +23,7 @@ import javafx.scene.control.*;
 import javafx.event.Event;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import javafx.util.Callback;
 import javafx.util.Duration;
 
@@ -311,7 +312,11 @@ public class AdminReservationGUIController implements Initializable{
     private void loadRequest(ArrayList<Reservation> requests){
         Reservation firstRequest = requests.get(0);
         AccRejCourseName.setText(firstRequest.getCourseName());
-        AccRejDate.setText(firstRequest.getTargetDate().toString());
+        String date = Integer.toString(firstRequest.getTargetDate().getDayOfMonth());
+        if(date.length()==1){
+            date = "0"+date;
+        }
+        AccRejDate.setText(date+"-"+firstRequest.getTargetDate().getMonthValue()+"-"+firstRequest.getTargetDate().getYear());
         AccRejVenue.setText(firstRequest.getVenueName());
         String group = firstRequest.getTopGroup();
         if(group.equals("")){
@@ -385,6 +390,15 @@ public class AdminReservationGUIController implements Initializable{
         }
         sequence.play();
     }
+    public void signout(){
+        try {
+            activeUser.logout();
+        }
+        catch (LoggedOutException l){
+            Stage stage = (Stage) mainPane.getScene().getWindow();
+            stage.close();
+        }
+    }
     public void hideRequests(){
         requestProcessing = false;
         SequentialTransition sequence = new SequentialTransition();
@@ -415,6 +429,7 @@ public class AdminReservationGUIController implements Initializable{
         Room r = Room.deserializeRoom(statusRoomID.getText());          // GUI-Helper Integration starts
         Reservation[] bookings = r.getSchedule(activeDate);
         if(bookings[Reservation.getSlotID(curLabel.getText())]!=null) {
+            cancelSlotBooking.setDisable(false);
             String facultyName="~~~~";
             if (!bookings[Reservation.getSlotID(curLabel.getText())].getFacultyEmail().equals("")){
                 Faculty f = (Faculty)User.getUser(bookings[Reservation.getSlotID(curLabel.getText())].getFacultyEmail());

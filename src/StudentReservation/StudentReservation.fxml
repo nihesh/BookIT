@@ -31,7 +31,7 @@
         <menus>
           <Menu mnemonicParsing="false" text="File">
             <items>
-              <MenuItem mnemonicParsing="false" text="Logout" />
+              <MenuItem mnemonicParsing="false" onAction="#signout" text="Logout" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Help">
@@ -1214,7 +1214,7 @@
                   </Label>
                </children>
             </StackPane>
-            <StackPane fx:id="pullDownPane" prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: #2a2a2a; visibility: true;">
+            <StackPane fx:id="pullDownPane" prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: #2a2a2a; visibility: false;">
                <StackPane.margin>
                   <Insets bottom="50.0" left="300.0" right="300.0" />
                </StackPane.margin>
@@ -1329,7 +1329,7 @@
                               <Font size="32.0" />
                            </font>
                         </Label>
-                        <Button fx:id="btn11" disable="true" mnemonicParsing="false" onMouseClicked="#showTTslotinfo" prefHeight="50.0" prefWidth="234.0" style="-fx-background-color: #424949;" stylesheets="@button.css" text="Free" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+                        <Button fx:id="btn11" disable="true" mnemonicParsing="false" prefHeight="50.0" prefWidth="234.0" style="-fx-background-color: #424949;" stylesheets="@button.css" text="Free" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
                            <GridPane.margin>
                               <Insets bottom="5.0" left="5.0" right="5.0" />
                            </GridPane.margin>
@@ -1340,7 +1340,7 @@
                               <Tooltip text="Click to view details about this slot" />
                            </tooltip>
                         </Button>
-                        <Button fx:id="btn21" mnemonicParsing="false" onMouseClicked="#showTTslotinfo" prefHeight="50.0" prefWidth="234.0" style="-fx-background-color: #424949;" stylesheets="@button.css" text="CSE121" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+                        <Button fx:id="btn21" disable="true" mnemonicParsing="false" prefHeight="50.0" prefWidth="234.0" style="-fx-background-color: #424949;" stylesheets="@button.css" text="Free" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
                            <font>
                               <Font size="21.0" />
                            </font>
@@ -1351,7 +1351,7 @@
                               <Tooltip text="Click to view details about this slot" />
                            </tooltip>
                         </Button>
-                        <Button fx:id="btn31" mnemonicParsing="false" onMouseClicked="#showTTslotinfo" prefHeight="50.0" prefWidth="234.0" style="-fx-background-color: #424949;" stylesheets="@button.css" text="CSE112" GridPane.columnIndex="2" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+                        <Button fx:id="btn31" disable="true" mnemonicParsing="false" prefHeight="50.0" prefWidth="234.0" style="-fx-background-color: #424949;" stylesheets="@button.css" text="Free" GridPane.columnIndex="2" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
                            <font>
                               <Font size="21.0" />
                            </font>
@@ -1362,7 +1362,7 @@
                               <Tooltip text="Click to view details about this slot" />
                            </tooltip>
                         </Button>
-                        <Button fx:id="btn41" disable="true" mnemonicParsing="false" onMouseClicked="#showTTslotinfo" prefHeight="50.0" prefWidth="234.0" style="-fx-background-color: #424949;" stylesheets="@button.css" text="Free" GridPane.columnIndex="3" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+                        <Button fx:id="btn41" disable="true" mnemonicParsing="false" prefHeight="50.0" prefWidth="234.0" style="-fx-background-color: #424949;" stylesheets="@button.css" text="Free" GridPane.columnIndex="3" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
                            <font>
                               <Font size="21.0" />
                            </font>
@@ -1373,7 +1373,7 @@
                               <Tooltip text="Click to view details about this slot" />
                            </tooltip>
                         </Button>
-                        <Button fx:id="btn51" disable="true" mnemonicParsing="false" onMouseClicked="#showTTslotinfo" prefHeight="50.0" prefWidth="234.0" style="-fx-background-color: #424949;" stylesheets="@button.css" text="Free" GridPane.columnIndex="4" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+                        <Button fx:id="btn51" disable="true" mnemonicParsing="false" prefHeight="50.0" prefWidth="234.0" style="-fx-background-color: #424949;" stylesheets="@button.css" text="Free" GridPane.columnIndex="4" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
                            <font>
                               <Font size="21.0" />
                            </font>
@@ -1384,7 +1384,7 @@
                               <Tooltip text="Click to view details about this slot" />
                            </tooltip>
                         </Button>
-                        <Button fx:id="btn61" disable="true" mnemonicParsing="false" onMouseClicked="#showTTslotinfo" prefHeight="50.0" prefWidth="234.0" style="-fx-background-color: #424949;" stylesheets="@button.css" text="Free" GridPane.columnIndex="5" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+                        <Button fx:id="btn61" disable="true" mnemonicParsing="false" prefHeight="50.0" prefWidth="234.0" style="-fx-background-color: #424949;" stylesheets="@button.css" text="Free" GridPane.columnIndex="5" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
                            <font>
                               <Font size="21.0" />
                            </font>
@@ -1395,7 +1395,7 @@
                               <Tooltip text="Click to view details about this slot" />
                            </tooltip>
                         </Button>
-                        <Button fx:id="btn71" disable="true" mnemonicParsing="false" onMouseClicked="#showTTslotinfo" prefHeight="50.0" prefWidth="234.0" style="-fx-background-color: #424949;" stylesheets="@button.css" text="Free" GridPane.columnIndex="6" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+                        <Button fx:id="btn71" disable="true" mnemonicParsing="false" prefHeight="50.0" prefWidth="234.0" style="-fx-background-color: #424949;" stylesheets="@button.css" text="Free" GridPane.columnIndex="6" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
                            <font>
                               <Font size="21.0" />
                            </font>
@@ -1406,7 +1406,7 @@
                               <Tooltip text="Click to view details about this slot" />
                            </tooltip>
                         </Button>
-                        <Button fx:id="btn81" disable="true" mnemonicParsing="false" onMouseClicked="#showTTslotinfo" prefHeight="50.0" prefWidth="234.0" style="-fx-background-color: #424949;" stylesheets="@button.css" text="Free" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
+                        <Button fx:id="btn81" disable="true" mnemonicParsing="false" prefHeight="50.0" prefWidth="234.0" style="-fx-background-color: #424949;" stylesheets="@button.css" text="Free" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
                            <font>
                               <Font size="21.0" />
                            </font>
@@ -1417,7 +1417,7 @@
                               <Tooltip text="Click to view details about this slot" />
                            </tooltip>
                         </Button>
-                        <Button fx:id="btn91" disable="true" mnemonicParsing="false" onMouseClicked="#showTTslotinfo" prefHeight="50.0" prefWidth="234.0" style="-fx-background-color: #424949;" stylesheets="@button.css" text="Free" GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
+                        <Button fx:id="btn91" disable="true" mnemonicParsing="false" prefHeight="50.0" prefWidth="234.0" style="-fx-background-color: #424949;" stylesheets="@button.css" text="Free" GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
                            <font>
                               <Font size="21.0" />
                            </font>
@@ -1428,7 +1428,7 @@
                               <Tooltip text="Click to view details about this slot" />
                            </tooltip>
                         </Button>
-                        <Button fx:id="btn101" disable="true" mnemonicParsing="false" onMouseClicked="#showTTslotinfo" prefHeight="50.0" prefWidth="234.0" style="-fx-background-color: #424949;" stylesheets="@button.css" text="Free" GridPane.columnIndex="2" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
+                        <Button fx:id="btn101" disable="true" mnemonicParsing="false" prefHeight="50.0" prefWidth="234.0" style="-fx-background-color: #424949;" stylesheets="@button.css" text="Free" GridPane.columnIndex="2" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
                            <font>
                               <Font size="21.0" />
                            </font>
@@ -1439,7 +1439,7 @@
                               <Tooltip text="Click to view details about this slot" />
                            </tooltip>
                         </Button>
-                        <Button fx:id="btn111" disable="true" mnemonicParsing="false" onMouseClicked="#showTTslotinfo" prefHeight="50.0" prefWidth="234.0" style="-fx-background-color: #424949;" stylesheets="@button.css" text="Free" GridPane.columnIndex="3" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
+                        <Button fx:id="btn111" disable="true" mnemonicParsing="false" prefHeight="50.0" prefWidth="234.0" style="-fx-background-color: #424949;" stylesheets="@button.css" text="Free" GridPane.columnIndex="3" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
                            <font>
                               <Font size="21.0" />
                            </font>
@@ -1450,7 +1450,7 @@
                               <Tooltip text="Click to view details about this slot" />
                            </tooltip>
                         </Button>
-                        <Button fx:id="btn121" disable="true" mnemonicParsing="false" onMouseClicked="#showTTslotinfo" prefHeight="50.0" prefWidth="234.0" style="-fx-background-color: #424949;" stylesheets="@button.css" text="Free" GridPane.columnIndex="4" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
+                        <Button fx:id="btn121" disable="true" mnemonicParsing="false" prefHeight="50.0" prefWidth="234.0" style="-fx-background-color: #424949;" stylesheets="@button.css" text="Free" GridPane.columnIndex="4" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
                            <font>
                               <Font size="21.0" />
                            </font>
@@ -1461,7 +1461,7 @@
                               <Tooltip text="Click to view details about this slot" />
                            </tooltip>
                         </Button>
-                        <Button fx:id="btn131" disable="true" mnemonicParsing="false" onMouseClicked="#showTTslotinfo" prefHeight="50.0" prefWidth="234.0" style="-fx-background-color: #424949;" stylesheets="@button.css" text="Free" GridPane.columnIndex="5" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
+                        <Button fx:id="btn131" disable="true" mnemonicParsing="false" prefHeight="50.0" prefWidth="234.0" style="-fx-background-color: #424949;" stylesheets="@button.css" text="Free" GridPane.columnIndex="5" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
                            <font>
                               <Font size="21.0" />
                            </font>
@@ -1472,7 +1472,7 @@
                               <Tooltip text="Click to view details about this slot" />
                            </tooltip>
                         </Button>
-                        <Button fx:id="btn141" disable="true" mnemonicParsing="false" onMouseClicked="#showTTslotinfo" prefHeight="50.0" prefWidth="234.0" style="-fx-background-color: #424949;" stylesheets="@button.css" text="Free" GridPane.columnIndex="6" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
+                        <Button fx:id="btn141" disable="true" mnemonicParsing="false" prefHeight="50.0" prefWidth="234.0" style="-fx-background-color: #424949;" stylesheets="@button.css" text="Free" GridPane.columnIndex="6" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
                            <font>
                               <Font size="21.0" />
                            </font>
@@ -1483,7 +1483,7 @@
                               <Tooltip text="Click to view details about this slot" />
                            </tooltip>
                         </Button>
-                        <Button fx:id="btn151" disable="true" mnemonicParsing="false" onMouseClicked="#showTTslotinfo" prefHeight="50.0" prefWidth="234.0" style="-fx-background-color: #424949;" stylesheets="@button.css" text="Free" GridPane.rowIndex="3" GridPane.valignment="BOTTOM">
+                        <Button fx:id="btn151" disable="true" mnemonicParsing="false" prefHeight="50.0" prefWidth="234.0" style="-fx-background-color: #424949;" stylesheets="@button.css" text="Free" GridPane.rowIndex="3" GridPane.valignment="BOTTOM">
                            <font>
                               <Font size="21.0" />
                            </font>
@@ -1494,7 +1494,7 @@
                               <Tooltip text="Click to view details about this slot" />
                            </tooltip>
                         </Button>
-                        <Button fx:id="btn161" disable="true" mnemonicParsing="false" onMouseClicked="#showTTslotinfo" prefHeight="50.0" prefWidth="234.0" style="-fx-background-color: #424949;" stylesheets="@button.css" text="Free" GridPane.columnIndex="1" GridPane.rowIndex="3" GridPane.valignment="BOTTOM">
+                        <Button fx:id="btn161" disable="true" mnemonicParsing="false" prefHeight="50.0" prefWidth="234.0" style="-fx-background-color: #424949;" stylesheets="@button.css" text="Free" GridPane.columnIndex="1" GridPane.rowIndex="3" GridPane.valignment="BOTTOM">
                            <font>
                               <Font size="21.0" />
                            </font>
@@ -1505,7 +1505,7 @@
                               <Tooltip text="Click to view details about this slot" />
                            </tooltip>
                         </Button>
-                        <Button fx:id="btn171" disable="true" mnemonicParsing="false" onMouseClicked="#showTTslotinfo" prefHeight="50.0" prefWidth="234.0" style="-fx-background-color: #424949;" stylesheets="@button.css" text="Free" GridPane.columnIndex="2" GridPane.rowIndex="3" GridPane.valignment="BOTTOM">
+                        <Button fx:id="btn171" disable="true" mnemonicParsing="false" prefHeight="50.0" prefWidth="234.0" style="-fx-background-color: #424949;" stylesheets="@button.css" text="Free" GridPane.columnIndex="2" GridPane.rowIndex="3" GridPane.valignment="BOTTOM">
                            <font>
                               <Font size="21.0" />
                            </font>
@@ -1516,7 +1516,7 @@
                               <Tooltip text="Click to view details about this slot" />
                            </tooltip>
                         </Button>
-                        <Button fx:id="btn181" disable="true" mnemonicParsing="false" onMouseClicked="#showTTslotinfo" prefHeight="50.0" prefWidth="234.0" style="-fx-background-color: #424949;" stylesheets="@button.css" text="Free" GridPane.columnIndex="3" GridPane.rowIndex="3" GridPane.valignment="BOTTOM">
+                        <Button fx:id="btn181" disable="true" mnemonicParsing="false" prefHeight="50.0" prefWidth="234.0" style="-fx-background-color: #424949;" stylesheets="@button.css" text="Free" GridPane.columnIndex="3" GridPane.rowIndex="3" GridPane.valignment="BOTTOM">
                            <font>
                               <Font size="21.0" />
                            </font>
@@ -1527,7 +1527,7 @@
                               <Tooltip text="Click to view details about this slot" />
                            </tooltip>
                         </Button>
-                        <Button fx:id="btn191" disable="true" mnemonicParsing="false" onMouseClicked="#showTTslotinfo" prefHeight="50.0" prefWidth="234.0" style="-fx-background-color: #424949;" stylesheets="@button.css" text="Free" GridPane.columnIndex="4" GridPane.rowIndex="3" GridPane.valignment="BOTTOM">
+                        <Button fx:id="btn191" disable="true" mnemonicParsing="false" prefHeight="50.0" prefWidth="234.0" style="-fx-background-color: #424949;" stylesheets="@button.css" text="Free" GridPane.columnIndex="4" GridPane.rowIndex="3" GridPane.valignment="BOTTOM">
                            <font>
                               <Font size="21.0" />
                            </font>
@@ -1538,7 +1538,7 @@
                               <Tooltip text="Click to view details about this slot" />
                            </tooltip>
                         </Button>
-                        <Button fx:id="btn201" disable="true" mnemonicParsing="false" onMouseClicked="#showTTslotinfo" prefHeight="50.0" prefWidth="234.0" style="-fx-background-color: #424949;" stylesheets="@button.css" text="Free" GridPane.columnIndex="5" GridPane.rowIndex="3" GridPane.valignment="BOTTOM">
+                        <Button fx:id="btn201" disable="true" mnemonicParsing="false" prefHeight="50.0" prefWidth="234.0" style="-fx-background-color: #424949;" stylesheets="@button.css" text="Free" GridPane.columnIndex="5" GridPane.rowIndex="3" GridPane.valignment="BOTTOM">
                            <font>
                               <Font size="21.0" />
                            </font>
@@ -1549,7 +1549,7 @@
                               <Tooltip text="Click to view details about this slot" />
                            </tooltip>
                         </Button>
-                        <Button fx:id="btn211" disable="true" mnemonicParsing="false" onMouseClicked="#showTTslotinfo" prefHeight="50.0" prefWidth="234.0" style="-fx-background-color: #424949;" stylesheets="@button.css" text="Free" GridPane.columnIndex="6" GridPane.rowIndex="3" GridPane.valignment="BOTTOM">
+                        <Button fx:id="btn211" disable="true" mnemonicParsing="false" prefHeight="50.0" prefWidth="234.0" style="-fx-background-color: #424949;" stylesheets="@button.css" text="Free" GridPane.columnIndex="6" GridPane.rowIndex="3" GridPane.valignment="BOTTOM">
                            <font>
                               <Font size="21.0" />
                            </font>
@@ -1560,7 +1560,7 @@
                               <Tooltip text="Click to view details about this slot" />
                            </tooltip>
                         </Button>
-                        <Button fx:id="btn221" disable="true" mnemonicParsing="false" onMouseClicked="#showTTslotinfo" prefHeight="50.0" prefWidth="234.0" style="-fx-background-color: #424949;" stylesheets="@button.css" text="Free" GridPane.rowIndex="4" GridPane.valignment="BOTTOM">
+                        <Button fx:id="btn221" disable="true" mnemonicParsing="false" prefHeight="50.0" prefWidth="234.0" style="-fx-background-color: #424949;" stylesheets="@button.css" text="Free" GridPane.rowIndex="4" GridPane.valignment="BOTTOM">
                            <font>
                               <Font size="21.0" />
                            </font>
@@ -1571,7 +1571,7 @@
                               <Tooltip text="Click to view details about this slot" />
                            </tooltip>
                         </Button>
-                        <Button fx:id="btn231" disable="true" mnemonicParsing="false" onMouseClicked="#showTTslotinfo" prefHeight="50.0" prefWidth="234.0" style="-fx-background-color: #424949;" stylesheets="@button.css" text="Free" GridPane.columnIndex="1" GridPane.rowIndex="4" GridPane.valignment="BOTTOM">
+                        <Button fx:id="btn231" disable="true" mnemonicParsing="false" prefHeight="50.0" prefWidth="234.0" style="-fx-background-color: #424949;" stylesheets="@button.css" text="Free" GridPane.columnIndex="1" GridPane.rowIndex="4" GridPane.valignment="BOTTOM">
                            <font>
                               <Font size="21.0" />
                            </font>
@@ -1582,7 +1582,7 @@
                               <Tooltip text="Click to view details about this slot" />
                            </tooltip>
                         </Button>
-                        <Button fx:id="btn241" disable="true" mnemonicParsing="false" onMouseClicked="#showTTslotinfo" prefHeight="50.0" prefWidth="234.0" style="-fx-background-color: #424949;" stylesheets="@button.css" text="Free" GridPane.columnIndex="2" GridPane.rowIndex="4" GridPane.valignment="BOTTOM">
+                        <Button fx:id="btn241" disable="true" mnemonicParsing="false" prefHeight="50.0" prefWidth="234.0" style="-fx-background-color: #424949;" stylesheets="@button.css" text="Free" GridPane.columnIndex="2" GridPane.rowIndex="4" GridPane.valignment="BOTTOM">
                            <font>
                               <Font size="21.0" />
                            </font>
@@ -1593,7 +1593,7 @@
                               <Tooltip text="Click to view details about this slot" />
                            </tooltip>
                         </Button>
-                        <Button fx:id="btn251" disable="true" mnemonicParsing="false" onMouseClicked="#showTTslotinfo" prefHeight="50.0" prefWidth="234.0" style="-fx-background-color: #424949;" stylesheets="@button.css" text="Free" GridPane.columnIndex="3" GridPane.rowIndex="4" GridPane.valignment="BOTTOM">
+                        <Button fx:id="btn251" disable="true" mnemonicParsing="false" prefHeight="50.0" prefWidth="234.0" style="-fx-background-color: #424949;" stylesheets="@button.css" text="Free" GridPane.columnIndex="3" GridPane.rowIndex="4" GridPane.valignment="BOTTOM">
                            <font>
                               <Font size="21.0" />
                            </font>
@@ -1604,7 +1604,7 @@
                               <Tooltip text="Click to view details about this slot" />
                            </tooltip>
                         </Button>
-                        <Button fx:id="btn261" disable="true" mnemonicParsing="false" onMouseClicked="#showTTslotinfo" prefHeight="50.0" prefWidth="234.0" style="-fx-background-color: #424949;" stylesheets="@button.css" text="Free" GridPane.columnIndex="4" GridPane.rowIndex="4" GridPane.valignment="BOTTOM">
+                        <Button fx:id="btn261" disable="true" mnemonicParsing="false" prefHeight="50.0" prefWidth="234.0" style="-fx-background-color: #424949;" stylesheets="@button.css" text="Free" GridPane.columnIndex="4" GridPane.rowIndex="4" GridPane.valignment="BOTTOM">
                            <font>
                               <Font size="21.0" />
                            </font>
@@ -1615,7 +1615,7 @@
                               <Tooltip text="Click to view details about this slot" />
                            </tooltip>
                         </Button>
-                        <Button fx:id="btn271" disable="true" mnemonicParsing="false" onMouseClicked="#showTTslotinfo" prefHeight="50.0" prefWidth="234.0" style="-fx-background-color: #424949;" stylesheets="@button.css" text="Free" GridPane.columnIndex="5" GridPane.rowIndex="4" GridPane.valignment="BOTTOM">
+                        <Button fx:id="btn271" disable="true" mnemonicParsing="false" prefHeight="50.0" prefWidth="234.0" style="-fx-background-color: #424949;" stylesheets="@button.css" text="Free" GridPane.columnIndex="5" GridPane.rowIndex="4" GridPane.valignment="BOTTOM">
                            <font>
                               <Font size="21.0" />
                            </font>
@@ -1626,7 +1626,7 @@
                               <Tooltip text="Click to view details about this slot" />
                            </tooltip>
                         </Button>
-                        <Button fx:id="btn281" disable="true" mnemonicParsing="false" onMouseClicked="#showTTslotinfo" prefHeight="50.0" prefWidth="234.0" style="-fx-background-color: #424949;" stylesheets="@button.css" text="Free" GridPane.columnIndex="6" GridPane.rowIndex="4" GridPane.valignment="BOTTOM">
+                        <Button fx:id="btn281" disable="true" mnemonicParsing="false" prefHeight="50.0" prefWidth="234.0" style="-fx-background-color: #424949;" stylesheets="@button.css" text="Free" GridPane.columnIndex="6" GridPane.rowIndex="4" GridPane.valignment="BOTTOM">
                            <font>
                               <Font size="21.0" />
                            </font>
@@ -1637,7 +1637,39 @@
                               <Tooltip text="Click to view details about this slot" />
                            </tooltip>
                         </Button>
-                        <Label alignment="CENTER" prefHeight="42.0" prefWidth="238.0" style="-fx-background-color: #B03A2E; -fx-border-color: white; -fx-border-width: 4;" text="0800AM - 0830AM" GridPane.rowIndex="1" GridPane.valignment="TOP">
+                        <fx:define>
+                           <ArrayList fx:id="courseSlotButtons">
+                              <fx:reference source="btn11" />
+                              <fx:reference source="btn21" />
+                              <fx:reference source="btn31" />
+                              <fx:reference source="btn41" />
+                              <fx:reference source="btn51" />
+                              <fx:reference source="btn61" />
+                              <fx:reference source="btn71" />
+                              <fx:reference source="btn81" />
+                              <fx:reference source="btn91" />
+                              <fx:reference source="btn101" />
+                              <fx:reference source="btn111" />
+                              <fx:reference source="btn121" />
+                              <fx:reference source="btn131" />
+                              <fx:reference source="btn141" />
+                              <fx:reference source="btn151" />
+                              <fx:reference source="btn161" />
+                              <fx:reference source="btn171" />
+                              <fx:reference source="btn181" />
+                              <fx:reference source="btn191" />
+                              <fx:reference source="btn201" />
+                              <fx:reference source="btn211" />
+                              <fx:reference source="btn221" />
+                              <fx:reference source="btn231" />
+                              <fx:reference source="btn241" />
+                              <fx:reference source="btn251" />
+                              <fx:reference source="btn261" />
+                              <fx:reference source="btn271" />
+                              <fx:reference source="btn281" />
+                           </ArrayList>
+                        </fx:define>
+                        <Label alignment="CENTER" onMouseClicked="#showCourseSlotInfo" prefHeight="42.0" prefWidth="238.0" style="-fx-background-color: #B03A2E; -fx-border-color: white; -fx-border-width: 4;" text="0800AM - 0830AM" GridPane.rowIndex="1" GridPane.valignment="TOP">
                            <GridPane.margin>
                               <Insets left="5.0" right="5.0" top="5.0" />
                            </GridPane.margin>
@@ -1645,7 +1677,7 @@
                               <Font name="System Bold" size="16.0" />
                            </font>
                         </Label>
-                        <Label alignment="CENTER" prefHeight="42.0" prefWidth="238.0" style="-fx-background-color: #B03A2E; -fx-border-color: white; -fx-border-width: 4;" text="0830AM - 0900AM" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="TOP">
+                        <Label alignment="CENTER" onMouseClicked="#showCourseSlotInfo" prefHeight="42.0" prefWidth="238.0" style="-fx-background-color: #B03A2E; -fx-border-color: white; -fx-border-width: 4;" text="0830AM - 0900AM" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="TOP">
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font>
@@ -1653,7 +1685,7 @@
                               <Insets left="5.0" right="5.0" top="5.0" />
                            </GridPane.margin>
                         </Label>
-                        <Label alignment="CENTER" prefHeight="42.0" prefWidth="238.0" style="-fx-background-color: #B03A2E; -fx-border-color: white; -fx-border-width: 4;" text="0900AM - 0930AM" GridPane.columnIndex="2" GridPane.rowIndex="1" GridPane.valignment="TOP">
+                        <Label alignment="CENTER" onMouseClicked="#showCourseSlotInfo" prefHeight="42.0" prefWidth="238.0" style="-fx-background-color: #B03A2E; -fx-border-color: white; -fx-border-width: 4;" text="0900AM - 0930AM" GridPane.columnIndex="2" GridPane.rowIndex="1" GridPane.valignment="TOP">
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font>
@@ -1661,7 +1693,7 @@
                               <Insets left="5.0" right="5.0" top="5.0" />
                            </GridPane.margin>
                         </Label>
-                        <Label alignment="CENTER" prefHeight="42.0" prefWidth="238.0" style="-fx-background-color: #B03A2E; -fx-border-color: white; -fx-border-width: 4;" text="0930AM - 1000AM" GridPane.columnIndex="3" GridPane.rowIndex="1" GridPane.valignment="TOP">
+                        <Label alignment="CENTER" onMouseClicked="#showCourseSlotInfo" prefHeight="42.0" prefWidth="238.0" style="-fx-background-color: #B03A2E; -fx-border-color: white; -fx-border-width: 4;" text="0930AM - 1000AM" GridPane.columnIndex="3" GridPane.rowIndex="1" GridPane.valignment="TOP">
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font>
@@ -1669,7 +1701,7 @@
                               <Insets left="5.0" right="5.0" top="5.0" />
                            </GridPane.margin>
                         </Label>
-                        <Label alignment="CENTER" prefHeight="42.0" prefWidth="238.0" style="-fx-background-color: #B03A2E; -fx-border-color: white; -fx-border-width: 4;" text="1000AM - 1030AM" GridPane.columnIndex="4" GridPane.rowIndex="1" GridPane.valignment="TOP">
+                        <Label alignment="CENTER" onMouseClicked="#showCourseSlotInfo" prefHeight="42.0" prefWidth="238.0" style="-fx-background-color: #B03A2E; -fx-border-color: white; -fx-border-width: 4;" text="1000AM - 1030AM" GridPane.columnIndex="4" GridPane.rowIndex="1" GridPane.valignment="TOP">
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font>
@@ -1677,7 +1709,7 @@
                               <Insets left="5.0" right="5.0" top="5.0" />
                            </GridPane.margin>
                         </Label>
-                        <Label alignment="CENTER" prefHeight="42.0" prefWidth="238.0" style="-fx-background-color: #B03A2E; -fx-border-color: white; -fx-border-width: 4;" text="1030AM - 1100AM" GridPane.columnIndex="5" GridPane.rowIndex="1" GridPane.valignment="TOP">
+                        <Label alignment="CENTER" onMouseClicked="#showCourseSlotInfo" prefHeight="42.0" prefWidth="238.0" style="-fx-background-color: #B03A2E; -fx-border-color: white; -fx-border-width: 4;" text="1030AM - 1100AM" GridPane.columnIndex="5" GridPane.rowIndex="1" GridPane.valignment="TOP">
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font>
@@ -1685,7 +1717,7 @@
                               <Insets left="5.0" right="5.0" top="5.0" />
                            </GridPane.margin>
                         </Label>
-                        <Label alignment="CENTER" prefHeight="42.0" prefWidth="238.0" style="-fx-background-color: #B03A2E; -fx-border-color: white; -fx-border-width: 4;" text="1100AM - 1130AM" GridPane.columnIndex="6" GridPane.rowIndex="1" GridPane.valignment="TOP">
+                        <Label alignment="CENTER" onMouseClicked="#showCourseSlotInfo" prefHeight="42.0" prefWidth="238.0" style="-fx-background-color: #B03A2E; -fx-border-color: white; -fx-border-width: 4;" text="1100AM - 1130AM" GridPane.columnIndex="6" GridPane.rowIndex="1" GridPane.valignment="TOP">
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font>
@@ -1693,7 +1725,7 @@
                               <Insets left="5.0" right="5.0" top="5.0" />
                            </GridPane.margin>
                         </Label>
-                        <Label alignment="CENTER" prefHeight="42.0" prefWidth="238.0" style="-fx-background-color: #B03A2E; -fx-border-color: white; -fx-border-width: 4;" text="1130AM - 1200PM" GridPane.rowIndex="2" GridPane.valignment="TOP">
+                        <Label alignment="CENTER" onMouseClicked="#showCourseSlotInfo" prefHeight="42.0" prefWidth="238.0" style="-fx-background-color: #B03A2E; -fx-border-color: white; -fx-border-width: 4;" text="1130AM - 1200PM" GridPane.rowIndex="2" GridPane.valignment="TOP">
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font>
@@ -1701,7 +1733,7 @@
                               <Insets left="5.0" right="5.0" top="5.0" />
                            </GridPane.margin>
                         </Label>
-                        <Label alignment="CENTER" prefHeight="42.0" prefWidth="238.0" style="-fx-background-color: #B03A2E; -fx-border-color: white; -fx-border-width: 4;" text="1200PM - 1230PM" GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.valignment="TOP">
+                        <Label alignment="CENTER" onMouseClicked="#showCourseSlotInfo" prefHeight="42.0" prefWidth="238.0" style="-fx-background-color: #B03A2E; -fx-border-color: white; -fx-border-width: 4;" text="1200PM - 1230PM" GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.valignment="TOP">
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font>
@@ -1709,7 +1741,7 @@
                               <Insets left="5.0" right="5.0" top="5.0" />
                            </GridPane.margin>
                         </Label>
-                        <Label alignment="CENTER" prefHeight="42.0" prefWidth="238.0" style="-fx-background-color: #B03A2E; -fx-border-color: white; -fx-border-width: 4;" text="1230PM - 0100PM" GridPane.columnIndex="2" GridPane.rowIndex="2" GridPane.valignment="TOP">
+                        <Label alignment="CENTER" onMouseClicked="#showCourseSlotInfo" prefHeight="42.0" prefWidth="238.0" style="-fx-background-color: #B03A2E; -fx-border-color: white; -fx-border-width: 4;" text="1230PM - 0100PM" GridPane.columnIndex="2" GridPane.rowIndex="2" GridPane.valignment="TOP">
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font>
@@ -1717,7 +1749,7 @@
                               <Insets left="5.0" right="5.0" top="5.0" />
                            </GridPane.margin>
                         </Label>
-                        <Label alignment="CENTER" prefHeight="42.0" prefWidth="238.0" style="-fx-background-color: #B03A2E; -fx-border-color: white; -fx-border-width: 4;" text="0100PM - 0130PM" GridPane.columnIndex="3" GridPane.rowIndex="2" GridPane.valignment="TOP">
+                        <Label alignment="CENTER" onMouseClicked="#showCourseSlotInfo" prefHeight="42.0" prefWidth="238.0" style="-fx-background-color: #B03A2E; -fx-border-color: white; -fx-border-width: 4;" text="0100PM - 0130PM" GridPane.columnIndex="3" GridPane.rowIndex="2" GridPane.valignment="TOP">
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font>
@@ -1725,7 +1757,7 @@
                               <Insets left="5.0" right="5.0" top="5.0" />
                            </GridPane.margin>
                         </Label>
-                        <Label alignment="CENTER" prefHeight="42.0" prefWidth="238.0" style="-fx-background-color: #B03A2E; -fx-border-color: white; -fx-border-width: 4;" text="0130PM - 0200PM" GridPane.columnIndex="4" GridPane.rowIndex="2" GridPane.valignment="TOP">
+                        <Label alignment="CENTER" onMouseClicked="#showCourseSlotInfo" prefHeight="42.0" prefWidth="238.0" style="-fx-background-color: #B03A2E; -fx-border-color: white; -fx-border-width: 4;" text="0130PM - 0200PM" GridPane.columnIndex="4" GridPane.rowIndex="2" GridPane.valignment="TOP">
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font>
@@ -1733,7 +1765,7 @@
                               <Insets left="5.0" right="5.0" top="5.0" />
                            </GridPane.margin>
                         </Label>
-                        <Label alignment="CENTER" prefHeight="42.0" prefWidth="238.0" style="-fx-background-color: #B03A2E; -fx-border-color: white; -fx-border-width: 4;" text="0200PM - 0230PM" GridPane.columnIndex="5" GridPane.rowIndex="2" GridPane.valignment="TOP">
+                        <Label alignment="CENTER" onMouseClicked="#showCourseSlotInfo" prefHeight="42.0" prefWidth="238.0" style="-fx-background-color: #B03A2E; -fx-border-color: white; -fx-border-width: 4;" text="0200PM - 0230PM" GridPane.columnIndex="5" GridPane.rowIndex="2" GridPane.valignment="TOP">
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font>
@@ -1741,7 +1773,7 @@
                               <Insets left="5.0" right="5.0" top="5.0" />
                            </GridPane.margin>
                         </Label>
-                        <Label alignment="CENTER" prefHeight="42.0" prefWidth="238.0" style="-fx-background-color: #B03A2E; -fx-border-color: white; -fx-border-width: 4;" text="0230PM - 0300PM" GridPane.columnIndex="6" GridPane.rowIndex="2" GridPane.valignment="TOP">
+                        <Label alignment="CENTER" onMouseClicked="#showCourseSlotInfo" prefHeight="42.0" prefWidth="238.0" style="-fx-background-color: #B03A2E; -fx-border-color: white; -fx-border-width: 4;" text="0230PM - 0300PM" GridPane.columnIndex="6" GridPane.rowIndex="2" GridPane.valignment="TOP">
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font>
@@ -1749,7 +1781,7 @@
                               <Insets left="5.0" right="5.0" top="5.0" />
                            </GridPane.margin>
                         </Label>
-                        <Label alignment="CENTER" prefHeight="42.0" prefWidth="238.0" style="-fx-background-color: #B03A2E; -fx-border-color: white; -fx-border-width: 4;" text="0300PM - 0330PM" GridPane.rowIndex="3" GridPane.valignment="TOP">
+                        <Label alignment="CENTER" onMouseClicked="#showCourseSlotInfo" prefHeight="42.0" prefWidth="238.0" style="-fx-background-color: #B03A2E; -fx-border-color: white; -fx-border-width: 4;" text="0300PM - 0330PM" GridPane.rowIndex="3" GridPane.valignment="TOP">
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font>
@@ -1757,7 +1789,7 @@
                               <Insets left="5.0" right="5.0" top="5.0" />
                            </GridPane.margin>
                         </Label>
-                        <Label alignment="CENTER" prefHeight="42.0" prefWidth="238.0" style="-fx-background-color: #B03A2E; -fx-border-color: white; -fx-border-width: 4;" text="0330PM - 0400PM" GridPane.columnIndex="1" GridPane.rowIndex="3" GridPane.valignment="TOP">
+                        <Label alignment="CENTER" onMouseClicked="#showCourseSlotInfo" prefHeight="42.0" prefWidth="238.0" style="-fx-background-color: #B03A2E; -fx-border-color: white; -fx-border-width: 4;" text="0330PM - 0400PM" GridPane.columnIndex="1" GridPane.rowIndex="3" GridPane.valignment="TOP">
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font>
@@ -1765,7 +1797,7 @@
                               <Insets left="5.0" right="5.0" top="5.0" />
                            </GridPane.margin>
                         </Label>
-                        <Label alignment="CENTER" prefHeight="42.0" prefWidth="238.0" style="-fx-background-color: #B03A2E; -fx-border-color: white; -fx-border-width: 4;" text="0400PM - 0430PM" GridPane.columnIndex="2" GridPane.rowIndex="3" GridPane.valignment="TOP">
+                        <Label alignment="CENTER" onMouseClicked="#showCourseSlotInfo" prefHeight="42.0" prefWidth="238.0" style="-fx-background-color: #B03A2E; -fx-border-color: white; -fx-border-width: 4;" text="0400PM - 0430PM" GridPane.columnIndex="2" GridPane.rowIndex="3" GridPane.valignment="TOP">
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font>
@@ -1773,7 +1805,7 @@
                               <Insets left="5.0" right="5.0" top="5.0" />
                            </GridPane.margin>
                         </Label>
-                        <Label alignment="CENTER" prefHeight="42.0" prefWidth="238.0" style="-fx-background-color: #B03A2E; -fx-border-color: white; -fx-border-width: 4;" text="0430PM - 0500PM" GridPane.columnIndex="3" GridPane.rowIndex="3" GridPane.valignment="TOP">
+                        <Label alignment="CENTER" onMouseClicked="#showCourseSlotInfo" prefHeight="42.0" prefWidth="238.0" style="-fx-background-color: #B03A2E; -fx-border-color: white; -fx-border-width: 4;" text="0430PM - 0500PM" GridPane.columnIndex="3" GridPane.rowIndex="3" GridPane.valignment="TOP">
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font>
@@ -1781,7 +1813,7 @@
                               <Insets left="5.0" right="5.0" top="5.0" />
                            </GridPane.margin>
                         </Label>
-                        <Label alignment="CENTER" prefHeight="42.0" prefWidth="238.0" style="-fx-background-color: #B03A2E; -fx-border-color: white; -fx-border-width: 4;" text="0500PM - 0530PM" GridPane.columnIndex="4" GridPane.rowIndex="3" GridPane.valignment="TOP">
+                        <Label alignment="CENTER" onMouseClicked="#showCourseSlotInfo" prefHeight="42.0" prefWidth="238.0" style="-fx-background-color: #B03A2E; -fx-border-color: white; -fx-border-width: 4;" text="0500PM - 0530PM" GridPane.columnIndex="4" GridPane.rowIndex="3" GridPane.valignment="TOP">
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font>
@@ -1789,7 +1821,7 @@
                               <Insets left="5.0" right="5.0" top="5.0" />
                            </GridPane.margin>
                         </Label>
-                        <Label alignment="CENTER" prefHeight="42.0" prefWidth="238.0" style="-fx-background-color: #B03A2E; -fx-border-color: white; -fx-border-width: 4;" text="0530PM - 0600PM" GridPane.columnIndex="5" GridPane.rowIndex="3" GridPane.valignment="TOP">
+                        <Label alignment="CENTER" onMouseClicked="#showCourseSlotInfo" prefHeight="42.0" prefWidth="238.0" style="-fx-background-color: #B03A2E; -fx-border-color: white; -fx-border-width: 4;" text="0530PM - 0600PM" GridPane.columnIndex="5" GridPane.rowIndex="3" GridPane.valignment="TOP">
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font>
@@ -1797,7 +1829,7 @@
                               <Insets left="5.0" right="5.0" top="5.0" />
                            </GridPane.margin>
                         </Label>
-                        <Label alignment="CENTER" prefHeight="42.0" prefWidth="238.0" style="-fx-background-color: #B03A2E; -fx-border-color: white; -fx-border-width: 4;" text="0600PM - 0630PM" GridPane.columnIndex="6" GridPane.rowIndex="3" GridPane.valignment="TOP">
+                        <Label alignment="CENTER" onMouseClicked="#showCourseSlotInfo" prefHeight="42.0" prefWidth="238.0" style="-fx-background-color: #B03A2E; -fx-border-color: white; -fx-border-width: 4;" text="0600PM - 0630PM" GridPane.columnIndex="6" GridPane.rowIndex="3" GridPane.valignment="TOP">
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font>
@@ -1805,7 +1837,7 @@
                               <Insets left="5.0" right="5.0" top="5.0" />
                            </GridPane.margin>
                         </Label>
-                        <Label alignment="CENTER" prefHeight="42.0" prefWidth="238.0" style="-fx-background-color: #B03A2E; -fx-border-color: white; -fx-border-width: 4;" text="0630PM - 0700PM" GridPane.rowIndex="4" GridPane.valignment="TOP">
+                        <Label alignment="CENTER" onMouseClicked="#showCourseSlotInfo" prefHeight="42.0" prefWidth="238.0" style="-fx-background-color: #B03A2E; -fx-border-color: white; -fx-border-width: 4;" text="0630PM - 0700PM" GridPane.rowIndex="4" GridPane.valignment="TOP">
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font>
@@ -1813,7 +1845,7 @@
                               <Insets left="5.0" right="5.0" top="5.0" />
                            </GridPane.margin>
                         </Label>
-                        <Label alignment="CENTER" prefHeight="42.0" prefWidth="238.0" style="-fx-background-color: #B03A2E; -fx-border-color: white; -fx-border-width: 4;" text="0700PM - 0730PM" GridPane.columnIndex="1" GridPane.rowIndex="4" GridPane.valignment="TOP">
+                        <Label alignment="CENTER" onMouseClicked="#showCourseSlotInfo" prefHeight="42.0" prefWidth="238.0" style="-fx-background-color: #B03A2E; -fx-border-color: white; -fx-border-width: 4;" text="0700PM - 0730PM" GridPane.columnIndex="1" GridPane.rowIndex="4" GridPane.valignment="TOP">
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font>
@@ -1821,7 +1853,7 @@
                               <Insets left="5.0" right="5.0" top="5.0" />
                            </GridPane.margin>
                         </Label>
-                        <Label alignment="CENTER" prefHeight="42.0" prefWidth="238.0" style="-fx-background-color: #B03A2E; -fx-border-color: white; -fx-border-width: 4;" text="0730PM - 0800PM" GridPane.columnIndex="2" GridPane.rowIndex="4" GridPane.valignment="TOP">
+                        <Label alignment="CENTER" onMouseClicked="#showCourseSlotInfo" prefHeight="42.0" prefWidth="238.0" style="-fx-background-color: #B03A2E; -fx-border-color: white; -fx-border-width: 4;" text="0730PM - 0800PM" GridPane.columnIndex="2" GridPane.rowIndex="4" GridPane.valignment="TOP">
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font>
@@ -1829,7 +1861,7 @@
                               <Insets left="5.0" right="5.0" top="5.0" />
                            </GridPane.margin>
                         </Label>
-                        <Label alignment="CENTER" prefHeight="42.0" prefWidth="238.0" style="-fx-background-color: #B03A2E; -fx-border-color: white; -fx-border-width: 4;" text="0800PM - 0830PM" GridPane.columnIndex="3" GridPane.rowIndex="4" GridPane.valignment="TOP">
+                        <Label alignment="CENTER" onMouseClicked="#showCourseSlotInfo" prefHeight="42.0" prefWidth="238.0" style="-fx-background-color: #B03A2E; -fx-border-color: white; -fx-border-width: 4;" text="0800PM - 0830PM" GridPane.columnIndex="3" GridPane.rowIndex="4" GridPane.valignment="TOP">
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font>
@@ -1837,7 +1869,7 @@
                               <Insets left="5.0" right="5.0" top="5.0" />
                            </GridPane.margin>
                         </Label>
-                        <Label alignment="CENTER" prefHeight="42.0" prefWidth="238.0" style="-fx-background-color: #B03A2E; -fx-border-color: white; -fx-border-width: 4;" text="0830PM - 0900PM" GridPane.columnIndex="4" GridPane.rowIndex="4" GridPane.valignment="TOP">
+                        <Label alignment="CENTER" onMouseClicked="#showCourseSlotInfo" prefHeight="42.0" prefWidth="238.0" style="-fx-background-color: #B03A2E; -fx-border-color: white; -fx-border-width: 4;" text="0830PM - 0900PM" GridPane.columnIndex="4" GridPane.rowIndex="4" GridPane.valignment="TOP">
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font>
@@ -1845,7 +1877,7 @@
                               <Insets left="5.0" right="5.0" top="5.0" />
                            </GridPane.margin>
                         </Label>
-                        <Label alignment="CENTER" prefHeight="42.0" prefWidth="238.0" style="-fx-background-color: #B03A2E; -fx-border-color: white; -fx-border-width: 4;" text="0900PM - 0930PM" GridPane.columnIndex="5" GridPane.rowIndex="4" GridPane.valignment="TOP">
+                        <Label alignment="CENTER" onMouseClicked="#showCourseSlotInfo" prefHeight="42.0" prefWidth="238.0" style="-fx-background-color: #B03A2E; -fx-border-color: white; -fx-border-width: 4;" text="0900PM - 0930PM" GridPane.columnIndex="5" GridPane.rowIndex="4" GridPane.valignment="TOP">
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font>
@@ -1853,7 +1885,7 @@
                               <Insets left="5.0" right="5.0" top="5.0" />
                            </GridPane.margin>
                         </Label>
-                        <Label alignment="CENTER" prefHeight="42.0" prefWidth="238.0" style="-fx-background-color: #B03A2E; -fx-border-color: white; -fx-border-width: 4;" text="0930PM - 1000PM" GridPane.columnIndex="6" GridPane.rowIndex="4" GridPane.valignment="TOP">
+                        <Label alignment="CENTER" onMouseClicked="#showCourseSlotInfo" prefHeight="42.0" prefWidth="238.0" style="-fx-background-color: #B03A2E; -fx-border-color: white; -fx-border-width: 4;" text="0930PM - 1000PM" GridPane.columnIndex="6" GridPane.rowIndex="4" GridPane.valignment="TOP">
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font>

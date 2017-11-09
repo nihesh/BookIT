@@ -19,6 +19,7 @@ import javafx.scene.layout.*;
 import javafx.scene.control.*;
 import javafx.event.Event;
 import javafx.scene.text.Font;
+import javafx.stage.Stage;
 import javafx.util.Callback;
 import javafx.util.Duration;
 
@@ -276,6 +277,15 @@ public class FacultyReservationGUIController implements Initializable{
             i++;
         }
         myCoursesScrollPane.setPrefSize(543,max(170,34*i));
+    }
+    public void signout(){
+        try {
+            activeUser.logout();
+        }
+        catch (LoggedOutException l){
+            Stage stage = (Stage) mainPane.getScene().getWindow();
+            stage.close();
+        }
     }
     public void showSlotInfo(Event e){
         slotInfoPane.setVisible(true);

@@ -25,8 +25,7 @@ public class Reservation implements java.io.Serializable{
         this.slotID = slotID;
         this.message = new ArrayList<String>();
         this.type = type;
-        if(!Message.equals(""))
-            this.message.add(Message);
+        this.message.add(Message);
         this.course = course;
         this.facultyEmail = facultyEmail;
         this.room = room;
@@ -35,6 +34,14 @@ public class Reservation implements java.io.Serializable{
         this.groupVenue = new ArrayList<String>();
         this.groups.add(group);
         this.groupVenue.add(room);
+    }
+    public String getMessageWithoutVenue(){
+        if(message.size()!=0){
+            return message.get(0);
+        }
+        else{
+            return "";
+        }
     }
     public void setReserverEmail(String email){
         this.reserverEmail = email;

@@ -126,7 +126,7 @@ public class Course implements java.io.Serializable{
         else{
             if(Schedule.get(date)[slot].getCourseName().equals(r.getCourseName())){
                 r.setTargetDate(date);
-                Schedule.get(date)[slot].addGroup(r.getTopGroup(),r.getVenueName(),r.getMessage());
+                Schedule.get(date)[slot].addGroup(r.getTopGroup(),r.getVenueName(),r.getMessageWithoutVenue());
                 if(serialize)
                     serialize();
                 return true;

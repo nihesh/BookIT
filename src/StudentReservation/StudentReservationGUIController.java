@@ -20,6 +20,7 @@ import javafx.scene.layout.*;
 import javafx.scene.control.*;
 import javafx.event.Event;
 import javafx.scene.text.Font;
+import javafx.stage.Stage;
 import javafx.util.Callback;
 import javafx.util.Duration;
 
@@ -54,7 +55,7 @@ public class StudentReservationGUIController implements Initializable{
     @FXML
     private ImageView classStatusBG, slotStatusBG, changePasswordBG, addCoursesBG,listCoursesBG;
     @FXML
-    private Label statusRoomID, slotInfo,statusClassSize, statusFreeSlots;
+    private Label statusRoomID, slotInfo,statusClassSize, statusFreeSlots, dateLabel;
     @FXML
     private StackPane topPane,leftPane,rightPane,mainPane, fetchCoursesPane, TimeTablePane, TTinfoPane;
     @FXML
@@ -68,7 +69,7 @@ public class StudentReservationGUIController implements Initializable{
     @FXML
     private Label curDate,curMon,curYear;
     @FXML
-    private ArrayList<Button> slotButtons;
+    private ArrayList<Button> slotButtons, courseSlotButtons;
     @FXML
     private Label slotInfoCourse, slotInfoMessage, slotInfoFaculty,batchLabel;
     @FXML
@@ -128,6 +129,15 @@ public class StudentReservationGUIController implements Initializable{
         setDate(activeDate);
         loadCourses();
     }
+    public void signout(){
+        try {
+            activeUser.logout();
+        }
+        catch (LoggedOutException l){
+            Stage stage = (Stage) mainPane.getScene().getWindow();
+            stage.close();
+        }
+    }
     public void openCoursesList(){
         courseLabels.clear();
         String keyword = courseKeywordSearch.getText();
@@ -182,25 +192,58 @@ public class StudentReservationGUIController implements Initializable{
     public void OpenTimeTable(){
         timetableprocessing = true;
         TimeTablePane.setVisible(true);
+        ArrayList<String> myCourses = activeUser.getMyCourses();
+        ArrayList<Course> courseObjects = new ArrayList<>();
         FadeTransition appear = new FadeTransition(Duration.millis(1000), TimeTablePane);
         appear.setFromValue(0);
         appear.setToValue(1);
         appear.play();
+        for(int i=0;i<myCourses.size();i++){
+            courseObjects.add(Course.deserializeCourse(myCourses.get(i)));
+        }
+        Reservation[] listOfReservations = new Reservation[30];
+        String date = Integer.toString(activeDate.getDayOfMonth());
+        if(date.length() == 1){
+            date="0"+date;
+        }
+        dateLabel.setText(date+"-"+activeDate.getMonthValue()+"-"+activeDate.getYear());
+        dateLabel.setFont(new Font(24));
+        for(int j=0;j<28;j++) {
+            listOfReservations[j] = null;
+            for (int i = 0; i < courseObjects.size(); i++) {
+                Course c = courseObjects.get(i);
+                if (c.getSchedule(activeDate)[j] != null) {
+                    if (listOfReservations[j] == null) {
+                        listOfReservations[j] = c.getSchedule(activeDate)[j];
+                    }
+                    else if (c.getSchedule(activeDate)[j].getType().equals("Lecture")) {
+                        listOfReservations[j] = c.getSchedule(activeDate)[j];
+                    }
+                    else if (!listOfReservations[j].getType().equals("Lecture") && c.getSchedule(activeDate)[j].getType().equals("Lab")) {
+                        listOfReservations[j] = c.getSchedule(activeDate)[j];
+                    }
+                }
+            }
+        }
+        for(int i=0;i<courseSlotButtons.size();i++){
+            if(listOfReservations[i] != null){
+                courseSlotButtons.get(i).setDisable(false);
+                Course c = Course.deserializeCourse(listOfReservations[i].getCourseName());
+                courseSlotButtons.get(i).setText(c.getAcronym());
+            }
+            else{
+                courseSlotButtons.get(i).setDisable(true);
+                courseSlotButtons.get(i).setText("Free");
+            }
+        }
         rightPane.setDisable(true);
         leftPane.setDisable(true);
         roomGridPane.setDisable(true);
     }
-    public void showTTslotinfo(Event action){
-        hideLogo();
-        TTinfoPane.setVisible(true);
-        Button current = (Button) action.getSource();
-        String id = current.getId();
-        String slotDuration = getReserveButtonInfo(id.substring(0,id.length()-1));
-        slotTTinfo.setText(slotDuration+" | Cxx");
-    }
     public void CloseTimeTable(){
         timetableprocessing = false;
         showLogo();
+        slotInfoPane.setVisible(false);
         FadeTransition appear = new FadeTransition(Duration.millis(1000), TimeTablePane);
         appear.setFromValue(1);
         appear.setToValue(0);
@@ -393,6 +436,43 @@ public class StudentReservationGUIController implements Initializable{
         }
         myCoursesScrollPane.setPrefSize(543,max(170,34*i));
     }
+    public void showCourseSlotInfo(Event e){
+        hideLogo();
+        slotInfoPane.setVisible(true);
+        Label curLabel = (Label) e.getSource();
+        slotInfo.setText(curLabel.getText());
+        ArrayList<String> myCourses = activeUser.getMyCourses();
+        Reservation r = null;
+        for(int i=0;i<myCourses.size();i++){
+            Course c = Course.deserializeCourse(myCourses.get(i));
+            if(c.getSchedule(activeDate)[Reservation.getSlotID(curLabel.getText())]!=null){
+                if(r == null){
+                    r = c.getSchedule(activeDate)[Reservation.getSlotID(curLabel.getText())];
+                }
+                else if(c.getSchedule(activeDate)[Reservation.getSlotID(curLabel.getText())].getType().equals("Lecture")){
+                    r = c.getSchedule(activeDate)[Reservation.getSlotID(curLabel.getText())];
+                }
+                else if(!r.getType().equals("Lecture") && c.getSchedule(activeDate)[Reservation.getSlotID(curLabel.getText())].getType().equals("Lab")){
+                    r = c.getSchedule(activeDate)[Reservation.getSlotID(curLabel.getText())];
+                }
+            }
+        }
+        if(r!=null) {
+            Course c = Course.deserializeCourse(r.getCourseName());
+            String facultyEmail = c.getInstructorEmail();
+            if(facultyEmail.equals("")){
+                facultyEmail="~~~~";
+            }
+            slotInfoFaculty.setText(facultyEmail);
+            slotInfoCourse.setText(r.getCourseName());
+            slotInfoMessage.setText(r.getMessage());
+        }
+        else{
+            slotInfoFaculty.setText("N/A");
+            slotInfoCourse.setText("N/A");
+            slotInfoMessage.setText("N/A");
+        }                                                               // GUI-Helper Integration ends
+    }
     public void showSlotInfo(Event e){
         slotInfoPane.setVisible(true);
         Label curLabel = (Label) e.getSource();
@@ -400,7 +480,12 @@ public class StudentReservationGUIController implements Initializable{
         Room r = Room.deserializeRoom(statusRoomID.getText());          // GUI-Helper Integration starts
         Reservation[] bookings = r.getSchedule(activeDate);
         if(bookings[Reservation.getSlotID(curLabel.getText())]!=null) {
-            slotInfoFaculty.setText("~~~~");                // To be implemented
+            Course c = Course.deserializeCourse(bookings[Reservation.getSlotID(curLabel.getText())].getCourseName());
+            String facultyEmail = c.getInstructorEmail();
+            if(facultyEmail.equals("")){
+                facultyEmail="~~~~";
+            }
+            slotInfoFaculty.setText(facultyEmail);
             slotInfoCourse.setText(bookings[Reservation.getSlotID(curLabel.getText())].getCourseName());
             slotInfoMessage.setText(bookings[Reservation.getSlotID(curLabel.getText())].getMessage());
         }
