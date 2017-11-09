@@ -37,6 +37,7 @@ public class Course implements java.io.Serializable{
             }
         }
     }
+   
     public Course(String name, String instructorEmail, ArrayList<String> postCondition, HashMap<LocalDate, Reservation[]> Schedule, String acronym){
         this.name = name;
         this.instructorEmail = instructorEmail;
@@ -160,4 +161,5 @@ public class Course implements java.io.Serializable{
         }
         serialize();
     }
+    
 }

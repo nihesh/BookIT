@@ -55,6 +55,28 @@ public class setup {
         }
         return listOfSlots;
     }
+    public static ArrayList<String> fillPostConditions(String CourseName){
+    	ArrayList<String> temp=new ArrayList<>();
+    	try {
+			BufferedReader x=new BufferedReader(new FileReader("src/AppData/PostCondition/"+CourseName+".txt"));
+			String t;
+			try {
+				t = x.readLine();
+				while(t!=null) {
+					temp.add(t);
+					t=x.readLine();
+			}} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			x.close();
+			
+    	} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return temp;
+    }
     public static void loadRoomAndCourseObjects() throws IOException,FileNotFoundException{
         Scanner file = new Scanner(new FileReader("./src/AppData/StaticTimeTable/TimeTable.csv"));
         HashMap<String, Room > roomData = new HashMap<String, Room >();
@@ -80,7 +102,7 @@ public class setup {
                 continue;
             }
             if(!courseData.containsKey(name)){
-                ArrayList<String> postCondition = new ArrayList<String>();          // Fill this
+                ArrayList<String> postCondition = fillPostConditions(name); 
                 HashMap<LocalDate, Reservation[]> Schedule = new HashMap<LocalDate, Reservation[]>();
                 LocalDate currentDate = StartDate;
                 LocalDate endDate = EndDate;
@@ -186,10 +208,11 @@ public class setup {
             }
         }
     }
+    
     public static void main(String[] args)throws IOException,FileNotFoundException, ClassNotFoundException {
-//        loadRoomAndCourseObjects();                    // Creates Room and Course Objects for all rooms and courses in AppData. This should be used for initialisation only
+    loadRoomAndCourseObjects();                    // Creates Room and Course Objects for all rooms and courses in AppData. This should be used for initialisation only
 //        createFirstAdmin();
-//        createFirstStudent();
+        createFirstStudent();
 //        createFirstFaculty();
 //        serialiseEmptyPriorityQueue();
 //        serialiseEmptyJoinCodeMap();

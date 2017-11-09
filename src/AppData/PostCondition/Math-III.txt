@@ -1,4 +1,4 @@
-1: Able to apply concepts of continuity, differentiability, extrema and integrability of multivariable functions and evaluate various integrals (line, double, triple and surface integrals).	
-2: Able to work with vector fields, evaluate line and surface integrals, calculate quantities such as work, circulation and flux across plane curves and surfaces, be able to carry out vector derivative operations such as gradient, divergence and curl and understand and apply Green's, Stoke's and divergence  theorems.
-3: Able to evaluate derivatives and integrals of complex functions, including the applications of Cauchy’s theorem.
-4: Able to determine convergence of complex series and power series and understand and apply Taylor series to represent complex functions.
+Students are able to apply concepts of continuity, differentiability, extrema and integrability of multivariable functions and evaluate various integrals (line, double, triple and surface integrals).Students are able to work with vector fields, evaluate line
+and surface integrals, calculate quantities such as work,circulation and flux across plane curves and surfaces, be able to carry out vector derivative operations such as gradient, divergence and curl and understand and apply Green's, Stoke's and divergence  theorems.Students are able to evaluate
+derivatives and integrals of complex functions, including the applications of Cauchy’s theorem.Students are able to determine convergence of complex series and power series and understand and apply Taylor series to represent complex
+functions.

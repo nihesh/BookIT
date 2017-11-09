@@ -35,11 +35,11 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 public class LoginSignupGUIController {
-	double initOpacity=0.84;
-	int Signup_TransX=570;
-	Email email;
-	String joincode;
-	User user;
+	private double initOpacity=0.84;
+	private int Signup_TransX=570;
+	private Email email;
+	private String joincode;
+	private User user;
 	@FXML
 		private ComboBox<String> Branch;
 	@FXML

@@ -1,5 +1,5 @@
-1: Able to demonstrate understanding of Java by implementing relatively large programs.    
-2: Able to discuss object oriented paradigm. 
-3: Able to analyze the problem in terms of use cases and create object oriented design for it.  Able to present the design in UML or other related tools. 
-4: Able to apply pattern oriented program design and implement using design patterns.    
-5: Able to carry out unit testing and test driven development.
+Students are able to demonstrate the knowledge of basic principles of Object Oriented Programming such as encapsulation (classes and objects), interfaces, polymorphism and inheritance; by implementing programs ranging over few hundreds lines of code.
+Implement basic event driven programming, exception handling, and threading. 
+Students are able to analyze the problem in terms of use cases and create object oriented design for it. Students are able to present the design in UML.
+Students are able to select and use a few key design pattern to solve a given problem in hand.
+Students are able to use common tools for testing (e.g., JUnit), debugging, and source code control as an integral part of program development.
