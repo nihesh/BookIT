@@ -219,6 +219,7 @@ public class Admin extends User{
 				break;
 			}
 			}
+			serializeRequestsQueue(p);
 			if(r!=null) {
 				for (Reservation reservation : r) {
 					temp.addReservation(r.get(0).getTargetDate(), reservation.getReservationSlot(), reservation, true);
