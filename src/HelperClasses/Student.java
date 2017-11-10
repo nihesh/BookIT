@@ -62,7 +62,7 @@ public class Student extends User{
 			String courseName = courseFiles[i].getName().substring(0,courseFiles[i].getName().length()-4);
 			Course temp=Course.deserializeCourse(courseName);
 			int match=temp.keyMatch(keyword);
-			if(match >= 0) {
+			if(match > 0) {
 				arr.get(match).add(courseFiles[i].getName().substring(0,courseFiles[i].getName().length()-4));
 			}
 		}
