@@ -28,6 +28,11 @@ public class Faculty extends User{
 		}
 		return mails;
 	}
+	public void addCourse(String course){
+		myCourses.add(course);
+		serialize();
+		this.setActiveUser();
+	}
 	public boolean cancelBooking(LocalDate queryDate,int slotID, String RoomID) {
 		Room temp=Room.deserializeRoom(RoomID);
 		Reservation r=temp.getSchedule(queryDate)[slotID];

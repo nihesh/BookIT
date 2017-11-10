@@ -53,7 +53,8 @@ public class Reservation implements java.io.Serializable{
         return this.reserverEmail;
     }
     public String getFacultyEmail(){
-        return this.facultyEmail;
+        Course c = Course.deserializeCourse(this.course);
+        return c.getInstructorEmail();
     }
     public int getReservationSlot(){
         return this.slotID;

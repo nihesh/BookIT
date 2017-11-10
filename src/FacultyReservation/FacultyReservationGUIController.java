@@ -44,13 +44,13 @@ public class FacultyReservationGUIController implements Initializable{
     @FXML
     private Button BookBtn;
     @FXML
-    private ImageView logo;
+    private ImageView logo, listCoursesBG;
     @FXML
     private StackPane pullDownPane;
     @FXML
     private StackPane roomGridPane;
     @FXML
-    private StackPane classStatus, slotInfoPane, changePasswordPane;
+    private StackPane classStatus, slotInfoPane, changePasswordPane, listCoursesPane;
     @FXML
     private ImageView classStatusBG, slotStatusBG, changePasswordBG, cancelSlotBookingImage;
     @FXML
@@ -58,7 +58,7 @@ public class FacultyReservationGUIController implements Initializable{
     @FXML
     private StackPane topPane,leftPane,rightPane,mainPane;
     @FXML
-    private AnchorPane selectedSlotsScrollPane, myCoursesScrollPane;
+    private AnchorPane selectedSlotsScrollPane, myCoursesScrollPane, shortlistedCourses;
    @FXML
     private Label error1;
     @FXML
@@ -81,13 +81,16 @@ public class FacultyReservationGUIController implements Initializable{
     private HashMap<Button,Integer> selection = new HashMap<Button,Integer>();
     private Boolean isActiveReservation, changepassProcessing;
     private Faculty activeUser;
+    private Boolean listCoursesProcessing;
     private Event classEvent;
     private String currentlyShowingSlot;
     private String activeRoom;
     private ArrayList<Integer> chosenSlots;
+    private ArrayList<CheckBox> courseLabels = new ArrayList<>();
     @Override
     public void initialize(URL location, ResourceBundle resources){
         activeUser = (Faculty) User.getActiveUser();
+        listCoursesProcessing = false;
         isActiveReservation = false;
         changepassProcessing = false;
         File file = new File("./src/BookIT_logo.jpg");
@@ -118,11 +121,75 @@ public class FacultyReservationGUIController implements Initializable{
         datePicker.setDayCellFactory(dayCellFactory);
         datePicker.setValue(LocalDate.now());
         activeDate=LocalDate.now();
+        listCoursesBG.setImage(image);
         setDate(activeDate);
         file = new File("./src/AdminReservation/cancel.png");
         image = new Image(file.toURI().toString());
         cancelSlotBookingImage.setImage(image);
         loadCourses();
+    }
+    public void openCoursesList(){
+        courseLabels.clear();
+        ArrayList<String> items = new ArrayList<>();
+        ArrayList<String> allCourses = Course.getAllCourses();
+        for(int i=0;i<allCourses.size();i++){
+            Course c = Course.deserializeCourse(allCourses.get(i));
+            if(c.getInstructorEmail().equals("")){
+                items.add(allCourses.get(i));
+            }
+        }
+        int i=0;
+        while(i<items.size()){
+            courseLabels.add(new CheckBox());
+            courseLabels.get(i).setText(items.get(i));
+            courseLabels.get(i).setPrefSize(578, 35);
+            courseLabels.get(i).setAlignment(Pos.CENTER);
+            courseLabels.get(i).setTranslateY(i*35);
+            courseLabels.get(i).setStyle("-fx-background-color: #229954; -fx-border-color:  white; -fx-border-width:2");
+            courseLabels.get(i).setFont(new Font(16));
+            shortlistedCourses.getChildren().add(courseLabels.get(i));
+            i++;
+        }
+        shortlistedCourses.setPrefSize(578,max(235,34*i));
+        listCoursesProcessing = true;
+        hideLogo();
+        listCoursesPane.setVisible(true);
+        leftPane.setDisable(true);
+        rightPane.setDisable(true);
+        mainPane.setDisable(true);
+        FadeTransition appear = new FadeTransition(Duration.millis(1000), listCoursesPane);
+        appear.setFromValue(0);
+        appear.setToValue(1);
+        appear.play();
+    }
+    public void closeCoursesList(){
+        ArrayList<String> selectedCourses = new ArrayList<>();
+        for(int i=0;i<courseLabels.size();i++){
+            if(courseLabels.get(i).isSelected()){
+                selectedCourses.add(courseLabels.get(i).getText());
+            }
+        }
+        for(int i=0;i<selectedCourses.size();i++){
+            activeUser.addCourse(selectedCourses.get(i));
+            Course c = Course.deserializeCourse(selectedCourses.get(i));
+            c.setInstructor(activeUser.getEmail().getEmailID());
+        }
+        loadCourses();
+        leftPane.setDisable(false);
+        rightPane.setDisable(false);
+        mainPane.setDisable(false);
+        listCoursesProcessing = false;
+        listCoursesPane.setVisible(false);
+        showLogo();
+    }
+    public void exitAddCourses(){
+        courseLabels.clear();
+        leftPane.setDisable(false);
+        rightPane.setDisable(false);
+        mainPane.setDisable(false);
+        listCoursesProcessing = false;
+        listCoursesPane.setVisible(false);
+        showLogo();
     }
     public void cancelSlotBooking(){
         activeUser.cancelBooking(activeDate,Reservation.getSlotID(currentlyShowingSlot),activeRoom);
@@ -644,6 +711,11 @@ public class FacultyReservationGUIController implements Initializable{
                 if(changepassProcessing){
                     leftPane.setDisable(true);
                     rightPane.setDisable(true);
+                }
+                if(listCoursesProcessing){
+                    leftPane.setDisable(true);
+                    rightPane.setDisable(true);
+                    mainPane.setDisable(true);
                 }
             });
         }

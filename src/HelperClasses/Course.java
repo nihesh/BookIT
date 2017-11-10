@@ -138,6 +138,7 @@ public class Course implements java.io.Serializable{
     }
     public void setInstructor(String f){
         this.instructorEmail = f;
+        serialize();
     }
     public Boolean addReservation(LocalDate date, int slot, Reservation r, Boolean serialize){
         if(Schedule.get(date)[slot] == null){
