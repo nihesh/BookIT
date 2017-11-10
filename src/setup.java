@@ -57,22 +57,20 @@ public class setup {
     }
     public static ArrayList<String> fillPostConditions(String CourseName){
     	ArrayList<String> temp=new ArrayList<>();
+    	String[] splitCourse = CourseName.split("\\s+");
+    	for(int i=0;i<splitCourse.length;i++){
+    	    if(!splitCourse[i].equals("")){
+    	        temp.add(splitCourse[i]);
+            }
+        }
     	try {
-			BufferedReader x=new BufferedReader(new FileReader("src/AppData/PostCondition/"+CourseName+".txt"));
-			String t;
-			try {
-				t = x.readLine();
-				while(t!=null) {
-					temp.add(t);
-					t=x.readLine();
-			}} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			Scanner x=new Scanner(new BufferedReader(new FileReader("src/AppData/PostCondition/"+CourseName+".txt")));
+            while(x.hasNext()) {
+                temp.add(x.next());
+            }
 			x.close();
 			
     	} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return temp;
