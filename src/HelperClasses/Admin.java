@@ -132,18 +132,45 @@ public class Admin extends User{
 	public ArrayList<Reservation> getRequest(){
 		try {
 			PriorityQueue<ArrayList<Reservation>> p = deserializeRequestsQueue();
-			ArrayList<Reservation> temp = p.peek();
-			while (temp != null && temp.get(0).getCreationDate().plusDays(5).isBefore(LocalDateTime.now())) {
+			ArrayList<Reservation> r = p.peek();
+			while (r != null && r.get(0).getCreationDate().plusDays(5).isBefore(LocalDateTime.now())) {
 				p.poll();
-				temp = p.peek();
+				r = p.peek();
 			}
-			while (temp != null && temp.get(0).getTargetDate().isBefore(LocalDate.now())) {
+			while (r != null && r.get(0).getTargetDate().isBefore(LocalDate.now())) {
 				p.poll();
-				temp = p.peek();
+				r = p.peek();
+			}
+			int flag=0;
+			Room temp = Room.deserializeRoom(r.get(0).getRoomName());
+			Course ctemp = Course.deserializeCourse(r.get(0).getCourseName());
+			while(r!=null) {
+			for (Reservation reservation : r) {
+				if (!temp.checkReservation(r.get(0).getTargetDate(), reservation.getReservationSlot(), reservation)) {
+					p.poll();
+					flag=1;
+					r=p.peek();
+					break;
+				}
+				if(ctemp!=null) {
+					if (ctemp.checkInternalCollision(reservation)) {
+						p.poll();
+						flag=1;
+						r=p.peek();
+						break;
+						}
+				}
+				flag=0;
+					
+				
+			}
+			if(flag==0) {
+				break;
+			}
 			}
 			
 			serializeRequestsQueue(p);
-			return temp;
+			return r;
 		}
 		catch (FileNotFoundException fe){
 			System.out.println("File not found exception occured while getting request");
@@ -165,21 +192,41 @@ public class Admin extends User{
 			}
 			p.poll();
 			serializeRequestsQueue(p);
+			int flag=0;
 			Room temp = Room.deserializeRoom(r.get(0).getRoomName());
 			Course ctemp = Course.deserializeCourse(r.get(0).getCourseName());
+			while(r!=null) {
 			for (Reservation reservation : r) {
 				if (!temp.checkReservation(r.get(0).getTargetDate(), reservation.getReservationSlot(), reservation)) {
-					return false;
+					p.poll();
+					flag=1;
+					r=p.peek();
+					break;
 				}
-
+				if(ctemp!=null) {
+					if (ctemp.checkInternalCollision(reservation)) {
+						p.poll();
+						flag=1;
+						r=p.peek();
+						break;
+						}
+				}
+				flag=0;
+					
+				
 			}
-			for (Reservation reservation : r) {
-				temp.addReservation(r.get(0).getTargetDate(), reservation.getReservationSlot(), reservation, true);
-				if (ctemp != null) {
-					ctemp.addReservation(r.get(0).getTargetDate(), reservation.getReservationSlot(), reservation, true);
+			if(flag==0) {
+				break;
+			}
+			}
+			if(r!=null) {
+				for (Reservation reservation : r) {
+					temp.addReservation(r.get(0).getTargetDate(), reservation.getReservationSlot(), reservation, true);
+					if(ctemp!=null) {
+						ctemp.addReservation(r.get(0).getTargetDate(), reservation.getReservationSlot(), reservation, true);
+					}
 				}
 			}
-			return true;
 		}
 		catch (FileNotFoundException fe){
 			System.out.println("File not found exception occured while accepting request");
