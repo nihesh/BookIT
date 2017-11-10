@@ -71,6 +71,11 @@ public class Course implements java.io.Serializable{
             else if(r.getType().equals("Lecture")){
                 return true;
             }
+            else if(r.getType().equals("Tutorial") || r.getType().equals("Lab")){
+                if(old.getGroups().contains(r.getTopGroup())){
+                    return true;
+                }
+            }
         }
         return false;
     }

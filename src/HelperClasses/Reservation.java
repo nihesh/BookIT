@@ -35,6 +35,9 @@ public class Reservation implements java.io.Serializable{
         this.groups.add(group);
         this.groupVenue.add(room);
     }
+    public ArrayList<String> getGroups(){
+        return this.groups;
+    }
     public String getMessageWithoutVenue(){
         if(message.size()!=0){
             return message.get(0);
