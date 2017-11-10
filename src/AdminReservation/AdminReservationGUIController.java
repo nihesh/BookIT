@@ -122,7 +122,7 @@ public class AdminReservationGUIController implements Initializable{
             {
                 super.updateItem(item, empty);
 
-                if(item.isBefore(LocalDate.of(2017,8,1)) || item.isAfter(LocalDate.of(2017,12,5)))
+                if(item.isBefore(LocalDate.now()) || item.isAfter(LocalDate.of(2017,12,5)))
                 {
                     setStyle("-fx-background-color: #ffc0cb;");
                     Platform.runLater(() -> setDisable(true));
