@@ -57,19 +57,22 @@ public class Course implements java.io.Serializable{
         return courses;
     }
     public boolean checkInternalCollision(Reservation r){
+        if(!name.equals(r.getCourseName())){
+            return false;
+        }
         if(Schedule.get(r.getTargetDate())[r.getReservationSlot()] == null){
-            return true;
+            return false;
         }
         else{
             Reservation old = Schedule.get(r.getTargetDate())[r.getReservationSlot()];
             if(old.getType().equals("Lecture")){
-                return false;
+                return true;
             }
             else if(r.getType().equals("Lecture")){
-                return false;
+                return true;
             }
         }
-        return true;
+        return false;
     }
     public String getName(){
         return this.name;
