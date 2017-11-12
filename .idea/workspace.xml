@@ -108,8 +108,8 @@
       <file leaf-file-name="setup.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/setup.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="286">
-              <caret line="210" column="110" lean-forward="false" selection-start-line="210" selection-start-column="110" selection-end-line="210" selection-end-column="110" />
+            <state relative-caret-position="340">
+              <caret line="207" column="5" lean-forward="true" selection-start-line="207" selection-start-column="5" selection-end-line="207" selection-end-column="5" />
               <folding />
             </state>
           </provider>
@@ -1150,8 +1150,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/setup.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="286">
-          <caret line="210" column="110" lean-forward="false" selection-start-line="210" selection-start-column="110" selection-end-line="210" selection-end-column="110" />
+        <state relative-caret-position="340">
+          <caret line="207" column="5" lean-forward="true" selection-start-line="207" selection-start-column="5" selection-end-line="207" selection-end-column="5" />
           <folding />
         </state>
       </provider>
