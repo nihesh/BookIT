@@ -11,8 +11,8 @@ public class LoginSignupGUI extends Application{
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			Parent root = FXMLLoader.load(getClass().getResource("LoginSignup.fxml"));
-			Scene scene = new Scene(root,600,400);
+			Parent root = FXMLLoader.load(getClass().getResource("LoginSignup1080p.fxml"));
+			Scene scene = new Scene(root,850,567);
 			primaryStage.setScene(scene);
 			primaryStage.setResizable(false);
 			primaryStage.getIcons().add(new Image("./LoginSignup/BookIT_icon.jpg"));

@@ -36,7 +36,6 @@ import javafx.util.Duration;
 
 public class LoginSignupGUIController {
 	private double initOpacity=0.84;
-	private int Signup_TransX=570;
 	private Email email;
 	private String joincode;
 	private User user;
@@ -164,7 +163,7 @@ public class LoginSignupGUIController {
 			Name.getStyleClass().remove("text-field2");
 			Name.setVisible(false);
 			Signup_done_btn.setVisible(false);
-			if(Signup_done_btn.getTranslateY()==35) {
+			if(Signup_done_btn.getTranslateY()==75) {
 				Signup_done_btn.setTranslateY(0);
 			}
 			Signup_joincode_btn.setVisible(false);
@@ -200,7 +199,7 @@ public class LoginSignupGUIController {
 			TranslateTransition t2=new TranslateTransition();
 			Login_password.setVisible(true);
 			t2.setNode(Login_password);
-			t2.setByY(30);
+			t2.setByY((Login_password_btn.getLayoutY()-Login_password_label.getLayoutY())/2);
 			t2.setDuration(Duration.millis(500));
 			t2.play();
 			t2.setOnFinished(e->{
@@ -332,7 +331,7 @@ public class LoginSignupGUIController {
 		if(Signup_joincode.getText().toUpperCase().charAt(0)=='S') { //identifies student
 			user=new User(user.getName(), user.getPassword(), user.getEmail(), "Student");
 			Branch.setVisible(true);
-			Signup_done_btn.setTranslateY(35);
+			Signup_done_btn.setTranslateY(75);
 		}
 		else if(Signup_joincode.getText().toUpperCase().charAt(0)=='A') {
 			user=new User(user.getName(), user.getPassword(), user.getEmail(), "Admin");
@@ -430,7 +429,7 @@ public class LoginSignupGUIController {
 		Login_password_btn.setVisible(false);
 		Login_email.getStyleClass().remove("text-field2");
 		Login_password.getStyleClass().remove("text-field2");
-		if(Login_password.getTranslateY()==30) {
+		if(Login_password.getTranslateY()==(Login_password_btn.getLayoutY()-Login_password_label.getLayoutY())/2) {
 			Login_password.setTranslateY(0);
 		}
 		Lback_btn.setVisible(false);
@@ -449,7 +448,7 @@ public class LoginSignupGUIController {
 		Name.getStyleClass().remove("text-field2");
 		Branch.setVisible(false);
 		Signup_done_btn.setVisible(false);
-		if(Signup_done_btn.getTranslateY()==35) {
+		if(Signup_done_btn.getTranslateY()==75) {
 			Signup_done_btn.setTranslateY(0);
 		}
 		Signup_email.setVisible(true);Signup_email.clear();
@@ -506,7 +505,7 @@ public class LoginSignupGUIController {
 		SequentialTransition sequence=new SequentialTransition();
 		TranslateTransition transright=new TranslateTransition();
 		transright.setNode(Signup_Pane);
-		transright.setToX(Signup_TransX);
+		transright.setToX(0);
 		transright.setDuration(Duration.millis(1000));
 		sequence.getChildren().add(transright);
 		sequence.play();

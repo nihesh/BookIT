@@ -1,6 +1,6 @@
 .pane2{
 	-fx-background-image: url('./gradients-26042-26727-hd-wallpapers.jpg');
-	-fx-background-size: 700px 500px;
+	-fx-background-size: 860px 580px;
 	-fx-background-repeat: no-repeat;
 	-fx-background-position: 100%;
 }
@@ -22,7 +22,6 @@
 	-fx-background-color: transparent;
 }
 .back2:hover{
-	-fx-background-insets: 5 38 5 15;
 	-fx-background-color: darkgray ;
 }
 .back{
@@ -99,17 +98,18 @@
 	-fx-text-fill: black;
 }
 .modal-dialog-glass {
+	-fx-background-color: rgba(255,255,255,0.4);
+	
   -fx-effect: dropshadow(three-pass-box, derive(black, +40%), 10, 0, 4, 4); 
   -fx-background-color: derive(white,20%); 
-  -fx-background-insets: 12; 
-  -fx-background-radius: 6;
+  -fx-background-insets: 20; 
+  -fx-background-radius: 12;
   
 }
 .labelD {
-    -fx-font-size: 15pt;
-    -fx-font-family: "Segoe UI Semibold";
+	-fx-background-color: black;
+	
     -fx-opacity: 1.0;
-    -fx-font-weight: bold;
     -fx-effect: dropshadow( gaussian , rgba(255,255,255,0.5) , 0,0,0,1 );
 }
 .labelG {
