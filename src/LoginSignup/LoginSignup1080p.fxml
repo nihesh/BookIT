@@ -76,7 +76,7 @@
       </ImageView>
       <Button fx:id="Signup_btn" layoutX="135.0" layoutY="385.0" mnemonicParsing="false" onMouseClicked="#Signup_TranslateLeft" prefHeight="57.0" prefWidth="140.0" styleClass="but2" text="SIGNUP" AnchorPane.bottomAnchor="125.0" AnchorPane.leftAnchor="135.0" AnchorPane.rightAnchor="575.0" AnchorPane.topAnchor="385.0" />
       <Button fx:id="Login_btn" layoutX="135.0" layoutY="385.0" mnemonicParsing="false" onMouseClicked="#Signup_TranslateRight" prefHeight="57.0" prefWidth="140.0" styleClass="but2" text="LOGIN" visible="false" />
-      <Label layoutX="-9.0" layoutY="542.0" prefHeight="36.0" prefWidth="868.0" styleClass="labelD" text="     BOOKIT  -  Nihesh Anderson , Harsh Pathak All rights reserved  @2018 New Delhi, India   " textFill="WHITE">
+      <Label layoutX="-9.0" layoutY="534.0" prefHeight="36.0" prefWidth="868.0" styleClass="labelD" text="     BOOKIT  -  Nihesh Anderson , Harsh Pathak                         @2018 New Delhi, India   " textFill="WHITE">
          <font>
             <Font name="Agency FB" size="18.0" />
          </font>
