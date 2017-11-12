@@ -82,7 +82,7 @@
          <font>
             <Font size="18.0" />
          </font></Button>
-      <Label layoutX="-9.0" layoutY="534.0" prefHeight="36.0" prefWidth="868.0" styleClass="labelD" text="     BOOKIT  -  Nihesh Anderson , Harsh Pathak                                                         New Delhi, India @2018    " textFill="WHITE">
+      <Label layoutX="-9.0" layoutY="534.0" prefHeight="36.0" prefWidth="868.0" styleClass="labelD" text="     BOOKIT  -  Nihesh Anderson , Harsh Pathak                                                                   New Delhi, India @2018    " textFill="WHITE">
          <font>
             <Font name="Agency FB" size="15.0" />
          </font>

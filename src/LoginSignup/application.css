@@ -77,23 +77,25 @@
 }
 
 .but2{
+	-fx-font-size: 21px;
 	-fx-background-color: transparent;
 	-fx-border-color: black;
 	-fx-border-width: 1px;
 	-fx-border-insets: 5;
-	-fx-border-radius: 20px;
-	-fx-background-radius: 20px ;
+	-fx-border-radius: 25px;
+	-fx-background-radius: 25 ;
 	-fx-background-insets: 2;
 	-fx-text-fill: black  ;
-	-fx-font-weight: bold;
+	
 }
 .but2:hover{
+	-fx-font-size: 20px;
 	-fx-background-color: rgba(255,255,255,0.4);
 	-fx-border-color: black;
 	-fx-border-insets: 5;
 	-fx-border-width: 2px;
-	-fx-border-radius: 20px;
-	-fx-background-radius: 20px ;
+	-fx-border-radius: 25px;
+	-fx-background-radius: 25 ;
 	-fx-background-insets: 2;
 	-fx-text-fill: black;
 }
