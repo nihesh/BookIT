@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
+import java.net.Socket;
 import java.util.Date;
 public class User implements Serializable{
 	private static final long serialVersionUID = 1L;
@@ -61,24 +62,27 @@ public class User implements Serializable{
         }
         }
 	public static User getUser(String email) {
-		ObjectInputStream in = null;
-        try{
-            in = new ObjectInputStream(new FileInputStream("./src/AppData/User/"+email+".txt"));
-            return (User)in.readObject();
+        try {
+            Socket server = new Socket(BookITconstants.serverIP, BookITconstants.serverPort);
+            ObjectOutputStream out = new ObjectOutputStream(server.getOutputStream());
+            ObjectInputStream in = new ObjectInputStream(server.getInputStream());
+            out.writeObject("GetUser");
+            out.flush();
+            out.writeObject(email);
+            out.flush();
+            User c = (User) in.readObject();
+            out.close();
+            in.close();
+            server.close();
+            return c;
         }
-        catch (Exception e){
-            System.out.println("Exception occured while deserialising User");
-            return null;
+        catch (IOException e){
+            System.out.println("IO exception occurred while writing to server");
         }
-        finally {
-            try {
-                if (in != null)
-                    in.close();
-            }
-            catch(IOException f){
-                ;
-            }
+        catch (ClassNotFoundException x){
+            System.out.println("ClassNotFound exception occurred while reading from server");
         }
+        return null;
 	}
 	public boolean authenticate(String password) {   //login version
 		if(this.Password.equals(password)) {
@@ -101,21 +105,19 @@ public class User implements Serializable{
 		return false;
 	}
 	public void serialize() {
-		try{
-            ObjectOutputStream out = null;
-            try{
-                out = new ObjectOutputStream(new FileOutputStream("./src/AppData/User/"+this.emailID.getEmailID()+".txt", false));
-                out.writeObject(this);
-            }
-            finally {
-                if(out!=null){
-                    out.close();
-                }
-            }
-
+        try {
+            Socket server = new Socket(BookITconstants.serverIP, BookITconstants.serverPort);
+            ObjectOutputStream out = new ObjectOutputStream(server.getOutputStream());
+            ObjectInputStream in = new ObjectInputStream(server.getInputStream());
+            out.writeObject("WriteUser");
+            out.flush();
+            out.writeObject(this);
+            out.close();
+            in.close();
+            server.close();
         }
         catch (IOException e){
-            System.out.println("file not found");
+            System.out.println("IO exception occured while writing to server");
         }
 	}
 	public void logout() throws LoggedOutException{

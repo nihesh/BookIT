@@ -1,5 +1,7 @@
 import HelperClasses.BookITconstants;
 import HelperClasses.Course;
+import HelperClasses.Room;
+import HelperClasses.User;
 
 import java.io.*;
 import java.net.ServerSocket;
@@ -71,6 +73,82 @@ class ConnectionHandler implements Runnable{
             ;
         }
     }
+    public void serializeUser(User u){
+        try{
+            ObjectOutputStream out = null;
+            try{
+                out = new ObjectOutputStream(new FileOutputStream("./src/AppData/User/"+u.getEmail().getEmailID()+".txt", false));
+                out.writeObject(u);
+            }
+            finally {
+                if(out!=null){
+                    out.close();
+                }
+            }
+
+        }
+        catch (IOException e){
+            System.out.println("file not found");
+        }
+    }
+    public User getUser(String email){
+        ObjectInputStream in = null;
+        try{
+            in = new ObjectInputStream(new FileInputStream("./src/AppData/User/"+email+".txt"));
+            return (User)in.readObject();
+        }
+        catch (Exception e){
+            System.out.println("Exception occured while deserialising User");
+            return null;
+        }
+        finally {
+            try {
+                if (in != null)
+                    in.close();
+            }
+            catch(IOException f){
+                ;
+            }
+        }
+    }
+    public Room deserializeRoom(String name){
+        ObjectInputStream in = null;
+        try{
+            in = new ObjectInputStream(new FileInputStream("./src/AppData/Room/"+name+".dat"));
+            return (Room)in.readObject();
+        }
+        catch (Exception e){
+            System.out.println("Exception occured while deserialising Room");
+            return null;
+        }
+        finally {
+            try {
+                if (in != null)
+                    in.close();
+            }
+            catch(IOException f){
+                ;
+            }
+        }
+    }
+    public void serializeRoom(Room r){
+        try{
+            ObjectOutputStream out = null;
+            try{
+                out = new ObjectOutputStream(new FileOutputStream("./src/AppData/Room/"+r.getRoomID()+".dat", false));
+                out.writeObject(r);
+            }
+            finally {
+                if(out!=null){
+                    out.close();
+                }
+            }
+
+        }
+        catch (IOException e){
+            ;
+        }
+    }
     public void run(){
         try{
             ObjectInputStream in = new ObjectInputStream(connection.getInputStream());
@@ -78,6 +156,8 @@ class ConnectionHandler implements Runnable{
             String request = (String)in.readObject();
             System.out.println("Connected to "+connection.getInetAddress().toString()+" | Performing "+request);
             Course c;
+            User u;
+            Room r;
             switch (request){
                 case "ReadCourse":
                     String courseName = (String)in.readObject();
@@ -93,6 +173,26 @@ class ConnectionHandler implements Runnable{
                 case "WriteCourse":
                     c = (Course)in.readObject();
                     serializeCourse(c);
+                    break;
+                case "GetUser":
+                    String email = (String)in.readObject();
+                    u = getUser(email);
+                    out.writeObject(u);
+                    out.flush();
+                    break;
+                case "WriteUser":
+                    u = (User)in.readObject();
+                    serializeUser(u);
+                    break;
+                case "ReadRoom":
+                    String roomName = (String)in.readObject();
+                    r = deserializeRoom(roomName);
+                    out.writeObject(r);
+                    out.flush();
+                    break;
+                case "WriteRoom":
+                    r = (Room) in.readObject();
+                    serializeRoom(r);
                     break;
             }
             in.close();

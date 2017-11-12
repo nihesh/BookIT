@@ -25,7 +25,6 @@ public class Email implements Serializable{
 		}
 		String y=x.toString();
 		File a = new File("./src/AppData/User/"+y+".txt");
-		System.out.println(a.getAbsolutePath());
 		boolean exists = a.exists();
 		if(exists) {
 			return 1; //user already exists
@@ -53,7 +52,6 @@ public class Email implements Serializable{
 		}
 		String y=x.toString();
 		File a = new File("./src/AppData/User/"+y+".txt");
-		System.out.println(a.getAbsolutePath());
 		boolean exists = a.exists();
 		return exists;
 	}	

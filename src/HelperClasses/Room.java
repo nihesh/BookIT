@@ -1,6 +1,7 @@
 package HelperClasses;
 
 import java.io.*;
+import java.net.Socket;
 import java.time.LocalDate;
 import java.util.HashMap;
 
@@ -13,24 +14,27 @@ public class Room implements java.io.Serializable{
     private HashMap<LocalDate, Reservation[]> Schedule;
     private int Capacity;
     public static Room deserializeRoom(String name){
-        ObjectInputStream in = null;
-        try{
-            in = new ObjectInputStream(new FileInputStream("./src/AppData/Room/"+name+".dat"));
-            return (Room)in.readObject();
+        try {
+            Socket server = new Socket(BookITconstants.serverIP, BookITconstants.serverPort);
+            ObjectOutputStream out = new ObjectOutputStream(server.getOutputStream());
+            ObjectInputStream in = new ObjectInputStream(server.getInputStream());
+            out.writeObject("ReadRoom");
+            out.flush();
+            out.writeObject(name);
+            out.flush();
+            Room c = (Room) in.readObject();
+            out.close();
+            in.close();
+            server.close();
+            return c;
         }
-        catch (Exception e){
-            System.out.println("Exception occured while deserialising Room");
-            return null;
+        catch (IOException e){
+            System.out.println("IO exception occurred while writing to server");
         }
-        finally {
-            try {
-                if (in != null)
-                    in.close();
-            }
-            catch(IOException f){
-                ;
-            }
+        catch (ClassNotFoundException x){
+            System.out.println("ClassNotFound exception occurred while reading from server");
         }
+        return null;
     }
     public Room(String RoomID, HashMap<LocalDate, Reservation[]> Schedule, int Capacity){
         this.RoomID = RoomID;
@@ -48,21 +52,19 @@ public class Room implements java.io.Serializable{
         return this.Capacity;
     }
     public void serialize(){
-        try{
-            ObjectOutputStream out = null;
-            try{
-                out = new ObjectOutputStream(new FileOutputStream("./src/AppData/Room/"+RoomID+".dat", false));
-                out.writeObject(this);
-            }
-            finally {
-                if(out!=null){
-                    out.close();
-                }
-            }
-
+        try {
+            Socket server = new Socket(BookITconstants.serverIP, BookITconstants.serverPort);
+            ObjectOutputStream out = new ObjectOutputStream(server.getOutputStream());
+            ObjectInputStream in = new ObjectInputStream(server.getInputStream());
+            out.writeObject("WriteRoom");
+            out.flush();
+            out.writeObject(this);
+            out.close();
+            in.close();
+            server.close();
         }
         catch (IOException e){
-            ;
+            System.out.println("IO exception occured while writing to server");
         }
     }
     public Boolean addReservation(LocalDate date, int slot, Reservation r, Boolean serialize){

@@ -621,6 +621,11 @@ public class FacultyReservationGUIController implements Initializable{
         });
     }
     public void openBooking(Event action){
+        Button current = (Button) action.getSource();
+        Room r = Room.deserializeRoom(current.getText());                               // Loading buttons
+        if(r==null){
+            return;
+        }
         classEvent = action;
         HoverPane.setTranslateX(0);
         error1.setVisible(true);
@@ -629,10 +634,8 @@ public class FacultyReservationGUIController implements Initializable{
         BookBtn.setVisible(true);
         BookBtn.setOpacity(0);
         BackBtn.setOpacity(0);
-        Button current = (Button) action.getSource();
         RoomNo.setText(current.getText());
         activeRoom = current.getText();
-        Room r = Room.deserializeRoom(current.getText());                               // Loading buttons
         Reservation[] reservation = r.getSchedule(activeDate);
         for(int i=0;i<28;i++){
             if(reservation[i] != null){
@@ -657,14 +660,17 @@ public class FacultyReservationGUIController implements Initializable{
         inParallel.play();
     }
     public void showReadOnlyBookings(Event action){
+        Button current = (Button) action.getSource();
+        Room r = Room.deserializeRoom(current.getText());                               // Loading buttons
+        if(r==null){
+            return;
+        }
         updateClassStatus(action);
         HoverPane.setTranslateX(0);
         BackBtn.setVisible(false);
         BookBtn.setVisible(false);
         double opacitySaturation = 0.92;
-        Button current = (Button) action.getSource();
         RoomNo.setText(current.getText());
-        Room r = Room.deserializeRoom(current.getText());                               // Loading buttons
         Reservation[] reservation = r.getSchedule(activeDate);
         for(int i=0;i<28;i++){
             if(reservation[i] != null){

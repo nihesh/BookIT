@@ -144,7 +144,6 @@ public class LoginSignupGUIController {
 			CnfPass.clear();
 		}
 		else if(Signup_password.isVisible()==false && Signup_joincode.isVisible()==true){
-			//System.out.println(2);
 			Signup_joincode.getStyleClass().remove("text-field2");
 			Signup_password.getStyleClass().remove("text-field2");
 			Signup_password.setVisible(true);
@@ -158,7 +157,6 @@ public class LoginSignupGUIController {
 			CnfPass.clear();
 		}
 		else {
-			//System.out.println(3);
 			Signup_joincode.clear();
 			Signup_joincode.setVisible(false);
 			Branch.setVisible(false);
@@ -228,7 +226,6 @@ public class LoginSignupGUIController {
 	@FXML
 	private void Login_NEXT2() {
 		user=User.getUser(email.getEmailID());
-		//System.out.println(user.getPassword());
 		if(user.authenticate(Login_password.getText())) {
 			if(Login_password.getStyleClass().contains("text-field2")) {
 				Login_password.getStyleClass().remove("text-field2");
@@ -256,7 +253,6 @@ public class LoginSignupGUIController {
 	private void Signup_NEXT() {
 		email=new Email(Signup_email.getText());
 		int state=email.validateSignup();
-		System.out.println(state);
 		//put some email validate code here to check user email
 		if(!Signup_email.getText().equals("") && state==0) {
 			if(Signup_email.getStyleClass().contains("text-field2")) {
@@ -483,14 +479,11 @@ public class LoginSignupGUIController {
 		SequentialTransition sequence=new SequentialTransition();
 		TranslateTransition transleft=new TranslateTransition();
 		transleft.setNode(Signup_Pane);
-		//System.out.println(Signup_Pane.getLayoutX());
 		transleft.setToX(Login_Pane.getLayoutX()-Signup_Pane.getLayoutX());
 		transleft.setDuration(Duration.millis(1000));
 		sequence.getChildren().add(transleft);
 		sequence.play();
 		sequence.setOnFinished(e->{
-			
-			//Login_Pane.setVisible(false);
 			CleanLogin();
 			Login_btn.setDisable(false);
 		});
@@ -513,7 +506,6 @@ public class LoginSignupGUIController {
 		SequentialTransition sequence=new SequentialTransition();
 		TranslateTransition transright=new TranslateTransition();
 		transright.setNode(Signup_Pane);
-		//System.out.println(Signup_Pane.getLayoutX());
 		transright.setToX(Signup_TransX);
 		transright.setDuration(Duration.millis(1000));
 		sequence.getChildren().add(transright);

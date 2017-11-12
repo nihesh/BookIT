@@ -23,7 +23,6 @@ public class Faculty extends User{
 			String temp2=temp[i].getName();
 			if(getUser(temp2.substring(0, temp2.length()-4)).userType.equals("Faculty")) {
 				mails.add(temp2.substring(0, temp2.length()-4));
-				System.out.println(temp2.substring(0, temp2.length()-4));
 			}
 		}
 		return mails;
