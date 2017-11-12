@@ -35,9 +35,9 @@
                   </LinearGradient>
                </textFill>
             </Label>
-            <Label fx:id="AccCre" layoutX="102.0" layoutY="401.0" prefHeight="20.0" prefWidth="257.0" text="Account Successfully Created! " visible="false" AnchorPane.leftAnchor="102.0">
+            <Label fx:id="AccCre" layoutX="112.0" layoutY="401.0" prefHeight="20.0" prefWidth="245.0" text="Account Successfully Created! ">
                <font>
-                  <Font name="Arial" size="17.0" />
+                  <Font name="Arial" size="15.0" />
                </font>
             </Label>
             <Button fx:id="Lback_btn" layoutX="32.0" layoutY="30.0" mnemonicParsing="false" onMouseClicked="#backL" prefHeight="36.0" prefWidth="40.0" styleClass="back2" stylesheets="@application.css" visible="false" AnchorPane.bottomAnchor="484.0" AnchorPane.leftAnchor="32.0" AnchorPane.rightAnchor="347.0" AnchorPane.topAnchor="30.0" />
