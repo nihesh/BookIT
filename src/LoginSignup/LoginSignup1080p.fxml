@@ -15,7 +15,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="567.0" prefWidth="850.0" styleClass="pane2" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="LoginSignup.LoginSignupGUIController">
    <children>
-      <AnchorPane fx:id="Login_Pane" layoutX="425.0" layoutY="-3.0" opacity="0.84" prefHeight="550.0" prefWidth="419.0" styleClass="modal-dialog-glass">
+      <AnchorPane fx:id="Login_Pane" layoutX="425.0" layoutY="-6.0" opacity="0.84" prefHeight="550.0" prefWidth="419.0" styleClass="modal-dialog-glass">
          <children>
             <TextField fx:id="Login_email" layoutX="59.0" layoutY="219.0" prefHeight="36.0" prefWidth="301.0" promptText="Email" styleClass="text-field1" AnchorPane.bottomAnchor="295.0" AnchorPane.leftAnchor="59.0" AnchorPane.rightAnchor="59.0" AnchorPane.topAnchor="219.0" />
             <PasswordField fx:id="Login_password" layoutX="59.0" layoutY="219.0" prefHeight="36.0" prefWidth="301.0" promptText="Password" styleClass="text-field1" visible="false" />
@@ -42,7 +42,7 @@
             </Label>
             <Button fx:id="Lback_btn" layoutX="32.0" layoutY="30.0" mnemonicParsing="false" onMouseClicked="#backL" prefHeight="36.0" prefWidth="40.0" styleClass="back2" stylesheets="@application.css" visible="false" AnchorPane.bottomAnchor="484.0" AnchorPane.leftAnchor="32.0" AnchorPane.rightAnchor="347.0" AnchorPane.topAnchor="30.0" />
          </children></AnchorPane>
-      <AnchorPane fx:id="Signup_Pane" layoutX="817.0" layoutY="-3.0" opacity="0.84" prefHeight="550.0" prefWidth="419.0" styleClass="modal-dialog-glass">
+      <AnchorPane fx:id="Signup_Pane" layoutX="817.0" layoutY="-6.0" opacity="0.84" prefHeight="550.0" prefWidth="419.0" styleClass="modal-dialog-glass">
          <children>
             <TextField fx:id="Signup_email" layoutX="83.0" layoutY="219.0" prefHeight="36.0" prefWidth="301.0" promptText="Email" styleClass="text-field1" AnchorPane.bottomAnchor="295.0" AnchorPane.leftAnchor="59.0" AnchorPane.rightAnchor="59.0" AnchorPane.topAnchor="219.0" />
             <PasswordField fx:id="Signup_password" layoutX="59.0" layoutY="219.0" prefHeight="36.0" prefWidth="301.0" promptText="Password" styleClass="text-field1" visible="false" AnchorPane.bottomAnchor="295.0" AnchorPane.leftAnchor="59.0" AnchorPane.rightAnchor="59.0" AnchorPane.topAnchor="219.0" />
