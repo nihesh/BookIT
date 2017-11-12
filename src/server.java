@@ -4,9 +4,12 @@ import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.security.spec.ECField;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.PriorityQueue;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * Created by nihesh on 12/11/17.
@@ -14,6 +17,7 @@ import java.util.PriorityQueue;
 public class server {
     public static void main(String[] args)throws IOException{
         ServerSocket s = new ServerSocket(BookITconstants.serverPort);
+        ConnectionHandler.lock = new ReentrantLock();
         while(true){
             Socket connection = s.accept();
             new Thread(new ConnectionHandler(connection)).start();
@@ -23,6 +27,7 @@ public class server {
 
 class ConnectionHandler implements Runnable{
     private Socket connection;
+    public static ReentrantLock lock;
     public ConnectionHandler(Socket connection){
         this.connection = connection;
     }
@@ -232,79 +237,129 @@ class ConnectionHandler implements Runnable{
         }
     }
     public void run(){
-        try{
-            ObjectInputStream in = new ObjectInputStream(connection.getInputStream());
-            ObjectOutputStream out = new ObjectOutputStream(connection.getOutputStream());
-            String request = (String)in.readObject();
-            System.out.println("Connected to "+connection.getInetAddress().toString()+" | Performing "+request);
-            Course c;
-            User u;
-            Room r;
-            HashMap<String, Integer> joinCode;
-            PriorityQueue<ArrayList<Reservation>> req;
-            switch (request){
-                case "ReadCourse":
-                    String courseName = (String)in.readObject();
-                    c = deserializeCourse(courseName);
-                    out.writeObject(c);
-                    out.flush();
-                    break;
-                case "AllCourses":
-                    ArrayList<String> arr = getAllCourses();
-                    out.writeObject(arr);
-                    out.flush();
-                    break;
-                case "WriteCourse":
-                    c = (Course)in.readObject();
-                    serializeCourse(c);
-                    break;
-                case "GetUser":
-                    String email = (String)in.readObject();
-                    u = getUser(email);
-                    out.writeObject(u);
-                    out.flush();
-                    break;
-                case "WriteUser":
-                    u = (User)in.readObject();
-                    serializeUser(u);
-                    break;
-                case "ReadRoom":
-                    String roomName = (String)in.readObject();
-                    r = deserializeRoom(roomName);
-                    out.writeObject(r);
-                    out.flush();
-                    break;
-                case "WriteRoom":
-                    r = (Room) in.readObject();
-                    serializeRoom(r);
-                    break;
-                case "WriteJoinCode":
-                    joinCode = (HashMap<String, Integer>)in.readObject();
-                    serializeJoinCode(joinCode);
-                    break;
-                case "ReadJoinCode":
-                    joinCode = deserializeJoinCodes();
-                    out.writeObject(joinCode);
-                    out.flush();
-                    break;
-                case "WriteRequest":
-                    req = (PriorityQueue<ArrayList<Reservation>>)in.readObject();
-                    serializeRequests(req);
-                    break;
-                case "ReadRequest":
-                    req = deserializeRequests();
-                    out.writeObject(req);
-                    out.flush();
-                    break;
+        ObjectInputStream in=null;
+        ObjectOutputStream out=null;
+        String status="";
+        try {
+            in = new ObjectInputStream(connection.getInputStream());
+            out = new ObjectOutputStream(connection.getOutputStream());
+            status = (String)in.readObject();
+        }
+        catch (IOException m){
+            ;
+        }
+        catch (ClassNotFoundException c){
+            ;
+        }
+        do {
+            try {
+                if(status.equals("Pass") || lock.tryLock(10, TimeUnit.SECONDS)) {
+                    if(!status.equals("Pass")){
+                        System.out.print("[ "+LocalDateTime.now()+" ] ");
+                        System.out.println(connection.getInetAddress().toString() + " | ServerLock Taken");
+                    }
+                    try {
+                        String request = (String) in.readObject();
+                        System.out.print("[ "+LocalDateTime.now()+" ] ");
+                        System.out.println(connection.getInetAddress().toString() + " | Performing " + request);
+                        Course c;
+                        User u;
+                        Room r;
+                        HashMap<String, Integer> joinCode;
+                        PriorityQueue<ArrayList<Reservation>> req;
+                        switch (request) {
+                            case "ReadCourse":
+                                String courseName = (String) in.readObject();
+                                c = deserializeCourse(courseName);
+                                out.writeObject(c);
+                                out.flush();
+                                break;
+                            case "AllCourses":
+                                ArrayList<String> arr = getAllCourses();
+                                out.writeObject(arr);
+                                out.flush();
+                                break;
+                            case "WriteCourse":
+                                c = (Course) in.readObject();
+                                serializeCourse(c);
+                                if(lock.isLocked()) {
+                                    lock=new ReentrantLock();
+                                    System.out.print("[ "+LocalDateTime.now()+" ] ");
+                                    System.out.println(connection.getInetAddress().toString() + " | ServerLock Released");
+                                }
+                                break;
+                            case "GetUser":
+                                String email = (String) in.readObject();
+                                u = getUser(email);
+                                out.writeObject(u);
+                                out.flush();
+                                break;
+                            case "WriteUser":
+                                u = (User) in.readObject();
+                                serializeUser(u);
+                                if(lock.isLocked()) {
+                                    lock=new ReentrantLock();
+                                    System.out.print("[ "+LocalDateTime.now()+" ] ");
+                                    System.out.println(connection.getInetAddress().toString() + " | ServerLock Released");
+                                }
+                                break;
+                            case "ReadRoom":
+                                String roomName = (String) in.readObject();
+                                r = deserializeRoom(roomName);
+                                out.writeObject(r);
+                                out.flush();
+                                break;
+                            case "WriteRoom":
+                                r = (Room) in.readObject();
+                                serializeRoom(r);
+                                if(lock.isLocked()) {
+                                    lock = new ReentrantLock();
+                                    System.out.print("[ " + LocalDateTime.now() + " ] ");
+                                    System.out.println(connection.getInetAddress().toString() + " | ServerLock Released");
+                                }
+                                break;
+                            case "WriteJoinCode":
+                                joinCode = (HashMap<String, Integer>) in.readObject();
+                                serializeJoinCode(joinCode);
+                                if(lock.isLocked()) {
+                                    lock=new ReentrantLock();
+                                    System.out.print("[ "+LocalDateTime.now()+" ] ");
+                                    System.out.println(connection.getInetAddress().toString() + " | ServerLock Released");
+                                }
+                                break;
+                            case "ReadJoinCode":
+                                joinCode = deserializeJoinCodes();
+                                out.writeObject(joinCode);
+                                out.flush();
+                                break;
+                            case "WriteRequest":
+                                req = (PriorityQueue<ArrayList<Reservation>>) in.readObject();
+                                serializeRequests(req);
+                                if(lock.isLocked()) {
+                                    lock=new ReentrantLock();
+                                    System.out.print("[ "+LocalDateTime.now()+" ] ");
+                                    System.out.println(connection.getInetAddress().toString() + " | ServerLock Released");
+                                }
+                                break;
+                            case "ReadRequest":
+                                req = deserializeRequests();
+                                out.writeObject(req);
+                                out.flush();
+                                break;
+                        }
+                        in.close();
+                        out.close();
+                    } catch (IOException e) {
+                        System.out.println("Error Occured while handling connection");
+                    } catch (ClassNotFoundException e) {
+                        System.out.println("Error Occured while handling connection");
+                    }
+                }
             }
-            in.close();
-            out.close();
-        }
-        catch (IOException e){
-            System.out.println("Error Occured while handling connection");
-        }
-        catch (ClassNotFoundException e){
-            System.out.println("Error Occured while handling connection");
-        }
+            catch(InterruptedException l){
+                ;
+            }
+            break;
+        }while(true);
     }
 }

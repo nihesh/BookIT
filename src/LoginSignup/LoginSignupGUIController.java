@@ -225,7 +225,7 @@ public class LoginSignupGUIController {
 	}
 	@FXML
 	private void Login_NEXT2() {
-		user=User.getUser(email.getEmailID());
+		user=User.getUser(email.getEmailID(),false);
 		if(user.authenticate(Login_password.getText())) {
 			if(Login_password.getStyleClass().contains("text-field2")) {
 				Login_password.getStyleClass().remove("text-field2");
@@ -315,7 +315,7 @@ public class LoginSignupGUIController {
 		HashMap<String, Integer> temp;
 		String t=Signup_joincode.getText().toUpperCase();
 		try {
-			temp = Admin.deserializeJoinCodes();
+			temp = Admin.deserializeJoinCodes(false);
 		
 		if(temp.containsKey(t)) {
 			joincode=t;
@@ -361,9 +361,9 @@ public class LoginSignupGUIController {
 		try {
 		if(!Name.getText().equals("") && Name.getText().matches("^[\\p{L} .'-]+$")) {
 			
-			HashMap<String,Integer> temp = Admin.deserializeJoinCodes();
+			HashMap<String,Integer> temp = Admin.deserializeJoinCodes(true);
 			temp.remove(joincode);
-			Admin.serializeJoinCode(temp);
+			Admin.serializeJoinCode(temp, false);
 			user=new User(Name.getText().trim(), user.getPassword(), user.getEmail(), user.getUsertype());
 			if(Name.getStyleClass().contains("text-field2")) {
 				if(!Name.getStyleClass().contains("text-field1")) {
@@ -380,7 +380,7 @@ public class LoginSignupGUIController {
 			else {
 				user=new Admin(user.getName(), user.getPassword(), user.getEmail(), user.getUsertype());
 			}
-			user.serialize();
+			user.serialize(true);
 		Signup_TranslateRight();
 		AccCre.setVisible(true);
 		}

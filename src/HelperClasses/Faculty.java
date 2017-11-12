@@ -15,13 +15,13 @@ public class Faculty extends User{
 	public ArrayList<String> getCourses() {
 		return myCourses;
 	}
-	public static ArrayList<String> getInstructorEmails(){
+	public static ArrayList<String> getInstructorEmails(Boolean lock){
 		ArrayList<String> mails=new ArrayList<String>();
 		File file=new File("./src/AppData/User");
 		File[] temp=file.listFiles();
 		for(int i=0;i<temp.length;i++) {
 			String temp2=temp[i].getName();
-			if(getUser(temp2.substring(0, temp2.length()-4)).userType.equals("Faculty")) {
+			if(getUser(temp2.substring(0, temp2.length()-4), lock).userType.equals("Faculty")) {
 				mails.add(temp2.substring(0, temp2.length()-4));
 			}
 		}
@@ -29,11 +29,11 @@ public class Faculty extends User{
 	}
 	public void addCourse(String course){
 		myCourses.add(course);
-		serialize();
+		serialize(true);
 		this.setActiveUser();
 	}
 	public boolean cancelBooking(LocalDate queryDate,int slotID, String RoomID) {
-		Room temp=Room.deserializeRoom(RoomID);
+		Room temp=Room.deserializeRoom(RoomID, false);
 		Reservation r=temp.getSchedule(queryDate)[slotID];
 		
 		Course c=r.getCourse();
@@ -47,14 +47,14 @@ public class Faculty extends User{
 		return false;
 	}
 	public boolean bookRoom(LocalDate queryDate,int slot, Reservation r) {
-		Room room=Room.deserializeRoom(r.getRoomName());
+		Room room=Room.deserializeRoom(r.getRoomName(), false);
 		Boolean addToCourse = true;
 		if(r.getCourseName().equals("")){
 			addToCourse = false;
 		}
 		Course course;
 		if(addToCourse) {
-			course = Course.deserializeCourse(r.getCourseName());
+			course = Course.deserializeCourse(r.getCourseName(), false);
 			if(course.checkReservation(queryDate,slot,r)==true && room.checkReservation(queryDate,slot,r)==true) {
 				course.addReservation(queryDate,slot,r,true);
 				room.addReservation(queryDate,slot,r,true);
@@ -68,8 +68,5 @@ public class Faculty extends User{
 			}
 		}
 		return false;
-	}
-	public static void main(String[] args) {
-		getInstructorEmails();
 	}
 }

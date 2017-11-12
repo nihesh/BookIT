@@ -19,11 +19,18 @@ public class Course implements java.io.Serializable{
     private String instructorEmail;
     private ArrayList<String> postCondition;
     private HashMap<LocalDate, Reservation[]> Schedule;
-    public static Course deserializeCourse(String name){
+    public static Course deserializeCourse(String name, Boolean lock){
         try {
             Socket server = new Socket(BookITconstants.serverIP, BookITconstants.serverPort);
             ObjectOutputStream out = new ObjectOutputStream(server.getOutputStream());
             ObjectInputStream in = new ObjectInputStream(server.getInputStream());
+            if(lock){
+                out.writeObject("Hold");
+            }
+            else{
+                out.writeObject("Pass");
+            }
+            out.flush();
             out.writeObject("ReadCourse");
             out.flush();
             out.writeObject(name);
@@ -49,13 +56,15 @@ public class Course implements java.io.Serializable{
         this.postCondition = postCondition;
         this.Schedule = Schedule;
         this.acronym = acronym;
-        serialize();
+        serialize(true);
     }
     public static ArrayList<String> getAllCourses(){
         try {
             Socket server = new Socket(BookITconstants.serverIP, BookITconstants.serverPort);
             ObjectOutputStream out = new ObjectOutputStream(server.getOutputStream());
             ObjectInputStream in = new ObjectInputStream(server.getInputStream());
+            out.writeObject("Pass");
+            out.flush();
             out.writeObject("AllCourses");
             out.flush();
             ArrayList<String> c = (ArrayList<String>)in.readObject();
@@ -134,11 +143,18 @@ public class Course implements java.io.Serializable{
     public String getAcronym(){
         return this.acronym;
     }
-    public void serialize(){
+    public void serialize(Boolean lock){
         try {
             Socket server = new Socket(BookITconstants.serverIP, BookITconstants.serverPort);
             ObjectOutputStream out = new ObjectOutputStream(server.getOutputStream());
             ObjectInputStream in = new ObjectInputStream(server.getInputStream());
+            if(lock){
+                out.writeObject("Hold");
+            }
+            else{
+                out.writeObject("Pass");
+            }
+            out.flush();
             out.writeObject("WriteCourse");
             out.flush();
             out.writeObject(this);
@@ -152,14 +168,14 @@ public class Course implements java.io.Serializable{
     }
     public void setInstructor(String f){
         this.instructorEmail = f;
-        serialize();
+        serialize(true);
     }
     public Boolean addReservation(LocalDate date, int slot, Reservation r, Boolean serialize){
         if(Schedule.get(date)[slot] == null){
             r.setTargetDate(date);
             Schedule.get(date)[slot] = r;
             if(serialize)
-                serialize();
+                serialize(false);
             return true;
         }
         else{
@@ -167,7 +183,7 @@ public class Course implements java.io.Serializable{
                 r.setTargetDate(date);
                 Schedule.get(date)[slot].addGroup(r.getTopGroup(),r.getVenueName(),r.getMessageWithoutVenue());
                 if(serialize)
-                    serialize();
+                    serialize(false);
                 return true;
             }
             else {
@@ -197,7 +213,7 @@ public class Course implements java.io.Serializable{
             r.deleteGroup(group);
             Schedule.get(date)[slot] = r;
         }
-        serialize();
+        serialize(true);
     }
     
 }

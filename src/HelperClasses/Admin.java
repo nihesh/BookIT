@@ -23,11 +23,18 @@ public class Admin extends User{
 		super(name,password,emailID,userType);
 	}
 	@SuppressWarnings("unchecked")
-	public static  HashMap<String, Integer> deserializeJoinCodes() throws FileNotFoundException, IOException, ClassNotFoundException {
+	public static  HashMap<String, Integer> deserializeJoinCodes(Boolean lock) throws FileNotFoundException, IOException, ClassNotFoundException {
 		try {
 			Socket server = new Socket(BookITconstants.serverIP, BookITconstants.serverPort);
 			ObjectOutputStream out = new ObjectOutputStream(server.getOutputStream());
 			ObjectInputStream in = new ObjectInputStream(server.getInputStream());
+			if(lock){
+				out.writeObject("Hold");
+			}
+			else{
+				out.writeObject("Pass");
+			}
+			out.flush();
 			out.writeObject("ReadJoinCode");
 			out.flush();
 			HashMap<String, Integer> c = (HashMap<String, Integer>) in.readObject();
@@ -45,11 +52,18 @@ public class Admin extends User{
 		return null;
 	}
 	
-	public static void serializeJoinCode(HashMap<String, Integer> r) {
+	public static void serializeJoinCode(HashMap<String, Integer> r, Boolean lock) {
 		try {
 			Socket server = new Socket(BookITconstants.serverIP, BookITconstants.serverPort);
 			ObjectOutputStream out = new ObjectOutputStream(server.getOutputStream());
 			ObjectInputStream in = new ObjectInputStream(server.getInputStream());
+			if(lock){
+				out.writeObject("Hold");
+			}
+			else{
+				out.writeObject("Pass");
+			}
+			out.flush();
 			out.writeObject("WriteJoinCode");
 			out.flush();
 			out.writeObject(r);
@@ -66,7 +80,7 @@ public class Admin extends User{
 			type = type.substring(0, 1).toUpperCase();
 			Random rnd = new Random();
 			StringBuilder sb = new StringBuilder();
-			HashMap<String, Integer> codes = deserializeJoinCodes();
+			HashMap<String, Integer> codes = deserializeJoinCodes(true);
 			sb.append(type);
 			while (true) {
 				while (sb.length() != 7) {
@@ -81,7 +95,7 @@ public class Admin extends User{
 				}
 			}
 			codes.put(sb.toString(), 1);
-			serializeJoinCode(codes);
+			serializeJoinCode(codes,false);
 			return sb.toString();
 		}
 		catch (FileNotFoundException fe){
@@ -96,10 +110,17 @@ public class Admin extends User{
 		return null;
 	}
 	@SuppressWarnings("unchecked")
-	public static PriorityQueue<ArrayList<Reservation>> deserializeRequestsQueue() throws FileNotFoundException, IOException, ClassNotFoundException {
+	public static PriorityQueue<ArrayList<Reservation>> deserializeRequestsQueue(Boolean lock) throws FileNotFoundException, IOException, ClassNotFoundException {
 		Socket server = new Socket(BookITconstants.serverIP, BookITconstants.serverPort);
 		ObjectOutputStream out = new ObjectOutputStream(server.getOutputStream());
 		ObjectInputStream in = new ObjectInputStream(server.getInputStream());
+		if(lock){
+			out.writeObject("Hold");
+		}
+		else{
+			out.writeObject("Pass");
+		}
+		out.flush();
 		out.writeObject("ReadRequest");
 		out.flush();
 		PriorityQueue<ArrayList<Reservation>> c = (PriorityQueue<ArrayList<Reservation>>) in.readObject();
@@ -109,11 +130,18 @@ public class Admin extends User{
 		return c;
 	}
 	
-	public static void serializeRequestsQueue(PriorityQueue<ArrayList<Reservation>> r) {
+	public static void serializeRequestsQueue(PriorityQueue<ArrayList<Reservation>> r, Boolean lock) {
 		try {
 			Socket server = new Socket(BookITconstants.serverIP, BookITconstants.serverPort);
 			ObjectOutputStream out = new ObjectOutputStream(server.getOutputStream());
 			ObjectInputStream in = new ObjectInputStream(server.getInputStream());
+			if(lock){
+				out.writeObject("Hold");
+			}
+			else{
+				out.writeObject("Pass");
+			}
+			out.flush();
 			out.writeObject("WriteRequest");
 			out.flush();
 			out.writeObject(r);
@@ -128,7 +156,7 @@ public class Admin extends User{
 
 	public ArrayList<Reservation> getRequest(){
 		try {
-			PriorityQueue<ArrayList<Reservation>> p = deserializeRequestsQueue();
+			PriorityQueue<ArrayList<Reservation>> p = deserializeRequestsQueue(true);
 			ArrayList<Reservation> r = p.peek();
 			while (r != null && r.get(0).getCreationDate().plusDays(5).isBefore(LocalDateTime.now())) {
 				p.poll();
@@ -139,11 +167,12 @@ public class Admin extends User{
 				r = p.peek();
 			}
 			if(r==null){
+				serializeRequestsQueue(p, false);
 				return null;
 			}
 			int flag=0;
-			Room temp = Room.deserializeRoom(r.get(0).getRoomName());
-			Course ctemp = Course.deserializeCourse(r.get(0).getCourseName());
+			Room temp = Room.deserializeRoom(r.get(0).getRoomName(),false);
+			Course ctemp = Course.deserializeCourse(r.get(0).getCourseName(), false);
 			while(r!=null) {
 			for (Reservation reservation : r) {
 				if (!temp.checkReservation(r.get(0).getTargetDate(), reservation.getReservationSlot(), reservation)) {
@@ -168,8 +197,7 @@ public class Admin extends User{
 				break;
 			}
 			}
-			
-			serializeRequestsQueue(p);
+			serializeRequestsQueue(p, false);
 			return r;
 		}
 		catch (FileNotFoundException fe){
@@ -185,16 +213,17 @@ public class Admin extends User{
 	}
 	public boolean acceptRequest(){
 		try {
-			PriorityQueue<ArrayList<Reservation>> p = deserializeRequestsQueue();
+			PriorityQueue<ArrayList<Reservation>> p = deserializeRequestsQueue(true);
 			ArrayList<Reservation> r = p.peek();
 			if (r == null) {
+				serializeRequestsQueue(p,false);
 				return false;
 			}
 			p.poll();
-			serializeRequestsQueue(p);
 			int flag=0;
-			Room temp = Room.deserializeRoom(r.get(0).getRoomName());
-			Course ctemp = Course.deserializeCourse(r.get(0).getCourseName());
+			Room temp = Room.deserializeRoom(r.get(0).getRoomName(), false);
+			Course ctemp = Course.deserializeCourse(r.get(0).getCourseName(), false);
+			System.out.println("hi");
 			while(r!=null) {
 			for (Reservation reservation : r) {
 				if (!temp.checkReservation(r.get(0).getTargetDate(), reservation.getReservationSlot(), reservation)) {
@@ -219,7 +248,7 @@ public class Admin extends User{
 				break;
 			}
 			}
-			serializeRequestsQueue(p);
+			serializeRequestsQueue(p,false);
 			if(r!=null) {
 				for (Reservation reservation : r) {
 					temp.addReservation(r.get(0).getTargetDate(), reservation.getReservationSlot(), reservation, true);
@@ -242,12 +271,13 @@ public class Admin extends User{
 	}
 	public boolean rejectRequest(){
 		try{
-			PriorityQueue<ArrayList<Reservation>> p = deserializeRequestsQueue();
+			PriorityQueue<ArrayList<Reservation>> p = deserializeRequestsQueue(true);
 			if (p.size() == 0) {
+				serializeRequestsQueue(p,false);
 				return false;
 			}
 			p.poll();
-			serializeRequestsQueue(p);
+			serializeRequestsQueue(p,false);
 			return true;
 		}
 		catch (FileNotFoundException fe){
@@ -262,7 +292,7 @@ public class Admin extends User{
 		return false;
 	}
 	public boolean cancelBooking(LocalDate queryDate,int slotID,String RoomID) {
-		Room temp=Room.deserializeRoom(RoomID);
+		Room temp=Room.deserializeRoom(RoomID, false);
 		Reservation r=temp.getSchedule(queryDate)[slotID];
 		temp.deleteReservation(queryDate, slotID);
 		Course c=r.getCourse();
@@ -273,14 +303,14 @@ public class Admin extends User{
 		return false;
 	}
 	public boolean bookRoom(LocalDate queryDate,int slot, Reservation r) {
-		Room room=Room.deserializeRoom(r.getRoomName());
+		Room room=Room.deserializeRoom(r.getRoomName(), false);
 		Boolean addToCourse = true;
 		if(r.getCourseName().equals("")){
 			addToCourse = false;
 		}
 		Course course;
 		if(addToCourse) {
-			course = Course.deserializeCourse(r.getCourseName());
+			course = Course.deserializeCourse(r.getCourseName(), false);
 			if(course.checkReservation(queryDate,slot,r)==true && room.checkReservation(queryDate,slot,r)==true) {
 				course.addReservation(queryDate,slot,r,true);
 				room.addReservation(queryDate,slot,r,true);

@@ -70,7 +70,7 @@ public class Student extends User{
 		File[] courseFiles=directory.listFiles();
 		for(int i=0;i<courseFiles.length;i++) {
 			String courseName = courseFiles[i].getName().substring(0,courseFiles[i].getName().length()-4);
-			Course temp=Course.deserializeCourse(courseName);
+			Course temp=Course.deserializeCourse(courseName, false);
 			int match=temp.keyMatch(keyword);
 			if(match > 0) {
 				arr.get(match).add(courseFiles[i].getName().substring(0,courseFiles[i].getName().length()-4));
@@ -84,15 +84,15 @@ public class Student extends User{
 		return temp2;
 	}
 	public boolean addCourse(String c) {
-		Course c2=Course.deserializeCourse(c);
+		Course c2=Course.deserializeCourse(c, false);
 		for (String string : myCourses) {
-			Course temp=Course.deserializeCourse(string);
+			Course temp=Course.deserializeCourse(string, false);
 			if(c2.checkCollision(temp)) {
 				return false; //cannot add course since there is a collision
 			}
 		}
 		myCourses.add(c);
-		this.serialize();
+		this.serialize(true);
 		this.setActiveUser();
 		return true;
 	}

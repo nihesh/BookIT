@@ -13,11 +13,18 @@ public class Room implements java.io.Serializable{
     private String RoomID;
     private HashMap<LocalDate, Reservation[]> Schedule;
     private int Capacity;
-    public static Room deserializeRoom(String name){
+    public static Room deserializeRoom(String name, Boolean lock){
         try {
             Socket server = new Socket(BookITconstants.serverIP, BookITconstants.serverPort);
             ObjectOutputStream out = new ObjectOutputStream(server.getOutputStream());
             ObjectInputStream in = new ObjectInputStream(server.getInputStream());
+            if(lock){
+                out.writeObject("Hold");
+            }
+            else{
+                out.writeObject("Pass");
+            }
+            out.flush();
             out.writeObject("ReadRoom");
             out.flush();
             out.writeObject(name);
@@ -40,7 +47,7 @@ public class Room implements java.io.Serializable{
         this.RoomID = RoomID;
         this.Schedule = Schedule;
         this.Capacity = Capacity;
-        serialize();
+        serialize(true);
     }
     public Reservation[] getSchedule(LocalDate queryDate){
         return Schedule.get(queryDate);
@@ -51,11 +58,18 @@ public class Room implements java.io.Serializable{
     public int getCapacity(){
         return this.Capacity;
     }
-    public void serialize(){
+    public void serialize(Boolean lock){
         try {
             Socket server = new Socket(BookITconstants.serverIP, BookITconstants.serverPort);
             ObjectOutputStream out = new ObjectOutputStream(server.getOutputStream());
             ObjectInputStream in = new ObjectInputStream(server.getInputStream());
+            if(lock){
+                out.writeObject("Hold");
+            }
+            else{
+                out.writeObject("Pass");
+            }
+            out.flush();
             out.writeObject("WriteRoom");
             out.flush();
             out.writeObject(this);
@@ -72,7 +86,7 @@ public class Room implements java.io.Serializable{
             r.setTargetDate(date);
             Schedule.get(date)[slot] = r;
             if(serialize)
-                serialize();
+                serialize(false);
             return true;
         }
         else{
@@ -89,6 +103,6 @@ public class Room implements java.io.Serializable{
     }
     public void deleteReservation(LocalDate date, int slot){
         Schedule.get(date)[slot] = null;
-        serialize();
+        serialize(true);
     }
 }

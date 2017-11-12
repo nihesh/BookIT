@@ -133,7 +133,7 @@ public class FacultyReservationGUIController implements Initializable{
         ArrayList<String> items = new ArrayList<>();
         ArrayList<String> allCourses = Course.getAllCourses();
         for(int i=0;i<allCourses.size();i++){
-            Course c = Course.deserializeCourse(allCourses.get(i));
+            Course c = Course.deserializeCourse(allCourses.get(i), false);
             if(c.getInstructorEmail().equals("")){
                 items.add(allCourses.get(i));
             }
@@ -171,7 +171,7 @@ public class FacultyReservationGUIController implements Initializable{
         }
         for(int i=0;i<selectedCourses.size();i++){
             activeUser.addCourse(selectedCourses.get(i));
-            Course c = Course.deserializeCourse(selectedCourses.get(i));
+            Course c = Course.deserializeCourse(selectedCourses.get(i), false);
             c.setInstructor(activeUser.getEmail().getEmailID());
         }
         loadCourses();
@@ -359,12 +359,12 @@ public class FacultyReservationGUIController implements Initializable{
         Label curLabel = (Label) e.getSource();
         slotInfo.setText(curLabel.getText());
         currentlyShowingSlot = curLabel.getText();
-        Room r = Room.deserializeRoom(statusRoomID.getText());          // GUI-Helper Integration starts
+        Room r = Room.deserializeRoom(statusRoomID.getText(), false);          // GUI-Helper Integration starts
         Reservation[] bookings = r.getSchedule(activeDate);
         if(bookings[Reservation.getSlotID(curLabel.getText())]!=null) {
             String facultyName="~~~~";
             if (!bookings[Reservation.getSlotID(curLabel.getText())].getFacultyEmail().equals("")){
-                Faculty f = (Faculty)User.getUser(bookings[Reservation.getSlotID(curLabel.getText())].getFacultyEmail());
+                Faculty f = (Faculty)User.getUser(bookings[Reservation.getSlotID(curLabel.getText())].getFacultyEmail(), false);
                 facultyName = f.getName();
             }
             slotInfoFaculty.setText(facultyName);
@@ -393,7 +393,7 @@ public class FacultyReservationGUIController implements Initializable{
         hideSlotPane();
         Button current = (Button) e.getSource();
         statusRoomID.setText(current.getText());
-        Room r = Room.deserializeRoom(current.getText());                                  // GUI-Helper integration begins here
+        Room r = Room.deserializeRoom(current.getText(), false);                                  // GUI-Helper integration begins here
         statusClassSize.setText("  "+Integer.toString(r.getCapacity()));
         Reservation[] reservation = r.getSchedule(activeDate);
         int freeSlots=0;
@@ -580,7 +580,7 @@ public class FacultyReservationGUIController implements Initializable{
             chosenFaculty = "";
         }
         else{
-            courseObject = Course.deserializeCourse(chosenCourse);
+            courseObject = Course.deserializeCourse(chosenCourse, false);
             chosenFaculty = courseObject.getInstructorEmail();
         }
         String chosenMessage;
@@ -622,7 +622,7 @@ public class FacultyReservationGUIController implements Initializable{
     }
     public void openBooking(Event action){
         Button current = (Button) action.getSource();
-        Room r = Room.deserializeRoom(current.getText());                               // Loading buttons
+        Room r = Room.deserializeRoom(current.getText(), false);                               // Loading buttons
         if(r==null){
             return;
         }
@@ -661,7 +661,7 @@ public class FacultyReservationGUIController implements Initializable{
     }
     public void showReadOnlyBookings(Event action){
         Button current = (Button) action.getSource();
-        Room r = Room.deserializeRoom(current.getText());                               // Loading buttons
+        Room r = Room.deserializeRoom(current.getText(), false);                               // Loading buttons
         if(r==null){
             return;
         }

@@ -53,7 +53,7 @@ public class Reservation implements java.io.Serializable{
         return this.reserverEmail;
     }
     public String getFacultyEmail(){
-        Course c = Course.deserializeCourse(this.course);
+        Course c = Course.deserializeCourse(this.course, false);
         return c.getInstructorEmail();
     }
     public int getReservationSlot(){
@@ -71,6 +71,7 @@ public class Reservation implements java.io.Serializable{
         }
         groups.remove(i);
         groupVenue.remove(i);
+        message.remove(i);
     }
     public String getTopGroup(){
         return this.groups.get(0);
@@ -108,19 +109,19 @@ public class Reservation implements java.io.Serializable{
         if(course.equals("")){
             return null;
         }
-        return Course.deserializeCourse(course);
+        return Course.deserializeCourse(course, false);
     }
     public Faculty getFaculty(){
         if(facultyEmail.equals("")){
             return null;
         }
-        return (Faculty)User.getUser(this.facultyEmail);
+        return (Faculty)User.getUser(this.facultyEmail, false);
     }
     public Room getRoom(){
         if(room.equals("")){
             return null;
         }
-        return Room.deserializeRoom(room);
+        return Room.deserializeRoom(room, false);
     }
     public void addGroup(String group, String venue, String message){
         this.groups.add(group);

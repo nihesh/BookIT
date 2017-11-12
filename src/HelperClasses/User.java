@@ -61,11 +61,18 @@ public class User implements Serializable{
             }
         }
         }
-	public static User getUser(String email) {
+	public static User getUser(String email,boolean lock) {
         try {
             Socket server = new Socket(BookITconstants.serverIP, BookITconstants.serverPort);
             ObjectOutputStream out = new ObjectOutputStream(server.getOutputStream());
             ObjectInputStream in = new ObjectInputStream(server.getInputStream());
+            if(lock){
+                out.writeObject("Hold");
+            }
+            else{
+                out.writeObject("Pass");
+            }
+            out.flush();
             out.writeObject("GetUser");
             out.flush();
             out.writeObject(email);
@@ -96,7 +103,7 @@ public class User implements Serializable{
 					boolean b=newPassword.matches("[A-Za-z0-9]+");
 					if(b) {
 						Password=newPassword;
-						serialize();
+						serialize(true);
 						this.setActiveUser();
 						return true;
 					}
@@ -104,11 +111,18 @@ public class User implements Serializable{
 		}
 		return false;
 	}
-	public void serialize() {
+	public void serialize(Boolean lock) {
         try {
             Socket server = new Socket(BookITconstants.serverIP, BookITconstants.serverPort);
             ObjectOutputStream out = new ObjectOutputStream(server.getOutputStream());
             ObjectInputStream in = new ObjectInputStream(server.getInputStream());
+            if(lock){
+                out.writeObject("Hold");
+            }
+            else{
+                out.writeObject("Pass");
+            }
+            out.flush();
             out.writeObject("WriteUser");
             out.flush();
             out.writeObject(this);
