@@ -35,7 +35,7 @@
                   </LinearGradient>
                </textFill>
             </Label>
-            <Label fx:id="AccCre" layoutX="112.0" layoutY="401.0" prefHeight="20.0" prefWidth="245.0" text="Account Successfully Created! ">
+            <Label fx:id="AccCre" layoutX="103.0" layoutY="401.0" prefHeight="20.0" prefWidth="254.0" text="Account Successfully Created! " visible="false">
                <font>
                   <Font name="Arial" size="15.0" />
                </font>
