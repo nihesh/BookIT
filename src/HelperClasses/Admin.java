@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
+import java.net.Socket;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -23,38 +24,42 @@ public class Admin extends User{
 	}
 	@SuppressWarnings("unchecked")
 	public static  HashMap<String, Integer> deserializeJoinCodes() throws FileNotFoundException, IOException, ClassNotFoundException {
-		HashMap<String, Integer> p=null;
-		ObjectInputStream in=null;
-		try
-		{
-			in = new ObjectInputStream(new FileInputStream("./src/AppData/JoinCodes/Codes.txt"));
-			p = (HashMap<String, Integer>)in.readObject();
+		try {
+			Socket server = new Socket(BookITconstants.serverIP, BookITconstants.serverPort);
+			ObjectOutputStream out = new ObjectOutputStream(server.getOutputStream());
+			ObjectInputStream in = new ObjectInputStream(server.getInputStream());
+			out.writeObject("ReadJoinCode");
+			out.flush();
+			HashMap<String, Integer> c = (HashMap<String, Integer>) in.readObject();
+			out.close();
+			in.close();
+			server.close();
+			return c;
 		}
-		finally {
-			if(in!=null) {
-				in.close();
-			}
+		catch (IOException e){
+			System.out.println("IO exception occurred while writing to server");
 		}
-		return p;
+		catch (ClassNotFoundException x){
+			System.out.println("ClassNotFound exception occurred while reading from server");
+		}
+		return null;
 	}
 	
 	public static void serializeJoinCode(HashMap<String, Integer> r) {
-		try{
-            ObjectOutputStream out = null;
-            try{
-                out = new ObjectOutputStream(new FileOutputStream("./src/AppData/JoinCodes/Codes.txt", false));
-                out.writeObject(r);
-            }
-            finally {
-                if(out!=null){
-                    out.close();
-                }
-            }
-
-        }
-        catch (IOException e){
-            System.out.println("file not found");
-        }
+		try {
+			Socket server = new Socket(BookITconstants.serverIP, BookITconstants.serverPort);
+			ObjectOutputStream out = new ObjectOutputStream(server.getOutputStream());
+			ObjectInputStream in = new ObjectInputStream(server.getInputStream());
+			out.writeObject("WriteJoinCode");
+			out.flush();
+			out.writeObject(r);
+			out.close();
+			in.close();
+			server.close();
+		}
+		catch (IOException e){
+			System.out.println("IO exception occured while writing to server");
+		}
 	}
 	public String generateJoincode(String type){
 		try {
@@ -92,41 +97,33 @@ public class Admin extends User{
 	}
 	@SuppressWarnings("unchecked")
 	public static PriorityQueue<ArrayList<Reservation>> deserializeRequestsQueue() throws FileNotFoundException, IOException, ClassNotFoundException {
-		PriorityQueue<ArrayList<Reservation>> p=null;
-		ObjectInputStream in=null;
-		try
-	        {   
-			 in = new ObjectInputStream(new FileInputStream("./src/AppData/Requests/requests.txt"));
-	         p = ((PriorityQueue<ArrayList<Reservation>>)in.readObject());  
-	         }
-		
-		 finally {
-			 if(in!=null) {
-				 in.close();
-				 }
-			 
-		 }
-		return p;
-	
+		Socket server = new Socket(BookITconstants.serverIP, BookITconstants.serverPort);
+		ObjectOutputStream out = new ObjectOutputStream(server.getOutputStream());
+		ObjectInputStream in = new ObjectInputStream(server.getInputStream());
+		out.writeObject("ReadRequest");
+		out.flush();
+		PriorityQueue<ArrayList<Reservation>> c = (PriorityQueue<ArrayList<Reservation>>) in.readObject();
+		out.close();
+		in.close();
+		server.close();
+		return c;
 	}
 	
 	public static void serializeRequestsQueue(PriorityQueue<ArrayList<Reservation>> r) {
-		try{
-            ObjectOutputStream out = null;
-            try{
-                out = new ObjectOutputStream(new FileOutputStream("./src/AppData/Requests/requests.txt"));
-                out.writeObject(r);
-            }
-            finally {
-                if(out!=null){
-                    out.close();
-                }
-            }
-
-        }
-        catch (IOException e){
-            System.out.println("file not found");
-        }
+		try {
+			Socket server = new Socket(BookITconstants.serverIP, BookITconstants.serverPort);
+			ObjectOutputStream out = new ObjectOutputStream(server.getOutputStream());
+			ObjectInputStream in = new ObjectInputStream(server.getInputStream());
+			out.writeObject("WriteRequest");
+			out.flush();
+			out.writeObject(r);
+			out.close();
+			in.close();
+			server.close();
+		}
+		catch (IOException e){
+			System.out.println("IO exception occured while writing to server");
+		}
 	}
 
 	public ArrayList<Reservation> getRequest(){
@@ -140,6 +137,9 @@ public class Admin extends User{
 			while (r != null && r.get(0).getTargetDate().isBefore(LocalDate.now())) {
 				p.poll();
 				r = p.peek();
+			}
+			if(r==null){
+				return null;
 			}
 			int flag=0;
 			Room temp = Room.deserializeRoom(r.get(0).getRoomName());

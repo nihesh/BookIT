@@ -1,12 +1,12 @@
-import HelperClasses.BookITconstants;
-import HelperClasses.Course;
-import HelperClasses.Room;
-import HelperClasses.User;
+import HelperClasses.*;
 
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.security.spec.ECField;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.PriorityQueue;
 
 /**
  * Created by nihesh on 12/11/17.
@@ -149,6 +149,88 @@ class ConnectionHandler implements Runnable{
             ;
         }
     }
+    public void serializeJoinCode(HashMap<String, Integer> r) {
+        try{
+            ObjectOutputStream out = null;
+            try{
+                out = new ObjectOutputStream(new FileOutputStream("./src/AppData/JoinCodes/Codes.txt", false));
+                out.writeObject(r);
+            }
+            finally {
+                if(out!=null){
+                    out.close();
+                }
+            }
+        }
+        catch (IOException e){
+            System.out.println("file not found");
+        }
+    }
+    public HashMap<String, Integer> deserializeJoinCodes(){
+        HashMap<String, Integer> p=null;
+        ObjectInputStream in=null;
+        try
+        {
+            in = new ObjectInputStream(new FileInputStream("./src/AppData/JoinCodes/Codes.txt"));
+            p = (HashMap<String, Integer>)in.readObject();
+        }
+        catch(Exception e){
+            ;
+        }
+        finally {
+            if(in!=null) {
+                try {
+                    in.close();
+                }
+                catch (Exception e){
+                    ;
+                }
+            }
+        }
+        return p;
+    }
+    public PriorityQueue<ArrayList<Reservation>> deserializeRequests(){
+        PriorityQueue<ArrayList<Reservation>> p=null;
+        ObjectInputStream in=null;
+        try
+        {
+            in = new ObjectInputStream(new FileInputStream("./src/AppData/Requests/requests.txt"));
+            p = ((PriorityQueue<ArrayList<Reservation>>)in.readObject());
+        }
+        catch(Exception e){
+            ;
+        }
+        finally {
+            if(in!=null) {
+                try {
+                    in.close();
+                }
+                catch(Exception e){
+                    ;
+                }
+            }
+
+        }
+        return p;
+    }
+    public void serializeRequests(PriorityQueue<ArrayList<Reservation>> r) {
+        try{
+            ObjectOutputStream out = null;
+            try{
+                out = new ObjectOutputStream(new FileOutputStream("./src/AppData/Requests/requests.txt"));
+                out.writeObject(r);
+            }
+            finally {
+                if(out!=null){
+                    out.close();
+                }
+            }
+
+        }
+        catch (IOException e){
+            System.out.println("file not found");
+        }
+    }
     public void run(){
         try{
             ObjectInputStream in = new ObjectInputStream(connection.getInputStream());
@@ -158,6 +240,8 @@ class ConnectionHandler implements Runnable{
             Course c;
             User u;
             Room r;
+            HashMap<String, Integer> joinCode;
+            PriorityQueue<ArrayList<Reservation>> req;
             switch (request){
                 case "ReadCourse":
                     String courseName = (String)in.readObject();
@@ -193,6 +277,24 @@ class ConnectionHandler implements Runnable{
                 case "WriteRoom":
                     r = (Room) in.readObject();
                     serializeRoom(r);
+                    break;
+                case "WriteJoinCode":
+                    joinCode = (HashMap<String, Integer>)in.readObject();
+                    serializeJoinCode(joinCode);
+                    break;
+                case "ReadJoinCode":
+                    joinCode = deserializeJoinCodes();
+                    out.writeObject(joinCode);
+                    out.flush();
+                    break;
+                case "WriteRequest":
+                    req = (PriorityQueue<ArrayList<Reservation>>)in.readObject();
+                    serializeRequests(req);
+                    break;
+                case "ReadRequest":
+                    req = deserializeRequests();
+                    out.writeObject(req);
+                    out.flush();
                     break;
             }
             in.close();
