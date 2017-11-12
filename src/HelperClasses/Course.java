@@ -1,6 +1,8 @@
 package HelperClasses;
 
 import java.io.*;
+import java.net.Socket;
+import java.net.SocketAddress;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -18,24 +20,27 @@ public class Course implements java.io.Serializable{
     private ArrayList<String> postCondition;
     private HashMap<LocalDate, Reservation[]> Schedule;
     public static Course deserializeCourse(String name){
-        ObjectInputStream in = null;
-        try{
-            in = new ObjectInputStream(new FileInputStream("./src/AppData/Course/"+name+".dat"));
-            return (Course)in.readObject();
+        try {
+            Socket server = new Socket(BookITconstants.serverIP, BookITconstants.serverPort);
+            ObjectOutputStream out = new ObjectOutputStream(server.getOutputStream());
+            ObjectInputStream in = new ObjectInputStream(server.getInputStream());
+            out.writeObject("ReadCourse");
+            out.flush();
+            out.writeObject(name);
+            out.flush();
+            Course c = (Course)in.readObject();
+            out.close();
+            in.close();
+            server.close();
+            return c;
         }
-        catch (Exception e){
-            System.out.println("Exception occured while deserialising Course");
-            return null;
+        catch (IOException e){
+            System.out.println("IO exception occured while writing to server");
         }
-        finally {
-            try {
-                if (in != null)
-                    in.close();
-            }
-            catch(IOException f){
-                ;
-            }
+        catch (ClassNotFoundException x){
+            System.out.println("ClassNotFound exception occured while reading from server");
         }
+        return null;
     }
    
     public Course(String name, String instructorEmail, ArrayList<String> postCondition, HashMap<LocalDate, Reservation[]> Schedule, String acronym){
@@ -47,14 +52,25 @@ public class Course implements java.io.Serializable{
         serialize();
     }
     public static ArrayList<String> getAllCourses(){
-        File directory= new File("./src/AppData/Course");
-        ArrayList<String> courses = new ArrayList<>();
-        File[] courseFiles=directory.listFiles();
-        for(int i=0;i<courseFiles.length;i++) {
-            String courseName = courseFiles[i].getName().substring(0, courseFiles[i].getName().length() - 4);
-            courses.add(courseName);
+        try {
+            Socket server = new Socket(BookITconstants.serverIP, BookITconstants.serverPort);
+            ObjectOutputStream out = new ObjectOutputStream(server.getOutputStream());
+            ObjectInputStream in = new ObjectInputStream(server.getInputStream());
+            out.writeObject("AllCourses");
+            out.flush();
+            ArrayList<String> c = (ArrayList<String>)in.readObject();
+            out.close();
+            in.close();
+            server.close();
+            return c;
         }
-        return courses;
+        catch (IOException e){
+            System.out.println("IO exception occured while writing to server");
+        }
+        catch (ClassNotFoundException x){
+            System.out.println("ClassNotFound exception occured while reading from server");
+        }
+        return null;
     }
     public boolean checkInternalCollision(Reservation r){
         if(!name.equals(r.getCourseName())){
@@ -119,21 +135,19 @@ public class Course implements java.io.Serializable{
         return this.acronym;
     }
     public void serialize(){
-        try{
-            ObjectOutputStream out = null;
-            try{
-                out = new ObjectOutputStream(new FileOutputStream("./src/AppData/Course/"+this.name+".dat", false));
-                out.writeObject(this);
-            }
-            finally {
-                if(out!=null){
-                    out.close();
-                }
-            }
-
+        try {
+            Socket server = new Socket(BookITconstants.serverIP, BookITconstants.serverPort);
+            ObjectOutputStream out = new ObjectOutputStream(server.getOutputStream());
+            ObjectInputStream in = new ObjectInputStream(server.getInputStream());
+            out.writeObject("WriteCourse");
+            out.flush();
+            out.writeObject(this);
+            out.close();
+            in.close();
+            server.close();
         }
         catch (IOException e){
-            ;
+            System.out.println("IO exception occured while writing to server");
         }
     }
     public void setInstructor(String f){

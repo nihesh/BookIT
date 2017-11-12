@@ -51,6 +51,16 @@ public class Student extends User{
 	}
 	//marker need to check
 	public static ArrayList<String> searchCourse(ArrayList<String> keyword){
+		int flag=1;
+		for(int i=0;i<keyword.size();i++){
+			if(!keyword.get(i).equals("")){
+				flag=0;
+				break;
+			}
+		}
+		if(flag==1){
+			return Course.getAllCourses();
+		}
 		ArrayList<ArrayList<String>> arr=new ArrayList<ArrayList<String>>();
 		for (int i=0;i<300;i++) {
 			arr.add(new ArrayList<String>());

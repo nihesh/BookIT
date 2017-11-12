@@ -6,20 +6,15 @@
 
 import AdminReservation.AdminReservationGUI;
 import FacultyReservation.FacultyReservationGUI;
-import HelperClasses.Admin;
-import HelperClasses.Faculty;
-import HelperClasses.Student;
 import HelperClasses.User;
 import LoginSignup.LoginSignupGUI;
 import StudentReservation.StudentReservationGUI;
 import javafx.application.Application;
-import javafx.application.Platform;
-import javafx.embed.swing.JFXPanel;
 import javafx.stage.Stage;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.ObjectInputStream;
+import java.io.IOException;
+import java.net.Socket;
 
 public class BookIT extends Application{
     public static void launchLoginGUI(Stage primaryStage){
@@ -59,7 +54,7 @@ public class BookIT extends Application{
             }
         }
     }
-    public static void main(String[] args){
+    public static void main(String[] args) throws IOException{
         launch(args);
     }
 }
