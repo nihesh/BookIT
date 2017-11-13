@@ -365,6 +365,7 @@ public class LoginSignupGUIController {
 			if(x==null) {
 				joincode=null;
 				backS();
+				return;
 			}
 			Admin.serializeJoinCode(temp, false);
 			user=new User(Name.getText().trim(), user.getPassword(), user.getEmail(), user.getUsertype());
