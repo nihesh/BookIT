@@ -76,6 +76,10 @@ public class setup {
 		return temp;
     }
     public static void loadRoomAndCourseObjects() throws IOException,FileNotFoundException{
+        File file2 = new File("./src/AppData/ActiveUser");
+        if(!file2.exists()){
+            file2.mkdir();
+        }
         Scanner file = new Scanner(new FileReader("./src/AppData/StaticTimeTable/TimeTable.csv"));
         HashMap<String, Room > roomData = new HashMap<String, Room >();
         HashMap<String, Course> courseData = new HashMap<String, Course>();

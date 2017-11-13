@@ -242,7 +242,7 @@ public class Admin extends User{
 	}
 	public boolean acceptRequest(){
 		try {
-			PriorityQueue<ArrayList<Reservation>> p = deserializeRequestsQueue(true);
+			PriorityQueue<ArrayList<Reservation>> p = deserializeRequestsQueue(false);
 			ArrayList<Reservation> r = p.peek();
 			if (r == null) {
 				serializeRequestsQueue(p,false);
@@ -300,7 +300,7 @@ public class Admin extends User{
 	}
 	public boolean rejectRequest(){
 		try{
-			PriorityQueue<ArrayList<Reservation>> p = deserializeRequestsQueue(true);
+			PriorityQueue<ArrayList<Reservation>> p = deserializeRequestsQueue(false);
 			if (p.size() == 0) {
 				serializeRequestsQueue(p,false);
 				return false;
