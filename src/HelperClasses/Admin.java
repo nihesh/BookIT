@@ -180,7 +180,7 @@ public class Admin extends User{
 	}
 	public ArrayList<Reservation> getRequest(){
 		try {
-			PriorityQueue<ArrayList<Reservation>> p = deserializeRequestsQueue(true);
+			PriorityQueue<ArrayList<Reservation>> p = deserializeRequestsQueue(false);
 			ArrayList<Reservation> r = p.peek();
 			while (r != null && (checkSpam(r.get(0).getMessageWithoutVenue()) || r.get(0).getCreationDate().plusDays(5).isBefore(LocalDateTime.now()))) {
 				p.poll();

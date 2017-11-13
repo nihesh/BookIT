@@ -8,6 +8,8 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.PriorityQueue;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -20,9 +22,10 @@ public class server {
         ServerSocket s = new ServerSocket(BookITconstants.serverPort);
         ConnectionHandler.lock = new ReentrantLock();
         spm = new SpamFilter();
+        ExecutorService threads = Executors.newFixedThreadPool(4);
         while(true){
             Socket connection = s.accept();
-            new Thread(new ConnectionHandler(connection)).start();
+            threads.execute(new ConnectionHandler(connection));
         }
     }
 }
@@ -285,7 +288,7 @@ class ConnectionHandler implements Runnable{
                                 c = (Course) in.readObject();
                                 serializeCourse(c);
                                 if(lock.isLocked()) {
-                                    lock=new ReentrantLock();
+                                    synchronized (this) { notifyAll(); }
                                     System.out.print("[ "+LocalDateTime.now()+" ] ");
                                     System.out.println(connection.getInetAddress().toString() + " | ServerLock Released");
                                 }
@@ -300,7 +303,7 @@ class ConnectionHandler implements Runnable{
                                 u = (User) in.readObject();
                                 serializeUser(u);
                                 if(lock.isLocked()) {
-                                    lock=new ReentrantLock();
+                                    synchronized (this) { notifyAll(); }
                                     System.out.print("[ "+LocalDateTime.now()+" ] ");
                                     System.out.println(connection.getInetAddress().toString() + " | ServerLock Released");
                                 }
@@ -315,8 +318,8 @@ class ConnectionHandler implements Runnable{
                                 r = (Room) in.readObject();
                                 serializeRoom(r);
                                 if(lock.isLocked()) {
-                                    lock = new ReentrantLock();
-                                    System.out.print("[ " + LocalDateTime.now() + " ] ");
+                                    synchronized (this) { notifyAll(); }
+                                    System.out.print("[ "+LocalDateTime.now()+" ] ");
                                     System.out.println(connection.getInetAddress().toString() + " | ServerLock Released");
                                 }
                                 break;
@@ -324,7 +327,7 @@ class ConnectionHandler implements Runnable{
                                 joinCode = (HashMap<String, Integer>) in.readObject();
                                 serializeJoinCode(joinCode);
                                 if(lock.isLocked()) {
-                                    lock=new ReentrantLock();
+                                    synchronized (this) { notifyAll(); }
                                     System.out.print("[ "+LocalDateTime.now()+" ] ");
                                     System.out.println(connection.getInetAddress().toString() + " | ServerLock Released");
                                 }
@@ -338,7 +341,7 @@ class ConnectionHandler implements Runnable{
                                 req = (PriorityQueue<ArrayList<Reservation>>) in.readObject();
                                 serializeRequests(req);
                                 if(lock.isLocked()) {
-                                    lock=new ReentrantLock();
+                                    synchronized (this) { notifyAll(); }
                                     System.out.print("[ "+LocalDateTime.now()+" ] ");
                                     System.out.println(connection.getInetAddress().toString() + " | ServerLock Released");
                                 }
@@ -354,6 +357,17 @@ class ConnectionHandler implements Runnable{
                                 out.writeObject(spamStatus);
                                 out.flush();
                                 break;
+                        }
+                        if(lock.isLocked() && lock.isHeldByCurrentThread()){
+                            if(request.substring(0,5).equals("Write")){
+                                lock.unlock();
+                            }
+                            else{
+                                synchronized (this) {
+                                    wait();
+                                }
+                                lock.unlock();
+                            }
                         }
                         in.close();
                         out.close();
