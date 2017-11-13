@@ -354,8 +354,4 @@ public class Admin extends User{
 		}
 		return false;
 	}
-	public static void main(String[] args) {
-		
 	}
-	
-}

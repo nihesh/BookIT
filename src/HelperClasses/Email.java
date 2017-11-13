@@ -24,8 +24,11 @@ public class Email implements Serializable{
 			}
 		}
 		String y=x.toString();
-		File a = new File("./src/AppData/User/"+y+".txt");
-		boolean exists = a.exists();
+		User temp100=User.getUser(y, false);
+		boolean exists=true;
+		if(temp100==null) {
+			exists=false;
+		}
 		if(exists) {
 			return 1; //user already exists
 		}
@@ -51,9 +54,12 @@ public class Email implements Serializable{
 			}
 		}
 		String y=x.toString();
-		File a = new File("./src/AppData/User/"+y+".txt");
-		boolean exists = a.exists();
-		return exists;
+		
+		User temp=User.getUser(y, false);
+		if(temp==null) {
+			return false;
+		}
+		return true;
 	}	
 	public String getEmailID() {
 		return emailID;

@@ -24,22 +24,10 @@ public class Student extends User{
 	public boolean sendReservationRequest(ArrayList<Reservation> r){
 		try {
 			PriorityQueue<ArrayList<Reservation>> p = null;
-			ObjectInputStream in = null;
-			ObjectOutputStream out = null;
-			try {
-				in = new ObjectInputStream(new FileInputStream("./src/AppData/Requests/requests.txt"));
-				p = ((PriorityQueue<ArrayList<Reservation>>) in.readObject());
+				p = Admin.deserializeRequestsQueue(true);
 				p.add(r);
-				out = new ObjectOutputStream(new FileOutputStream("./src/AppData/Requests/requests.txt", false));
-				out.writeObject(p);
-			} finally {
-				if (in != null) {
-					in.close();
-				}
-				if (out != null) {
-					out.close();
-				}
-			}
+				Admin.serializeRequestsQueue(p, false);
+			
 		}
 		catch(IOException e){
 			System.out.println("IO Exception while deserialising priority queue");
@@ -65,15 +53,16 @@ public class Student extends User{
 		for (int i=0;i<300;i++) {
 			arr.add(new ArrayList<String>());
 		}
+		
 		ArrayList<String> temp2=new ArrayList<String>();
-		File directory= new File("./src/AppData/Course");
-		File[] courseFiles=directory.listFiles();
-		for(int i=0;i<courseFiles.length;i++) {
-			String courseName = courseFiles[i].getName().substring(0,courseFiles[i].getName().length()-4);
+		
+		ArrayList<String> courseFiles=Course.getAllCourses();
+		for(int i=0;i<courseFiles.size();i++) {
+			String courseName = courseFiles.get(i).substring(0,courseFiles.get(i).length());
 			Course temp=Course.deserializeCourse(courseName, false);
 			int match=temp.keyMatch(keyword);
 			if(match > 0) {
-				arr.get(match).add(courseFiles[i].getName().substring(0,courseFiles[i].getName().length()-4));
+				arr.get(match).add(courseFiles.get(i).substring(0,courseFiles.get(i).length()));
 			}
 		}
 		for(int i=arr.size()-1;i>=0;i--) {
