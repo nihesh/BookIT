@@ -361,14 +361,14 @@ public class LoginSignupGUIController {
 		if(!Name.getText().equals("") && Name.getText().matches("^[\\p{L} .'-]+$")) {
 			
 			HashMap<String,Integer> temp = Admin.deserializeJoinCodes(true);
-			Integer x=temp.remove(joincode);
-			Admin.serializeJoinCode(temp, false);
 			if(!temp.containsKey(joincode)) {
 				
 				joincode=null;
 				backS();
 				return;
 			}
+			Integer x=temp.remove(joincode);
+			Admin.serializeJoinCode(temp, false);
 			user=new User(Name.getText().trim(), user.getPassword(), user.getEmail(), user.getUsertype());
 			if(Name.getStyleClass().contains("text-field2")) {
 				if(!Name.getStyleClass().contains("text-field1")) {
