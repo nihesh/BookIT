@@ -162,10 +162,10 @@ public class setup {
             }
         }
         roomData.forEach((name, room)->{
-            room.serialize(true);
+            room.serialize(false);
         });
         courseData.forEach((name, course)->{
-            course.serialize(true);
+            course.serialize(false);
         });
     }
     public static void createFirstAdmin(){
