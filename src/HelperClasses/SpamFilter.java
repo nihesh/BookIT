@@ -13,13 +13,13 @@ import static java.lang.Math.max;
  * Created by nihesh on 10/11/17.
  */
 public class SpamFilter {
-    private Double tolerance = 0.3;
-    private HashMap<String, Boolean> dict;
+    private static Double tolerance = 0.3;
+    public static HashMap<String, Boolean> dict;
 
     public static int totalSpam;
     public static int totalHam;
-    private HashMap<String, Integer> SpamData = new HashMap<>();
-    private HashMap<String, Integer> HamData = new HashMap<>();
+    private static HashMap<String, Integer> SpamData = new HashMap<>();
+    private static HashMap<String, Integer> HamData = new HashMap<>();
 
     public SpamFilter(){
         totalHam = 0;
@@ -42,7 +42,7 @@ public class SpamFilter {
                 Scanner sc = new Scanner(new BufferedReader(new FileReader("./src/AppData/SpamFilterDataset/Ham/"+Integer.toString(i)+".txt")));
                 HashMap<String, Boolean> temp = new HashMap<>();
                 while(sc.hasNext()){
-                    String word = sc.next();
+                    String word = sc.next().toLowerCase();
                     if(!temp.containsKey(word)){
                         temp.put(word, true);
                         if(!HamData.containsKey(word)){
@@ -63,7 +63,7 @@ public class SpamFilter {
                 Scanner sc = new Scanner(new BufferedReader(new FileReader("./src/AppData/SpamFilterDataset/Spam/"+Integer.toString(i)+".txt")));
                 HashMap<String, Boolean> temp = new HashMap<>();
                 while(sc.hasNext()){
-                    String word = sc.next();
+                    String word = sc.next().toLowerCase();
                     if(!temp.containsKey(word)){
                         temp.put(word, true);
                         if(!SpamData.containsKey(word)){
@@ -80,12 +80,12 @@ public class SpamFilter {
             ;
         }
     }
-    public Boolean Predict(ArrayList<String> message){            // Returns true if spam
+    public static Boolean Predict(ArrayList<String> message){            // Returns true if spam
         double spamLoglikelihood = Math.log10(totalSpam)-Math.log10(totalSpam+totalHam);               // Bayesian priors
         double hamLoglikelihood = Math.log10(totalSpam)-Math.log10(totalSpam+totalHam);
         int uncertainity = 0;
         for(int i=0;i<message.size();i++){
-            if(!SpamData.containsKey(message.get(i))){
+            if(!SpamData.containsKey(message.get(i).toLowerCase())){
                 uncertainity++;
             }
         }
@@ -97,18 +97,18 @@ public class SpamFilter {
             return true;
         }
         for(int i=message.size()-1;i>=0;i--){
-            if(!SpamData.containsKey(message.get(i))){
+            if(!SpamData.containsKey(message.get(i).toLowerCase())){
                 message.remove(i);
             }
         }
         double minFrequency=0.0001;
         for(int i=0;i<message.size();i++){
-            spamLoglikelihood+=Math.log10(max(minFrequency,SpamData.get(message.get(i)))) - Math.log10(totalSpam);
-            hamLoglikelihood+=Math.log10(max(minFrequency,HamData.get(message.get(i)))) - Math.log10(totalHam);
+            spamLoglikelihood+=Math.log10(max(minFrequency,SpamData.get(message.get(i).toLowerCase()))) - Math.log10(totalSpam);
+            hamLoglikelihood+=Math.log10(max(minFrequency,HamData.get(message.get(i).toLowerCase()))) - Math.log10(totalHam);
         }
         return spamLoglikelihood>hamLoglikelihood;
     }
-    private int getTypos(ArrayList<String> query){
+    private static int getTypos(ArrayList<String> query){
         int count=0;
         for(int i=0;i<query.size();i++){
             if(!dict.containsKey(query.get(i).toLowerCase())){
@@ -117,7 +117,7 @@ public class SpamFilter {
         }
         return count;
     }
-    private Boolean isTolerable(ArrayList<String> query){
+    private static Boolean isTolerable(ArrayList<String> query){
         double t = getTypos(query)/(query.size());
         return t<=tolerance;
     }
