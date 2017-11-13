@@ -362,12 +362,13 @@ public class LoginSignupGUIController {
 			
 			HashMap<String,Integer> temp = Admin.deserializeJoinCodes(true);
 			Integer x=temp.remove(joincode);
-			if(x==null) {
+			Admin.serializeJoinCode(temp, false);
+			if(!temp.containsKey(joincode)) {
+				
 				joincode=null;
 				backS();
 				return;
 			}
-			Admin.serializeJoinCode(temp, false);
 			user=new User(Name.getText().trim(), user.getPassword(), user.getEmail(), user.getUsertype());
 			if(Name.getStyleClass().contains("text-field2")) {
 				if(!Name.getStyleClass().contains("text-field1")) {
@@ -427,6 +428,7 @@ public class LoginSignupGUIController {
 		if(user!=null) {
 			user=null;
 		}
+		AccCre.setVisible(false);
 		Login_email.setVisible(true);Login_email.clear();
 		Login_password.setVisible(false);Login_password.clear();
 		Login_email_btn.setVisible(true);;
