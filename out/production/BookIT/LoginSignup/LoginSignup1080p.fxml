@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="567.0" prefWidth="850.0" styleClass="pane2" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="LoginSignup.LoginSignupGUIController">
+   <children>
+      <AnchorPane fx:id="Login_Pane" layoutX="425.0" layoutY="-10.0" opacity="0.84" prefHeight="550.0" prefWidth="419.0" styleClass="modal-dialog-glass">
+         <children>
+            <TextField fx:id="Login_email" layoutX="59.0" layoutY="219.0" prefHeight="36.0" prefWidth="301.0" promptText="Email" styleClass="text-field1" AnchorPane.bottomAnchor="295.0" AnchorPane.leftAnchor="59.0" AnchorPane.rightAnchor="59.0" AnchorPane.topAnchor="219.0" />
+            <PasswordField fx:id="Login_password" layoutX="59.0" layoutY="219.0" prefHeight="36.0" prefWidth="301.0" promptText="Password" styleClass="text-field1" visible="false" />
+            <Label fx:id="Login_password_label" layoutX="59.0" layoutY="219.0" prefHeight="36.0" prefWidth="301.0" styleClass="labelG" text="Label" visible="false" AnchorPane.bottomAnchor="295.0" AnchorPane.leftAnchor="59.0" AnchorPane.rightAnchor="59.0" AnchorPane.topAnchor="219.0" />
+            <Button fx:id="Login_email_btn" layoutX="282.0" layoutY="282.0" mnemonicParsing="false" onMouseClicked="#Login_NEXT" onMouseEntered="#BtnEffect" onMouseExited="#BtnEffectRev" prefHeight="36.0" prefWidth="82.0" styleClass="but1" text="NEXT" AnchorPane.bottomAnchor="232.0" AnchorPane.leftAnchor="282.0" AnchorPane.rightAnchor="55.0" AnchorPane.topAnchor="282.0" />
+            <Button fx:id="Login_password_btn" layoutX="282.0" layoutY="351.0" mnemonicParsing="false" onMouseClicked="#Login_NEXT2" onMouseEntered="#BtnEffect" onMouseExited="#BtnEffectRev" prefHeight="36.0" prefWidth="82.0" styleClass="but1" text="DONE" visible="false" />
+            <Label layoutX="131.0" layoutY="89.0" prefHeight="68.0" prefWidth="157.0" text="  LOGIN">
+               <font>
+                  <Font size="34.0" />
+               </font>
+               <textFill>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop color="#ee1106" />
+                        <Stop color="#0906b9" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </textFill>
+            </Label>
+            <Label fx:id="AccCre" layoutX="103.0" layoutY="401.0" prefHeight="20.0" prefWidth="254.0" text="Account Successfully Created! " visible="false">
+               <font>
+                  <Font name="Arial" size="15.0" />
+               </font>
+            </Label>
+            <Button fx:id="Lback_btn" layoutX="32.0" layoutY="30.0" mnemonicParsing="false" onMouseClicked="#backL" prefHeight="36.0" prefWidth="40.0" styleClass="back2" stylesheets="@application.css" visible="false" AnchorPane.bottomAnchor="484.0" AnchorPane.leftAnchor="32.0" AnchorPane.rightAnchor="347.0" AnchorPane.topAnchor="30.0" />
+         </children></AnchorPane>
+      <AnchorPane fx:id="Signup_Pane" layoutX="817.0" layoutY="-10.0" opacity="0.84" prefHeight="550.0" prefWidth="419.0" styleClass="modal-dialog-glass">
+         <children>
+            <TextField fx:id="Signup_email" layoutX="83.0" layoutY="219.0" prefHeight="36.0" prefWidth="301.0" promptText="Email" styleClass="text-field1" AnchorPane.bottomAnchor="295.0" AnchorPane.leftAnchor="59.0" AnchorPane.rightAnchor="59.0" AnchorPane.topAnchor="219.0" />
+            <PasswordField fx:id="Signup_password" layoutX="59.0" layoutY="219.0" prefHeight="36.0" prefWidth="301.0" promptText="Password" styleClass="text-field1" visible="false" AnchorPane.bottomAnchor="295.0" AnchorPane.leftAnchor="59.0" AnchorPane.rightAnchor="59.0" AnchorPane.topAnchor="219.0" />
+            <PasswordField fx:id="CnfPass" layoutX="59.0" layoutY="275.0" prefHeight="36.0" prefWidth="301.0" promptText="Confirm Password" styleClass="text-field1" visible="false" AnchorPane.bottomAnchor="239.0" AnchorPane.leftAnchor="59.0" AnchorPane.rightAnchor="59.0" AnchorPane.topAnchor="275.0" />
+            <TextField fx:id="Signup_joincode" layoutX="59.0" layoutY="219.0" prefHeight="36.0" prefWidth="301.0" promptText="Enter your Joincode" styleClass="text-field1" visible="false" AnchorPane.bottomAnchor="295.0" AnchorPane.leftAnchor="59.0" AnchorPane.rightAnchor="59.0" AnchorPane.topAnchor="219.0" />
+            <Label layoutX="145.0" layoutY="91.0" prefHeight="68.0" prefWidth="130.0" text="SIGNUP">
+               <font>
+                  <Font size="34.0" />
+               </font>
+               <textFill>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop color="#ee1106" />
+                        <Stop color="#0906b9" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </textFill>
+            </Label>
+            <TextField fx:id="Name" layoutX="59.0" layoutY="219.0" prefHeight="36.0" prefWidth="301.0" promptText="Enter Name" styleClass="text-field1" visible="false" AnchorPane.bottomAnchor="295.0" AnchorPane.leftAnchor="59.0" AnchorPane.rightAnchor="59.0" AnchorPane.topAnchor="219.0" />
+            <ComboBox fx:id="Branch" layoutX="59.0" layoutY="299.0" prefHeight="25.0" prefWidth="301.0" styleClass="text-field1" visible="false" />
+            <Button fx:id="Signup_email_btn" layoutX="282.0" layoutY="282.0" mnemonicParsing="false" onMouseClicked="#Signup_NEXT" onMouseEntered="#BtnEffect" onMouseExited="#BtnEffectRev" prefHeight="36.0" prefWidth="82.0" styleClass="but1" text="NEXT" AnchorPane.bottomAnchor="232.0" AnchorPane.leftAnchor="282.0" AnchorPane.rightAnchor="55.0" AnchorPane.topAnchor="282.0" />
+            <Button fx:id="Signup_password_btn" layoutX="282.0" layoutY="330.0" mnemonicParsing="false" onMouseClicked="#Signup_NEXT2" onMouseEntered="#BtnEffect" onMouseExited="#BtnEffectRev" prefHeight="36.0" prefWidth="82.0" styleClass="but1" text="NEXT" visible="false" AnchorPane.bottomAnchor="184.0" AnchorPane.leftAnchor="282.0" AnchorPane.rightAnchor="55.0" AnchorPane.topAnchor="330.0" />
+            <Button fx:id="Signup_joincode_btn" layoutX="282.0" layoutY="282.0" mnemonicParsing="false" onMouseClicked="#Signup_NEXT3" onMouseEntered="#BtnEffect" onMouseExited="#BtnEffectRev" prefHeight="36.0" prefWidth="82.0" styleClass="but1" text="NEXT" visible="false" AnchorPane.bottomAnchor="232.0" AnchorPane.leftAnchor="282.0" AnchorPane.rightAnchor="55.0" AnchorPane.topAnchor="282.0" />
+            <Button fx:id="Signup_done_btn" layoutX="282.0" layoutY="282.0" mnemonicParsing="false" onMouseClicked="#Signup_NEXT4" onMouseEntered="#BtnEffect" onMouseExited="#BtnEffectRev" prefHeight="36.0" prefWidth="82.0" styleClass="but1" text="DONE" visible="false" />
+            <Button fx:id="Sback_btn" layoutX="32.0" layoutY="30.0" mnemonicParsing="false" onMouseClicked="#backS" prefHeight="36.0" prefWidth="40.0" styleClass="back2" visible="false" AnchorPane.bottomAnchor="484.0" AnchorPane.leftAnchor="32.0" AnchorPane.rightAnchor="347.0" AnchorPane.topAnchor="30.0" />
+         </children></AnchorPane>
+      <ImageView disable="true" fitHeight="353.0" fitWidth="449.0" layoutX="51.0" layoutY="67.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="163.25" AnchorPane.leftAnchor="51.0" AnchorPane.rightAnchor="350.0" AnchorPane.topAnchor="67.0">
+         <image>
+            <Image url="@Untitled.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="Signup_btn" layoutX="135.0" layoutY="385.0" mnemonicParsing="false" onMouseClicked="#Signup_TranslateLeft" prefHeight="68.0" prefWidth="157.0" styleClass="but2" text="SIGNUP" AnchorPane.bottomAnchor="114.0" AnchorPane.leftAnchor="135.0" AnchorPane.rightAnchor="558.0" AnchorPane.topAnchor="385.0">
+         <font>
+            <Font size="18.0" />
+         </font></Button>
+      <Button fx:id="Login_btn" layoutX="135.0" layoutY="385.0" mnemonicParsing="false" onMouseClicked="#Signup_TranslateRight" prefHeight="68.0" prefWidth="157.0" styleClass="but2" text="LOGIN" visible="false" AnchorPane.bottomAnchor="114.0" AnchorPane.leftAnchor="135.0" AnchorPane.rightAnchor="558.0" AnchorPane.topAnchor="385.0">
+         <font>
+            <Font size="18.0" />
+         </font></Button>
+      <Label layoutX="-9.0" layoutY="534.0" prefHeight="36.0" prefWidth="868.0" styleClass="labelD" text="     BOOKIT  -  Nihesh Anderson , Harsh Pathak                                                                   New Delhi, India @2018    " textFill="WHITE">
+         <font>
+            <Font name="Agency FB" size="15.0" />
+         </font>
+      </Label>
+   </children>
+   <stylesheets>
+      <URL value="@application.css" />
+      <URL value="@textfield.css" />
+   </stylesheets>
+</AnchorPane>

@@ -15,9 +15,11 @@ import java.util.concurrent.locks.ReentrantLock;
  * Created by nihesh on 12/11/17.
  */
 public class server {
+    public static SpamFilter spm;
     public static void main(String[] args)throws IOException{
         ServerSocket s = new ServerSocket(BookITconstants.serverPort);
         ConnectionHandler.lock = new ReentrantLock();
+        spm = new SpamFilter();
         while(true){
             Socket connection = s.accept();
             new Thread(new ConnectionHandler(connection)).start();
