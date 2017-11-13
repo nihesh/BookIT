@@ -211,6 +211,7 @@ public class StudentReservationGUIController implements Initializable{
         for(int j=0;j<28;j++) {
             listOfReservations[j] = null;
             for (int i = 0; i < courseObjects.size(); i++) {
+                System.out.println(myCourses.get(i)+ " " +Integer.toString(j));
                 Course c = courseObjects.get(i);
                 if (c.getSchedule(activeDate)[j] != null) {
                     if (listOfReservations[j] == null) {

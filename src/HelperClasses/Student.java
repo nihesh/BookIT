@@ -81,7 +81,7 @@ public class Student extends User{
 			}
 		}
 		myCourses.add(c);
-		this.serialize(true);
+		this.serialize(false);
 		this.setActiveUser();
 		return true;
 	}

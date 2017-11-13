@@ -211,13 +211,18 @@ public class setup {
         }
     }
     
-    public static void main(String[] args)throws IOException,FileNotFoundException, ClassNotFoundException {
-        loadRoomAndCourseObjects();                    // Creates Room and Course Objects for all rooms and courses in AppData. This should be used for initialisation only
+    public static void main(String[] args){
+        try {
+            loadRoomAndCourseObjects();                    // Creates Room and Course Objects for all rooms and courses in AppData. This should be used for initialisation only
 //        createFirstAdmin();
 //        createFirstStudent();
 //        createFirstFaculty();
-        serialiseEmptyPriorityQueue();
-        serialiseEmptyJoinCodeMap();
+            serialiseEmptyPriorityQueue();
+            serialiseEmptyJoinCodeMap();
+        }
+        catch(Exception e){
+            System.out.println(e.getMessage());
+        }
     }
 }
 

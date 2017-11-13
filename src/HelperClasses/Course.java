@@ -213,7 +213,7 @@ public class Course implements java.io.Serializable{
             r.deleteGroup(group);
             Schedule.get(date)[slot] = r;
         }
-        serialize(true);
+        serialize(false);
     }
     
 }
