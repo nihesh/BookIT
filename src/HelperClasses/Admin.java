@@ -153,16 +153,40 @@ public class Admin extends User{
 			System.out.println("IO exception occured while writing to server");
 		}
 	}
-
+	public Boolean checkSpam(String message) {
+		try{
+			Socket server = new Socket(BookITconstants.serverIP, BookITconstants.serverPort);
+			ObjectOutputStream out = new ObjectOutputStream(server.getOutputStream());
+			ObjectInputStream in = new ObjectInputStream(server.getInputStream());
+			out.writeObject("Pass");
+			out.flush();
+			out.writeObject("SpamCheck");
+			out.flush();
+			out.writeObject(message);
+			out.flush();
+			Boolean c = (Boolean) in.readObject();
+			out.close();
+			in.close();
+			server.close();
+			return c;
+		}
+		catch(IOException e){
+			System.out.println("IO Exception occurred while checking spam");
+		}
+		catch (ClassNotFoundException c){
+			System.out.println("ClassNotFound exception occurred while checking spam");
+		}
+		return true;
+	}
 	public ArrayList<Reservation> getRequest(){
 		try {
 			PriorityQueue<ArrayList<Reservation>> p = deserializeRequestsQueue(true);
 			ArrayList<Reservation> r = p.peek();
-			while (r != null && r.get(0).getCreationDate().plusDays(5).isBefore(LocalDateTime.now())) {
+			while (r != null && (checkSpam(r.get(0).getMessageWithoutVenue()) || r.get(0).getCreationDate().plusDays(5).isBefore(LocalDateTime.now()))) {
 				p.poll();
 				r = p.peek();
 			}
-			while (r != null && r.get(0).getTargetDate().isBefore(LocalDate.now())) {
+			while (r != null && (checkSpam(r.get(0).getMessageWithoutVenue()) || r.get(0).getTargetDate().isBefore(LocalDate.now()))) {
 				p.poll();
 				r = p.peek();
 			}
@@ -174,6 +198,11 @@ public class Admin extends User{
 			Room temp = Room.deserializeRoom(r.get(0).getRoomName(),false);
 			Course ctemp = Course.deserializeCourse(r.get(0).getCourseName(), false);
 			while(r!=null) {
+				if(checkSpam(r.get(0).getMessageWithoutVenue())){
+					p.poll();
+					r = p.peek();
+					continue;
+				}
 			for (Reservation reservation : r) {
 				if (!temp.checkReservation(r.get(0).getTargetDate(), reservation.getReservationSlot(), reservation)) {
 					p.poll();

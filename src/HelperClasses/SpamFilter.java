@@ -80,7 +80,12 @@ public class SpamFilter {
             ;
         }
     }
-    public static Boolean Predict(ArrayList<String> message){            // Returns true if spam
+    public static Boolean Predict(String raw_message){            // Returns true if spam
+        String[] processedMessage = raw_message.split("\\s+");
+        ArrayList<String> message = new ArrayList<>();
+        for(int i=0;i<processedMessage.length;i++){
+            message.add(processedMessage[i]);
+        }
         double spamLoglikelihood = Math.log10(totalSpam)-Math.log10(totalSpam+totalHam);               // Bayesian priors
         double hamLoglikelihood = Math.log10(totalSpam)-Math.log10(totalSpam+totalHam);
         int uncertainity = 0;

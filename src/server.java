@@ -348,6 +348,12 @@ class ConnectionHandler implements Runnable{
                                 out.writeObject(req);
                                 out.flush();
                                 break;
+                            case "SpamCheck":
+                                String message = (String) in.readObject();
+                                Boolean spamStatus = SpamFilter.Predict(message);
+                                out.writeObject(spamStatus);
+                                out.flush();
+                                break;
                         }
                         in.close();
                         out.close();
