@@ -87,6 +87,7 @@ public class StudentReservationGUIController implements Initializable{
     private String activeRoom;
     private HashMap<Button,Integer> selection = new HashMap<Button,Integer>();
     private Boolean isActiveReservation, changepassProcessing, fetchCoursesProcessing, listCoursesProcessing,timetableprocessing;
+
     @Override
     public void initialize(URL location, ResourceBundle resources){
         activeUser = (Student)User.getActiveUser();

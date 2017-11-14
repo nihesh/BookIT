@@ -24,6 +24,7 @@ public class AdminReservationGUI extends Application {
             primaryStage.getIcons().add(new Image(file.toURI().toString()));
             User activeUser = (User) User.getActiveUser();
             primaryStage.setTitle("BookIT - "+activeUser.getEmail().getEmailID());
+            primaryStage.setMaximized(true);
             primaryStage.setResizable(false);
             primaryStage.setScene(new Scene(root, 1920, 1000));
             primaryStage.showAndWait();

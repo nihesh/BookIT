@@ -28,18 +28,18 @@
 <VBox fx:id="rootPane" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="StudentReservation.StudentReservationGUIController">
    <children>
       <MenuBar fx:id="menuBar">
-        <menus>
-          <Menu mnemonicParsing="false" text="File">
-            <items>
-              <MenuItem mnemonicParsing="false" onAction="#signout" text="Logout" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Help">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Documentation" />
-            </items>
-          </Menu>
-        </menus>
+         <menus>
+            <Menu mnemonicParsing="false" text="File">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#signout" text="Logout" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Help">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Documentation" />
+               </items>
+            </Menu>
+         </menus>
       </MenuBar>
       <StackPane fx:id="topPane" onMouseEntered="#exitReadOnlyBookings" prefHeight="382.0" prefWidth="1920.0">
          <children>
@@ -75,10 +75,10 @@
                </children>
             </StackPane>
             <SplitPane disable="true" dividerPositions="0.29797979797979796" prefHeight="312.0" prefWidth="2003.0">
-              <items>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" />
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" />
-              </items>
+               <items>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" />
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" />
+               </items>
                <StackPane.margin>
                   <Insets left="645.0" right="1265.0" />
                </StackPane.margin>
@@ -192,8 +192,8 @@
                                  </StackPane.margin>
                               </Label>
                               <ScrollPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #922B21;">
-                                <content>
-                                  <AnchorPane minHeight="132.0" minWidth="0.0" prefWidth="563.0" style="-fx-background-color: #922B21;">
+                                 <content>
+                                    <AnchorPane minHeight="132.0" minWidth="0.0" prefWidth="563.0" style="-fx-background-color: #922B21;">
                                        <children>
                                           <Label fx:id="slotInfoMessage" alignment="TOP_LEFT" prefWidth="555.0" text="No information available" textFill="WHITE" wrapText="true">
                                              <font>
@@ -205,7 +205,7 @@
                                           </Label>
                                        </children>
                                     </AnchorPane>
-                                </content>
+                                 </content>
                                  <StackPane.margin>
                                     <Insets bottom="10.0" left="19.0" right="18.0" top="160.0" />
                                  </StackPane.margin>
@@ -339,9 +339,9 @@
                                  </StackPane.margin>
                               </Button>
                               <ScrollPane prefHeight="237.0" prefWidth="596.0">
-                                <content>
-                                  <AnchorPane fx:id="shortlistedCourses" minHeight="235.0" minWidth="0.0" prefWidth="578.0" style="-fx-background-color: #424949;" />
-                                </content>
+                                 <content>
+                                    <AnchorPane fx:id="shortlistedCourses" minHeight="235.0" minWidth="0.0" prefWidth="578.0" style="-fx-background-color: #424949;" />
+                                 </content>
                                  <StackPane.margin>
                                     <Insets bottom="60.0" left="15.0" right="15.0" top="15.0" />
                                  </StackPane.margin>
@@ -542,29 +542,29 @@
          </children>
       </StackPane>
       <SplitPane disable="true" dividerPositions="0.5" orientation="VERTICAL" prefHeight="0.0" prefWidth="1920.0">
-        <items>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="242.0" prefWidth="1918.0" />
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" />
-        </items>
+         <items>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="242.0" prefWidth="1918.0" />
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" />
+         </items>
       </SplitPane>
       <StackPane fx:id="mainPane" prefHeight="720.0" prefWidth="1920.0" style="-fx-background-color: linear-gradient( #2C3E50,#1B2631);">
          <children>
             <StackPane fx:id="roomGridPane" prefHeight="150.0" prefWidth="200.0">
                <children>
                   <GridPane fx:id="roomGrid" alignment="CENTER" prefHeight="233.0" prefWidth="324.0" StackPane.alignment="CENTER">
-                    <columnConstraints>
+                     <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                    </columnConstraints>
-                    <rowConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     </columnConstraints>
+                     <rowConstraints>
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                    </rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
                      <children>
                         <Button mnemonicParsing="false" onMouseClicked="#openBooking" onMouseEntered="#showReadOnlyBookings" opacity="0.76" prefHeight="54.0" prefWidth="225.0" stylesheets="@button.css" text="C01" GridPane.halignment="CENTER" />
                         <Button mnemonicParsing="false" onMouseClicked="#openBooking" onMouseEntered="#showReadOnlyBookings" opacity="0.76" prefHeight="54.0" prefWidth="225.0" stylesheets="@button.css" text="C12" GridPane.halignment="CENTER" GridPane.rowIndex="1">
@@ -600,22 +600,22 @@
             <StackPane fx:id="HoverPane" prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: linear-gradient(#CD6155 ,#E6B0AA,#CD6155); visibility: false;">
                <children>
                   <GridPane>
-                    <columnConstraints>
+                     <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                    </columnConstraints>
-                    <rowConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     </columnConstraints>
+                     <rowConstraints>
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                    </rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
                      <StackPane.margin>
                         <Insets bottom="100.0" left="200.0" right="200.0" top="50.0" />
                      </StackPane.margin>
@@ -1230,9 +1230,9 @@
                            </font>
                         </Label>
                         <ScrollPane prefHeight="541.0" prefWidth="1209.0">
-                          <content>
-                            <AnchorPane fx:id="selectedSlotsScrollPane" minHeight="0.0" minWidth="0.0" prefHeight="474.0" prefWidth="494.0" style="-fx-background-color: #424949;" />
-                          </content>
+                           <content>
+                              <AnchorPane fx:id="selectedSlotsScrollPane" minHeight="0.0" minWidth="0.0" prefHeight="474.0" prefWidth="494.0" style="-fx-background-color: #424949;" />
+                           </content>
                            <StackPane.margin>
                               <Insets bottom="20.0" left="20.0" right="800.0" top="100.0" />
                            </StackPane.margin>
