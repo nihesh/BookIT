@@ -8,12 +8,24 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.net.Socket;
 import java.util.Date;
+/**
+ * The user class for modeling faculty,student and admin objects
+ * @author Harsh
+ * @author Nihesh
+ */
 public class User implements Serializable{
 	private static final long serialVersionUID = 1L;
 	protected String Name;
 	private String Password; 	//User account password
 	protected Email emailID; 		//Email of user
 	protected String userType;	//Student, Faculty and Admin
+	/**
+	 * constructor for the user class
+	 * @param name name of the user
+	 * @param password password of user account
+	 * @param emailID emailID of the user
+	 * @param userType user type - choices are faculty, admin and student
+	 */
 	public User(String name, String password, Email emailID, String userType) {
 		Name = name;
 		Password = password;
@@ -21,6 +33,9 @@ public class User implements Serializable{
 		this.userType = userType;
 		
 	}
+	/**
+	 * sets the user object as the active user in the databse and opens the account of the user
+	 */
 	public void setActiveUser() {
 		try{
 			File file=new File("./src/AppData/ActiveUser/ActiveUser.txt");
@@ -41,6 +56,10 @@ public class User implements Serializable{
             System.out.println("file not found");
         }
 	}
+	/**
+	 * return the active user from the database
+	 * @return User object
+	 */
 	public static User getActiveUser() {
 		ObjectInputStream in = null;
         try{
@@ -61,6 +80,12 @@ public class User implements Serializable{
             }
         }
         }
+	/**
+	 * returns a user object from the database by using the user email
+	 * @param email email of the user
+	 * @param lock locks the server if set to true
+	 * @return User class object
+	 */
 	public static User getUser(String email,boolean lock) {
         try {
             Socket server = new Socket(BookITconstants.serverIP, BookITconstants.serverPort);
@@ -91,12 +116,24 @@ public class User implements Serializable{
         }
         return null;
 	}
+	/**
+	 * authenticates a user by checking the password typed and the real password of the 
+	 * user in the database during login
+	 * @param password password typed during login
+	 * @return true if validated false otherwise
+	 */
 	public boolean authenticate(String password) {   //login version
 		if(this.Password.equals(password)) {
 			return true;
 		}
 		return false;
 	}
+	/**
+	 * change password of a user
+	 * @param oldPassword the existing password
+	 * @param newPassword the new password
+	 * @return true if successful, false otherwise
+	 */
 	public boolean changePassword(String oldPassword, String newPassword) {
 		if(authenticate(oldPassword)) {
 			if(newPassword.length()!=0) {
@@ -111,6 +148,10 @@ public class User implements Serializable{
 		}
 		return false;
 	}
+	/**
+	 * serializes a user back to the server database
+	 * @param lock takes a lock on the server if set to true
+	 */
 	public void serialize(Boolean lock) {
         try {
             Socket server = new Socket(BookITconstants.serverIP, BookITconstants.serverPort);
@@ -134,20 +175,40 @@ public class User implements Serializable{
             System.out.println("IO exception occured while writing to server");
         }
 	}
+	/**
+	 * used to logout a user currently logged in
+	 * @throws LoggedOutException exception generated when the user is logged out
+	 */
 	public void logout() throws LoggedOutException{
 		File file=new File("./src/AppData/ActiveUser/ActiveUser.txt");
 		file.delete();
 		throw new LoggedOutException();
 	}
+	/**
+	 * 
+	 * @return name of the user
+	 */
 	public String getName() {
 		return Name;
 	}
+	/**
+	 * 
+	 * @return password of the user
+	 */
 	public String getPassword() {
 		return Password;
 	}
+	/**
+	 * 
+	 * @return email of the user
+	 */
 	public Email getEmail() {
 		return emailID;
 	}
+	/**
+	 * 
+	 * @return email type of the user
+	 */
 	public String getUsertype() {
 		return userType;
 	}

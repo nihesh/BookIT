@@ -9,18 +9,28 @@ import java.util.Scanner;
 
 import static java.lang.Math.max;
 
-/**
+/** Spam filter class - a bonus feature to prevent spam requests
  * Created by nihesh on 10/11/17.
  */
 public class SpamFilter {
     private static Double tolerance = 0.3;
+    /**
+     * the dictionary variable stores all the words
+     */
     public static HashMap<String, Boolean> dict;
-
+    /**
+     * total spam messages
+     */
     public static int totalSpam;
+    /**
+     * total authentic messages
+     */
     public static int totalHam;
     private static HashMap<String, Integer> SpamData = new HashMap<>();
     private static HashMap<String, Integer> HamData = new HashMap<>();
-
+    /**
+     * constructor of spam filter class
+     */
     public SpamFilter(){
         totalHam = 0;
         totalSpam = 0;
@@ -80,6 +90,11 @@ public class SpamFilter {
             ;
         }
     }
+    /**
+     * predicts whether a message is spam or not
+     * @param raw_message the input message
+     * @return true if spam, false otherwise
+     */
     public static Boolean Predict(String raw_message){            // Returns true if spam
         String[] processedMessage = raw_message.split("\\s+");
         ArrayList<String> message = new ArrayList<>();
@@ -113,6 +128,11 @@ public class SpamFilter {
         }
         return spamLoglikelihood>hamLoglikelihood;
     }
+    /**
+     * finds the number of typing mistakes in a query text 
+     * @param query the input text
+     * @return Integer
+     */
     private static int getTypos(ArrayList<String> query){
         int count=0;
         for(int i=0;i<query.size();i++){
@@ -122,6 +142,11 @@ public class SpamFilter {
         }
         return count;
     }
+    /**
+     * finds whether a query text is tolerable (relates to the number of spelling mistakes) or not
+     * @param query the input text
+     * @return true if tolerable, false otherwise
+     */
     private static Boolean isTolerable(ArrayList<String> query){
         double t = getTypos(query)/(query.size());
         return t<=tolerance;

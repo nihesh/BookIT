@@ -15,13 +15,43 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.PriorityQueue;
 import java.util.Random;
-
+/**
+ * <h1> The Admin User class derived from user class</h1>
+ * <p>
+ * class for admin user type
+ * </p>
+ * @author Harsh Pathak
+ * @author Nihesh Anderson
+ * @version 1.0
+ * @since 29-10-2017
+ *  	
+ */
 public class Admin extends User{
+	/**
+	 * Joincode String used to generate JoinCodes
+	 */
 	private static String JoinString="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 	private static final long serialVersionUID = 1L;
+	/**
+	 * Constructor for admin class
+	 * @param name name of the admin 
+	 * @param password password of the admin
+	 * @param emailID the email class 
+	 * @param userType denotes whether user is Admin/Faculty/Student. Here this is Admin
+	 */
 	public Admin(String name, String password, Email emailID, String userType) {
 		super(name,password,emailID,userType);
 	}
+	/**
+	 * used to access all the joincodes of the users. 
+	 * Joincodes qre used to determine the usertype of a user who is signing up. 
+	 * joincode is similar to license key here
+	 * @param lock takes a lock on server if set to true
+	 * @return returns hashmap of all joincodes. The value(Int) refers to 2 values, 0 or 1 
+	 * @throws FileNotFoundException file doesn't exist
+	 * @throws IOException Io exception
+	 * @throws ClassNotFoundException de-serialize issue 
+	 */
 	@SuppressWarnings("unchecked")
 	public static  HashMap<String, Integer> deserializeJoinCodes(Boolean lock) throws FileNotFoundException, IOException, ClassNotFoundException {
 		try {
@@ -51,7 +81,11 @@ public class Admin extends User{
 		}
 		return null;
 	}
-	
+	/**
+	 * Serialize a Hashmap of Joincodes 
+	 * @param r the hashmap to be serialised
+	 * @param lock takes a lock on server if set to true
+	 */
 	public static void serializeJoinCode(HashMap<String, Integer> r, Boolean lock) {
 		try {
 			Socket server = new Socket(BookITconstants.serverIP, BookITconstants.serverPort);
@@ -75,6 +109,12 @@ public class Admin extends User{
 			System.out.println("IO exception occured while writing to server");
 		}
 	}
+	/**
+	 * 
+	 * @param type denotes the type(Admin/Faculty/Student) 
+	 * for which join code is to be generated
+	 * @return returns the randomly generated join code
+	 */
 	public String generateJoincode(String type){
 		try {
 			type = type.substring(0, 1).toUpperCase();
@@ -109,6 +149,14 @@ public class Admin extends User{
 		}
 		return null;
 	}
+	/**
+	 * de-serializes all the requests from the database.
+	 * @param lock takes a lock on server if set to true
+	 * @return  priority queue of requests
+	 * @throws FileNotFoundException file not found 
+	 * @throws IOException IO exception 
+	 * @throws ClassNotFoundException de-serialize issue
+	 */
 	@SuppressWarnings("unchecked")
 	public static PriorityQueue<ArrayList<Reservation>> deserializeRequestsQueue(Boolean lock) throws FileNotFoundException, IOException, ClassNotFoundException {
 		Socket server = new Socket(BookITconstants.serverIP, BookITconstants.serverPort);
@@ -129,7 +177,11 @@ public class Admin extends User{
 		server.close();
 		return c;
 	}
-	
+	/**
+	 * Serialize the requests queue
+	 * @param r The priority queue to be serialised
+	 * @param lock takes lock on server if true
+	 */
 	public static void serializeRequestsQueue(PriorityQueue<ArrayList<Reservation>> r, Boolean lock) {
 		try {
 			Socket server = new Socket(BookITconstants.serverIP, BookITconstants.serverPort);
@@ -153,6 +205,11 @@ public class Admin extends User{
 			System.out.println("IO exception occured while writing to server");
 		}
 	}
+	/**
+	 * checks whether a message string is spam or not 
+	 * @param message to be checked
+	 * @return true if it is
+	 */
 	public Boolean checkSpam(String message) {
 		try{
 			Socket server = new Socket(BookITconstants.serverIP, BookITconstants.serverPort);
@@ -178,6 +235,11 @@ public class Admin extends User{
 		}
 		return true;
 	}
+	/**
+	 * returns the top request in the priority queue
+	 * see also {@link #deserializeRequestsQueue(Boolean)}
+	 * @return The top request; an array list of reservation objects
+	 */
 	public ArrayList<Reservation> getRequest(){
 		try {
 			PriorityQueue<ArrayList<Reservation>> p = deserializeRequestsQueue(false);
@@ -240,6 +302,12 @@ public class Admin extends User{
 		}
 		return null;
 	}
+	/**
+	 * accepts the top request in the request queue
+	 *see also {@link #deserializeRequestsQueue(Boolean)}
+	 *see also {@link #serializeRequestsQueue(PriorityQueue, Boolean)} 
+	 * @return true if accepted and false if not able to accept because of time table clashes
+	 */
 	public boolean acceptRequest(){
 		try {
 			PriorityQueue<ArrayList<Reservation>> p = deserializeRequestsQueue(false);
@@ -298,6 +366,12 @@ public class Admin extends User{
 		}
 		return false;
 	}
+	/**
+	 * rejects the request at top of the queue
+	 * see also{@link #deserializeRequestsQueue(Boolean)}
+	 * see also{@link #serializeRequestsQueue(PriorityQueue, Boolean)} 
+	 * @return true if requests gets requested, false for handling empty parameters
+	 */
 	public boolean rejectRequest(){
 		try{
 			PriorityQueue<ArrayList<Reservation>> p = deserializeRequestsQueue(false);
@@ -320,6 +394,13 @@ public class Admin extends User{
 		}
 		return false;
 	}
+	/**
+	 * allows admin to cancel a reservation 
+	 * @param queryDate the date on which reservation is to be cancelled
+	 * @param slotID the time slot for the reservation to be cancelled
+	 * @param RoomID the room for which reservation has to be cancelled
+	 * @return true if it is cancelled false otherwise
+	 */
 	public boolean cancelBooking(LocalDate queryDate,int slotID,String RoomID) {
 		Room temp=Room.deserializeRoom(RoomID, false);
 		Reservation r=temp.getSchedule(queryDate)[slotID];
@@ -331,6 +412,13 @@ public class Admin extends User{
 		}
 		return false;
 	}
+	/**
+	 * allows admin to book a free room on a date in a room
+	 * @param queryDate the date
+	 * @param slot the time(30 minute slot)
+	 * @param r the reservation object see also {@link Reservation} class
+	 * @return true if booked false otherwise
+	 */
 	public boolean bookRoom(LocalDate queryDate,int slot, Reservation r) {
 		Room room=Room.deserializeRoom(r.getRoomName(), false);
 		Boolean addToCourse = true;

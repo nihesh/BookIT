@@ -10,16 +10,36 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.PriorityQueue;
 import HelperClasses.Course;
+/**
+ * The student class derived from user class
+ * @author Harsh
+ * @author Nihesh
+ *
+ */
 public class Student extends User{
 	private static final long serialVersionUID = 1L;
 	protected String Batch;
 	private ArrayList<String> myCourses;
+	/**
+	 * Constructor for the student class
+	 * @param name name of the student
+	 * @param password password for student account
+	 * @param emailID emailID of student
+	 * @param userType userType - student here
+	 * @param batch batch of student
+	 * @param myCourses courses of a student
+	 */
 	public Student(String name, String password, Email emailID, String userType, String batch,
 			ArrayList<String> myCourses) {
 		super(name, password, emailID, userType);
 		Batch = batch;
 		this.myCourses = myCourses;
 	}
+	/**
+	 * sends a reservation request to the Request queue for the admins to see
+	 * @param r ArrayList of reservation objects corresponding to different time slots 
+	 * @return true if successful false otherwise
+	 */
 	@SuppressWarnings("unchecked")
 	public boolean sendReservationRequest(ArrayList<Reservation> r){
 		try {
@@ -38,6 +58,11 @@ public class Student extends User{
 		return true;
 	}
 	//marker need to check
+	/**
+	 * searches for a course on basis of a search string
+	 * @param keyword the search string
+	 * @return ArrayList of string that refer to courses whose post conditions match with search string
+	 */
 	public static ArrayList<String> searchCourse(ArrayList<String> keyword){
 		int flag=1;
 		for(int i=0;i<keyword.size();i++){
@@ -72,6 +97,11 @@ public class Student extends User{
 		}
 		return temp2;
 	}
+	/**
+	 * adds a course to timetable of a student
+	 * @param c the course to be added
+	 * @return true if successful false otherwise
+	 */
 	public boolean addCourse(String c) {
 		Course c2=Course.deserializeCourse(c, false);
 		for (String string : myCourses) {
@@ -85,9 +115,17 @@ public class Student extends User{
 		this.setActiveUser();
 		return true;
 	}
+	/**
+	 * getter for returning batch of student
+	 * @return String
+	 */
 	public String getBatch() {
 		return Batch;
 	}
+	/**
+	 * returns list of student's courses
+	 * @return ArrayList of String
+	 */
 	public ArrayList<String> getMyCourses() {
 		return myCourses;
 	}
