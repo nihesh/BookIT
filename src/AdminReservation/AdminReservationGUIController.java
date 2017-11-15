@@ -137,7 +137,7 @@ public class AdminReservationGUIController implements Initializable{
         else if((Screenwidth==1360 || Screenwidth==1368 || Screenwidth==1366) && Screenheight==768){
             scaleHeight = (height+55)/1005;
             menuFactor = 1;
-            reservationFactor = 1.075;
+            reservationFactor = 1.33;
             splitBar=1.33;
         }
         else{
