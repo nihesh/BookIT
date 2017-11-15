@@ -43,16 +43,16 @@ public class LoginSignupGUIController {
 	private String joincode;
 	private User user;
 	@FXML
-		private ComboBox<String> Branch;
+	private ComboBox<String> Branch;
 	@FXML
-		private TextField Name;
+	private TextField Name;
 	@FXML
 	private PasswordField CnfPass;
 	@FXML
-		private AnchorPane OuterSign_Login;
+	private AnchorPane OuterSign_Login;
 	@FXML
-		private Button Signup_btn;
-		@FXML
+	private Button Signup_btn;
+	@FXML
 	private Button Login_btn;
 	@FXML
 	private AnchorPane Login_Pane;

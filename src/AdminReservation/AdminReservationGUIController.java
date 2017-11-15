@@ -106,6 +106,10 @@ public class AdminReservationGUIController implements Initializable{
     private HashMap<Button,Integer> selection = new HashMap<Button,Integer>();
     private Boolean isActiveReservation,requestProcessing,changepassProcessing, joinCodeProcessing;
     private Event classEvent;
+
+    /**
+     * Constructor for setting up Faculty Reservation GUI. It includes the adaptor code to suit any dimensional screen
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources){
 
@@ -196,6 +200,10 @@ public class AdminReservationGUIController implements Initializable{
         joinCodeDropDown.getSelectionModel().selectFirst();
         joinCodeDropDown.setStyle("-fx-font-size : 13pt;-fx-background-color: #922B21;");
     }
+
+    /**
+     * Event handler to cancel a booked slot
+     */
     public void cancelSlotBooking(){
         activeUser.cancelBooking(activeDate,Reservation.getSlotID(currentlyShowingSlot),activeRoom);
         Button current = slotButtons.get(Reservation.getSlotID(currentlyShowingSlot));
@@ -203,6 +211,10 @@ public class AdminReservationGUIController implements Initializable{
         current.setText("Free");
         updateClassStatus(classEvent);
     }
+
+    /**
+     * Event handler to generate a new joining code
+     */
     public void generateCode(){
         try {
             String type = (String) joinCodeDropDown.getSelectionModel().getSelectedItem();
@@ -213,6 +225,10 @@ public class AdminReservationGUIController implements Initializable{
             System.out.println("Exception occured in generateCode function");
         }
     }
+
+    /**
+     * Displays the pane where joining code can be generated
+     */
     public void showJoiningCodePane(){
         joinCodeProcessing = true;
         joiningCodePane.setVisible(true);
@@ -225,6 +241,10 @@ public class AdminReservationGUIController implements Initializable{
         appear.setToValue(1);
         appear.play();
     }
+
+    /**
+     * Closes the pane where joining code is generated
+     */
     public void hideJoiningCodePane(){
         joiningCodeMessage.setText("");
         joinCodeProcessing = false;
@@ -234,6 +254,9 @@ public class AdminReservationGUIController implements Initializable{
         mainPane.setDisable(false);
         showLogo();
     }
+    /**
+     * Opening change password pane
+     */
     public void openChangePassword(){
         changepassProcessing = true;
         hideLogo();
@@ -246,6 +269,9 @@ public class AdminReservationGUIController implements Initializable{
         appear.setToValue(1);
         appear.play();
     }
+    /**
+     * Closes change password pane
+     */
     public void cancelChangePassword(){
         oldPass.clear();
         newPass.clear();
@@ -257,6 +283,9 @@ public class AdminReservationGUIController implements Initializable{
         mainPane.setDisable(false);
         showLogo();
     }
+    /**
+     * Saves new password after validation and closes change password pane
+     */
     public void saveChangePassword(){
         String oldPassString = oldPass.getText();
         String newPassString = newPass.getText();
@@ -276,6 +305,10 @@ public class AdminReservationGUIController implements Initializable{
         newPass.clear();
         renewPass.clear();
     }
+    /**
+     * Sets the selected date on the date pane
+     * @param d selected date
+     */
     private void setDate(LocalDate d){
         String date = Integer.toString(d.getDayOfMonth());
         String month = Integer.toString(d.getMonthValue());
@@ -290,6 +323,9 @@ public class AdminReservationGUIController implements Initializable{
         curMon.setText(month);
         curYear.setText(year);
     }
+    /**
+     * Reads date from the input field and sets the date into the date pane
+     */
     public void loadDate(){
         LocalDate date = datePicker.getValue();
         if(date.isAfter(LocalDate.of(2017,8,1)) && date.isBefore(LocalDate.of(2017,12,15))){
@@ -302,6 +338,11 @@ public class AdminReservationGUIController implements Initializable{
             setDate(activeDate);
         }
     }
+    /**
+     * Returns the slot that a time range is mapped to
+     * @param buttonID Slot id in the form of string
+     * @return Slot index corresponding to the string
+     */
     private String getReserveButtonInfo(String buttonID){
         switch(buttonID){
             case "btn1":
@@ -363,6 +404,11 @@ public class AdminReservationGUIController implements Initializable{
         }
         return "";
     }
+
+    /**
+     * Loads the most prioritized request onto the requests pane
+     * @param requests
+     */
     private void loadRequest(ArrayList<Reservation> requests){
         Reservation firstRequest = requests.get(0);
         AccRejCourseName.setText(firstRequest.getCourseName());
@@ -399,6 +445,10 @@ public class AdminReservationGUIController implements Initializable{
         }
         requestedSlotsScrollPane.setPrefSize(494,max(474,49*i));
     }
+
+    /**
+     * Accepts a booking requested by the student
+     */
     public void acceptRequest(){
         activeUser.acceptRequest();                                             // Throw not accepted warning...
         ArrayList<Reservation> requests = activeUser.getRequest();
@@ -408,6 +458,10 @@ public class AdminReservationGUIController implements Initializable{
         }
         loadRequest(requests);
     }
+
+    /**
+     * Rejects a request requested by the student
+     */
     public void deleteRequest(){
         activeUser.rejectRequest();
         ArrayList<Reservation> requests = activeUser.getRequest();
@@ -417,6 +471,10 @@ public class AdminReservationGUIController implements Initializable{
         }
         loadRequest(requests);
     }
+
+    /**
+     * Opens requests pane
+     */
     public void showRequests(){
         ArrayList<Reservation> requests = activeUser.getRequest();              // GUI Integration begins
         if(requests == null){
@@ -444,6 +502,10 @@ public class AdminReservationGUIController implements Initializable{
         }
         sequence.play();
     }
+
+    /**
+     * Logs out the user
+     */
     public void signout(){
         try {
             activeUser.logout();
@@ -453,6 +515,10 @@ public class AdminReservationGUIController implements Initializable{
             stage.close();
         }
     }
+
+    /**
+     * Closes the requests pane
+     */
     public void hideRequests(){
         requestProcessing = false;
         SequentialTransition sequence = new SequentialTransition();
@@ -475,6 +541,11 @@ public class AdminReservationGUIController implements Initializable{
             roomGridPane.setDisable(false);
         });
     }
+
+    /**
+     * Displays details attached to the slot on the top center pane
+     * @param e Event object
+     */
     public void showSlotInfo(Event e){
         slotInfoPane.setVisible(true);
         Label curLabel = (Label) e.getSource();
@@ -500,9 +571,18 @@ public class AdminReservationGUIController implements Initializable{
             slotInfoMessage.setText("N/A");
         }                                                               // GUI-Helper Integration ends
     }
+
+    /**
+     * Hides the pane that shows information regarding a slot
+     */
     private void hideSlotPane(){
         slotInfoPane.setVisible(false);
     }
+
+    /**
+     * Displays the pane describing the class room
+     * @param e Event object
+     */
     public void updateClassStatus(Event e){
         hideLogo();
         hideSlotPane();
@@ -525,6 +605,10 @@ public class AdminReservationGUIController implements Initializable{
         appear.setToValue(1);
         appear.play();
     }
+
+    /**
+     * Hides the pane that desplays the description of the class room
+     */
     private void closeClassStatus(){
         if(classStatus.isVisible()) {
             hideSlotPane();
@@ -532,6 +616,10 @@ public class AdminReservationGUIController implements Initializable{
             showLogo();
         }
     }
+
+    /**
+     * Shows BookIT logo
+     */
     private void showLogo(){
         FadeTransition appear = new FadeTransition(Duration.millis(1000), logo);
         logo.setOpacity(0);
@@ -540,9 +628,18 @@ public class AdminReservationGUIController implements Initializable{
         appear.setToValue(1);
         appear.play();
     }
+
+    /**
+     * Hides BookIT logo
+     */
     private void hideLogo(){
         logo.setVisible(false);
     }
+
+    /**
+     * Sleeps for some time in milli seconds
+     * @param time
+     */
     private void induceDelay(long time){
         try {
             Thread.sleep(time);
@@ -551,6 +648,11 @@ public class AdminReservationGUIController implements Initializable{
             System.out.println("Error in AdminReservationGUIController: InduceDelay");
         }
     }
+
+    /**
+     * Adds the selected slot to selected list so that booking can be performed later
+     * @param e
+     */
     public void addSlotToBookQueue(Event e){
         hideSlotPane();
         Button currentBtn = (Button) e.getSource();
@@ -575,6 +677,10 @@ public class AdminReservationGUIController implements Initializable{
             error1.setVisible(false);
         }
     }
+
+    /**
+     * Booking confirmation pane disappears
+     */
     public void closeReservationPane(){
         isActiveReservation = false;
         hideSlotPane();
@@ -607,6 +713,10 @@ public class AdminReservationGUIController implements Initializable{
             pullDownPane.setVisible(false);
         });
     }
+
+    /**
+     * Booking confirmation pane appears
+     */
     public void pullDownReservationPane(){
         chosenSlots = new ArrayList<>();
         isActiveReservation = true;
@@ -667,6 +777,10 @@ public class AdminReservationGUIController implements Initializable{
         ParallelTransition inParallel = new ParallelTransition(appearBookBtn, appearBackBtn);
         inParallel.play();
     }
+
+    /**
+     * Event handler for confirming booking of a room
+     */
     public void bookingCompleted(){
         String chosenCourse;
         Course courseObject = null;
@@ -713,6 +827,10 @@ public class AdminReservationGUIController implements Initializable{
         closeReservationPane();
         flyRight();
     }
+
+    /**
+     * Reservation pane flys right
+     */
     public void flyRight(){
         SequentialTransition sequence = new SequentialTransition();
         int step=1;
@@ -734,6 +852,11 @@ public class AdminReservationGUIController implements Initializable{
             exitReadOnlyBookings();
         });
     }
+
+    /**
+     * Resercation pane appears
+     * @param action Event object
+     */
     public void openBooking(Event action){
         Button current = (Button) action.getSource();
         Room r = Room.deserializeRoom(current.getText(), false);                               // Loading buttons
@@ -773,6 +896,11 @@ public class AdminReservationGUIController implements Initializable{
         ParallelTransition inParallel = new ParallelTransition(appear, appearBookBtn, appearBackBtn);
         inParallel.play();
     }
+
+    /**
+     * Reservation pane appears, but it remains disabled
+     * @param action Event object
+     */
     public void showReadOnlyBookings(Event action){
         Button current = (Button) action.getSource();
         Room r = Room.deserializeRoom(current.getText(), false);                               // Loading buttons
@@ -809,6 +937,10 @@ public class AdminReservationGUIController implements Initializable{
         appear.setToValue(opacitySaturation);
         appear.play();
     }
+
+    /**
+     * Closes disabled reservation pane
+     */
     public void exitReadOnlyBookings(){
         if(!isActiveReservation && !requestProcessing) {
             induceDelay(appearAfter_HoverPane);

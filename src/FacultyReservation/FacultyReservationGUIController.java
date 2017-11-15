@@ -28,10 +28,8 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 import javafx.util.Duration;
-
 import java.awt.*;
 import java.io.File;
-import java.lang.reflect.Array;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -40,6 +38,16 @@ import java.util.ResourceBundle;
 
 import static java.lang.Math.max;
 
+/**
+ * <h1> Controller Class for Faculty Reservation GUI</h1>
+ * <p>
+ * Class for event handler definition
+ * </p>
+ * @author Nihesh Anderson
+ * @version 1.0
+ * @since 29-10-2017
+ *
+ */
 public class FacultyReservationGUIController implements Initializable{
     private int appearAfter_HoverPane = 200;
     @FXML
@@ -66,7 +74,7 @@ public class FacultyReservationGUIController implements Initializable{
     private StackPane topPane,leftPane,rightPane,mainPane;
     @FXML
     private AnchorPane selectedSlotsScrollPane, myCoursesScrollPane, shortlistedCourses;
-   @FXML
+    @FXML
     private Label error1;
     @FXML
     private DatePicker datePicker;
@@ -101,6 +109,10 @@ public class FacultyReservationGUIController implements Initializable{
     private String activeRoom;
     private ArrayList<Integer> chosenSlots;
     private ArrayList<CheckBox> courseLabels = new ArrayList<>();
+
+    /**
+     * Constructor for setting up Faculty Reservation GUI. It includes the adaptor code to suit any dimensional screen
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources){
 
@@ -186,6 +198,10 @@ public class FacultyReservationGUIController implements Initializable{
         cancelSlotBookingImage.setImage(image);
         loadCourses();
     }
+
+    /**
+     * Shows a list of valid courses on clicking Join course option
+     */
     public void openCoursesList(){
         courseLabels.clear();
         ArrayList<String> items = new ArrayList<>();
@@ -220,6 +236,10 @@ public class FacultyReservationGUIController implements Initializable{
         appear.setToValue(1);
         appear.play();
     }
+
+    /**
+     * Adds selected courses, and closes the pane that shows the list of courses which can be joined
+     */
     public void closeCoursesList(){
         ArrayList<String> selectedCourses = new ArrayList<>();
         for(int i=0;i<courseLabels.size();i++){
@@ -240,6 +260,10 @@ public class FacultyReservationGUIController implements Initializable{
         listCoursesPane.setVisible(false);
         showLogo();
     }
+
+    /**
+     * Closes the add courses pane without adding courses
+     */
     public void exitAddCourses(){
         courseLabels.clear();
         leftPane.setDisable(false);
@@ -249,6 +273,10 @@ public class FacultyReservationGUIController implements Initializable{
         listCoursesPane.setVisible(false);
         showLogo();
     }
+
+    /**
+     * Event handler for deleting a booked reservation
+     */
     public void cancelSlotBooking(){
         activeUser.cancelBooking(activeDate,Reservation.getSlotID(currentlyShowingSlot),activeRoom);
         Button current = slotButtons.get(Reservation.getSlotID(currentlyShowingSlot));
@@ -256,6 +284,10 @@ public class FacultyReservationGUIController implements Initializable{
         current.setText("Free");
         updateClassStatus(classEvent);
     }
+
+    /**
+     * Opening change password pane
+     */
     public void openChangePassword(){
         changepassProcessing = true;
         hideLogo();
@@ -268,6 +300,10 @@ public class FacultyReservationGUIController implements Initializable{
         appear.setToValue(1);
         appear.play();
     }
+
+    /**
+     * Closes change password pane
+     */
     public void cancelChangePassword(){
         oldPass.clear();
         newPass.clear();
@@ -279,6 +315,10 @@ public class FacultyReservationGUIController implements Initializable{
         mainPane.setDisable(false);
         showLogo();
     }
+
+    /**
+     * Saves new password after validation and closes change password pane
+     */
     public void saveChangePassword(){
         String oldPassString = oldPass.getText();
         String newPassString = newPass.getText();
@@ -298,6 +338,11 @@ public class FacultyReservationGUIController implements Initializable{
         newPass.clear();
         renewPass.clear();
     }
+
+    /**
+     * Sets the selected date on the date pane
+     * @param d selected date
+     */
     private void setDate(LocalDate d){
         String date = Integer.toString(d.getDayOfMonth());
         String month = Integer.toString(d.getMonthValue());
@@ -312,6 +357,10 @@ public class FacultyReservationGUIController implements Initializable{
         curMon.setText(month);
         curYear.setText(year);
     }
+
+    /**
+     * Reads date from the input field and sets the date into the date pane
+     */
     public void loadDate(){
         LocalDate date = datePicker.getValue();
         if(date.isAfter(LocalDate.of(2017,8,1)) && date.isBefore(LocalDate.of(2017,12,15))){
@@ -324,6 +373,12 @@ public class FacultyReservationGUIController implements Initializable{
             setDate(activeDate);
         }
     }
+
+    /**
+     * Returns the slot that a time range is mapped to
+     * @param buttonID Slot id in the form of string
+     * @return Slot index corresponding to the string
+     */
     private String getReserveButtonInfo(String buttonID){
         switch(buttonID){
             case "btn1":
@@ -385,6 +440,10 @@ public class FacultyReservationGUIController implements Initializable{
         }
         return "";
     }
+
+    /**
+     * Loads the list of user's courses onto the courses pane
+     */
     public void loadCourses(){
         myCoursesScrollPane.getChildren().clear();
         Label[] label = new Label[100];
@@ -403,6 +462,10 @@ public class FacultyReservationGUIController implements Initializable{
         }
         myCoursesScrollPane.setPrefSize(543,max(170,34*i));
     }
+
+    /**
+     * Event handler for logout button
+     */
     public void signout(){
         try {
             activeUser.logout();
@@ -412,6 +475,11 @@ public class FacultyReservationGUIController implements Initializable{
             stage.close();
         }
     }
+
+    /**
+     * Displays details attached to the slot on the top center pane
+     * @param e Event object
+     */
     public void showSlotInfo(Event e){
         slotInfoPane.setVisible(true);
         Label curLabel = (Label) e.getSource();
@@ -443,9 +511,18 @@ public class FacultyReservationGUIController implements Initializable{
             slotInfoMessage.setText("N/A");
         }                                                               // GUI-Helper Integration ends
     }
+
+    /**
+     * Hides the pane that shows information regarding a slot
+     */
     private void hideSlotPane(){
         slotInfoPane.setVisible(false);
     }
+
+    /**
+     * Displays the pane describing the class room
+     * @param e Event object
+     */
     public void updateClassStatus(Event e){
         hideLogo();
         hideSlotPane();
@@ -468,6 +545,10 @@ public class FacultyReservationGUIController implements Initializable{
         appear.setToValue(1);
         appear.play();
     }
+
+    /**
+     * Hides the pane that desplays the description of the class room
+     */
     private void closeClassStatus(){
         if(classStatus.isVisible()) {
             hideSlotPane();
@@ -475,6 +556,10 @@ public class FacultyReservationGUIController implements Initializable{
             showLogo();
         }
     }
+
+    /**
+     * Shows BookIT logo
+     */
     private void showLogo(){
         FadeTransition appear = new FadeTransition(Duration.millis(1000), logo);
         logo.setOpacity(0);
@@ -483,9 +568,18 @@ public class FacultyReservationGUIController implements Initializable{
         appear.setToValue(1);
         appear.play();
     }
+
+    /**
+     * Hides BookIT logo
+     */
     private void hideLogo(){
         logo.setVisible(false);
     }
+
+    /**
+     * Sleeps for some time in milli seconds
+     * @param time
+     */
     private void induceDelay(long time){
         try {
             Thread.sleep(time);
@@ -494,6 +588,11 @@ public class FacultyReservationGUIController implements Initializable{
             System.out.println("Error in AdminReservationGUIController: InduceDelay");
         }
     }
+
+    /**
+     * Adds the selected slot to selected list so that booking can be performed later
+     * @param e
+     */
     public void addSlotToBookQueue(Event e){
         hideSlotPane();
         Button currentBtn = (Button) e.getSource();
@@ -518,6 +617,10 @@ public class FacultyReservationGUIController implements Initializable{
             error1.setVisible(false);
         }
     }
+
+    /**
+     * Booking confirmation pane disappears
+     */
     public void closeReservationPane(){
         isActiveReservation = false;
         hideSlotPane();
@@ -550,6 +653,10 @@ public class FacultyReservationGUIController implements Initializable{
             pullDownPane.setVisible(false);
         });
     }
+
+    /**
+     * Booking confirmation pane appears
+     */
     public void pullDownReservationPane(){
         chosenSlots = new ArrayList<>();
         isActiveReservation = true;
@@ -610,6 +717,10 @@ public class FacultyReservationGUIController implements Initializable{
         ParallelTransition inParallel = new ParallelTransition(appearBookBtn, appearBackBtn);
         inParallel.play();
     }
+
+    /**
+     * Event handler for confirming booking of a room
+     */
     public void bookingCompleted(){
         String chosenCourse;
         Course courseObject = null;
@@ -657,6 +768,10 @@ public class FacultyReservationGUIController implements Initializable{
         closeReservationPane();
         flyRight();
     }
+
+    /**
+     * Reservation pane flys right
+     */
     public void flyRight(){
         SequentialTransition sequence = new SequentialTransition();
         int step=1;
@@ -678,6 +793,11 @@ public class FacultyReservationGUIController implements Initializable{
             exitReadOnlyBookings();
         });
     }
+
+    /**
+     * Resercation pane appears
+     * @param action Event object
+     */
     public void openBooking(Event action){
         Button current = (Button) action.getSource();
         Room r = Room.deserializeRoom(current.getText(), false);                               // Loading buttons
@@ -717,6 +837,11 @@ public class FacultyReservationGUIController implements Initializable{
         ParallelTransition inParallel = new ParallelTransition(appear, appearBookBtn, appearBackBtn);
         inParallel.play();
     }
+
+    /**
+     * Reservation pane appears, but it remains disabled
+     * @param action Event object
+     */
     public void showReadOnlyBookings(Event action){
         Button current = (Button) action.getSource();
         Room r = Room.deserializeRoom(current.getText(), false);                               // Loading buttons
@@ -753,6 +878,10 @@ public class FacultyReservationGUIController implements Initializable{
         appear.setToValue(opacitySaturation);
         appear.play();
     }
+
+    /**
+     * Closes disabled reservation pane
+     */
     public void exitReadOnlyBookings(){
         if(!isActiveReservation) {
             induceDelay(appearAfter_HoverPane);

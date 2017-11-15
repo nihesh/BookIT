@@ -10,7 +10,7 @@ import java.util.Scanner;
 import static java.lang.Math.max;
 
 /** Spam filter class - a bonus feature to prevent spam requests
- * Created by nihesh on 10/11/17.
+ * Created by Nihesh Anderson on 10/11/17.
  */
 public class SpamFilter {
     private static Double tolerance = 0.3;
