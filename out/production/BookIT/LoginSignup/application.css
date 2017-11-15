@@ -1,11 +1,20 @@
 .pane2{
-	-fx-background-image: url('./gradients-26042-26727-hd-wallpapers.jpg');
+	-fx-background-image: url('./5SEZKVU.jpg');
+	-fx-background-size: 860px 580px;
+	-fx-background-repeat: no-repeat;
+	-fx-background-position: 100%;
+}
+.pane22{
+	-fx-background-image: url('./5SEZKVU.jpg');
 	-fx-background-size: 860px 580px;
 	-fx-background-repeat: no-repeat;
 	-fx-background-position: 100%;
 }
 .pane3{
-	-fx-background-color: inherit ; 
+	-fx-background-image: url('./gradients-26042-26727-hd-wallpapers.jpg');
+	-fx-background-size: 700px 500px;
+	-fx-background-repeat: no-repeat;
+	-fx-background-position: 100%; 
 }
 .back2{
 	-fx-background-image: url('./app-1646213_640.png'); 
@@ -99,6 +108,30 @@
 	-fx-background-insets: 2;
 	-fx-text-fill: black;
 }
+.but34{
+	-fx-font-size: 14px;
+	-fx-background-color: transparent;
+	-fx-border-color: black;
+	-fx-border-width: 1px;
+	-fx-border-insets: 5;
+	-fx-border-radius: 12px;
+	-fx-background-radius: 12 ;
+	-fx-background-insets: 4;
+	-fx-text-fill: black  ;
+	
+}
+.but34:hover{
+	-fx-font-size: 13px;
+	-fx-background-color: rgba(255,255,255,0.4);
+	-fx-border-color: black;
+	-fx-border-insets: 5;
+	-fx-border-width: 2px;
+	-fx-border-radius: 12px;
+	-fx-background-radius: 12 ;
+	-fx-background-insets: 4;
+	-fx-text-fill: black;
+}
+
 .modal-dialog-glass {
 	-fx-background-color: rgba(255,255,255,0.4);
 	

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.net.URL?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
@@ -82,10 +83,21 @@
          <font>
             <Font size="18.0" />
          </font></Button>
-      <Label layoutX="-9.0" layoutY="534.0" prefHeight="36.0" prefWidth="868.0" styleClass="labelD" text="     BOOKIT  -  Nihesh Anderson , Harsh Pathak                                                                   New Delhi, India @2018    " textFill="WHITE">
+      <Label layoutX="-9.0" layoutY="534.0" prefHeight="36.0" prefWidth="868.0" styleClass="labelD" text="BOOKIT  -  Nihesh Anderson , Harsh Pathak  " textFill="WHITE">
          <font>
-            <Font name="Agency FB" size="15.0" />
+            <Font size="15.0" />
          </font>
+         <padding>
+            <Insets left="20.0" />
+         </padding>
+      </Label>
+      <Label alignment="CENTER_RIGHT" layoutX="582.0" layoutY="535.0" prefHeight="36.0" prefWidth="277.0" styleClass="labelD" text="New Delhi, India @2018" textFill="WHITE">
+         <font>
+            <Font size="15.0" />
+         </font>
+         <padding>
+            <Insets right="15.0" />
+         </padding>
       </Label>
    </children>
    <stylesheets>
