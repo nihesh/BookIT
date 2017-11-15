@@ -13,16 +13,23 @@ import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
+import javafx.geometry.Rectangle2D;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.MenuBar;
+import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.control.*;
 import javafx.event.Event;
 import javafx.scene.text.Font;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 import javafx.util.Duration;
 
+import java.awt.*;
 import java.io.File;
 import java.lang.reflect.Array;
 import java.net.URL;
@@ -76,6 +83,11 @@ public class FacultyReservationGUIController implements Initializable{
     @FXML
     private PasswordField oldPass, newPass, renewPass;
 
+    @FXML
+    private VBox rootPane;
+    @FXML
+    private MenuBar menuBar;
+
     private LocalDate activeDate;
     private int pullDownPaneInitial = 650;
     private HashMap<Button,Integer> selection = new HashMap<Button,Integer>();
@@ -89,6 +101,44 @@ public class FacultyReservationGUIController implements Initializable{
     private ArrayList<CheckBox> courseLabels = new ArrayList<>();
     @Override
     public void initialize(URL location, ResourceBundle resources){
+
+        // Scaling elements
+        Rectangle2D visualBounds = Screen.getPrimary().getVisualBounds();
+        double width = visualBounds.getWidth();
+        double height = visualBounds.getHeight();
+        double scaleWidth = (width)/1920;
+        double scaleHeight = (height)/1005;
+
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        double Screenwidth = screenSize.getWidth();
+        double Screenheight = screenSize.getHeight();
+        double menuFactor;
+        double reservationFactor;
+
+        if(Screenwidth==1920 && Screenheight==1080){
+            menuFactor = 1;
+            reservationFactor = 1;
+            scaleHeight = (height-44)/1000;
+        }
+        else if(Screenwidth==1600 && Screenheight==900){
+            menuFactor = 1;
+            reservationFactor = 1.14;
+        }
+        else if((Screenwidth==1360 || Screenwidth==1368 || Screenwidth==1366) && Screenheight==768){
+            scaleHeight = (height+55)/1005;
+            menuFactor = 1;
+            reservationFactor = 1.33;
+        }
+        else{
+            menuFactor = 1;
+            reservationFactor = 1;
+        }
+
+        rootPane.setScaleX(scaleWidth);
+        rootPane.setScaleY(scaleHeight);
+        menuBar.setScaleX(1/(menuFactor*scaleWidth));
+        mainPane.setScaleX(1/(reservationFactor*scaleWidth));
+
         activeUser = (Faculty) User.getActiveUser();
         listCoursesProcessing = false;
         isActiveReservation = false;

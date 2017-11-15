@@ -14,16 +14,24 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.geometry.Rectangle2D;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.MenuBar;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.control.*;
 import javafx.event.Event;
 import javafx.scene.text.Font;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 import javafx.util.Duration;
 
+import java.awt.*;
 import java.io.File;
 import java.net.URL;
 import java.sql.Time;
@@ -37,7 +45,7 @@ import static java.lang.Math.max;
 public class StudentReservationGUIController implements Initializable{
     private int appearAfter_HoverPane = 200;
     @FXML
-    private StackPane HoverPane, listCoursesPane;
+    private StackPane HoverPane,listCoursesPane;
     @FXML
     private Label RoomNo;
     @FXML
@@ -79,6 +87,12 @@ public class StudentReservationGUIController implements Initializable{
     @FXML
     private TextArea requestMessage;
 
+
+    @FXML
+    private VBox rootPane;
+    @FXML
+    private MenuBar menuBar;
+
     private LocalDate activeDate;
     private ArrayList<Integer> chosenSlots;
     private ArrayList<CheckBox> courseLabels = new ArrayList<>();
@@ -90,6 +104,50 @@ public class StudentReservationGUIController implements Initializable{
 
     @Override
     public void initialize(URL location, ResourceBundle resources){
+
+        // Scaling elements
+        Rectangle2D visualBounds = Screen.getPrimary().getVisualBounds();
+        double width = visualBounds.getWidth();
+        double height = visualBounds.getHeight();
+        double scaleWidth = (width)/1920;
+        double scaleHeight = (height)/1005;
+        double TTFactor;
+
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        double Screenwidth = screenSize.getWidth();
+        double Screenheight = screenSize.getHeight();
+        double menuFactor;
+        double reservationFactor;
+
+        if(Screenwidth==1920 && Screenheight==1080){
+            menuFactor = 1;
+            reservationFactor = 1;
+            scaleHeight = (height-44)/1000;
+            TTFactor=1;
+        }
+        else if(Screenwidth==1600 && Screenheight==900){
+            menuFactor = 1;
+            reservationFactor = 1.14;
+            TTFactor=1;
+        }
+        else if((Screenwidth==1360 || Screenwidth==1368 || Screenwidth==1366) && Screenheight==768){
+            scaleHeight = (height+55)/1005;
+            menuFactor = 1;
+            reservationFactor = 1.33;
+            TTFactor=1;
+        }
+        else{
+            menuFactor = 1;
+            reservationFactor = 1;
+            TTFactor=1;
+        }
+
+        rootPane.setScaleX(scaleWidth);
+        rootPane.setScaleY(scaleHeight);
+        menuBar.setScaleX(1/(menuFactor*scaleWidth));
+        mainPane.setScaleX(1/(reservationFactor*scaleWidth));
+        TimeTablePane.setScaleX(TTFactor);
+
         activeUser = (Student)User.getActiveUser();
         batchLabel.setText(activeUser.getBatch());
         listCoursesProcessing = false;
@@ -778,7 +836,7 @@ public class StudentReservationGUIController implements Initializable{
         HoverPane.setTranslateX(0);
         BackBtn.setVisible(false);
         BookBtn.setVisible(false);
-        double opacitySaturation = 0.92;
+        double opacitySaturation = 1;
         RoomNo.setText(current.getText());
         Reservation[] reservation = r.getSchedule(activeDate);
         for(int i=0;i<28;i++){

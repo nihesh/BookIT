@@ -44,6 +44,10 @@ public class BookIT extends Application{
         }
     }
     public void start(Stage primaryStage){
+        File file2 = new File("./src/AppData/ActiveUser");
+        if(!file2.exists()){
+            file2.mkdir();
+        }
         while(true) {
             Stage stage = new Stage();
             File file = new File("./src/AppData/ActiveUser/ActiveUser.txt");
