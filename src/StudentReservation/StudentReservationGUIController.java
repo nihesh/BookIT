@@ -120,28 +120,33 @@ public class StudentReservationGUIController implements Initializable{
         double Screenheight = screenSize.getHeight();
         double menuFactor;
         double reservationFactor;
+        double splitBar;
 
         if(Screenwidth==1920 && Screenheight==1080){
             menuFactor = 1;
             reservationFactor = 1;
             scaleHeight = (height-44)/1000;
             TTFactor=1;
+            splitBar=1;
         }
         else if(Screenwidth==1600 && Screenheight==900){
             menuFactor = 1;
             reservationFactor = 1.14;
             TTFactor=1;
+            splitBar=1;
         }
         else if((Screenwidth==1360 || Screenwidth==1368 || Screenwidth==1366) && Screenheight==768){
             scaleHeight = (height+55)/1005;
             menuFactor = 1;
             reservationFactor = 1.33;
             TTFactor=1;
+            splitBar = 1.1;
         }
         else{
             menuFactor = 1;
             reservationFactor = 1;
             TTFactor=1;
+            splitBar=1;
         }
 
         rootPane.setScaleX(scaleWidth);
@@ -149,7 +154,7 @@ public class StudentReservationGUIController implements Initializable{
         menuBar.setScaleX(1/(menuFactor*scaleWidth));
         mainPane.setScaleX(1/(reservationFactor*scaleWidth));
         TimeTablePane.setScaleX(TTFactor);
-        sp1.setScaleX(reservationFactor);
+        sp1.setScaleX(splitBar*reservationFactor);
 
         activeUser = (Student)User.getActiveUser();
         batchLabel.setText(activeUser.getBatch());
