@@ -30,7 +30,11 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-
+/**
+ * controller class for login/signup gui
+ * @author Harsh
+ *
+ */
 public class LoginSignupGUIController {
 	private double initOpacity=0.84;
 	private Email email;
@@ -108,6 +112,9 @@ public class LoginSignupGUIController {
 		
 	}
 	@FXML
+	/**
+	 * back button controller in login pane
+	 */
 	private void backL() {
 		Login_password_label.setVisible(false);
 		Login_password_label.setText(null);
@@ -124,6 +131,9 @@ public class LoginSignupGUIController {
 		
 	}
 	@FXML
+	/**
+	 * back button controller in sign-up pane gui
+	 */
 	private void backS() {
 		if(Signup_password.isVisible()==true) {
 			Signup_email.getStyleClass().remove("text-field2");
@@ -174,6 +184,9 @@ public class LoginSignupGUIController {
 		}
 	}
 	@FXML
+	/**
+	 * the next button handler after entering email in login pane
+	 */
 	private void Login_NEXT() {
 			//put some email validate code here to check user email
 		AccCre.setVisible(false);
@@ -219,6 +232,9 @@ public class LoginSignupGUIController {
 		
 	}
 	@FXML
+	/**
+	 * button handler in login pane after entering password
+	 */
 	private void Login_NEXT2() {
 		user=User.getUser(email.getEmailID(),false);
 		if(user.authenticate(Login_password.getText())) {
@@ -245,6 +261,9 @@ public class LoginSignupGUIController {
 		}
 	}
 	@FXML
+	/**
+	 * button handler in Sign up pane after entering email
+	 */
 	private void Signup_NEXT() {
 		email=new Email(Signup_email.getText());
 		int state=email.validateSignup();
@@ -273,6 +292,10 @@ public class LoginSignupGUIController {
 	}
 	
 	@FXML
+	/**
+	 * button handler in Sign up pane after entering password
+	 * and confirm password fields
+	 */
 	private void Signup_NEXT2() {
 		//put some email validate code here to check user email
 		if((Signup_password.getText().matches("[A-Za-z0-9]+")) && Signup_password.getText().equals(CnfPass.getText())) {
@@ -305,6 +328,9 @@ public class LoginSignupGUIController {
 		}
 	}
 	@FXML
+	/**
+	 * button handler in Sign up pane after entering join code
+	 */
 	private void Signup_NEXT3() {
 		//validate the joining code as well as identify student/teacher/admin
 		HashMap<String, Integer> temp;
@@ -352,6 +378,9 @@ public class LoginSignupGUIController {
 	@FXML
 	private Label AccCre;
 	@FXML
+	/**
+	 * button handler in sign up pane after entering name and batch(only for students)
+	 */
 	private void Signup_NEXT4() {
 		try {
 		if(!Name.getText().equals("") && Name.getText().matches("^[\\p{L} .'-]+$")) {
@@ -396,6 +425,10 @@ public class LoginSignupGUIController {
 		}
 	}
 	@FXML
+	/**
+	 * button effect animation for buttons
+	 * @param e
+	 */
 	private void BtnEffect(MouseEvent e) {
 		Button b=(Button)e.getSource();
 		Timeline t=new Timeline();
@@ -406,6 +439,10 @@ public class LoginSignupGUIController {
 		t.play();
 	}
 	@FXML
+	/**
+	 * button effect animation for buttons
+	 * @param e
+	 */
 	private void BtnEffectRev(MouseEvent e) {
 		Button b=(Button)e.getSource();
 		Timeline t=new Timeline();
@@ -416,6 +453,9 @@ public class LoginSignupGUIController {
 		t.play();
 	}
 	@FXML
+	/**
+	 * clean login screen informations after switching to signup pane
+	 */
 	private void CleanLogin() {
 		//throw all login info collected so far
 		if(email!=null) {
@@ -438,6 +478,9 @@ public class LoginSignupGUIController {
 		Lback_btn.setVisible(false);
 	}
 	@FXML
+	/**
+	 * clean signup pane info after switching to login pane
+	 */
 	private void CleanSignup() {     //make sure to throw all signup information collected so
 		if(email!=null) {
 			email=null;
@@ -468,6 +511,9 @@ public class LoginSignupGUIController {
 		Sback_btn.setVisible(false);
 	}
 	@FXML
+	/**
+	 * translate left animation for signup button
+	 */
 	private void Signup_TranslateLeft() { 
 		Login_btn.setDisable(true);
 		Signup_btn.setVisible(false);
@@ -494,6 +540,9 @@ public class LoginSignupGUIController {
 	}
 	
 	@FXML
+	/**
+	 * translate right animation for login button animation
+	 */
 	private void Signup_TranslateRight() {
 		Login_Pane.setVisible(true);
 		Signup_btn.setVisible(true);
