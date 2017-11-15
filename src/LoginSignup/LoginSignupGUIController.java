@@ -36,7 +36,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-import sun.plugin.javascript.navig.Anchor;
 
 public class LoginSignupGUIController {
 	private double initOpacity=0.84;
@@ -91,32 +90,6 @@ public class LoginSignupGUIController {
 	private AnchorPane rootPane;
 	@FXML
 	public void initialize() {
-
-		// Scaling elements
-		Rectangle2D visualBounds = Screen.getPrimary().getVisualBounds();
-		double width = visualBounds.getWidth();
-		double height = visualBounds.getHeight();
-		double scaleWidth = (width)/1920;
-		double scaleHeight = (height)/1040;
-
-		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-		double Screenwidth = screenSize.getWidth();
-		double Screenheight = screenSize.getHeight();
-
-		if(Screenwidth==1920 && Screenheight==1080){
-			;
-		}
-		else if(Screenwidth==1600 && Screenheight==900){
-			;
-		}
-		else if((Screenwidth==1360 || Screenwidth==1368 || Screenwidth==1366) && Screenheight==768){
-			;
-		}
-		else{
-			;
-		}
-		rootPane.setScaleX(scaleWidth);
-		rootPane.setScaleY(scaleHeight);
 
 		ArrayList<String> temp=new ArrayList<>();
 		// TODO Auto-generated method stub
