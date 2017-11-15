@@ -1902,6 +1902,15 @@
                   </Button>
                </children>
             </StackPane>
+            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: linear-gradient(#CD6155 ,#E6B0AA,#CD6155); visibility: false;">
+               <children>
+                  <Button mnemonicParsing="false" stylesheets="@button.css" text="Close">
+                     <StackPane.margin>
+                        <Insets bottom="560.0" right="1760.0" />
+                     </StackPane.margin>
+                  </Button>
+               </children>
+            </StackPane>
          </children>
          <VBox.margin>
             <Insets />
