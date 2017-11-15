@@ -16,6 +16,7 @@ public class LoginSignupGUI extends Application{
 	@Override
 	public void start(Stage primaryStage) {
 		try {
+			
 			Parent root = FXMLLoader.load(getClass().getResource("LoginSignup1080p.fxml"));
 			Scene scene = new Scene(root,850,567);
 			primaryStage.setScene(scene);
