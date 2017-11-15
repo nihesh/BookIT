@@ -149,8 +149,7 @@ public class AdminReservationGUIController implements Initializable{
         rootPane.setScaleX(scaleWidth);
         rootPane.setScaleY(scaleHeight);
         menuBar.setScaleX(1/(menuFactor*scaleWidth));
-        roomGridPane.setScaleX(1/(reservationFactor*scaleWidth));
-        HoverPane.setScaleX(1/(reservationFactor*scaleWidth));
+        mainPane.setScaleX(1/(reservationFactor*scaleWidth));
         sp3.setScaleX(splitBar*reservationFactor);
 
         activeUser = (Admin) User.getActiveUser();
