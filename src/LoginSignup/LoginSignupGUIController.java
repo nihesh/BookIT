@@ -1,11 +1,7 @@
 package LoginSignup;
 
 
-
-import java.awt.*;
 import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -25,7 +21,6 @@ import javafx.animation.Timeline;
 import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
 
-import javafx.geometry.Rectangle2D;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -33,7 +28,6 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -48,8 +42,6 @@ public class LoginSignupGUIController {
 	private TextField Name;
 	@FXML
 	private PasswordField CnfPass;
-	@FXML
-	private AnchorPane OuterSign_Login;
 	@FXML
 	private Button Signup_btn;
 	@FXML
@@ -87,8 +79,6 @@ public class LoginSignupGUIController {
 	@FXML
 	private Button Signup_done_btn;
 	@FXML
-	private AnchorPane rootPane;
-	@FXML
 	public void initialize() {
 
 		ArrayList<String> temp=new ArrayList<>();
@@ -96,7 +86,7 @@ public class LoginSignupGUIController {
 		Branch.getItems().removeAll(Branch.getItems());
 		BufferedReader r;
 		try {
-			r=new BufferedReader(new FileReader("src/AppData/Year/StudentYear.txt"));
+			r=new BufferedReader(new FileReader("./src/AppData/Year/StudentYear.txt"));
 			
 			try {
 				String x=r.readLine();

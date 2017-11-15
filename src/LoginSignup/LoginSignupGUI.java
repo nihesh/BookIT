@@ -9,6 +9,9 @@ import javafx.stage.Stage;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
+
+import java.io.File;
+
 public class LoginSignupGUI extends Application{
 	@Override
 	public void start(Stage primaryStage) {
@@ -17,8 +20,9 @@ public class LoginSignupGUI extends Application{
 			Scene scene = new Scene(root,850,567);
 			primaryStage.setScene(scene);
 			primaryStage.setResizable(false);
-			primaryStage.getIcons().add(new Image("./LoginSignup/BookIT_icon.jpg"));
-			primaryStage.setTitle("BookIT-Login");
+			File file = new File("./src/BookIT_icon.jpg");
+			primaryStage.getIcons().add(new Image(file.toURI().toString()));
+			primaryStage.setTitle("BookIT - Login");
 			primaryStage.showAndWait();
 			root.requestFocus();
 		} catch(Exception e) {
