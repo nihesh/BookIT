@@ -1,0 +1,169 @@
+.pane2{
+	-fx-background-image: url('./5SEZKVU.jpg');
+	-fx-background-size: 860px 580px;
+	-fx-background-repeat: no-repeat;
+	-fx-background-position: 100%;
+}
+.pane22{
+	-fx-background-image: url('./5SEZKVU.jpg');
+	-fx-background-size: 860px 580px;
+	-fx-background-repeat: no-repeat;
+	-fx-background-position: 100%;
+}
+.pane3{
+	-fx-background-image: url('./gradients-26042-26727-hd-wallpapers.jpg');
+	-fx-background-size: 700px 500px;
+	-fx-background-repeat: no-repeat;
+	-fx-background-position: 100%; 
+}
+.back2{
+	-fx-background-image: url('./app-1646213_640.png'); 
+	-fx-background-color: transparent;
+	-fx-background-size: 25px 25px;
+	-fx-background-repeat: no-repeat;
+	-fx-background-position: 30%;
+}
+.labelC{
+	
+	-fx-font-size: 25px;
+	-fx-font-family: "TrebuchetMS";
+	-fx-text-fill: black;
+	-fx-background-color: transparent;
+}
+.back2:hover{
+	-fx-background-color: darkgray ;
+}
+.back{
+	-fx-background-color: transparent;
+	-fx-background-insets: 4px;
+	-fx-border-width: 1px;
+	-fx-text-fill: black ;
+	-fx-font-size: 12px;
+	-fx-font-smoothing-type: lcd ;
+	-fx-font-weight: bold;
+	-fx-border-radius: 12px;
+	-fx-border-insets: 10px;
+	-fx-border-color: black ;
+}
+.back:hover{
+	-fx-font-weight: bold;
+	-fx-text-fill: black;
+	-fx-font-size: 12px;
+	-fx-background-color: transparent;
+	-fx-background-radius: 12px;
+	-fx-background-insets: 8px;
+	-fx-border-width: 2px;
+	-fx-border-color: linear-gradient(red,blue)  ;
+	-fx-border-radius: 12px;
+	-fx-border-insets: 10px;
+	
+}
+
+.root {
+  -fx-opacity: 0.9;
+}
+.but1{
+	-fx-background-color: blue;
+	-fx-background-radius: 4px ;
+	-fx-background-insets: 2;
+	-fx-effect: dropshadow(three-pass-box, derive(blue, +40%), 10, 0, 4, 4) ;
+	-fx-text-fill: white;
+	-fx-font-size: 13px; 
+	
+}
+.but1:hover{
+	
+	 -fx-background-image: url('./rightArrow.png');
+	-fx-background-size: 6px;
+	-fx-background-color: blue;
+	-fx-background-radius: 4px ;
+	-fx-background-insets: 2;
+	 -fx-background-repeat: no-repeat;
+    -fx-background-position: 85%;
+	-fx-effect: dropshadow(three-pass-box, derive(blue, +40%), 10, 0, 4, 4) ;
+	-fx-text-fill: white;
+	
+}
+
+.but2{
+	-fx-font-size: 21px;
+	-fx-background-color: transparent;
+	-fx-border-color: black;
+	-fx-border-width: 1px;
+	-fx-border-insets: 5;
+	-fx-border-radius: 25px;
+	-fx-background-radius: 25 ;
+	-fx-background-insets: 2;
+	-fx-text-fill: black  ;
+	
+}
+.but2:hover{
+	-fx-font-size: 20px;
+	-fx-background-color: rgba(255,255,255,0.4);
+	-fx-border-color: black;
+	-fx-border-insets: 5;
+	-fx-border-width: 2px;
+	-fx-border-radius: 25px;
+	-fx-background-radius: 25 ;
+	-fx-background-insets: 2;
+	-fx-text-fill: black;
+}
+.but34{
+	-fx-font-size: 14px;
+	-fx-background-color: transparent;
+	-fx-border-color: black;
+	-fx-border-width: 1px;
+	-fx-border-insets: 5;
+	-fx-border-radius: 12px;
+	-fx-background-radius: 12 ;
+	-fx-background-insets: 4;
+	-fx-text-fill: black  ;
+	
+}
+.but34:hover{
+	-fx-font-size: 13px;
+	-fx-background-color: rgba(255,255,255,0.4);
+	-fx-border-color: black;
+	-fx-border-insets: 5;
+	-fx-border-width: 2px;
+	-fx-border-radius: 12px;
+	-fx-background-radius: 12 ;
+	-fx-background-insets: 4;
+	-fx-text-fill: black;
+}
+
+.modal-dialog-glass {
+	-fx-background-color: rgba(255,255,255,0.4);
+	
+  -fx-effect: dropshadow(three-pass-box, derive(black, +40%), 10, 0, 4, 4); 
+  -fx-background-color: derive(white,20%); 
+  -fx-background-insets: 20; 
+  -fx-background-radius: 12;
+  
+}
+.labelD {
+	-fx-background-color: black;
+	
+    -fx-opacity: 1.0;
+    -fx-effect: dropshadow( gaussian , rgba(255,255,255,0.5) , 0,0,0,1 );
+}
+.labelG {
+	-fx-background-image: url('./Green-Tick-Transparent-Background.png');
+	-fx-background-size: 26px;
+	-fx-font-size: 15px;
+	-fx-text-fill:black;
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-opacity: 1.0;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: 95%;
+    -fx-font-style: oblique ;
+    
+}
+.labelB {
+    -fx-font-size: 13px;
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-opacity: 1.0;
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow( gaussian , rgba(255,255,255,0.5) , 0,0,0,1 );
+}
+
