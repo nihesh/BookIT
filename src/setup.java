@@ -10,9 +10,9 @@ import java.util.Scanner;
 
 
 /**
- * Created by nihesh on 28/10/17.
+ * request comparator for the priority queue
+ * @author Harsh
  */
-
 class RequestCompare implements Comparator<ArrayList<Reservation>>,java.io.Serializable{
 
     @Override
@@ -35,7 +35,11 @@ class RequestCompare implements Comparator<ArrayList<Reservation>>,java.io.Seria
     }
 
 }
-
+/**
+ * setup class to initialize database and create default users
+ * @author Nihesh
+ *
+ */
 public class setup {
     public static LocalDate StartDate = LocalDate.of(2017,8,1);
     public static LocalDate EndDate = LocalDate.of(2017,12,16);

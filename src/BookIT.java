@@ -1,8 +1,3 @@
-// Author   : Nihesh Anderson
-// Date     : 4 Oct, 2017
-// File     : BookIT.java
-
-// Packages
 
 import AdminReservation.AdminReservationGUI;
 import FacultyReservation.FacultyReservationGUI;
@@ -15,12 +10,24 @@ import javafx.stage.Stage;
 import java.io.File;
 import java.io.IOException;
 import java.net.Socket;
-
+/**
+ * The BookIT class for launching the application
+ * @author Nihesh
+ *
+ */
 public class BookIT extends Application{
+	/**
+	 * launches the login/signup gui
+	 * @param primaryStage stage object
+	 */
     public static void launchLoginGUI(Stage primaryStage){
         LoginSignupGUI l = new LoginSignupGUI();
         l.start(primaryStage);
     }
+    /**
+     * launches the user gui depending on the user type in Active User database
+     * @param primaryStage stage object
+     */
     public static void reservationGUI(Stage primaryStage){
         User activeUser = User.getActiveUser();
         if(activeUser.getUsertype().equals("Student")){

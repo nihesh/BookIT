@@ -14,9 +14,12 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.ReentrantLock;
 
 /**
- * Created by nihesh on 12/11/17.
+ * the server class for back-end development
  */
 public class server {
+	/**
+	 * spam filter object for detecting spam messages
+	 */
     public static SpamFilter spm;
     public static void main(String[] args)throws IOException{
         ServerSocket s = new ServerSocket(BookITconstants.serverPort);
@@ -29,13 +32,22 @@ public class server {
         }
     }
 }
-
+/**
+ * Connection Handler class to communicate with clients
+ * @author Nihesh
+ *
+ */
 class ConnectionHandler implements Runnable{
     private Socket connection;
     public static ReentrantLock lock;
     public ConnectionHandler(Socket connection){
         this.connection = connection;
     }
+    /**
+     * deserialise a course
+     * @param name name of course
+     * @return Course object see also {@link Course} 
+     */
     public Course deserializeCourse(String name){
         ObjectInputStream in = null;
         try{
@@ -56,6 +68,10 @@ class ConnectionHandler implements Runnable{
             }
         }
     }
+    /**
+     * 
+     * @return list of all courses
+     */
     public ArrayList<String> getAllCourses(){
         File directory= new File("./src/AppData/Course");
         ArrayList<String> courses = new ArrayList<>();
@@ -66,6 +82,10 @@ class ConnectionHandler implements Runnable{
         }
         return courses;
     }
+    /**
+     * serialise a course object
+     * @param c the course to be serialised
+     */
     public void serializeCourse(Course c){
         try{
             ObjectOutputStream out = null;
@@ -83,6 +103,10 @@ class ConnectionHandler implements Runnable{
             ;
         }
     }
+    /**
+     * serialise a user object
+     * @param u the user(could be faculty,admin or student)
+     */
     public void serializeUser(User u){
         try{
             ObjectOutputStream out = null;
@@ -101,6 +125,11 @@ class ConnectionHandler implements Runnable{
             System.out.println("file not found");
         }
     }
+    /**
+     * deserialise a user given user email
+     * @param email email of user
+     * @return user object see also{@link User}
+     */
     public User getUser(String email){
         ObjectInputStream in = null;
         try{
@@ -121,6 +150,11 @@ class ConnectionHandler implements Runnable{
             }
         }
     }
+    /**
+     * deserialise a room object given its name
+     * @param name name of room
+     * @return Room object
+     */
     public Room deserializeRoom(String name){
         ObjectInputStream in = null;
         try{
@@ -141,6 +175,10 @@ class ConnectionHandler implements Runnable{
             }
         }
     }
+    /**
+     * serialise a room object to local database
+     * @param r the room object to be serialised
+     */
     public void serializeRoom(Room r){
         try{
             ObjectOutputStream out = null;
@@ -159,6 +197,10 @@ class ConnectionHandler implements Runnable{
             ;
         }
     }
+    /**
+     * serialise the joincode hashmap to local database
+     * @param r the join code hashmap
+     */
     public void serializeJoinCode(HashMap<String, Integer> r) {
         try{
             ObjectOutputStream out = null;
@@ -176,6 +218,10 @@ class ConnectionHandler implements Runnable{
             System.out.println("file not found");
         }
     }
+    /**
+     * deserialise the join codes from its local database
+     * @return the join codes in form of Hashmap
+     */
     public HashMap<String, Integer> deserializeJoinCodes(){
         HashMap<String, Integer> p=null;
         ObjectInputStream in=null;
@@ -199,6 +245,10 @@ class ConnectionHandler implements Runnable{
         }
         return p;
     }
+    /**
+     * deserialize the requests queue from the database
+     * @return priority queue of requests
+     */
     public PriorityQueue<ArrayList<Reservation>> deserializeRequests(){
         PriorityQueue<ArrayList<Reservation>> p=null;
         ObjectInputStream in=null;
@@ -223,6 +273,10 @@ class ConnectionHandler implements Runnable{
         }
         return p;
     }
+    /**
+     * serialize requests queue to the server database
+     * @param r the priority queue 
+     */
     public void serializeRequests(PriorityQueue<ArrayList<Reservation>> r) {
         try{
             ObjectOutputStream out = null;
