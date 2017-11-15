@@ -1,20 +1,11 @@
 package HelperClasses;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.io.Serializable;
+import java.io.*;
 import java.net.Socket;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.PriorityQueue;
-import java.util.Random;
+import java.util.*;
+
 /**
  * <h1> The Admin User class derived from user class</h1>
  * <p>
@@ -117,10 +108,11 @@ public class Admin extends User{
 	 */
 	public String generateJoincode(String type){
 		try {
+			File file = new File("./src/AppData/GeneratedJoinCode/list.txt");
 			type = type.substring(0, 1).toUpperCase();
 			Random rnd = new Random();
 			StringBuilder sb = new StringBuilder();
-			HashMap<String, Integer> codes = deserializeJoinCodes(true);
+			HashMap<String, Integer> codes = deserializeJoinCodes(false);
 			sb.append(type);
 			while (true) {
 				while (sb.length() != 7) {
@@ -136,6 +128,10 @@ public class Admin extends User{
 			}
 			codes.put(sb.toString(), 1);
 			serializeJoinCode(codes,false);
+			FileWriter sc=new FileWriter(file,true);
+			sc.write("["+LocalDateTime.now()+"]\t"+sb.toString()+"\n");
+			sc.flush();
+			sc.close();
 			return sb.toString();
 		}
 		catch (FileNotFoundException fe){
@@ -320,7 +316,6 @@ public class Admin extends User{
 			int flag=0;
 			Room temp = Room.deserializeRoom(r.get(0).getRoomName(), false);
 			Course ctemp = Course.deserializeCourse(r.get(0).getCourseName(), false);
-			System.out.println("hi");
 			while(r!=null) {
 			for (Reservation reservation : r) {
 				if (!temp.checkReservation(r.get(0).getTargetDate(), reservation.getReservationSlot(), reservation)) {

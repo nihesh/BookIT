@@ -232,7 +232,7 @@ public class Course implements java.io.Serializable{
      */
     public void setInstructor(String f){
         this.instructorEmail = f;
-        serialize(true);
+        serialize(false);
     }
     /**
      * Adds reservation to a course on a particular date and time(30 minute slot)

@@ -216,11 +216,9 @@ public class setup {
     }
     
     public static void main(String[] args){
+        BookITconstants b = new BookITconstants();
         try {
             loadRoomAndCourseObjects();                    // Creates Room and Course Objects for all rooms and courses in AppData. This should be used for initialisation only
-//        createFirstAdmin();
-//        createFirstStudent();
-//        createFirstFaculty();
             serialiseEmptyPriorityQueue();
             serialiseEmptyJoinCodeMap();
         }

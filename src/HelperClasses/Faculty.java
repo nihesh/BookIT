@@ -40,7 +40,7 @@ public class Faculty extends User{
 	 */
 	public void addCourse(String course){
 		myCourses.add(course);
-		serialize(true);
+		serialize(false);
 		this.setActiveUser();
 	}
 	/**

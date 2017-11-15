@@ -152,6 +152,6 @@ public class Room implements java.io.Serializable{
      */
     public void deleteReservation(LocalDate date, int slot){
         Schedule.get(date)[slot] = null;
-        serialize(true);
+        serialize(false);
     }
 }

@@ -22,6 +22,7 @@ public class server {
 	 */
     public static SpamFilter spm;
     public static void main(String[] args)throws IOException{
+        BookITconstants b = new BookITconstants();
         ServerSocket s = new ServerSocket(BookITconstants.serverPort);
         ConnectionHandler.lock = new ReentrantLock();
         spm = new SpamFilter();
@@ -55,7 +56,6 @@ class ConnectionHandler implements Runnable{
             return (Course)in.readObject();
         }
         catch (Exception e){
-            System.out.println("Exception occured while deserialising Course");
             return null;
         }
         finally {
@@ -137,7 +137,6 @@ class ConnectionHandler implements Runnable{
             return (User)in.readObject();
         }
         catch (Exception e){
-            System.out.println("Exception occured while deserialising User");
             return null;
         }
         finally {

@@ -1,6 +1,7 @@
 
 import AdminReservation.AdminReservationGUI;
 import FacultyReservation.FacultyReservationGUI;
+import HelperClasses.BookITconstants;
 import HelperClasses.User;
 import LoginSignup.LoginSignupGUI;
 import StudentReservation.StudentReservationGUI;
@@ -8,6 +9,7 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.net.Socket;
 /**
@@ -39,6 +41,17 @@ public class BookIT extends Application{
             faculty.start(primaryStage);
         }
         else{
+            File file1=new File("./src/AppData/GeneratedJoinCode");
+            if(!file1.exists()){
+                file1.mkdir();
+            }
+            File file=new File("./src/AppData/GeneratedJoinCode/list.txt");
+            try{
+                file.createNewFile();
+            }
+            catch(Exception e){
+                ;
+            }
             AdminReservationGUI admin = new AdminReservationGUI();
             admin.start(primaryStage);
         }
@@ -66,6 +79,7 @@ public class BookIT extends Application{
         }
     }
     public static void main(String[] args) throws IOException{
+        BookITconstants b = new BookITconstants();
         launch(args);
     }
 }

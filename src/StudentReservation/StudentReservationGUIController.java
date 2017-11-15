@@ -614,7 +614,12 @@ public class StudentReservationGUIController implements Initializable{
         Reservation[] bookings = r.getSchedule(activeDate);
         if(bookings[Reservation.getSlotID(curLabel.getText())]!=null) {
             Course c = Course.deserializeCourse(bookings[Reservation.getSlotID(curLabel.getText())].getCourseName(), false);
-            String facultyEmail = c.getInstructorEmail();
+            String facultyEmail;
+            if(c!=null)
+                facultyEmail = c.getInstructorEmail();
+            else{
+                facultyEmail="";
+            }
             if(facultyEmail.equals("")){
                 facultyEmail="~~~~";
             }

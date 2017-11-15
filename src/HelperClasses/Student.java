@@ -44,7 +44,7 @@ public class Student extends User{
 	public boolean sendReservationRequest(ArrayList<Reservation> r){
 		try {
 			PriorityQueue<ArrayList<Reservation>> p = null;
-				p = Admin.deserializeRequestsQueue(true);
+				p = Admin.deserializeRequestsQueue(false);
 				p.add(r);
 				Admin.serializeRequestsQueue(p, false);
 			
