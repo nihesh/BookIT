@@ -26,7 +26,7 @@ public class FacultyReservationGUI extends Application {
             primaryStage.setTitle("BookIT - "+activeUser.getEmail().getEmailID());
             primaryStage.setMaximized(true);
             primaryStage.setResizable(false);
-            primaryStage.setScene(new Scene(root, primaryStage.getMaxWidth(), primaryStage.getMaxHeight()));
+            primaryStage.setScene(new Scene(root));
             primaryStage.showAndWait();
         }
         catch(Exception e){

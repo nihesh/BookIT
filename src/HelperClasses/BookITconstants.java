@@ -6,6 +6,6 @@ package HelperClasses;
  * @since 12/11/2017
  */
 public class BookITconstants {
-    public static String serverIP = "192.168.1.6";
+    public static String serverIP = "192.168.59.171";
     public static int serverPort = 8080;
 }

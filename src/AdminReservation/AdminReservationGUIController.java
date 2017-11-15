@@ -94,6 +94,8 @@ public class AdminReservationGUIController implements Initializable{
     private VBox rootPane;
     @FXML
     private MenuBar menuBar;
+    @FXML
+    private SplitPane sp3;
 
     private LocalDate activeDate;
     private String activeRoom;
@@ -132,7 +134,7 @@ public class AdminReservationGUIController implements Initializable{
         else if((Screenwidth==1360 || Screenwidth==1368 || Screenwidth==1366) && Screenheight==768){
             scaleHeight = (height+55)/1005;
             menuFactor = 1;
-            reservationFactor = 1.05;
+            reservationFactor = 1.075;
         }
         else{
             menuFactor = 1;
@@ -143,6 +145,7 @@ public class AdminReservationGUIController implements Initializable{
         rootPane.setScaleY(scaleHeight);
         menuBar.setScaleX(1/(menuFactor*scaleWidth));
         mainPane.setScaleX(1/(reservationFactor*scaleWidth));
+        sp3.setScaleX(reservationFactor);
 
         activeUser = (Admin) User.getActiveUser();
         joinCodeProcessing = false;

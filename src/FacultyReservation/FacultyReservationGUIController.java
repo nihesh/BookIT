@@ -87,6 +87,8 @@ public class FacultyReservationGUIController implements Initializable{
     private VBox rootPane;
     @FXML
     private MenuBar menuBar;
+    @FXML
+    private SplitPane sp2;
 
     private LocalDate activeDate;
     private int pullDownPaneInitial = 650;
@@ -127,7 +129,7 @@ public class FacultyReservationGUIController implements Initializable{
         else if((Screenwidth==1360 || Screenwidth==1368 || Screenwidth==1366) && Screenheight==768){
             scaleHeight = (height+55)/1005;
             menuFactor = 1;
-            reservationFactor = 1.33;
+            reservationFactor = 1.065;
         }
         else{
             menuFactor = 1;
@@ -138,6 +140,7 @@ public class FacultyReservationGUIController implements Initializable{
         rootPane.setScaleY(scaleHeight);
         menuBar.setScaleX(1/(menuFactor*scaleWidth));
         mainPane.setScaleX(1/(reservationFactor*scaleWidth));
+        sp2.setScaleX(reservationFactor);
 
         activeUser = (Faculty) User.getActiveUser();
         listCoursesProcessing = false;

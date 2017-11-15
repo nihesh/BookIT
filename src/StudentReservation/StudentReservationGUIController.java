@@ -92,6 +92,8 @@ public class StudentReservationGUIController implements Initializable{
     private VBox rootPane;
     @FXML
     private MenuBar menuBar;
+    @FXML
+    private SplitPane sp1;
 
     private LocalDate activeDate;
     private ArrayList<Integer> chosenSlots;
@@ -147,6 +149,7 @@ public class StudentReservationGUIController implements Initializable{
         menuBar.setScaleX(1/(menuFactor*scaleWidth));
         mainPane.setScaleX(1/(reservationFactor*scaleWidth));
         TimeTablePane.setScaleX(TTFactor);
+        sp1.setScaleX(reservationFactor);
 
         activeUser = (Student)User.getActiveUser();
         batchLabel.setText(activeUser.getBatch());
