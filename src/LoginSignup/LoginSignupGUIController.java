@@ -2,6 +2,7 @@ package LoginSignup;
 
 
 
+import java.awt.*;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -24,6 +25,7 @@ import javafx.animation.Timeline;
 import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
 
+import javafx.geometry.Rectangle2D;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -31,8 +33,10 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import sun.plugin.javascript.navig.Anchor;
 
 public class LoginSignupGUIController {
 	private double initOpacity=0.84;
@@ -84,7 +88,36 @@ public class LoginSignupGUIController {
 	@FXML
 	private Button Signup_done_btn;
 	@FXML
+	private AnchorPane rootPane;
+	@FXML
 	public void initialize() {
+
+		// Scaling elements
+		Rectangle2D visualBounds = Screen.getPrimary().getVisualBounds();
+		double width = visualBounds.getWidth();
+		double height = visualBounds.getHeight();
+		double scaleWidth = (width)/1920;
+		double scaleHeight = (height)/1040;
+
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		double Screenwidth = screenSize.getWidth();
+		double Screenheight = screenSize.getHeight();
+
+		if(Screenwidth==1920 && Screenheight==1080){
+			;
+		}
+		else if(Screenwidth==1600 && Screenheight==900){
+			;
+		}
+		else if((Screenwidth==1360 || Screenwidth==1368 || Screenwidth==1366) && Screenheight==768){
+			;
+		}
+		else{
+			;
+		}
+		rootPane.setScaleX(scaleWidth);
+		rootPane.setScaleY(scaleHeight);
+
 		ArrayList<String> temp=new ArrayList<>();
 		// TODO Auto-generated method stub
 		Branch.getItems().removeAll(Branch.getItems());
