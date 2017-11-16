@@ -385,7 +385,7 @@ public class LoginSignupGUIController {
 		try {
 		if(!Name.getText().equals("") && Name.getText().matches("^[\\p{L} .'-]+$")) {
 			
-			HashMap<String,Integer> temp = Admin.deserializeJoinCodes(true);
+			HashMap<String,Integer> temp = Admin.deserializeJoinCodes(false);
 			if(!temp.containsKey(joincode)) {
 				
 				joincode=null;
@@ -410,7 +410,7 @@ public class LoginSignupGUIController {
 			else {
 				user=new Admin(user.getName(), user.getPassword(), user.getEmail(), user.getUsertype());
 			}
-			user.serialize(true);
+			user.serialize(false);
 		Signup_TranslateRight();
 		AccCre.setVisible(true);
 		}
