@@ -1,30 +1,36 @@
-Subject: breaking news : e - mail margin - bottom : 0 " >
-e - mail
-marketing system
--
-bulk e - mail will make you money so fast , your head will spin !
-- customers say we would no longer be in business without it
-- new package deal includes everything you need .
-see this product ' s web page
-click
-here
-1
-million business leads on cd
--
-for telemarketing , mailing , or faxing this list is a gold mine !
-- contains company name , address , phone , fax , sic , size .
-- list allows for unlimited use .
-see this product ' s web page click
-here
-fax
-marketing system
--
-fax broadcasting is the hot new way to market your business !
-- people are 10 times more likely to read faxes than direct mail .
-- software 4 million leads turns your computer into a fax blaster .
-see this product ' s web page click
-here
-visit
-our web site or call 618 - 288 - 6661
-to be taken off of
-our list click here
+Subject: mail delivery failed : returning message to sender
+this message was created automatically by mail delivery software .
+a message that you sent could not be delivered to one or more of its
+recipients . this is a permanent error . the following address ( es ) failed :
+twistersoffice @ qwest . net
+( generated from info @ twisterburritos . com )
+smtp error from remote mailer after end of data :
+host mpls - cmx - 07 . inet . qwest . net [ 63 . 226 . 138 . 7 ] :
+554 mail server permanently rejected message ( # 5 . 3 . 0 )
+- - - - - - this is a copy of the message , including all the headers . - - - - - -
+return - path :
+received : from [ 217 . 96 . 160 . 142 ] ( helo = mailwisconsin . com )
+by serverl 050 . gisol . com with smtp ( exim 4 . 50 )
+id ldupmn - 0000 kc - jt
+for info @ twisterburritos . com ; tue , 19 jul 2005 03 : 57 : 18 - 0700
+received : from 205 . 214 . 42 . 66
+( squirrelmail authenticated user projecthoneypot @ projecthoneypot . org ) ;
+by mailwisconsin . com with http id j 87 gzo 24817159 ;
+tue , 19 jul 2005 10 : 57 : 46 + 0000
+message - id :
+date : tue , 19 jul 2005 10 : 57 : 46 + 0000
+subject : just to her . . .
+from : " barry castillo "
+to : info @ twisterburritos . com
+user - agent : squirrelmail / 1 . 4 . 3 a
+x - mailer : squirrelmail / 1 . 4 . 3 a
+mime - version : 1 . 0
+content - type : text / html ; charset = iso - 8859 - 1
+content - transfer - encoding : 8 bit
+x - priority : 3 ( normal )
+importance : normal
+soft viagra at $ 1 . 62 per dose
+ready to boost your sex life ? positive ?
+time to do it right now !
+order soft viagra at incredibly low prices
+starting at $ 1 . 99 per dose ! unbeiivable !

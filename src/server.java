@@ -346,10 +346,6 @@ class ConnectionHandler implements Runnable{
                             case "WriteCourse":
                                 c = (Course) in.readObject();
                                 serializeCourse(c);
-                                if(lock.isLocked()) {
-                                    System.out.print("[ "+LocalDateTime.now()+" ] ");
-                                    System.out.println(connection.getInetAddress().toString() + " | ServerLock Released");
-                                }
                                 break;
                             case "GetUser":
                                 String email = (String) in.readObject();
@@ -360,10 +356,6 @@ class ConnectionHandler implements Runnable{
                             case "WriteUser":
                                 u = (User) in.readObject();
                                 serializeUser(u);
-                                if(lock.isLocked()) {
-                                    System.out.print("[ "+LocalDateTime.now()+" ] ");
-                                    System.out.println(connection.getInetAddress().toString() + " | ServerLock Released");
-                                }
                                 break;
                             case "ReadRoom":
                                 String roomName = (String) in.readObject();
@@ -374,18 +366,10 @@ class ConnectionHandler implements Runnable{
                             case "WriteRoom":
                                 r = (Room) in.readObject();
                                 serializeRoom(r);
-                                if(lock.isLocked()) {
-                                    System.out.print("[ "+LocalDateTime.now()+" ] ");
-                                    System.out.println(connection.getInetAddress().toString() + " | ServerLock Released");
-                                }
                                 break;
                             case "WriteJoinCode":
                                 joinCode = (HashMap<String, Integer>) in.readObject();
                                 serializeJoinCode(joinCode);
-                                if(lock.isLocked()) {
-                                    System.out.print("[ "+LocalDateTime.now()+" ] ");
-                                    System.out.println(connection.getInetAddress().toString() + " | ServerLock Released");
-                                }
                                 break;
                             case "ReadJoinCode":
                                 joinCode = deserializeJoinCodes();
@@ -395,10 +379,6 @@ class ConnectionHandler implements Runnable{
                             case "WriteRequest":
                                 req = (PriorityQueue<ArrayList<Reservation>>) in.readObject();
                                 serializeRequests(req);
-                                if(lock.isLocked()) {
-                                    System.out.print("[ "+LocalDateTime.now()+" ] ");
-                                    System.out.println(connection.getInetAddress().toString() + " | ServerLock Released");
-                                }
                                 break;
                             case "ReadRequest":
                                 req = deserializeRequests();
@@ -413,6 +393,7 @@ class ConnectionHandler implements Runnable{
                                 break;
                         }
                         if(lock.isLocked() && lock.isHeldByCurrentThread()){
+                            System.out.println(connection.getInetAddress().toString() + " | ServerLock Released");
                             lock.unlock();
                         }
                         in.close();
