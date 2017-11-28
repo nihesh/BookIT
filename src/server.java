@@ -302,6 +302,12 @@ class ConnectionHandler implements Runnable{
             in = new ObjectInputStream(connection.getInputStream());
             out = new ObjectOutputStream(connection.getOutputStream());
             status = (String)in.readObject();
+            if(status.equals("Pass")){      // Inverted logic. Parameter lock in other functions = false => take lock and vice versa. This is done so that client code is not modified
+                status = "Hold";
+            }
+            else{
+                status = "Pass";
+            }
         }
         catch (IOException m){
             ;
@@ -341,7 +347,6 @@ class ConnectionHandler implements Runnable{
                                 c = (Course) in.readObject();
                                 serializeCourse(c);
                                 if(lock.isLocked()) {
-                                    synchronized (this) { notifyAll(); }
                                     System.out.print("[ "+LocalDateTime.now()+" ] ");
                                     System.out.println(connection.getInetAddress().toString() + " | ServerLock Released");
                                 }
@@ -356,7 +361,6 @@ class ConnectionHandler implements Runnable{
                                 u = (User) in.readObject();
                                 serializeUser(u);
                                 if(lock.isLocked()) {
-                                    synchronized (this) { notifyAll(); }
                                     System.out.print("[ "+LocalDateTime.now()+" ] ");
                                     System.out.println(connection.getInetAddress().toString() + " | ServerLock Released");
                                 }
@@ -371,7 +375,6 @@ class ConnectionHandler implements Runnable{
                                 r = (Room) in.readObject();
                                 serializeRoom(r);
                                 if(lock.isLocked()) {
-                                    synchronized (this) { notifyAll(); }
                                     System.out.print("[ "+LocalDateTime.now()+" ] ");
                                     System.out.println(connection.getInetAddress().toString() + " | ServerLock Released");
                                 }
@@ -380,7 +383,6 @@ class ConnectionHandler implements Runnable{
                                 joinCode = (HashMap<String, Integer>) in.readObject();
                                 serializeJoinCode(joinCode);
                                 if(lock.isLocked()) {
-                                    synchronized (this) { notifyAll(); }
                                     System.out.print("[ "+LocalDateTime.now()+" ] ");
                                     System.out.println(connection.getInetAddress().toString() + " | ServerLock Released");
                                 }
@@ -394,7 +396,6 @@ class ConnectionHandler implements Runnable{
                                 req = (PriorityQueue<ArrayList<Reservation>>) in.readObject();
                                 serializeRequests(req);
                                 if(lock.isLocked()) {
-                                    synchronized (this) { notifyAll(); }
                                     System.out.print("[ "+LocalDateTime.now()+" ] ");
                                     System.out.println(connection.getInetAddress().toString() + " | ServerLock Released");
                                 }
@@ -412,15 +413,7 @@ class ConnectionHandler implements Runnable{
                                 break;
                         }
                         if(lock.isLocked() && lock.isHeldByCurrentThread()){
-                            if(request.substring(0,5).equals("Write")){
-                                lock.unlock();
-                            }
-                            else{
-                                synchronized (this) {
-                                    wait();
-                                }
-                                lock.unlock();
-                            }
+                            lock.unlock();
                         }
                         in.close();
                         out.close();
@@ -429,12 +422,12 @@ class ConnectionHandler implements Runnable{
                     } catch (ClassNotFoundException e) {
                         System.out.println("Error Occured while handling connection");
                     }
+                    break;
                 }
             }
             catch(InterruptedException l){
                 ;
             }
-            break;
         }while(true);
     }
 }
