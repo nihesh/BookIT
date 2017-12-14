@@ -221,13 +221,13 @@ public class LoginSignupGUIController {
 			Login_email_btn.setVisible(false);
 			Lback_btn.setVisible(true);
 		}
-			else {
-				email=null;
-				if(!Login_email.getStyleClass().contains("text-field2")) {
-					Login_email.getStyleClass().add("text-field2");
-				}
-				
+		else {
+			email=null;
+			if(!Login_email.getStyleClass().contains("text-field2")) {
+				Login_email.getStyleClass().add("text-field2");
 			}
+
+		}
 			
 		
 	}

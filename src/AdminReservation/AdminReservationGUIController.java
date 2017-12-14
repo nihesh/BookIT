@@ -830,18 +830,8 @@ public class AdminReservationGUIController implements Initializable{
      * Reservation pane flys right
      */
     public void flyRight(){
-        SequentialTransition sequence = new SequentialTransition();
-        int step=1;
-        int location=1;
-        while(location<2000) {
-            TranslateTransition translate = new TranslateTransition();
-            translate.setNode(HoverPane);
-            translate.setToX(location);
-            translate.setDuration(Duration.millis(15));
-            step++;
-            location+=step;
-            sequence.getChildren().add(translate);
-        }
+        FadeTransition sequence = new FadeTransition(Duration.millis(500), HoverPane);
+        sequence.setToValue(0);
         sequence.play();
         closeClassStatus();
         rightPane.setDisable(false);

@@ -89,7 +89,7 @@ public class User implements Serializable{
 	public static User getUser(String email,boolean lock) {
         try {
             Socket server = new Socket(BookITconstants.serverIP, BookITconstants.serverPort);
-            ObjectOutputStream out = new ObjectOutputStream(server.getOutputStream());
+			ObjectOutputStream out = new ObjectOutputStream(server.getOutputStream());
             ObjectInputStream in = new ObjectInputStream(server.getInputStream());
             if(lock){
                 out.writeObject("Hold");

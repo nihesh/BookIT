@@ -95,38 +95,39 @@ public class SpamFilter {
      * @param raw_message the input message
      * @return true if spam, false otherwise
      */
-    public static Boolean Predict(String raw_message){            // Returns true if spam
-        String[] processedMessage = raw_message.split("\\s+");
-        ArrayList<String> message = new ArrayList<>();
-        for(int i=0;i<processedMessage.length;i++){
-            message.add(processedMessage[i]);
-        }
-        double spamLoglikelihood = Math.log10(totalSpam)-Math.log10(totalSpam+totalHam);               // Bayesian priors
-        double hamLoglikelihood = Math.log10(totalSpam)-Math.log10(totalSpam+totalHam);
-        int uncertainity = 0;
-        for(int i=0;i<message.size();i++){
-            if(!SpamData.containsKey(message.get(i).toLowerCase())){
-                uncertainity++;
-            }
-        }
-        double percUncertainity = uncertainity/message.size();
-        if(!isTolerable(message)){
-            return false;
-        }
-        else if(percUncertainity >= 0.3){
-            return true;
-        }
-        for(int i=message.size()-1;i>=0;i--){
-            if(!SpamData.containsKey(message.get(i).toLowerCase())){
-                message.remove(i);
-            }
-        }
-        double minFrequency=0.0001;
-        for(int i=0;i<message.size();i++){
-            spamLoglikelihood+=Math.log10(max(minFrequency,SpamData.get(message.get(i).toLowerCase()))) - Math.log10(totalSpam);
-            hamLoglikelihood+=Math.log10(max(minFrequency,HamData.get(message.get(i).toLowerCase()))) - Math.log10(totalHam);
-        }
-        return spamLoglikelihood>hamLoglikelihood;
+    public static Boolean Predict(String raw_message){            // Returns true if spam. Currently disabled
+        return false;
+//        String[] processedMessage = raw_message.split("\\s+");
+//        ArrayList<String> message = new ArrayList<>();
+//        for(int i=0;i<processedMessage.length;i++){
+//            message.add(processedMessage[i]);
+//        }
+//        double spamLoglikelihood = Math.log10(totalSpam)-Math.log10(totalSpam+totalHam);               // Bayesian priors
+//        double hamLoglikelihood = Math.log10(totalSpam)-Math.log10(totalSpam+totalHam);
+//        int uncertainity = 0;
+//        for(int i=0;i<message.size();i++){
+//            if(!SpamData.containsKey(message.get(i).toLowerCase())){
+//                uncertainity++;
+//            }
+//        }
+//        double percUncertainity = uncertainity/message.size();
+//        if(!isTolerable(message)){
+//            return false;
+//        }
+//        else if(percUncertainity >= 0.3){
+//            return true;
+//        }
+//        for(int i=message.size()-1;i>=0;i--){
+//            if(!SpamData.containsKey(message.get(i).toLowerCase())){
+//                message.remove(i);
+//            }
+//        }
+//        double minFrequency=0.0001;
+//        for(int i=0;i<message.size();i++){
+//            spamLoglikelihood+=Math.log10(max(minFrequency,SpamData.get(message.get(i).toLowerCase()))) - Math.log10(totalSpam);
+//            hamLoglikelihood+=Math.log10(max(minFrequency,HamData.get(message.get(i).toLowerCase()))) - Math.log10(totalHam);
+//        }
+//        return spamLoglikelihood>hamLoglikelihood;
     }
     /**
      * finds the number of typing mistakes in a query text 
