@@ -13,6 +13,7 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -1126,7 +1127,7 @@
                               <Insets bottom="20.0" left="20.0" right="800.0" top="100.0" />
                            </StackPane.margin>
                         </ScrollPane>
-                        <StackPane prefHeight="150.0" prefWidth="200.0">
+                        <StackPane fx:id="courseBooking" prefHeight="150.0" prefWidth="200.0" style="visibility: false;">
                            <children>
                               <ComboBox fx:id="groupDropDown" prefHeight="38.0" prefWidth="331.0" promptText="Choose Group (Optional)">
                                  <StackPane.margin>
@@ -1170,7 +1171,7 @@
                                     <Font size="20.0" />
                                  </font>
                               </TextArea>
-                              <Button mnemonicParsing="false" onMouseClicked="#bookingCompleted" stylesheets="@button.css" text="Confirm Booking">
+                              <Button mnemonicParsing="false" onMouseClicked="#bookingCompleted1" stylesheets="@button.css" text="Confirm Booking">
                                  <StackPane.margin>
                                     <Insets left="540.0" top="500.0" />
                                  </StackPane.margin>
@@ -1188,6 +1189,66 @@
                                     <Insets bottom="420.0" left="150.0" />
                                  </StackPane.margin>
                               </Label>
+                           </children>
+                        </StackPane>
+                        <StackPane fx:id="otherBooking" layoutX="12.0" layoutY="12.0" prefHeight="150.0" prefWidth="200.0" style="visibility: faalse;">
+                           <children>
+                              <Label prefHeight="45.0" prefWidth="155.0" text="Purpose" textFill="WHITE" translateY="-30.0">
+                                 <font>
+                                    <Font size="27.0" />
+                                 </font>
+                                 <StackPane.margin>
+                                    <Insets bottom="260.0" left="150.0" />
+                                 </StackPane.margin>
+                              </Label>
+                              <Label prefHeight="45.0" prefWidth="155.0" text="Message" textFill="WHITE" translateY="-30.0">
+                                 <font>
+                                    <Font size="27.0" />
+                                 </font>
+                                 <StackPane.margin>
+                                    <Insets bottom="85.0" left="150.0" />
+                                 </StackPane.margin>
+                              </Label>
+                              <TextArea fx:id="requestMessage11" prefHeight="38.0" prefWidth="331.0" promptText="Mention the purpose of booking this slot. Note that this message will be displayed on the time-table." translateY="-30.0">
+                                 <StackPane.margin>
+                                    <Insets bottom="100.0" left="655.0" right="115.0" top="290.0" />
+                                 </StackPane.margin>
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </TextArea>
+                              <Button mnemonicParsing="false" onMouseClicked="#bookingCompleted2" stylesheets="@button.css" text="Confirm Booking" translateY="-30.0">
+                                 <StackPane.margin>
+                                    <Insets left="540.0" top="500.0" />
+                                 </StackPane.margin>
+                              </Button>
+                              <TextField fx:id="purposeBox" prefHeight="38.0" prefWidth="331.0" translateY="-30.0">
+                                 <StackPane.margin>
+                                    <Insets bottom="255.0" left="850.0" right="115.0" />
+                                 </StackPane.margin>
+                              </TextField>
+                           </children>
+                        </StackPane>
+                        <StackPane fx:id="preBooking" layoutX="12.0" layoutY="12.0" prefHeight="150.0" prefWidth="200.0" style="visibility: true;">
+                           <children>
+                              <Label prefHeight="45.0" prefWidth="155.0" text="Purpose" textFill="WHITE" translateY="-30.0">
+                                 <font>
+                                    <Font size="27.0" />
+                                 </font>
+                                 <StackPane.margin>
+                                    <Insets bottom="100.0" left="150.0" />
+                                 </StackPane.margin>
+                              </Label>
+                              <Button mnemonicParsing="false" onMouseClicked="#preBookingProceed" stylesheets="@button.css" text="Proceed" translateY="-30.0">
+                                 <StackPane.margin>
+                                    <Insets left="540.0" top="200.0" />
+                                 </StackPane.margin>
+                              </Button>
+                              <ComboBox fx:id="optionDropDown" prefHeight="38.0" prefWidth="331.0" translateY="-30.0">
+                                 <StackPane.margin>
+                                    <Insets bottom="100.0" left="850.0" right="115.0" />
+                                 </StackPane.margin>
+                              </ComboBox>
                            </children>
                         </StackPane>
                      </children></StackPane>

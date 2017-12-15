@@ -18,6 +18,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
@@ -81,7 +82,7 @@ public class FacultyReservationGUIController implements Initializable{
     @FXML
     private Label curDate,curMon,curYear;
     @FXML
-    private ComboBox courseDropDown, purposeDropDown, groupDropDown;
+    private ComboBox courseDropDown, optionDropDown, groupDropDown;
     @FXML
     private ArrayList<Button> slotButtons;
     @FXML
@@ -97,7 +98,14 @@ public class FacultyReservationGUIController implements Initializable{
     private MenuBar menuBar;
     @FXML
     private SplitPane sp2;
+    @FXML
+    private ComboBox purposeDropDown;
+    @FXML
+    private StackPane preBooking, courseBooking, otherBooking;
+    @FXML
+    private TextField purposeBox;
 
+    private String currentPurpose;
     private LocalDate activeDate;
     private int pullDownPaneInitial = 650;
     private HashMap<Button,Integer> selection = new HashMap<Button,Integer>();
@@ -173,6 +181,11 @@ public class FacultyReservationGUIController implements Initializable{
         changePasswordBG.setImage(image);
         pullDownPane.setTranslateY(pullDownPaneInitial);
         pullDownPane.setVisible(true);
+
+        optionDropDown.getItems().clear();
+        optionDropDown.getItems().add("Course");
+        optionDropDown.getItems().add("Other");
+
         datePicker.setValue(LocalDate.now());
         Callback<DatePicker, DateCell> dayCellFactory = dp -> new DateCell()
         {
@@ -694,6 +707,7 @@ public class FacultyReservationGUIController implements Initializable{
         purposeDropDown.getItems().add("Lecture");
         purposeDropDown.getItems().add("Lab");
         purposeDropDown.getItems().add("Tutorial");
+        purposeDropDown.getItems().add("Quiz");
         for(int j=0;j<6;j++) {
             groupDropDown.getItems().add(Integer.toString(j+1));
         }                                                                       // GUI Integration Ends
@@ -717,78 +731,14 @@ public class FacultyReservationGUIController implements Initializable{
         ParallelTransition inParallel = new ParallelTransition(appearBookBtn, appearBackBtn);
         inParallel.play();
     }
-
-    /**
-     * Event handler for confirming booking of a room
-     */
-    public void bookingCompleted(){
-        String chosenCourse;
-        Course courseObject = null;
-        try {
-            chosenCourse = courseDropDown.getSelectionModel().getSelectedItem().toString();
-        }
-        catch(NullPointerException e){
-            chosenCourse = "";
-        }
-        String chosenGroup;
-        try {
-            chosenGroup = groupDropDown.getSelectionModel().getSelectedItem().toString();
-        }
-        catch(NullPointerException e){
-            chosenGroup = "0";
-        }
-        String chosenPurpose;
-        try {
-            chosenPurpose = purposeDropDown.getSelectionModel().getSelectedItem().toString();
-        }
-        catch(NullPointerException e){
-            chosenPurpose = "";
-        }
-        String chosenFaculty;
-        if(chosenCourse == ""){
-            chosenFaculty = "";
-        }
-        else{
-            courseObject = Course.deserializeCourse(chosenCourse, false);
-            chosenFaculty = courseObject.getInstructorEmail();
-        }
-        String chosenMessage;
-        chosenMessage = requestMessage.getText();
-        ArrayList<Reservation> listOfReservations = new ArrayList<>();
-        for(int i=0;i<chosenSlots.size();i++){              // GUI Integration Begins
-            Reservation r;
-            r = new Reservation(chosenMessage, chosenGroup, chosenCourse, chosenFaculty, activeRoom, chosenPurpose, chosenSlots.get(i));
-            r.setTargetDate(activeDate);
-            r.setReserverEmail(activeUser.getEmail().getEmailID());
-            listOfReservations.add(r);
-        }                                                   // GUI Integration Ends
-        for(int i=0;i<listOfReservations.size();i++){
-            activeUser.bookRoom(listOfReservations.get(i).getTargetDate(), listOfReservations.get(i).getReservationSlot(), listOfReservations.get(i));
-        }
-        closeReservationPane();
-        flyRight();
-    }
-
-    /**
-     * Reservation pane flys right
-     */
-    public void flyRight(){
-        FadeTransition sequence = new FadeTransition(Duration.millis(500), HoverPane);
-        sequence.setToValue(0);
-        sequence.play();
-        closeClassStatus();
-        rightPane.setDisable(false);
-        leftPane.setDisable(false);
-        sequence.setOnFinished(e->{
-            exitReadOnlyBookings();
-        });
-    }
-
     /**
      * Resercation pane appears
      * @param action Event object
      */
     public void openBooking(Event action){
+        courseBooking.setVisible(false);
+        otherBooking.setVisible(false);
+        preBooking.setVisible(true);
         Button current = (Button) action.getSource();
         Room r = Room.deserializeRoom(current.getText(), false);                               // Loading buttons
         if(r==null){
@@ -827,6 +777,116 @@ public class FacultyReservationGUIController implements Initializable{
         ParallelTransition inParallel = new ParallelTransition(appear, appearBookBtn, appearBackBtn);
         inParallel.play();
     }
+    public void preBookingProceed(){
+        try {
+            currentPurpose = optionDropDown.getSelectionModel().getSelectedItem().toString();
+            preBooking.setVisible(false);
+            if(currentPurpose.equals("Course")){
+                courseBooking.setVisible(true);
+            }
+            else{
+                otherBooking.setVisible(true);
+            }
+        }
+        catch (Exception e){
+            System.out.println("No option has been selected case in preBookingProceed function");
+            return;
+        }
+    }
+
+    /**
+     * Event handler for confirming booking of a room
+     */
+    public void bookingCompleted1(){
+        String chosenCourse;
+        Course courseObject = null;
+        try {
+            chosenCourse = courseDropDown.getSelectionModel().getSelectedItem().toString();
+        }
+        catch(NullPointerException e){
+            return;
+        }
+        String chosenGroup;
+        try {
+            chosenGroup = groupDropDown.getSelectionModel().getSelectedItem().toString();
+        }
+        catch(NullPointerException e){
+            chosenGroup = "0";
+        }
+        String chosenPurpose;
+        try {
+            chosenPurpose = purposeDropDown.getSelectionModel().getSelectedItem().toString();
+        }
+        catch(NullPointerException e){
+            return;
+        }
+        String chosenFaculty;
+        if(chosenCourse == ""){
+            chosenFaculty = "";
+        }
+        else{
+            courseObject = Course.deserializeCourse(chosenCourse, false);
+            chosenFaculty = courseObject.getInstructorEmail();
+        }
+        String chosenMessage;
+        chosenMessage = requestMessage.getText();
+        ArrayList<Reservation> listOfReservations = new ArrayList<>();
+        for(int i=0;i<chosenSlots.size();i++){              // GUI Integration Begins
+            Reservation r;
+            r = new Reservation(chosenMessage, chosenGroup, chosenCourse, chosenFaculty, activeRoom, chosenPurpose, chosenSlots.get(i));
+            r.setTargetDate(activeDate);
+            r.setReserverEmail(activeUser.getEmail().getEmailID());
+            listOfReservations.add(r);
+        }                                                   // GUI Integration Ends
+        for(int i=0;i<listOfReservations.size();i++){
+            activeUser.bookRoom(listOfReservations.get(i).getTargetDate(), listOfReservations.get(i).getReservationSlot(), listOfReservations.get(i));
+        }
+        closeReservationPane();
+        flyRight();
+        requestMessage.clear();
+    }
+
+    public void bookingCompleted2(){
+        String chosenCourse="";
+        String chosenGroup="0";
+        String chosenPurpose;
+        chosenPurpose = purposeBox.getText();
+        String chosenFaculty="";
+        String chosenMessage;
+        chosenMessage = requestMessage.getText();
+        ArrayList<Reservation> listOfReservations = new ArrayList<>();
+        for(int i=0;i<chosenSlots.size();i++){              // GUI Integration Begins
+            Reservation r;
+            r = new Reservation(chosenMessage, chosenGroup, chosenCourse, chosenFaculty, activeRoom, chosenPurpose, chosenSlots.get(i));
+            r.setTargetDate(activeDate);
+            r.setReserverEmail(activeUser.getEmail().getEmailID());
+            listOfReservations.add(r);
+        }                                                   // GUI Integration Ends
+        for(int i=0;i<listOfReservations.size();i++){
+            activeUser.bookRoom(listOfReservations.get(i).getTargetDate(), listOfReservations.get(i).getReservationSlot(), listOfReservations.get(i));
+        }
+        closeReservationPane();
+        flyRight();
+        purposeBox.clear();
+        requestMessage.clear();
+    }
+
+    /**
+     * Reservation pane flys right
+     */
+    public void flyRight(){
+        FadeTransition sequence = new FadeTransition(Duration.millis(500), HoverPane);
+        sequence.setToValue(0);
+        sequence.play();
+        closeClassStatus();
+        rightPane.setDisable(false);
+        leftPane.setDisable(false);
+        sequence.setOnFinished(e->{
+            exitReadOnlyBookings();
+        });
+    }
+
+
 
     /**
      * Reservation pane appears, but it remains disabled
