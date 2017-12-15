@@ -29,8 +29,11 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 import javafx.util.Duration;
+
+import javax.swing.*;
 import java.awt.*;
-import java.io.File;
+import java.io.*;
+import java.net.Socket;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -117,6 +120,8 @@ public class FacultyReservationGUIController implements Initializable{
     private String activeRoom;
     private ArrayList<Integer> chosenSlots;
     private ArrayList<CheckBox> courseLabels = new ArrayList<>();
+    private LocalDate StartDate;
+    private LocalDate EndDate;
 
     /**
      * Constructor for setting up Faculty Reservation GUI. It includes the adaptor code to suit any dimensional screen
@@ -167,6 +172,28 @@ public class FacultyReservationGUIController implements Initializable{
         mainPane.setScaleX(1/(reservationFactor*scaleWidth));
         sp2.setScaleX(splitBar*reservationFactor);
 
+        try {
+            Socket server = new Socket(BookITconstants.serverIP, BookITconstants.serverPort);
+            ObjectOutputStream out = new ObjectOutputStream(server.getOutputStream());
+            ObjectInputStream in = new ObjectInputStream(server.getInputStream());
+            out.writeObject("Pass");        // Takes lock
+            out.flush();
+            out.writeObject("GetStartEndDate");
+            out.flush();
+            ArrayList<LocalDate> temp = (ArrayList<LocalDate>) in.readObject();
+            StartDate = temp.get(0);
+            EndDate = temp.get(1);
+            out.close();
+            in.close();
+            server.close();
+        }
+        catch (IOException e){
+            System.out.println("IO exception occurred while writing to server");
+        }
+        catch (ClassNotFoundException c){
+            System.out.println("Class Not found exception occurred while getting Start and End date of semester");
+        }
+
         activeUser = (Faculty) User.getActiveUser();
         listCoursesProcessing = false;
         isActiveReservation = false;
@@ -185,6 +212,7 @@ public class FacultyReservationGUIController implements Initializable{
         optionDropDown.getItems().clear();
         optionDropDown.getItems().add("Course");
         optionDropDown.getItems().add("Other");
+        optionDropDown.setValue("Course");
 
         datePicker.setValue(LocalDate.now());
         Callback<DatePicker, DateCell> dayCellFactory = dp -> new DateCell()
@@ -194,7 +222,7 @@ public class FacultyReservationGUIController implements Initializable{
             {
                 super.updateItem(item, empty);
 
-                if(item.isBefore(LocalDate.now()) || item.isAfter(LocalDate.of(2017,12,5)))
+                if(item.isBefore(LocalDate.now()) || item.isBefore(StartDate) || item.isAfter(EndDate))
                 {
                     setStyle("-fx-background-color: #ffc0cb;");
                     Platform.runLater(() -> setDisable(true));
@@ -209,6 +237,7 @@ public class FacultyReservationGUIController implements Initializable{
         file = new File("./src/AdminReservation/cancel.png");
         image = new Image(file.toURI().toString());
         cancelSlotBookingImage.setImage(image);
+        loadDate();
         loadCourses();
     }
 
@@ -376,7 +405,7 @@ public class FacultyReservationGUIController implements Initializable{
      */
     public void loadDate(){
         LocalDate date = datePicker.getValue();
-        if(date.isAfter(LocalDate.of(2017,8,1)) && date.isBefore(LocalDate.of(2017,12,15))){
+        if(date.isAfter(StartDate) && date.isBefore(EndDate)){
             activeDate = date;
             datePicker.setValue(activeDate);
             setDate(activeDate);
@@ -384,6 +413,9 @@ public class FacultyReservationGUIController implements Initializable{
         else{
             datePicker.setValue(activeDate);
             setDate(activeDate);
+            topPane.setDisable(true);
+            mainPane.setDisable(true);
+            JOptionPane.showMessageDialog(null, "Sorry, BookIT server is down", "Server Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 
@@ -851,6 +883,9 @@ public class FacultyReservationGUIController implements Initializable{
         String chosenGroup="0";
         String chosenPurpose;
         chosenPurpose = purposeBox.getText();
+        if(chosenPurpose.equals("")){
+            return;
+        }
         String chosenFaculty="";
         String chosenMessage;
         chosenMessage = requestMessage.getText();

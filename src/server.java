@@ -4,6 +4,7 @@ import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.security.spec.ECField;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -294,6 +295,20 @@ class ConnectionHandler implements Runnable{
             System.out.println("file not found");
         }
     }
+    public ArrayList<LocalDate> fetchSemDate(){
+        try {
+            ArrayList<LocalDate> data = new ArrayList<>();
+            ObjectInputStream in = new ObjectInputStream(new FileInputStream("./src/AppData/Server/StartDate.dat"));
+            data.add((LocalDate) in.readObject());
+
+            in = new ObjectInputStream(new FileInputStream("./src/AppData/Server/EndDate.dat"));
+            data.add((LocalDate) in.readObject());
+            return data;
+        }
+        catch (Exception e){
+            return null;
+        }
+    }
     public void run(){
         ObjectInputStream in=null;
         ObjectOutputStream out=null;
@@ -391,6 +406,11 @@ class ConnectionHandler implements Runnable{
                                 out.writeObject(spamStatus);
                                 out.flush();
                                 break;
+                            case "GetStartEndDate":
+                                ArrayList<LocalDate> StartEndDate;
+                                StartEndDate = fetchSemDate();
+                                out.writeObject(StartEndDate);
+                                out.flush();
                         }
                         if(lock.isLocked() && lock.isHeldByCurrentThread()){
                             System.out.println(connection.getInetAddress().toString() + " | ServerLock Released");

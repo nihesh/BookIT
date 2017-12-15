@@ -31,8 +31,10 @@ import javafx.stage.Stage;
 import javafx.util.Callback;
 import javafx.util.Duration;
 
+import javax.swing.*;
 import java.awt.*;
-import java.io.File;
+import java.io.*;
+import java.net.Socket;
 import java.net.URL;
 import java.sql.Time;
 import java.time.LocalDate;
@@ -103,6 +105,8 @@ public class StudentReservationGUIController implements Initializable{
     private String activeRoom;
     private HashMap<Button,Integer> selection = new HashMap<Button,Integer>();
     private Boolean isActiveReservation, changepassProcessing, fetchCoursesProcessing, listCoursesProcessing,timetableprocessing;
+    private LocalDate StartDate;
+    private LocalDate EndDate;
 
 
     /**
@@ -160,6 +164,28 @@ public class StudentReservationGUIController implements Initializable{
         TimeTablePane.setScaleX(TTFactor);
         sp1.setScaleX(splitBar*reservationFactor);
 
+        try {
+            Socket server = new Socket(BookITconstants.serverIP, BookITconstants.serverPort);
+            ObjectOutputStream out = new ObjectOutputStream(server.getOutputStream());
+            ObjectInputStream in = new ObjectInputStream(server.getInputStream());
+            out.writeObject("Pass");        // Takes lock
+            out.flush();
+            out.writeObject("GetStartEndDate");
+            out.flush();
+            ArrayList<LocalDate> temp = (ArrayList<LocalDate>) in.readObject();
+            StartDate = temp.get(0);
+            EndDate = temp.get(1);
+            out.close();
+            in.close();
+            server.close();
+        }
+        catch (IOException e){
+            System.out.println("IO exception occurred while writing to server");
+        }
+        catch (ClassNotFoundException c){
+            System.out.println("Class Not found exception occurred while getting Start and End date of semester");
+        }
+
         activeUser = (Student)User.getActiveUser();
         batchLabel.setText(activeUser.getBatch());
         listCoursesProcessing = false;
@@ -187,7 +213,7 @@ public class StudentReservationGUIController implements Initializable{
             {
                 super.updateItem(item, empty);
 
-                if(item.isBefore(LocalDate.now()) || item.isAfter(LocalDate.of(2017,12,5)))
+                if(item.isBefore(LocalDate.now()) || item.isBefore(StartDate) || item.isAfter(EndDate))
                 {
                     setStyle("-fx-background-color: #ffc0cb;");
                     Platform.runLater(() -> setDisable(true));
@@ -198,6 +224,7 @@ public class StudentReservationGUIController implements Initializable{
         datePicker.setValue(LocalDate.now());
         activeDate=LocalDate.now();
         setDate(activeDate);
+        loadDate();
         loadCourses();
     }
 
@@ -463,14 +490,18 @@ public class StudentReservationGUIController implements Initializable{
      */
     public void loadDate(){
         LocalDate date = datePicker.getValue();
-        if(date.isAfter(LocalDate.of(2017,8,1)) && date.isBefore(LocalDate.of(2017,12,15))){
+        if(date.isAfter(StartDate) && date.isBefore(EndDate)){
             activeDate = date;
             datePicker.setValue(activeDate);
             setDate(activeDate);
+            JOptionPane.showMessageDialog(null, "List contained 0 elements!", "Error", JOptionPane.ERROR_MESSAGE);
         }
         else{
             datePicker.setValue(activeDate);
             setDate(activeDate);
+            topPane.setDisable(true);
+            mainPane.setDisable(true);
+            JOptionPane.showMessageDialog(null, "Sorry, BookIT server is down", "Server Error", JOptionPane.ERROR_MESSAGE);
         }
     }
     /**

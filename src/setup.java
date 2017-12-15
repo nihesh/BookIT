@@ -83,11 +83,36 @@ public class setup {
         if(!file2.exists()){
             file2.mkdir();
         }
-        Scanner file = new Scanner(new FileReader("./src/AppData/StaticTimeTable/TimeTable.csv"));
+        Scanner file = new Scanner(new FileReader("./src/AppData/StaticTimeTable/RoomData.csv"));
         HashMap<String, Room > roomData = new HashMap<String, Room >();
         HashMap<String, Course> courseData = new HashMap<String, Course>();
         file.useDelimiter(",|\\n");
         int flag=0;
+        while(file.hasNext()){
+            String venue;
+            int capacity;
+            if(flag==0){
+                flag=1;
+                file.next();
+                file.next();
+                continue;
+            }
+            venue = file.next();
+            capacity = Integer.parseInt(file.next());
+            HashMap<LocalDate, Reservation[]> Schedule = new HashMap<LocalDate, Reservation[]>();
+            LocalDate currentDate = StartDate;
+            LocalDate endDate = EndDate;
+            while(!currentDate.equals(endDate)){
+                Reservation[] r = new Reservation[30];
+                Schedule.put(currentDate, r);
+                currentDate = currentDate.plusDays(1);
+            }
+            Room newRoom = new Room(venue,Schedule,capacity);
+            roomData.put(venue,newRoom);
+        }
+        file = new Scanner(new FileReader("./src/AppData/StaticTimeTable/TimeTable.csv"));
+        file.useDelimiter(",|\\n");
+        flag=0;
         while(file.hasNext()){
             String type,name,code,instructor,credits,acronym,day,startTime,endTime,group,message,venue;
             type = file.next();
@@ -128,7 +153,7 @@ public class setup {
                     Schedule.put(currentDate, r);
                     currentDate = currentDate.plusDays(1);
                 }
-                Room newRoom = new Room(venue,Schedule,40);
+                Room newRoom = new Room(venue,Schedule,-5);
                 roomData.put(venue,newRoom);
             }
             ArrayList<Integer> listOfSlots = getSlots(startTime, endTime);
@@ -216,6 +241,33 @@ public class setup {
     
     public static void main(String[] args){
         BookITconstants b = new BookITconstants();
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Semester start date: ");
+        int date, month, year;
+        date = sc.nextInt();
+        System.out.print("Semester start month: ");
+        month = sc.nextInt();
+        System.out.print("Semester start year: ");
+        year = sc.nextInt();
+        StartDate = LocalDate.of(year, month, date);
+        System.out.print("Semester end date: ");
+        date = sc.nextInt();
+        System.out.print("Semester end month: ");
+        month = sc.nextInt();
+        System.out.print("Semester end year: ");
+        year = sc.nextInt();
+        EndDate = LocalDate.of(year, month, date);
+        try {
+            ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("./src/AppData/Server/StartDate.dat", false));
+            out.writeObject(StartDate);
+            out.close();
+            out = new ObjectOutputStream(new FileOutputStream("./src/AppData/Server/EndDate.dat", false));
+            out.writeObject(EndDate);
+            out.close();
+        }
+        catch(Exception e){
+            System.out.println("Error occurred while serialising sem start and end dates");
+        }
         try {
             loadRoomAndCourseObjects();                    // Creates Room and Course Objects for all rooms and courses in AppData. This should be used for initialisation only
             serialiseEmptyPriorityQueue();
