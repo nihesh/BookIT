@@ -53,16 +53,13 @@ public class Faculty extends User{
 	public boolean cancelBooking(LocalDate queryDate,int slotID, String RoomID) {
 		Room temp=Room.deserializeRoom(RoomID, false);
 		Reservation r=temp.getSchedule(queryDate)[slotID];
-		
+		temp.deleteReservation(queryDate, slotID);
+
 		Course c=r.getCourse();
 		if(c!=null) {
-			if(myCourses.contains(r.getCourseName())) {
-				temp.deleteReservation(queryDate, slotID);
-				 c.deleteReservation(queryDate, slotID,r.getTopGroup());
-				 return true;
-			}
-			}
-		return false;
+			 c.deleteReservation(queryDate, slotID,r.getTopGroup());
+		}
+		return true;
 	}
 	/**
 	 * book a room on a date and time

@@ -51,7 +51,7 @@ public class StudentReservationGUIController implements Initializable{
     @FXML
     private Label RoomNo;
     @FXML
-    private Button BackBtn;
+    private Button BackBtn, cancelSlotBooking;
     @FXML
     private Button BookBtn;
     @FXML
@@ -63,7 +63,7 @@ public class StudentReservationGUIController implements Initializable{
     @FXML
     private StackPane classStatus, slotInfoPane, changePasswordPane;
     @FXML
-    private ImageView classStatusBG, slotStatusBG, changePasswordBG, addCoursesBG,listCoursesBG;
+    private ImageView classStatusBG, slotStatusBG, changePasswordBG, addCoursesBG,listCoursesBG, cancelSlotBookingImage;
     @FXML
     private Label statusRoomID, slotInfo,statusClassSize, statusFreeSlots, dateLabel;
     @FXML
@@ -111,6 +111,8 @@ public class StudentReservationGUIController implements Initializable{
     private Boolean isActiveReservation, changepassProcessing, fetchCoursesProcessing, listCoursesProcessing,timetableprocessing;
     private LocalDate StartDate;
     private LocalDate EndDate;
+    private String currentlyShowingSlot;
+    private Event classEvent;
 
 
     /**
@@ -215,6 +217,10 @@ public class StudentReservationGUIController implements Initializable{
         optionDropDown.getItems().add("Course");
         optionDropDown.getItems().add("Other");
         optionDropDown.setValue("Course");
+
+        file = new File("./src/AdminReservation/cancel.png");
+        image = new Image(file.toURI().toString());
+        cancelSlotBookingImage.setImage(image);
 
         Callback<DatePicker, DateCell> dayCellFactory = dp -> new DateCell()
         {
@@ -642,6 +648,13 @@ public class StudentReservationGUIController implements Initializable{
             slotInfoMessage.setText("N/A");
         }                                                               // GUI-Helper Integration ends
     }
+    public void cancelSlotBooking(){
+        activeUser.cancelBooking(activeDate,Reservation.getSlotID(currentlyShowingSlot),activeRoom);
+        Button current = slotButtons.get(Reservation.getSlotID(currentlyShowingSlot));
+        current.setDisable(false);
+        current.setText("Free");
+        updateClassStatus(classEvent);
+    }
     /**
      * Displays details attached to the slot on the top center pane
      * @param e Event object
@@ -650,24 +663,28 @@ public class StudentReservationGUIController implements Initializable{
         slotInfoPane.setVisible(true);
         Label curLabel = (Label) e.getSource();
         slotInfo.setText(curLabel.getText());
+        currentlyShowingSlot = curLabel.getText();
         Room r = Room.deserializeRoom(statusRoomID.getText(), false);          // GUI-Helper Integration starts
         Reservation[] bookings = r.getSchedule(activeDate);
         if(bookings[Reservation.getSlotID(curLabel.getText())]!=null) {
-            Course c = Course.deserializeCourse(bookings[Reservation.getSlotID(curLabel.getText())].getCourseName(), false);
-            String facultyEmail;
-            if(c!=null)
-                facultyEmail = c.getInstructorEmail();
-            else{
-                facultyEmail="";
+            String facultyName="~~~~";
+            if (!bookings[Reservation.getSlotID(curLabel.getText())].getFacultyEmail().equals("")){
+                Faculty f = (Faculty)User.getUser(bookings[Reservation.getSlotID(curLabel.getText())].getFacultyEmail(), false);
+                facultyName = f.getName();
             }
-            if(facultyEmail.equals("")){
-                facultyEmail="~~~~";
-            }
-            slotInfoFaculty.setText(facultyEmail);
+            slotInfoFaculty.setText(facultyName);
             slotInfoCourse.setText(bookings[Reservation.getSlotID(curLabel.getText())].getCourseName());
             slotInfoMessage.setText(bookings[Reservation.getSlotID(curLabel.getText())].getMessage());
+            String currentUserEmail = activeUser.getEmail().getEmailID();
+            if(currentUserEmail.equals(bookings[Reservation.getSlotID(curLabel.getText())].getFacultyEmail()) || currentUserEmail.equals(bookings[Reservation.getSlotID(curLabel.getText())].getReserverEmail())){
+                cancelSlotBooking.setDisable(false);
+            }
+            else{
+                cancelSlotBooking.setDisable(true);
+            }
         }
         else{
+            cancelSlotBooking.setDisable(true);
             slotInfoFaculty.setText("N/A");
             slotInfoCourse.setText("N/A");
             slotInfoMessage.setText("N/A");
@@ -857,6 +874,7 @@ public class StudentReservationGUIController implements Initializable{
         purposeDropDown.getItems().add("Lecture");
         purposeDropDown.getItems().add("Lab");
         purposeDropDown.getItems().add("Tutorial");
+        purposeDropDown.getItems().add("Quiz");
         for(int j=0;j<6;j++) {
             groupDropDown.getItems().add(Integer.toString(j+1));
         }                                                                       // GUI Integration Ends
@@ -920,6 +938,7 @@ public class StudentReservationGUIController implements Initializable{
         for(int i=0;i<chosenSlots.size();i++){              // GUI Integration Begins
             Reservation r;
             r = new Reservation(chosenMessage, chosenGroup, chosenCourse, chosenFaculty, activeRoom, chosenPurpose, chosenSlots.get(i));
+            r.setReserverEmail(activeUser.getEmail().getEmailID());
             r.setTargetDate(activeDate);
             listOfReservations.add(r);
         }                                                   // GUI Integration Ends
@@ -947,6 +966,7 @@ public class StudentReservationGUIController implements Initializable{
             Reservation r;
             r = new Reservation(chosenMessage, "0", "", "", activeRoom, chosenPurpose, chosenSlots.get(i));
             r.setTargetDate(activeDate);
+            r.setReserverEmail(activeUser.getEmail().getEmailID());
             listOfReservations.add(r);
         }                                                   // GUI Integration Ends
         activeUser.sendReservationRequest(listOfReservations);
@@ -995,6 +1015,7 @@ public class StudentReservationGUIController implements Initializable{
         if(r==null){
             return;
         }
+        classEvent = action;
         HoverPane.setTranslateX(0);
         error1.setVisible(true);
         BookBtn.setDisable(true);

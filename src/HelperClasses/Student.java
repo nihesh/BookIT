@@ -5,6 +5,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -96,6 +97,17 @@ public class Student extends User{
 			}
 		}
 		return temp2;
+	}
+	public boolean cancelBooking(LocalDate queryDate, int slotID, String RoomID) {
+		Room temp=Room.deserializeRoom(RoomID, false);
+		Reservation r=temp.getSchedule(queryDate)[slotID];
+		temp.deleteReservation(queryDate, slotID);
+
+		Course c=r.getCourse();
+		if(c!=null) {
+			c.deleteReservation(queryDate, slotID,r.getTopGroup());
+		}
+		return true;
 	}
 	/**
 	 * adds a course to timetable of a student

@@ -70,7 +70,7 @@ public class AdminReservationGUIController implements Initializable{
     @FXML
     private AnchorPane selectedSlotsScrollPane, requestedSlotsScrollPane;
     @FXML
-    private Label error1;
+    private Label error1, AccRejSource;
     @FXML
     private ComboBox courseDropDown;
     @FXML
@@ -457,6 +457,7 @@ public class AdminReservationGUIController implements Initializable{
         if(date.length()==1){
             date = "0"+date;
         }
+        AccRejSource.setText(firstRequest.getReserverEmail());
         AccRejDate.setText(date+"-"+firstRequest.getTargetDate().getMonthValue()+"-"+firstRequest.getTargetDate().getYear());
         AccRejVenue.setText(firstRequest.getVenueName());
         String group = firstRequest.getTopGroup();

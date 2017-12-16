@@ -41,9 +41,9 @@
             </Menu>
          </menus>
       </MenuBar>
-      <StackPane fx:id="topPane" onMouseEntered="#exitReadOnlyBookings" prefHeight="382.0" prefWidth="1920.0">
+      <StackPane fx:id="topPane" prefHeight="382.0" prefWidth="1920.0">
          <children>
-            <StackPane fx:id="leftPane" prefHeight="312.0" prefWidth="1652.0" style="-fx-background-color: #2C3E50;">
+            <StackPane fx:id="leftPane" onMouseEntered="#exitReadOnlyBookings" prefHeight="312.0" prefWidth="1652.0" style="-fx-background-color: #2C3E50;">
                <StackPane.margin>
                   <Insets right="1275.0" />
                </StackPane.margin>
@@ -213,6 +213,14 @@
                                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                  </padding>
                               </ScrollPane>
+                              <Button fx:id="cancelSlotBooking" mnemonicParsing="false" onMouseClicked="#cancelSlotBooking" prefHeight="38.0" prefWidth="42.0" stylesheets="@../FacultyReservation/buttonDropDown.css">
+                                 <graphic>
+                                    <ImageView fx:id="cancelSlotBookingImage" fitHeight="25.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" />
+                                 </graphic>
+                                 <StackPane.margin>
+                                    <Insets bottom="230.0" left="492.0" />
+                                 </StackPane.margin>
+                              </Button>
                            </children>
                         </StackPane>
                         <StackPane fx:id="changePasswordPane" prefHeight="150.0" prefWidth="200.0" style="visibility: false;">
@@ -440,7 +448,7 @@
                   <Insets left="1265.0" right="645.0" />
                </StackPane.margin>
             </SplitPane>
-            <StackPane fx:id="rightPane" layoutX="670.0" layoutY="10.0" prefHeight="312.0" prefWidth="1652.0" style="-fx-background-color: #2C3E50;">
+            <StackPane fx:id="rightPane" layoutX="670.0" layoutY="10.0" onMouseEntered="#exitReadOnlyBookings" prefHeight="312.0" prefWidth="1652.0" style="-fx-background-color: #2C3E50;">
                <StackPane.margin>
                   <Insets left="1275.0" />
                </StackPane.margin>
@@ -1214,7 +1222,7 @@
                   </Label>
                </children>
             </StackPane>
-            <StackPane fx:id="pullDownPane" prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: #2a2a2a; visibility: true;">
+            <StackPane fx:id="pullDownPane" prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: #2a2a2a; visibility: false;">
                <StackPane.margin>
                   <Insets bottom="50.0" left="300.0" right="300.0" />
                </StackPane.margin>
