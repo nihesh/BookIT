@@ -91,7 +91,7 @@ public class FacultyReservationGUIController implements Initializable{
     @FXML
     private Label slotInfoFaculty, slotInfoCourse, slotInfoMessage;
     @FXML
-    private TextArea requestMessage;
+    private TextArea requestMessage, requestMessage2;
     @FXML
     private PasswordField oldPass, newPass, renewPass;
 
@@ -678,7 +678,7 @@ public class FacultyReservationGUIController implements Initializable{
             translate.setToY(location);
             translate.setDuration(Duration.millis(15));
             step++;
-            location+=step;
+            location+=max(20,step);
             sequence.getChildren().add(translate);
         }
         sequence.play();
@@ -703,6 +703,9 @@ public class FacultyReservationGUIController implements Initializable{
      * Booking confirmation pane appears
      */
     public void pullDownReservationPane(){
+        courseBooking.setVisible(false);
+        otherBooking.setVisible(false);
+        preBooking.setVisible(true);
         chosenSlots = new ArrayList<>();
         isActiveReservation = true;
         hideSlotPane();
@@ -733,6 +736,9 @@ public class FacultyReservationGUIController implements Initializable{
         }
         selectedSlotsScrollPane.setPrefSize(494,max(474,50*i));
         ArrayList<String> allCourses = Course.getAllCourses(    );                  // GUI Integration
+        courseDropDown.getItems().clear();
+        purposeDropDown.getItems().clear();
+        groupDropDown.getItems().clear();
         for(int j=0;j<allCourses.size();j++) {
             courseDropDown.getItems().add(allCourses.get(j));
         }
@@ -768,9 +774,6 @@ public class FacultyReservationGUIController implements Initializable{
      * @param action Event object
      */
     public void openBooking(Event action){
-        courseBooking.setVisible(false);
-        otherBooking.setVisible(false);
-        preBooking.setVisible(true);
         Button current = (Button) action.getSource();
         Room r = Room.deserializeRoom(current.getText(), false);                               // Loading buttons
         if(r==null){
@@ -888,7 +891,7 @@ public class FacultyReservationGUIController implements Initializable{
         }
         String chosenFaculty="";
         String chosenMessage;
-        chosenMessage = requestMessage.getText();
+        chosenMessage = requestMessage2.getText();
         ArrayList<Reservation> listOfReservations = new ArrayList<>();
         for(int i=0;i<chosenSlots.size();i++){              // GUI Integration Begins
             Reservation r;
@@ -903,7 +906,7 @@ public class FacultyReservationGUIController implements Initializable{
         closeReservationPane();
         flyRight();
         purposeBox.clear();
-        requestMessage.clear();
+        requestMessage2.clear();
     }
 
     /**

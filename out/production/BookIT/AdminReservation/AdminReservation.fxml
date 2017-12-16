@@ -14,6 +14,7 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -1110,9 +1111,6 @@
                </children>
             </StackPane>
             <StackPane fx:id="pullDownPane" prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: #2a2a2a; visibility: false;">
-               <StackPane.margin>
-                  <Insets bottom="50.0" left="300.0" right="300.0" />
-               </StackPane.margin>
                <children>
                   <StackPane prefHeight="150.0" prefWidth="1320.0" style="-fx-border-width: 2; -fx-border-color: white;" StackPane.alignment="CENTER">
                      <children>
@@ -1125,76 +1123,144 @@
                            </font>
                         </Label>
                         <ScrollPane prefHeight="541.0" prefWidth="1209.0">
-                          <content>
-                            <AnchorPane fx:id="selectedSlotsScrollPane" minHeight="0.0" minWidth="0.0" prefHeight="474.0" prefWidth="494.0" style="-fx-background-color: #424949;" />
-                          </content>
+                           <content>
+                              <AnchorPane fx:id="selectedSlotsScrollPane" minHeight="0.0" minWidth="0.0" prefHeight="474.0" prefWidth="494.0" style="-fx-background-color: #424949;" />
+                           </content>
                            <StackPane.margin>
                               <Insets bottom="20.0" left="20.0" right="800.0" top="100.0" />
                            </StackPane.margin>
                         </ScrollPane>
-                        <ComboBox fx:id="courseDropDown" prefHeight="38.0" prefWidth="331.0" promptText="Choose Course (Optional)">
-                           <StackPane.margin>
-                              <Insets bottom="420.0" left="750.0" />
-                           </StackPane.margin>
-                        </ComboBox>
-                        <ComboBox fx:id="groupDropDown" prefHeight="38.0" prefWidth="331.0" promptText="Choose Group (Optional)">
-                           <StackPane.margin>
-                              <Insets bottom="320.0" left="750.0" />
-                           </StackPane.margin>
-                        </ComboBox>
-                        <Label prefHeight="45.0" prefWidth="155.0" text="Course" textFill="WHITE">
-                           <StackPane.margin>
-                              <Insets bottom="420.0" left="150.0" />
-                           </StackPane.margin>
-                           <font>
-                              <Font size="27.0" />
-                           </font>
-                        </Label>
-                        <Label prefHeight="45.0" prefWidth="155.0" text="Group" textFill="WHITE">
-                           <font>
-                              <Font size="27.0" />
-                           </font>
-                           <StackPane.margin>
-                              <Insets bottom="320.0" left="150.0" />
-                           </StackPane.margin>
-                        </Label>
-                        <Label prefHeight="45.0" prefWidth="155.0" text="Message" textFill="WHITE">
-                           <font>
-                              <Font size="27.0" />
-                           </font>
-                           <StackPane.margin>
-                              <Insets bottom="85.0" left="150.0" />
-                           </StackPane.margin>
-                        </Label>
-                        <TextArea fx:id="requestMessage" prefHeight="200.0" prefWidth="200.0" promptText="Mention the purpose of booking this slot. Note that this message will be displayed on the time-table.">
-                           <StackPane.margin>
-                              <Insets bottom="100.0" left="655.0" right="115.0" top="290.0" />
-                           </StackPane.margin>
-                           <font>
-                              <Font size="20.0" />
-                           </font>
-                        </TextArea>
-                        <Button mnemonicParsing="false" onMouseClicked="#bookingCompleted" stylesheets="@button.css" text="Confirm Booking">
-                           <StackPane.margin>
-                              <Insets left="540.0" top="500.0" />
-                           </StackPane.margin>
-                        </Button>
-                        <Label prefHeight="45.0" prefWidth="155.0" text="Purpose" textFill="WHITE">
-                           <font>
-                              <Font size="27.0" />
-                           </font>
-                           <StackPane.margin>
-                              <Insets bottom="215.0" left="150.0" />
-                           </StackPane.margin>
-                        </Label>
-                        <ComboBox fx:id="purposeDropDown" prefHeight="38.0" prefWidth="331.0" promptText="Choose Purpose (Optional)">
-                           <StackPane.margin>
-                              <Insets bottom="220.0" left="750.0" />
-                           </StackPane.margin>
-                        </ComboBox>
-                     </children></StackPane>
-                  <Button alignment="TOP_CENTER" contentDisplay="TOP" mnemonicParsing="false" onMouseClicked="#closeReservationPane" opacity="0.5" prefHeight="12.0" prefWidth="1320.0" stylesheets="@buttonDropDown.css" text="v" textAlignment="CENTER" StackPane.alignment="TOP_CENTER" />
+                        <StackPane fx:id="courseBooking" prefHeight="150.0" prefWidth="200.0" style="visibility: false;">
+                           <children>
+                              <ComboBox fx:id="groupDropDown" prefHeight="38.0" prefWidth="331.0" promptText="Choose Group (Optional)">
+                                 <StackPane.margin>
+                                    <Insets bottom="320.0" left="750.0" />
+                                 </StackPane.margin>
+                              </ComboBox>
+                              <ComboBox fx:id="purposeDropDown" prefHeight="38.0" prefWidth="331.0" promptText="Choose Purpose (*)">
+                                 <StackPane.margin>
+                                    <Insets bottom="220.0" left="750.0" />
+                                 </StackPane.margin>
+                              </ComboBox>
+                              <Label prefHeight="45.0" prefWidth="155.0" text="Group" textFill="WHITE">
+                                 <StackPane.margin>
+                                    <Insets bottom="320.0" left="150.0" />
+                                 </StackPane.margin>
+                                 <font>
+                                    <Font size="27.0" />
+                                 </font>
+                              </Label>
+                              <Label prefHeight="45.0" prefWidth="155.0" text="Purpose" textFill="WHITE">
+                                 <font>
+                                    <Font size="27.0" />
+                                 </font>
+                                 <StackPane.margin>
+                                    <Insets bottom="215.0" left="150.0" />
+                                 </StackPane.margin>
+                              </Label>
+                              <Label prefHeight="45.0" prefWidth="155.0" text="Message" textFill="WHITE">
+                                 <font>
+                                    <Font size="27.0" />
+                                 </font>
+                                 <StackPane.margin>
+                                    <Insets bottom="85.0" left="150.0" />
+                                 </StackPane.margin>
+                              </Label>
+                              <TextArea fx:id="requestMessage" prefHeight="200.0" prefWidth="200.0" promptText="Mention the purpose of booking this slot. Note that this message will be displayed on the time-table.">
+                                 <StackPane.margin>
+                                    <Insets bottom="100.0" left="655.0" right="115.0" top="290.0" />
+                                 </StackPane.margin>
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </TextArea>
+                              <Button mnemonicParsing="false" onMouseClicked="#bookingCompleted1" stylesheets="@../FacultyReservation/button.css" text="Confirm Booking">
+                                 <StackPane.margin>
+                                    <Insets left="540.0" top="500.0" />
+                                 </StackPane.margin>
+                              </Button>
+                              <ComboBox fx:id="courseDropDown" prefHeight="38.0" prefWidth="331.0" promptText="Choose Course (*)">
+                                 <StackPane.margin>
+                                    <Insets bottom="420.0" left="750.0" />
+                                 </StackPane.margin>
+                              </ComboBox>
+                              <Label prefHeight="45.0" prefWidth="155.0" text="Course" textFill="WHITE">
+                                 <font>
+                                    <Font size="27.0" />
+                                 </font>
+                                 <StackPane.margin>
+                                    <Insets bottom="420.0" left="150.0" />
+                                 </StackPane.margin>
+                              </Label>
+                           </children>
+                        </StackPane>
+                        <StackPane fx:id="otherBooking" layoutX="12.0" layoutY="12.0" prefHeight="150.0" prefWidth="200.0" style="visibility: false;">
+                           <children>
+                              <Label prefHeight="45.0" prefWidth="155.0" text="Purpose" textFill="WHITE" translateY="-30.0">
+                                 <font>
+                                    <Font size="27.0" />
+                                 </font>
+                                 <StackPane.margin>
+                                    <Insets bottom="260.0" left="150.0" />
+                                 </StackPane.margin>
+                              </Label>
+                              <Label prefHeight="45.0" prefWidth="155.0" text="Message" textFill="WHITE" translateY="-30.0">
+                                 <font>
+                                    <Font size="27.0" />
+                                 </font>
+                                 <StackPane.margin>
+                                    <Insets bottom="85.0" left="150.0" />
+                                 </StackPane.margin>
+                              </Label>
+                              <TextArea fx:id="requestMessage2" prefHeight="38.0" prefWidth="331.0" promptText="Mention the purpose of booking this slot. Note that this message will be displayed on the time-table." translateY="-30.0">
+                                 <StackPane.margin>
+                                    <Insets bottom="100.0" left="655.0" right="115.0" top="290.0" />
+                                 </StackPane.margin>
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </TextArea>
+                              <Button mnemonicParsing="false" onMouseClicked="#bookingCompleted2" stylesheets="@../FacultyReservation/button.css" text="Confirm Booking" translateY="-30.0">
+                                 <StackPane.margin>
+                                    <Insets left="540.0" top="500.0" />
+                                 </StackPane.margin>
+                              </Button>
+                              <TextField fx:id="purposeBox" prefHeight="38.0" prefWidth="331.0" promptText="Required (*)" translateY="-30.0">
+                                 <StackPane.margin>
+                                    <Insets bottom="255.0" left="850.0" right="115.0" />
+                                 </StackPane.margin>
+                              </TextField>
+                           </children>
+                        </StackPane>
+                        <StackPane fx:id="preBooking" layoutX="12.0" layoutY="12.0" prefHeight="150.0" prefWidth="200.0" style="visibility: true;">
+                           <children>
+                              <Label prefHeight="45.0" prefWidth="155.0" text="Purpose" textFill="WHITE" translateY="-30.0">
+                                 <font>
+                                    <Font size="27.0" />
+                                 </font>
+                                 <StackPane.margin>
+                                    <Insets bottom="100.0" left="150.0" />
+                                 </StackPane.margin>
+                              </Label>
+                              <Button mnemonicParsing="false" onMouseClicked="#preBookingProceed" stylesheets="@../FacultyReservation/button.css" text="Proceed" translateY="-30.0">
+                                 <StackPane.margin>
+                                    <Insets left="540.0" top="200.0" />
+                                 </StackPane.margin>
+                              </Button>
+                              <ComboBox fx:id="optionDropDown" prefHeight="38.0" prefWidth="331.0" translateY="-30.0">
+                                 <StackPane.margin>
+                                    <Insets bottom="100.0" left="850.0" right="115.0" />
+                                 </StackPane.margin>
+                              </ComboBox>
+                           </children>
+                        </StackPane>
+                     </children>
+                  </StackPane>
+                  <Button alignment="TOP_CENTER" contentDisplay="TOP" mnemonicParsing="false" onMouseClicked="#closeReservationPane" opacity="0.5" prefHeight="12.0" prefWidth="1320.0" stylesheets="@../FacultyReservation/buttonDropDown.css" text="v" textAlignment="CENTER" StackPane.alignment="TOP_CENTER" />
                </children>
+               <StackPane.margin>
+                  <Insets bottom="50.0" left="300.0" right="300.0" />
+               </StackPane.margin>
             </StackPane>
             <StackPane fx:id="pullDownPane2" layoutX="310.0" layoutY="10.0" prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: #2a2a2a; visibility: false;">
                <children>

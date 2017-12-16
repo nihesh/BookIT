@@ -1134,7 +1134,7 @@
                                     <Insets bottom="320.0" left="750.0" />
                                  </StackPane.margin>
                               </ComboBox>
-                              <ComboBox fx:id="purposeDropDown" prefHeight="38.0" prefWidth="331.0" promptText="Choose Purpose (Optional)">
+                              <ComboBox fx:id="purposeDropDown" prefHeight="38.0" prefWidth="331.0" promptText="Choose Purpose (*)">
                                  <StackPane.margin>
                                     <Insets bottom="220.0" left="750.0" />
                                  </StackPane.margin>
@@ -1176,7 +1176,7 @@
                                     <Insets left="540.0" top="500.0" />
                                  </StackPane.margin>
                               </Button>
-                              <ComboBox fx:id="courseDropDown" prefHeight="38.0" prefWidth="331.0" promptText="Choose Course (Optional)">
+                              <ComboBox fx:id="courseDropDown" prefHeight="38.0" prefWidth="331.0" promptText="Choose Course (*)">
                                  <StackPane.margin>
                                     <Insets bottom="420.0" left="750.0" />
                                  </StackPane.margin>
@@ -1191,7 +1191,7 @@
                               </Label>
                            </children>
                         </StackPane>
-                        <StackPane fx:id="otherBooking" layoutX="12.0" layoutY="12.0" prefHeight="150.0" prefWidth="200.0" style="visibility: faalse;">
+                        <StackPane fx:id="otherBooking" layoutX="12.0" layoutY="12.0" prefHeight="150.0" prefWidth="200.0" style="visibility: false;">
                            <children>
                               <Label prefHeight="45.0" prefWidth="155.0" text="Purpose" textFill="WHITE" translateY="-30.0">
                                  <font>
@@ -1209,7 +1209,7 @@
                                     <Insets bottom="85.0" left="150.0" />
                                  </StackPane.margin>
                               </Label>
-                              <TextArea fx:id="requestMessage11" prefHeight="38.0" prefWidth="331.0" promptText="Mention the purpose of booking this slot. Note that this message will be displayed on the time-table." translateY="-30.0">
+                              <TextArea fx:id="requestMessage2" prefHeight="38.0" prefWidth="331.0" promptText="Mention the purpose of booking this slot. Note that this message will be displayed on the time-table." translateY="-30.0">
                                  <StackPane.margin>
                                     <Insets bottom="100.0" left="655.0" right="115.0" top="290.0" />
                                  </StackPane.margin>
@@ -1222,7 +1222,7 @@
                                     <Insets left="540.0" top="500.0" />
                                  </StackPane.margin>
                               </Button>
-                              <TextField fx:id="purposeBox" prefHeight="38.0" prefWidth="331.0" translateY="-30.0">
+                              <TextField fx:id="purposeBox" prefHeight="38.0" prefWidth="331.0" promptText="Required (*)" translateY="-30.0">
                                  <StackPane.margin>
                                     <Insets bottom="255.0" left="850.0" right="115.0" />
                                  </StackPane.margin>

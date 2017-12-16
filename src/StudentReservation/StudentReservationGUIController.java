@@ -73,7 +73,7 @@ public class StudentReservationGUIController implements Initializable{
     @FXML
     private Label error1, slotTTinfo;
     @FXML
-    private ComboBox courseDropDown, purposeDropDown, groupDropDown;
+    private ComboBox courseDropDown, purposeDropDown, groupDropDown, optionDropDown;
     @FXML
     private DatePicker datePicker;
     @FXML
@@ -87,8 +87,7 @@ public class StudentReservationGUIController implements Initializable{
     @FXML
     private TextField courseKeywordSearch;
     @FXML
-    private TextArea requestMessage;
-
+    private TextArea requestMessage, requestMessage2;
 
     @FXML
     private VBox rootPane;
@@ -96,7 +95,12 @@ public class StudentReservationGUIController implements Initializable{
     private MenuBar menuBar;
     @FXML
     private SplitPane sp1;
+    @FXML
+    private StackPane preBooking, courseBooking, otherBooking;
+    @FXML
+    private TextField purposeBox;
 
+    private String currentPurpose;
     private LocalDate activeDate;
     private ArrayList<Integer> chosenSlots;
     private ArrayList<CheckBox> courseLabels = new ArrayList<>();
@@ -206,6 +210,12 @@ public class StudentReservationGUIController implements Initializable{
         pullDownPane.setTranslateY(pullDownPaneInitial);
         pullDownPane.setVisible(true);
         datePicker.setValue(LocalDate.now());
+
+        optionDropDown.getItems().clear();
+        optionDropDown.getItems().add("Course");
+        optionDropDown.getItems().add("Other");
+        optionDropDown.setValue("Course");
+
         Callback<DatePicker, DateCell> dayCellFactory = dp -> new DateCell()
         {
             @Override
@@ -494,7 +504,6 @@ public class StudentReservationGUIController implements Initializable{
             activeDate = date;
             datePicker.setValue(activeDate);
             setDate(activeDate);
-            JOptionPane.showMessageDialog(null, "List contained 0 elements!", "Error", JOptionPane.ERROR_MESSAGE);
         }
         else{
             datePicker.setValue(activeDate);
@@ -778,7 +787,7 @@ public class StudentReservationGUIController implements Initializable{
             translate.setToY(location);
             translate.setDuration(Duration.millis(15));
             step++;
-            location+=step;
+            location+=max(20,step);
             sequence.getChildren().add(translate);
         }
         sequence.play();
@@ -802,6 +811,9 @@ public class StudentReservationGUIController implements Initializable{
      * Booking confirmation pane appears
      */
     public void pullDownReservationPane(){
+        courseBooking.setVisible(false);
+        otherBooking.setVisible(false);
+        preBooking.setVisible(true);
         chosenSlots = new ArrayList<>();
         requestMessage.clear();
         courseDropDown.getItems().clear();
@@ -836,6 +848,9 @@ public class StudentReservationGUIController implements Initializable{
         }
         selectedSlotsScrollPane.setPrefSize(494,max(474,50*i));
         ArrayList<String> allCourses = Course.getAllCourses();                  // GUI Integration
+        courseDropDown.getItems().clear();
+        purposeDropDown.getItems().clear();
+        groupDropDown.getItems().clear();
         for(int j=0;j<allCourses.size();j++) {
             courseDropDown.getItems().add(allCourses.get(j));
         }
@@ -868,14 +883,14 @@ public class StudentReservationGUIController implements Initializable{
     /**
      * Event handler for confirming booking of a room
      */
-    public void bookingCompleted(){
+    public void bookingCompleted1(){
         String chosenCourse;
         Course courseObject = null;
         try {
             chosenCourse = courseDropDown.getSelectionModel().getSelectedItem().toString();
         }
         catch(NullPointerException e){
-            chosenCourse = "";
+            return;
         }
         String chosenGroup;
         try {
@@ -889,7 +904,7 @@ public class StudentReservationGUIController implements Initializable{
             chosenPurpose = purposeDropDown.getSelectionModel().getSelectedItem().toString();
         }
         catch(NullPointerException e){
-            chosenPurpose = "";
+            return;
         }
         String chosenFaculty;
         if(chosenCourse == ""){
@@ -911,6 +926,34 @@ public class StudentReservationGUIController implements Initializable{
         activeUser.sendReservationRequest(listOfReservations);
         closeReservationPane();
         flyRight();
+        purposeBox.clear();
+        requestMessage2.clear();
+    }
+    /**
+     * Event handler for confirming booking of a room
+     */
+    public void bookingCompleted2(){
+        String chosenPurpose;
+        try {
+            chosenPurpose = purposeBox.getText();
+        }
+        catch(NullPointerException e){
+            return;
+        }
+        String chosenMessage;
+        chosenMessage = requestMessage2.getText();
+        ArrayList<Reservation> listOfReservations = new ArrayList<>();
+        for(int i=0;i<chosenSlots.size();i++){              // GUI Integration Begins
+            Reservation r;
+            r = new Reservation(chosenMessage, "0", "", "", activeRoom, chosenPurpose, chosenSlots.get(i));
+            r.setTargetDate(activeDate);
+            listOfReservations.add(r);
+        }                                                   // GUI Integration Ends
+        activeUser.sendReservationRequest(listOfReservations);
+        closeReservationPane();
+        flyRight();
+        purposeBox.clear();
+        requestMessage2.clear();
     }
     /**
      * Reservation pane flys right
@@ -925,6 +968,22 @@ public class StudentReservationGUIController implements Initializable{
         sequence.setOnFinished(e->{
             exitReadOnlyBookings();
         });
+    }
+    public void preBookingProceed(){
+        try {
+            currentPurpose = optionDropDown.getSelectionModel().getSelectedItem().toString();
+            preBooking.setVisible(false);
+            if(currentPurpose.equals("Course")){
+                courseBooking.setVisible(true);
+            }
+            else{
+                otherBooking.setVisible(true);
+            }
+        }
+        catch (Exception e){
+            System.out.println("No option has been selected case in preBookingProceed function");
+            return;
+        }
     }
     /**
      * Resercation pane appears
