@@ -119,41 +119,18 @@ public class LoginSignupGUIController {
 	}
 	@FXML
 	private void CredNext() {
-		FadeTransition seq1=new FadeTransition();
-		seq1.setNode(Login_Pane);
-		seq1.setFromValue(0.84);
-		seq1.setToValue(0.5);
-		seq1.setDuration(Duration.millis(700));
-		seq1.play();
 		Login_Pane.setDisable(true);
 		Signup_Pane.setDisable(true);
 		Cred_btn.setDisable(true);
-		FadeTransition seq2=new FadeTransition();
-		seq2.setNode(Signup_Pane);
-		seq2.setFromValue(0.84);
-		seq2.setToValue(0.5);
-		seq2.setDuration(Duration.millis(700));
-		seq2.play();
 		TranslateTransition transright=new TranslateTransition();
 		transright.setNode(Cred_Pane);
-		transright.setToX(300);
+		transright.setToX(Cred_Pane.getPrefWidth());
 		transright.setDuration(Duration.millis(700));
 		transright.play();
 	}
 	@FXML
 	private void CredBack() {
-		FadeTransition seq1=new FadeTransition();
-		seq1.setNode(Login_Pane);
-		seq1.setFromValue(0.5);
-		seq1.setToValue(0.84);
-		seq1.setDuration(Duration.millis(700));
-		seq1.play();
 		FadeTransition seq2=new FadeTransition();
-		seq2.setNode(Signup_Pane);
-		seq2.setFromValue(0.5);
-		seq2.setToValue(0.84);
-		seq2.setDuration(Duration.millis(700));
-		seq2.play();
 		Login_Pane.setDisable(false);
 		Signup_Pane.setDisable(false);
 		TranslateTransition transright=new TranslateTransition();
