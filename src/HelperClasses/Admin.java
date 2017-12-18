@@ -210,12 +210,17 @@ public class Admin extends User{
 	 * @param message to be checked
 	 * @return true if it is
 	 */
-	public Boolean checkSpam(String message) {
+	public Boolean checkSpam(String message, Boolean lock) {
 		try{
 			Socket server = new Socket(BookITconstants.serverIP, BookITconstants.serverPort);
 			ObjectOutputStream out = new ObjectOutputStream(server.getOutputStream());
 			ObjectInputStream in = new ObjectInputStream(server.getInputStream());
-			out.writeObject("Pass");
+			if(lock){
+				out.writeObject("Hold");
+			}
+			else{
+				out.writeObject("Pass");
+			}
 			out.flush();
 			out.writeObject("SpamCheck");
 			out.flush();
@@ -240,65 +245,31 @@ public class Admin extends User{
 	 * see also {@link #deserializeRequestsQueue(Boolean)}
 	 * @return The top request; an array list of reservation objects
 	 */
-	public ArrayList<Reservation> getRequest(){
-		try {
-			PriorityQueue<ArrayList<Reservation>> p = deserializeRequestsQueue(false);
-			ArrayList<Reservation> r = p.peek();
-			while (r != null && (checkSpam(r.get(0).getMessageWithoutVenue()) || r.get(0).getCreationDate().plusDays(5).isBefore(LocalDateTime.now()))) {
-				p.poll();
-				r = p.peek();
+	public ArrayList<Reservation> getRequest(Boolean lock){
+		try{
+			Socket server = new Socket(BookITconstants.serverIP, BookITconstants.serverPort);
+			ObjectOutputStream out = new ObjectOutputStream(server.getOutputStream());
+			ObjectInputStream in = new ObjectInputStream(server.getInputStream());
+			if(lock){
+				out.writeObject("Hold");
 			}
-			while (r != null && (checkSpam(r.get(0).getMessageWithoutVenue()) || r.get(0).getTargetDate().isBefore(LocalDate.now()))) {
-				p.poll();
-				r = p.peek();
+			else{
+				out.writeObject("Pass");
 			}
-			if(r==null){
-				serializeRequestsQueue(p, false);
-				return null;
-			}
-			int flag=0;
-			Room temp = Room.deserializeRoom(r.get(0).getRoomName(),false);
-			Course ctemp = Course.deserializeCourse(r.get(0).getCourseName(), false);
-			while(r!=null) {
-				if(checkSpam(r.get(0).getMessageWithoutVenue())){
-					p.poll();
-					r = p.peek();
-					continue;
-				}
-			for (Reservation reservation : r) {
-				if (!temp.checkReservation(r.get(0).getTargetDate(), reservation.getReservationSlot(), reservation)) {
-					p.poll();
-					flag=1;
-					r=p.peek();
-					break;
-				}
-				if(ctemp!=null) {
-					if (ctemp.checkInternalCollision(reservation)) {
-						p.poll();
-						flag=1;
-						r=p.peek();
-						break;
-						}
-				}
-				flag=0;
-					
-				
-			}
-			if(flag==0) {
-				break;
-			}
-			}
-			serializeRequestsQueue(p, false);
-			return r;
+			out.flush();
+			out.writeObject("getRequest");
+			out.flush();
+			ArrayList<Reservation> c = (ArrayList<Reservation>) in.readObject();
+			out.close();
+			in.close();
+			server.close();
+			return c;
 		}
-		catch (FileNotFoundException fe){
-			System.out.println("File not found exception occured while getting request");
+		catch(IOException e){
+			System.out.println("IO Exception occurred while checking spam");
 		}
-		catch (ClassNotFoundException ce){
-			System.out.println("Class not found exception occured while getting request");
-		}
-		catch (IOException ie){
-			System.out.println("IOException occured while getting request");
+		catch (ClassNotFoundException c){
+			System.out.println("ClassNotFound exception occurred while checking spam");
 		}
 		return null;
 	}

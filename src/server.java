@@ -350,6 +350,56 @@ class ConnectionHandler implements Runnable{
         temp.remove(code);
         serializeJoinCode(temp);
     }
+    public ArrayList<Reservation> getRequest(){
+        PriorityQueue<ArrayList<Reservation>> p = deserializeRequests();
+        ArrayList<Reservation> r = p.peek();
+        while (r != null && (SpamFilter.Predict(r.get(0).getMessageWithoutVenue()) || r.get(0).getCreationDate().plusDays(5).isBefore(LocalDateTime.now()))) {
+            p.poll();
+            r = p.peek();
+        }
+        while (r != null && (SpamFilter.Predict(r.get(0).getMessageWithoutVenue()) || r.get(0).getTargetDate().isBefore(LocalDate.now()))) {
+            p.poll();
+            r = p.peek();
+        }
+        if(r==null){
+            serializeRequests(p);
+            return null;
+        }
+        int flag=0;
+        Room temp = deserializeRoom(r.get(0).getRoomName());
+        Course ctemp = deserializeCourse(r.get(0).getCourseName());
+        while(r!=null) {
+            if(SpamFilter.Predict(r.get(0).getMessageWithoutVenue())){
+                p.poll();
+                r = p.peek();
+                continue;
+            }
+            for (Reservation reservation : r) {
+                if (!temp.checkReservation(r.get(0).getTargetDate(), reservation.getReservationSlot(), reservation)) {
+                    p.poll();
+                    flag=1;
+                    r=p.peek();
+                    break;
+                }
+                if(ctemp!=null) {
+                    if (ctemp.checkInternalCollision(reservation)) {
+                        p.poll();
+                        flag=1;
+                        r=p.peek();
+                        break;
+                    }
+                }
+                flag=0;
+
+
+            }
+            if(flag==0) {
+                break;
+            }
+        }
+        serializeRequests(p);
+        return r;
+    }
     public void run(){
         ObjectInputStream in=null;
         ObjectOutputStream out=null;
@@ -474,6 +524,10 @@ class ConnectionHandler implements Runnable{
                             case "removeJoinCode":
                                 code = (String) in.readObject();
                                 removeJoinCode(code);
+                                break;
+                            case "getRequest":
+                                out.writeObject(getRequest());
+                                out.flush();
                                 break;
                         }
                         if(lock.isLocked() && lock.isHeldByCurrentThread()){

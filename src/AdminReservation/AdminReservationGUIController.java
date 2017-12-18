@@ -498,7 +498,7 @@ public class AdminReservationGUIController implements Initializable{
      */
     public void acceptRequest(){
         activeUser.acceptRequest();                                             // Throw not accepted warning...
-        ArrayList<Reservation> requests = activeUser.getRequest();
+        ArrayList<Reservation> requests = activeUser.getRequest(false);
         if(requests == null){
             hideRequests();
             return;
@@ -511,7 +511,7 @@ public class AdminReservationGUIController implements Initializable{
      */
     public void deleteRequest(){
         activeUser.rejectRequest();
-        ArrayList<Reservation> requests = activeUser.getRequest();
+        ArrayList<Reservation> requests = activeUser.getRequest(false);
         if(requests == null){
             hideRequests();
             return;
@@ -523,7 +523,7 @@ public class AdminReservationGUIController implements Initializable{
      * Opens requests pane
      */
     public void showRequests(){
-        ArrayList<Reservation> requests = activeUser.getRequest();              // GUI Integration begins
+        ArrayList<Reservation> requests = activeUser.getRequest(false);              // GUI Integration begins
         if(requests == null){
             return;
         }
