@@ -261,7 +261,7 @@ public class AdminReservationGUIController implements Initializable{
     public void generateCode(){
         try {
             String type = (String) joinCodeDropDown.getSelectionModel().getSelectedItem();
-            String joiningCode = activeUser.generateJoincode(type);
+            String joiningCode = activeUser.generateJoincode(type, false);
             joiningCodeMessage.setText(joiningCode);
         }
         catch(Exception e){

@@ -367,9 +367,8 @@ public class LoginSignupGUIController {
 		HashMap<String, Integer> temp;
 		String t=Signup_joincode.getText().toUpperCase();
 		try {
-			temp = Admin.deserializeJoinCodes(false);
 		
-		if(temp.containsKey(t)) {
+		if(Admin.containsJoinCode(t, false)) {
 			joincode=t;
 			//Admin.serializeJoinCode(temp);
 			if(Signup_joincode.getStyleClass().contains("text-field2")) {
@@ -415,16 +414,13 @@ public class LoginSignupGUIController {
 	private void Signup_NEXT4() {
 		try {
 		if(!Name.getText().equals("") && Name.getText().matches("^[\\p{L} .'-]+$")) {
-			
-			HashMap<String,Integer> temp = Admin.deserializeJoinCodes(false);
-			if(!temp.containsKey(joincode)) {
-				
+
+			if(!Admin.containsJoinCode(joincode, false)) {
 				joincode=null;
 				backS();
 				return;
 			}
-			Integer x=temp.remove(joincode);
-			Admin.serializeJoinCode(temp, false);
+			Admin.removeJoinCode(joincode, false);
 			user=new User(Name.getText().trim(), user.getPassword(), user.getEmail(), user.getUsertype());
 			if(Name.getStyleClass().contains("text-field2")) {
 				if(!Name.getStyleClass().contains("text-field1")) {

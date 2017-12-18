@@ -9,6 +9,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.PriorityQueue;
+import java.util.Random;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
@@ -42,6 +43,7 @@ public class server {
 class ConnectionHandler implements Runnable{
     private Socket connection;
     public static ReentrantLock lock;
+    private static String JoinString="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
     public ConnectionHandler(Socket connection){
         this.connection = connection;
     }
@@ -312,6 +314,42 @@ class ConnectionHandler implements Runnable{
     public void BookingCancellationNotifier(LocalDate queryDate, int slotID, String RoomID, String cancellationMessage){
         // Insert mailing module here
     }
+    public String generateJoincode(String type){
+        type = type.substring(0, 1).toUpperCase();
+        Random rnd = new Random();
+        StringBuilder sb = new StringBuilder();
+        HashMap<String, Integer> codes = deserializeJoinCodes();
+        sb.append(type);
+        while (true) {
+            while (sb.length() != 7) {
+                System.out.println();
+                sb.append(JoinString.charAt(((int)(rnd.nextFloat() * JoinString.length()))));
+            }
+            if (codes.containsKey(sb.toString()) && codes.get(sb.toString()) == 1) {
+                sb = new StringBuilder();
+                sb.append(type);
+            } else {
+                break;
+            }
+        }
+        codes.put(sb.toString(), 1);
+        serializeJoinCode(codes);
+        return sb.toString();
+    }
+    public Boolean containsJoinCode(String code){
+        HashMap<String, Integer> temp = deserializeJoinCodes();
+        if(temp.containsKey(code)){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    public void removeJoinCode(String code){
+        HashMap<String, Integer> temp = deserializeJoinCodes();
+        temp.remove(code);
+        serializeJoinCode(temp);
+    }
     public void run(){
         ObjectInputStream in=null;
         ObjectOutputStream out=null;
@@ -348,6 +386,7 @@ class ConnectionHandler implements Runnable{
                         User u;
                         Room r;
                         HashMap<String, Integer> joinCode;
+                        String code;
                         PriorityQueue<ArrayList<Reservation>> req;
                         switch (request) {
                             case "ReadCourse":
@@ -421,6 +460,20 @@ class ConnectionHandler implements Runnable{
                                 String RoomID = (String) in.readObject();
                                 String cancellationMessage = (String) in.readObject();
                                 BookingCancellationNotifier(queryDate, slotID, RoomID, cancellationMessage);
+                                break;
+                            case "generateJoinCode":
+                                String type = (String) in.readObject();
+                                out.writeObject(generateJoincode(type));
+                                out.flush();
+                                break;
+                            case "containsJoinCode":
+                                code = (String) in.readObject();
+                                out.writeObject(containsJoinCode(code));
+                                out.flush();
+                                break;
+                            case "removeJoinCode":
+                                code = (String) in.readObject();
+                                removeJoinCode(code);
                                 break;
                         }
                         if(lock.isLocked() && lock.isHeldByCurrentThread()){

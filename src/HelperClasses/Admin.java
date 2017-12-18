@@ -21,7 +21,6 @@ public class Admin extends User{
 	/**
 	 * Joincode String used to generate JoinCodes
 	 */
-	private static String JoinString="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 	private static final long serialVersionUID = 1L;
 	/**
 	 * Constructor for admin class
@@ -43,8 +42,7 @@ public class Admin extends User{
 	 * @throws IOException Io exception
 	 * @throws ClassNotFoundException de-serialize issue 
 	 */
-	@SuppressWarnings("unchecked")
-	public static  HashMap<String, Integer> deserializeJoinCodes(Boolean lock) throws FileNotFoundException, IOException, ClassNotFoundException {
+	public static Boolean containsJoinCode(String joinCode, Boolean lock){
 		try {
 			Socket server = new Socket(BookITconstants.serverIP, BookITconstants.serverPort);
 			ObjectOutputStream out = new ObjectOutputStream(server.getOutputStream());
@@ -56,28 +54,29 @@ public class Admin extends User{
 				out.writeObject("Pass");
 			}
 			out.flush();
-			out.writeObject("ReadJoinCode");
+			out.writeObject("containsJoinCode");
 			out.flush();
-			HashMap<String, Integer> c = (HashMap<String, Integer>) in.readObject();
+			out.writeObject(joinCode);
+			out.flush();
+			Boolean result = (Boolean) in.readObject();
 			out.close();
 			in.close();
 			server.close();
-			return c;
+			return  result;
 		}
-		catch (IOException e){
-			System.out.println("IO exception occurred while writing to server");
+		catch (FileNotFoundException fe){
+			System.out.println("File not found exception occured while getting request");
 		}
-		catch (ClassNotFoundException x){
-			System.out.println("ClassNotFound exception occurred while reading from server");
+		catch (ClassNotFoundException ce){
+			System.out.println("Class not found exception occured while getting request");
+		}
+		catch (IOException ie){
+			System.out.println(ie.getMessage());
+			System.out.println("IOException occured while getting request");
 		}
 		return null;
 	}
-	/**
-	 * Serialize a Hashmap of Joincodes 
-	 * @param r the hashmap to be serialised
-	 * @param lock takes a lock on server if set to true
-	 */
-	public static void serializeJoinCode(HashMap<String, Integer> r, Boolean lock) {
+	public static void removeJoinCode(String joinCode, Boolean lock){
 		try {
 			Socket server = new Socket(BookITconstants.serverIP, BookITconstants.serverPort);
 			ObjectOutputStream out = new ObjectOutputStream(server.getOutputStream());
@@ -89,15 +88,20 @@ public class Admin extends User{
 				out.writeObject("Pass");
 			}
 			out.flush();
-			out.writeObject("WriteJoinCode");
+			out.writeObject("removeJoinCode");
 			out.flush();
-			out.writeObject(r);
+			out.writeObject(joinCode);
+			out.flush();
 			out.close();
 			in.close();
 			server.close();
 		}
-		catch (IOException e){
-			System.out.println("IO exception occured while writing to server");
+		catch (FileNotFoundException fe){
+			System.out.println("File not found exception occured while getting request");
+		}
+		catch (IOException ie){
+			System.out.println(ie.getMessage());
+			System.out.println("IOException occured while getting request");
 		}
 	}
 	/**
@@ -106,28 +110,27 @@ public class Admin extends User{
 	 * for which join code is to be generated
 	 * @return returns the randomly generated join code
 	 */
-	public String generateJoincode(String type){
+	public String generateJoincode(String type, Boolean lock){
 		try {
 			File file = new File("./src/AppData/GeneratedJoinCode/list.txt");
-			type = type.substring(0, 1).toUpperCase();
-			Random rnd = new Random();
-			StringBuilder sb = new StringBuilder();
-			HashMap<String, Integer> codes = deserializeJoinCodes(false);
-			sb.append(type);
-			while (true) {
-				while (sb.length() != 7) {
-					System.out.println();
-					sb.append(JoinString.charAt(((int)(rnd.nextFloat() * JoinString.length()))));
-				}
-				if (codes.containsKey(sb.toString()) && codes.get(sb.toString()) == 1) {
-					sb = new StringBuilder();
-					sb.append(type);
-				} else {
-					break;
-				}
+			Socket server = new Socket(BookITconstants.serverIP, BookITconstants.serverPort);
+			ObjectOutputStream out = new ObjectOutputStream(server.getOutputStream());
+			ObjectInputStream in = new ObjectInputStream(server.getInputStream());
+			if(lock){
+				out.writeObject("Hold");
 			}
-			codes.put(sb.toString(), 1);
-			serializeJoinCode(codes,false);
+			else{
+				out.writeObject("Pass");
+			}
+			out.flush();
+			out.writeObject("generateJoinCode");
+			out.flush();
+			out.writeObject(type);
+			out.flush();
+			String sb = (String) in.readObject();
+			out.close();
+			in.close();
+			server.close();
 			FileWriter sc=new FileWriter(file,true);
 			sc.write("["+LocalDateTime.now()+"]\t"+sb.toString()+"\n");
 			sc.flush();
@@ -141,6 +144,7 @@ public class Admin extends User{
 			System.out.println("Class not found exception occured while getting request");
 		}
 		catch (IOException ie){
+			System.out.println(ie.getMessage());
 			System.out.println("IOException occured while getting request");
 		}
 		return null;

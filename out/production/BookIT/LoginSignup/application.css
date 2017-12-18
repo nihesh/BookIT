@@ -11,11 +11,24 @@
 	-fx-background-position: 100%;
 }
 .pane3{
-	-fx-background-image: url('./gradients-26042-26727-hd-wallpapers.jpg');
-	-fx-background-size: 700px 500px;
+	-fx-background-image: url('./colorful_polygons-wide.jpg');
+	-fx-background-size: 300px 400px;
+	-fx-border-width: 10px;
 	-fx-background-repeat: no-repeat;
-	-fx-background-position: 100%; 
+	-fx-background-position: 10%;
+	-fx-background-insets: 20px; 
+  	-fx-background-radius: 12px; 
 }
+.pane32{
+	-fx-background-image: url('./colorful_polygons-wide.jpg');
+	-fx-background-size: 425px 567px;
+	-fx-border-width: 10px;
+	-fx-background-repeat: no-repeat;
+	-fx-background-position: 10%;
+	-fx-background-insets: 20px; 
+  	-fx-background-radius: 12px; 
+}
+
 .back2{
 	-fx-background-image: url('./app-1646213_640.png'); 
 	-fx-background-color: transparent;
@@ -134,11 +147,10 @@
 
 .modal-dialog-glass {
 	-fx-background-color: rgba(255,255,255,0.4);
-	
-  -fx-effect: dropshadow(three-pass-box, derive(black, +40%), 10, 0, 4, 4); 
-  -fx-background-color: derive(white,20%); 
-  -fx-background-insets: 20; 
-  -fx-background-radius: 12;
+	-fx-effect: dropshadow(three-pass-box, derive(black, +40%), 10, 0, 4, 4); 
+  	-fx-background-color: derive(white,20%); 
+  	-fx-background-insets: 20; 
+  	-fx-background-radius: 12;
   
 }
 .labelD {
@@ -159,11 +171,107 @@
     -fx-font-style: oblique ;
     
 }
-.labelB {
-    -fx-font-size: 13px;
+.labelBB {
+    
+    -fx-font-size: 16px;
     -fx-font-family: "Segoe UI Semibold";
+    -fx-text-fill:black;
     -fx-opacity: 1.0;
     -fx-font-weight: bold;
     -fx-effect: dropshadow( gaussian , rgba(255,255,255,0.5) , 0,0,0,1 );
 }
 
+.labelB {
+    
+    -fx-font-size: 13px;
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-text-fill:black;
+    -fx-opacity: 1.0;
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow( gaussian , rgba(255,255,255,0.5) , 0,0,0,1 );
+}
+.butCred{
+	-fx-background-image: url('./right-double-arrow-png-image-97177.png');
+	-fx-background-size: 35px;
+	-fx-background-repeat: no-repeat;
+    -fx-background-position: 5%;
+	-fx-background-color: transparent;
+	-fx-background-radius: 12 ;
+	-fx-background-insets: 4;
+	
+}
+.butCred:hover{
+	-fx-background-image: url('./right-double-arrow-png-image-97177.png');
+	-fx-opacity: .8;
+	-fx-background-size: 35px;
+	-fx-background-repeat: no-repeat;
+    -fx-background-position: 8%;
+	-fx-background-color: transparent;
+	-fx-background-radius: 12 ;
+	-fx-background-insets: 4;
+	
+}
+.butCredBack{
+	-fx-background-image: url('./hamburger_vert.png');
+	-fx-background-size: 45px;
+	-fx-background-repeat: no-repeat;
+    -fx-background-position: 5%;
+	-fx-background-color: transparent;
+	-fx-background-radius: 12 ;
+	-fx-background-insets: 4;
+	
+}
+.butCredBack:hover{
+	-fx-background-image: url('./hamburger_vert.png');
+	-fx-opacity: .8;
+	-fx-background-size: 45px;
+	-fx-background-repeat: no-repeat;
+    -fx-background-position: 8%;
+	-fx-background-color: transparent;
+	-fx-background-radius: 12 ;
+	-fx-background-insets: 4;
+	
+}
+.butCredBack2{
+	-fx-background-image: url('./hamburger_vert.png');
+	-fx-background-size: 20px;
+	-fx-background-repeat: no-repeat;
+    -fx-background-position: 5%;
+	-fx-background-color: transparent;
+	-fx-background-radius: 12 ;
+	-fx-background-insets: 4;
+	
+}
+.butCredBack2:hover{
+	-fx-background-image: url('./hamburger_vert.png');
+	-fx-opacity: .8;
+	-fx-background-size: 20px;
+	-fx-background-repeat: no-repeat;
+    -fx-background-position: 8%;
+	-fx-background-color: transparent;
+	-fx-background-radius: 12 ;
+	-fx-background-insets: 4;
+	
+}
+
+.butCred2{
+	-fx-background-image: url('./right-double-arrow-png-image-97177.png');
+	-fx-background-size: 20px;
+	-fx-background-repeat: no-repeat;
+    -fx-background-position: 5%;
+	-fx-background-color: transparent;
+	-fx-background-radius: 12 ;
+	-fx-background-insets: 4;
+	
+}
+.butCred2:hover{
+	-fx-background-image: url('./right-double-arrow-png-image-97177.png');
+	-fx-background-size: 20px;
+	-fx-opacity: .8;
+	-fx-background-repeat: no-repeat;
+    -fx-background-position: 8%;
+	-fx-background-color: transparent;
+	-fx-background-radius: 12 ;
+	-fx-background-insets: 4;
+	
+}
