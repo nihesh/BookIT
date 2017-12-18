@@ -7,6 +7,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -99,6 +100,47 @@
             <Insets right="15.0" />
          </padding>
       </Label>
+      <Button fx:id="Cred_btn" layoutY="260.0" mnemonicParsing="false" onMouseClicked="#CredNext" prefHeight="47.0" prefWidth="50.0" styleClass="butCred" />
+      <AnchorPane fx:id="Cred_Pane" layoutX="-425.0" prefHeight="567.0" prefWidth="425.0" styleClass="pane32">
+         <children>
+            <Label layoutX="9.0" layoutY="47.0" prefHeight="47.0" prefWidth="370.0" styleClass="labelC" text="BOOKIT v1.0" />
+            <Label layoutX="9.0" layoutY="94.0" prefHeight="38.0" prefWidth="358.0" styleClass="labelBB" text="CREDITS - ">
+               <font>
+                  <Font size="16.0" />
+               </font>
+               <effect>
+                  <DropShadow />
+               </effect></Label>
+            <Label layoutX="9.0" layoutY="150.0" prefHeight="38.0" prefWidth="358.0" styleClass="labelBB" text="Harsh Pathak - harsh16041@iiitd.ac.in">
+               <font>
+                  <Font size="16.0" />
+               </font>
+               <effect>
+                  <DropShadow />
+               </effect></Label>
+            <Label layoutX="9.0" layoutY="188.0" prefHeight="38.0" prefWidth="358.0" styleClass="labelBB" text="Nihesh Anderson - nihesh16059@iiitd.ac.in">
+               <font>
+                  <Font size="16.0" />
+               </font>
+               <effect>
+                  <DropShadow />
+               </effect></Label>
+            <Label layoutX="9.0" layoutY="246.0" prefHeight="38.0" prefWidth="358.0" styleClass="labelBB" text="Special Thanks to - ">
+               <font>
+                  <Font size="16.0" />
+               </font>
+               <effect>
+                  <DropShadow />
+               </effect></Label>
+            <Label layoutX="9.0" layoutY="299.0" prefHeight="38.0" prefWidth="358.0" styleClass="labelBB" text="Vivek Sir - vivekk@iiitd.ac.in">
+               <font>
+                  <Font size="16.0" />
+               </font>
+               <effect>
+                  <DropShadow />
+               </effect></Label>
+            <Button fx:id="CredBack_btn" layoutX="370.0" layoutY="272.0" mnemonicParsing="false" onMouseClicked="#CredBack" prefHeight="25.0" prefWidth="50.0" styleClass="butCredBack" />
+         </children></AnchorPane>
    </children>
    <stylesheets>
       <URL value="@application.css" />

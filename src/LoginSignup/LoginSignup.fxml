@@ -108,5 +108,17 @@
             <Insets right="10.0" />
          </padding>
       </Label>
+      <Button fx:id="Cred_btn" layoutY="208.0" mnemonicParsing="false" onMouseClicked="#CredNext" prefHeight="25.0" prefWidth="36.0" styleClass="butCred2" />
+      <AnchorPane fx:id="Cred_Pane" layoutX="-300.0" prefHeight="400.0" prefWidth="300.0" styleClass="pane3">
+         <children>
+            <Label layoutX="9.0" layoutY="66.0" prefHeight="38.0" prefWidth="271.0" styleClass="labelB" text="CREDITS -" />
+            <Label layoutX="9.0" layoutY="26.0" prefHeight="42.0" prefWidth="234.0" styleClass="labelC" text="BOOKIT  v1.0" />
+            <Label layoutX="9.0" layoutY="110.0" prefHeight="38.0" prefWidth="271.0" styleClass="labelB" text="Harsh Pathak - harsh16041@iiitd.ac.in" />
+            <Label layoutX="9.0" layoutY="148.0" prefHeight="38.0" prefWidth="271.0" styleClass="labelB" text="Nihesh Anderson - nihesh16059@iiitd.ac.in " />
+            <Label layoutX="9.0" layoutY="186.0" prefHeight="38.0" prefWidth="271.0" styleClass="labelB" text="Special Thanks to :  " />
+            <Label layoutX="9.0" layoutY="225.0" prefHeight="38.0" prefWidth="271.0" styleClass="labelB" text="Vivek Sir - vivekk@iiitd.ac.in" />
+            <Button fx:id="CredBack_btn" layoutX="273.0" layoutY="205.0" mnemonicParsing="false" onMouseClicked="#CredBack" prefHeight="25.0" prefWidth="36.0" styleClass="butCredBack2" />
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>
