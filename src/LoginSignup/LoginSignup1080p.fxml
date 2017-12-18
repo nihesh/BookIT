@@ -104,35 +104,35 @@
       <AnchorPane fx:id="Cred_Pane" layoutX="-425.0" prefHeight="567.0" prefWidth="425.0" styleClass="pane32">
          <children>
             <Label layoutX="9.0" layoutY="47.0" prefHeight="47.0" prefWidth="370.0" styleClass="labelC" text="BOOKIT v1.0" />
-            <Label layoutX="9.0" layoutY="94.0" prefHeight="38.0" prefWidth="358.0" styleClass="labelBB" text="CREDITS - ">
+            <Label layoutX="9.0" layoutY="94.0" prefHeight="38.0" prefWidth="358.0" styleClass="labelBB" text="CREDITS ">
                <font>
                   <Font size="16.0" />
                </font>
                <effect>
                   <DropShadow />
                </effect></Label>
-            <Label layoutX="9.0" layoutY="150.0" prefHeight="38.0" prefWidth="358.0" styleClass="labelBB" text="Harsh Pathak - harsh16041@iiitd.ac.in">
+            <Label layoutX="9.0" layoutY="150.0" prefHeight="38.0" prefWidth="358.0" styleClass="labelBB" text="Harsh Pathak ">
                <font>
                   <Font size="16.0" />
                </font>
                <effect>
                   <DropShadow />
                </effect></Label>
-            <Label layoutX="9.0" layoutY="188.0" prefHeight="38.0" prefWidth="358.0" styleClass="labelBB" text="Nihesh Anderson - nihesh16059@iiitd.ac.in">
+            <Label layoutX="9.0" layoutY="230.0" prefHeight="38.0" prefWidth="358.0" styleClass="labelBB" text="Nihesh Anderson">
                <font>
                   <Font size="16.0" />
                </font>
                <effect>
                   <DropShadow />
                </effect></Label>
-            <Label layoutX="9.0" layoutY="246.0" prefHeight="38.0" prefWidth="358.0" styleClass="labelBB" text="Special Thanks to - ">
+            <Label layoutX="9.0" layoutY="345.0" prefHeight="38.0" prefWidth="358.0" styleClass="labelBBEmail" text="vivekk@iiitd.ac.in">
                <font>
                   <Font size="16.0" />
                </font>
                <effect>
                   <DropShadow />
                </effect></Label>
-            <Label layoutX="9.0" layoutY="299.0" prefHeight="38.0" prefWidth="358.0" styleClass="labelBB" text="Vivek Sir - vivekk@iiitd.ac.in">
+            <Label layoutX="9.0" layoutY="310.0" prefHeight="38.0" prefWidth="358.0" styleClass="labelBB" text="Dr. Vivek Kumar">
                <font>
                   <Font size="16.0" />
                </font>
@@ -140,6 +140,22 @@
                   <DropShadow />
                </effect></Label>
             <Button fx:id="CredBack_btn" layoutX="370.0" layoutY="272.0" mnemonicParsing="false" onMouseClicked="#CredBack" prefHeight="25.0" prefWidth="50.0" styleClass="butCredBack" />
+            <Label layoutX="9.0" layoutY="185.0" prefHeight="38.0" prefWidth="358.0" styleClass="labelBBEmail" text="harsh16041@iiitd.ac.in">
+               <font>
+                  <Font size="16.0" />
+               </font>
+               <effect>
+                  <DropShadow />
+               </effect>
+            </Label>
+            <Label layoutX="9.0" layoutY="265.0" prefHeight="38.0" prefWidth="358.0" styleClass="labelBBEmail" text="nihesh16059@iiitd.ac.in">
+               <font>
+                  <Font size="16.0" />
+               </font>
+               <effect>
+                  <DropShadow />
+               </effect>
+            </Label>
          </children></AnchorPane>
    </children>
    <stylesheets>

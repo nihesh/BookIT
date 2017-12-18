@@ -98,26 +98,39 @@
       </ImageView>
       <Button fx:id="Login_btn" layoutX="77.0" layoutY="257.0" mnemonicParsing="false" onMouseClicked="#Signup_TranslateRight" prefHeight="41.0" prefWidth="127.0" styleClass="but34" stylesheets="@application.css" text="LOGIN" visible="false" />
       <Button fx:id="Signup_btn" layoutX="77.0" layoutY="257.0" mnemonicParsing="false" onMouseClicked="#Signup_TranslateLeft" prefHeight="41.0" prefWidth="127.0" styleClass="but34" stylesheets="@application.css" text="SIGNUP" />
-      <Label layoutY="379.0" prefHeight="25.0" prefWidth="615.0" styleClass="labelD" text="BookIT Nihesh Anderson, Harsh Pathak                                 " textFill="WHITE">
+      <Label layoutY="385.0" prefHeight="25.0" prefWidth="615.0" styleClass="labelD" text="BookIT Nihesh Anderson, Harsh Pathak                                 " textFill="WHITE">
          <padding>
             <Insets left="15.0" />
          </padding>
       </Label>
-      <Label alignment="CENTER_RIGHT" layoutX="300.0" layoutY="379.0" prefHeight="25.0" prefWidth="300.0" styleClass="labelD" text="New Delhi, India @2018" textFill="WHITE">
+      <Label alignment="CENTER_RIGHT" layoutX="300.0" layoutY="385.0" prefHeight="25.0" prefWidth="300.0" styleClass="labelD" text="New Delhi, India @2018" textFill="WHITE">
          <padding>
             <Insets right="10.0" />
          </padding>
       </Label>
       <Button fx:id="Cred_btn" layoutY="208.0" mnemonicParsing="false" onMouseClicked="#CredNext" prefHeight="25.0" prefWidth="36.0" styleClass="butCred2" />
-      <AnchorPane fx:id="Cred_Pane" layoutX="-300.0" prefHeight="400.0" prefWidth="300.0" styleClass="pane3">
+      <AnchorPane fx:id="Cred_Pane" layoutX="-310.0" prefHeight="410.0" prefWidth="310.0" styleClass="pane3">
          <children>
-            <Label layoutX="9.0" layoutY="66.0" prefHeight="38.0" prefWidth="271.0" styleClass="labelB" text="CREDITS -" />
+            <Label layoutX="9.0" layoutY="66.0" prefHeight="38.0" prefWidth="271.0" styleClass="labelB" text="CREDITS " />
             <Label layoutX="9.0" layoutY="26.0" prefHeight="42.0" prefWidth="234.0" styleClass="labelC" text="BOOKIT  v1.0" />
-            <Label layoutX="9.0" layoutY="110.0" prefHeight="38.0" prefWidth="271.0" styleClass="labelB" text="Harsh Pathak - harsh16041@iiitd.ac.in" />
-            <Label layoutX="9.0" layoutY="148.0" prefHeight="38.0" prefWidth="271.0" styleClass="labelB" text="Nihesh Anderson - nihesh16059@iiitd.ac.in " />
-            <Label layoutX="9.0" layoutY="186.0" prefHeight="38.0" prefWidth="271.0" styleClass="labelB" text="Special Thanks to :  " />
-            <Label layoutX="9.0" layoutY="225.0" prefHeight="38.0" prefWidth="271.0" styleClass="labelB" text="Vivek Sir - vivekk@iiitd.ac.in" />
+            <Label layoutX="9.0" layoutY="150.0" prefHeight="38.0" prefWidth="271.0" styleClass="labelB" text="Harsh Pathak" />
+            <Label layoutX="9.0" layoutY="210.0" prefHeight="38.0" prefWidth="271.0" styleClass="labelB" text="Nihesh Anderson " />
+            <Label layoutX="9.0" layoutY="230.0" prefHeight="38.0" prefWidth="271.0" styleClass="labelBEmail" text="nihesh16059@iiitd.ac.in">
+               <font>
+                  <Font name="Segoe UI Semibold Italic" size="13.0" />
+               </font></Label>
+            <Label layoutX="9.0" layoutY="270.0" prefHeight="38.0" prefWidth="271.0" styleClass="labelB" text="Dr. Vivek Kumar" />
             <Button fx:id="CredBack_btn" layoutX="273.0" layoutY="205.0" mnemonicParsing="false" onMouseClicked="#CredBack" prefHeight="25.0" prefWidth="36.0" styleClass="butCredBack2" />
+            <Label layoutX="9.0" layoutY="290.0" prefHeight="38.0" prefWidth="271.0" styleClass="labelBEmail" text="vivekk@iiitd.ac.in">
+               <font>
+                  <Font name="Segoe UI Semibold Italic" size="13.0" />
+               </font>
+            </Label>
+            <Label layoutX="9.0" layoutY="170.0" prefHeight="38.0" prefWidth="271.0" styleClass="labelBEmail" text="harsh16041@iiitd.ac.in">
+               <font>
+                  <Font name="Segoe UI Semibold Italic" size="13.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
    </children>
