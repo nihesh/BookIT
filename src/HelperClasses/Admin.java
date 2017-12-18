@@ -1,5 +1,7 @@
 package HelperClasses;
 
+import com.sun.org.apache.xpath.internal.operations.Bool;
+
 import java.io.*;
 import java.net.Socket;
 import java.time.LocalDate;
@@ -138,14 +140,14 @@ public class Admin extends User{
 			return sb.toString();
 		}
 		catch (FileNotFoundException fe){
-			System.out.println("File not found exception occured while getting request");
+			System.out.println("File not found exception occured while generating join code");
 		}
 		catch (ClassNotFoundException ce){
-			System.out.println("Class not found exception occured while getting request");
+			System.out.println("Class not found exception occured while generating join code");
 		}
 		catch (IOException ie){
 			System.out.println(ie.getMessage());
-			System.out.println("IOException occured while getting request");
+			System.out.println("IOException occured while generating join code");
 		}
 		return null;
 	}
@@ -206,41 +208,6 @@ public class Admin extends User{
 		}
 	}
 	/**
-	 * checks whether a message string is spam or not 
-	 * @param message to be checked
-	 * @return true if it is
-	 */
-	public Boolean checkSpam(String message, Boolean lock) {
-		try{
-			Socket server = new Socket(BookITconstants.serverIP, BookITconstants.serverPort);
-			ObjectOutputStream out = new ObjectOutputStream(server.getOutputStream());
-			ObjectInputStream in = new ObjectInputStream(server.getInputStream());
-			if(lock){
-				out.writeObject("Hold");
-			}
-			else{
-				out.writeObject("Pass");
-			}
-			out.flush();
-			out.writeObject("SpamCheck");
-			out.flush();
-			out.writeObject(message);
-			out.flush();
-			Boolean c = (Boolean) in.readObject();
-			out.close();
-			in.close();
-			server.close();
-			return c;
-		}
-		catch(IOException e){
-			System.out.println("IO Exception occurred while checking spam");
-		}
-		catch (ClassNotFoundException c){
-			System.out.println("ClassNotFound exception occurred while checking spam");
-		}
-		return true;
-	}
-	/**
 	 * returns the top request in the priority queue
 	 * see also {@link #deserializeRequestsQueue(Boolean)}
 	 * @return The top request; an array list of reservation objects
@@ -266,10 +233,10 @@ public class Admin extends User{
 			return c;
 		}
 		catch(IOException e){
-			System.out.println("IO Exception occurred while checking spam");
+			System.out.println("IO Exception occurred while getting request");
 		}
 		catch (ClassNotFoundException c){
-			System.out.println("ClassNotFound exception occurred while checking spam");
+			System.out.println("ClassNotFound exception occurred while getting request");
 		}
 		return null;
 	}
@@ -279,60 +246,31 @@ public class Admin extends User{
 	 *see also {@link #serializeRequestsQueue(PriorityQueue, Boolean)} 
 	 * @return true if accepted and false if not able to accept because of time table clashes
 	 */
-	public boolean acceptRequest(){
-		try {
-			PriorityQueue<ArrayList<Reservation>> p = deserializeRequestsQueue(false);
-			ArrayList<Reservation> r = p.peek();
-			if (r == null) {
-				serializeRequestsQueue(p,false);
-				return false;
+	public boolean acceptRequest(Boolean lock){
+		try{
+			Socket server = new Socket(BookITconstants.serverIP, BookITconstants.serverPort);
+			ObjectOutputStream out = new ObjectOutputStream(server.getOutputStream());
+			ObjectInputStream in = new ObjectInputStream(server.getInputStream());
+			if(lock){
+				out.writeObject("Hold");
 			}
-			p.poll();
-			int flag=0;
-			Room temp = Room.deserializeRoom(r.get(0).getRoomName(), false);
-			Course ctemp = Course.deserializeCourse(r.get(0).getCourseName(), false);
-			while(r!=null) {
-			for (Reservation reservation : r) {
-				if (!temp.checkReservation(r.get(0).getTargetDate(), reservation.getReservationSlot(), reservation)) {
-					p.poll();
-					flag=1;
-					r=p.peek();
-					break;
-				}
-				if(ctemp!=null) {
-					if (ctemp.checkInternalCollision(reservation)) {
-						p.poll();
-						flag=1;
-						r=p.peek();
-						break;
-						}
-				}
-				flag=0;
-					
-				
+			else{
+				out.writeObject("Pass");
 			}
-			if(flag==0) {
-				break;
-			}
-			}
-			serializeRequestsQueue(p,false);
-			if(r!=null) {
-				for (Reservation reservation : r) {
-					temp.addReservation(r.get(0).getTargetDate(), reservation.getReservationSlot(), reservation, true);
-					if(ctemp!=null) {
-						ctemp.addReservation(r.get(0).getTargetDate(), reservation.getReservationSlot(), reservation, true);
-					}
-				}
-			}
+			out.flush();
+			out.writeObject("acceptRequest");
+			out.flush();
+			Boolean c = (Boolean) in.readObject();
+			out.close();
+			in.close();
+			server.close();
+			return c;
 		}
-		catch (FileNotFoundException fe){
-			System.out.println("File not found exception occured while accepting request");
+		catch(IOException e){
+			System.out.println("IO Exception occurred while accepting request");
 		}
-		catch (ClassNotFoundException ce){
-			System.out.println("Class not found exception occured while accepting request");
-		}
-		catch(IOException ie){
-			System.out.println("IO exception occured while accepting request");
+		catch (ClassNotFoundException c){
+			System.out.println("ClassNotFound exception occurred while accepting request");
 		}
 		return false;
 	}
@@ -342,25 +280,31 @@ public class Admin extends User{
 	 * see also{@link #serializeRequestsQueue(PriorityQueue, Boolean)} 
 	 * @return true if requests gets requested, false for handling empty parameters
 	 */
-	public boolean rejectRequest(){
+	public boolean rejectRequest(Boolean lock){
 		try{
-			PriorityQueue<ArrayList<Reservation>> p = deserializeRequestsQueue(false);
-			if (p.size() == 0) {
-				serializeRequestsQueue(p,false);
-				return false;
+			Socket server = new Socket(BookITconstants.serverIP, BookITconstants.serverPort);
+			ObjectOutputStream out = new ObjectOutputStream(server.getOutputStream());
+			ObjectInputStream in = new ObjectInputStream(server.getInputStream());
+			if(lock){
+				out.writeObject("Hold");
 			}
-			p.poll();
-			serializeRequestsQueue(p,false);
-			return true;
+			else{
+				out.writeObject("Pass");
+			}
+			out.flush();
+			out.writeObject("rejectRequest");
+			out.flush();
+			Boolean c = (Boolean) in.readObject();
+			out.close();
+			in.close();
+			server.close();
+			return c;
 		}
-		catch (FileNotFoundException fe){
-			System.out.println("File not found exception occured while rejecting request");
+		catch(IOException e){
+			System.out.println("IO Exception occurred while rejecting request");
 		}
-		catch (ClassNotFoundException ce){
-			System.out.println("Class not found exception occured while rejecting request");
-		}
-		catch(IOException ie){
-			System.out.println("IO exception occured while rejecting request");
+		catch (ClassNotFoundException c){
+			System.out.println("ClassNotFound exception occurred while rejecting request");
 		}
 		return false;
 	}
@@ -371,12 +315,17 @@ public class Admin extends User{
 	 * @param RoomID the room for which reservation has to be cancelled
 	 * @return true if it is cancelled false otherwise
 	 */
-	public boolean cancelBooking(LocalDate queryDate,int slotID,String RoomID, String cancellationMessage) {
+	public boolean cancelBooking(LocalDate queryDate,int slotID,String RoomID, String cancellationMessage, Boolean lock) {
 		try{
 			Socket server = new Socket(BookITconstants.serverIP, BookITconstants.serverPort);
 			ObjectOutputStream out = new ObjectOutputStream(server.getOutputStream());
 			ObjectInputStream in = new ObjectInputStream(server.getInputStream());
-			out.writeObject("Pass");
+			if(lock){
+				out.writeObject("Hold");
+			}
+			else{
+				out.writeObject("Pass");
+			}
 			out.flush();
 			out.writeObject("BookingCancelNotification");
 			out.flush();
@@ -393,7 +342,7 @@ public class Admin extends User{
 			server.close();
 		}
 		catch(IOException e){
-			System.out.println("IO Exception occurred while checking spam");
+			System.out.println("IO Exception occurred while cancelling room");
 		}
 		Room temp=Room.deserializeRoom(RoomID, false);
 		Reservation r=temp.getSchedule(queryDate)[slotID];
@@ -412,27 +361,38 @@ public class Admin extends User{
 	 * @param r the reservation object see also {@link Reservation} class
 	 * @return true if booked false otherwise
 	 */
-	public boolean bookRoom(LocalDate queryDate,int slot, Reservation r) {
-		Room room=Room.deserializeRoom(r.getRoomName(), false);
-		Boolean addToCourse = true;
-		if(r.getCourseName().equals("")){
-			addToCourse = false;
-		}
-		Course course;
-		if(addToCourse) {
-			course = Course.deserializeCourse(r.getCourseName(), false);
-			if(course.checkReservation(queryDate,slot,r)==true && room.checkReservation(queryDate,slot,r)==true) {
-				course.addReservation(queryDate,slot,r,true);
-				room.addReservation(queryDate,slot,r,true);
-				return true;
+	public boolean bookRoom(LocalDate queryDate,int slot, Reservation r, Boolean lock) {
+		try{
+			Socket server = new Socket(BookITconstants.serverIP, BookITconstants.serverPort);
+			ObjectOutputStream out = new ObjectOutputStream(server.getOutputStream());
+			ObjectInputStream in = new ObjectInputStream(server.getInputStream());
+			if(lock){
+				out.writeObject("Hold");
 			}
-		}
-		else{
-			if(room.checkReservation(queryDate,slot,r)==true){
-				room.addReservation(queryDate,slot,r,true);
-				return true;
+			else{
+				out.writeObject("Pass");
 			}
+			out.flush();
+			out.writeObject("admin_bookroom");
+			out.flush();
+			out.writeObject(queryDate);
+			out.flush();
+			out.writeObject(slot);
+			out.flush();
+			out.writeObject(r);
+			out.flush();
+			Boolean c = (Boolean) in.readObject();
+			out.close();
+			in.close();
+			server.close();
+			return c;
+		}
+		catch(IOException e){
+			System.out.println("IO Exception occurred while booking room");
+		}
+		catch (ClassNotFoundException c){
+			System.out.println("Class not found exception occurred while booking room");
 		}
 		return false;
 	}
-	}
+}

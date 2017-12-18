@@ -247,7 +247,7 @@ public class AdminReservationGUIController implements Initializable{
         if(cancelMessageText.getText().equals("")){
             return;
         }
-        activeUser.cancelBooking(activeDate,Reservation.getSlotID(currentlyShowingSlot),activeRoom, cancelMessageText.getText());
+        activeUser.cancelBooking(activeDate,Reservation.getSlotID(currentlyShowingSlot),activeRoom, cancelMessageText.getText(), false);
         Button current = slotButtons.get(Reservation.getSlotID(currentlyShowingSlot));
         current.setDisable(false);
         current.setText("Free");
@@ -497,7 +497,7 @@ public class AdminReservationGUIController implements Initializable{
      * Accepts a booking requested by the student
      */
     public void acceptRequest(){
-        activeUser.acceptRequest();                                             // Throw not accepted warning...
+        activeUser.acceptRequest(false);                                             // Throw not accepted warning...
         ArrayList<Reservation> requests = activeUser.getRequest(false);
         if(requests == null){
             hideRequests();
@@ -510,7 +510,7 @@ public class AdminReservationGUIController implements Initializable{
      * Rejects a request requested by the student
      */
     public void deleteRequest(){
-        activeUser.rejectRequest();
+        activeUser.rejectRequest(false);
         ArrayList<Reservation> requests = activeUser.getRequest(false);
         if(requests == null){
             hideRequests();
@@ -877,7 +877,7 @@ public class AdminReservationGUIController implements Initializable{
             listOfReservations.add(r);
         }                                                   // GUI Integration Ends
         for(int i=0;i<listOfReservations.size();i++){
-            activeUser.bookRoom(listOfReservations.get(i).getTargetDate(), listOfReservations.get(i).getReservationSlot(), listOfReservations.get(i));
+            activeUser.bookRoom(listOfReservations.get(i).getTargetDate(), listOfReservations.get(i).getReservationSlot(), listOfReservations.get(i), false);
         }
         closeReservationPane();
         flyRight();
@@ -904,7 +904,7 @@ public class AdminReservationGUIController implements Initializable{
             listOfReservations.add(r);
         }                                                   // GUI Integration Ends
         for(int i=0;i<listOfReservations.size();i++){
-            activeUser.bookRoom(listOfReservations.get(i).getTargetDate(), listOfReservations.get(i).getReservationSlot(), listOfReservations.get(i));
+            activeUser.bookRoom(listOfReservations.get(i).getTargetDate(), listOfReservations.get(i).getReservationSlot(), listOfReservations.get(i), false);
         }
         closeReservationPane();
         flyRight();

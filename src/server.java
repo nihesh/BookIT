@@ -400,6 +400,85 @@ class ConnectionHandler implements Runnable{
         serializeRequests(p);
         return r;
     }
+    public boolean acceptRequest(){
+        PriorityQueue<ArrayList<Reservation>> p = deserializeRequests();
+        ArrayList<Reservation> r = p.peek();
+        if (r == null) {
+            serializeRequests(p);
+            return false;
+        }
+        p.poll();
+        int flag=0;
+        Room temp = deserializeRoom(r.get(0).getRoomName());
+        Course ctemp = deserializeCourse(r.get(0).getCourseName());
+        while(r!=null) {
+            for (Reservation reservation : r) {
+                if (!temp.checkReservation(r.get(0).getTargetDate(), reservation.getReservationSlot(), reservation)) {
+                    p.poll();
+                    flag=1;
+                    r=p.peek();
+                    break;
+                }
+                if(ctemp!=null) {
+                    if (ctemp.checkInternalCollision(reservation)) {
+                        p.poll();
+                        flag=1;
+                        r=p.peek();
+                        break;
+                    }
+                }
+                flag=0;
+
+
+            }
+            if(flag==0) {
+                break;
+            }
+        }
+        serializeRequests(p);
+        if(r!=null) {
+            for (Reservation reservation : r) {
+                temp.addReservation(r.get(0).getTargetDate(), reservation.getReservationSlot(), reservation, true);
+                if(ctemp!=null) {
+                    ctemp.addReservation(r.get(0).getTargetDate(), reservation.getReservationSlot(), reservation, true);
+                }
+            }
+        }
+        return true;
+    }
+    public boolean rejectRequest(){
+        PriorityQueue<ArrayList<Reservation>> p = deserializeRequests();
+        if (p.size() == 0) {
+            serializeRequests(p);
+            return false;
+        }
+        p.poll();
+        serializeRequests(p);
+        return true;
+    }
+    public boolean admin_bookRoom(LocalDate queryDate,int slot, Reservation r) {
+        Room room=deserializeRoom(r.getRoomName());
+        Boolean addToCourse = true;
+        if(r.getCourseName().equals("")){
+            addToCourse = false;
+        }
+        Course course;
+        if(addToCourse) {
+            course = deserializeCourse(r.getCourseName());
+            if(course.checkReservation(queryDate,slot,r)==true && room.checkReservation(queryDate,slot,r)==true) {
+                course.addReservation(queryDate,slot,r,true);
+                room.addReservation(queryDate,slot,r,true);
+                return true;
+            }
+        }
+        else{
+            if(room.checkReservation(queryDate,slot,r)==true){
+                room.addReservation(queryDate,slot,r,true);
+                return true;
+            }
+        }
+        return false;
+    }
     public void run(){
         ObjectInputStream in=null;
         ObjectOutputStream out=null;
@@ -435,8 +514,11 @@ class ConnectionHandler implements Runnable{
                         Course c;
                         User u;
                         Room r;
+                        Reservation res;
                         HashMap<String, Integer> joinCode;
                         String code;
+                        LocalDate queryDate;
+                        int slotID;
                         PriorityQueue<ArrayList<Reservation>> req;
                         switch (request) {
                             case "ReadCourse":
@@ -505,8 +587,8 @@ class ConnectionHandler implements Runnable{
                                 out.flush();
                                 break;
                             case "BookingCancelNotification":
-                                LocalDate queryDate = (LocalDate) in.readObject();
-                                int slotID = (int) in.readObject();
+                                queryDate = (LocalDate) in.readObject();
+                                slotID = (int) in.readObject();
                                 String RoomID = (String) in.readObject();
                                 String cancellationMessage = (String) in.readObject();
                                 BookingCancellationNotifier(queryDate, slotID, RoomID, cancellationMessage);
@@ -527,6 +609,21 @@ class ConnectionHandler implements Runnable{
                                 break;
                             case "getRequest":
                                 out.writeObject(getRequest());
+                                out.flush();
+                                break;
+                            case "acceptRequest":
+                                out.writeObject(acceptRequest());
+                                out.flush();
+                                break;
+                            case "rejectRequest":
+                                out.writeObject(rejectRequest());
+                                out.flush();
+                                break;
+                            case "admin_bookroom":
+                                queryDate = (LocalDate) in.readObject();
+                                slotID = (int) in.readObject();
+                                res = (Reservation) in.readObject();
+                                out.writeObject(admin_bookRoom(queryDate, slotID, res));
                                 out.flush();
                                 break;
                         }
