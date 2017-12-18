@@ -549,13 +549,13 @@ public class LoginSignupGUIController {
 		seq1.setNode(Login_Pane);
 		seq1.setFromValue(Login_Pane.getOpacity());
 		seq1.setToValue(0.0);
-		seq1.setDuration(Duration.millis(1500));
+		seq1.setDuration(Duration.millis(800));
 		seq1.play();
 		SequentialTransition sequence=new SequentialTransition();
 		TranslateTransition transleft=new TranslateTransition();
 		transleft.setNode(Signup_Pane);
 		transleft.setToX(Login_Pane.getLayoutX()-Signup_Pane.getLayoutX());
-		transleft.setDuration(Duration.millis(1000));
+		transleft.setDuration(Duration.millis(700));
 		sequence.getChildren().add(transleft);
 		sequence.play();
 		sequence.setOnFinished(e->{
@@ -579,13 +579,13 @@ public class LoginSignupGUIController {
 		seq1.setNode(Login_Pane);
 		seq1.setFromValue(Login_Pane.getOpacity());
 		seq1.setToValue(initOpacity);
-		seq1.setDuration(Duration.millis(1500));
+		seq1.setDuration(Duration.millis(800));
 		seq1.play();
 		SequentialTransition sequence=new SequentialTransition();
 		TranslateTransition transright=new TranslateTransition();
 		transright.setNode(Signup_Pane);
 		transright.setToX(0);
-		transright.setDuration(Duration.millis(1000));
+		transright.setDuration(Duration.millis(700));
 		sequence.getChildren().add(transright);
 		sequence.play();
 		sequence.setOnFinished(e->{
