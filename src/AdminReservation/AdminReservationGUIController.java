@@ -58,11 +58,11 @@ public class AdminReservationGUIController implements Initializable{
     @FXML
     private StackPane pullDownPane;
     @FXML
-    private StackPane roomGridPane, topPane;
+    private StackPane roomGridPane, topPane, cancelMessagePane;
     @FXML
     private StackPane classStatus, slotInfoPane, changePasswordPane, joiningCodePane;
     @FXML
-    private ImageView classStatusBG, slotStatusBG, changePasswordBG, cancelSlotBookingImage, joiningCodeBG;
+    private ImageView classStatusBG, slotStatusBG, changePasswordBG, cancelSlotBookingImage, joiningCodeBG, cancelMessageBG;
     @FXML
     private Label statusRoomID, slotInfo,statusClassSize, statusFreeSlots;
     @FXML
@@ -88,7 +88,7 @@ public class AdminReservationGUIController implements Initializable{
     @FXML
     private ComboBox groupDropDown, optionDropDown;
     @FXML
-    private TextArea requestMessage, requestMessage2;
+    private TextArea requestMessage, requestMessage2, cancelMessageText;
 
     @FXML
     private VBox rootPane;
@@ -201,6 +201,7 @@ public class AdminReservationGUIController implements Initializable{
         slotStatusBG.setImage(image);
         changePasswordBG.setImage(image);
         joiningCodeBG.setImage(image);
+        cancelMessageBG.setImage(image);
         pullDownPane.setTranslateY(pullDownPaneInitial);
         pullDownPane.setVisible(true);
         datePicker.setValue(LocalDate.now());
@@ -243,11 +244,15 @@ public class AdminReservationGUIController implements Initializable{
      * Event handler to cancel a booked slot
      */
     public void cancelSlotBooking(){
-        activeUser.cancelBooking(activeDate,Reservation.getSlotID(currentlyShowingSlot),activeRoom);
+        if(cancelMessageText.getText().equals("")){
+            return;
+        }
+        activeUser.cancelBooking(activeDate,Reservation.getSlotID(currentlyShowingSlot),activeRoom, cancelMessageText.getText());
         Button current = slotButtons.get(Reservation.getSlotID(currentlyShowingSlot));
         current.setDisable(false);
         current.setText("Free");
         updateClassStatus(classEvent);
+        cancelMessagePane.setVisible(false);
     }
 
     /**
@@ -906,7 +911,15 @@ public class AdminReservationGUIController implements Initializable{
         purposeBox.clear();
         requestMessage2.clear();
     }
-
+    public void cancelBookingMessage(){
+        slotInfoPane.setVisible(false);
+        FadeTransition appear = new FadeTransition(Duration.millis(500), cancelMessagePane);
+        cancelMessagePane.setOpacity(0);
+        cancelMessagePane.setVisible(true);
+        appear.setFromValue(0);
+        appear.setToValue(1);
+        appear.play();
+    }
     /**
      * Reservation pane flys right
      */

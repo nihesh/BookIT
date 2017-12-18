@@ -309,6 +309,9 @@ class ConnectionHandler implements Runnable{
             return null;
         }
     }
+    public void BookingCancellationNotifier(LocalDate queryDate, int slotID, String RoomID, String cancellationMessage){
+        // Insert mailing module here
+    }
     public void run(){
         ObjectInputStream in=null;
         ObjectOutputStream out=null;
@@ -411,6 +414,14 @@ class ConnectionHandler implements Runnable{
                                 StartEndDate = fetchSemDate();
                                 out.writeObject(StartEndDate);
                                 out.flush();
+                                break;
+                            case "BookingCancelNotification":
+                                LocalDate queryDate = (LocalDate) in.readObject();
+                                int slotID = (int) in.readObject();
+                                String RoomID = (String) in.readObject();
+                                String cancellationMessage = (String) in.readObject();
+                                BookingCancellationNotifier(queryDate, slotID, RoomID, cancellationMessage);
+                                break;
                         }
                         if(lock.isLocked() && lock.isHeldByCurrentThread()){
                             System.out.println(connection.getInetAddress().toString() + " | ServerLock Released");

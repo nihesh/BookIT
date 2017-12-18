@@ -396,7 +396,30 @@ public class Admin extends User{
 	 * @param RoomID the room for which reservation has to be cancelled
 	 * @return true if it is cancelled false otherwise
 	 */
-	public boolean cancelBooking(LocalDate queryDate,int slotID,String RoomID) {
+	public boolean cancelBooking(LocalDate queryDate,int slotID,String RoomID, String cancellationMessage) {
+		try{
+			Socket server = new Socket(BookITconstants.serverIP, BookITconstants.serverPort);
+			ObjectOutputStream out = new ObjectOutputStream(server.getOutputStream());
+			ObjectInputStream in = new ObjectInputStream(server.getInputStream());
+			out.writeObject("Pass");
+			out.flush();
+			out.writeObject("BookingCancelNotification");
+			out.flush();
+			out.writeObject(queryDate);
+			out.flush();
+			out.writeObject(slotID);
+			out.flush();
+			out.writeObject(RoomID);
+			out.flush();
+			out.writeObject(cancellationMessage);
+			out.flush();
+			out.close();
+			in.close();
+			server.close();
+		}
+		catch(IOException e){
+			System.out.println("IO Exception occurred while checking spam");
+		}
 		Room temp=Room.deserializeRoom(RoomID, false);
 		Reservation r=temp.getSchedule(queryDate)[slotID];
 		temp.deleteReservation(queryDate, slotID);

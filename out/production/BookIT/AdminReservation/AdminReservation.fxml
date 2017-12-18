@@ -195,7 +195,7 @@
                                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                  </padding>
                               </ScrollPane>
-                              <Button fx:id="cancelSlotBooking" mnemonicParsing="false" onMouseClicked="#cancelSlotBooking" prefHeight="38.0" prefWidth="42.0" stylesheets="@buttonDropDown.css">
+                              <Button fx:id="cancelSlotBooking" mnemonicParsing="false" onMouseClicked="#cancelBookingMessage" prefHeight="38.0" prefWidth="42.0" stylesheets="@buttonDropDown.css">
                                  <StackPane.margin>
                                     <Insets bottom="230.0" left="492.0" />
                                  </StackPane.margin>
@@ -272,6 +272,24 @@
                               <Button mnemonicParsing="false" onMouseClicked="#cancelChangePassword" prefHeight="36.0" prefWidth="115.0" stylesheets="@buttonChangePwd.css" text="Cancel">
                                  <StackPane.margin>
                                     <Insets right="130.0" top="180.0" />
+                                 </StackPane.margin>
+                              </Button>
+                           </children>
+                        </StackPane>
+                        <StackPane fx:id="cancelMessagePane" layoutX="10.0" layoutY="10.0" prefHeight="150.0" prefWidth="200.0" style="visibility: false;">
+                           <children>
+                              <ImageView fx:id="cancelMessageBG" fitHeight="311.0" fitWidth="610.0" opacity="0.8" pickOnBounds="true" preserveRatio="true" />
+                              <TextArea fx:id="cancelMessageText" opacity="0.91" promptText="Reason for cancellation (*)" wrapText="true">
+                                 <StackPane.margin>
+                                    <Insets bottom="70.0" left="20.0" right="20.0" top="20.0" />
+                                 </StackPane.margin>
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </TextArea>
+                              <Button mnemonicParsing="false" onMouseClicked="#cancelSlotBooking" prefHeight="40.0" prefWidth="180.0" stylesheets="@buttonChangePwd.css" text="Confirm">
+                                 <StackPane.margin>
+                                    <Insets top="240.0" />
                                  </StackPane.margin>
                               </Button>
                            </children>
