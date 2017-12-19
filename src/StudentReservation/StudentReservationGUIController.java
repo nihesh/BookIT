@@ -885,15 +885,21 @@ public class StudentReservationGUIController implements Initializable{
         SequentialTransition sequence = new SequentialTransition();
         int step=1;
         int location=pullDownPaneInitial;
-        while(location>40) {
+        while(location>50) {
             TranslateTransition translate = new TranslateTransition();
             translate.setNode(pullDownPane);
             translate.setToY(location);
             translate.setDuration(Duration.millis(15));
             step++;
-            location-=step;
+            location-=max(step,20);
             sequence.getChildren().add(translate);
         }
+        TranslateTransition translate = new TranslateTransition();
+        translate.setNode(pullDownPane);
+        location = 53;
+        translate.setToY(location);
+        translate.setDuration(Duration.millis(15));
+        sequence.getChildren().add(translate);
         sequence.play();
         FadeTransition appearBookBtn = new FadeTransition(Duration.millis(1000), BookBtn);
         appearBookBtn.setToValue(0);

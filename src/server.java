@@ -184,7 +184,6 @@ class ConnectionHandler implements Runnable{
         }
     }
     public void BookingCancellationNotifier(LocalDate queryDate, int slotID, String RoomID, String cancellationMessage){
-        // Insert mailing module here
 
         Room temp=Room.deserializeRoom(RoomID);
         Reservation r=temp.getSchedule(queryDate)[slotID];
