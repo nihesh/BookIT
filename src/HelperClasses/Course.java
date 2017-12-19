@@ -29,35 +29,24 @@ public class Course implements java.io.Serializable{
      * @param lock takes lock on server if set true
      * @return the course object
      */
-    public static Course deserializeCourse(String name, Boolean lock){
-        try {
-            Socket server = new Socket(BookITconstants.serverIP, BookITconstants.serverPort);
-            ObjectOutputStream out = new ObjectOutputStream(server.getOutputStream());
-            ObjectInputStream in = new ObjectInputStream(server.getInputStream());
-            if(lock){
-                out.writeObject("Hold");
+    public static Course deserializeCourse(String name){
+        ObjectInputStream in = null;
+        try{
+            in = new ObjectInputStream(new FileInputStream("./src/AppData/Course/"+name+".dat"));
+            return (Course)in.readObject();
+        }
+        catch (Exception e){
+            return null;
+        }
+        finally {
+            try {
+                if (in != null)
+                    in.close();
             }
-            else{
-                out.writeObject("Pass");
+            catch(IOException f){
+                ;
             }
-            out.flush();
-            out.writeObject("ReadCourse");
-            out.flush();
-            out.writeObject(name);
-            out.flush();
-            Course c = (Course)in.readObject();
-            out.close();
-            in.close();
-            server.close();
-            return c;
         }
-        catch (IOException e){
-            System.out.println("IO exception occured while writing to server");
-        }
-        catch (ClassNotFoundException x){
-            System.out.println("ClassNotFound exception occured while reading from server");
-        }
-        return null;
     }
    /**
     * constructor for the course class
@@ -73,7 +62,7 @@ public class Course implements java.io.Serializable{
         this.postCondition = postCondition;
         this.Schedule = Schedule;
         this.acronym = acronym;
-        serialize(true);
+        serialize();
     }
     /**
      * static method returns name of all courses
@@ -95,17 +84,15 @@ public class Course implements java.io.Serializable{
             return c;
         }
         catch (IOException e){
-            System.out.println("IO exception occured while writing to server");
+            System.out.println("IO exception occurred while writing to server");
         }
         catch (ClassNotFoundException x){
-            System.out.println("ClassNotFound exception occured while reading from server");
+            System.out.println("ClassNotFound exception occurred while reading from server");
         }
         return null;
     }
     /**
      * detects a collision inside a course object while processing a reservation by admin
-     * {@link Admin#acceptRequest()}
-     * {@link Admin#getRequest()}
      * @param r the reservation object
      * @return true if collison else no 
      */
@@ -201,29 +188,22 @@ public class Course implements java.io.Serializable{
     }
     /**
      * serialize a course object to the server database of courses
-     * @param lock takes a lock on the server if set to true
      */
-    public void serialize(Boolean lock){
-        try {
-            Socket server = new Socket(BookITconstants.serverIP, BookITconstants.serverPort);
-            ObjectOutputStream out = new ObjectOutputStream(server.getOutputStream());
-            ObjectInputStream in = new ObjectInputStream(server.getInputStream());
-            if(lock){
-                out.writeObject("Hold");
+    public void serialize(){
+        try{
+            ObjectOutputStream out = null;
+            try{
+                out = new ObjectOutputStream(new FileOutputStream("./src/AppData/Course/"+this.getName()+".dat", false));
+                out.writeObject(this);
             }
-            else{
-                out.writeObject("Pass");
+            finally {
+                if(out!=null){
+                    out.close();
+                }
             }
-            out.flush();
-            out.writeObject("WriteCourse");
-            out.flush();
-            out.writeObject(this);
-            out.close();
-            in.close();
-            server.close();
         }
         catch (IOException e){
-            System.out.println("IO exception occured while writing to server");
+            ;
         }
     }
     /**
@@ -232,7 +212,7 @@ public class Course implements java.io.Serializable{
      */
     public void setInstructor(String f){
         this.instructorEmail = f;
-        serialize(false);
+        serialize();
     }
     /**
      * Adds reservation to a course on a particular date and time(30 minute slot)
@@ -247,7 +227,7 @@ public class Course implements java.io.Serializable{
             r.setTargetDate(date);
             Schedule.get(date)[slot] = r;
             if(serialize)
-                serialize(false);
+                serialize();
             return true;
         }
         else{
@@ -255,7 +235,7 @@ public class Course implements java.io.Serializable{
                 r.setTargetDate(date);
                 Schedule.get(date)[slot].addGroup(r.getTopGroup(),r.getVenueName(),r.getMessageWithoutVenue());
                 if(serialize)
-                    serialize(false);
+                    serialize();
                 return true;
             }
             else {
@@ -298,7 +278,7 @@ public class Course implements java.io.Serializable{
             r.deleteGroup(group);
             Schedule.get(date)[slot] = r;
         }
-        serialize(false);
+        serialize();
     }
     
 }

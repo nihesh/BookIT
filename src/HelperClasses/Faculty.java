@@ -1,8 +1,10 @@
 package HelperClasses;
 
-import java.io.File;
+import java.io.*;
+import java.net.Socket;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.PriorityQueue;
 
 /**
  * The faculty class derived from user class 
@@ -38,9 +40,31 @@ public class Faculty extends User{
 	 * add Course to list of courses a faculty teaches
 	 * @param course course to be added
 	 */
-	public void addCourse(String course){
+	public void addCourse(String course, Boolean lock){
 		myCourses.add(course);
-		serialize(false);
+		try {
+			Socket server = new Socket(BookITconstants.serverIP, BookITconstants.serverPort);
+			ObjectOutputStream out = new ObjectOutputStream(server.getOutputStream());
+			ObjectInputStream in = new ObjectInputStream(server.getInputStream());
+			if (lock) {
+				out.writeObject("Hold");
+			} else {
+				out.writeObject("Pass");
+			}
+			out.flush();
+			out.writeObject("faculty_addCourse");
+			out.flush();
+			out.writeObject(this.getEmail().getEmailID());
+			out.flush();
+			out.writeObject(course);
+			out.flush();
+			out.close();
+			in.close();
+			server.close();
+		}
+		catch (IOException e){
+			System.out.println("IO Exception occurred while adding course");
+		}
 		this.setActiveUser();
 	}
 	/**
@@ -51,7 +75,7 @@ public class Faculty extends User{
 	 * @return true if booking cancels, false otherwise
 	 */
 	public boolean cancelBooking(LocalDate queryDate,int slotID, String RoomID) {
-		Room temp=Room.deserializeRoom(RoomID, false);
+		Room temp=Room.deserializeRoom(RoomID);
 		Reservation r=temp.getSchedule(queryDate)[slotID];
 		temp.deleteReservation(queryDate, slotID);
 
@@ -69,14 +93,14 @@ public class Faculty extends User{
 	 * @return true if booking successful, false otherwise
 	 */
 	public boolean bookRoom(LocalDate queryDate,int slot, Reservation r) {
-		Room room=Room.deserializeRoom(r.getRoomName(), false);
+		Room room=Room.deserializeRoom(r.getRoomName());
 		Boolean addToCourse = true;
 		if(r.getCourseName().equals("")){
 			addToCourse = false;
 		}
 		Course course;
 		if(addToCourse) {
-			course = Course.deserializeCourse(r.getCourseName(), false);
+			course = Course.deserializeCourse(r.getCourseName());
 			if(course.checkReservation(queryDate,slot,r)==true && room.checkReservation(queryDate,slot,r)==true) {
 				course.addReservation(queryDate,slot,r,true);
 				room.addReservation(queryDate,slot,r,true);

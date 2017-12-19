@@ -19,35 +19,25 @@ public class Room implements java.io.Serializable{
      * @param lock takes the server lock if set to true
      * @return Room object see alse {@link Room}
      */
-    public static Room deserializeRoom(String name, Boolean lock){
-        try {
-            Socket server = new Socket(BookITconstants.serverIP, BookITconstants.serverPort);
-            ObjectOutputStream out = new ObjectOutputStream(server.getOutputStream());
-            ObjectInputStream in = new ObjectInputStream(server.getInputStream());
-            if(lock){
-                out.writeObject("Hold");
+    public static Room deserializeRoom(String name){
+        ObjectInputStream in = null;
+        try{
+            in = new ObjectInputStream(new FileInputStream("./src/AppData/Room/"+name+".dat"));
+            return (Room)in.readObject();
+        }
+        catch (Exception e){
+            System.out.println("Exception occured while deserialising Room");
+            return null;
+        }
+        finally {
+            try {
+                if (in != null)
+                    in.close();
             }
-            else{
-                out.writeObject("Pass");
+            catch(IOException f){
+                ;
             }
-            out.flush();
-            out.writeObject("ReadRoom");
-            out.flush();
-            out.writeObject(name);
-            out.flush();
-            Room c = (Room) in.readObject();
-            out.close();
-            in.close();
-            server.close();
-            return c;
         }
-        catch (IOException e){
-            System.out.println("IO exception occurred while writing to server");
-        }
-        catch (ClassNotFoundException x){
-            System.out.println("ClassNotFound exception occurred while reading from server");
-        }
-        return null;
     }
     /**
      * constructor for room class
@@ -59,7 +49,7 @@ public class Room implements java.io.Serializable{
         this.RoomID = RoomID;
         this.Schedule = Schedule;
         this.Capacity = Capacity;
-        serialize(true);
+        serialize();
     }
     /**
      * returns schedule of a room on a date
@@ -87,27 +77,22 @@ public class Room implements java.io.Serializable{
      * serialize a room in the database
      * @param lock takes the server lock if set to true
      */
-    public void serialize(Boolean lock){
-        try {
-            Socket server = new Socket(BookITconstants.serverIP, BookITconstants.serverPort);
-            ObjectOutputStream out = new ObjectOutputStream(server.getOutputStream());
-            ObjectInputStream in = new ObjectInputStream(server.getInputStream());
-            if(lock){
-                out.writeObject("Hold");
+    public void serialize(){
+        try{
+            ObjectOutputStream out = null;
+            try{
+                out = new ObjectOutputStream(new FileOutputStream("./src/AppData/Room/"+this.getRoomID()+".dat", false));
+                out.writeObject(this);
             }
-            else{
-                out.writeObject("Pass");
+            finally {
+                if(out!=null){
+                    out.close();
+                }
             }
-            out.flush();
-            out.writeObject("WriteRoom");
-            out.flush();
-            out.writeObject(this);
-            out.close();
-            in.close();
-            server.close();
+
         }
         catch (IOException e){
-            System.out.println("IO exception occured while writing to server");
+            ;
         }
     }
     /**
@@ -123,7 +108,7 @@ public class Room implements java.io.Serializable{
             r.setTargetDate(date);
             Schedule.get(date)[slot] = r;
             if(serialize)
-                serialize(false);
+                serialize();
             return true;
         }
         else{
@@ -152,6 +137,6 @@ public class Room implements java.io.Serializable{
      */
     public void deleteReservation(LocalDate date, int slot){
         Schedule.get(date)[slot] = null;
-        serialize(false);
+        serialize();
     }
 }

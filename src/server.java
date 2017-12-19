@@ -48,30 +48,6 @@ class ConnectionHandler implements Runnable{
         this.connection = connection;
     }
     /**
-     * deserialise a course
-     * @param name name of course
-     * @return Course object see also {@link Course} 
-     */
-    public Course deserializeCourse(String name){
-        ObjectInputStream in = null;
-        try{
-            in = new ObjectInputStream(new FileInputStream("./src/AppData/Course/"+name+".dat"));
-            return (Course)in.readObject();
-        }
-        catch (Exception e){
-            return null;
-        }
-        finally {
-            try {
-                if (in != null)
-                    in.close();
-            }
-            catch(IOException f){
-                ;
-            }
-        }
-    }
-    /**
      * 
      * @return list of all courses
      */
@@ -84,120 +60,6 @@ class ConnectionHandler implements Runnable{
             courses.add(courseName);
         }
         return courses;
-    }
-    /**
-     * serialise a course object
-     * @param c the course to be serialised
-     */
-    public void serializeCourse(Course c){
-        try{
-            ObjectOutputStream out = null;
-            try{
-                out = new ObjectOutputStream(new FileOutputStream("./src/AppData/Course/"+c.getName()+".dat", false));
-                out.writeObject(c);
-            }
-            finally {
-                if(out!=null){
-                    out.close();
-                }
-            }
-        }
-        catch (IOException e){
-            ;
-        }
-    }
-    /**
-     * serialise a user object
-     * @param u the user(could be faculty,admin or student)
-     */
-    public void serializeUser(User u){
-        try{
-            ObjectOutputStream out = null;
-            try{
-                out = new ObjectOutputStream(new FileOutputStream("./src/AppData/User/"+u.getEmail().getEmailID()+".txt", false));
-                out.writeObject(u);
-            }
-            finally {
-                if(out!=null){
-                    out.close();
-                }
-            }
-
-        }
-        catch (IOException e){
-            System.out.println("file not found");
-        }
-    }
-    /**
-     * deserialise a user given user email
-     * @param email email of user
-     * @return user object see also{@link User}
-     */
-    public User getUser(String email){
-        ObjectInputStream in = null;
-        try{
-            in = new ObjectInputStream(new FileInputStream("./src/AppData/User/"+email+".txt"));
-            return (User)in.readObject();
-        }
-        catch (Exception e){
-            return null;
-        }
-        finally {
-            try {
-                if (in != null)
-                    in.close();
-            }
-            catch(IOException f){
-                ;
-            }
-        }
-    }
-    /**
-     * deserialise a room object given its name
-     * @param name name of room
-     * @return Room object
-     */
-    public Room deserializeRoom(String name){
-        ObjectInputStream in = null;
-        try{
-            in = new ObjectInputStream(new FileInputStream("./src/AppData/Room/"+name+".dat"));
-            return (Room)in.readObject();
-        }
-        catch (Exception e){
-            System.out.println("Exception occured while deserialising Room");
-            return null;
-        }
-        finally {
-            try {
-                if (in != null)
-                    in.close();
-            }
-            catch(IOException f){
-                ;
-            }
-        }
-    }
-    /**
-     * serialise a room object to local database
-     * @param r the room object to be serialised
-     */
-    public void serializeRoom(Room r){
-        try{
-            ObjectOutputStream out = null;
-            try{
-                out = new ObjectOutputStream(new FileOutputStream("./src/AppData/Room/"+r.getRoomID()+".dat", false));
-                out.writeObject(r);
-            }
-            finally {
-                if(out!=null){
-                    out.close();
-                }
-            }
-
-        }
-        catch (IOException e){
-            ;
-        }
     }
     /**
      * serialise the joincode hashmap to local database
@@ -313,6 +175,14 @@ class ConnectionHandler implements Runnable{
     }
     public void BookingCancellationNotifier(LocalDate queryDate, int slotID, String RoomID, String cancellationMessage){
         // Insert mailing module here
+
+        Room temp=Room.deserializeRoom(RoomID);
+        Reservation r=temp.getSchedule(queryDate)[slotID];
+        temp.deleteReservation(queryDate, slotID);
+        Course c=r.getCourse();
+        if(c!=null) {
+            c.deleteReservation(queryDate, slotID,r.getTopGroup());
+        }
     }
     public String generateJoincode(String type){
         type = type.substring(0, 1).toUpperCase();
@@ -366,8 +236,8 @@ class ConnectionHandler implements Runnable{
             return null;
         }
         int flag=0;
-        Room temp = deserializeRoom(r.get(0).getRoomName());
-        Course ctemp = deserializeCourse(r.get(0).getCourseName());
+        Room temp = Room.deserializeRoom(r.get(0).getRoomName());
+        Course ctemp = Course.deserializeCourse(r.get(0).getCourseName());
         while(r!=null) {
             if(SpamFilter.Predict(r.get(0).getMessageWithoutVenue())){
                 p.poll();
@@ -409,8 +279,8 @@ class ConnectionHandler implements Runnable{
         }
         p.poll();
         int flag=0;
-        Room temp = deserializeRoom(r.get(0).getRoomName());
-        Course ctemp = deserializeCourse(r.get(0).getCourseName());
+        Room temp = Room.deserializeRoom(r.get(0).getRoomName());
+        Course ctemp = Course.deserializeCourse(r.get(0).getCourseName());
         while(r!=null) {
             for (Reservation reservation : r) {
                 if (!temp.checkReservation(r.get(0).getTargetDate(), reservation.getReservationSlot(), reservation)) {
@@ -457,14 +327,14 @@ class ConnectionHandler implements Runnable{
         return true;
     }
     public boolean admin_bookRoom(LocalDate queryDate,int slot, Reservation r) {
-        Room room=deserializeRoom(r.getRoomName());
+        Room room=Room.deserializeRoom(r.getRoomName());
         Boolean addToCourse = true;
         if(r.getCourseName().equals("")){
             addToCourse = false;
         }
         Course course;
         if(addToCourse) {
-            course = deserializeCourse(r.getCourseName());
+            course = Course.deserializeCourse(r.getCourseName());
             if(course.checkReservation(queryDate,slot,r)==true && room.checkReservation(queryDate,slot,r)==true) {
                 course.addReservation(queryDate,slot,r,true);
                 room.addReservation(queryDate,slot,r,true);
@@ -478,6 +348,75 @@ class ConnectionHandler implements Runnable{
             }
         }
         return false;
+    }
+    public void faculty_addCourse(String email, String course){
+        Faculty f = (Faculty) User.getUser(email);
+        f.getCourses().add(course);
+        f.serialize();
+    }
+    public boolean sendReservationRequest(ArrayList<Reservation> r) {
+        PriorityQueue<ArrayList<Reservation>> p = null;
+        p = deserializeRequests();
+        p.add(r);
+        serializeRequests(p);
+        return true;
+    }
+    public ArrayList<String> searchCourse(ArrayList<String> keyword){
+        int flag=1;
+        for(int i=0;i<keyword.size();i++){
+            if(!keyword.get(i).equals("")){
+                flag=0;
+                break;
+            }
+        }
+        if(flag==1){
+            return getAllCourses();
+        }
+        ArrayList<ArrayList<String>> arr=new ArrayList<ArrayList<String>>();
+        for (int i=0;i<300;i++) {
+            arr.add(new ArrayList<String>());
+        }
+
+        ArrayList<String> temp2=new ArrayList<String>();
+
+        ArrayList<String> courseFiles=getAllCourses();
+        for(int i=0;i<courseFiles.size();i++) {
+            String courseName = courseFiles.get(i).substring(0,courseFiles.get(i).length());
+            Course temp=Course.deserializeCourse(courseName);
+            int match=temp.keyMatch(keyword);
+            if(match > 0) {
+                arr.get(match).add(courseFiles.get(i).substring(0,courseFiles.get(i).length()));
+            }
+        }
+        for(int i=arr.size()-1;i>=0;i--) {
+            for (String str : arr.get(i)) {
+                temp2.add(str);
+            }
+        }
+        return temp2;
+    }
+    public boolean student_addCourse(String c, String email) {
+        Course c2=Course.deserializeCourse(c);
+        Student user = (Student) User.getUser(email);
+        for (String string : user.getMyCourses()) {
+            Course temp=Course.deserializeCourse(string);
+            if(c2.checkCollision(temp)) {
+                return false; //cannot add course since there is a collision
+            }
+        }
+        user.getMyCourses().add(c);
+        user.serialize();
+        return true;
+    }
+    public boolean student_cancelBooking(LocalDate queryDate, int slotID, String RoomID) {
+        Room temp=Room.deserializeRoom(RoomID);
+        Reservation r=temp.getSchedule(queryDate)[slotID];
+        temp.deleteReservation(queryDate, slotID);
+        Course c=r.getCourse();
+        if(c!=null) {
+            c.deleteReservation(queryDate, slotID,r.getTopGroup());
+        }
+        return true;
     }
     public void run(){
         ObjectInputStream in=null;
@@ -516,45 +455,16 @@ class ConnectionHandler implements Runnable{
                         Room r;
                         Reservation res;
                         HashMap<String, Integer> joinCode;
-                        String code;
+                        String code, email, course;
                         LocalDate queryDate;
+                        Boolean result;
                         int slotID;
                         PriorityQueue<ArrayList<Reservation>> req;
                         switch (request) {
-                            case "ReadCourse":
-                                String courseName = (String) in.readObject();
-                                c = deserializeCourse(courseName);
-                                out.writeObject(c);
-                                out.flush();
-                                break;
                             case "AllCourses":
                                 ArrayList<String> arr = getAllCourses();
                                 out.writeObject(arr);
                                 out.flush();
-                                break;
-                            case "WriteCourse":
-                                c = (Course) in.readObject();
-                                serializeCourse(c);
-                                break;
-                            case "GetUser":
-                                String email = (String) in.readObject();
-                                u = getUser(email);
-                                out.writeObject(u);
-                                out.flush();
-                                break;
-                            case "WriteUser":
-                                u = (User) in.readObject();
-                                serializeUser(u);
-                                break;
-                            case "ReadRoom":
-                                String roomName = (String) in.readObject();
-                                r = deserializeRoom(roomName);
-                                out.writeObject(r);
-                                out.flush();
-                                break;
-                            case "WriteRoom":
-                                r = (Room) in.readObject();
-                                serializeRoom(r);
                                 break;
                             case "WriteJoinCode":
                                 joinCode = (HashMap<String, Integer>) in.readObject();
@@ -586,7 +496,7 @@ class ConnectionHandler implements Runnable{
                                 out.writeObject(StartEndDate);
                                 out.flush();
                                 break;
-                            case "BookingCancelNotification":
+                            case "admin_BookingCancelNotification":
                                 queryDate = (LocalDate) in.readObject();
                                 slotID = (int) in.readObject();
                                 String RoomID = (String) in.readObject();
@@ -626,8 +536,41 @@ class ConnectionHandler implements Runnable{
                                 out.writeObject(admin_bookRoom(queryDate, slotID, res));
                                 out.flush();
                                 break;
+                            case "faculty_addCourse":
+                                email = (String) in.readObject();
+                                course = (String) in.readObject();
+                                faculty_addCourse(email,course);
+                                break;
+                            case "student_sendReservationRequest":
+                                ArrayList<Reservation> reservations = (ArrayList<Reservation>) in.readObject();
+                                result = sendReservationRequest(reservations);
+                                out.writeObject(result);
+                                out.flush();
+                                break;
+                            case "student_searchCourse":
+                                ArrayList<String> keyword = (ArrayList<String>) in.readObject();
+                                ArrayList<String> shortlist = searchCourse(keyword);
+                                out.writeObject(shortlist);
+                                out.flush();
+                                break;
+                            case "student_addCourse":
+                                course = (String) in.readObject();
+                                email = (String) in.readObject();
+                                result = student_addCourse(course, email);
+                                out.writeObject(result);
+                                out.flush();
+                                break;
+                            case "student_cancelBooking":
+                                queryDate = (LocalDate) in.readObject();
+                                slotID = (int) in.readObject();
+                                RoomID = (String) in.readObject();
+                                result = student_cancelBooking(queryDate, slotID, RoomID);
+                                out.writeObject(result);
+                                out.flush();
+                                break;
                         }
                         if(lock.isLocked() && lock.isHeldByCurrentThread()){
+                            System.out.print("[ "+LocalDateTime.now()+" ] ");
                             System.out.println(connection.getInetAddress().toString() + " | ServerLock Released");
                             lock.unlock();
                         }

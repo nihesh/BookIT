@@ -83,7 +83,7 @@ public class Reservation implements java.io.Serializable{
      * @return String
      */
     public String getFacultyEmail(){
-        Course c = Course.deserializeCourse(this.course, false);
+        Course c = Course.deserializeCourse(this.course);
         if(c==null){
             return "";
         }
@@ -182,7 +182,7 @@ public class Reservation implements java.io.Serializable{
         if(course.equals("")){
             return null;
         }
-        return Course.deserializeCourse(course, false);
+        return Course.deserializeCourse(course);
     }
     /**
      * get Faculty object from faculty email. Returns null if blank
@@ -192,7 +192,7 @@ public class Reservation implements java.io.Serializable{
         if(facultyEmail.equals("")){
             return null;
         }
-        return (Faculty)User.getUser(this.facultyEmail, false);
+        return (Faculty)User.getUser(this.facultyEmail);
     }
     /**
      * get Room object from room string
@@ -202,7 +202,7 @@ public class Reservation implements java.io.Serializable{
         if(room.equals("")){
             return null;
         }
-        return Room.deserializeRoom(room, false);
+        return Room.deserializeRoom(room);
     }
     /**
      * add a group to a reservation object

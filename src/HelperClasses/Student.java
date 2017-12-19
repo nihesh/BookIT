@@ -5,6 +5,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.net.Socket;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -42,90 +43,145 @@ public class Student extends User{
 	 * @return true if successful false otherwise
 	 */
 	@SuppressWarnings("unchecked")
-	public boolean sendReservationRequest(ArrayList<Reservation> r){
-		try {
-			PriorityQueue<ArrayList<Reservation>> p = null;
-				p = Admin.deserializeRequestsQueue(false);
-				p.add(r);
-				Admin.serializeRequestsQueue(p, false);
-			
+	public boolean sendReservationRequest(ArrayList<Reservation> r, Boolean lock){
+		try{
+			Socket server = new Socket(BookITconstants.serverIP, BookITconstants.serverPort);
+			ObjectOutputStream out = new ObjectOutputStream(server.getOutputStream());
+			ObjectInputStream in = new ObjectInputStream(server.getInputStream());
+			if(lock){
+				out.writeObject("Hold");
+			}
+			else{
+				out.writeObject("Pass");
+			}
+			out.flush();
+			out.writeObject("student_sendReservationRequest");
+			out.flush();
+			out.writeObject(r);
+			out.flush();
+			Boolean c = (Boolean) in.readObject();
+			out.close();
+			in.close();
+			server.close();
+			return c;
 		}
 		catch(IOException e){
-			System.out.println("IO Exception while deserialising priority queue");
+			System.out.println("IO Exception occurred while sending reservation request");
 		}
-		catch (ClassNotFoundException f){
-			System.out.println("Class not found exception while deserialising priority queue");
+		catch (ClassNotFoundException c){
+			System.out.println("ClassNotFound exception occurred while sending reservation request");
 		}
-		return true;
+		return false;
 	}
-	//marker need to check
+	public boolean cancelBooking(LocalDate queryDate, int slotID, String RoomID, Boolean lock) {
+		try{
+			Socket server = new Socket(BookITconstants.serverIP, BookITconstants.serverPort);
+			ObjectOutputStream out = new ObjectOutputStream(server.getOutputStream());
+			ObjectInputStream in = new ObjectInputStream(server.getInputStream());
+			if(lock){
+				out.writeObject("Hold");
+			}
+			else{
+				out.writeObject("Pass");
+			}
+			out.flush();
+			out.writeObject("student_cancelBooking");
+			out.flush();
+			out.writeObject(queryDate);
+			out.flush();
+			out.writeObject(slotID);
+			out.flush();
+			out.writeObject(RoomID);
+			out.flush();
+			Boolean c = (Boolean) in.readObject();
+			out.close();
+			in.close();
+			server.close();
+			return c;
+		}
+		catch(IOException e){
+			System.out.println("IO Exception occurred while sending reservation request");
+		}
+		catch (ClassNotFoundException c){
+			System.out.println("ClassNotFound exception occurred while sending reservation request");
+		}
+		return false;
+	}
 	/**
 	 * searches for a course on basis of a search string
 	 * @param keyword the search string
 	 * @return ArrayList of string that refer to courses whose post conditions match with search string
 	 */
-	public static ArrayList<String> searchCourse(ArrayList<String> keyword){
-		int flag=1;
-		for(int i=0;i<keyword.size();i++){
-			if(!keyword.get(i).equals("")){
-				flag=0;
-				break;
+	public static ArrayList<String> searchCourse(ArrayList<String> keyword, Boolean lock){
+		try{
+			Socket server = new Socket(BookITconstants.serverIP, BookITconstants.serverPort);
+			ObjectOutputStream out = new ObjectOutputStream(server.getOutputStream());
+			ObjectInputStream in = new ObjectInputStream(server.getInputStream());
+			if(lock){
+				out.writeObject("Hold");
 			}
-		}
-		if(flag==1){
-			return Course.getAllCourses();
-		}
-		ArrayList<ArrayList<String>> arr=new ArrayList<ArrayList<String>>();
-		for (int i=0;i<300;i++) {
-			arr.add(new ArrayList<String>());
-		}
-		
-		ArrayList<String> temp2=new ArrayList<String>();
-		
-		ArrayList<String> courseFiles=Course.getAllCourses();
-		for(int i=0;i<courseFiles.size();i++) {
-			String courseName = courseFiles.get(i).substring(0,courseFiles.get(i).length());
-			Course temp=Course.deserializeCourse(courseName, false);
-			int match=temp.keyMatch(keyword);
-			if(match > 0) {
-				arr.get(match).add(courseFiles.get(i).substring(0,courseFiles.get(i).length()));
+			else{
+				out.writeObject("Pass");
 			}
+			out.flush();
+			out.writeObject("student_searchCourse");
+			out.flush();
+			out.writeObject(keyword);
+			out.flush();
+			ArrayList<String> c = (ArrayList<String>) in.readObject();
+			out.close();
+			in.close();
+			server.close();
+			return c;
 		}
-		for(int i=arr.size()-1;i>=0;i--) {
-			for (String str : arr.get(i)) {
-				temp2.add(str);
-			}
+		catch(IOException e){
+			System.out.println("IO Exception occurred while searching course");
 		}
-		return temp2;
-	}
-	public boolean cancelBooking(LocalDate queryDate, int slotID, String RoomID) {
-		Room temp=Room.deserializeRoom(RoomID, false);
-		Reservation r=temp.getSchedule(queryDate)[slotID];
-		temp.deleteReservation(queryDate, slotID);
-
-		Course c=r.getCourse();
-		if(c!=null) {
-			c.deleteReservation(queryDate, slotID,r.getTopGroup());
+		catch (ClassNotFoundException c){
+			System.out.println("ClassNotFound exception occurred while searching course");
 		}
-		return true;
+		return null;
 	}
 	/**
 	 * adds a course to timetable of a student
 	 * @param c the course to be added
 	 * @return true if successful false otherwise
 	 */
-	public boolean addCourse(String c) {
-		Course c2=Course.deserializeCourse(c, false);
-		for (String string : myCourses) {
-			Course temp=Course.deserializeCourse(string, false);
-			if(c2.checkCollision(temp)) {
-				return false; //cannot add course since there is a collision
+	public boolean addCourse(String c, Boolean lock) {
+		try{
+			Socket server = new Socket(BookITconstants.serverIP, BookITconstants.serverPort);
+			ObjectOutputStream out = new ObjectOutputStream(server.getOutputStream());
+			ObjectInputStream in = new ObjectInputStream(server.getInputStream());
+			if(lock){
+				out.writeObject("Hold");
 			}
+			else{
+				out.writeObject("Pass");
+			}
+			out.flush();
+			out.writeObject("student_addCourse");
+			out.flush();
+			out.writeObject(c);
+			out.flush();
+			out.writeObject(this.getEmail().getEmailID());
+			out.flush();
+			Boolean res = (Boolean) in.readObject();
+			out.close();
+			in.close();
+			server.close();
+			if(res){
+				myCourses.add(c);
+				this.setActiveUser();
+			}
+			return res;
 		}
-		myCourses.add(c);
-		this.serialize(false);
-		this.setActiveUser();
-		return true;
+		catch(IOException e){
+			System.out.println("IO Exception occurred while adding course");
+		}
+		catch (ClassNotFoundException x){
+			System.out.println("ClassNotFound exception occurred while adding course");
+		}
+		return false;
 	}
 	/**
 	 * getter for returning batch of student

@@ -83,38 +83,26 @@ public class User implements Serializable{
 	/**
 	 * returns a user object from the database by using the user email
 	 * @param email email of the user
-	 * @param lock locks the server if set to true
 	 * @return User class object
 	 */
-	public static User getUser(String email,boolean lock) {
-        try {
-            Socket server = new Socket(BookITconstants.serverIP, BookITconstants.serverPort);
-			ObjectOutputStream out = new ObjectOutputStream(server.getOutputStream());
-            ObjectInputStream in = new ObjectInputStream(server.getInputStream());
-            if(lock){
-                out.writeObject("Hold");
-            }
-            else{
-                out.writeObject("Pass");
-            }
-            out.flush();
-            out.writeObject("GetUser");
-            out.flush();
-            out.writeObject(email);
-            out.flush();
-            User c = (User) in.readObject();
-            out.close();
-            in.close();
-            server.close();
-            return c;
-        }
-        catch (IOException e){
-            System.out.println("IO exception occurred while writing to server");
-        }
-        catch (ClassNotFoundException x){
-            System.out.println("ClassNotFound exception occurred while reading from server");
-        }
-        return null;
+	public static User getUser(String email) {
+		ObjectInputStream in = null;
+		try{
+			in = new ObjectInputStream(new FileInputStream("./src/AppData/User/"+email+".txt"));
+			return (User)in.readObject();
+		}
+		catch (Exception e){
+			return null;
+		}
+		finally {
+			try {
+				if (in != null)
+					in.close();
+			}
+			catch(IOException f){
+				;
+			}
+		}
 	}
 	/**
 	 * authenticates a user by checking the password typed and the real password of the 
@@ -140,7 +128,7 @@ public class User implements Serializable{
 					boolean b=newPassword.matches("[A-Za-z0-9]+");
 					if(b) {
 						Password=newPassword;
-						serialize(true);
+						serialize();
 						this.setActiveUser();
 						return true;
 					}
@@ -150,30 +138,23 @@ public class User implements Serializable{
 	}
 	/**
 	 * serializes a user back to the server database
-	 * @param lock takes a lock on the server if set to true
 	 */
-	public void serialize(Boolean lock) {
-        try {
-            Socket server = new Socket(BookITconstants.serverIP, BookITconstants.serverPort);
-            ObjectOutputStream out = new ObjectOutputStream(server.getOutputStream());
-            ObjectInputStream in = new ObjectInputStream(server.getInputStream());
-            if(lock){
-                out.writeObject("Hold");
-            }
-            else{
-                out.writeObject("Pass");
-            }
-            out.flush();
-            out.writeObject("WriteUser");
-            out.flush();
-            out.writeObject(this);
-            out.close();
-            in.close();
-            server.close();
-        }
-        catch (IOException e){
-            System.out.println("IO exception occured while writing to server");
-        }
+	public void serialize(){
+		try{
+			ObjectOutputStream out = null;
+			try{
+				out = new ObjectOutputStream(new FileOutputStream("./src/AppData/User/"+this.getEmail().getEmailID()+".txt", false));
+				out.writeObject(this);
+			}
+			finally {
+				if(out!=null){
+					out.close();
+				}
+			}
+		}
+		catch (IOException e){
+			System.out.println("file not found");
+		}
 	}
 	/**
 	 * used to logout a user currently logged in

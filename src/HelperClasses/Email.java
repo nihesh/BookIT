@@ -38,7 +38,7 @@ public class Email implements Serializable{
 			}
 		}
 		String y=x.toString();
-		User temp100=User.getUser(y, false);
+		User temp100=User.getUser(y);
 		boolean exists=true;
 		if(temp100==null) {
 			exists=false;
@@ -73,7 +73,7 @@ public class Email implements Serializable{
 		}
 		String y=x.toString();
 		
-		User temp=User.getUser(y, false);
+		User temp=User.getUser(y);
 		if(temp==null) {
 			return false;
 		}

@@ -152,64 +152,7 @@ public class Admin extends User{
 		return null;
 	}
 	/**
-	 * de-serializes all the requests from the database.
-	 * @param lock takes a lock on server if set to true
-	 * @return  priority queue of requests
-	 * @throws FileNotFoundException file not found 
-	 * @throws IOException IO exception 
-	 * @throws ClassNotFoundException de-serialize issue
-	 */
-	@SuppressWarnings("unchecked")
-	public static PriorityQueue<ArrayList<Reservation>> deserializeRequestsQueue(Boolean lock) throws FileNotFoundException, IOException, ClassNotFoundException {
-		Socket server = new Socket(BookITconstants.serverIP, BookITconstants.serverPort);
-		ObjectOutputStream out = new ObjectOutputStream(server.getOutputStream());
-		ObjectInputStream in = new ObjectInputStream(server.getInputStream());
-		if(lock){
-			out.writeObject("Hold");
-		}
-		else{
-			out.writeObject("Pass");
-		}
-		out.flush();
-		out.writeObject("ReadRequest");
-		out.flush();
-		PriorityQueue<ArrayList<Reservation>> c = (PriorityQueue<ArrayList<Reservation>>) in.readObject();
-		out.close();
-		in.close();
-		server.close();
-		return c;
-	}
-	/**
-	 * Serialize the requests queue
-	 * @param r The priority queue to be serialised
-	 * @param lock takes lock on server if true
-	 */
-	public static void serializeRequestsQueue(PriorityQueue<ArrayList<Reservation>> r, Boolean lock) {
-		try {
-			Socket server = new Socket(BookITconstants.serverIP, BookITconstants.serverPort);
-			ObjectOutputStream out = new ObjectOutputStream(server.getOutputStream());
-			ObjectInputStream in = new ObjectInputStream(server.getInputStream());
-			if(lock){
-				out.writeObject("Hold");
-			}
-			else{
-				out.writeObject("Pass");
-			}
-			out.flush();
-			out.writeObject("WriteRequest");
-			out.flush();
-			out.writeObject(r);
-			out.close();
-			in.close();
-			server.close();
-		}
-		catch (IOException e){
-			System.out.println("IO exception occured while writing to server");
-		}
-	}
-	/**
 	 * returns the top request in the priority queue
-	 * see also {@link #deserializeRequestsQueue(Boolean)}
 	 * @return The top request; an array list of reservation objects
 	 */
 	public ArrayList<Reservation> getRequest(Boolean lock){
@@ -242,8 +185,6 @@ public class Admin extends User{
 	}
 	/**
 	 * accepts the top request in the request queue
-	 *see also {@link #deserializeRequestsQueue(Boolean)}
-	 *see also {@link #serializeRequestsQueue(PriorityQueue, Boolean)} 
 	 * @return true if accepted and false if not able to accept because of time table clashes
 	 */
 	public boolean acceptRequest(Boolean lock){
@@ -276,8 +217,6 @@ public class Admin extends User{
 	}
 	/**
 	 * rejects the request at top of the queue
-	 * see also{@link #deserializeRequestsQueue(Boolean)}
-	 * see also{@link #serializeRequestsQueue(PriorityQueue, Boolean)} 
 	 * @return true if requests gets requested, false for handling empty parameters
 	 */
 	public boolean rejectRequest(Boolean lock){
@@ -327,7 +266,7 @@ public class Admin extends User{
 				out.writeObject("Pass");
 			}
 			out.flush();
-			out.writeObject("BookingCancelNotification");
+			out.writeObject("admin_BookingCancelNotification");
 			out.flush();
 			out.writeObject(queryDate);
 			out.flush();
@@ -340,17 +279,10 @@ public class Admin extends User{
 			out.close();
 			in.close();
 			server.close();
+			return true;
 		}
 		catch(IOException e){
 			System.out.println("IO Exception occurred while cancelling room");
-		}
-		Room temp=Room.deserializeRoom(RoomID, false);
-		Reservation r=temp.getSchedule(queryDate)[slotID];
-		temp.deleteReservation(queryDate, slotID);
-		Course c=r.getCourse();
-		if(c!=null) {
-			c.deleteReservation(queryDate, slotID,r.getTopGroup());
-			return true;
 		}
 		return false;
 	}
