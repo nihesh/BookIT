@@ -87,24 +87,35 @@ public class User implements Serializable{
 	 * @param email email of the user
 	 * @return User class object
 	 */
-	public static User getUser(String email) {
-		ObjectInputStream in = null;
-		try{
-			in = new ObjectInputStream(new FileInputStream("./src/AppData/User/"+email+".txt"));
-			return (User)in.readObject();
-		}
-		catch (Exception e){
-			return null;
-		}
-		finally {
-			try {
-				if (in != null)
-					in.close();
+	public static User getUser(String email,boolean lock) {
+		try {
+			Socket server = new Socket(BookITconstants.serverIP, BookITconstants.serverPort);
+			ObjectOutputStream out = new ObjectOutputStream(server.getOutputStream());
+			ObjectInputStream in = new ObjectInputStream(server.getInputStream());
+			if(lock){
+				out.writeObject("Hold");
 			}
-			catch(IOException f){
-				;
+			else{
+				out.writeObject("Pass");
 			}
+			out.flush();
+			out.writeObject("GetUser");
+			out.flush();
+			out.writeObject(email);
+			out.flush();
+			User c = (User) in.readObject();
+			out.close();
+			in.close();
+			server.close();
+			return c;
 		}
+		catch (IOException e){
+			System.out.println("IO exception occurred while writing to server");
+		}
+		catch (ClassNotFoundException x){
+			System.out.println("ClassNotFound exception occurred while reading from server");
+		}
+		return null;
 	}
 	/**
 	 * authenticates a user by checking the password typed and the real password of the 
@@ -165,21 +176,27 @@ public class User implements Serializable{
 	/**
 	 * serializes a user back to the server database
 	 */
-	public void serialize(){
-		try{
-			ObjectOutputStream out = null;
-			try{
-				out = new ObjectOutputStream(new FileOutputStream("./src/AppData/User/"+this.getEmail().getEmailID()+".txt", false));
-				out.writeObject(this);
+	public void serialize(Boolean lock) {
+		try {
+			Socket server = new Socket(BookITconstants.serverIP, BookITconstants.serverPort);
+			ObjectOutputStream out = new ObjectOutputStream(server.getOutputStream());
+			ObjectInputStream in = new ObjectInputStream(server.getInputStream());
+			if(lock){
+				out.writeObject("Hold");
 			}
-			finally {
-				if(out!=null){
-					out.close();
-				}
+			else{
+				out.writeObject("Pass");
 			}
+			out.flush();
+			out.writeObject("WriteUser");
+			out.flush();
+			out.writeObject(this);
+			out.close();
+			in.close();
+			server.close();
 		}
 		catch (IOException e){
-			System.out.println("file not found");
+			System.out.println("IO exception occured while writing to server");
 		}
 	}
 	/**

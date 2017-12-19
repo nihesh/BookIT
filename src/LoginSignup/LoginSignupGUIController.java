@@ -267,7 +267,7 @@ public class LoginSignupGUIController {
 	 * button handler in login pane after entering password
 	 */
 	private void Login_NEXT2() {
-		user=User.getUser(email.getEmailID());
+		user=User.getUser(email.getEmailID(), false);
 		if(user.authenticate(Login_password.getText())) {
 			if(Login_password.getStyleClass().contains("text-field2")) {
 				Login_password.getStyleClass().remove("text-field2");
@@ -437,7 +437,7 @@ public class LoginSignupGUIController {
 			else {
 				user=new Admin(user.getName(), user.getPassword(), user.getEmail(), user.getUsertype());
 			}
-			user.serialize();
+			user.serialize(false);
 		Signup_TranslateRight();
 		AccCre.setVisible(true);
 		}

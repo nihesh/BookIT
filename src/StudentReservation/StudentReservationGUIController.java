@@ -321,43 +321,21 @@ public class StudentReservationGUIController implements Initializable{
         timetableprocessing = true;
         TimeTablePane.setVisible(true);
         ArrayList<String> myCourses = activeUser.getMyCourses();
-        ArrayList<Course> courseObjects = new ArrayList<>();
         FadeTransition appear = new FadeTransition(Duration.millis(1000), TimeTablePane);
         appear.setFromValue(0);
         appear.setToValue(1);
         appear.play();
-        for(int i=0;i<myCourses.size();i++){
-            courseObjects.add(Course.deserializeCourse(myCourses.get(i)));
-        }
-        Reservation[] listOfReservations = new Reservation[30];
+        Reservation[] listOfReservations = Course.getStudentTT(activeDate, myCourses, false);
         String date = Integer.toString(activeDate.getDayOfMonth());
         if(date.length() == 1){
             date="0"+date;
         }
         dateLabel.setText(date+"-"+activeDate.getMonthValue()+"-"+activeDate.getYear());
         dateLabel.setFont(new Font(24));
-        for(int j=0;j<28;j++) {
-            listOfReservations[j] = null;
-            for (int i = 0; i < courseObjects.size(); i++) {
-                Course c = courseObjects.get(i);
-                if (c.getSchedule(activeDate)[j] != null) {
-                    if (listOfReservations[j] == null) {
-                        listOfReservations[j] = c.getSchedule(activeDate)[j];
-                    }
-                    else if (c.getSchedule(activeDate)[j].getType().equals("Lecture")) {
-                        listOfReservations[j] = c.getSchedule(activeDate)[j];
-                    }
-                    else if (!listOfReservations[j].getType().equals("Lecture") && c.getSchedule(activeDate)[j].getType().equals("Lab")) {
-                        listOfReservations[j] = c.getSchedule(activeDate)[j];
-                    }
-                }
-            }
-        }
         for(int i=0;i<courseSlotButtons.size();i++){
             if(listOfReservations[i] != null){
                 courseSlotButtons.get(i).setDisable(false);
-                Course c = Course.deserializeCourse(listOfReservations[i].getCourseName());
-                courseSlotButtons.get(i).setText(c.getAcronym());
+                courseSlotButtons.get(i).setText(Course.getCourseAcronym(listOfReservations[i].getCourseName(), false));
             }
             else{
                 courseSlotButtons.get(i).setDisable(true);
@@ -624,22 +602,21 @@ public class StudentReservationGUIController implements Initializable{
         ArrayList<String> myCourses = activeUser.getMyCourses();
         Reservation r = null;
         for(int i=0;i<myCourses.size();i++){
-            Course c = Course.deserializeCourse(myCourses.get(i));
-            if(c.getSchedule(activeDate)[Reservation.getSlotID(curLabel.getText())]!=null){
+            Reservation temp = Course.getReservation(myCourses.get(i), activeDate, Reservation.getSlotID(curLabel.getText()), false);
+            if(temp!=null){
                 if(r == null){
-                    r = c.getSchedule(activeDate)[Reservation.getSlotID(curLabel.getText())];
+                    r = temp;
                 }
-                else if(c.getSchedule(activeDate)[Reservation.getSlotID(curLabel.getText())].getType().equals("Lecture")){
-                    r = c.getSchedule(activeDate)[Reservation.getSlotID(curLabel.getText())];
+                else if(temp.getType().equals("Lecture")){
+                    r = temp;
                 }
-                else if(!r.getType().equals("Lecture") && c.getSchedule(activeDate)[Reservation.getSlotID(curLabel.getText())].getType().equals("Lab")){
-                    r = c.getSchedule(activeDate)[Reservation.getSlotID(curLabel.getText())];
+                else if(!r.getType().equals("Lecture") && temp.getType().equals("Lab")){
+                    r = temp;
                 }
             }
         }
         if(r!=null) {
-            Course c = Course.deserializeCourse(r.getCourseName());
-            String facultyEmail = c.getInstructorEmail();
+            String facultyEmail = Course.getCourseFaculty(r.getCourseName(), false);
             if(facultyEmail.equals("")){
                 facultyEmail="~~~~";
             }
@@ -673,7 +650,7 @@ public class StudentReservationGUIController implements Initializable{
         if(bookings[Reservation.getSlotID(curLabel.getText())]!=null) {
             String facultyName="~~~~";
             if (!bookings[Reservation.getSlotID(curLabel.getText())].getFacultyEmail(false).equals("")){
-                Faculty f = (Faculty)User.getUser(bookings[Reservation.getSlotID(curLabel.getText())].getFacultyEmail(false));
+                Faculty f = (Faculty)User.getUser(bookings[Reservation.getSlotID(curLabel.getText())].getFacultyEmail(false), false);
                 facultyName = f.getName();
             }
             slotInfoFaculty.setText(facultyName);
@@ -939,8 +916,7 @@ public class StudentReservationGUIController implements Initializable{
             chosenFaculty = "";
         }
         else{
-            courseObject = Course.deserializeCourse(chosenCourse);
-            chosenFaculty = courseObject.getInstructorEmail();
+            chosenFaculty = Course.getCourseFaculty(chosenCourse, false);
         }
         String chosenMessage;
         chosenMessage = requestMessage.getText();

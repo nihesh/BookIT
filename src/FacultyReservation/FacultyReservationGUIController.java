@@ -249,8 +249,8 @@ public class FacultyReservationGUIController implements Initializable{
         ArrayList<String> items = new ArrayList<>();
         ArrayList<String> allCourses = Course.getAllCourses();
         for(int i=0;i<allCourses.size();i++){
-            Course c = Course.deserializeCourse(allCourses.get(i));
-            if(c.getInstructorEmail().equals("")){
+            String email = Course.getCourseFaculty(allCourses.get(i), false);
+            if(email.equals("")){
                 items.add(allCourses.get(i));
             }
         }
@@ -291,8 +291,7 @@ public class FacultyReservationGUIController implements Initializable{
         }
         for(int i=0;i<selectedCourses.size();i++){
             activeUser.addCourse(selectedCourses.get(i), false);
-            Course c = Course.deserializeCourse(selectedCourses.get(i));
-            c.setInstructor(activeUser.getEmail().getEmailID(), false);
+            Course.setInstructor(selectedCourses.get(i), activeUser.getEmail().getEmailID(), false);
         }
         loadCourses();
         leftPane.setDisable(false);
@@ -534,7 +533,7 @@ public class FacultyReservationGUIController implements Initializable{
         if(bookings[Reservation.getSlotID(curLabel.getText())]!=null) {
             String facultyName="~~~~";
             if (!bookings[Reservation.getSlotID(curLabel.getText())].getFacultyEmail(false).equals("")){
-                Faculty f = (Faculty)User.getUser(bookings[Reservation.getSlotID(curLabel.getText())].getFacultyEmail(false));
+                Faculty f = (Faculty)User.getUser(bookings[Reservation.getSlotID(curLabel.getText())].getFacultyEmail(false), false);
                 facultyName = f.getName();
             }
             slotInfoFaculty.setText(facultyName);

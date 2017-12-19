@@ -603,7 +603,7 @@ public class AdminReservationGUIController implements Initializable{
             cancelSlotBooking.setDisable(false);
             String facultyName="~~~~";
             if (!bookings[Reservation.getSlotID(curLabel.getText())].getFacultyEmail(false).equals("")){
-                Faculty f = (Faculty)User.getUser(bookings[Reservation.getSlotID(curLabel.getText())].getFacultyEmail(false));
+                Faculty f = (Faculty)User.getUser(bookings[Reservation.getSlotID(curLabel.getText())].getFacultyEmail(false), false);
                 facultyName = f.getName();
             }
             slotInfoFaculty.setText(facultyName);
@@ -862,8 +862,7 @@ public class AdminReservationGUIController implements Initializable{
             chosenFaculty = "";
         }
         else{
-            courseObject = Course.deserializeCourse(chosenCourse);
-            chosenFaculty = courseObject.getInstructorEmail();
+            chosenFaculty = Course.getCourseFaculty(chosenCourse, false);
         }
         String chosenMessage;
         chosenMessage = requestMessage.getText();

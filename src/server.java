@@ -72,6 +72,52 @@ class ConnectionHandler implements Runnable{
         return courses;
     }
     /**
+     * serialise a user object
+     * @param u the user(could be faculty,admin or student)
+     */
+    public void serializeUser(User u){
+        try{
+            ObjectOutputStream out = null;
+            try{
+                out = new ObjectOutputStream(new FileOutputStream("./src/AppData/User/"+u.getEmail().getEmailID()+".txt", false));
+                out.writeObject(u);
+            }
+            finally {
+                if(out!=null){
+                    out.close();
+                }
+            }
+
+        }
+        catch (IOException e){
+            System.out.println("file not found");
+        }
+    }
+    /**
+     * deserialise a user given user email
+     * @param email email of user
+     * @return user object see also{@link User}
+     */
+    public User getUser(String email){
+        ObjectInputStream in = null;
+        try{
+            in = new ObjectInputStream(new FileInputStream("./src/AppData/User/"+email+".txt"));
+            return (User)in.readObject();
+        }
+        catch (Exception e){
+            return null;
+        }
+        finally {
+            try {
+                if (in != null)
+                    in.close();
+            }
+            catch(IOException f){
+                ;
+            }
+        }
+    }
+    /**
      * serialise the joincode hashmap to local database
      * @param r the join code hashmap
      */
@@ -189,7 +235,7 @@ class ConnectionHandler implements Runnable{
         Reservation r=temp.getSchedule(queryDate)[slotID];
         String recipient = r.getReserverEmail();
         String GreetText="Hello User";
-        User x=User.getUser(recipient);
+        User x=getUser(recipient);
         if(x!=null) {
             GreetText = "Hello "+x.getName();
         }
@@ -374,9 +420,9 @@ class ConnectionHandler implements Runnable{
         return false;
     }
     public void faculty_addCourse(String email, String course){
-        Faculty f = (Faculty) User.getUser(email);
+        Faculty f = (Faculty) getUser(email);
         f.getCourses().add(course);
-        f.serialize();
+        serializeUser(f);
     }
     public boolean sendReservationRequest(ArrayList<Reservation> r) {
         PriorityQueue<ArrayList<Reservation>> p = null;
@@ -421,7 +467,7 @@ class ConnectionHandler implements Runnable{
     }
     public boolean student_addCourse(String c, String email) {
         Course c2=Course.deserializeCourse(c);
-        Student user = (Student) User.getUser(email);
+        Student user = (Student) getUser(email);
         for (String string : user.getMyCourses()) {
             Course temp=Course.deserializeCourse(string);
             if(c2.checkCollision(temp)) {
@@ -429,7 +475,7 @@ class ConnectionHandler implements Runnable{
             }
         }
         user.getMyCourses().add(c);
-        user.serialize();
+        serializeUser(user);
         return true;
     }
     public boolean studentAndFaculty_cancelBooking(LocalDate queryDate, int slotID, String RoomID) {
@@ -445,13 +491,13 @@ class ConnectionHandler implements Runnable{
         return true;
     }
     public boolean changePassword(String email, String oldPassword, String newPassword) {
-        User u = User.getUser(email);
+        User u = getUser(email);
         if(u.authenticate(oldPassword)) {
             if(newPassword.length()!=0) {
                 boolean b=newPassword.matches("[A-Za-z0-9]+");
                 if(b) {
                     u.setPassword(newPassword);
-                    u.serialize();
+                    serializeUser(u);
                     return true;
                 }
             }
@@ -459,7 +505,7 @@ class ConnectionHandler implements Runnable{
         return false;
     }
     public boolean validateLogin(String y) {
-        User temp=User.getUser(y);
+        User temp=getUser(y);
         if(temp==null) {
             return false;
         }
@@ -493,6 +539,43 @@ class ConnectionHandler implements Runnable{
         else{
             return true;
         }
+    }
+    public String course_getFaculty(String course){
+        Course c = Course.deserializeCourse(course);
+        return c.getInstructorEmail();
+    }
+    public String course_getAcronym(String course){
+        Course c = Course.deserializeCourse(course);
+        return c.getAcronym();
+    }
+    public Reservation[] course_getStudentTT(LocalDate activeDate, ArrayList<String> myCourses){
+        ArrayList<Course> courseObjects = new ArrayList<>();
+        for(int i=0;i<myCourses.size();i++){
+            courseObjects.add(Course.deserializeCourse(myCourses.get(i)));
+        }
+        Reservation[] listOfReservations = new Reservation[30];
+        for(int j=0;j<28;j++) {
+            listOfReservations[j] = null;
+            for (int i = 0; i < courseObjects.size(); i++) {
+                Course c = courseObjects.get(i);
+                if (c.getSchedule(activeDate)[j] != null) {
+                    if (listOfReservations[j] == null) {
+                        listOfReservations[j] = c.getSchedule(activeDate)[j];
+                    }
+                    else if (c.getSchedule(activeDate)[j].getType().equals("Lecture")) {
+                        listOfReservations[j] = c.getSchedule(activeDate)[j];
+                    }
+                    else if (!listOfReservations[j].getType().equals("Lecture") && c.getSchedule(activeDate)[j].getType().equals("Lab")) {
+                        listOfReservations[j] = c.getSchedule(activeDate)[j];
+                    }
+                }
+            }
+        }
+        return listOfReservations;
+    }
+    public Reservation course_getReservation(String course, LocalDate queryDate, int slotID){
+        Course c = Course.deserializeCourse(course);
+        return c.getSchedule(queryDate)[slotID];
     }
     public void run(){
         ObjectInputStream in=null;
@@ -537,6 +620,16 @@ class ConnectionHandler implements Runnable{
                         int slotID;
                         PriorityQueue<ArrayList<Reservation>> req;
                         switch (request) {
+                            case "GetUser":
+                                email = (String) in.readObject();
+                                u = getUser(email);
+                                out.writeObject(u);
+                                out.flush();
+                                break;
+                            case "WriteUser":
+                                u = (User) in.readObject();
+                                serializeUser(u);
+                                break;
                             case "AllCourses":
                                 ArrayList<String> arr = getAllCourses();
                                 out.writeObject(arr);
@@ -681,6 +774,29 @@ class ConnectionHandler implements Runnable{
                             case "checkRoomExistence":
                                 room = (String) in.readObject();
                                 out.writeObject(RoomExists(room));
+                                out.flush();
+                                break;
+                            case "course_getFaculty":
+                                course = (String) in.readObject();
+                                out.writeObject(course_getFaculty(course));
+                                out.flush();
+                                break;
+                            case "course_getStudentTT":
+                                queryDate = (LocalDate) in.readObject();
+                                ArrayList<String> myCourses = (ArrayList<String>) in.readObject();
+                                out.writeObject(course_getStudentTT(queryDate, myCourses));
+                                out.flush();
+                                break;
+                            case "course_getAcronym":
+                                course = (String) in.readObject();
+                                out.writeObject(course_getAcronym(course));
+                                out.flush();
+                                break;
+                            case "course_getReservation":
+                                course = (String) in.readObject();
+                                queryDate = (LocalDate) in.readObject();
+                                slotID = (int) in.readObject();
+                                out.writeObject(course_getReservation(course, queryDate, slotID));
                                 out.flush();
                                 break;
                         }

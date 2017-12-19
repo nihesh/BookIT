@@ -179,7 +179,6 @@ public class Room implements java.io.Serializable{
                     out.close();
                 }
             }
-
         }
         catch (IOException e){
             ;

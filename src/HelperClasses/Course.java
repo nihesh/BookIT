@@ -25,9 +25,161 @@ public class Course implements java.io.Serializable{
     private HashMap<LocalDate, Reservation[]> Schedule;
     /**
      * static method to get Course object corresponding to name of the course
-     * @param name of the course to deserialise
      * @return the course object
      */
+    public static Reservation[] getStudentTT(LocalDate activeDate, ArrayList<String> myCourses, Boolean lock){
+
+        try{
+            Socket server = new Socket(BookITconstants.serverIP, BookITconstants.serverPort);
+            ObjectOutputStream out = new ObjectOutputStream(server.getOutputStream());
+            ObjectInputStream in = new ObjectInputStream(server.getInputStream());
+            if(lock){
+                out.writeObject("Hold");
+            }
+            else{
+                out.writeObject("Pass");
+            }
+            out.flush();
+            out.writeObject("course_getStudentTT");
+            out.flush();
+            out.writeObject(activeDate);
+            out.flush();
+            out.writeObject(myCourses);
+            out.flush();
+            Reservation[] c = (Reservation[]) in.readObject();
+            out.close();
+            in.close();
+            server.close();
+            return c;
+        }
+        catch(IOException e){
+            System.out.println("IO Exception occurred while getting student TT");
+        }
+        catch (ClassNotFoundException c){
+            System.out.println("Class not found exception occurred while getting student TT");
+        }
+        return null;
+    }
+    public static String getCourseFaculty(String course, Boolean lock){
+        try{
+            Socket server = new Socket(BookITconstants.serverIP, BookITconstants.serverPort);
+            ObjectOutputStream out = new ObjectOutputStream(server.getOutputStream());
+            ObjectInputStream in = new ObjectInputStream(server.getInputStream());
+            if(lock){
+                out.writeObject("Hold");
+            }
+            else{
+                out.writeObject("Pass");
+            }
+            out.flush();
+            out.writeObject("course_getFaculty");
+            out.flush();
+            out.writeObject(course);
+            out.flush();
+            String c = (String) in.readObject();
+            out.close();
+            in.close();
+            server.close();
+            return c;
+        }
+        catch(IOException e){
+            System.out.println("IO Exception occurred while getting course faculty");
+        }
+        catch (ClassNotFoundException c){
+            System.out.println("Class not found exception occurred while getting course faculty");
+        }
+        return "";
+    }
+    public static String getCourseAcronym(String course, Boolean lock){
+        try{
+            Socket server = new Socket(BookITconstants.serverIP, BookITconstants.serverPort);
+            ObjectOutputStream out = new ObjectOutputStream(server.getOutputStream());
+            ObjectInputStream in = new ObjectInputStream(server.getInputStream());
+            if(lock){
+                out.writeObject("Hold");
+            }
+            else{
+                out.writeObject("Pass");
+            }
+            out.flush();
+            out.writeObject("course_getAcronym");
+            out.flush();
+            out.writeObject(course);
+            out.flush();
+            String c = (String) in.readObject();
+            out.close();
+            in.close();
+            server.close();
+            return c;
+        }
+        catch(IOException e){
+            System.out.println("IO Exception occurred while getting course acronym");
+        }
+        catch (ClassNotFoundException c){
+            System.out.println("Class not found exception occurred while getting course acronym");
+        }
+        return "";
+    }
+    public static void setInstructor(String course, String email, Boolean lock){
+        try{
+            Socket server = new Socket(BookITconstants.serverIP, BookITconstants.serverPort);
+            ObjectOutputStream out = new ObjectOutputStream(server.getOutputStream());
+            ObjectInputStream in = new ObjectInputStream(server.getInputStream());
+            if(lock){
+                out.writeObject("Hold");
+            }
+            else{
+                out.writeObject("Pass");
+            }
+            out.flush();
+            out.writeObject("setCourseInstructor");
+            out.flush();
+            out.writeObject(course);
+            out.flush();
+            out.writeObject(email);
+            out.flush();
+            out.close();
+            in.close();
+            server.close();
+        }
+        catch(IOException e){
+            System.out.println("IO Exception occurred while setting instructor");
+        }
+    }
+    public static Reservation getReservation(String course, LocalDate queryDate, int slot, Boolean lock){
+        try{
+            Socket server = new Socket(BookITconstants.serverIP, BookITconstants.serverPort);
+            ObjectOutputStream out = new ObjectOutputStream(server.getOutputStream());
+            ObjectInputStream in = new ObjectInputStream(server.getInputStream());
+            if(lock){
+                out.writeObject("Hold");
+            }
+            else{
+                out.writeObject("Pass");
+            }
+            out.flush();
+            out.writeObject("course_getReservation");
+            out.flush();
+            out.writeObject(course);
+            out.flush();
+            out.writeObject(queryDate);
+            out.flush();
+            out.writeObject(slot);
+            out.flush();
+            Reservation c = (Reservation) in.readObject();
+            out.close();
+            in.close();
+            server.close();
+            return c;
+        }
+        catch(IOException e){
+            System.out.println("IO Exception occurred while getting reservation");
+        }
+        catch (ClassNotFoundException c){
+            System.out.println("Class not found exception occurred while getting reservation");
+        }
+        return null;
+    }
     public static Course deserializeCourse(String name){
         ObjectInputStream in = null;
         try{
@@ -206,37 +358,6 @@ public class Course implements java.io.Serializable{
         }
     }
     /**
-     * setter method for setting instructor of a course
-     * @param f String describing the email of instructor
-     */
-    public void setInstructor(String f, Boolean lock){
-        this.instructorEmail = f;
-        try{
-            Socket server = new Socket(BookITconstants.serverIP, BookITconstants.serverPort);
-            ObjectOutputStream out = new ObjectOutputStream(server.getOutputStream());
-            ObjectInputStream in = new ObjectInputStream(server.getInputStream());
-            if(lock){
-                out.writeObject("Hold");
-            }
-            else{
-                out.writeObject("Pass");
-            }
-            out.flush();
-            out.writeObject("setCourseInstructor");
-            out.flush();
-            out.writeObject(this.getName());
-            out.flush();
-            out.writeObject(f);
-            out.flush();
-            out.close();
-            in.close();
-            server.close();
-        }
-        catch(IOException e){
-            System.out.println("IO Exception occurred while booking room");
-        }
-    }
-    /**
      * Adds reservation to a course on a particular date and time(30 minute slot)
      * @param date the date on which reservation is to be added
      * @param slot the time slot(integer) 
@@ -273,7 +394,17 @@ public class Course implements java.io.Serializable{
         }
         else{
             if(Schedule.get(date)[slot].getCourseName().equals(r.getCourseName())){
-                return true;
+                if(Schedule.get(date)[slot].getTopGroup() == "0"){
+                    return false;
+                }
+                System.out.println(r.getTopGroup());
+                if(r.getTopGroup() == "0"){
+                    return false;
+                }
+                if(!Schedule.get(date)[slot].getGroups().contains(r.getTopGroup())){
+                    return true;
+                }
+                return false;
             }
             else {
                 return false;
