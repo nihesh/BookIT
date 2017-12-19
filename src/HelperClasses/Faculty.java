@@ -4,7 +4,6 @@ import java.io.*;
 import java.net.Socket;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.PriorityQueue;
 
 /**
  * The faculty class derived from user class 
@@ -42,6 +41,7 @@ public class Faculty extends User{
 	 */
 	public void addCourse(String course, Boolean lock){
 		myCourses.add(course);
+		this.setActiveUser();
 		try {
 			Socket server = new Socket(BookITconstants.serverIP, BookITconstants.serverPort);
 			ObjectOutputStream out = new ObjectOutputStream(server.getOutputStream());
@@ -74,16 +74,39 @@ public class Faculty extends User{
 	 * @param RoomID room name
 	 * @return true if booking cancels, false otherwise
 	 */
-	public boolean cancelBooking(LocalDate queryDate,int slotID, String RoomID) {
-		Room temp=Room.deserializeRoom(RoomID);
-		Reservation r=temp.getSchedule(queryDate)[slotID];
-		temp.deleteReservation(queryDate, slotID);
-
-		Course c=r.getCourse();
-		if(c!=null) {
-			 c.deleteReservation(queryDate, slotID,r.getTopGroup());
+	public boolean cancelBooking(LocalDate queryDate, int slotID, String RoomID, Boolean lock) {
+		try{
+			Socket server = new Socket(BookITconstants.serverIP, BookITconstants.serverPort);
+			ObjectOutputStream out = new ObjectOutputStream(server.getOutputStream());
+			ObjectInputStream in = new ObjectInputStream(server.getInputStream());
+			if(lock){
+				out.writeObject("Hold");
+			}
+			else{
+				out.writeObject("Pass");
+			}
+			out.flush();
+			out.writeObject("studentandfaculty_cancelBooking");
+			out.flush();
+			out.writeObject(queryDate);
+			out.flush();
+			out.writeObject(slotID);
+			out.flush();
+			out.writeObject(RoomID);
+			out.flush();
+			Boolean c = (Boolean) in.readObject();
+			out.close();
+			in.close();
+			server.close();
+			return c;
 		}
-		return true;
+		catch(IOException e){
+			System.out.println("IO Exception occurred while sending reservation request");
+		}
+		catch (ClassNotFoundException c){
+			System.out.println("ClassNotFound exception occurred while sending reservation request");
+		}
+		return false;
 	}
 	/**
 	 * book a room on a date and time
@@ -92,26 +115,37 @@ public class Faculty extends User{
 	 * @param r reservation object describing details of reservation
 	 * @return true if booking successful, false otherwise
 	 */
-	public boolean bookRoom(LocalDate queryDate,int slot, Reservation r) {
-		Room room=Room.deserializeRoom(r.getRoomName());
-		Boolean addToCourse = true;
-		if(r.getCourseName().equals("")){
-			addToCourse = false;
-		}
-		Course course;
-		if(addToCourse) {
-			course = Course.deserializeCourse(r.getCourseName());
-			if(course.checkReservation(queryDate,slot,r)==true && room.checkReservation(queryDate,slot,r)==true) {
-				course.addReservation(queryDate,slot,r,true);
-				room.addReservation(queryDate,slot,r,true);
-				return true;
+	public boolean bookRoom(LocalDate queryDate,int slot, Reservation r, Boolean lock) {
+		try{
+			Socket server = new Socket(BookITconstants.serverIP, BookITconstants.serverPort);
+			ObjectOutputStream out = new ObjectOutputStream(server.getOutputStream());
+			ObjectInputStream in = new ObjectInputStream(server.getInputStream());
+			if(lock){
+				out.writeObject("Hold");
 			}
-		}
-		else{
-			if(room.checkReservation(queryDate,slot,r)==true){
-				room.addReservation(queryDate,slot,r,true);
-				return true;
+			else{
+				out.writeObject("Pass");
 			}
+			out.flush();
+			out.writeObject("adminandfaculty_bookroom");
+			out.flush();
+			out.writeObject(queryDate);
+			out.flush();
+			out.writeObject(slot);
+			out.flush();
+			out.writeObject(r);
+			out.flush();
+			Boolean c = (Boolean) in.readObject();
+			out.close();
+			in.close();
+			server.close();
+			return c;
+		}
+		catch(IOException e){
+			System.out.println("IO Exception occurred while booking room");
+		}
+		catch (ClassNotFoundException c){
+			System.out.println("Class not found exception occurred while booking room");
 		}
 		return false;
 	}

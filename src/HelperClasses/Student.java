@@ -85,7 +85,7 @@ public class Student extends User{
 				out.writeObject("Pass");
 			}
 			out.flush();
-			out.writeObject("student_cancelBooking");
+			out.writeObject("studentandfaculty_cancelBooking");
 			out.flush();
 			out.writeObject(queryDate);
 			out.flush();

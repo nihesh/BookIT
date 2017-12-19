@@ -326,7 +326,7 @@ class ConnectionHandler implements Runnable{
         serializeRequests(p);
         return true;
     }
-    public boolean admin_bookRoom(LocalDate queryDate,int slot, Reservation r) {
+    public boolean adminandfaculty_bookRoom(LocalDate queryDate,int slot, Reservation r) {
         Room room=Room.deserializeRoom(r.getRoomName());
         Boolean addToCourse = true;
         if(r.getCourseName().equals("")){
@@ -408,7 +408,7 @@ class ConnectionHandler implements Runnable{
         user.serialize();
         return true;
     }
-    public boolean student_cancelBooking(LocalDate queryDate, int slotID, String RoomID) {
+    public boolean studentAndFaculty_cancelBooking(LocalDate queryDate, int slotID, String RoomID) {
         Room temp=Room.deserializeRoom(RoomID);
         Reservation r=temp.getSchedule(queryDate)[slotID];
         temp.deleteReservation(queryDate, slotID);
@@ -417,6 +417,20 @@ class ConnectionHandler implements Runnable{
             c.deleteReservation(queryDate, slotID,r.getTopGroup());
         }
         return true;
+    }
+    public boolean changePassword(String email, String oldPassword, String newPassword) {
+        User u = User.getUser(email);
+        if(u.authenticate(oldPassword)) {
+            if(newPassword.length()!=0) {
+                boolean b=newPassword.matches("[A-Za-z0-9]+");
+                if(b) {
+                    u.setPassword(newPassword);
+                    u.serialize();
+                    return true;
+                }
+            }
+        }
+        return false;
     }
     public void run(){
         ObjectInputStream in=null;
@@ -529,11 +543,11 @@ class ConnectionHandler implements Runnable{
                                 out.writeObject(rejectRequest());
                                 out.flush();
                                 break;
-                            case "admin_bookroom":
+                            case "adminandfaculty_bookroom":
                                 queryDate = (LocalDate) in.readObject();
                                 slotID = (int) in.readObject();
                                 res = (Reservation) in.readObject();
-                                out.writeObject(admin_bookRoom(queryDate, slotID, res));
+                                out.writeObject(adminandfaculty_bookRoom(queryDate, slotID, res));
                                 out.flush();
                                 break;
                             case "faculty_addCourse":
@@ -560,11 +574,19 @@ class ConnectionHandler implements Runnable{
                                 out.writeObject(result);
                                 out.flush();
                                 break;
-                            case "student_cancelBooking":
+                            case "studentandfaculty_cancelBooking":
                                 queryDate = (LocalDate) in.readObject();
                                 slotID = (int) in.readObject();
                                 RoomID = (String) in.readObject();
-                                result = student_cancelBooking(queryDate, slotID, RoomID);
+                                result = studentAndFaculty_cancelBooking(queryDate, slotID, RoomID);
+                                out.writeObject(result);
+                                out.flush();
+                                break;
+                            case "changePassword":
+                                email = (String) in.readObject();
+                                String oldPass = (String)  in.readObject();
+                                String newPass = (String)  in.readObject();
+                                result = changePassword(email, oldPass, newPass);
                                 out.writeObject(result);
                                 out.flush();
                                 break;

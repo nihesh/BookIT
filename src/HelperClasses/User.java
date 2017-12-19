@@ -17,7 +17,7 @@ public class User implements Serializable{
 	private static final long serialVersionUID = 1L;
 	protected String Name;
 	private String Password; 	//User account password
-	protected Email emailID; 		//Email of user
+	protected Email emailID; 	//Email of user
 	protected String userType;	//Student, Faculty and Admin
 	/**
 	 * constructor for the user class
@@ -31,7 +31,9 @@ public class User implements Serializable{
 		Password = password;
 		this.emailID = emailID;
 		this.userType = userType;
-		
+	}
+	public void setPassword(String password){
+		Password = password;
 	}
 	/**
 	 * sets the user object as the active user in the databse and opens the account of the user
@@ -67,7 +69,7 @@ public class User implements Serializable{
             return (User)in.readObject();
         }
         catch (Exception e){
-            System.out.println("Exception occured while deserialising User");
+            System.out.println("Exception occured while deserialising ActiveUser");
             return null;
         }
         finally {
@@ -122,17 +124,41 @@ public class User implements Serializable{
 	 * @param newPassword the new password
 	 * @return true if successful, false otherwise
 	 */
-	public boolean changePassword(String oldPassword, String newPassword) {
-		if(authenticate(oldPassword)) {
-			if(newPassword.length()!=0) {
-					boolean b=newPassword.matches("[A-Za-z0-9]+");
-					if(b) {
-						Password=newPassword;
-						serialize();
-						this.setActiveUser();
-						return true;
-					}
+	public boolean changePassword(String oldPassword, String newPassword, Boolean lock) {
+		try{
+			Socket server = new Socket(BookITconstants.serverIP, BookITconstants.serverPort);
+			ObjectOutputStream out = new ObjectOutputStream(server.getOutputStream());
+			ObjectInputStream in = new ObjectInputStream(server.getInputStream());
+			if(lock){
+				out.writeObject("Hold");
+			}
+			else{
+				out.writeObject("Pass");
+			}
+			out.flush();
+			out.writeObject("changePassword");
+			out.flush();
+			out.writeObject(this.getEmail().getEmailID());
+			out.flush();
+			out.writeObject(oldPassword);
+			out.flush();
+			out.writeObject(newPassword);
+			out.flush();
+			Boolean c = (Boolean) in.readObject();
+			out.close();
+			in.close();
+			server.close();
+			if(c){
+				this.setPassword(newPassword);
+				this.setActiveUser();
+			}
+			return c;
 		}
+		catch(IOException e){
+			System.out.println("IO Exception occurred while booking room");
+		}
+		catch (ClassNotFoundException c){
+			System.out.println("Class not found exception occurred while booking room");
 		}
 		return false;
 	}

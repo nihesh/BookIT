@@ -320,7 +320,7 @@ public class FacultyReservationGUIController implements Initializable{
      * Event handler for deleting a booked reservation
      */
     public void cancelSlotBooking(){
-        activeUser.cancelBooking(activeDate,Reservation.getSlotID(currentlyShowingSlot),activeRoom);
+        activeUser.cancelBooking(activeDate,Reservation.getSlotID(currentlyShowingSlot),activeRoom, false);
         Button current = slotButtons.get(Reservation.getSlotID(currentlyShowingSlot));
         current.setDisable(false);
         current.setText("Free");
@@ -366,7 +366,7 @@ public class FacultyReservationGUIController implements Initializable{
         String newPassString = newPass.getText();
         String renewPassString = renewPass.getText();
         if(newPassString.equals(renewPassString)) {
-            Boolean status = activeUser.changePassword(oldPassString, newPassString);
+            Boolean status = activeUser.changePassword(oldPassString, newPassString, false);
             if(status) {
                 changepassProcessing = false;
                 leftPane.setDisable(false);
@@ -874,7 +874,7 @@ public class FacultyReservationGUIController implements Initializable{
             listOfReservations.add(r);
         }                                                   // GUI Integration Ends
         for(int i=0;i<listOfReservations.size();i++){
-            activeUser.bookRoom(listOfReservations.get(i).getTargetDate(), listOfReservations.get(i).getReservationSlot(), listOfReservations.get(i));
+            activeUser.bookRoom(listOfReservations.get(i).getTargetDate(), listOfReservations.get(i).getReservationSlot(), listOfReservations.get(i), false);
         }
         closeReservationPane();
         flyRight();
@@ -901,7 +901,7 @@ public class FacultyReservationGUIController implements Initializable{
             listOfReservations.add(r);
         }                                                   // GUI Integration Ends
         for(int i=0;i<listOfReservations.size();i++){
-            activeUser.bookRoom(listOfReservations.get(i).getTargetDate(), listOfReservations.get(i).getReservationSlot(), listOfReservations.get(i));
+            activeUser.bookRoom(listOfReservations.get(i).getTargetDate(), listOfReservations.get(i).getReservationSlot(), listOfReservations.get(i), false);
         }
         closeReservationPane();
         flyRight();

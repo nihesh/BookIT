@@ -474,7 +474,7 @@ public class StudentReservationGUIController implements Initializable{
         String newPassString = newPass.getText();
         String renewPassString = renewPass.getText();
         if(newPassString.equals(renewPassString)) {
-            Boolean status = activeUser.changePassword(oldPassString, newPassString);
+            Boolean status = activeUser.changePassword(oldPassString, newPassString, false);
             if(status) {
                 changepassProcessing = false;
                 leftPane.setDisable(false);

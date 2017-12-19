@@ -305,7 +305,7 @@ public class Admin extends User{
 				out.writeObject("Pass");
 			}
 			out.flush();
-			out.writeObject("admin_bookroom");
+			out.writeObject("adminandfaculty_bookroom");
 			out.flush();
 			out.writeObject(queryDate);
 			out.flush();
