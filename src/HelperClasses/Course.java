@@ -20,13 +20,12 @@ public class Course implements java.io.Serializable{
     
     private String name;
     private String acronym;
-    private String instructorEmail;
+    public String instructorEmail;
     private ArrayList<String> postCondition;
     private HashMap<LocalDate, Reservation[]> Schedule;
     /**
      * static method to get Course object corresponding to name of the course
      * @param name of the course to deserialise
-     * @param lock takes lock on server if set true
      * @return the course object
      */
     public static Course deserializeCourse(String name){
@@ -210,32 +209,50 @@ public class Course implements java.io.Serializable{
      * setter method for setting instructor of a course
      * @param f String describing the email of instructor
      */
-    public void setInstructor(String f){
+    public void setInstructor(String f, Boolean lock){
         this.instructorEmail = f;
-        serialize();
+        try{
+            Socket server = new Socket(BookITconstants.serverIP, BookITconstants.serverPort);
+            ObjectOutputStream out = new ObjectOutputStream(server.getOutputStream());
+            ObjectInputStream in = new ObjectInputStream(server.getInputStream());
+            if(lock){
+                out.writeObject("Hold");
+            }
+            else{
+                out.writeObject("Pass");
+            }
+            out.flush();
+            out.writeObject("setCourseInstructor");
+            out.flush();
+            out.writeObject(this.getName());
+            out.flush();
+            out.writeObject(f);
+            out.flush();
+            out.close();
+            in.close();
+            server.close();
+        }
+        catch(IOException e){
+            System.out.println("IO Exception occurred while booking room");
+        }
     }
     /**
      * Adds reservation to a course on a particular date and time(30 minute slot)
      * @param date the date on which reservation is to be added
      * @param slot the time slot(integer) 
      * @param r reservation object. See also{@link Reservation}
-     * @param serialize if serialize is set to true, the object is serialized
      * @return true if added else false
      */
-    public Boolean addReservation(LocalDate date, int slot, Reservation r, Boolean serialize){
+    public Boolean addReservation(LocalDate date, int slot, Reservation r){
         if(Schedule.get(date)[slot] == null){
             r.setTargetDate(date);
             Schedule.get(date)[slot] = r;
-            if(serialize)
-                serialize();
             return true;
         }
         else{
             if(Schedule.get(date)[slot].getCourseName().equals(r.getCourseName())){
                 r.setTargetDate(date);
                 Schedule.get(date)[slot].addGroup(r.getTopGroup(),r.getVenueName(),r.getMessageWithoutVenue());
-                if(serialize)
-                    serialize();
                 return true;
             }
             else {
@@ -278,7 +295,6 @@ public class Course implements java.io.Serializable{
             r.deleteGroup(group);
             Schedule.get(date)[slot] = r;
         }
-        serialize();
     }
     
 }

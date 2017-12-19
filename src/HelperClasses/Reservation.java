@@ -1,5 +1,9 @@
 package HelperClasses;
 
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.net.Socket;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -82,12 +86,36 @@ public class Reservation implements java.io.Serializable{
      * get Faculty email from reservation
      * @return String
      */
-    public String getFacultyEmail(){
-        Course c = Course.deserializeCourse(this.course);
-        if(c==null){
-            return "";
+    public String getFacultyEmail(Boolean lock){
+
+        try{
+            Socket server = new Socket(BookITconstants.serverIP, BookITconstants.serverPort);
+            ObjectOutputStream out = new ObjectOutputStream(server.getOutputStream());
+            ObjectInputStream in = new ObjectInputStream(server.getInputStream());
+            if(lock){
+                out.writeObject("Hold");
+            }
+            else{
+                out.writeObject("Pass");
+            }
+            out.flush();
+            out.writeObject("reservation_facultyEmail");
+            out.flush();
+            out.writeObject(course);
+            out.flush();
+            String c = (String) in.readObject();
+            out.close();
+            in.close();
+            server.close();
+            return c;
         }
-        return c.getInstructorEmail();
+        catch(IOException e){
+            System.out.println("IO Exception occurred while booking room");
+        }
+        catch (ClassNotFoundException c){
+            System.out.println("Class not found exception occurred while booking room");
+        }
+        return "";
     }
     /**
      * returns slot id of reservation
@@ -173,36 +201,6 @@ public class Reservation implements java.io.Serializable{
      */
     public String getCourseName(){
         return this.course;
-    }
-    /**
-     * getter for extracting course object from course name. Returns null if blank
-     * @return Course object {@link Course}
-     */
-    public Course getCourse(){
-        if(course.equals("")){
-            return null;
-        }
-        return Course.deserializeCourse(course);
-    }
-    /**
-     * get Faculty object from faculty email. Returns null if blank
-     * @return Faculty object {@link Faculty}
-     */
-    public Faculty getFaculty(){
-        if(facultyEmail.equals("")){
-            return null;
-        }
-        return (Faculty)User.getUser(this.facultyEmail);
-    }
-    /**
-     * get Room object from room string
-     * @return Room object {@link Room}
-     */
-    public Room getRoom(){
-        if(room.equals("")){
-            return null;
-        }
-        return Room.deserializeRoom(room);
     }
     /**
      * add a group to a reservation object

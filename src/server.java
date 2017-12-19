@@ -179,9 +179,11 @@ class ConnectionHandler implements Runnable{
         Room temp=Room.deserializeRoom(RoomID);
         Reservation r=temp.getSchedule(queryDate)[slotID];
         temp.deleteReservation(queryDate, slotID);
-        Course c=r.getCourse();
+        temp.serialize();
+        Course c=Course.deserializeCourse(r.getCourseName());
         if(c!=null) {
             c.deleteReservation(queryDate, slotID,r.getTopGroup());
+            c.serialize();
         }
     }
     public String generateJoincode(String type){
@@ -308,9 +310,11 @@ class ConnectionHandler implements Runnable{
         serializeRequests(p);
         if(r!=null) {
             for (Reservation reservation : r) {
-                temp.addReservation(r.get(0).getTargetDate(), reservation.getReservationSlot(), reservation, true);
+                temp.addReservation(r.get(0).getTargetDate(), reservation.getReservationSlot(), reservation);
+                temp.serialize();
                 if(ctemp!=null) {
-                    ctemp.addReservation(r.get(0).getTargetDate(), reservation.getReservationSlot(), reservation, true);
+                    ctemp.addReservation(r.get(0).getTargetDate(), reservation.getReservationSlot(), reservation);
+                    ctemp.serialize();
                 }
             }
         }
@@ -336,14 +340,17 @@ class ConnectionHandler implements Runnable{
         if(addToCourse) {
             course = Course.deserializeCourse(r.getCourseName());
             if(course.checkReservation(queryDate,slot,r)==true && room.checkReservation(queryDate,slot,r)==true) {
-                course.addReservation(queryDate,slot,r,true);
-                room.addReservation(queryDate,slot,r,true);
+                course.addReservation(queryDate,slot,r);
+                course.serialize();
+                room.addReservation(queryDate,slot,r);
+                room.serialize();
                 return true;
             }
         }
         else{
             if(room.checkReservation(queryDate,slot,r)==true){
-                room.addReservation(queryDate,slot,r,true);
+                room.addReservation(queryDate,slot,r);
+                room.serialize();
                 return true;
             }
         }
@@ -412,9 +419,11 @@ class ConnectionHandler implements Runnable{
         Room temp=Room.deserializeRoom(RoomID);
         Reservation r=temp.getSchedule(queryDate)[slotID];
         temp.deleteReservation(queryDate, slotID);
-        Course c=r.getCourse();
+        temp.serialize();
+        Course c=Course.deserializeCourse(r.getCourseName());
         if(c!=null) {
             c.deleteReservation(queryDate, slotID,r.getTopGroup());
+            c.serialize();
         }
         return true;
     }
@@ -431,6 +440,42 @@ class ConnectionHandler implements Runnable{
             }
         }
         return false;
+    }
+    public boolean validateLogin(String y) {
+        User temp=User.getUser(y);
+        if(temp==null) {
+            return false;
+        }
+        return true;
+    }
+    public void setInstructor(String f, String course){
+        Course c = Course.deserializeCourse(course);
+        c.instructorEmail = f;
+        c.serialize();
+    }
+    public String reservation_facultyEmail(String course) {
+        Course c = Course.deserializeCourse(course);
+        if (c == null) {
+            return "";
+        }
+        return c.getInstructorEmail();
+    }
+    public Reservation[] getRoomDailySchedule(LocalDate queryDate, String room){
+        Room r = Room.deserializeRoom(room);
+        return r.getSchedule(queryDate);
+    }
+    public int getRoomCapacity(String room){
+        Room r = Room.deserializeRoom(room);
+        return r.getCapacity();
+    }
+    public Boolean RoomExists(String room){
+        Room r = Room.deserializeRoom(room);
+        if(r==null){
+            return false;
+        }
+        else{
+            return true;
+        }
     }
     public void run(){
         ObjectInputStream in=null;
@@ -469,7 +514,7 @@ class ConnectionHandler implements Runnable{
                         Room r;
                         Reservation res;
                         HashMap<String, Integer> joinCode;
-                        String code, email, course;
+                        String code, email, course, room;
                         LocalDate queryDate;
                         Boolean result;
                         int slotID;
@@ -588,6 +633,37 @@ class ConnectionHandler implements Runnable{
                                 String newPass = (String)  in.readObject();
                                 result = changePassword(email, oldPass, newPass);
                                 out.writeObject(result);
+                                out.flush();
+                                break;
+                            case "validateLogin":
+                                email = (String) in.readObject();
+                                out.writeObject(validateLogin(email));
+                                out.flush();
+                                break;
+                            case "setCourseInstructor":
+                                course = (String) in.readObject();
+                                email = (String) in.readObject();
+                                setInstructor(email, course);
+                                break;
+                            case "reservation_facultyEmail":
+                                course = (String) in.readObject();
+                                out.writeObject(reservation_facultyEmail(course));
+                                out.flush();
+                                break;
+                            case "getRoomDailySchedule":
+                                queryDate = (LocalDate) in.readObject();
+                                room = (String) in.readObject();
+                                out.writeObject(getRoomDailySchedule(queryDate, room));
+                                out.flush();
+                                break;
+                            case "getRoomCapacity":
+                                room = (String) in.readObject();
+                                out.writeObject(getRoomCapacity(room));
+                                out.flush();
+                                break;
+                            case "checkRoomExistence":
+                                room = (String) in.readObject();
+                                out.writeObject(RoomExists(room));
                                 out.flush();
                                 break;
                         }

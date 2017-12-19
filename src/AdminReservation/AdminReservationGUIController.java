@@ -597,14 +597,13 @@ public class AdminReservationGUIController implements Initializable{
         slotInfoPane.setVisible(true);
         Label curLabel = (Label) e.getSource();
         slotInfo.setText(curLabel.getText());
-        currentlyShowingSlot = curLabel.getText();
-        Room r = Room.deserializeRoom(statusRoomID.getText());          // GUI-Helper Integration starts
-        Reservation[] bookings = r.getSchedule(activeDate);
+        currentlyShowingSlot = curLabel.getText();         // GUI-Helper Integration starts
+        Reservation[] bookings = Room.getDailySchedule(activeDate, statusRoomID.getText(), false);
         if(bookings[Reservation.getSlotID(curLabel.getText())]!=null) {
             cancelSlotBooking.setDisable(false);
             String facultyName="~~~~";
-            if (!bookings[Reservation.getSlotID(curLabel.getText())].getFacultyEmail().equals("")){
-                Faculty f = (Faculty)User.getUser(bookings[Reservation.getSlotID(curLabel.getText())].getFacultyEmail());
+            if (!bookings[Reservation.getSlotID(curLabel.getText())].getFacultyEmail(false).equals("")){
+                Faculty f = (Faculty)User.getUser(bookings[Reservation.getSlotID(curLabel.getText())].getFacultyEmail(false));
                 facultyName = f.getName();
             }
             slotInfoFaculty.setText(facultyName);
@@ -635,9 +634,9 @@ public class AdminReservationGUIController implements Initializable{
         hideSlotPane();
         Button current = (Button) e.getSource();
         statusRoomID.setText(current.getText());
-        Room r = Room.deserializeRoom(current.getText());                                  // GUI-Helper integration begins here
-        statusClassSize.setText("  "+Integer.toString(r.getCapacity()));
-        Reservation[] reservation = r.getSchedule(activeDate);
+        int capacity = Room.getCapacity(current.getText(),false);                                  // GUI-Helper integration begins here
+        statusClassSize.setText("  "+Integer.toString(capacity));
+        Reservation[] reservation = Room.getDailySchedule(activeDate,current.getText(), false);
         int freeSlots=0;
         for(int i=0;i<28;i++){
             if(reservation[i] == null){
@@ -941,8 +940,8 @@ public class AdminReservationGUIController implements Initializable{
      */
     public void openBooking(Event action){
         Button current = (Button) action.getSource();
-        Room r = Room.deserializeRoom(current.getText());                               // Loading buttons
-        if(r==null){
+        Boolean check = Room.exists(current.getText(),false);                               // Loading buttons
+        if(check==false){
             return;
         }
         classEvent = action;
@@ -955,7 +954,7 @@ public class AdminReservationGUIController implements Initializable{
         BackBtn.setOpacity(0);
         RoomNo.setText(current.getText());
         activeRoom = current.getText();
-        Reservation[] reservation = r.getSchedule(activeDate);
+        Reservation[] reservation = Room.getDailySchedule(activeDate, current.getText(), false);
         for(int i=0;i<28;i++){
             if(reservation[i] != null){
                 slotButtons.get(i).setText("Booked");
@@ -1000,8 +999,8 @@ public class AdminReservationGUIController implements Initializable{
      */
     public void showReadOnlyBookings(Event action){
         Button current = (Button) action.getSource();
-        Room r = Room.deserializeRoom(current.getText());                               // Loading buttons
-        if(r==null){
+        Boolean check = Room.exists(current.getText(),false);                               // Loading buttons
+        if(check==false){
             return;
         }
         updateClassStatus(action);
@@ -1010,7 +1009,7 @@ public class AdminReservationGUIController implements Initializable{
         BookBtn.setVisible(false);
         double opacitySaturation = 0.92;
         RoomNo.setText(current.getText());
-        Reservation[] reservation = r.getSchedule(activeDate);
+        Reservation[] reservation = Room.getDailySchedule(activeDate, current.getText(), false);
         for(int i=0;i<28;i++){
             if(reservation[i] != null){
                 slotButtons.get(i).setText("Booked");

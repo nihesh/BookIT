@@ -165,7 +165,7 @@ public class setup {
                     if(day.equals(currentDate.getDayOfWeek().toString().toLowerCase())) {
                         Reservation r = new Reservation(message, group, name, "", venue, message, currentSlot);
                         r.setTargetDate(currentDate);
-                        courseData.get(name).addReservation(currentDate, currentSlot, r, false);
+                        courseData.get(name).addReservation(currentDate, currentSlot, r);
                         currentDate = currentDate.plusDays(7);
                     }
                     else {
@@ -180,7 +180,7 @@ public class setup {
                     if(day.equals(currentDate.getDayOfWeek().toString().toLowerCase())) {
                         Reservation r = new Reservation(message, group, name, "", venue, message, currentSlot);
                         r.setTargetDate(currentDate);
-                        roomData.get(venue).addReservation(currentDate, currentSlot, r, false);
+                        roomData.get(venue).addReservation(currentDate, currentSlot, r);
                         currentDate = currentDate.plusDays(7);
                     }
                     else {

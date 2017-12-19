@@ -222,7 +222,7 @@ public class LoginSignupGUIController {
 			//put some email validate code here to check user email
 		AccCre.setVisible(false);
 		email=new Email(Login_email.getText());
-		if(!Login_email.getText().equals("") && email.validateLogin()) {
+		if(!Login_email.getText().equals("") && email.validateLogin(false)) {
 			if(Login_email.getStyleClass().contains("text-field2")) {
 				if(!Login_email.getStyleClass().contains("text-field1")) {
 					Login_email.getStyleClass().add("text-field1");
@@ -297,7 +297,7 @@ public class LoginSignupGUIController {
 	 */
 	private void Signup_NEXT() {
 		email=new Email(Signup_email.getText());
-		int state=email.validateSignup();
+		int state=email.validateSignup(false);
 		//put some email validate code here to check user email
 		if(!Signup_email.getText().equals("") && state==0) {
 			if(Signup_email.getStyleClass().contains("text-field2")) {

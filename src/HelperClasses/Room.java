@@ -16,9 +16,100 @@ public class Room implements java.io.Serializable{
     /**
      * deserialise a room object from the server room database
      * @param name room name
-     * @param lock takes the server lock if set to true
      * @return Room object see alse {@link Room}
      */
+    public static Reservation[] getDailySchedule(LocalDate queryDate, String room, Boolean lock){
+        try{
+            Socket server = new Socket(BookITconstants.serverIP, BookITconstants.serverPort);
+            ObjectOutputStream out = new ObjectOutputStream(server.getOutputStream());
+            ObjectInputStream in = new ObjectInputStream(server.getInputStream());
+            if(lock){
+                out.writeObject("Hold");
+            }
+            else{
+                out.writeObject("Pass");
+            }
+            out.flush();
+            out.writeObject("getRoomDailySchedule");
+            out.flush();
+            out.writeObject(queryDate);
+            out.flush();
+            out.writeObject(room);
+            out.flush();
+            Reservation[] c = (Reservation[]) in.readObject();
+            out.close();
+            in.close();
+            server.close();
+            return c;
+        }
+        catch(IOException e){
+            System.out.println("IO Exception occurred while getting daily schedule");
+        }
+        catch (ClassNotFoundException c){
+            System.out.println("Class not found exception occurred while getting daily schedule");
+        }
+        return null;
+    }
+    public static int getCapacity(String room, Boolean lock){
+        try{
+            Socket server = new Socket(BookITconstants.serverIP, BookITconstants.serverPort);
+            ObjectOutputStream out = new ObjectOutputStream(server.getOutputStream());
+            ObjectInputStream in = new ObjectInputStream(server.getInputStream());
+            if(lock){
+                out.writeObject("Hold");
+            }
+            else{
+                out.writeObject("Pass");
+            }
+            out.flush();
+            out.writeObject("getRoomCapacity");
+            out.flush();
+            out.writeObject(room);
+            out.flush();
+            int c = (int) in.readObject();
+            out.close();
+            in.close();
+            server.close();
+            return c;
+        }
+        catch(IOException e){
+            System.out.println("IO Exception occurred while getting daily schedule");
+        }
+        catch (ClassNotFoundException c){
+            System.out.println("Class not found exception occurred while getting daily schedule");
+        }
+        return 0;
+    }
+    public static Boolean exists(String room, Boolean lock){
+        try{
+            Socket server = new Socket(BookITconstants.serverIP, BookITconstants.serverPort);
+            ObjectOutputStream out = new ObjectOutputStream(server.getOutputStream());
+            ObjectInputStream in = new ObjectInputStream(server.getInputStream());
+            if(lock){
+                out.writeObject("Hold");
+            }
+            else{
+                out.writeObject("Pass");
+            }
+            out.flush();
+            out.writeObject("checkRoomExistence");
+            out.flush();
+            out.writeObject(room);
+            out.flush();
+            Boolean c = (Boolean) in.readObject();
+            out.close();
+            in.close();
+            server.close();
+            return c;
+        }
+        catch(IOException e){
+            System.out.println("IO Exception occurred while getting daily schedule");
+        }
+        catch (ClassNotFoundException c){
+            System.out.println("Class not found exception occurred while getting daily schedule");
+        }
+        return false;
+    }
     public static Room deserializeRoom(String name){
         ObjectInputStream in = null;
         try{
@@ -75,7 +166,6 @@ public class Room implements java.io.Serializable{
     }
     /**
      * serialize a room in the database
-     * @param lock takes the server lock if set to true
      */
     public void serialize(){
         try{
@@ -100,15 +190,12 @@ public class Room implements java.io.Serializable{
      * @param date the date of reservation
      * @param slot the time slot
      * @param r the reservation object
-     * @param serialize changes get written to database if set true
      * @return true if successful, false otherwise
      */
-    public Boolean addReservation(LocalDate date, int slot, Reservation r, Boolean serialize){
+    public Boolean addReservation(LocalDate date, int slot, Reservation r){
         if(Schedule.get(date)[slot] == null){
             r.setTargetDate(date);
             Schedule.get(date)[slot] = r;
-            if(serialize)
-                serialize();
             return true;
         }
         else{
@@ -137,6 +224,5 @@ public class Room implements java.io.Serializable{
      */
     public void deleteReservation(LocalDate date, int slot){
         Schedule.get(date)[slot] = null;
-        serialize();
     }
 }

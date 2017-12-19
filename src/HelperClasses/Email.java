@@ -1,6 +1,7 @@
 package HelperClasses;
-import java.io.File;
-import java.io.Serializable;
+import java.io.*;
+import java.net.Socket;
+
 /**
  * The Email class that is integrated with the user classes
  * contains the email of a user and has methods to authenticate access of a user
@@ -30,7 +31,7 @@ public class Email implements Serializable{
 	 * Validations follows rules such as being a valid iiitd email beside other rules 
 	 * @return returns 0 if the email entered is not in the database , 1 if it exists 2 if it doesn'tfollow the nomenclature
 	 */
-	public int validateSignup() {
+	public int validateSignup(Boolean lock) {
 		StringBuilder x=new StringBuilder();
 		for(int i=0;i<emailID.length();i++) {
 			if(!(emailID.charAt(i)==' ')) {
@@ -38,10 +39,33 @@ public class Email implements Serializable{
 			}
 		}
 		String y=x.toString();
-		User temp100=User.getUser(y);
 		boolean exists=true;
-		if(temp100==null) {
-			exists=false;
+		try{
+			Socket server = new Socket(BookITconstants.serverIP, BookITconstants.serverPort);
+			ObjectOutputStream out = new ObjectOutputStream(server.getOutputStream());
+			ObjectInputStream in = new ObjectInputStream(server.getInputStream());
+			if(lock){
+				out.writeObject("Hold");
+			}
+			else{
+				out.writeObject("Pass");
+			}
+			out.flush();
+			out.writeObject("validateLogin");
+			out.flush();
+			out.writeObject(y);
+			out.flush();
+			Boolean c = (Boolean) in.readObject();
+			out.close();
+			in.close();
+			server.close();
+			exists = c;
+		}
+		catch(IOException e){
+			System.out.println("IO Exception occurred while booking room");
+		}
+		catch (ClassNotFoundException c){
+			System.out.println("Class not found exception occurred while booking room");
 		}
 		if(exists) {
 			return 1; //user already exists
@@ -64,7 +88,7 @@ public class Email implements Serializable{
 	 * used to validate the email of a user by checking for the email in the database
 	 * @return true if email was found in the user database else returns false
 	 */
-	public boolean validateLogin() {
+	public boolean validateLogin(Boolean lock) {
 		StringBuilder x=new StringBuilder();
 		for(int i=0;i<emailID.length();i++) {
 			if(!(emailID.charAt(i)==' ')) {
@@ -72,12 +96,34 @@ public class Email implements Serializable{
 			}
 		}
 		String y=x.toString();
-		
-		User temp=User.getUser(y);
-		if(temp==null) {
-			return false;
+		try{
+			Socket server = new Socket(BookITconstants.serverIP, BookITconstants.serverPort);
+			ObjectOutputStream out = new ObjectOutputStream(server.getOutputStream());
+			ObjectInputStream in = new ObjectInputStream(server.getInputStream());
+			if(lock){
+				out.writeObject("Hold");
+			}
+			else{
+				out.writeObject("Pass");
+			}
+			out.flush();
+			out.writeObject("validateLogin");
+			out.flush();
+			out.writeObject(y);
+			out.flush();
+			Boolean c = (Boolean) in.readObject();
+			out.close();
+			in.close();
+			server.close();
+			return c;
 		}
-		return true;
+		catch(IOException e){
+			System.out.println("IO Exception occurred while booking room");
+		}
+		catch (ClassNotFoundException c){
+			System.out.println("Class not found exception occurred while booking room");
+		}
+		return false;
 	}	
 	/**
 	 * getter method for emailID
