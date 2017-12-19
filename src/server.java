@@ -9,11 +9,20 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.PriorityQueue;
+import java.util.Properties;
 import java.util.Random;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.ReentrantLock;
+
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 
 /**
  * the server class for back-end development
@@ -23,6 +32,7 @@ public class server {
 	 * spam filter object for detecting spam messages
 	 */
     public static SpamFilter spm;
+    public static ExecutorService mailpool = Executors.newFixedThreadPool(2);
     public static void main(String[] args)throws IOException{
         BookITconstants b = new BookITconstants();
         ServerSocket s = new ServerSocket(BookITconstants.serverPort);
@@ -178,6 +188,14 @@ class ConnectionHandler implements Runnable{
 
         Room temp=Room.deserializeRoom(RoomID);
         Reservation r=temp.getSchedule(queryDate)[slotID];
+        String recipient = r.getReserverEmail();
+        String GreetText="Hello User";
+        User x=User.getUser(recipient);
+        if(x!=null) {
+            GreetText = "Hello "+x.getName();
+        }
+        server.mailpool.execute(new Mail(recipient,"BooKIT - Room booking cancelled", GreetText+","+"\n\nThe following booking of yours have been cancelled by the admin:\n\n"+"Room: "+RoomID+"\nDate: "+queryDate.getDayOfMonth()+"/"+queryDate.getMonthValue()+"/"+queryDate.getYear()+"\nTime: "+ Reservation.getSlotRange(slotID)+" \nReason: "+cancellationMessage+"\n\nIf you think this is a mistake, please contact admin.\n\nRegards,\nBookIT Team"));
+        
         temp.deleteReservation(queryDate, slotID);
         temp.serialize();
         Course c=Course.deserializeCourse(r.getCourseName());
@@ -688,3 +706,50 @@ class ConnectionHandler implements Runnable{
         }while(true);
     }
 }
+class Mail implements Runnable{
+    String recipient,Subject,Body;
+    static String from = "harsh.pathak.temp@gmail.com";//change accordingly
+    final static String username = "harsh.pathak.temp";//change accordingly
+    final static String password = "1a2bb3ccc";//change accordingly
+    public Mail(String target,String subject,String body) {
+        recipient=target;Subject=subject;Body=body;
+    }
+    public void sendMail(){
+          String host = "smtp.gmail.com";
+          Properties props = new Properties();
+          props.put("mail.smtp.auth", "true");
+          props.put("mail.smtp.starttls.enable", "true");
+          props.put("mail.smtp.host", host);
+          props.put("mail.smtp.port", "587");
+          // Get the Session object.
+          Session session = Session.getInstance(props,
+          new javax.mail.Authenticator() {
+             protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(username, password);
+             }
+          });
+          try {
+             // Create a default MimeMessage object.
+             Message message = new MimeMessage(session);
+             // Set From: header field of the header.
+             message.setFrom(new InternetAddress(from));
+             // Set To: header field of the header.
+             message.setRecipients(Message.RecipientType.TO,
+             InternetAddress.parse("harsh16041@iiitd.ac.in"));
+             // Set Subject: header field
+             message.setSubject(Subject);
+             // Now set the actual message
+             message.setText(Body);
+             // Send message
+             Transport.send(message);
+          } catch (MessagingException e) {
+                throw new RuntimeException(e);
+          }
+    }
+    @Override
+    public void run() {
+        // TODO Auto-generated method stub
+        sendMail();
+    }
+}
+
