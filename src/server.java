@@ -425,6 +425,14 @@ class ConnectionHandler implements Runnable{
     }
     public boolean sendReservationRequest(ArrayList<Reservation> r) {
         PriorityQueue<ArrayList<Reservation>> p = null;
+        Course c = Course.deserializeCourse(r.get(0).getCourseName());
+        if(c!=null){
+            for(int i=0;i<r.size();i++){
+                if(!c.checkReservation(r.get(i).getTargetDate(), r.get(i).getReservationSlot(),r.get(i))){
+                    return false;
+                }
+            }
+        }
         p = deserializeRequests();
         p.add(r);
         serializeRequests(p);

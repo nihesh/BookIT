@@ -258,13 +258,13 @@ public class Course implements java.io.Serializable{
             Reservation old = Schedule.get(r.getTargetDate())[r.getReservationSlot()];
             if(old.getCourseName().equals(r.getCourseName())){
                 if(old.getTopGroup().equals("0")){
-                    return false;
+                    return true;
                 }
                 if(r.getTopGroup().equals("0")){
-                    return false;
+                    return true;
                 }
                 if(!old.getGroups().contains(r.getTopGroup())){
-                    return true;
+                    return false;
                 }
                 return false;
             }
@@ -426,7 +426,12 @@ public class Course implements java.io.Serializable{
         else{
             Reservation r = Schedule.get(date)[slot];
             r.deleteGroup(group);
-            Schedule.get(date)[slot] = r;
+            if(r.getGroups().size() == 0){
+                Schedule.get(date)[slot] = null;
+            }
+            else {
+                Schedule.get(date)[slot] = r;
+            }
         }
     }
     

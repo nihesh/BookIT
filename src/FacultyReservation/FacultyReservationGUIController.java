@@ -374,6 +374,9 @@ public class FacultyReservationGUIController implements Initializable{
                 mainPane.setDisable(false);
                 showLogo();
             }
+            else{
+                JOptionPane.showMessageDialog(null, "Either the old password is wrong, or the new passwords don't match", "Error", JOptionPane.ERROR_MESSAGE);
+            }
         }
         oldPass.clear();
         newPass.clear();

@@ -354,6 +354,9 @@ public class AdminReservationGUIController implements Initializable{
                 mainPane.setDisable(false);
                 showLogo();
             }
+            else{
+                JOptionPane.showMessageDialog(null, "Either the old password is wrong, or the new passwords don't match", "Error", JOptionPane.ERROR_MESSAGE);
+            }
         }
         oldPass.clear();
         newPass.clear();
@@ -536,6 +539,7 @@ public class AdminReservationGUIController implements Initializable{
     public void showRequests(){
         ArrayList<Reservation> requests = activeUser.getRequest(false);              // GUI Integration begins
         if(requests == null){
+            JOptionPane.showMessageDialog(null, "There are no more pending requests", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
         requestProcessing = true;

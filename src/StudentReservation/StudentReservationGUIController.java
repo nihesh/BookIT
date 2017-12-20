@@ -462,6 +462,9 @@ public class StudentReservationGUIController implements Initializable{
                 mainPane.setDisable(false);
                 showLogo();
             }
+            else{
+                JOptionPane.showMessageDialog(null, "Either the old password is wrong, or the new passwords don't match", "Error", JOptionPane.ERROR_MESSAGE);
+            }
         }
         oldPass.clear();
         newPass.clear();
@@ -930,7 +933,9 @@ public class StudentReservationGUIController implements Initializable{
             r.setTargetDate(activeDate);
             listOfReservations.add(r);
         }                                                   // GUI Integration Ends
-        activeUser.sendReservationRequest(listOfReservations, false);
+        if(!activeUser.sendReservationRequest(listOfReservations, false)){
+            JOptionPane.showMessageDialog(null, "The booking couldn't be completed as there is another reservation for the course corresponding to this time slot", "Booking Error", JOptionPane.ERROR_MESSAGE);
+        }
         closeReservationPane();
         flyRight();
         purposeBox.clear();
