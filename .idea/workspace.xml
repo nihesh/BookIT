@@ -64,28 +64,36 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="server.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="server.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/server.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="316">
-              <caret line="588" column="20" lean-forward="false" selection-start-line="588" selection-start-column="20" selection-end-line="588" selection-end-column="20" />
+            <state relative-caret-position="432">
+              <caret line="602" column="26" lean-forward="false" selection-start-line="602" selection-start-column="26" selection-end-line="602" selection-end-column="26" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#15228#15247#0" expanded="true" />
                 <element signature="e#15387#15395#0" expanded="true" />
-                <element signature="e#35210#35416#0" expanded="true" />
-                <element signature="e#35415#35416#0" expanded="true" />
+                <element signature="e#35961#36167#0" expanded="true" />
+                <element signature="e#36166#36167#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="User.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="User.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/HelperClasses/User.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="736">
-              <caret line="126" column="27" lean-forward="true" selection-start-line="126" selection-start-column="27" selection-end-line="126" selection-end-column="27" />
-              <folding />
+            <state relative-caret-position="502">
+              <caret line="134" column="90" lean-forward="false" selection-start-line="134" selection-start-column="90" selection-end-line="134" selection-end-column="90" />
+              <folding>
+                <marker date="1513797275338" expanded="false" signature="8315:8320" ph=" { " />
+                <marker date="1513797275338" expanded="false" signature="8332:8335" ph=" }" />
+                <marker date="1513797275338" expanded="false" signature="8412:8417" ph=" { " />
+                <marker date="1513797275338" expanded="false" signature="8433:8436" ph=" }" />
+                <marker date="1513797275338" expanded="false" signature="8506:8511" ph=" { " />
+                <marker date="1513797275338" expanded="false" signature="8526:8529" ph=" }" />
+                <marker date="1513797275338" expanded="false" signature="8629:8632" ph=" }" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -139,7 +147,7 @@
         <entry file="file://$PROJECT_DIR$/src/LoginSignup/LoginSignupGUIController.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="7596">
-              <caret line="450" column="37" lean-forward="false" selection-start-line="450" selection-start-column="32" selection-end-line="450" selection-end-column="37" />
+              <caret line="500" column="37" lean-forward="false" selection-start-line="500" selection-start-column="32" selection-end-line="500" selection-end-column="37" />
               <folding />
             </state>
           </provider>
@@ -267,8 +275,8 @@
         <option value="$PROJECT_DIR$/src/FacultyReservation/FacultyReservationGUIController.java" />
         <option value="$PROJECT_DIR$/src/HelperClasses/Admin.java" />
         <option value="$PROJECT_DIR$/src/AdminReservation/AdminReservationGUIController.java" />
-        <option value="$PROJECT_DIR$/src/server.java" />
         <option value="$PROJECT_DIR$/src/HelperClasses/User.java" />
+        <option value="$PROJECT_DIR$/src/server.java" />
       </list>
     </option>
   </component>
@@ -1166,7 +1174,7 @@
     <entry file="file://$PROJECT_DIR$/src/LoginSignup/LoginSignupGUIController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="7596">
-          <caret line="450" column="37" lean-forward="false" selection-start-line="450" selection-start-column="32" selection-end-line="450" selection-end-column="37" />
+          <caret line="500" column="37" lean-forward="false" selection-start-line="500" selection-start-column="32" selection-end-line="500" selection-end-column="37" />
           <folding />
         </state>
       </provider>
@@ -1208,25 +1216,33 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/server.java">
+    <entry file="file://$PROJECT_DIR$/src/HelperClasses/User.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="316">
-          <caret line="588" column="20" lean-forward="false" selection-start-line="588" selection-start-column="20" selection-end-line="588" selection-end-column="20" />
+        <state relative-caret-position="502">
+          <caret line="134" column="90" lean-forward="false" selection-start-line="134" selection-start-column="90" selection-end-line="134" selection-end-column="90" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#15228#15247#0" expanded="true" />
-            <element signature="e#15387#15395#0" expanded="true" />
-            <element signature="e#35210#35416#0" expanded="true" />
-            <element signature="e#35415#35416#0" expanded="true" />
+            <marker date="1513797275338" expanded="false" signature="8315:8320" ph=" { " />
+            <marker date="1513797275338" expanded="false" signature="8332:8335" ph=" }" />
+            <marker date="1513797275338" expanded="false" signature="8412:8417" ph=" { " />
+            <marker date="1513797275338" expanded="false" signature="8433:8436" ph=" }" />
+            <marker date="1513797275338" expanded="false" signature="8506:8511" ph=" { " />
+            <marker date="1513797275338" expanded="false" signature="8526:8529" ph=" }" />
+            <marker date="1513797275338" expanded="false" signature="8629:8632" ph=" }" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/HelperClasses/User.java">
+    <entry file="file://$PROJECT_DIR$/src/server.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="736">
-          <caret line="126" column="27" lean-forward="true" selection-start-line="126" selection-start-column="27" selection-end-line="126" selection-end-column="27" />
-          <folding />
+        <state relative-caret-position="432">
+          <caret line="602" column="26" lean-forward="false" selection-start-line="602" selection-start-column="26" selection-end-line="602" selection-end-column="26" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#15228#15247#0" expanded="true" />
+            <element signature="e#15387#15395#0" expanded="true" />
+            <element signature="e#35961#36167#0" expanded="true" />
+            <element signature="e#36166#36167#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

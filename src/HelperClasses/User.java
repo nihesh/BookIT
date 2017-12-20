@@ -106,6 +106,36 @@ public class User implements Serializable{
 			System.out.println("IO exception occurred while writing to server");
 		}
 	}
+	public static String getUserType(String email, Boolean lock){
+		try {
+			Socket server = new Socket(BookITconstants.serverIP, BookITconstants.serverPort);
+			ObjectOutputStream out = new ObjectOutputStream(server.getOutputStream());
+			ObjectInputStream in = new ObjectInputStream(server.getInputStream());
+			if(lock){
+				out.writeObject("Hold");
+			}
+			else{
+				out.writeObject("Pass");
+			}
+			out.flush();
+			out.writeObject("getUserType");
+			out.flush();
+			out.writeObject(email);
+			out.flush();
+			String c = (String) in.readObject();
+			out.close();
+			in.close();
+			server.close();
+			return c;
+		}
+		catch (IOException e){
+			System.out.println("IO exception occurred while writing to server");
+		}
+		catch (ClassNotFoundException c){
+			System.out.println("Class not found exception occurred while getting user type");
+		}
+		return "";
+	}
 	public void generatePass(Boolean lock){
 		try {
 			Socket server = new Socket(BookITconstants.serverIP, BookITconstants.serverPort);
