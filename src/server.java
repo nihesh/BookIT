@@ -34,8 +34,44 @@ public class server {
 	public static final double BookITversion = 1.0;
     public static SpamFilter spm;
     public static ExecutorService mailpool = Executors.newFixedThreadPool(2);
+    public static HashMap<String, Integer> studhash=null;
+    public static HashMap<String, Integer> faculthash=null;
+
+    public static void loadHashMaps(){
+        ObjectInputStream in=null;
+        ObjectInputStream in2=null;
+        try
+        {
+            in = new ObjectInputStream(new FileInputStream("./src/AppData/Server/StudentEmails.dat"));
+            studhash = (HashMap<String, Integer>)in.readObject();
+            in2 = new ObjectInputStream(new FileInputStream("./src/AppData/Server/FacultyEmails.dat"));
+            faculthash = (HashMap<String, Integer>)in.readObject();
+        }
+        catch(Exception e){
+            ;
+        }
+        finally {
+            if(in!=null) {
+                try {
+                    in.close();
+                }
+                catch (Exception e){
+                    ;
+                }
+            }
+            if(in2!=null) {
+                try {
+                    in.close();
+                }
+                catch (Exception e){
+                    ;
+                }
+            }
+        }
+    }
     public static void main(String[] args)throws IOException{
         BookITconstants b = new BookITconstants();
+        loadHashMaps();
         ServerSocket s = new ServerSocket(BookITconstants.serverPort);
         ConnectionHandler.lock = new ReentrantLock();
         spm = new SpamFilter();
@@ -601,44 +637,12 @@ class ConnectionHandler implements Runnable{
          serializeUser(temp);
     }
     public String getUserType(String email){
-    	HashMap<String, Integer> studhash=null;
-    	HashMap<String, Integer> faculthash=null;
         String ans=null;
-    	ObjectInputStream in=null;
-        ObjectInputStream in2=null;
-        try
-        {
-            in = new ObjectInputStream(new FileInputStream("./src/AppData/Students/emails.txt"));
-            studhash = (HashMap<String, Integer>)in.readObject();
-            in2 = new ObjectInputStream(new FileInputStream("./src/AppData/Faculties/emails.txt"));
-            faculthash = (HashMap<String, Integer>)in.readObject();
-            if(studhash.containsKey(email)){
-            	ans="Student";
-            }
-            if(faculthash.containsKey(email)) {
-            	ans="Faculty";
-            }
+        if(server.studhash.containsKey(email)){
+            ans="Student";
         }
-        catch(Exception e){
-            ;
-        }
-        finally {
-            if(in!=null) {
-                try {
-                    in.close();
-                }
-                catch (Exception e){
-                    ;
-                }
-            }
-            if(in2!=null) {
-                try {
-                    in.close();
-                }
-                catch (Exception e){
-                    ;
-                }
-            }
+        if(server.faculthash.containsKey(email)) {
+            ans="Faculty";
         }
        return ans;
         // write code here

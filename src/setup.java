@@ -228,10 +228,13 @@ public class setup {
     }
     public static void serialiseStudentHashMap() throws IOException, ClassNotFoundException{
         HashMap<String,Integer> p = new HashMap<String,Integer>();
-        p.put("harsh16041@iiitd.ac.in",1);
+        Scanner sc = new Scanner(new BufferedReader(new FileReader("./src/AppData/StaticTimeTable/StudentEmails.txt")));
+        while(sc.hasNext()){
+            p.put(sc.next(),1);
+        }
         ObjectOutputStream out = null;
         try {
-            out = new ObjectOutputStream(new FileOutputStream("./src/AppData/Students/emails.txt", false));
+            out = new ObjectOutputStream(new FileOutputStream("./src/AppData/Server/StudentEmails.dat", false));
             out.writeObject(p);
         } finally {
             if (out != null) {
@@ -241,9 +244,13 @@ public class setup {
     }
     public static void serialiseFacultyHashMap() throws IOException, ClassNotFoundException{
         HashMap<String,Integer> p = new HashMap<String,Integer>();
+        Scanner sc = new Scanner(new BufferedReader(new FileReader("./src/AppData/StaticTimeTable/FacultyEmails.txt")));
+        while(sc.hasNext()){
+            p.put(sc.next(),1);
+        }
         ObjectOutputStream out = null;
         try {
-            out = new ObjectOutputStream(new FileOutputStream("./src/AppData/Faculties/emails.txt", false));
+            out = new ObjectOutputStream(new FileOutputStream("./src/AppData/Server/FacultyEmails.dat", false));
             out.writeObject(p);
         } finally {
             if (out != null) {
@@ -310,7 +317,7 @@ public class setup {
             System.out.println("Error occurred while serialising sem start and end dates");
         }
         try {
-            //loadRoomAndCourseObjects();                    // Creates Room and Course Objects for all rooms and courses in AppData. This should be used for initialisation only
+            loadRoomAndCourseObjects();                    // Creates Room and Course Objects for all rooms and courses in AppData. This should be used for initialisation only
             clearUserData();
             serialiseEmptyPriorityQueue();
             serialiseEmptyJoinCodeMap();
