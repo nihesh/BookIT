@@ -8,9 +8,8 @@ import StudentReservation.StudentReservationGUI;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import javax.swing.*;
+import java.io.*;
 import java.net.Socket;
 /**
  * The BookIT class for launching the application
@@ -18,6 +17,7 @@ import java.net.Socket;
  *
  */
 public class BookIT extends Application{
+    public static final double BookITversion = 1.0;
 	/**
 	 * launches the login/signup gui
 	 * @param primaryStage stage object
@@ -56,7 +56,41 @@ public class BookIT extends Application{
             admin.start(primaryStage);
         }
     }
+    public Boolean CheckCompatibility(double version, Boolean lock){
+        try{
+            Socket server = new Socket(BookITconstants.serverIP, BookITconstants.serverPort);
+            ObjectOutputStream out = new ObjectOutputStream(server.getOutputStream());
+            ObjectInputStream in = new ObjectInputStream(server.getInputStream());
+            if(lock){
+                out.writeObject("Hold");
+            }
+            else{
+                out.writeObject("Pass");
+            }
+            out.flush();
+            out.writeObject("CompatibilityCheck");
+            out.flush();
+            out.writeObject(version);
+            out.flush();
+            Boolean c = (Boolean) in.readObject();
+            out.close();
+            in.close();
+            server.close();
+            return c;
+        }
+        catch(IOException e){
+            System.out.println("IO Exception occurred while checking compatibility");
+        }
+        catch (ClassNotFoundException c){
+            System.out.println("ClassNotFound exception occurred while checking compatibility");
+        }
+        return false;
+    }
     public void start(Stage primaryStage){
+        if(!CheckCompatibility(BookITversion, false)){
+            JOptionPane.showMessageDialog(null, "You are currently using BookIT v"+BookITversion+". Please download the latest version of BookIT to continue using the application.", "Launch Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
         File file2 = new File("./src/AppData/ActiveUser");
         if(!file2.exists()){
             file2.mkdir();

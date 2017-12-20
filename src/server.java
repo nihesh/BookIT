@@ -31,6 +31,7 @@ public class server {
 	/**
 	 * spam filter object for detecting spam messages
 	 */
+	public static final double BookITversion = 1.0;
     public static SpamFilter spm;
     public static ExecutorService mailpool = Executors.newFixedThreadPool(2);
     public static void main(String[] args)throws IOException{
@@ -602,6 +603,14 @@ class ConnectionHandler implements Runnable{
     public String getUserType(String email){
         // write code here
     }
+    public Boolean isCompatible(double version){
+        if(server.BookITversion == version){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
     public void run(){
         ObjectInputStream in=null;
         ObjectOutputStream out=null;
@@ -836,6 +845,11 @@ class ConnectionHandler implements Runnable{
                             case "getUserType":
                                 email = (String) in.readObject();
                                 out.writeObject(getUserType(email));
+                                out.flush();
+                                break;
+                            case "CompatibilityCheck":
+                                double version = (double) in.readObject();
+                                out.writeObject(isCompatible(version));
                                 out.flush();
                                 break;
                         }
