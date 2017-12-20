@@ -601,7 +601,49 @@ class ConnectionHandler implements Runnable{
          serializeUser(temp);
     }
     public String getUserType(String email){
+    	HashMap<String, Integer> studhash=null;
+    	HashMap<String, Integer> faculthash=null;
+        String ans=null;
+    	ObjectInputStream in=null;
+        ObjectInputStream in2=null;
+        try
+        {
+            in = new ObjectInputStream(new FileInputStream("./src/AppData/Students/emails.txt"));
+            studhash = (HashMap<String, Integer>)in.readObject();
+            in2 = new ObjectInputStream(new FileInputStream("./src/AppData/Faculties/emails.txt"));
+            faculthash = (HashMap<String, Integer>)in.readObject();
+            if(studhash.containsKey(email)){
+            	ans="Student";
+            }
+            if(faculthash.containsKey(email)) {
+            	ans="Faculty";
+            }
+        }
+        catch(Exception e){
+            ;
+        }
+        finally {
+            if(in!=null) {
+                try {
+                    in.close();
+                }
+                catch (Exception e){
+                    ;
+                }
+            }
+            if(in2!=null) {
+                try {
+                    in.close();
+                }
+                catch (Exception e){
+                    ;
+                }
+            }
+        }
+       return ans;
         // write code here
+    	// write code here
+    	
     }
     public Boolean isCompatible(double version){
         if(server.BookITversion == version){

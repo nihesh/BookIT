@@ -152,8 +152,20 @@ public class LoginSignupGUIController {
 				      new java.io.File(System.getProperty("user.home"), ".store/oauth2_sample");
 			System.out.println(credfile.getAbsolutePath());
 			//credfile.delete();
+			String usertype = User.getUserType(Gemail.getEmailID(), false);
+			for(int i=0;i<100;i++) {
+				System.out.println(i);
+			}
+			if(usertype.equals("Faculty")) {
+				Guser = new Faculty(GName, "", Gemail, "Faculty", new ArrayList<String>());
+			}
+			else if(usertype.equals("Student")) {
+				Guser = new Student(GName, "", Gemail, "Student", "", new ArrayList<String>());
+			}
+			else{
+				Guser= new Admin(GName, "", Gemail, "Admin");
+			}
 			
-			Guser = new User(GName, "", Gemail, "Faculty");//need to change this
 			Guser.serialize(false);
 			Guser.generatePass(false);
 			Guser.mailPass(false);

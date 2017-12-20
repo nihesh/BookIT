@@ -226,6 +226,31 @@ public class setup {
             }
         }
     }
+    public static void serialiseStudentHashMap() throws IOException, ClassNotFoundException{
+        HashMap<String,Integer> p = new HashMap<String,Integer>();
+        p.put("harsh16041@iiitd.ac.in",1);
+        ObjectOutputStream out = null;
+        try {
+            out = new ObjectOutputStream(new FileOutputStream("./src/AppData/Students/emails.txt", false));
+            out.writeObject(p);
+        } finally {
+            if (out != null) {
+                out.close();
+            }
+        }
+    }
+    public static void serialiseFacultyHashMap() throws IOException, ClassNotFoundException{
+        HashMap<String,Integer> p = new HashMap<String,Integer>();
+        ObjectOutputStream out = null;
+        try {
+            out = new ObjectOutputStream(new FileOutputStream("./src/AppData/Faculties/emails.txt", false));
+            out.writeObject(p);
+        } finally {
+            if (out != null) {
+                out.close();
+            }
+        }
+    }
     public static void serialiseEmptyJoinCodeMap() throws IOException, ClassNotFoundException{
         HashMap<String, Integer> p = new HashMap<String, Integer>();
         ObjectOutputStream out = null;
@@ -285,13 +310,15 @@ public class setup {
             System.out.println("Error occurred while serialising sem start and end dates");
         }
         try {
-            loadRoomAndCourseObjects();                    // Creates Room and Course Objects for all rooms and courses in AppData. This should be used for initialisation only
+            //loadRoomAndCourseObjects();                    // Creates Room and Course Objects for all rooms and courses in AppData. This should be used for initialisation only
             clearUserData();
             serialiseEmptyPriorityQueue();
             serialiseEmptyJoinCodeMap();
+            serialiseFacultyHashMap();
+            serialiseStudentHashMap();
         }
         catch(Exception e){
-            System.out.println(e.getMessage());
+        	e.printStackTrace();
         }
     }
 }
