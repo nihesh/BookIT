@@ -584,6 +584,16 @@ class ConnectionHandler implements Runnable{
         Course c = Course.deserializeCourse(course);
         return c.getSchedule(queryDate)[slotID];
     }
+    public void mailPass(String email){
+        // deserialise user using getUser function in server class, not using the static method of User class!
+        // send mail
+    }
+    public void generatePass(String mail){
+        // deserialise user using getUser function in server class, not using the static method of User class!
+        //  generate pass
+        // set it as password of user
+        // serialise user
+    }
     public void run(){
         ObjectInputStream in=null;
         ObjectOutputStream out=null;
@@ -807,6 +817,13 @@ class ConnectionHandler implements Runnable{
                                 out.writeObject(course_getReservation(course, queryDate, slotID));
                                 out.flush();
                                 break;
+                            case "mailPass":
+                                email = (String) in.readObject();
+                                mailPass(email);
+                                break;
+                            case "generatePass":
+                                email = (String) in.readObject();
+                                generatePass(email);
                         }
                         if(lock.isLocked() && lock.isHeldByCurrentThread()){
                             System.out.print("[ "+LocalDateTime.now()+" ] ");

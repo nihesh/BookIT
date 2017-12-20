@@ -81,7 +81,54 @@ public class User implements Serializable{
                 ;
             }
         }
-        }
+	}
+	public void mailPass(Boolean lock){
+		try {
+			Socket server = new Socket(BookITconstants.serverIP, BookITconstants.serverPort);
+			ObjectOutputStream out = new ObjectOutputStream(server.getOutputStream());
+			ObjectInputStream in = new ObjectInputStream(server.getInputStream());
+			if(lock){
+				out.writeObject("Hold");
+			}
+			else{
+				out.writeObject("Pass");
+			}
+			out.flush();
+			out.writeObject("mailPass");
+			out.flush();
+			out.writeObject(this.emailID.getEmailID());
+			out.flush();
+			out.close();
+			in.close();
+			server.close();
+		}
+		catch (IOException e){
+			System.out.println("IO exception occurred while writing to server");
+		}
+	}
+	public void generatePass(Boolean lock){
+		try {
+			Socket server = new Socket(BookITconstants.serverIP, BookITconstants.serverPort);
+			ObjectOutputStream out = new ObjectOutputStream(server.getOutputStream());
+			ObjectInputStream in = new ObjectInputStream(server.getInputStream());
+			if(lock){
+				out.writeObject("Hold");
+			}
+			else{
+				out.writeObject("Pass");
+			}
+			out.flush();
+			out.writeObject("generatePass");
+			out.flush();
+			out.writeObject(this.emailID.getEmailID());
+			out.flush();
+			out.close();
+			in.close();
+			server.close();
+		}
+		catch (IOException e){
+			System.out.println("IO exception occurred while writing to server");
+		}
 	/**
 	 * returns a user object from the database by using the user email
 	 * @param email email of the user
