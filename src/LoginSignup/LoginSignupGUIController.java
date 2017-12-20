@@ -1,10 +1,16 @@
 package LoginSignup;
 
 
+import java.awt.Desktop;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -28,8 +34,11 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebView;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import main.java.com.google.api.services.samples.oauth2.cmdline.OAuth2Sample;
 /**
  * controller class for login/signup gui
  * @author Harsh
@@ -37,9 +46,17 @@ import javafx.util.Duration;
  */
 public class LoginSignupGUIController {
 	private double initOpacity=0.84;
+	private Email Gemail;
+	private String GName;
+	private User Guser;
+	
 	private Email email;
 	private String joincode;
 	private User user;
+	@FXML
+	private Button GBtn;
+	@FXML
+	private AnchorPane FirstPane;
 	@FXML
 	private ComboBox<String> Branch;
 	@FXML
@@ -90,7 +107,6 @@ public class LoginSignupGUIController {
 	private Button CredBack_btn;
 	@FXML
 	public void initialize() {
-
 		ArrayList<String> temp=new ArrayList<>();
 		// TODO Auto-generated method stub
 		Branch.getItems().removeAll(Branch.getItems());
@@ -116,6 +132,40 @@ public class LoginSignupGUIController {
 		}
 		Branch.getSelectionModel().select(temp.get(0));
 		
+	}
+	@FXML
+	private void pressG() {
+		String cred = OAuth2Sample.callmain();
+		if(cred!=null) {
+		String[] temp = cred.split(",");
+		for(int i=0;i<temp.length;i++) {
+			System.out.println(temp[i]);
+		}
+		if(temp[8].equals("\"verified_email\":true}") && temp[3].equals("\"hd\":\"iiitd.ac.in\"")) {
+			GName=temp[6].substring(8, temp[6].length()-1);
+			Gemail=new Email(temp[0].substring(10, temp[0].length()-1));
+			if(User.getUser(Gemail.getEmailID(), false)!=null) {
+				System.out.println("account already exists");
+				return;
+			}
+			java.io.File credfile =
+				      new java.io.File(System.getProperty("user.home"), ".store/oauth2_sample");
+			System.out.println(credfile.getAbsolutePath());
+			//credfile.delete();
+			
+			Guser = new User(GName, "", Gemail, "Faculty");//need to change this
+			Guser.serialize(false);
+			Guser.generatePass(false);
+			Guser.mailPass(false);
+			return;
+		}
+		System.out.println("wrong creds");
+		//give some indication
+		java.io.File credfile =
+			      new java.io.File(System.getProperty("user.home"), ".store/oauth2_sample");
+		credfile.delete();
+		GName=null;Gemail=null;Guser=null;
+		}
 	}
 	@FXML
 	private void CredNext() {
@@ -329,8 +379,8 @@ public class LoginSignupGUIController {
 	 */
 	private void Signup_NEXT2() {
 		//put some email validate code here to check user email
-		if((Signup_password.getText().matches("[A-Za-z0-9]+")) && Signup_password.getText().equals(CnfPass.getText())) {
-			user=new User(" ", CnfPass.getText(), email, " ");
+		if((!Signup_password.getText().equals("")) && Signup_password.getText().equals(CnfPass.getText())) {
+			user=new User(" ",CnfPass.getText(),email, " ");
 			if(Signup_password.getStyleClass().contains("text-field2")) {
 				if(!Signup_password.getStyleClass().contains("text-field1")) {
 					Signup_password.getStyleClass().add("text-field1");

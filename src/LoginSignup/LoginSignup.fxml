@@ -14,7 +14,7 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="pane22" stylesheets="@application.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="LoginSignup.LoginSignupGUIController">
+<AnchorPane fx:id="FirstPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="pane22" stylesheets="@application.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="LoginSignup.LoginSignupGUIController">
    <children>
       <AnchorPane fx:id="Login_Pane" layoutX="310.0" layoutY="-7.0" opacity="0.84" prefHeight="395.0" prefWidth="300.0" styleClass="modal-dialog-glass" stylesheets="@application.css">
          <children>
@@ -109,6 +109,7 @@
          </padding>
       </Label>
       <Button fx:id="Cred_btn" layoutY="208.0" mnemonicParsing="false" onMouseClicked="#CredNext" prefHeight="25.0" prefWidth="36.0" styleClass="butCred2" />
+      <Button fx:id="GBtn" layoutX="56.0" layoutY="314.0" mnemonicParsing="false" onMouseClicked="#pressG" prefHeight="33.6" prefWidth="176.0" styleClass="butGG" />
       <AnchorPane fx:id="Cred_Pane" layoutX="-310.0" prefHeight="410.0" prefWidth="310.0" styleClass="pane3">
          <children>
             <Label layoutX="9.0" layoutY="66.0" prefHeight="38.0" prefWidth="271.0" styleClass="labelB" text="CREDITS " />

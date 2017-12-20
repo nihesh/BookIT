@@ -75,6 +75,25 @@
 .root {
   -fx-opacity: 0.9;
 }
+.butX{
+	-fx-background-color: red;
+	-fx-background-radius: 4px ;
+	-fx-background-insets: 2;
+	-fx-effect: dropshadow(three-pass-box, derive(red, +40%), 10, 0, 4, 4) ;
+	-fx-text-fill: white;
+	-fx-font-size: 13px; 
+	
+}
+.butX:hover{
+	-fx-background-color: red;
+	-fx-background-radius: 4px ;
+	-fx-background-insets: 2;
+	-fx-effect: dropshadow(three-pass-box, derive(red, +90%), 10, 0, 4, 4) ;
+	-fx-text-fill: white;
+	-fx-font-size: 13px; 
+	
+}
+
 .but1{
 	-fx-background-color: blue;
 	-fx-background-radius: 4px ;
@@ -95,6 +114,26 @@
     -fx-background-position: 85%;
 	-fx-effect: dropshadow(three-pass-box, derive(blue, +40%), 10, 0, 4, 4) ;
 	-fx-text-fill: white;
+	
+}
+.butGG{
+	
+	 -fx-background-image: url('./signup-google.png');
+	-fx-background-size: 176px 33.6px;
+	-fx-background-radius: 4px ;
+	-fx-background-insets: 2;
+	 -fx-background-repeat: no-repeat;
+    -fx-background-position: 0%;
+	
+}
+.butGG1080p{
+	
+	 -fx-background-image: url('./signup-google.png');
+	-fx-background-size: 191px 50px;
+	-fx-background-radius: 4px ;
+	-fx-background-insets: 2;
+	 -fx-background-repeat: no-repeat;
+    -fx-background-position: 0%;
 	
 }
 

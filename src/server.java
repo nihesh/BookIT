@@ -587,12 +587,23 @@ class ConnectionHandler implements Runnable{
     public void mailPass(String email){
         // deserialise user using getUser function in server class, not using the static method of User class!
         // send mail
+    	User temp=getUser(email);
+    	server.mailpool.execute(new Mail(temp.getEmail().getEmailID(),"BooKIT - Your Account Password is here", "Hello "+temp.getName()+","+"\n\nThank you for signing up with us.\n\nYour account password is as follows:"+"\n\nPassword - "+temp.getPassword()+"\n\nIf you think this is a mistake, please contact admin.\n\nRegards,\nBookIT Team"));
+    	
     }
     public void generatePass(String mail){
         // deserialise user using getUser function in server class, not using the static method of User class!
         //  generate pass
         // set it as password of user
         // serialise user
+    	 Random rnd = new Random();
+         StringBuilder sb = new StringBuilder();
+         User temp=getUser(mail);
+         while(sb.length()!=10) {
+        	 sb.append(JoinString.charAt(((int)(rnd.nextFloat() * JoinString.length()))));
+         }
+         temp.setPassword(sb.toString());
+         serializeUser(temp);
     }
     public void run(){
         ObjectInputStream in=null;

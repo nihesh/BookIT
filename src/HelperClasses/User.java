@@ -129,6 +129,7 @@ public class User implements Serializable{
 		catch (IOException e){
 			System.out.println("IO exception occurred while writing to server");
 		}
+	}
 	/**
 	 * returns a user object from the database by using the user email
 	 * @param email email of the user
