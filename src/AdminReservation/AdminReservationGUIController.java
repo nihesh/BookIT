@@ -10,6 +10,8 @@ import javafx.animation.ParallelTransition;
 import javafx.animation.SequentialTransition;
 import javafx.animation.TranslateTransition;
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
@@ -35,6 +37,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.io.*;
 import java.net.Socket;
+import java.net.URI;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -115,6 +118,7 @@ public class AdminReservationGUIController implements Initializable{
     private Event classEvent;
     private LocalDate StartDate;
     private LocalDate EndDate;
+    private Button[] b1;
 
     /**
      * Constructor for setting up Faculty Reservation GUI. It includes the adaptor code to suit any dimensional screen
@@ -492,18 +496,40 @@ public class AdminReservationGUIController implements Initializable{
             items.add(Reservation.getSlotRange(requests.get(j).getReservationSlot()));
         }
         Label[] label = new Label[50];
+        b1 = new Button[50];
         int i=0;
         while(i<items.size()){
             label[i] = new Label();
+            b1[i] = new Button();
+            Label curLabel = label[i];
+            Button curButton = b1[i];
+            b1[i].getStylesheets().add("./AdminReservation/buttonAccRej.css");
+            b1[i].setPrefSize(80,50);
+            b1[i].setTranslateY(i*49);
+            b1[i].setText("Del");
+            curButton.setOnMouseClicked(e->{
+                if(curButton.getText().equals("Del")){
+                    curButton.setText("Add");
+                    curLabel.setStyle("-fx-background-color: red; -fx-border-color:  #2a2a2a; -fx-border-width:3");
+                }
+                else{
+                    curButton.setText("Del");
+                    curLabel.setStyle("-fx-background-color: green; -fx-border-color:  #2a2a2a; -fx-border-width:3");
+                }
+            });
             label[i].setText(items.get(i));
-            label[i].setPrefSize(494, 50);
+            label[i].setPrefSize(414, 50);
             label[i].setAlignment(Pos.CENTER);
+            label[i].setTranslateX(80);
             label[i].setTranslateY(i*49);
-            label[i].setStyle("-fx-background-color: white; -fx-border-color:  #2a2a2a; -fx-border-width:3");
-            label[i].setFont(new Font(22));
+            label[i].setStyle("-fx-background-color: green; -fx-border-color:  #2a2a2a; -fx-border-width:3");
+            label[i].setFont(new Font(20));
+            requestedSlotsScrollPane.getChildren().add(b1[i]);
             requestedSlotsScrollPane.getChildren().add(label[i]);
             i++;
         }
+        b1[i] = new Button();
+        b1[i].setText("");
         requestedSlotsScrollPane.setPrefSize(494,max(474,49*i));
     }
 
@@ -511,7 +537,15 @@ public class AdminReservationGUIController implements Initializable{
      * Accepts a booking requested by the student
      */
     public void acceptRequest(){
-        activeUser.acceptRequest(false);                                             // Throw not accepted warning...
+        int i=0;
+        ArrayList<Integer> data = new ArrayList<Integer>();
+        while(!b1[i].getText().equals("")){
+            if(b1[i].getText().equals("Del")) {
+                data.add(i);
+            }
+            i++;
+        }
+        activeUser.acceptRequest(data,false);                                             // Throw not accepted warning...
         ArrayList<Reservation> requests = activeUser.getRequest(false);
         if(requests == null){
             hideRequests();

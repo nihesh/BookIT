@@ -334,7 +334,7 @@ class ConnectionHandler implements Runnable{
         serializeRequests(p);
         return r;
     }
-    public boolean acceptRequest(){
+    public boolean acceptRequest(ArrayList<Integer> data){
         PriorityQueue<ArrayList<Reservation>> p = deserializeRequests();
         ArrayList<Reservation> r = p.peek();
         if (r == null) {
@@ -346,7 +346,8 @@ class ConnectionHandler implements Runnable{
         Room temp = Room.deserializeRoom(r.get(0).getRoomName());
         Course ctemp = Course.deserializeCourse(r.get(0).getCourseName());
         while(r!=null) {
-            for (Reservation reservation : r) {
+            for (int i=0;i<data.size();i++) {
+                Reservation reservation = r.get(data.get(i));
                 if (!temp.checkReservation(r.get(0).getTargetDate(), reservation.getReservationSlot(), reservation)) {
                     p.poll();
                     flag=1;
@@ -362,8 +363,6 @@ class ConnectionHandler implements Runnable{
                     }
                 }
                 flag=0;
-
-
             }
             if(flag==0) {
                 break;
@@ -371,7 +370,8 @@ class ConnectionHandler implements Runnable{
         }
         serializeRequests(p);
         if(r!=null) {
-            for (Reservation reservation : r) {
+            for (int i=0;i<data.size();i++) {
+                Reservation reservation = r.get(data.get(i));
                 temp.addReservation(r.get(0).getTargetDate(), reservation.getReservationSlot(), reservation);
                 temp.serialize();
                 if(ctemp!=null) {
@@ -698,7 +698,8 @@ class ConnectionHandler implements Runnable{
                                 out.flush();
                                 break;
                             case "acceptRequest":
-                                out.writeObject(acceptRequest());
+                                ArrayList<Integer> data = (ArrayList<Integer>) in.readObject();
+                                out.writeObject(acceptRequest(data));
                                 out.flush();
                                 break;
                             case "rejectRequest":

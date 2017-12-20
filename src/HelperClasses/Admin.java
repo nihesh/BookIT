@@ -187,7 +187,7 @@ public class Admin extends User{
 	 * accepts the top request in the request queue
 	 * @return true if accepted and false if not able to accept because of time table clashes
 	 */
-	public boolean acceptRequest(Boolean lock){
+	public boolean acceptRequest(ArrayList<Integer> data, Boolean lock){
 		try{
 			Socket server = new Socket(BookITconstants.serverIP, BookITconstants.serverPort);
 			ObjectOutputStream out = new ObjectOutputStream(server.getOutputStream());
@@ -200,6 +200,8 @@ public class Admin extends User{
 			}
 			out.flush();
 			out.writeObject("acceptRequest");
+			out.flush();
+			out.writeObject(data);
 			out.flush();
 			Boolean c = (Boolean) in.readObject();
 			out.close();
