@@ -256,19 +256,22 @@ public class Course implements java.io.Serializable{
         }
         else{
             Reservation old = Schedule.get(r.getTargetDate())[r.getReservationSlot()];
-            if(old.getType().equals("Lecture")){
-                return true;
-            }
-            else if(r.getType().equals("Lecture")){
-                return true;
-            }
-            else if(r.getType().equals("Tutorial") || r.getType().equals("Lab")){
-                if(old.getGroups().contains(r.getTopGroup())){
+            if(old.getCourseName().equals(r.getCourseName())){
+                if(old.getTopGroup().equals("0")){
+                    return false;
+                }
+                if(r.getTopGroup().equals("0")){
+                    return false;
+                }
+                if(!old.getGroups().contains(r.getTopGroup())){
                     return true;
                 }
+                return false;
+            }
+            else {
+                return false;
             }
         }
-        return false;
     }
     /**
      * 
@@ -394,11 +397,10 @@ public class Course implements java.io.Serializable{
         }
         else{
             if(Schedule.get(date)[slot].getCourseName().equals(r.getCourseName())){
-                if(Schedule.get(date)[slot].getTopGroup() == "0"){
+                if(Schedule.get(date)[slot].getTopGroup().equals("0")){
                     return false;
                 }
-                System.out.println(r.getTopGroup());
-                if(r.getTopGroup() == "0"){
+                if(r.getTopGroup().equals("0")){
                     return false;
                 }
                 if(!Schedule.get(date)[slot].getGroups().contains(r.getTopGroup())){

@@ -257,7 +257,6 @@ class ConnectionHandler implements Runnable{
         sb.append(type);
         while (true) {
             while (sb.length() != 7) {
-                System.out.println();
                 sb.append(JoinString.charAt(((int)(rnd.nextFloat() * JoinString.length()))));
             }
             if (codes.containsKey(sb.toString()) && codes.get(sb.toString()) == 1) {
