@@ -111,7 +111,7 @@ public class AdminReservationGUIController implements Initializable{
     private Admin activeUser;
     private int pullDownPaneInitial = 650;
     private HashMap<Button,Integer> selection = new HashMap<Button,Integer>();
-    private Boolean isActiveReservation,requestProcessing,changepassProcessing, joinCodeProcessing;
+    private Boolean isActiveReservation,requestProcessing,changepassProcessing, joinCodeProcessing, cancelBookingProcessing;
     private Event classEvent;
     private LocalDate StartDate;
     private LocalDate EndDate;
@@ -192,6 +192,7 @@ public class AdminReservationGUIController implements Initializable{
         isActiveReservation = false;
         requestProcessing = false;
         changepassProcessing = false;
+        cancelBookingProcessing = false;
         File file = new File("./src/BookIT_logo.jpg");
         Image image = new Image(file.toURI().toString());
         logo.setImage(image);
@@ -239,7 +240,13 @@ public class AdminReservationGUIController implements Initializable{
         joinCodeDropDown.setStyle("-fx-font-size : 13pt;-fx-background-color: #922B21;");
         loadDate();
     }
-
+    public void exitCancelBooking(){
+        cancelBookingProcessing = false;
+        leftPane.setDisable(false);
+        rightPane.setDisable(false);
+        mainPane.setDisable(false);
+        cancelMessagePane.setVisible(false);
+    }
     /**
      * Event handler to cancel a booked slot
      */
@@ -247,6 +254,10 @@ public class AdminReservationGUIController implements Initializable{
         if(cancelMessageText.getText().equals("")){
             return;
         }
+        cancelBookingProcessing = false;
+        leftPane.setDisable(false);
+        rightPane.setDisable(false);
+        mainPane.setDisable(false);
         activeUser.cancelBooking(activeDate,Reservation.getSlotID(currentlyShowingSlot),activeRoom, cancelMessageText.getText(), false);
         Button current = slotButtons.get(Reservation.getSlotID(currentlyShowingSlot));
         current.setDisable(false);
@@ -910,6 +921,10 @@ public class AdminReservationGUIController implements Initializable{
         requestMessage2.clear();
     }
     public void cancelBookingMessage(){
+        cancelBookingProcessing = true;
+        leftPane.setDisable(true);
+        rightPane.setDisable(true);
+        mainPane.setDisable(true);
         slotInfoPane.setVisible(false);
         FadeTransition appear = new FadeTransition(Duration.millis(500), cancelMessagePane);
         cancelMessagePane.setOpacity(0);
@@ -1065,6 +1080,11 @@ public class AdminReservationGUIController implements Initializable{
                     pullDownPane2.setVisible(true);
                 }
                 if(joinCodeProcessing){
+                    leftPane.setDisable(true);
+                    rightPane.setDisable(true);
+                    mainPane.setDisable(true);
+                }
+                if(cancelBookingProcessing){
                     leftPane.setDisable(true);
                     rightPane.setDisable(true);
                     mainPane.setDisable(true);

@@ -71,6 +71,10 @@ public class BookIT extends Application{
             if(!file.exists()){
                 break;
             }
+            else{
+                User u = User.getActiveUser();
+                User.getUser(u.getEmail().getEmailID(), false).setActiveUser();
+            }
             reservationGUI(stage);
             file = new File("./src/AppData/ActiveUser/ActiveUser.txt");
             if(file.exists()){

@@ -151,6 +151,9 @@ public class Reservation implements java.io.Serializable{
      * @return String
      */
     public String getTopGroup(){
+        if(this.groups.size() == 0){
+            return "";
+        }
         return this.groups.get(0);
     }
     /**

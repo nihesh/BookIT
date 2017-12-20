@@ -389,7 +389,7 @@
                                     <Insets bottom="130.0" right="372.0" />
                                  </StackPane.margin>
                               </Label>
-                              <Label prefHeight="36.0" prefWidth="367.0" style="-fx-background-color: #922B21;" text="N/A" textFill="WHITE">
+                              <Label fx:id="slotInfoCourse1" prefHeight="36.0" prefWidth="367.0" style="-fx-background-color: #922B21;" text="N/A" textFill="WHITE">
                                  <font>
                                     <Font size="21.0" />
                                  </font>
@@ -400,7 +400,7 @@
                                     <Insets bottom="130.0" left="208.0" />
                                  </StackPane.margin>
                               </Label>
-                              <Label prefHeight="36.0" prefWidth="367.0" style="-fx-background-color: #922B21;" text="N/A" textFill="WHITE">
+                              <Label fx:id="slotInfoFaculty1" prefHeight="36.0" prefWidth="367.0" style="-fx-background-color: #922B21;" text="N/A" textFill="WHITE">
                                  <font>
                                     <Font size="21.0" />
                                  </font>
@@ -415,7 +415,7 @@
                                  <content>
                                     <AnchorPane minHeight="132.0" minWidth="0.0" prefWidth="563.0" style="-fx-background-color: #922B21;">
                                        <children>
-                                          <Label alignment="TOP_LEFT" prefWidth="555.0" text="No information available" textFill="WHITE" wrapText="true">
+                                          <Label fx:id="slotInfoMessage1" alignment="TOP_LEFT" prefWidth="555.0" text="No information available" textFill="WHITE" wrapText="true">
                                              <font>
                                                 <Font size="20.0" />
                                              </font>

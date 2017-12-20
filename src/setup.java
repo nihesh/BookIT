@@ -238,7 +238,23 @@ public class setup {
             }
         }
     }
-    
+    public static void clearUserData(){
+        File file = new File("./src/AppData/User/");
+        File[] users = file.listFiles();
+        for(int i=0;i<users.length;i++){
+            User u = User.getUser(users[i].getName().substring(0,users[i].getName().length()-4), false);
+            if(u.getUsertype().equals("Faculty")){
+                Faculty f = (Faculty) u;
+                f.getCourses().clear();
+                f.serialize(false);
+            }
+            else if(u.getUsertype().equals("Student")){
+                Student s = (Student) u;
+                s.getMyCourses().clear();
+                s.serialize(false);
+            }
+        }
+    }
     public static void main(String[] args){
         BookITconstants b = new BookITconstants();
         Scanner sc = new Scanner(System.in);
@@ -270,6 +286,7 @@ public class setup {
         }
         try {
             loadRoomAndCourseObjects();                    // Creates Room and Course Objects for all rooms and courses in AppData. This should be used for initialisation only
+            clearUserData();
             serialiseEmptyPriorityQueue();
             serialiseEmptyJoinCodeMap();
         }

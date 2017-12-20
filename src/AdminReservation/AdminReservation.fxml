@@ -289,7 +289,12 @@
                               </TextArea>
                               <Button mnemonicParsing="false" onMouseClicked="#cancelSlotBooking" prefHeight="40.0" prefWidth="180.0" stylesheets="@buttonChangePwd.css" text="Confirm">
                                  <StackPane.margin>
-                                    <Insets top="240.0" />
+                                    <Insets left="175.0" top="240.0" />
+                                 </StackPane.margin>
+                              </Button>
+                              <Button layoutX="225.0" layoutY="266.0" mnemonicParsing="false" onMouseClicked="#exitCancelBooking" prefHeight="40.0" prefWidth="150.0" stylesheets="@buttonChangePwd.css" text="Cancel">
+                                 <StackPane.margin>
+                                    <Insets right="175.0" top="240.0" />
                                  </StackPane.margin>
                               </Button>
                            </children>

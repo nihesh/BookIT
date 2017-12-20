@@ -63,7 +63,7 @@ public class StudentReservationGUIController implements Initializable{
     @FXML
     private StackPane classStatus, slotInfoPane, changePasswordPane;
     @FXML
-    private ImageView classStatusBG, slotStatusBG, changePasswordBG, addCoursesBG,listCoursesBG, cancelSlotBookingImage;
+    private ImageView classStatusBG, slotStatusBG, slotStatusBG1, changePasswordBG, addCoursesBG,listCoursesBG, cancelSlotBookingImage;
     @FXML
     private Label statusRoomID, slotInfo,statusClassSize, statusFreeSlots, dateLabel;
     @FXML
@@ -77,7 +77,7 @@ public class StudentReservationGUIController implements Initializable{
     @FXML
     private DatePicker datePicker;
     @FXML
-    private Label curDate,curMon,curYear;
+    private Label curDate,curMon,curYear, slotInfoCourse1, slotInfoFaculty1, slotInfoMessage1;
     @FXML
     private ArrayList<Button> slotButtons, courseSlotButtons;
     @FXML
@@ -206,6 +206,7 @@ public class StudentReservationGUIController implements Initializable{
         image = new Image(file.toURI().toString());
         classStatusBG.setImage(image);
         slotStatusBG.setImage(image);
+        slotStatusBG1.setImage(image);
         addCoursesBG.setImage(image);
         changePasswordBG.setImage(image);
         listCoursesBG.setImage(image);
@@ -596,9 +597,8 @@ public class StudentReservationGUIController implements Initializable{
      */
     public void showCourseSlotInfo(Event e){
         hideLogo();
-        slotInfoPane.setVisible(true);
+        TTinfoPane.setVisible(true);
         Label curLabel = (Label) e.getSource();
-        slotInfo.setText(curLabel.getText());
         ArrayList<String> myCourses = activeUser.getMyCourses();
         Reservation r = null;
         for(int i=0;i<myCourses.size();i++){
@@ -620,14 +620,16 @@ public class StudentReservationGUIController implements Initializable{
             if(facultyEmail.equals("")){
                 facultyEmail="~~~~";
             }
-            slotInfoFaculty.setText(facultyEmail);
-            slotInfoCourse.setText(r.getCourseName());
-            slotInfoMessage.setText(r.getMessage());
+            slotTTinfo.setText(curLabel.getText()+" | "+r.getRoomName());
+            slotInfoFaculty1.setText(facultyEmail);
+            slotInfoCourse1.setText(r.getCourseName());
+            slotInfoMessage1.setText(r.getMessage());
         }
         else{
-            slotInfoFaculty.setText("N/A");
-            slotInfoCourse.setText("N/A");
-            slotInfoMessage.setText("N/A");
+            slotTTinfo.setText(curLabel.getText());
+            slotInfoFaculty1.setText("N/A");
+            slotInfoCourse1.setText("N/A");
+            slotInfoMessage1.setText("N/A");
         }                                                               // GUI-Helper Integration ends
     }
     public void cancelSlotBooking(){
