@@ -676,10 +676,10 @@ class ConnectionHandler implements Runnable{
     }
     public String getUserType(String email){
         String ans=null;
-        if(server.studhash.containsKey(email)){
+        if(server.studhash!=null && server.studhash.containsKey(email)){
             ans="Student";
         }
-        if(server.faculthash.containsKey(email)) {
+        if(server.faculthash!=null && server.faculthash.containsKey(email)) {
             ans="Faculty";
         }
        return ans;

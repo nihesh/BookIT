@@ -6,13 +6,27 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.net.URL;
+import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+
+import javax.swing.JOptionPane;
+
+import org.apache.http.HttpEntity;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.HttpClients;
+import org.apache.http.message.BasicNameValuePair;
 
 import HelperClasses.Admin;
 import HelperClasses.Email;
@@ -105,6 +119,84 @@ public class LoginSignupGUIController {
 	private Button Cred_btn;
 	@FXML
 	private Button CredBack_btn;
+	@FXML 
+	private AnchorPane GPane;
+	@FXML
+	private WebView browser;
+	@FXML
+	private Button Gdone;
+	@FXML
+	private Button Gcancel;
+	@FXML
+	public WebEngine e;
+	@FXML
+	private void Close() {
+		PortListener.authcode="none";
+		if(e!=null){
+			e.load("");
+			java.net.CookieManager manager = new java.net.CookieManager();
+			java.net.CookieHandler.setDefault(manager);
+		}
+		GPane.setVisible(false);
+		ServerSocket temp;
+		try {
+			temp = new ServerSocket(9004);
+			temp.close();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		
+		
+	}
+	
+	@FXML
+	private void Continue() {
+		if(e!=null&& !PortListener.authcode.equals("none")) {
+			e.load("");
+			GPane.setVisible(false);
+			if(PortListener.authcode.equals("denied")) {
+				PortListener.authcode="none";
+				java.net.CookieManager manager = new java.net.CookieManager();
+				java.net.CookieHandler.setDefault(manager);
+			}
+			if(PortListener.email!=null && PortListener.email.contains("iiitd.ac.in")) {
+				Gemail = new Email(PortListener.email);
+				GName=PortListener.Name;
+				if(User.getUser(Gemail.getEmailID(), false)!=null) {
+					System.out.println("account already exists");
+					JOptionPane.showMessageDialog(null, "Account already exists");
+					return;
+				}
+				String usertype = User.getUserType(Gemail.getEmailID(), false);
+				
+				if(usertype.equals("Faculty")) {
+					Guser = new Faculty(GName, "", Gemail, "Faculty", new ArrayList<String>());
+				}
+				else if(usertype.equals("Student")) {
+					Guser = new Student(GName, "", Gemail, "Student", "", new ArrayList<String>());
+				}
+				else{
+					Guser= new Admin(GName, "", Gemail, "Admin");
+				}
+				
+				Guser.serialize(false);
+				Guser.generatePass(false);
+				Guser.mailPass(false);
+				JOptionPane.showMessageDialog(null, "Account Creation Successful. An email is sent to you with password");
+				return;
+			}
+			java.net.CookieManager manager = new java.net.CookieManager();
+			java.net.CookieHandler.setDefault(manager);
+			System.out.println("wrong creds");
+			//give some indication
+			PortListener.authcode="none";
+			GName=null;Gemail=null;Guser=null;
+			JOptionPane.showMessageDialog(null, "please use only iiitd account");
+		}
+	}
+	
 	@FXML
 	public void initialize() {
 		ArrayList<String> temp=new ArrayList<>();
@@ -134,50 +226,11 @@ public class LoginSignupGUIController {
 		
 	}
 	@FXML
-	private void pressG() {
-		String cred = OAuth2Sample.callmain();
-		if(cred!=null) {
-		String[] temp = cred.split(",");
-		for(int i=0;i<temp.length;i++) {
-			System.out.println(temp[i]);
-		}
-		if(temp[8].equals("\"verified_email\":true}") && temp[3].equals("\"hd\":\"iiitd.ac.in\"")) {
-			GName=temp[6].substring(8, temp[6].length()-1);
-			Gemail=new Email(temp[0].substring(10, temp[0].length()-1));
-			if(User.getUser(Gemail.getEmailID(), false)!=null) {
-				System.out.println("account already exists");
-				return;
-			}
-			java.io.File credfile =
-				      new java.io.File(System.getProperty("user.home"), ".store/oauth2_sample");
-			System.out.println(credfile.getAbsolutePath());
-			//credfile.delete();
-			String usertype = User.getUserType(Gemail.getEmailID(), false);
-			for(int i=0;i<100;i++) {
-				System.out.println(i);
-			}
-			if(usertype.equals("Faculty")) {
-				Guser = new Faculty(GName, "", Gemail, "Faculty", new ArrayList<String>());
-			}
-			else if(usertype.equals("Student")) {
-				Guser = new Student(GName, "", Gemail, "Student", "", new ArrayList<String>());
-			}
-			else{
-				Guser= new Admin(GName, "", Gemail, "Admin");
-			}
-			
-			Guser.serialize(false);
-			Guser.generatePass(false);
-			Guser.mailPass(false);
-			return;
-		}
-		System.out.println("wrong creds");
-		//give some indication
-		java.io.File credfile =
-			      new java.io.File(System.getProperty("user.home"), ".store/oauth2_sample");
-		credfile.delete();
-		GName=null;Gemail=null;Guser=null;
-		}
+	private void PressG() {
+		GPane.setVisible(true);
+		e=browser.getEngine();
+		e.load(PortListener.webURL1);
+		PortListener p= new PortListener();	
 	}
 	@FXML
 	private void CredNext() {
@@ -659,3 +712,98 @@ public class LoginSignupGUIController {
 		
 	}
 }
+class PortListener implements Runnable{
+	static String Name=null;
+	static String email=null;
+	static String authcode="none";
+	ServerSocket serversocket;
+	Socket sock;
+	static String webURL1 ="https://accounts.google.com/o/oauth2/v2/auth?\r\n" + 
+			"scope=https://www.googleapis.com/auth/userinfo.email%20profile&\r\n" + 
+			"response_type=code&\r\n" +  
+			"redirect_uri=http://127.0.0.1:9004&\r\n" + 
+			"client_id=675553038343-joaegqsglukqdti0ukkga8in6st1gl3k.apps.googleusercontent.com";
+	static String webURL2 ="none";
+	Thread t;
+	public PortListener() {
+		// TODO Auto-generated constructor stub
+		t=new Thread(this);
+		t.start();
+	}
+	public void startAuth() {
+		try {
+			serversocket = new ServerSocket(9004);
+			sock=serversocket.accept();
+			BufferedReader in=new BufferedReader(new InputStreamReader(sock.getInputStream()));
+			authcode=in.readLine();
+			if(authcode.contains("denied")) {
+				authcode="denied";
+				System.out.println("denied");
+				serversocket.close();
+				return;
+			}
+			else {
+				//System.out.println(authcode);
+				authcode=authcode.substring(11,authcode.length()-9);
+				//System.out.println(authcode);
+							}
+			HttpClient httpclient = HttpClients.createDefault();
+			HttpPost httppost = new HttpPost("https://www.googleapis.com/oauth2/v4/token");
+
+			// Request parameters and other properties.
+			List<NameValuePair> params = new ArrayList<NameValuePair>(5);
+			params.add(new BasicNameValuePair("code",authcode+"&" ));
+			params.add(new BasicNameValuePair("client_id", "675553038343-joaegqsglukqdti0ukkga8in6st1gl3k.apps.googleusercontent.com"));
+			params.add(new BasicNameValuePair("client_secret", "p8m6oBuodC2IyT1PaalafAHi"));
+			params.add(new BasicNameValuePair("redirect_uri", "http://127.0.0.1:9004"));
+			params.add(new BasicNameValuePair("grant_type", "authorization_code"));
+			httppost.setEntity(new UrlEncodedFormEntity(params, "UTF-8"));
+
+			//Execute and get the response.
+			org.apache.http.HttpResponse response = httpclient.execute(httppost);
+			HttpEntity entity = response.getEntity();
+
+			if (entity != null) {
+			    InputStream instream = entity.getContent();
+			    
+			    try {
+			    java.util.Scanner s = new java.util.Scanner(instream).useDelimiter("\\A");
+			    String result = s.hasNext() ? s.next() : "";
+			    //System.out.println(result);
+			    String accesstoken = (result.split("\n"))[1].substring(18, (result.split("\n"))[1].length()-2);		
+			    //System.out.println(accesstoken);
+			    String url = "https://www.googleapis.com/userinfo/v2/me?access_token="+accesstoken;
+			    String charset = "UTF-8";  // Or in Java 7 and later, use the constant: java.nio.charset.StandardCharsets.UTF_8.name()
+			    URLConnection connection = new URL(url).openConnection();
+			    connection.setRequestProperty("Accept-Charset", charset);
+			    InputStream responseID = connection.getInputStream();
+			    s = new java.util.Scanner(responseID).useDelimiter("\\A");
+			    String result2 = s.hasNext() ? s.next() : "";
+			    //System.out.println(result2);
+			    String[] finalAns=result2.split("\n");
+			    Name = finalAns[4].substring(10, finalAns[4].length()-2);
+			    email = finalAns[2].substring(11, finalAns[2].length()-2);
+			    System.out.println(Name);
+			    System.out.println(email);
+			    }
+			    	// do something useful
+			     finally {
+			    	instream.close();
+			    }
+			}
+			serversocket.close();
+			
+		
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		startAuth();
+				
+	}}
+

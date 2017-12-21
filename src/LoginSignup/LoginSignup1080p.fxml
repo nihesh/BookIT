@@ -14,6 +14,7 @@
 <?import javafx.scene.paint.LinearGradient?>
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.web.WebView?>
 
 <AnchorPane fx:id="FirstPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="567.0" prefWidth="850.0" styleClass="pane2" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="LoginSignup.LoginSignupGUIController">
    <children>
@@ -158,6 +159,13 @@
                </effect>
             </Label>
          </children></AnchorPane>
+      <AnchorPane fx:id="GPane" prefHeight="567.0" prefWidth="850.0" visible="false">
+         <children>
+            <WebView fx:id="browser" layoutY="49.0" onMouseMoved="#Continue" prefHeight="518.0" prefWidth="850.0" />
+            <Button fx:id="Gcancel" layoutX="41.0" layoutY="6.0" mnemonicParsing="false" onMouseClicked="#Close" prefHeight="36.0" prefWidth="82.0" text="BACK" />
+            <Button fx:id="Gdone" layoutX="735.0" layoutY="6.0" mnemonicParsing="false" onMouseClicked="#Continue" prefHeight="36.0" prefWidth="82.0" text="DONE" />
+         </children>
+      </AnchorPane>
    </children>
    <stylesheets>
       <URL value="@application.css" />
