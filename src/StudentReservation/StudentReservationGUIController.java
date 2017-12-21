@@ -636,7 +636,13 @@ public class StudentReservationGUIController implements Initializable{
         }                                                               // GUI-Helper Integration ends
     }
     public void cancelSlotBooking(){
-        activeUser.cancelBooking(activeDate,Reservation.getSlotID(currentlyShowingSlot),activeRoom, false);
+        Reservation r = Room.serverFetchRequest(activeUser.getEmail().getEmailID(), activeDate, Reservation.getSlotID(currentlyShowingSlot),activeRoom,false);
+        if(r.isRequest()){
+            Room.serverDeleteRequest(activeUser.getEmail().getEmailID(), activeDate, Reservation.getSlotID(currentlyShowingSlot),activeRoom,false);
+        }
+        else {
+            activeUser.cancelBooking(activeDate, Reservation.getSlotID(currentlyShowingSlot), activeRoom, false);
+        }
         Button current = slotButtons.get(Reservation.getSlotID(currentlyShowingSlot));
         current.setDisable(false);
         current.setText("Free");
@@ -652,17 +658,22 @@ public class StudentReservationGUIController implements Initializable{
         slotInfo.setText(curLabel.getText());
         currentlyShowingSlot = curLabel.getText();        // GUI-Helper Integration starts
         Reservation[] bookings = Room.getDailySchedule(activeDate, statusRoomID.getText(), false);
-        if(bookings[Reservation.getSlotID(curLabel.getText())]!=null) {
+        Reservation[] requests = Room.getPendingReservations(activeUser.getEmail().getEmailID(), activeDate, statusRoomID.getText(), false);
+        Reservation temp = bookings[Reservation.getSlotID(curLabel.getText())];
+        if(temp==null){
+            temp = requests[Reservation.getSlotID(curLabel.getText())];
+        }
+        if(temp!=null) {
             String facultyName="~~~~";
-            if (!bookings[Reservation.getSlotID(curLabel.getText())].getFacultyEmail(false).equals("")){
-                Faculty f = (Faculty)User.getUser(bookings[Reservation.getSlotID(curLabel.getText())].getFacultyEmail(false), false);
+            if (!temp.getFacultyEmail(false).equals("")){
+                Faculty f = (Faculty)User.getUser(temp.getFacultyEmail(false), false);
                 facultyName = f.getName();
             }
             slotInfoFaculty.setText(facultyName);
-            slotInfoCourse.setText(bookings[Reservation.getSlotID(curLabel.getText())].getCourseName());
-            slotInfoMessage.setText(bookings[Reservation.getSlotID(curLabel.getText())].getMessage());
+            slotInfoCourse.setText(temp.getCourseName());
+            slotInfoMessage.setText(temp.getMessage());
             String currentUserEmail = activeUser.getEmail().getEmailID();
-            if(currentUserEmail.equals(bookings[Reservation.getSlotID(curLabel.getText())].getFacultyEmail(false)) || currentUserEmail.equals(bookings[Reservation.getSlotID(curLabel.getText())].getReserverEmail())){
+            if(currentUserEmail.equals(temp.getFacultyEmail(false)) || currentUserEmail.equals(temp.getReserverEmail())){
                 cancelSlotBooking.setDisable(false);
             }
             else{

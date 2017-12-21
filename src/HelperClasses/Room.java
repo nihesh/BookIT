@@ -104,6 +104,39 @@ public class Room implements java.io.Serializable{
         }
         return null;
     }
+    public static void serverDeleteRequest(String email, LocalDate date, int slot, String room, Boolean lock){
+        try {
+            Socket server = new Socket(BookITconstants.serverIP, BookITconstants.serverPort);
+            ObjectOutputStream out = new ObjectOutputStream(server.getOutputStream());
+            ObjectInputStream in = new ObjectInputStream(server.getInputStream());
+            if(lock){
+                out.writeObject("Hold");
+            }
+            else{
+                out.writeObject("Pass");
+            }
+            out.flush();
+            out.writeObject("studentDeleteReservationRequest");
+            out.flush();
+            out.writeObject(email);
+            out.flush();
+            out.writeObject(date);
+            out.flush();
+            out.writeObject(slot);
+            out.flush();
+            out.writeObject(room);
+            out.flush();
+            out.close();
+            in.close();
+            server.close();
+        }
+        catch (FileNotFoundException fe){
+            System.out.println("File not found exception occurred while deleting student reservation request");
+        }
+        catch (IOException ie){
+            System.out.println("IOException occurred while deleting student reservation request");
+        }
+    }
     /**
      * deserialise a room object from the server room database
      * @return Room object see alse {@link Room}

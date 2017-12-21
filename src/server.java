@@ -347,6 +347,19 @@ class ConnectionHandler implements Runnable{
                 r = p.peek();
                 continue;
             }
+            Room room = Room.deserializeRoom(r.get(0).getRoomName());
+            Reservation[] pending = room.getPendingReservations(r.get(0).getReserverEmail(),r.get(0).getTargetDate());
+            System.out.println("hi");
+            for(int i=r.size()-1;i>=0;i--){
+                if(pending[r.get(i).getReservationSlot()] == null){
+                    r.remove(i);
+                }
+            }
+            if(r.size()==0){
+                p.poll();
+                r=p.peek();
+                continue;
+            }
             for (Reservation reservation : r) {
                 if (!temp.checkReservation(r.get(0).getTargetDate(), reservation.getReservationSlot(), reservation)) {
                     p.poll();
@@ -926,6 +939,15 @@ class ConnectionHandler implements Runnable{
                             case "admin_getRequestsQueue":
                                 out.writeObject(deserializeRequests());
                                 out.flush();
+                                break;
+                            case "studentDeleteReservationRequest":
+                                email = (String) in.readObject();
+                                queryDate = (LocalDate) in.readObject();
+                                slotID = (int) in.readObject();
+                                room = (String) in.readObject();
+                                r = Room.deserializeRoom(room);
+                                r.deleteRequest(email, queryDate, slotID);
+                                r.serialize();
                                 break;
                             case "studentGetReservationRequest":
                                 email = (String) in.readObject();
