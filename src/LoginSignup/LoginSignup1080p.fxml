@@ -102,7 +102,7 @@
          </padding>
       </Label>
       <Button fx:id="Cred_btn" layoutY="260.0" mnemonicParsing="false" onMouseClicked="#CredNext" prefHeight="47.0" prefWidth="50.0" styleClass="butCred" />
-      <Button fx:id="GBtn" layoutX="118.0" layoutY="473.0" mnemonicParsing="false" onMouseClicked="#pressG" prefHeight="47.0" prefWidth="191.0" styleClass="butGG1080p" />
+      <Button fx:id="GBtn" layoutX="118.0" layoutY="473.0" mnemonicParsing="false" onMouseClicked="#PressG" prefHeight="47.0" prefWidth="191.0" styleClass="butGG1080p" />
       <AnchorPane fx:id="Cred_Pane" layoutX="-425.0" prefHeight="567.0" prefWidth="425.0" styleClass="pane32">
          <children>
             <Label layoutX="9.0" layoutY="47.0" prefHeight="47.0" prefWidth="370.0" styleClass="labelC" text="BOOKIT v1.0" />

@@ -78,7 +78,7 @@
         <entry file="file://$PROJECT_DIR$/src/setup.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="276">
-              <caret line="91" column="25" lean-forward="true" selection-start-line="91" selection-start-column="25" selection-end-line="91" selection-end-column="25" />
+              <caret line="91" column="25" lean-forward="false" selection-start-line="91" selection-start-column="25" selection-end-line="91" selection-end-column="25" />
               <folding />
             </state>
           </provider>
@@ -88,7 +88,7 @@
         <entry file="file://$PROJECT_DIR$/src/HelperClasses/Room.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="109">
-              <caret line="121" column="24" lean-forward="true" selection-start-line="121" selection-start-column="24" selection-end-line="121" selection-end-column="24" />
+              <caret line="121" column="24" lean-forward="false" selection-start-line="121" selection-start-column="24" selection-end-line="121" selection-end-column="24" />
               <folding />
             </state>
           </provider>
@@ -104,27 +104,48 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="StudentReservationGUIController.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/StudentReservation/StudentReservationGUIController.java">
+      <file leaf-file-name="LoginSignupGUIController.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/LoginSignup/LoginSignupGUIController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="168">
-              <caret line="949" column="9" lean-forward="true" selection-start-line="949" selection-start-column="9" selection-end-line="949" selection-end-column="9" />
+            <state relative-caret-position="152">
+              <caret line="723" column="56" lean-forward="true" selection-start-line="723" selection-start-column="56" selection-end-line="723" selection-end-column="56" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#22196#22211#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="LoginSignupGUI.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/LoginSignup/LoginSignupGUI.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="36">
+              <caret line="15" column="40" lean-forward="false" selection-start-line="15" selection-start-column="40" selection-end-line="15" selection-end-column="40" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Reservation.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/HelperClasses/Reservation.java">
+      <file leaf-file-name="LoginSignup1080p.fxml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/LoginSignup/LoginSignup1080p.fxml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="352">
-              <caret line="54" column="30" lean-forward="false" selection-start-line="54" selection-start-column="30" selection-end-line="54" selection-end-column="30" />
-              <folding>
-                <element signature="e#2097#2098#0" expanded="true" />
-                <element signature="e#2134#2135#0" expanded="true" />
-                <element signature="e#2166#2167#0" expanded="true" />
-                <element signature="e#2203#2204#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="252">
+              <caret line="105" column="56" lean-forward="false" selection-start-line="105" selection-start-column="56" selection-end-line="105" selection-end-column="56" />
+              <folding />
+            </state>
+          </provider>
+          <provider editor-type-id="JavaFX-Scene-Builder">
+            <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="StudentReservationGUIController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/StudentReservation/StudentReservationGUIController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="996">
+              <caret line="950" column="13" lean-forward="false" selection-start-line="950" selection-start-column="13" selection-end-line="950" selection-end-column="13" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -133,7 +154,7 @@
         <entry file="file://$PROJECT_DIR$/src/HelperClasses/Admin.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="240">
-              <caret line="162" column="21" lean-forward="true" selection-start-line="162" selection-start-column="21" selection-end-line="162" selection-end-column="21" />
+              <caret line="162" column="21" lean-forward="false" selection-start-line="162" selection-start-column="21" selection-end-line="162" selection-end-column="21" />
               <folding />
             </state>
           </provider>
@@ -161,11 +182,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>mailPass</find>
-      <find>Compatile</find>
-      <find>float</find>
-      <find>getUser</find>
-      <find>&quot;hi&quot;</find>
       <find>-4</find>
       <find>studHas</find>
       <find>google</find>
@@ -189,8 +205,13 @@
       <find>cancelSlot</find>
       <find>Room(</find>
       <find>getReq</find>
-      <find>Error</find>
       <find>Jopy</find>
+      <find>Error</find>
+      <find>please use onl</find>
+      <find>portListe</find>
+      <find>PortListe</find>
+      <find>iiitd</find>
+      <find>PortList</find>
     </findStrings>
   </component>
   <component name="FindManager">
@@ -231,7 +252,6 @@
         <option value="$PROJECT_DIR$/src/FacultyReservation/FacultyReservationGUIController.java" />
         <option value="$PROJECT_DIR$/src/HelperClasses/Admin.java" />
         <option value="$PROJECT_DIR$/src/HelperClasses/User.java" />
-        <option value="$PROJECT_DIR$/src/LoginSignup/LoginSignupGUIController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/google/api/services/samples/oauth2/cmdline/OAuth2Sample.java" />
         <option value="$PROJECT_DIR$/src/setup.java" />
         <option value="$PROJECT_DIR$/src/AdminReservation/AdminReservationGUI.java" />
@@ -244,6 +264,8 @@
         <option value="$PROJECT_DIR$/src/server.java" />
         <option value="$PROJECT_DIR$/src/HelperClasses/Room.java" />
         <option value="$PROJECT_DIR$/src/StudentReservation/StudentReservationGUIController.java" />
+        <option value="$PROJECT_DIR$/src/LoginSignup/LoginSignup1080p.fxml" />
+        <option value="$PROJECT_DIR$/src/LoginSignup/LoginSignupGUIController.java" />
       </list>
     </option>
   </component>
@@ -525,7 +547,7 @@
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/src/Dependencies/transaction-api-1.1.jar!/" />
   </component>
-  <component name="RunManager" selected="Application.setup">
+  <component name="RunManager" selected="Application.server">
     <configuration default="false" name="setup" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <option name="MAIN_CLASS_NAME" value="setup" />
@@ -879,7 +901,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="36" width="1920" height="1044" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -890,7 +912,7 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32725322" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.4195279" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.41416308" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
@@ -936,7 +958,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/Login/Login.fxml" />
     <entry file="file://$PROJECT_DIR$/src/Login/LoginGUI.java" />
     <entry file="file://$PROJECT_DIR$/src/Login/LoginGUIController.java" />
     <entry file="file://$PROJECT_DIR$/src/Login/Login.fxml" />
@@ -1052,32 +1073,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/LoginSignup/LoginSignupGUI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="15" column="40" lean-forward="false" selection-start-line="15" selection-start-column="40" selection-end-line="15" selection-end-column="40" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/google/api/services/samples/oauth2/cmdline/OAuth2Sample.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="212">
           <caret line="79" column="59" lean-forward="false" selection-start-line="79" selection-start-column="59" selection-end-line="79" selection-end-column="59" />
           <folding>
             <element signature="e#0#5635#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/LoginSignup/LoginSignupGUIController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="18">
-          <caret line="137" column="46" lean-forward="false" selection-start-line="137" selection-start-column="46" selection-end-line="137" selection-end-column="46" />
-          <folding>
-            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1144,10 +1145,10 @@
         <state relative-caret-position="352">
           <caret line="54" column="30" lean-forward="false" selection-start-line="54" selection-start-column="30" selection-end-line="54" selection-end-column="30" />
           <folding>
-            <element signature="e#2097#2098#0" expanded="true" />
-            <element signature="e#2134#2135#0" expanded="true" />
-            <element signature="e#2166#2167#0" expanded="true" />
-            <element signature="e#2203#2204#0" expanded="true" />
+            <element signature="e#2097#2098#0" expanded="false" />
+            <element signature="e#2134#2135#0" expanded="false" />
+            <element signature="e#2166#2167#0" expanded="false" />
+            <element signature="e#2203#2204#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1163,7 +1164,7 @@
     <entry file="file://$PROJECT_DIR$/src/setup.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="276">
-          <caret line="91" column="25" lean-forward="true" selection-start-line="91" selection-start-column="25" selection-end-line="91" selection-end-column="25" />
+          <caret line="91" column="25" lean-forward="false" selection-start-line="91" selection-start-column="25" selection-end-line="91" selection-end-column="25" />
           <folding />
         </state>
       </provider>
@@ -1171,7 +1172,7 @@
     <entry file="file://$PROJECT_DIR$/src/HelperClasses/Admin.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
-          <caret line="162" column="21" lean-forward="true" selection-start-line="162" selection-start-column="21" selection-end-line="162" selection-end-column="21" />
+          <caret line="162" column="21" lean-forward="false" selection-start-line="162" selection-start-column="21" selection-end-line="162" selection-end-column="21" />
           <folding />
         </state>
       </provider>
@@ -1179,7 +1180,7 @@
     <entry file="file://$PROJECT_DIR$/src/HelperClasses/Room.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="109">
-          <caret line="121" column="24" lean-forward="true" selection-start-line="121" selection-start-column="24" selection-end-line="121" selection-end-column="24" />
+          <caret line="121" column="24" lean-forward="false" selection-start-line="121" selection-start-column="24" selection-end-line="121" selection-end-column="24" />
           <folding />
         </state>
       </provider>
@@ -1202,9 +1203,39 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/StudentReservation/StudentReservationGUIController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="949" column="9" lean-forward="true" selection-start-line="949" selection-start-column="9" selection-end-line="949" selection-end-column="9" />
+        <state relative-caret-position="996">
+          <caret line="950" column="13" lean-forward="false" selection-start-line="950" selection-start-column="13" selection-end-line="950" selection-end-column="13" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/LoginSignup/LoginSignupGUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="36">
+          <caret line="15" column="40" lean-forward="false" selection-start-line="15" selection-start-column="40" selection-end-line="15" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/LoginSignup/LoginSignup1080p.fxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="105" column="56" lean-forward="false" selection-start-line="105" selection-start-column="56" selection-end-line="105" selection-end-column="56" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/LoginSignup/LoginSignupGUIController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="723" column="56" lean-forward="true" selection-start-line="723" selection-start-column="56" selection-end-line="723" selection-end-column="56" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#22196#22211#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
