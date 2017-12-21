@@ -98,7 +98,7 @@ public class setup {
                 continue;
             }
             venue = file.next();
-            capacity = Integer.parseInt(file.next());
+            capacity = Integer.parseInt(file.next().trim());
             HashMap<LocalDate, Reservation[]> Schedule = new HashMap<LocalDate, Reservation[]>();
             LocalDate currentDate = StartDate;
             LocalDate endDate = EndDate;
