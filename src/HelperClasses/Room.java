@@ -12,12 +12,135 @@ public class Room implements java.io.Serializable{
     private static final long serialVersionUID = 1L;
     private String RoomID;
     private HashMap<LocalDate, Reservation[]> Schedule;
+    private HashMap<LocalDate, HashMap<String,Reservation>[]> studentRequests = new HashMap<>();
     private int Capacity;
+    public Reservation[] getPendingReservations(String email, LocalDate date){
+        Reservation[] output = new Reservation[30];
+        if(!studentRequests.containsKey(date)){
+            return output;
+        }
+        HashMap<String, Reservation>[] temp = studentRequests.get(date);
+        for(int i=0;i<30;i++){
+            if(temp[i].containsKey(email)){
+                output[i] = temp[i].get(email);
+            }
+        }
+        return output;
+    }
+    public static Reservation[] getPendingReservations(String email, LocalDate date, String room, Boolean lock){
+        try {
+            Socket server = new Socket(BookITconstants.serverIP, BookITconstants.serverPort);
+            ObjectOutputStream out = new ObjectOutputStream(server.getOutputStream());
+            ObjectInputStream in = new ObjectInputStream(server.getInputStream());
+            if(lock){
+                out.writeObject("Hold");
+            }
+            else{
+                out.writeObject("Pass");
+            }
+            out.flush();
+            out.writeObject("studentGetPendingReservations");
+            out.flush();
+            out.writeObject(email);
+            out.flush();
+            out.writeObject(date);
+            out.flush();
+            out.writeObject(room);
+            out.flush();
+            Reservation[] c = (Reservation[]) in.readObject();
+            out.close();
+            in.close();
+            server.close();
+            return c;
+        }
+        catch (FileNotFoundException fe){
+            System.out.println("File not found exception occured while getting pending reservations");
+        }
+        catch (ClassNotFoundException c){
+            System.out.println("Class not found exception while getting pending reservations");
+        }
+        catch (IOException ie){
+            System.out.println("IOException occured while getting pending reservations");
+        }
+        return null;
+    }
+
+    public static Reservation serverFetchRequest(String email, LocalDate date, int slot, String room, Boolean lock){
+        try {
+            Socket server = new Socket(BookITconstants.serverIP, BookITconstants.serverPort);
+            ObjectOutputStream out = new ObjectOutputStream(server.getOutputStream());
+            ObjectInputStream in = new ObjectInputStream(server.getInputStream());
+            if(lock){
+                out.writeObject("Hold");
+            }
+            else{
+                out.writeObject("Pass");
+            }
+            out.flush();
+            out.writeObject("studentGetReservationRequest");
+            out.flush();
+            out.writeObject(email);
+            out.flush();
+            out.writeObject(date);
+            out.flush();
+            out.writeObject(slot);
+            out.flush();
+            out.writeObject(room);
+            out.flush();
+            Reservation c = (Reservation) in.readObject();
+            out.close();
+            in.close();
+            server.close();
+            return c;
+        }
+        catch (FileNotFoundException fe){
+            System.out.println("File not found exception occured while getting student reservation request");
+        }
+        catch (ClassNotFoundException e){
+            System.out.println("Class not found while getting student reservation request");
+        }
+        catch (IOException ie){
+            System.out.println("IOException occured while getting student reservation request");
+        }
+        return null;
+    }
     /**
      * deserialise a room object from the server room database
-     * @param name room name
      * @return Room object see alse {@link Room}
      */
+    public void addRequest(Reservation r){
+        if(!r.isRequest()){
+            return;
+        }
+        else{
+            if(!studentRequests.containsKey(r.getTargetDate())){
+                HashMap<String,Reservation>[] temp = new HashMap[30];
+                for(int i=0;i<30;i++){
+                    temp[i] = new HashMap<>();
+                }
+                studentRequests.put(r.getTargetDate(), temp);
+            }
+            studentRequests.get(r.getTargetDate())[(r.getReservationSlot())].put(r.getReserverEmail(), r);
+        }
+    }
+    public void deleteRequest(String email, LocalDate queryDate, int slot){
+        if(!studentRequests.containsKey(queryDate)){
+            return;
+        }
+        if(!studentRequests.get(queryDate)[slot].containsKey(email)){
+            return;
+        }
+        studentRequests.get(queryDate)[slot].remove(email);
+    }
+    public Reservation fetchRequest(String email, LocalDate queryDate, int slot){
+        if(!studentRequests.containsKey(queryDate)){
+            return null;
+        }
+        if(!studentRequests.get(queryDate)[slot].containsKey(email)){
+            return null;
+        }
+        return studentRequests.get(queryDate)[slot].get(email);
+    }
     public static Reservation[] getDailySchedule(LocalDate queryDate, String room, Boolean lock){
         try{
             Socket server = new Socket(BookITconstants.serverIP, BookITconstants.serverPort);

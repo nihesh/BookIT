@@ -24,6 +24,7 @@ public class Reservation implements java.io.Serializable{
     private String room;
     private String reserverEmail;
     private int slotID;
+    private Boolean isRequest;
     /**
      * constructor for reservation class
      * @param Message the message describing purpose for reservation
@@ -48,6 +49,13 @@ public class Reservation implements java.io.Serializable{
         this.groupVenue = new ArrayList<String>();
         this.groups.add(group);
         this.groupVenue.add(room);
+        this.isRequest = false;
+    }
+    public void requestAdmin(){
+        this.isRequest = true;
+    }
+    public Boolean isRequest(){
+        return this.isRequest;
     }
     /**
      * getter for getting groups from reservation

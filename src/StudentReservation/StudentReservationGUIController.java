@@ -929,12 +929,19 @@ public class StudentReservationGUIController implements Initializable{
         for(int i=0;i<chosenSlots.size();i++){              // GUI Integration Begins
             Reservation r;
             r = new Reservation(chosenMessage, chosenGroup, chosenCourse, chosenFaculty, activeRoom, chosenPurpose, chosenSlots.get(i));
+            r.requestAdmin();
             r.setReserverEmail(activeUser.getEmail().getEmailID());
             r.setTargetDate(activeDate);
             listOfReservations.add(r);
         }                                                   // GUI Integration Ends
         if(!activeUser.sendReservationRequest(listOfReservations, false)){
             JOptionPane.showMessageDialog(null, "The booking couldn't be completed as there is another reservation for the course corresponding to this time slot", "Booking Error", JOptionPane.ERROR_MESSAGE);
+        }
+        else{
+            for(int i=0;i<chosenSlots.size();i++){
+                slotButtons.get(chosenSlots.get(i)).setText("Requested");
+                slotButtons.get(chosenSlots.get(i)).setDisable(true);
+            }
         }
         closeReservationPane();
         flyRight();
@@ -958,11 +965,20 @@ public class StudentReservationGUIController implements Initializable{
         for(int i=0;i<chosenSlots.size();i++){              // GUI Integration Begins
             Reservation r;
             r = new Reservation(chosenMessage, "0", "", "", activeRoom, chosenPurpose, chosenSlots.get(i));
+            r.requestAdmin();
             r.setTargetDate(activeDate);
             r.setReserverEmail(activeUser.getEmail().getEmailID());
             listOfReservations.add(r);
         }                                                   // GUI Integration Ends
-        activeUser.sendReservationRequest(listOfReservations, false);
+        if(!activeUser.sendReservationRequest(listOfReservations, false)){
+            JOptionPane.showMessageDialog(null, "The booking couldn't be completed as one of the slots you've chosen has been booked. Please refresh the page and try again", "Booking Error", JOptionPane.ERROR_MESSAGE);
+        }
+        else{
+            for(int i=0;i<chosenSlots.size();i++){
+                slotButtons.get(chosenSlots.get(i)).setText("Requested");
+                slotButtons.get(chosenSlots.get(i)).setDisable(true);
+            }
+        }
         closeReservationPane();
         flyRight();
         purposeBox.clear();
@@ -1019,14 +1035,22 @@ public class StudentReservationGUIController implements Initializable{
         RoomNo.setText(current.getText());
         activeRoom = current.getText();
         Reservation[] reservation = Room.getDailySchedule(activeDate, activeRoom, false);
+        Reservation[] requests = Room.getPendingReservations(activeUser.getEmail().getEmailID(), activeDate, activeRoom, false);
         for(int i=0;i<28;i++){
             if(reservation[i] != null){
                 slotButtons.get(i).setText("Booked");
                 slotButtons.get(i).setDisable(true);
             }
             else{
-                slotButtons.get(i).setText("Free");
-                slotButtons.get(i).setDisable(false);
+                Reservation temp = requests[i];
+                if(temp==null) {
+                    slotButtons.get(i).setText("Free");
+                    slotButtons.get(i).setDisable(false);
+                }
+                else{
+                    slotButtons.get(i).setText("Requested");
+                    slotButtons.get(i).setDisable(true);
+                }
             }
         }                                                                               // Loading ends
         induceDelay(appearAfter_HoverPane);
@@ -1058,16 +1082,24 @@ public class StudentReservationGUIController implements Initializable{
         double opacitySaturation = 1;
         RoomNo.setText(current.getText());
         Reservation[] reservation = Room.getDailySchedule(activeDate, current.getText(), false);
+        Reservation[] requests = Room.getPendingReservations(activeUser.getEmail().getEmailID(), activeDate, current.getText(), false);
         for(int i=0;i<28;i++){
             if(reservation[i] != null){
                 slotButtons.get(i).setText("Booked");
                 slotButtons.get(i).setDisable(true);
             }
             else{
-                slotButtons.get(i).setText("Free");
-                slotButtons.get(i).setDisable(false);
+                Reservation temp = requests[i];
+                if(temp==null) {
+                    slotButtons.get(i).setText("Free");
+                    slotButtons.get(i).setDisable(false);
+                }
+                else{
+                    slotButtons.get(i).setText("Requested");
+                    slotButtons.get(i).setDisable(true);
+                }
             }
-        }                                                                               // Loading ends
+        }                                                                              // Loading ends
         induceDelay(appearAfter_HoverPane);
         HoverPane.setVisible(true);
         HoverPane.setDisable(true);

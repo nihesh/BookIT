@@ -408,17 +408,23 @@ class ConnectionHandler implements Runnable{
             }
         }
         serializeRequests(p);
+        for(int i=0;i<r.size();i++){
+            temp.deleteRequest(r.get(0).getReserverEmail(), r.get(0).getTargetDate(), r.get(i).getReservationSlot());
+        }
         if(r!=null) {
             for (int i=0;i<data.size();i++) {
                 Reservation reservation = r.get(data.get(i));
                 temp.addReservation(r.get(0).getTargetDate(), reservation.getReservationSlot(), reservation);
-                temp.serialize();
+                temp.deleteRequest(r.get(0).getReserverEmail(), r.get(0).getTargetDate(), r.get(i).getReservationSlot());
                 if(ctemp!=null) {
                     ctemp.addReservation(r.get(0).getTargetDate(), reservation.getReservationSlot(), reservation);
-                    ctemp.serialize();
                 }
             }
         }
+        if(ctemp!=null) {
+            ctemp.serialize();
+        }
+        temp.serialize();
         return true;
     }
     public boolean rejectRequest(){
@@ -427,8 +433,14 @@ class ConnectionHandler implements Runnable{
             serializeRequests(p);
             return false;
         }
+        ArrayList<Reservation> r = p.peek();
         p.poll();
         serializeRequests(p);
+        Room temp = Room.deserializeRoom(r.get(0).getRoomName());
+        for(int i=0;i<r.size();i++){
+            temp.deleteRequest(r.get(i).getReserverEmail(), r.get(i).getTargetDate(), r.get(i).getReservationSlot());
+        }
+        temp.serialize();
         return true;
     }
     public boolean adminandfaculty_bookRoom(LocalDate queryDate,int slot, Reservation r) {
@@ -465,6 +477,7 @@ class ConnectionHandler implements Runnable{
     public boolean sendReservationRequest(ArrayList<Reservation> r) {
         PriorityQueue<ArrayList<Reservation>> p = null;
         Course c = Course.deserializeCourse(r.get(0).getCourseName());
+        Room room = Room.deserializeRoom(r.get(0).getRoomName());
         if(c!=null){
             for(int i=0;i<r.size();i++){
                 if(!c.checkReservation(r.get(i).getTargetDate(), r.get(i).getReservationSlot(),r.get(i))){
@@ -472,9 +485,19 @@ class ConnectionHandler implements Runnable{
                 }
             }
         }
+        for(int i=0;i<r.size();i++){
+            if(!room.checkReservation(r.get(i).getTargetDate(), r.get(i).getReservationSlot(),r.get(i))){
+                return false;
+            }
+        }
         p = deserializeRequests();
         p.add(r);
         serializeRequests(p);
+        Room temp = Room.deserializeRoom(r.get(0).getRoomName());
+        for(int i=0;i<r.size();i++){
+            temp.addRequest(r.get(i));
+        }
+        temp.serialize();
         return true;
     }
     public ArrayList<String> searchCourse(ArrayList<String> keyword){
@@ -904,6 +927,22 @@ class ConnectionHandler implements Runnable{
                                 out.writeObject(deserializeRequests());
                                 out.flush();
                                 break;
+                            case "studentGetReservationRequest":
+                                email = (String) in.readObject();
+                                queryDate = (LocalDate) in.readObject();
+                                slotID = (int) in.readObject();
+                                room = (String) in.readObject();
+                                r = Room.deserializeRoom(room);
+                                out.writeObject(r.fetchRequest(email, queryDate, slotID));
+                                out.flush();
+                                break;
+                            case "studentGetPendingReservations":
+                                email = (String) in.readObject();
+                                queryDate = (LocalDate) in.readObject();
+                                room = (String) in.readObject();
+                                r = Room.deserializeRoom(room);
+                                out.writeObject(r.getPendingReservations(email, queryDate));
+                                out.flush();
                         }
                         if(lock.isLocked() && lock.isHeldByCurrentThread()){
                             System.out.print("[ "+LocalDateTime.now()+" ] ");
