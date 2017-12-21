@@ -34,11 +34,6 @@
                   <MenuItem mnemonicParsing="false" onAction="#signout" text="Logout" />
                </items>
             </Menu>
-            <Menu mnemonicParsing="false" text="Help">
-               <items>
-                  <MenuItem mnemonicParsing="false" text="Documentation" />
-               </items>
-            </Menu>
          </menus>
       </MenuBar>
       <StackPane fx:id="topPane" prefHeight="382.0" prefWidth="1920.0">

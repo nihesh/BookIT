@@ -1,0 +1,14 @@
+Reservation 1 - 2017-12-21T17:22:31.832
+Sender: abc@iiitd.ac.in
+Target Date: 2017-12-21
+Room: C21
+Course: Number Theory
+Message: ImportantRequested Slots: 0400PM - 0430PM, 
+
+Reservation 2 - 2017-12-21T17:22:46.787
+Sender: abc@iiitd.ac.in
+Target Date: 2017-12-21
+Room: S01
+Course: 
+Message: HiRequested Slots: 0800PM - 0830PM, 
+

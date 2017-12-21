@@ -36,6 +36,7 @@ public class server {
     public static ExecutorService mailpool = Executors.newFixedThreadPool(2);
     public static HashMap<String, Integer> studhash=null;
     public static HashMap<String, Integer> faculthash=null;
+    public static HashMap<String, Integer> connectedIPs=null;
 
     public static void loadHashMaps(){
         ObjectInputStream in=null;
@@ -71,11 +72,12 @@ public class server {
     }
     public static void main(String[] args)throws IOException{
         BookITconstants b = new BookITconstants();
+        connectedIPs = new HashMap<>();
         loadHashMaps();
         ServerSocket s = new ServerSocket(BookITconstants.serverPort);
         ConnectionHandler.lock = new ReentrantLock();
         spm = new SpamFilter();
-        ExecutorService threads = Executors.newFixedThreadPool(4);
+        ExecutorService threads = Executors.newFixedThreadPool(3);
         while(true){
             Socket connection = s.accept();
             threads.execute(new ConnectionHandler(connection));
@@ -789,7 +791,7 @@ class ConnectionHandler implements Runnable{
                             case "faculty_addCourse":
                                 email = (String) in.readObject();
                                 course = (String) in.readObject();
-                                faculty_addCourse(email,course);
+                                faculty_addCourse(email, course);
                                 break;
                             case "student_sendReservationRequest":
                                 ArrayList<Reservation> reservations = (ArrayList<Reservation>) in.readObject();
@@ -820,8 +822,8 @@ class ConnectionHandler implements Runnable{
                                 break;
                             case "changePassword":
                                 email = (String) in.readObject();
-                                String oldPass = (String)  in.readObject();
-                                String newPass = (String)  in.readObject();
+                                String oldPass = (String) in.readObject();
+                                String newPass = (String) in.readObject();
                                 result = changePassword(email, oldPass, newPass);
                                 out.writeObject(result);
                                 out.flush();
@@ -896,6 +898,10 @@ class ConnectionHandler implements Runnable{
                             case "CompatibilityCheck":
                                 double version = (double) in.readObject();
                                 out.writeObject(isCompatible(version));
+                                out.flush();
+                                break;
+                            case "admin_getRequestsQueue":
+                                out.writeObject(deserializeRequests());
                                 out.flush();
                                 break;
                         }

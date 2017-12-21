@@ -42,6 +42,7 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.PriorityQueue;
 import java.util.ResourceBundle;
 
 import static java.lang.Math.max;
@@ -239,10 +240,73 @@ public class AdminReservationGUIController implements Initializable{
         cancelSlotBookingImage.setImage(image);
         joinCodeDropDown.getItems().add("Student");
         joinCodeDropDown.getItems().add("Faculty");
-        joinCodeDropDown.getItems().add("Admin");
+        // joinCodeDropDown.getItems().add("Admin"); // Only one admin user
         joinCodeDropDown.getSelectionModel().selectFirst();
         joinCodeDropDown.setStyle("-fx-font-size : 13pt;-fx-background-color: #922B21;");
         loadDate();
+    }
+    public void downloadRequests(){
+        try{
+            Socket server = new Socket(BookITconstants.serverIP, BookITconstants.serverPort);
+            ObjectOutputStream out = new ObjectOutputStream(server.getOutputStream());
+            ObjectInputStream in = new ObjectInputStream(server.getInputStream());
+            if(true){
+                out.writeObject("Hold");
+            }
+            else{
+                out.writeObject("Pass");
+            }
+            out.flush();
+            out.writeObject("admin_getRequestsQueue");
+            out.flush();
+            PriorityQueue<ArrayList<Reservation>> c = (PriorityQueue<ArrayList<Reservation>>) in.readObject();
+            FileWriter file = new FileWriter(new File("./src/AppData/Downloads/Requests.txt"), false);
+            int i=1;
+            while(!c.isEmpty()){
+                ArrayList<Reservation> r = c.peek();
+                c.poll();
+                file.write("Reservation "+i+" - "+r.get(0).getCreationDate().toString()+"\n");
+                file.flush();
+                file.write("Sender: "+r.get(0).getReserverEmail()+"\n");
+                file.flush();
+                file.write("Target Date: "+r.get(0).getTargetDate()+"\n");
+                file.flush();
+                file.write("Room: "+r.get(0).getRoomName()+"\n");
+                file.flush();
+                file.write("Course: "+r.get(0).getCourseName()+"\n");
+                file.flush();
+                file.write("Message: "+r.get(0).getMessageWithoutVenue()+"\n");
+                file.flush();
+                file.write("Purpose: "+r.get(0).getType()+"\n");
+                file.flush();
+                file.write("Requested Slots: ");
+                file.flush();
+                r.forEach(items->{
+                    try {
+                        file.write(Reservation.getSlotRange(items.getReservationSlot()) + ", ");
+                        file.flush();
+                    }
+                    catch (Exception e){
+                        ;
+                    }
+                });
+                file.write("\n\n");
+                file.flush();
+                i++;
+            }
+            file.close();
+            out.close();
+            in.close();
+            server.close();
+            JOptionPane.showMessageDialog(null, "Download Complete! The downloaded file is located in ./src/AppData/Downloads", "Notification", JOptionPane.ERROR_MESSAGE);
+        }
+        catch(IOException e){
+            System.out.println(e.getMessage());
+            System.out.println("IO Exception occurred while downloading requests");
+        }
+        catch (ClassNotFoundException c){
+            System.out.println("ClassNotFound exception occurred while downloading requests");
+        }
     }
     public void exitCancelBooking(){
         cancelBookingProcessing = false;

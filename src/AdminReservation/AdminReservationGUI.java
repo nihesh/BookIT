@@ -4,6 +4,7 @@
 
 package AdminReservation;
 
+import HelperClasses.BookITconstants;
 import HelperClasses.User;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -13,6 +14,10 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.File;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.net.Socket;
 
 public class AdminReservationGUI extends Application {
 
