@@ -144,7 +144,7 @@ public class LoginSignupGUIController {
 	
 	@FXML
 	private void Continue() {
-		if(e!=null && !PortListener.authcode.equals("none")) {
+		if(e!=null && !PortListener.authcode.equals("none") && PortListener.getStatus().equals("Updated")) {
 			e.load("");
 			GPane.setVisible(false);
 			if(PortListener.authcode.equals("denied")) {
@@ -162,10 +162,12 @@ public class LoginSignupGUIController {
 					Alert alert = new Alert(AlertType.INFORMATION);
 					PortListener.authcode="none";
 					PortListener.email=null;PortListener.Name=null;
+					PortListener.status="NotUpdated";
 					alert.setTitle("Information Dialog");
 					alert.setHeaderText(null);
 					alert.setContentText("This Account Already exists. Please use standard login");
 					alert.showAndWait();
+					
 					return;
 				}
 				String usertype = User.getUserType(Gemail.getEmailID(), false);
@@ -196,6 +198,7 @@ public class LoginSignupGUIController {
 			//give some indication
 			PortListener.authcode="none";
 			PortListener.email=null;PortListener.Name=null;
+			PortListener.status="NotUpdated";
 			GName=null;Gemail=null;Guser=null;
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("Information Dialog");
@@ -728,6 +731,7 @@ public class LoginSignupGUIController {
 	}
 }
 class PortListener implements Runnable{
+	static String status = "NotUpdated";
 	static String Name=null;
 	static String email=null;
 	static String authcode="none";
@@ -748,6 +752,9 @@ class PortListener implements Runnable{
 				System.out.println("error");
 			}
 		}
+	}
+	public static String getStatus() {
+		return status;
 	}
 	public static ServerSocket needSocket() {
 		return serversocket;
@@ -830,6 +837,7 @@ class PortListener implements Runnable{
 			    email = finalAns[2].substring(11, finalAns[2].length()-2);
 			    System.out.println(Name);
 			    System.out.println(email);
+			    status = "Updated";
 			    }
 			    	// do something useful
 			     finally {
