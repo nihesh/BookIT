@@ -202,7 +202,13 @@ public class LoginSignupGUIController {
 			alert.setHeaderText(null);
 			alert.setContentText("Please use a IIITD account");
 			alert.showAndWait();
+			return;
 		}
+		Alert alert = new Alert(AlertType.INFORMATION);
+		alert.setTitle("Information Dialog");
+		alert.setHeaderText(null);
+		alert.setContentText("Please fill your complete info and then press DONE Button");
+		alert.showAndWait();
 	}
 	
 	

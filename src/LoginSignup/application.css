@@ -28,6 +28,13 @@
 	-fx-background-insets: 20px; 
   	-fx-background-radius: 12px; 
 }
+.Web{
+	-fx-background-color: rgba(255,255,255,0.4);
+	-fx-effect: dropshadow(three-pass-box, derive(black, +40%), 10, 0, 4, 4); 
+  	-fx-background-color: derive(black,20%); 
+  	
+  	-fx-background-radius: 3;
+}
 
 .back2{
 	-fx-background-image: url('./app-1646213_640.png'); 

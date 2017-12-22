@@ -135,11 +135,12 @@
             </Label>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="GPane" prefHeight="400.0" prefWidth="600.0" visible="false">
+      <AnchorPane fx:id="GPane" prefHeight="400.0" prefWidth="620.0" styleClass="Web" visible="false">
          <children>
-            <WebView fx:id="browser" layoutY="32.0" onMouseMoved="#Continue" prefHeight="368.0" prefWidth="600.0" />
-            <Button fx:id="Gcancel" layoutX="22.0" layoutY="2.0" mnemonicParsing="false" onMouseClicked="#Close" prefHeight="25.0" prefWidth="64.0" text="BACK" />
-            <Button fx:id="Gdone" layoutX="510.0" layoutY="2.0" mnemonicParsing="false" onMouseClicked="#Continue" prefHeight="25.0" prefWidth="64.0" text="DONE" />
+            <WebView fx:id="browser" layoutX="5.0" layoutY="32.0" prefHeight="368.0" prefWidth="600.0" />
+            <Button fx:id="Gcancel" layoutX="22.0" layoutY="2.0" mnemonicParsing="false" onMouseClicked="#Close" prefHeight="22.0" prefWidth="64.0" styleClass="butX" text="BACK" />
+            <Button fx:id="Gdone" layoutX="510.0" layoutY="2.0" mnemonicParsing="false" onMouseClicked="#Continue" prefHeight="22.0" prefWidth="64.0" styleClass="but1" text="DONE" />
+            <Label layoutX="200.0" prefHeight="17.0" prefWidth="271.0" text="BookIT embedded browser v1.0" textFill="WHITE" />
          </children>
       </AnchorPane>
    </children>
