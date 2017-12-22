@@ -8,6 +8,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.URI;
@@ -149,6 +150,7 @@ public class LoginSignupGUIController {
 			GPane.setVisible(false);
 			if(PortListener.authcode.equals("denied")) {
 				PortListener.authcode="none";
+				System.out.println("should never happen");
 				java.net.CookieManager manager = new java.net.CookieManager();
 				java.net.CookieHandler.setDefault(manager);
 			}
@@ -210,7 +212,7 @@ public class LoginSignupGUIController {
 		Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setTitle("Information Dialog");
 		alert.setHeaderText(null);
-		alert.setContentText("Please fill your complete info and then press DONE Button");
+		alert.setContentText("Please fill your complete info, press Accept and then press DONE Button");
 		alert.showAndWait();
 	}
 	
@@ -783,14 +785,21 @@ class PortListener implements Runnable{
 				sock=serversocket.accept();
 			}
 			catch(Exception e) {
-				;
 			}
 			if(sock!=null) {
 			BufferedReader in=new BufferedReader(new InputStreamReader(sock.getInputStream()));
 			authcode=in.readLine();
 			if(authcode.contains("denied")) {
-				authcode="denied";
-				System.out.println("denied");
+				authcode="none";
+				PrintWriter out = new PrintWriter(sock.getOutputStream());
+			    out.println("HTTP/1.1 200 OK");
+			    out.println("Content-Type: text/html");
+			    out.println("\r\n");
+			    out.println("<p>Access denied by user. Please click back button/p>");
+			    out.flush();
+			    out.close();
+				java.net.CookieManager manager = new java.net.CookieManager();
+				java.net.CookieHandler.setDefault(manager);
 				//serversocket.close();
 				return;
 			}
@@ -838,6 +847,13 @@ class PortListener implements Runnable{
 			    System.out.println(Name);
 			    System.out.println(email);
 			    status = "Updated";
+			    PrintWriter out = new PrintWriter(sock.getOutputStream());
+			    out.println("HTTP/1.1 200 OK");
+			    out.println("Content-Type: text/html");
+			    out.println("\r\n");
+			    out.println("<p>Authentication Successful. Please click done button to proceed</p>");
+			    out.flush();
+			    out.close();
 			    }
 			    	// do something useful
 			     finally {
