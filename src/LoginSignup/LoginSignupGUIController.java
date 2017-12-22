@@ -40,7 +40,8 @@ import javafx.animation.SequentialTransition;
 import javafx.animation.Timeline;
 import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
-
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -166,7 +167,13 @@ public class LoginSignupGUIController {
 				GName=PortListener.Name;
 				if(User.getUser(Gemail.getEmailID(), false)!=null) {
 					System.out.println("account already exists");
-					JOptionPane.showMessageDialog(null, "Account already exists");
+					java.net.CookieManager manager = new java.net.CookieManager();
+					java.net.CookieHandler.setDefault(manager);
+					Alert alert = new Alert(AlertType.INFORMATION);
+					alert.setTitle("Information Dialog");
+					alert.setHeaderText(null);
+					alert.setContentText("This Account Already exists. Please use standard login");
+					alert.showAndWait();
 					return;
 				}
 				String usertype = User.getUserType(Gemail.getEmailID(), false);
@@ -184,7 +191,11 @@ public class LoginSignupGUIController {
 				Guser.serialize(false);
 				Guser.generatePass(false);
 				Guser.mailPass(false);
-				JOptionPane.showMessageDialog(null, "Account Creation Successful. An email is sent to you with password");
+				Alert alert = new Alert(AlertType.INFORMATION);
+				alert.setTitle("Information Dialog");
+				alert.setHeaderText(null);
+				alert.setContentText("Account Created Successfully. A mail has been sent to you");
+				alert.showAndWait();
 				return;
 			}
 			java.net.CookieManager manager = new java.net.CookieManager();
@@ -193,9 +204,14 @@ public class LoginSignupGUIController {
 			//give some indication
 			PortListener.authcode="none";
 			GName=null;Gemail=null;Guser=null;
-			JOptionPane.showMessageDialog(null, "please use only iiitd account");
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setTitle("Information Dialog");
+			alert.setHeaderText(null);
+			alert.setContentText("Please use a IIITD account");
+			alert.showAndWait();
 		}
 	}
+	
 	
 	@FXML
 	public void initialize() {
