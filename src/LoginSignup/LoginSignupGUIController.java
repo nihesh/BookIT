@@ -138,23 +138,13 @@ public class LoginSignupGUIController {
 			java.net.CookieManager manager = new java.net.CookieManager();
 			java.net.CookieHandler.setDefault(manager);
 		}
+		PortListener.closeSocket();
 		GPane.setVisible(false);
-		ServerSocket temp;
-		try {
-			temp = new ServerSocket(9004);
-			temp.close();
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		
-		
-		
 	}
 	
 	@FXML
 	private void Continue() {
-		if(e!=null&& !PortListener.authcode.equals("none")) {
+		if(e!=null && !PortListener.authcode.equals("none")) {
 			e.load("");
 			GPane.setVisible(false);
 			if(PortListener.authcode.equals("denied")) {
@@ -170,6 +160,8 @@ public class LoginSignupGUIController {
 					java.net.CookieManager manager = new java.net.CookieManager();
 					java.net.CookieHandler.setDefault(manager);
 					Alert alert = new Alert(AlertType.INFORMATION);
+					PortListener.authcode="none";
+					PortListener.email=null;PortListener.Name=null;
 					alert.setTitle("Information Dialog");
 					alert.setHeaderText(null);
 					alert.setContentText("This Account Already exists. Please use standard login");
@@ -203,6 +195,7 @@ public class LoginSignupGUIController {
 			System.out.println("wrong creds");
 			//give some indication
 			PortListener.authcode="none";
+			PortListener.email=null;PortListener.Name=null;
 			GName=null;Gemail=null;Guser=null;
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("Information Dialog");
@@ -732,8 +725,8 @@ class PortListener implements Runnable{
 	static String Name=null;
 	static String email=null;
 	static String authcode="none";
-	ServerSocket serversocket;
-	Socket sock;
+	static ServerSocket serversocket = null;
+	static Socket sock=null;
 	static String webURL1 ="https://accounts.google.com/o/oauth2/v2/auth?\r\n" + 
 			"scope=https://www.googleapis.com/auth/userinfo.email%20profile&\r\n" + 
 			"response_type=code&\r\n" +  
@@ -741,21 +734,51 @@ class PortListener implements Runnable{
 			"client_id=675553038343-joaegqsglukqdti0ukkga8in6st1gl3k.apps.googleusercontent.com";
 	static String webURL2 ="none";
 	Thread t;
+	public static void closeSocket() {
+		if(sock!=null) {
+			try {
+			sock.close();}
+			catch(Exception e) {
+				System.out.println("error");
+			}
+		}
+	}
+	public static ServerSocket needSocket() {
+		return serversocket;
+	}
+	public void getPort() {
+		if(serversocket==null) {
+			try {
+				serversocket=new ServerSocket(9004);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				System.out.println("server already in use");
+			}
+		}
+		
+	}
 	public PortListener() {
 		// TODO Auto-generated constructor stub
+		getPort();
 		t=new Thread(this);
 		t.start();
 	}
 	public void startAuth() {
 		try {
-			serversocket = new ServerSocket(9004);
-			sock=serversocket.accept();
+			//serversocket = new ServerSocket(9004);
+			try {
+				sock=serversocket.accept();
+			}
+			catch(Exception e) {
+				;
+			}
+			if(sock!=null) {
 			BufferedReader in=new BufferedReader(new InputStreamReader(sock.getInputStream()));
 			authcode=in.readLine();
 			if(authcode.contains("denied")) {
 				authcode="denied";
 				System.out.println("denied");
-				serversocket.close();
+				//serversocket.close();
 				return;
 			}
 			else {
@@ -807,12 +830,12 @@ class PortListener implements Runnable{
 			    	instream.close();
 			    }
 			}
-			serversocket.close();
+			//serversocket.close();
 			
-		
+			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			;
 		}
 
 	}

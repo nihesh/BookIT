@@ -12,6 +12,8 @@ import javafx.scene.image.Image;
 
 import java.awt.*;
 import java.io.File;
+import java.io.IOException;
+import java.net.ServerSocket;
 
 public class LoginSignupGUI extends Application{
 	@Override
@@ -35,6 +37,17 @@ public class LoginSignupGUI extends Application{
 			primaryStage.setScene(scene);
 			primaryStage.setResizable(false);
 			File file = new File("./src/BookIT_icon.jpg");
+			primaryStage.setOnCloseRequest(e->{
+				System.out.println(1);
+				ServerSocket temp = PortListener.needSocket();
+				try {
+					if(temp!=null) {
+					temp.close();}
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					System.out.println("error in line 48 LoginSignupGUI.java");;
+				}
+			});
 			primaryStage.getIcons().add(new Image(file.toURI().toString()));
 			primaryStage.setTitle("BookIT - Login");
 			primaryStage.showAndWait();
