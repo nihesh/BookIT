@@ -1050,8 +1050,10 @@ class Mail implements Runnable{
              // Set From: header field of the header.
              message.setFrom(new InternetAddress(from));
              // Set To: header field of the header.
-             message.setRecipients(Message.RecipientType.TO,
-             InternetAddress.parse("harsh16041@iiitd.ac.in"));
+             if(recipient.equals("admin@iiitd.ac.in")) {
+            	 recipient = "harsh16041@iiitd.ac.in";
+             }
+             message.setRecipients(Message.RecipientType.TO,InternetAddress.parse(recipient));
              // Set Subject: header field
              message.setSubject(Subject);
              // Now set the actual message
