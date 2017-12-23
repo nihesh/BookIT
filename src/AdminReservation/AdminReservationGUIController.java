@@ -13,6 +13,7 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.geometry.Rectangle2D;
@@ -24,12 +25,16 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.event.Event;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.stage.Modality;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.util.Callback;
 import javafx.util.Duration;
 
@@ -307,6 +312,20 @@ public class AdminReservationGUIController implements Initializable{
         catch (ClassNotFoundException c){
             System.out.println("ClassNotFound exception occurred while downloading requests");
         }
+    }
+    public void OpenNotifications() {
+    	try {
+    	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Notify.fxml"));
+        Parent root1 = (Parent) fxmlLoader.load();
+        Stage stage = new Stage();
+        stage.initModality(Modality.APPLICATION_MODAL);
+        //stage.initStyle(StageStyle.UNDECORATED);
+        stage.setTitle("ABC");
+        stage.setScene(new Scene(root1));  
+        stage.show();}
+    	catch(Exception e) {
+    		
+    	}
     }
     public void exitCancelBooking(){
         cancelBookingProcessing = false;

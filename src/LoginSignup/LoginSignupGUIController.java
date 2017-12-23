@@ -260,7 +260,7 @@ public class LoginSignupGUIController {
 		TranslateTransition transright=new TranslateTransition();
 		transright.setNode(Cred_Pane);
 		transright.setToX(Cred_Pane.getPrefWidth());
-		transright.setDuration(Duration.millis(700));
+		transright.setDuration(Duration.millis(400));
 		transright.play();
 	}
 	@FXML
@@ -271,7 +271,7 @@ public class LoginSignupGUIController {
 		TranslateTransition transright=new TranslateTransition();
 		transright.setNode(Cred_Pane);
 		transright.setToX(0);
-		transright.setDuration(Duration.millis(700));
+		transright.setDuration(Duration.millis(600));
 		transright.play();
 		transright.setOnFinished(e->{
 			Cred_btn.setDisable(false);
@@ -684,13 +684,13 @@ public class LoginSignupGUIController {
 		seq1.setNode(Login_Pane);
 		seq1.setFromValue(Login_Pane.getOpacity());
 		seq1.setToValue(0.0);
-		seq1.setDuration(Duration.millis(800));
+		seq1.setDuration(Duration.millis(700));
 		seq1.play();
 		SequentialTransition sequence=new SequentialTransition();
 		TranslateTransition transleft=new TranslateTransition();
 		transleft.setNode(Signup_Pane);
 		transleft.setToX(Login_Pane.getLayoutX()-Signup_Pane.getLayoutX());
-		transleft.setDuration(Duration.millis(700));
+		transleft.setDuration(Duration.millis(500));
 		sequence.getChildren().add(transleft);
 		sequence.play();
 		sequence.setOnFinished(e->{
@@ -714,13 +714,13 @@ public class LoginSignupGUIController {
 		seq1.setNode(Login_Pane);
 		seq1.setFromValue(Login_Pane.getOpacity());
 		seq1.setToValue(initOpacity);
-		seq1.setDuration(Duration.millis(800));
+		seq1.setDuration(Duration.millis(600));
 		seq1.play();
 		SequentialTransition sequence=new SequentialTransition();
 		TranslateTransition transright=new TranslateTransition();
 		transright.setNode(Signup_Pane);
 		transright.setToX(0);
-		transright.setDuration(Duration.millis(700));
+		transright.setDuration(Duration.millis(600));
 		sequence.getChildren().add(transright);
 		sequence.play();
 		sequence.setOnFinished(e->{
