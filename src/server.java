@@ -424,14 +424,21 @@ class ConnectionHandler implements Runnable{
             temp.deleteRequest(r.get(0).getReserverEmail(), r.get(0).getTargetDate(), r.get(i).getReservationSlot());
         }
         if(r!=null) {
+        	String recipient = r.get(0).getReserverEmail();
+            String GreetText = getUser(recipient).getName();
+            String TimeSlots="";
+            
             for (int i=0;i<data.size();i++) {
                 Reservation reservation = r.get(data.get(i));
+                TimeSlots+=Reservation.getSlotRange(reservation.getReservationSlot())+"\n";
                 temp.addReservation(r.get(0).getTargetDate(), reservation.getReservationSlot(), reservation);
                 temp.deleteRequest(r.get(0).getReserverEmail(), r.get(0).getTargetDate(), r.get(i).getReservationSlot());
                 if(ctemp!=null) {
                     ctemp.addReservation(r.get(0).getTargetDate(), reservation.getReservationSlot(), reservation);
                 }
             }
+            server.mailpool.execute(new Mail(recipient,"BooKIT - Room booking cancelled", GreetText+","+"\n\nThe following request of yours have been accepted by the admin:\n\n"+"Room: "+r.get(0).getVenueName()+"\nDate: "+r.get(0).getTargetDate().getDayOfMonth()+"/"+r.get(0).getTargetDate().getMonthValue()+"/"+r.get(0).getTargetDate().getYear()+"\nTime:\n"+TimeSlots+"\n\nIf you think this is a mistake, please contact admin.\n\nRegards,\nBookIT Team"));
+            
         }
         if(ctemp!=null) {
             ctemp.serialize();
