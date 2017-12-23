@@ -470,6 +470,10 @@ class ConnectionHandler implements Runnable{
                 course.serialize();
                 room.addReservation(queryDate,slot,r);
                 room.serialize();
+                User temp = getUser(r.getReserverEmail());
+                Notification n = new Notification("Classroom Booking", "Done", r.getMessage(), r.getCourseName(), r.getTargetDate(), r.getRoomName(), r.getReserverEmail(), r.getReservationSlot());
+                temp.addNotification(n);
+                serializeUser(temp);
                 return true;
             }
         }
@@ -477,6 +481,10 @@ class ConnectionHandler implements Runnable{
             if(room.checkReservation(queryDate,slot,r)==true){
                 room.addReservation(queryDate,slot,r);
                 room.serialize();
+                User temp = getUser(r.getReserverEmail());
+                Notification n = new Notification("Classroom Booking", "Done", r.getMessage(), r.getCourseName(), r.getTargetDate(), r.getRoomName(), r.getReserverEmail(), r.getReservationSlot());
+                temp.addNotification(n);
+                serializeUser(temp);
                 return true;
             }
         }
@@ -695,6 +703,21 @@ class ConnectionHandler implements Runnable{
             return false;
         }
     }
+    public ArrayList<Notification> GetNotifications(String email){
+    	User x  = getUser(email);
+    	ArrayList<Notification> temp = x.getterNotification();
+    	for (Notification noti : temp) {
+		 if(noti.getTargetDate().isBefore(LocalDate.now())) {
+			 temp.remove(noti);
+		 }
+		 else {
+			 break;
+		 }
+		}
+    	x.setNotification(temp);
+    	serializeUser(x);
+    	return temp;
+    }
     public void run(){
         ObjectInputStream in=null;
         ObjectOutputStream out=null;
@@ -748,6 +771,12 @@ class ConnectionHandler implements Runnable{
                                 u = (User) in.readObject();
                                 serializeUser(u);
                                 break;
+                            case "getNotifications":
+                            	email = (String)in.readObject();
+                            	ArrayList<Notification> array = GetNotifications(email);
+                            	out.writeObject(array);
+                                out.flush();
+                            	break;
                             case "AllCourses":
                                 ArrayList<String> arr = getAllCourses();
                                 out.writeObject(arr);
