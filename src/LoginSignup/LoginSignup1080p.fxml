@@ -3,7 +3,6 @@
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
@@ -65,7 +64,6 @@
                </textFill>
             </Label>
             <TextField fx:id="Name" layoutX="59.0" layoutY="219.0" prefHeight="36.0" prefWidth="301.0" promptText="Enter Name" styleClass="text-field1" visible="false" AnchorPane.bottomAnchor="295.0" AnchorPane.leftAnchor="59.0" AnchorPane.rightAnchor="59.0" AnchorPane.topAnchor="219.0" />
-            <ComboBox fx:id="Branch" layoutX="59.0" layoutY="299.0" prefHeight="25.0" prefWidth="301.0" styleClass="text-field1" visible="false" />
             <Button fx:id="Signup_email_btn" layoutX="282.0" layoutY="282.0" mnemonicParsing="false" onMouseClicked="#Signup_NEXT" onMouseEntered="#BtnEffect" onMouseExited="#BtnEffectRev" prefHeight="36.0" prefWidth="82.0" styleClass="but1" text="NEXT" AnchorPane.bottomAnchor="232.0" AnchorPane.leftAnchor="282.0" AnchorPane.rightAnchor="55.0" AnchorPane.topAnchor="282.0" />
             <Button fx:id="Signup_password_btn" layoutX="282.0" layoutY="330.0" mnemonicParsing="false" onMouseClicked="#Signup_NEXT2" onMouseEntered="#BtnEffect" onMouseExited="#BtnEffectRev" prefHeight="36.0" prefWidth="82.0" styleClass="but1" text="NEXT" visible="false" AnchorPane.bottomAnchor="184.0" AnchorPane.leftAnchor="282.0" AnchorPane.rightAnchor="55.0" AnchorPane.topAnchor="330.0" />
             <Button fx:id="Signup_joincode_btn" layoutX="282.0" layoutY="282.0" mnemonicParsing="false" onMouseClicked="#Signup_NEXT3" onMouseEntered="#BtnEffect" onMouseExited="#BtnEffectRev" prefHeight="36.0" prefWidth="82.0" styleClass="but1" text="NEXT" visible="false" AnchorPane.bottomAnchor="232.0" AnchorPane.leftAnchor="282.0" AnchorPane.rightAnchor="55.0" AnchorPane.topAnchor="282.0" />
@@ -77,7 +75,7 @@
             <Image url="@Untitled.png" />
          </image>
       </ImageView>
-      <Button fx:id="Signup_btn" layoutX="135.0" layoutY="385.0" mnemonicParsing="false" onMouseClicked="#Signup_TranslateLeft" prefHeight="68.0" prefWidth="157.0" styleClass="but2" text="SIGNUP" AnchorPane.bottomAnchor="114.0" AnchorPane.leftAnchor="135.0" AnchorPane.rightAnchor="558.0" AnchorPane.topAnchor="385.0">
+      <Button fx:id="Signup_btn" layoutX="135.0" layoutY="385.0" mnemonicParsing="false" onMouseClicked="#Signup_TranslateLeft" prefHeight="68.0" prefWidth="157.0" styleClass="but2" text="SIGNUP" visible="false" AnchorPane.bottomAnchor="114.0" AnchorPane.leftAnchor="135.0" AnchorPane.rightAnchor="558.0" AnchorPane.topAnchor="385.0">
          <font>
             <Font size="18.0" />
          </font></Button>

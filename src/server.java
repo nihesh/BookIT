@@ -349,7 +349,6 @@ class ConnectionHandler implements Runnable{
             }
             Room room = Room.deserializeRoom(r.get(0).getRoomName());
             Reservation[] pending = room.getPendingReservations(r.get(0).getReserverEmail(),r.get(0).getTargetDate());
-            System.out.println("hi");
             for(int i=r.size()-1;i>=0;i--){
                 if(pending[r.get(i).getReservationSlot()] == null){
                     r.remove(i);
@@ -400,7 +399,7 @@ class ConnectionHandler implements Runnable{
         while(r!=null) {
             for (int i=0;i<data.size();i++) {
                 Reservation reservation = r.get(data.get(i));
-                if (!temp.checkReservation(r.get(0).getTargetDate(), reservation.getReservationSlot(), reservation)) {
+                if(!temp.checkReservation(r.get(0).getTargetDate(), reservation.getReservationSlot(), reservation)) {
                     p.poll();
                     flag=1;
                     r=p.peek();
@@ -447,6 +446,13 @@ class ConnectionHandler implements Runnable{
             return false;
         }
         ArrayList<Reservation> r = p.peek();
+        String recipient = r.get(0).getReserverEmail();
+        String GreetText = getUser(recipient).getName();
+        String TimeSlots="";
+        for (Reservation reservation : r) {
+			TimeSlots+=Reservation.getSlotRange(reservation.getReservationSlot())+"\n";
+		}
+        server.mailpool.execute(new Mail(recipient,"BooKIT - Room booking cancelled", GreetText+","+"\n\nThe following request of yours have been rejected by the admin:\n\n"+"Room: "+r.get(0).getVenueName()+"\nDate: "+r.get(0).getTargetDate().getDayOfMonth()+"/"+r.get(0).getTargetDate().getMonthValue()+"/"+r.get(0).getTargetDate().getYear()+"\nTime:\n"+TimeSlots+"\n\nIf you think this is a mistake, please contact admin.\n\nRegards,\nBookIT Team"));
         p.poll();
         serializeRequests(p);
         Room temp = Room.deserializeRoom(r.get(0).getRoomName());

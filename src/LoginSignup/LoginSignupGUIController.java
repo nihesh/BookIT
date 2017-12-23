@@ -74,8 +74,6 @@ public class LoginSignupGUIController {
 	@FXML
 	private AnchorPane FirstPane;
 	@FXML
-	private ComboBox<String> Branch;
-	@FXML
 	private TextField Name;
 	@FXML
 	private PasswordField CnfPass;
@@ -221,7 +219,6 @@ public class LoginSignupGUIController {
 	public void initialize() {
 		ArrayList<String> temp=new ArrayList<>();
 		// TODO Auto-generated method stub
-		Branch.getItems().removeAll(Branch.getItems());
 		BufferedReader r;
 		try {
 			r=new BufferedReader(new FileReader("./src/AppData/Year/StudentYear.txt"));
@@ -239,10 +236,6 @@ public class LoginSignupGUIController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		for (String string : temp) {
-			Branch.getItems().add(string);
-		}
-		Branch.getSelectionModel().select(temp.get(0));
 		
 	}
 	@FXML
@@ -330,7 +323,6 @@ public class LoginSignupGUIController {
 		else {
 			Signup_joincode.clear();
 			Signup_joincode.setVisible(false);
-			Branch.setVisible(false);
 			Signup_joincode.getStyleClass().remove("text-field2");
 			Name.getStyleClass().remove("text-field2");
 			Name.setVisible(false);
@@ -517,7 +509,6 @@ public class LoginSignupGUIController {
 		Name.setVisible(true);
 		if(Signup_joincode.getText().toUpperCase().charAt(0)=='S') { //identifies student
 			user=new User(user.getName(), user.getPassword(), user.getEmail(), "Student");
-			Branch.setVisible(true);
 			Signup_done_btn.setTranslateY(75);
 		}
 		else if(Signup_joincode.getText().toUpperCase().charAt(0)=='A') {
@@ -563,7 +554,7 @@ public class LoginSignupGUIController {
 				}
 				Name.getStyleClass().remove("text-field2");
 			}
-			if(Branch.isVisible()==true){
+		/*	if(Branch.isVisible()==true){
 				user=new Student(user.getName(), user.getPassword(), user.getEmail(), user.getUsertype(), Branch.getValue(), new ArrayList<String>());
 			}
 			else if(user.getUsertype().equals("Faculty")) {
@@ -571,7 +562,7 @@ public class LoginSignupGUIController {
 				}
 			else {
 				user=new Admin(user.getName(), user.getPassword(), user.getEmail(), user.getUsertype());
-			}
+			}*/
 			user.serialize(false);
 		Signup_TranslateRight();
 		AccCre.setVisible(true);
@@ -654,7 +645,6 @@ public class LoginSignupGUIController {
 		Name.clear();					//far
 		Name.setVisible(false);
 		Name.getStyleClass().remove("text-field2");
-		Branch.setVisible(false);
 		Signup_done_btn.setVisible(false);
 		if(Signup_done_btn.getTranslateY()==75) {
 			Signup_done_btn.setTranslateY(0);
