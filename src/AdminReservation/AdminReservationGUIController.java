@@ -215,13 +215,16 @@ public class AdminReservationGUIController implements Initializable{
         cancelMessageBG.setImage(image);
         pullDownPane.setTranslateY(pullDownPaneInitial);
         pullDownPane.setVisible(true);
-        datePicker.setValue(LocalDate.now());
 
         optionDropDown.getItems().clear();
         optionDropDown.getItems().add("Course");
         optionDropDown.getItems().add("Other");
         optionDropDown.setValue("Course");
 
+        datePicker.setEditable(false);
+        startDate.setEditable(false);
+        endDate.setEditable(false);
+        datePicker.setValue(LocalDate.now());
         Callback<DatePicker, DateCell> dayCellFactory = dp -> new DateCell()
         {
             @Override

@@ -212,7 +212,6 @@ public class StudentReservationGUIController implements Initializable{
         listCoursesBG.setImage(image);
         pullDownPane.setTranslateY(pullDownPaneInitial);
         pullDownPane.setVisible(true);
-        datePicker.setValue(LocalDate.now());
 
         optionDropDown.getItems().clear();
         optionDropDown.getItems().add("Course");
@@ -223,6 +222,8 @@ public class StudentReservationGUIController implements Initializable{
         image = new Image(file.toURI().toString());
         cancelSlotBookingImage.setImage(image);
 
+        datePicker.setEditable(false);
+        datePicker.setValue(LocalDate.now());
         Callback<DatePicker, DateCell> dayCellFactory = dp -> new DateCell()
         {
             @Override

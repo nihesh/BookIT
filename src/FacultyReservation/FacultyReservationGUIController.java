@@ -214,6 +214,7 @@ public class FacultyReservationGUIController implements Initializable{
         optionDropDown.getItems().add("Other");
         optionDropDown.setValue("Course");
 
+        datePicker.setEditable(false);
         datePicker.setValue(LocalDate.now());
         Callback<DatePicker, DateCell> dayCellFactory = dp -> new DateCell()
         {
