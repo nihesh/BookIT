@@ -159,11 +159,16 @@
                </effect>
             </Label>
          </children></AnchorPane>
-      <AnchorPane fx:id="GPane" prefHeight="567.0" prefWidth="850.0" visible="false">
+      <AnchorPane fx:id="GPane" prefHeight="567.0" prefWidth="850.0" styleClass="Web" visible="false">
          <children>
-            <WebView fx:id="browser" layoutY="49.0" onMouseMoved="#Continue" prefHeight="518.0" prefWidth="850.0" />
-            <Button fx:id="Gcancel" layoutX="41.0" layoutY="6.0" mnemonicParsing="false" onMouseClicked="#Close" prefHeight="36.0" prefWidth="82.0" text="BACK" />
-            <Button fx:id="Gdone" layoutX="735.0" layoutY="6.0" mnemonicParsing="false" onMouseClicked="#Continue" prefHeight="36.0" prefWidth="82.0" text="DONE" />
+            <WebView fx:id="browser" layoutY="49.0" prefHeight="518.0" prefWidth="850.0" />
+            <Button fx:id="Gcancel" layoutX="41.0" layoutY="6.0" mnemonicParsing="false" onMouseClicked="#Close" prefHeight="36.0" prefWidth="82.0" styleClass="butX" text="BACK" />
+            <Label layoutX="298.0" prefHeight="20.0" prefWidth="301.0" text="BookIT embedded browser, v1.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Button fx:id="Gdone" layoutX="735.0" layoutY="6.0" mnemonicParsing="false" onMouseClicked="#Continue" prefHeight="36.0" prefWidth="82.0" styleClass="but1" text="DONE" />
          </children>
       </AnchorPane>
    </children>

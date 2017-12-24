@@ -1253,7 +1253,25 @@
                         </StackPane>
                         <StackPane fx:id="preBooking" layoutX="12.0" layoutY="12.0" prefHeight="150.0" prefWidth="200.0" style="visibility: true;">
                            <children>
-                              <Label prefHeight="45.0" prefWidth="155.0" text="Purpose" textFill="WHITE" translateY="-30.0">
+                              <Label prefHeight="45.0" prefWidth="155.0" text="Purpose" textFill="WHITE">
+                                 <font>
+                                    <Font size="27.0" />
+                                 </font>
+                                 <StackPane.margin>
+                                    <Insets bottom="200.0" left="150.0" />
+                                 </StackPane.margin>
+                              </Label>
+                              <Button mnemonicParsing="false" onMouseClicked="#preBookingProceed" stylesheets="@../FacultyReservation/button.css" text="Proceed">
+                                 <StackPane.margin>
+                                    <Insets left="540.0" top="200.0" />
+                                 </StackPane.margin>
+                              </Button>
+                              <ComboBox fx:id="optionDropDown" prefHeight="38.0" prefWidth="331.0">
+                                 <StackPane.margin>
+                                    <Insets bottom="200.0" left="850.0" right="115.0" />
+                                 </StackPane.margin>
+                              </ComboBox>
+                              <Label layoutX="666.0" layoutY="186.0" prefHeight="45.0" prefWidth="155.0" text="Start Date" textFill="WHITE">
                                  <font>
                                     <Font size="27.0" />
                                  </font>
@@ -1261,16 +1279,24 @@
                                     <Insets bottom="100.0" left="150.0" />
                                  </StackPane.margin>
                               </Label>
-                              <Button mnemonicParsing="false" onMouseClicked="#preBookingProceed" stylesheets="@../FacultyReservation/button.css" text="Proceed" translateY="-30.0">
-                                 <StackPane.margin>
-                                    <Insets left="540.0" top="200.0" />
-                                 </StackPane.margin>
-                              </Button>
-                              <ComboBox fx:id="optionDropDown" prefHeight="38.0" prefWidth="331.0" translateY="-30.0">
+                              <DatePicker fx:id="startDate" prefHeight="38.0" prefWidth="331.0">
                                  <StackPane.margin>
                                     <Insets bottom="100.0" left="850.0" right="115.0" />
                                  </StackPane.margin>
-                              </ComboBox>
+                              </DatePicker>
+                              <Label layoutX="666.0" layoutY="251.0" prefHeight="45.0" prefWidth="155.0" text="End Date" textFill="WHITE">
+                                 <font>
+                                    <Font size="27.0" />
+                                 </font>
+                                 <StackPane.margin>
+                                    <Insets left="150.0" />
+                                 </StackPane.margin>
+                              </Label>
+                              <DatePicker fx:id="endDate" layoutX="870.0" layoutY="254.0" prefHeight="38.0" prefWidth="331.0">
+                                 <StackPane.margin>
+                                    <Insets left="850.0" right="115.0" />
+                                 </StackPane.margin>
+                              </DatePicker>
                            </children>
                         </StackPane>
                      </children>

@@ -78,7 +78,7 @@ public class AdminReservationGUIController implements Initializable{
     @FXML
     private ComboBox courseDropDown;
     @FXML
-    private DatePicker datePicker;
+    private DatePicker datePicker, startDate, endDate;
     @FXML
     private Label curDate,curMon,curYear;
     @FXML
@@ -233,6 +233,8 @@ public class AdminReservationGUIController implements Initializable{
         };
         datePicker.setDayCellFactory(dayCellFactory);
         datePicker.setValue(LocalDate.now());
+        startDate.setDayCellFactory(dayCellFactory);
+        endDate.setDayCellFactory(dayCellFactory);
         activeDate=LocalDate.now();
         setDate(activeDate);
         file = new File("./src/AdminReservation/cancel.png");
@@ -877,6 +879,8 @@ public class AdminReservationGUIController implements Initializable{
      * Booking confirmation pane appears
      */
     public void pullDownReservationPane(){
+        startDate.setValue(activeDate);
+        endDate.setValue(activeDate);
         courseBooking.setVisible(false);
         otherBooking.setVisible(false);
         preBooking.setVisible(true);
