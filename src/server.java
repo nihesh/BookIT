@@ -476,33 +476,42 @@ class ConnectionHandler implements Runnable{
             addToCourse = false;
         }
         Course course;
+        course = Course.deserializeCourse(r.getCourseName());
+        LocalDate temp2 = LocalDate.of(start.getYear(), start.getMonth(), start.getDayOfMonth());
+        while(!temp2.isAfter(end)){
+            if(addToCourse){
+                if (!(course.checkReservation(start, slot, r) == true && room.checkReservation(start, slot, r) == true)){
+                    return false;
+                }
+            }
+            else{
+                if (!(room.checkReservation(start, slot, r) == true)) {
+                    return false;
+                }
+            }
+            temp2 = temp2.plusDays(1);
+        }
+        User temp = getUser(r.getReserverEmail());
+        course = Course.deserializeCourse(r.getCourseName());
         while(!start.isAfter(end)) {
             if (addToCourse) {
-                course = Course.deserializeCourse(r.getCourseName());
-                if (course.checkReservation(start, slot, r) == true && room.checkReservation(start, slot, r) == true) {
-                    course.addReservation(start, slot, r);
-                    course.serialize();
-                    room.addReservation(start, slot, r);
-                    room.serialize();
-                    User temp = getUser(r.getReserverEmail());
-                    Notification n = new Notification("Classroom Booking", "Done", r.getMessage(), r.getCourseName(), r.getTargetDate(), r.getRoomName(), r.getReserverEmail(), r.getReservationSlot());
-                    temp.addNotification(n);
-                    serializeUser(temp);
-                    return true;
-                }
+                course.addReservation(start, slot, r);
+                room.addReservation(start, slot, r);
+                Notification n = new Notification("Classroom Booking", "Done", r.getMessage(), r.getCourseName(), r.getTargetDate(), r.getRoomName(), r.getReserverEmail(), r.getReservationSlot());
+                temp.addNotification(n);
             } else {
-                if (room.checkReservation(start, slot, r) == true) {
-                    room.addReservation(start, slot, r);
-                    room.serialize();
-                    User temp = getUser(r.getReserverEmail());
-                    Notification n = new Notification("Classroom Booking", "Done", r.getMessage(), r.getCourseName(), r.getTargetDate(), r.getRoomName(), r.getReserverEmail(), r.getReservationSlot());
-                    temp.addNotification(n);
-                    serializeUser(temp);
-                    return true;
-                }
+                room.addReservation(start, slot, r);
+                Notification n = new Notification("Classroom Booking", "Done", r.getMessage(), r.getCourseName(), r.getTargetDate(), r.getRoomName(), r.getReserverEmail(), r.getReservationSlot());
+                temp.addNotification(n);
             }
             start = start.plusDays(1);
         }
+        room.serialize();
+        room.serialize();
+        if(addToCourse) {
+            course.serialize();
+        }
+        serializeUser(temp);
         return false;
     }
     public void faculty_addCourse(String email, String course){

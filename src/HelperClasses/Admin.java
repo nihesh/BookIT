@@ -329,7 +329,6 @@ public class Admin extends User{
 	}
 	/**
 	 * allows admin to book a free room on a date in a room
-	 * @param queryDate the date
 	 * @param slot the time(30 minute slot)
 	 * @param r the reservation object see also {@link Reservation} class
 	 * @return true if booked false otherwise

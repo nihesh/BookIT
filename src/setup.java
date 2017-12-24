@@ -200,6 +200,7 @@ public class setup {
         Email masterEmail = new Email("admin@iiitd.ac.in");
         Admin master = new Admin("IIITDadmin","adminiiitd",masterEmail,"Admin");
         master.setActiveUser();
+        master.serialize(false);
     }
     public static void createFirstStudent(){
         Email masterEmail = new Email("student@iiitd.ac.in");
@@ -207,12 +208,14 @@ public class setup {
         courses.add("Discrete Mathematics");
         Student master = new Student("IIITDStudent","studentiiitd",masterEmail,"Student", "BT2017",courses  );
         master.setActiveUser();
+        master.serialize(false);
     }
     public static void createFirstFaculty(){
         Email masterEmail = new Email("faculty@iiitd.ac.in");
         ArrayList<String> courses = new ArrayList<>();
         Faculty master = new Faculty("IIITDFaculty","facultyiiitd",masterEmail,"Faculty", courses);
         master.setActiveUser();
+        master.serialize(false);
     }
     public static void serialiseEmptyPriorityQueue() throws IOException, ClassNotFoundException{
         PriorityQueue<ArrayList<Reservation>> p = new PriorityQueue<>(new RequestCompare());
