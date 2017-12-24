@@ -1010,8 +1010,12 @@ public class AdminReservationGUIController implements Initializable{
             r.setReserverEmail(activeUser.getEmail().getEmailID());
             listOfReservations.add(r);
         }                                                   // GUI Integration Ends
+        if(!Admin.checkBulkBooking(activeRoom, chosenSlots, startDate.getValue(), endDate.getValue(), false)){
+            JOptionPane.showMessageDialog(null, "Cannot complete booking. Please close this session and try again", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
         for(int i=0;i<listOfReservations.size();i++){
-            activeUser.bookRoom(listOfReservations.get(i).getTargetDate(), listOfReservations.get(i).getReservationSlot(), listOfReservations.get(i), false);
+            activeUser.bookRoom(startDate.getValue(), endDate.getValue(), listOfReservations.get(i).getReservationSlot(), listOfReservations.get(i), false);
         }
         closeReservationPane();
         flyRight();
@@ -1037,8 +1041,12 @@ public class AdminReservationGUIController implements Initializable{
             r.setReserverEmail(activeUser.getEmail().getEmailID());
             listOfReservations.add(r);
         }                                                   // GUI Integration Ends
+        if(!Admin.checkBulkBooking(activeRoom, chosenSlots, startDate.getValue(), endDate.getValue(), false)){
+            JOptionPane.showMessageDialog(null, "Cannot complete booking. Please close this session and try again", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
         for(int i=0;i<listOfReservations.size();i++){
-            activeUser.bookRoom(listOfReservations.get(i).getTargetDate(), listOfReservations.get(i).getReservationSlot(), listOfReservations.get(i), false);
+            activeUser.bookRoom(startDate.getValue(), endDate.getValue(), listOfReservations.get(i).getReservationSlot(), listOfReservations.get(i), false);
         }
         closeReservationPane();
         flyRight();
@@ -1118,6 +1126,14 @@ public class AdminReservationGUIController implements Initializable{
     }
     public void preBookingProceed(){
         try {
+            if(startDate.getValue().isAfter(endDate.getValue())){
+                JOptionPane.showMessageDialog(null, "Start Date is after End Date", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            if (!Admin.checkBulkBooking(activeRoom,chosenSlots, startDate.getValue(), endDate.getValue(), false)) {
+                JOptionPane.showMessageDialog(null, "The requested slots on some of the requested days can't be completed as there is some other confirmed booking in this range", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
             currentPurpose = optionDropDown.getSelectionModel().getSelectedItem().toString();
             preBooking.setVisible(false);
             if(currentPurpose.equals("Course")){

@@ -469,37 +469,39 @@ class ConnectionHandler implements Runnable{
         temp.serialize();
         return true;
     }
-    public boolean adminandfaculty_bookRoom(LocalDate queryDate,int slot, Reservation r) {
+    public boolean adminandfaculty_bookRoom(LocalDate start, LocalDate end, int slot, Reservation r) {
         Room room=Room.deserializeRoom(r.getRoomName());
         Boolean addToCourse = true;
         if(r.getCourseName().equals("")){
             addToCourse = false;
         }
         Course course;
-        if(addToCourse) {
-            course = Course.deserializeCourse(r.getCourseName());
-            if(course.checkReservation(queryDate,slot,r)==true && room.checkReservation(queryDate,slot,r)==true) {
-                course.addReservation(queryDate,slot,r);
-                course.serialize();
-                room.addReservation(queryDate,slot,r);
-                room.serialize();
-                User temp = getUser(r.getReserverEmail());
-                Notification n = new Notification("Classroom Booking", "Done", r.getMessage(), r.getCourseName(), r.getTargetDate(), r.getRoomName(), r.getReserverEmail(), r.getReservationSlot());
-                temp.addNotification(n);
-                serializeUser(temp);
-                return true;
+        while(!start.isAfter(end)) {
+            if (addToCourse) {
+                course = Course.deserializeCourse(r.getCourseName());
+                if (course.checkReservation(start, slot, r) == true && room.checkReservation(start, slot, r) == true) {
+                    course.addReservation(start, slot, r);
+                    course.serialize();
+                    room.addReservation(start, slot, r);
+                    room.serialize();
+                    User temp = getUser(r.getReserverEmail());
+                    Notification n = new Notification("Classroom Booking", "Done", r.getMessage(), r.getCourseName(), r.getTargetDate(), r.getRoomName(), r.getReserverEmail(), r.getReservationSlot());
+                    temp.addNotification(n);
+                    serializeUser(temp);
+                    return true;
+                }
+            } else {
+                if (room.checkReservation(start, slot, r) == true) {
+                    room.addReservation(start, slot, r);
+                    room.serialize();
+                    User temp = getUser(r.getReserverEmail());
+                    Notification n = new Notification("Classroom Booking", "Done", r.getMessage(), r.getCourseName(), r.getTargetDate(), r.getRoomName(), r.getReserverEmail(), r.getReservationSlot());
+                    temp.addNotification(n);
+                    serializeUser(temp);
+                    return true;
+                }
             }
-        }
-        else{
-            if(room.checkReservation(queryDate,slot,r)==true){
-                room.addReservation(queryDate,slot,r);
-                room.serialize();
-                User temp = getUser(r.getReserverEmail());
-                Notification n = new Notification("Classroom Booking", "Done", r.getMessage(), r.getCourseName(), r.getTargetDate(), r.getRoomName(), r.getReserverEmail(), r.getReservationSlot());
-                temp.addNotification(n);
-                serializeUser(temp);
-                return true;
-            }
+            start = start.plusDays(1);
         }
         return false;
     }
@@ -731,6 +733,19 @@ class ConnectionHandler implements Runnable{
     	serializeUser(x);
     	return temp;
     }
+    public Boolean checkBulkBooking(String room, ArrayList<Integer> slots, LocalDate start, LocalDate end){
+        Room r = Room.deserializeRoom(room);
+        while(!start.isAfter(end)){
+            Reservation[] temp = r.getSchedule(start);
+            for(int i=0;i<slots.size();i++){
+                if(temp[slots.get(i)]!=null){
+                    return false;
+                }
+            }
+            start = start.plusDays(1);
+        }
+        return true;
+    }
     public void run(){
         ObjectInputStream in=null;
         ObjectOutputStream out=null;
@@ -772,6 +787,8 @@ class ConnectionHandler implements Runnable{
                         LocalDate queryDate;
                         Boolean result;
                         int slotID;
+                        LocalDate start;
+                        LocalDate end;
                         PriorityQueue<ArrayList<Reservation>> req;
                         switch (request) {
                             case "GetUser":
@@ -860,10 +877,11 @@ class ConnectionHandler implements Runnable{
                                 out.flush();
                                 break;
                             case "adminandfaculty_bookroom":
-                                queryDate = (LocalDate) in.readObject();
+                                start = (LocalDate) in.readObject();
+                                end = (LocalDate) in.readObject();
                                 slotID = (int) in.readObject();
                                 res = (Reservation) in.readObject();
-                                out.writeObject(adminandfaculty_bookRoom(queryDate, slotID, res));
+                                out.writeObject(adminandfaculty_bookRoom(start, end, slotID, res));
                                 out.flush();
                                 break;
                             case "faculty_addCourse":
@@ -1007,6 +1025,15 @@ class ConnectionHandler implements Runnable{
                                 r = Room.deserializeRoom(room);
                                 out.writeObject(r.getPendingReservations(email, queryDate));
                                 out.flush();
+                                break;
+                            case "checkBulkBooking":
+                                room = (String) in.readObject();
+                                ArrayList<Integer> slots = (ArrayList<Integer>) in.readObject();
+                                start = (LocalDate) in.readObject();
+                                end = (LocalDate) in.readObject();
+                                out.writeObject(checkBulkBooking(room, slots, start, end));
+                                out.flush();
+                                break;
                         }
                         if(lock.isLocked() && lock.isHeldByCurrentThread()){
                             System.out.print("[ "+LocalDateTime.now()+" ] ");

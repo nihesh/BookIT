@@ -110,12 +110,11 @@ public class Faculty extends User{
 	}
 	/**
 	 * book a room on a date and time
-	 * @param queryDate date on which booking needs to be done
 	 * @param slot time slot 
 	 * @param r reservation object describing details of reservation
 	 * @return true if booking successful, false otherwise
 	 */
-	public boolean bookRoom(LocalDate queryDate,int slot, Reservation r, Boolean lock) {
+	public boolean bookRoom(LocalDate startDate, LocalDate endDate, int slot, Reservation r, Boolean lock) {
 		try{
 			Socket server = new Socket(BookITconstants.serverIP, BookITconstants.serverPort);
 			ObjectOutputStream out = new ObjectOutputStream(server.getOutputStream());
@@ -129,7 +128,9 @@ public class Faculty extends User{
 			out.flush();
 			out.writeObject("adminandfaculty_bookroom");
 			out.flush();
-			out.writeObject(queryDate);
+			out.writeObject(startDate);
+			out.flush();
+			out.writeObject(endDate);
 			out.flush();
 			out.writeObject(slot);
 			out.flush();

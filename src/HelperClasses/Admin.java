@@ -102,9 +102,48 @@ public class Admin extends User{
 			System.out.println("File not found exception occured while getting request");
 		}
 		catch (IOException ie){
-			System.out.println(ie.getMessage());
 			System.out.println("IOException occured while getting request");
 		}
+	}
+	public static Boolean checkBulkBooking(String room, ArrayList<Integer> slots, LocalDate start, LocalDate end, Boolean lock){
+		try {
+			File file = new File("./src/AppData/GeneratedJoinCode/list.txt");
+			Socket server = new Socket(BookITconstants.serverIP, BookITconstants.serverPort);
+			ObjectOutputStream out = new ObjectOutputStream(server.getOutputStream());
+			ObjectInputStream in = new ObjectInputStream(server.getInputStream());
+			if(lock){
+				out.writeObject("Hold");
+			}
+			else{
+				out.writeObject("Pass");
+			}
+			out.flush();
+			out.writeObject("checkBulkBooking");
+			out.flush();
+			out.writeObject(room);
+			out.flush();
+			out.writeObject(slots);
+			out.flush();
+			out.writeObject(start);
+			out.flush();
+			out.writeObject(end);
+			out.flush();
+			Boolean c = (Boolean) in.readObject();
+			out.close();
+			in.close();
+			server.close();
+			return c;
+		}
+		catch (FileNotFoundException fe){
+			System.out.println("File not found exception occured while checking bulk booking");
+		}
+		catch (ClassNotFoundException ce){
+			System.out.println("Class not found exception occured while checking bulk booking");
+		}
+		catch (IOException ie){
+			System.out.println("IOException occured while checking bulk booking");
+		}
+		return false;
 	}
 	/**
 	 * 
@@ -295,7 +334,7 @@ public class Admin extends User{
 	 * @param r the reservation object see also {@link Reservation} class
 	 * @return true if booked false otherwise
 	 */
-	public boolean bookRoom(LocalDate queryDate,int slot, Reservation r, Boolean lock) {
+	public boolean bookRoom(LocalDate startDate, LocalDate endDate, int slot, Reservation r, Boolean lock) {
 		try{
 			Socket server = new Socket(BookITconstants.serverIP, BookITconstants.serverPort);
 			ObjectOutputStream out = new ObjectOutputStream(server.getOutputStream());
@@ -309,7 +348,9 @@ public class Admin extends User{
 			out.flush();
 			out.writeObject("adminandfaculty_bookroom");
 			out.flush();
-			out.writeObject(queryDate);
+			out.writeObject(startDate);
+			out.flush();
+			out.writeObject(endDate);
 			out.flush();
 			out.writeObject(slot);
 			out.flush();

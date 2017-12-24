@@ -874,7 +874,7 @@ public class FacultyReservationGUIController implements Initializable{
             listOfReservations.add(r);
         }                                                   // GUI Integration Ends
         for(int i=0;i<listOfReservations.size();i++){
-            activeUser.bookRoom(listOfReservations.get(i).getTargetDate(), listOfReservations.get(i).getReservationSlot(), listOfReservations.get(i), false);
+            activeUser.bookRoom(listOfReservations.get(i).getTargetDate(),listOfReservations.get(i).getTargetDate(), listOfReservations.get(i).getReservationSlot(), listOfReservations.get(i), false);
         }
         closeReservationPane();
         flyRight();
@@ -901,7 +901,7 @@ public class FacultyReservationGUIController implements Initializable{
             listOfReservations.add(r);
         }                                                   // GUI Integration Ends
         for(int i=0;i<listOfReservations.size();i++){
-            activeUser.bookRoom(listOfReservations.get(i).getTargetDate(), listOfReservations.get(i).getReservationSlot(), listOfReservations.get(i), false);
+            activeUser.bookRoom(listOfReservations.get(i).getTargetDate(),listOfReservations.get(i).getTargetDate(), listOfReservations.get(i).getReservationSlot(), listOfReservations.get(i), false);
         }
         closeReservationPane();
         flyRight();
