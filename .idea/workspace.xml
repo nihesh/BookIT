@@ -112,8 +112,8 @@
       <file leaf-file-name="setup.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/setup.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-3756">
-              <caret line="91" column="25" lean-forward="false" selection-start-line="91" selection-start-column="25" selection-end-line="91" selection-end-column="25" />
+            <state relative-caret-position="258">
+              <caret line="320" column="28" lean-forward="false" selection-start-line="320" selection-start-column="28" selection-end-line="320" selection-end-column="28" />
               <folding />
             </state>
           </provider>
@@ -242,7 +242,6 @@
         <option value="$PROJECT_DIR$/src/HelperClasses/Course.java" />
         <option value="$PROJECT_DIR$/src/HelperClasses/User.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/google/api/services/samples/oauth2/cmdline/OAuth2Sample.java" />
-        <option value="$PROJECT_DIR$/src/setup.java" />
         <option value="$PROJECT_DIR$/src/AdminReservation/AdminReservationGUI.java" />
         <option value="$PROJECT_DIR$/src/FacultyReservation/FacultyReservation.fxml" />
         <option value="$PROJECT_DIR$/src/StudentReservation/StudentReservation.fxml" />
@@ -258,6 +257,7 @@
         <option value="$PROJECT_DIR$/src/AdminReservation/AdminReservationGUIController.java" />
         <option value="$PROJECT_DIR$/src/FacultyReservation/FacultyReservationGUIController.java" />
         <option value="$PROJECT_DIR$/src/StudentReservation/StudentReservationGUIController.java" />
+        <option value="$PROJECT_DIR$/src/setup.java" />
       </list>
     </option>
   </component>
@@ -862,8 +862,8 @@
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Application.setup" />
-        <item index="1" class="java.lang.String" itemvalue="Application.server" />
+        <item index="0" class="java.lang.String" itemvalue="Application.server" />
+        <item index="1" class="java.lang.String" itemvalue="Application.setup" />
         <item index="2" class="java.lang.String" itemvalue="Application.Admin" />
         <item index="3" class="java.lang.String" itemvalue="Application.BookIT" />
         <item index="4" class="java.lang.String" itemvalue="Application.LoginSignupGUI" />
@@ -1221,8 +1221,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/setup.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3756">
-          <caret line="91" column="25" lean-forward="false" selection-start-line="91" selection-start-column="25" selection-end-line="91" selection-end-column="25" />
+        <state relative-caret-position="258">
+          <caret line="320" column="28" lean-forward="false" selection-start-line="320" selection-start-column="28" selection-end-line="320" selection-end-column="28" />
           <folding />
         </state>
       </provider>
