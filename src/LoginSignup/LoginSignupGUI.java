@@ -38,7 +38,6 @@ public class LoginSignupGUI extends Application{
 			primaryStage.setResizable(false);
 			File file = new File("./src/BookIT_icon.jpg");
 			primaryStage.setOnCloseRequest(e->{
-				System.out.println(1);
 				ServerSocket temp = PortListener.needSocket();
 				try {
 					if(temp!=null) {

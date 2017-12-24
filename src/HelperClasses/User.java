@@ -7,6 +7,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.Date;
 /**
  * The user class for modeling faculty,student and admin objects
@@ -14,6 +15,7 @@ import java.util.Date;
  * @author Nihesh
  */
 public class User implements Serializable{
+	ArrayList<Notification> notifications = new ArrayList<Notification>();
 	private static final long serialVersionUID = 1L;
 	protected String Name;
 	private String Password; 	//User account password
@@ -31,6 +33,44 @@ public class User implements Serializable{
 		Password = password;
 		this.emailID = emailID;
 		this.userType = userType;
+	}
+	public ArrayList<Notification> getterNotification(){
+		return notifications;
+	}
+	public void addNotification(Notification r) {
+		this.notifications.add(r);
+	}
+	public void setNotification(ArrayList<Notification> x) {
+		notifications = x;
+	}
+	public ArrayList<Notification> getNotifications(boolean lock){
+		try {
+			Socket server = new Socket(BookITconstants.serverIP, BookITconstants.serverPort);
+			ObjectOutputStream out = new ObjectOutputStream(server.getOutputStream());
+			ObjectInputStream in = new ObjectInputStream(server.getInputStream());
+			if(lock){
+				out.writeObject("Hold");
+			}
+			else{
+				out.writeObject("Pass");
+			}
+			out.flush();
+			out.writeObject("getNotifications");
+			out.flush();
+			out.writeObject(this.emailID.getEmailID());
+			out.flush();
+			ArrayList<Notification> c = (ArrayList<Notification>) in.readObject();
+			out.close();
+			in.close();
+			server.close();
+			return c;	}
+		catch (IOException e){
+			System.out.println("IO exception occurred while writing to server");
+		}
+		catch (ClassNotFoundException c){
+			System.out.println("Class not found exception occurred while getting user type");
+		}
+		return null;
 	}
 	public void setPassword(String password){
 		Password = password;

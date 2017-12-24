@@ -349,7 +349,6 @@ class ConnectionHandler implements Runnable{
             }
             Room room = Room.deserializeRoom(r.get(0).getRoomName());
             Reservation[] pending = room.getPendingReservations(r.get(0).getReserverEmail(),r.get(0).getTargetDate());
-            System.out.println("hi");
             for(int i=r.size()-1;i>=0;i--){
                 if(pending[r.get(i).getReservationSlot()] == null){
                     r.remove(i);
@@ -400,7 +399,7 @@ class ConnectionHandler implements Runnable{
         while(r!=null) {
             for (int i=0;i<data.size();i++) {
                 Reservation reservation = r.get(data.get(i));
-                if (!temp.checkReservation(r.get(0).getTargetDate(), reservation.getReservationSlot(), reservation)) {
+                if(!temp.checkReservation(r.get(0).getTargetDate(), reservation.getReservationSlot(), reservation)) {
                     p.poll();
                     flag=1;
                     r=p.peek();
@@ -425,14 +424,21 @@ class ConnectionHandler implements Runnable{
             temp.deleteRequest(r.get(0).getReserverEmail(), r.get(0).getTargetDate(), r.get(i).getReservationSlot());
         }
         if(r!=null) {
+        	String recipient = r.get(0).getReserverEmail();
+            String GreetText = getUser(recipient).getName();
+            String TimeSlots="";
+            
             for (int i=0;i<data.size();i++) {
                 Reservation reservation = r.get(data.get(i));
+                TimeSlots+=Reservation.getSlotRange(reservation.getReservationSlot())+"\n";
                 temp.addReservation(r.get(0).getTargetDate(), reservation.getReservationSlot(), reservation);
                 temp.deleteRequest(r.get(0).getReserverEmail(), r.get(0).getTargetDate(), r.get(i).getReservationSlot());
                 if(ctemp!=null) {
                     ctemp.addReservation(r.get(0).getTargetDate(), reservation.getReservationSlot(), reservation);
                 }
             }
+            server.mailpool.execute(new Mail(recipient,"BooKIT - Room booking cancelled", GreetText+","+"\n\nThe following request of yours have been accepted by the admin:\n\n"+"Room: "+r.get(0).getVenueName()+"\nDate: "+r.get(0).getTargetDate().getDayOfMonth()+"/"+r.get(0).getTargetDate().getMonthValue()+"/"+r.get(0).getTargetDate().getYear()+"\nTime:\n"+TimeSlots+"\n\nIf you think this is a mistake, please contact admin.\n\nRegards,\nBookIT Team"));
+            
         }
         if(ctemp!=null) {
             ctemp.serialize();
@@ -447,6 +453,13 @@ class ConnectionHandler implements Runnable{
             return false;
         }
         ArrayList<Reservation> r = p.peek();
+        String recipient = r.get(0).getReserverEmail();
+        String GreetText = getUser(recipient).getName();
+        String TimeSlots="";
+        for (Reservation reservation : r) {
+			TimeSlots+=Reservation.getSlotRange(reservation.getReservationSlot())+"\n";
+		}
+        server.mailpool.execute(new Mail(recipient,"BooKIT - Room booking cancelled", GreetText+","+"\n\nThe following request of yours have been rejected by the admin:\n\n"+"Room: "+r.get(0).getVenueName()+"\nDate: "+r.get(0).getTargetDate().getDayOfMonth()+"/"+r.get(0).getTargetDate().getMonthValue()+"/"+r.get(0).getTargetDate().getYear()+"\nTime:\n"+TimeSlots+"\n\nIf you think this is a mistake, please contact admin.\n\nRegards,\nBookIT Team"));
         p.poll();
         serializeRequests(p);
         Room temp = Room.deserializeRoom(r.get(0).getRoomName());
@@ -470,6 +483,10 @@ class ConnectionHandler implements Runnable{
                 course.serialize();
                 room.addReservation(queryDate,slot,r);
                 room.serialize();
+                User temp = getUser(r.getReserverEmail());
+                Notification n = new Notification("Classroom Booking", "Done", r.getMessage(), r.getCourseName(), r.getTargetDate(), r.getRoomName(), r.getReserverEmail(), r.getReservationSlot());
+                temp.addNotification(n);
+                serializeUser(temp);
                 return true;
             }
         }
@@ -477,6 +494,10 @@ class ConnectionHandler implements Runnable{
             if(room.checkReservation(queryDate,slot,r)==true){
                 room.addReservation(queryDate,slot,r);
                 room.serialize();
+                User temp = getUser(r.getReserverEmail());
+                Notification n = new Notification("Classroom Booking", "Done", r.getMessage(), r.getCourseName(), r.getTargetDate(), r.getRoomName(), r.getReserverEmail(), r.getReservationSlot());
+                temp.addNotification(n);
+                serializeUser(temp);
                 return true;
             }
         }
@@ -695,6 +716,21 @@ class ConnectionHandler implements Runnable{
             return false;
         }
     }
+    public ArrayList<Notification> GetNotifications(String email){
+    	User x  = getUser(email);
+    	ArrayList<Notification> temp = x.getterNotification();
+    	for (Notification noti : temp) {
+		 if(noti.getTargetDate().isBefore(LocalDate.now())) {
+			 temp.remove(noti);
+		 }
+		 else {
+			 break;
+		 }
+		}
+    	x.setNotification(temp);
+    	serializeUser(x);
+    	return temp;
+    }
     public void run(){
         ObjectInputStream in=null;
         ObjectOutputStream out=null;
@@ -748,6 +784,12 @@ class ConnectionHandler implements Runnable{
                                 u = (User) in.readObject();
                                 serializeUser(u);
                                 break;
+                            case "getNotifications":
+                            	email = (String)in.readObject();
+                            	ArrayList<Notification> array = GetNotifications(email);
+                            	out.writeObject(array);
+                                out.flush();
+                            	break;
                             case "AllCourses":
                                 ArrayList<String> arr = getAllCourses();
                                 out.writeObject(arr);
@@ -1015,8 +1057,10 @@ class Mail implements Runnable{
              // Set From: header field of the header.
              message.setFrom(new InternetAddress(from));
              // Set To: header field of the header.
-             message.setRecipients(Message.RecipientType.TO,
-             InternetAddress.parse("harsh16041@iiitd.ac.in"));
+             if(recipient.equals("admin@iiitd.ac.in")) {
+            	 recipient = "harsh16041@iiitd.ac.in";
+             }
+             message.setRecipients(Message.RecipientType.TO,InternetAddress.parse(recipient));
              // Set Subject: header field
              message.setSubject(Subject);
              // Now set the actual message

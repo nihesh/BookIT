@@ -8,6 +8,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.URI;
@@ -72,8 +73,6 @@ public class LoginSignupGUIController {
 	private Button GBtn;
 	@FXML
 	private AnchorPane FirstPane;
-	@FXML
-	private ComboBox<String> Branch;
 	@FXML
 	private TextField Name;
 	@FXML
@@ -149,6 +148,7 @@ public class LoginSignupGUIController {
 			GPane.setVisible(false);
 			if(PortListener.authcode.equals("denied")) {
 				PortListener.authcode="none";
+				System.out.println("should never happen");
 				java.net.CookieManager manager = new java.net.CookieManager();
 				java.net.CookieHandler.setDefault(manager);
 			}
@@ -210,7 +210,7 @@ public class LoginSignupGUIController {
 		Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setTitle("Information Dialog");
 		alert.setHeaderText(null);
-		alert.setContentText("Please fill your complete info and then press DONE Button");
+		alert.setContentText("Please fill your complete info, press Accept and then press DONE Button");
 		alert.showAndWait();
 	}
 	
@@ -219,7 +219,6 @@ public class LoginSignupGUIController {
 	public void initialize() {
 		ArrayList<String> temp=new ArrayList<>();
 		// TODO Auto-generated method stub
-		Branch.getItems().removeAll(Branch.getItems());
 		BufferedReader r;
 		try {
 			r=new BufferedReader(new FileReader("./src/AppData/Year/StudentYear.txt"));
@@ -237,10 +236,6 @@ public class LoginSignupGUIController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		for (String string : temp) {
-			Branch.getItems().add(string);
-		}
-		Branch.getSelectionModel().select(temp.get(0));
 		
 	}
 	@FXML
@@ -258,7 +253,7 @@ public class LoginSignupGUIController {
 		TranslateTransition transright=new TranslateTransition();
 		transright.setNode(Cred_Pane);
 		transright.setToX(Cred_Pane.getPrefWidth());
-		transright.setDuration(Duration.millis(700));
+		transright.setDuration(Duration.millis(400));
 		transright.play();
 	}
 	@FXML
@@ -269,7 +264,7 @@ public class LoginSignupGUIController {
 		TranslateTransition transright=new TranslateTransition();
 		transright.setNode(Cred_Pane);
 		transright.setToX(0);
-		transright.setDuration(Duration.millis(700));
+		transright.setDuration(Duration.millis(600));
 		transright.play();
 		transright.setOnFinished(e->{
 			Cred_btn.setDisable(false);
@@ -328,7 +323,6 @@ public class LoginSignupGUIController {
 		else {
 			Signup_joincode.clear();
 			Signup_joincode.setVisible(false);
-			Branch.setVisible(false);
 			Signup_joincode.getStyleClass().remove("text-field2");
 			Name.getStyleClass().remove("text-field2");
 			Name.setVisible(false);
@@ -515,7 +509,6 @@ public class LoginSignupGUIController {
 		Name.setVisible(true);
 		if(Signup_joincode.getText().toUpperCase().charAt(0)=='S') { //identifies student
 			user=new User(user.getName(), user.getPassword(), user.getEmail(), "Student");
-			Branch.setVisible(true);
 			Signup_done_btn.setTranslateY(75);
 		}
 		else if(Signup_joincode.getText().toUpperCase().charAt(0)=='A') {
@@ -561,7 +554,7 @@ public class LoginSignupGUIController {
 				}
 				Name.getStyleClass().remove("text-field2");
 			}
-			if(Branch.isVisible()==true){
+		/*	if(Branch.isVisible()==true){
 				user=new Student(user.getName(), user.getPassword(), user.getEmail(), user.getUsertype(), Branch.getValue(), new ArrayList<String>());
 			}
 			else if(user.getUsertype().equals("Faculty")) {
@@ -569,7 +562,7 @@ public class LoginSignupGUIController {
 				}
 			else {
 				user=new Admin(user.getName(), user.getPassword(), user.getEmail(), user.getUsertype());
-			}
+			}*/
 			user.serialize(false);
 		Signup_TranslateRight();
 		AccCre.setVisible(true);
@@ -652,7 +645,6 @@ public class LoginSignupGUIController {
 		Name.clear();					//far
 		Name.setVisible(false);
 		Name.getStyleClass().remove("text-field2");
-		Branch.setVisible(false);
 		Signup_done_btn.setVisible(false);
 		if(Signup_done_btn.getTranslateY()==75) {
 			Signup_done_btn.setTranslateY(0);
@@ -682,13 +674,13 @@ public class LoginSignupGUIController {
 		seq1.setNode(Login_Pane);
 		seq1.setFromValue(Login_Pane.getOpacity());
 		seq1.setToValue(0.0);
-		seq1.setDuration(Duration.millis(800));
+		seq1.setDuration(Duration.millis(700));
 		seq1.play();
 		SequentialTransition sequence=new SequentialTransition();
 		TranslateTransition transleft=new TranslateTransition();
 		transleft.setNode(Signup_Pane);
 		transleft.setToX(Login_Pane.getLayoutX()-Signup_Pane.getLayoutX());
-		transleft.setDuration(Duration.millis(700));
+		transleft.setDuration(Duration.millis(500));
 		sequence.getChildren().add(transleft);
 		sequence.play();
 		sequence.setOnFinished(e->{
@@ -712,13 +704,13 @@ public class LoginSignupGUIController {
 		seq1.setNode(Login_Pane);
 		seq1.setFromValue(Login_Pane.getOpacity());
 		seq1.setToValue(initOpacity);
-		seq1.setDuration(Duration.millis(800));
+		seq1.setDuration(Duration.millis(600));
 		seq1.play();
 		SequentialTransition sequence=new SequentialTransition();
 		TranslateTransition transright=new TranslateTransition();
 		transright.setNode(Signup_Pane);
 		transright.setToX(0);
-		transright.setDuration(Duration.millis(700));
+		transright.setDuration(Duration.millis(600));
 		sequence.getChildren().add(transright);
 		sequence.play();
 		sequence.setOnFinished(e->{
@@ -783,14 +775,21 @@ class PortListener implements Runnable{
 				sock=serversocket.accept();
 			}
 			catch(Exception e) {
-				;
 			}
 			if(sock!=null) {
 			BufferedReader in=new BufferedReader(new InputStreamReader(sock.getInputStream()));
 			authcode=in.readLine();
 			if(authcode.contains("denied")) {
-				authcode="denied";
-				System.out.println("denied");
+				authcode="none";
+				PrintWriter out = new PrintWriter(sock.getOutputStream());
+			    out.println("HTTP/1.1 200 OK");
+			    out.println("Content-Type: text/html");
+			    out.println("\r\n");
+			    out.println("<p>Access denied by user. Please click back button/p>");
+			    out.flush();
+			    out.close();
+				java.net.CookieManager manager = new java.net.CookieManager();
+				java.net.CookieHandler.setDefault(manager);
 				//serversocket.close();
 				return;
 			}
@@ -838,6 +837,13 @@ class PortListener implements Runnable{
 			    System.out.println(Name);
 			    System.out.println(email);
 			    status = "Updated";
+			    PrintWriter out = new PrintWriter(sock.getOutputStream());
+			    out.println("HTTP/1.1 200 OK");
+			    out.println("Content-Type: text/html");
+			    out.println("\r\n");
+			    out.println("<p>Authentication Successful. Please click done button to proceed</p>");
+			    out.flush();
+			    out.close();
 			    }
 			    	// do something useful
 			     finally {
