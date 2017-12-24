@@ -424,6 +424,7 @@ class ConnectionHandler implements Runnable{
         for(int i=0;i<r.size();i++){
             temp.deleteRequest(r.get(0).getReserverEmail(), r.get(0).getTargetDate(), r.get(i).getReservationSlot());
         }
+        ArrayList<Integer> x=new ArrayList<Integer>();
         if(r!=null) {
         	String recipient = r.get(0).getReserverEmail();
             String GreetText = getUser(recipient).getName();
@@ -431,6 +432,7 @@ class ConnectionHandler implements Runnable{
             
             for (int i=0;i<data.size();i++) {
                 Reservation reservation = r.get(data.get(i));
+                x.add(reservation.getReservationSlot());
                 TimeSlots+=Reservation.getSlotRange(reservation.getReservationSlot())+"\n";
                 temp.addReservation(r.get(0).getTargetDate(), reservation.getReservationSlot(), reservation);
                 temp.deleteRequest(r.get(0).getReserverEmail(), r.get(0).getTargetDate(), r.get(i).getReservationSlot());
@@ -438,6 +440,10 @@ class ConnectionHandler implements Runnable{
                     ctemp.addReservation(r.get(0).getTargetDate(), reservation.getReservationSlot(), reservation);
                 }
             }
+            Notification n = new Notification("Room Reservation Request", "Accepted", r.get(0).getMessage(), r.get(0).getCourseName(), r.get(0).getTargetDate(), r.get(0).getRoomName(), r.get(0).getReserverEmail(), x);
+            Student Stud = (Student)getUser(recipient);
+            Stud.addNotification(n);
+            serializeUser(Stud);
             server.mailpool.execute(new Mail(recipient,"BooKIT - Room booking cancelled", GreetText+","+"\n\nThe following request of yours have been accepted by the admin:\n\n"+"Room: "+r.get(0).getVenueName()+"\nDate: "+r.get(0).getTargetDate().getDayOfMonth()+"/"+r.get(0).getTargetDate().getMonthValue()+"/"+r.get(0).getTargetDate().getYear()+"\nTime:\n"+TimeSlots+"\n\nIf you think this is a mistake, please contact admin.\n\nRegards,\nBookIT Team"));
             
         }
@@ -457,11 +463,17 @@ class ConnectionHandler implements Runnable{
         String recipient = r.get(0).getReserverEmail();
         String GreetText = getUser(recipient).getName();
         String TimeSlots="";
+        ArrayList<Integer> x=new ArrayList<Integer>();
         for (Reservation reservation : r) {
+        	x.add(reservation.getReservationSlot());
 			TimeSlots+=Reservation.getSlotRange(reservation.getReservationSlot())+"\n";
 		}
+        Notification n = new Notification("Room Reservation Request", "Declined", r.get(0).getMessage(), r.get(0).getCourseName(), r.get(0).getTargetDate(), r.get(0).getRoomName(), r.get(0).getReserverEmail(), x);
+        Student Stud = (Student)getUser(recipient);
+        Stud.addNotification(n);
         server.mailpool.execute(new Mail(recipient,"BooKIT - Room booking cancelled", GreetText+","+"\n\nThe following request of yours have been rejected by the admin:\n\n"+"Room: "+r.get(0).getVenueName()+"\nDate: "+r.get(0).getTargetDate().getDayOfMonth()+"/"+r.get(0).getTargetDate().getMonthValue()+"/"+r.get(0).getTargetDate().getYear()+"\nTime:\n"+TimeSlots+"\n\nIf you think this is a mistake, please contact admin.\n\nRegards,\nBookIT Team"));
         p.poll();
+        serializeUser(Stud);
         serializeRequests(p);
         Room temp = Room.deserializeRoom(r.get(0).getRoomName());
         for(int i=0;i<r.size();i++){
@@ -503,19 +515,25 @@ class ConnectionHandler implements Runnable{
             if (addToCourse) {
                 course.addReservation(start, slot, r);
                 room.addReservation(start, slot, r);
-                Notification n = new Notification("Classroom Booking", "Done", r.getMessage(), r.getCourseName(), r.getTargetDate(), r.getRoomName(), r.getReserverEmail(), r.getReservationSlot());
+                ArrayList<Integer> x= new ArrayList<Integer>();
+                x.add(r.getReservationSlot());
+                Notification n = new Notification("Classroom Booking", "Done", r.getMessage(), r.getCourseName(), r.getTargetDate(), r.getRoomName(), r.getReserverEmail(),x );
                 temp.addNotification(n);
                 if(flag==1) {
                 	tempAdmin = getUser(adminAcc);
                 	tempAdmin.addNotification(n);
+                	serializeUser(tempAdmin);
                 }
             } else {
                 room.addReservation(start, slot, r);
-                Notification n = new Notification("Classroom Booking", "Done", r.getMessage(), r.getCourseName(), r.getTargetDate(), r.getRoomName(), r.getReserverEmail(), r.getReservationSlot());
+                ArrayList<Integer> x= new ArrayList<Integer>();
+                x.add(r.getReservationSlot());
+                Notification n = new Notification("Classroom Booking", "Done", r.getMessage(), r.getCourseName(), r.getTargetDate(), r.getRoomName(), r.getReserverEmail(), x);
                 temp.addNotification(n);
                 if(flag==1) {
                 	tempAdmin = getUser(adminAcc);
                 	tempAdmin.addNotification(n);
+                	serializeUser(tempAdmin);
                 }
             }
             start = start.plusDays(1);
@@ -526,7 +544,7 @@ class ConnectionHandler implements Runnable{
             course.serialize();
         }
         serializeUser(temp);
-        return false;
+        return true;
     }
     public void faculty_addCourse(String email, String course){
         Faculty f = (Faculty) getUser(email);
@@ -549,13 +567,23 @@ class ConnectionHandler implements Runnable{
                 return false;
             }
         }
+        Student tempStudent=(Student)getUser(r.get(0).getReserverEmail());
+        ArrayList<Integer> x= new ArrayList<Integer>();
+        Admin tempAd = (Admin)getUser(adminAcc);
         p = deserializeRequests();
         p.add(r);
         serializeRequests(p);
         Room temp = Room.deserializeRoom(r.get(0).getRoomName());
         for(int i=0;i<r.size();i++){
-            temp.addRequest(r.get(i));
+            Reservation t=r.get(i);
+        	temp.addRequest(t);
+            x.add(t.getReservationSlot());
         }
+        Notification n = new Notification("Room Reservation Request", "Pending", r.get(0).getMessage(), r.get(0).getCourseName(), r.get(0).getTargetDate(), r.get(0).getRoomName(), r.get(0).getReserverEmail(), x);
+        tempAd.addNotification(n);
+        tempStudent.addNotification(n);
+        serializeUser(tempStudent);
+        serializeUser(tempAd);
         temp.serialize();
         return true;
     }
@@ -624,7 +652,9 @@ class ConnectionHandler implements Runnable{
             if(newPassword.length()!=0) {
                 boolean b=newPassword.matches("[A-Za-z0-9]+");
                 if(b) {
-                    u.setPassword(newPassword);
+                	Notification n = new Notification("Password Changed", "Done", null, null, null, null, null, null);
+                    u.addNotification(n);
+                	u.setPassword(newPassword);
                     serializeUser(u);
                     return true;
                 }

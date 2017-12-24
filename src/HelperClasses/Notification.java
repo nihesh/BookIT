@@ -14,10 +14,10 @@ public class Notification implements Serializable{
     private LocalDate targetDate;
     private String room;
     private String reserverEmail;
-    private int slotID;
+    private ArrayList<Integer> slotIDs;
     private LocalDateTime NotificationDateTime = LocalDateTime.now();
 	public Notification(String type, String status, String message, String course, LocalDate targetDate,
-			String room, String reserverEmail, int slotID) {
+			String room, String reserverEmail, ArrayList<Integer> slotID) {
 		this.type = type;
 		this.status = status;
 		this.message = message;
@@ -25,7 +25,14 @@ public class Notification implements Serializable{
 		this.targetDate = targetDate;
 		this.room = room;
 		this.reserverEmail = reserverEmail;
-		this.slotID = slotID;
+		this.slotIDs = slotID;
+	}
+	public String getSlotIDasString() {
+		String ans="";
+		for (Integer integer : slotIDs) {
+			ans+=Reservation.getSlotRange(integer)+"\n";
+		}
+		return ans;
 	}
 	public String getType() {
 		return type;
@@ -48,8 +55,8 @@ public class Notification implements Serializable{
 	public String getReserverEmail() {
 		return reserverEmail;
 	}
-	public int getSlotID() {
-		return slotID;
+	public ArrayList<Integer> getSlotIDs() {
+		return slotIDs;
 	}
 	public void setType(String type) {
 		this.type = type;
@@ -78,8 +85,8 @@ public class Notification implements Serializable{
 	public void setReserverEmail(String reserverEmail) {
 		this.reserverEmail = reserverEmail;
 	}
-	public void setSlotID(int slotID) {
-		this.slotID = slotID;
+	public void setSlotID(ArrayList<Integer> slotID) {
+		this.slotIDs = slotID;
 	}
 	
     
