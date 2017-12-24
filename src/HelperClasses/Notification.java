@@ -7,14 +7,15 @@ import java.util.ArrayList;
 
 public class Notification implements Serializable{
 	private static final long serialVersionUID = 1L;
-    String type;
-    String status;
+    private String type;
+    private String status;
 	private String message;
     private String course;
     private LocalDate targetDate;
     private String room;
     private String reserverEmail;
     private int slotID;
+    private LocalDateTime NotificationDateTime = LocalDateTime.now();
 	public Notification(String type, String status, String message, String course, LocalDate targetDate,
 			String room, String reserverEmail, int slotID) {
 		this.type = type;
@@ -64,6 +65,12 @@ public class Notification implements Serializable{
 	}
 	public void setTargetDate(LocalDate targetDate) {
 		this.targetDate = targetDate;
+	}
+	public LocalDateTime getNotificationDateTime() {
+		return NotificationDateTime;
+	}
+	public void setNotificationDateTime(LocalDateTime notificationDateTime) {
+		NotificationDateTime = notificationDateTime;
 	}
 	public void setRoom(String room) {
 		this.room = room;

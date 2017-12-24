@@ -90,6 +90,7 @@ public class server {
  *
  */
 class ConnectionHandler implements Runnable{
+	public static String adminAcc = "admin@iiitd.ac.in";
     private Socket connection;
     public static ReentrantLock lock;
     private static String JoinString="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
@@ -491,7 +492,12 @@ class ConnectionHandler implements Runnable{
             }
             temp2 = temp2.plusDays(1);
         }
+        int flag=0;
         User temp = getUser(r.getReserverEmail());
+        User tempAdmin = null;
+        if(!temp.getUsertype().equals("Admin")) {
+        	flag=1;
+        }
         course = Course.deserializeCourse(r.getCourseName());
         while(!start.isAfter(end)) {
             if (addToCourse) {
@@ -499,10 +505,18 @@ class ConnectionHandler implements Runnable{
                 room.addReservation(start, slot, r);
                 Notification n = new Notification("Classroom Booking", "Done", r.getMessage(), r.getCourseName(), r.getTargetDate(), r.getRoomName(), r.getReserverEmail(), r.getReservationSlot());
                 temp.addNotification(n);
+                if(flag==1) {
+                	tempAdmin = getUser(adminAcc);
+                	tempAdmin.addNotification(n);
+                }
             } else {
                 room.addReservation(start, slot, r);
                 Notification n = new Notification("Classroom Booking", "Done", r.getMessage(), r.getCourseName(), r.getTargetDate(), r.getRoomName(), r.getReserverEmail(), r.getReservationSlot());
                 temp.addNotification(n);
+                if(flag==1) {
+                	tempAdmin = getUser(adminAcc);
+                	tempAdmin.addNotification(n);
+                }
             }
             start = start.plusDays(1);
         }
