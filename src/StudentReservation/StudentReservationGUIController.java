@@ -911,6 +911,7 @@ public class StudentReservationGUIController implements Initializable{
             chosenCourse = courseDropDown.getSelectionModel().getSelectedItem().toString();
         }
         catch(NullPointerException e){
+            JOptionPane.showMessageDialog(null, "Course Field can't be empty", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
         String chosenGroup;
@@ -925,6 +926,7 @@ public class StudentReservationGUIController implements Initializable{
             chosenPurpose = purposeDropDown.getSelectionModel().getSelectedItem().toString();
         }
         catch(NullPointerException e){
+            JOptionPane.showMessageDialog(null, "Purpose Field can't be empty", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
         String chosenFaculty;
@@ -963,11 +965,16 @@ public class StudentReservationGUIController implements Initializable{
      * Event handler for confirming booking of a room
      */
     public void bookingCompleted2(){
-        String chosenPurpose;
+        String chosenPurpose="";
         try {
             chosenPurpose = purposeBox.getText();
         }
         catch(NullPointerException e){
+            JOptionPane.showMessageDialog(null, "Purpose Field can't be empty", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        if(chosenPurpose.equals("")){
+            JOptionPane.showMessageDialog(null, "Purpose Field can't be empty", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
         String chosenMessage;

@@ -977,6 +977,7 @@ public class AdminReservationGUIController implements Initializable{
             chosenCourse = courseDropDown.getSelectionModel().getSelectedItem().toString();
         }
         catch(NullPointerException e){
+            JOptionPane.showMessageDialog(null, "Course Field can't be empty", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
         String chosenGroup;
@@ -991,6 +992,7 @@ public class AdminReservationGUIController implements Initializable{
             chosenPurpose = purposeDropDown.getSelectionModel().getSelectedItem().toString();
         }
         catch(NullPointerException e){
+            JOptionPane.showMessageDialog(null, "Purpose Field can't be empty", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
         String chosenFaculty;
