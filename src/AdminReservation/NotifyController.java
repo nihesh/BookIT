@@ -2,8 +2,10 @@ package AdminReservation;
 
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Control;
 import javafx.scene.control.Label;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
@@ -27,11 +29,19 @@ public class NotifyController {
         
     }
     private void loadNotifications(ArrayList<Notification> myList){ // assert: data.size() == time.size()
+    	if(myList.size()==0) {
+    		Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setTitle("Information Dialog");
+			alert.setHeaderText(null);
+			alert.setContentText("There are no new notifications");
+			alert.showAndWait();
+			
+    	}
     	ArrayList<String> data = new ArrayList<>();
         ArrayList<String> time = new ArrayList<>();
         for (Notification notifi : myList) {
 			if(notifi!=null) {
-                data.add(notifi.toString());
+        	data.add(notifi.toString());
         	LocalDateTime t=notifi.getNotificationDateTime();
         	String hour="";
         	String minute="";
@@ -53,6 +63,7 @@ public class NotifyController {
 				break;
 			}
 			}
+        
     	int labelSize = 993;
         for(int i=0;i<data.size();i++){
             StackPane s = new StackPane();
