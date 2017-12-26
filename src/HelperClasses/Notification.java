@@ -36,8 +36,8 @@ public class Notification implements Serializable{
 			slots+=Reservation.getSlotRange(integer)+",\n";
 		}
 		}
-		String text = type+"\nStatus: "+status+"\nMessage: "+message+"Course: "+course+"\nDate"+targetDate.toString()
-		+"\nRoom: "+room+ "\nEmail: "+reserverEmail+"\nSlots: "+slots;
+		String text = type+" by "+reserverEmail +",\tStatus: "+status+"\n"+message+"Course: "+course+"\nDate: "+targetDate.toString()
+		+"\nSlots: "+slots;
 		return text;
 	}
 	public String getSlotIDasString() {
