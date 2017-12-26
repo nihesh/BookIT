@@ -87,9 +87,54 @@
       <file leaf-file-name="FacultyReservationGUIController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/FacultyReservation/FacultyReservationGUIController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="152">
-              <caret line="227" column="61" lean-forward="true" selection-start-line="227" selection-start-column="29" selection-end-line="227" selection-end-column="61" />
-              <folding />
+            <state relative-caret-position="3996">
+              <caret line="231" column="61" lean-forward="false" selection-start-line="231" selection-start-column="61" selection-end-line="231" selection-end-column="61" />
+              <folding>
+                <marker date="1514307439913" expanded="true" signature="13997:14085" ph="/**...*/" />
+                <marker date="1514307439913" expanded="true" signature="14123:14540" ph="{...}" />
+                <marker date="1514307439913" expanded="true" signature="14546:14633" ph="/**...*/" />
+                <marker date="1514307439913" expanded="true" signature="14660:15200" ph="{...}" />
+                <marker date="1514307439913" expanded="true" signature="15206:15379" ph="/**...*/" />
+                <marker date="1514307439913" expanded="true" signature="15436:17393" ph="{...}" />
+                <marker date="1514307439913" expanded="true" signature="17399:17472" ph="/**...*/" />
+                <marker date="1514307439913" expanded="true" signature="17502:18221" ph="{...}" />
+                <marker date="1514307439913" expanded="true" signature="18227:18277" ph="/**...*/" />
+                <marker date="1514307439913" expanded="true" signature="18303:18509" ph="{...}" />
+                <marker date="1514307439913" expanded="true" signature="18515:18623" ph="/**...*/" />
+                <marker date="1514307439913" expanded="true" signature="18661:20414" ph="{...}" />
+                <marker date="1514307439913" expanded="true" signature="20420:20493" ph="/**...*/" />
+                <marker date="1514307439913" expanded="false" signature="20525:20535" ph=" { " />
+                <marker date="1514307439913" expanded="false" signature="20566:20572" ph=" }" />
+                <marker date="1514307439913" expanded="true" signature="20578:20669" ph="/**...*/" />
+                <marker date="1514307439913" expanded="true" signature="20712:21651" ph="{...}" />
+                <marker date="1514307439913" expanded="true" signature="21657:21738" ph="/**...*/" />
+                <marker date="1514307439913" expanded="true" signature="21774:21924" ph="{...}" />
+                <marker date="1514307439913" expanded="true" signature="21930:21966" ph="/**...*/" />
+                <marker date="1514307439913" expanded="true" signature="21994:22226" ph="{...}" />
+                <marker date="1514307439913" expanded="true" signature="22232:22268" ph="/**...*/" />
+                <marker date="1514307439913" expanded="false" signature="22296:22306" ph=" { " />
+                <marker date="1514307439913" expanded="false" signature="22329:22335" ph=" }" />
+                <marker date="1514307439913" expanded="true" signature="22341:22416" ph="/**...*/" />
+                <marker date="1514307439913" expanded="true" signature="22456:22644" ph="{...}" />
+                <marker date="1514307439913" expanded="true" signature="22650:22763" ph="/**...*/" />
+                <marker date="1514307439913" expanded="true" signature="22807:23590" ph="{...}" />
+                <marker date="1514307439913" expanded="true" signature="23596:23651" ph="/**...*/" />
+                <marker date="1514307439913" expanded="true" signature="23690:25042" ph="{...}" />
+                <marker date="1514307439913" expanded="true" signature="25048:25100" ph="/**...*/" />
+                <marker date="1514307439913" expanded="true" signature="25142:28153" ph="{...}" />
+                <marker date="1514307439913" expanded="true" signature="28158:28235" ph="/**...*/" />
+                <marker date="1514307439913" expanded="true" signature="28277:29984" ph="{...}" />
+                <marker date="1514307439913" expanded="true" signature="30020:30534" ph="{...}" />
+                <marker date="1514307439913" expanded="true" signature="30540:30605" ph="/**...*/" />
+                <marker date="1514307439913" expanded="true" signature="30641:32809" ph="{...}" />
+                <marker date="1514307439913" expanded="true" signature="32846:34222" ph="{...}" />
+                <marker date="1514307439913" expanded="true" signature="34228:34274" ph="/**...*/" />
+                <marker date="1514307439913" expanded="true" signature="34301:34637" ph="{...}" />
+                <marker date="1514307439913" expanded="true" signature="34645:34747" ph="/**...*/" />
+                <marker date="1514307439913" expanded="true" signature="34798:36216" ph="{...}" />
+                <marker date="1514307439913" expanded="true" signature="36222:36273" ph="/**...*/" />
+                <marker date="1514307439913" expanded="true" signature="36312:37512" ph="{...}" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -99,11 +144,7 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="5796">
               <caret line="330" column="59" lean-forward="false" selection-start-line="330" selection-start-column="59" selection-end-line="330" selection-end-column="59" />
-              <folding>
-                <element signature="imports" expanded="false" />
-                <element signature="e#867#868#0" expanded="false" />
-                <element signature="e#911#912#0" expanded="false" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -111,25 +152,87 @@
       <file leaf-file-name="StudentReservationGUIController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/StudentReservation/StudentReservationGUIController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1458">
-              <caret line="121" column="67" lean-forward="false" selection-start-line="120" selection-start-column="4" selection-end-line="121" selection-end-column="67" />
+            <state relative-caret-position="2088">
+              <caret line="125" column="67" lean-forward="false" selection-start-line="125" selection-start-column="67" selection-end-line="125" selection-end-column="67" />
               <folding>
-                <element signature="e#0#44528#0" expanded="false" />
-                <element signature="imports" expanded="false" />
-                <element signature="e#25136#25137#0" expanded="false" />
-                <element signature="e#25182#25183#0" expanded="false" />
-                <element signature="e#26936#26937#0" expanded="false" />
-                <element signature="e#26974#26975#0" expanded="false" />
+                <marker date="1514307439917" expanded="true" signature="9396:9432" ph="/**...*/" />
+                <marker date="1514307439917" expanded="true" signature="9458:9664" ph="{...}" />
+                <marker date="1514307439917" expanded="true" signature="9669:9748" ph="/**...*/" />
+                <marker date="1514307439917" expanded="true" signature="9782:11209" ph="{...}" />
+                <marker date="1514307439917" expanded="true" signature="11214:11326" ph="/**...*/" />
+                <marker date="1514307439917" expanded="true" signature="11361:11981" ph="{...}" />
+                <marker date="1514307439917" expanded="true" signature="11987:12044" ph="/**...*/" />
+                <marker date="1514307439917" expanded="true" signature="12076:13324" ph="{...}" />
+                <marker date="1514307439917" expanded="true" signature="13330:13387" ph="/**...*/" />
+                <marker date="1514307439917" expanded="true" signature="13420:14038" ph="{...}" />
+                <marker date="1514307439917" expanded="true" signature="14044:14111" ph="/**...*/" />
+                <marker date="1514307439917" expanded="true" signature="14146:14740" ph="{...}" />
+                <marker date="1514307439917" expanded="true" signature="14746:14810" ph="/**...*/" />
+                <marker date="1514307439917" expanded="true" signature="14846:15103" ph="{...}" />
+                <marker date="1514307439917" expanded="true" signature="15109:15183" ph="/**...*/" />
+                <marker date="1514307439917" expanded="true" signature="15220:15375" ph="{...}" />
+                <marker date="1514307439917" expanded="true" signature="15380:15427" ph="/**...*/" />
+                <marker date="1514307439917" expanded="true" signature="15464:15859" ph="{...}" />
+                <marker date="1514307439917" expanded="true" signature="15864:15910" ph="/**...*/" />
+                <marker date="1514307439917" expanded="true" signature="15949:16246" ph="{...}" />
+                <marker date="1514307439917" expanded="true" signature="16251:16337" ph="/**...*/" />
+                <marker date="1514307439917" expanded="true" signature="16374:17258" ph="{...}" />
+                <marker date="1514307439917" expanded="true" signature="17263:17351" ph="/**...*/" />
+                <marker date="1514307439917" expanded="true" signature="17389:17806" ph="{...}" />
+                <marker date="1514307439917" expanded="true" signature="17811:17898" ph="/**...*/" />
+                <marker date="1514307439917" expanded="true" signature="17925:18465" ph="{...}" />
+                <marker date="1514307439917" expanded="true" signature="18470:18643" ph="/**...*/" />
+                <marker date="1514307439917" expanded="true" signature="18700:20657" ph="{...}" />
+                <marker date="1514307439917" expanded="true" signature="20662:20735" ph="/**...*/" />
+                <marker date="1514307439917" expanded="true" signature="20765:21486" ph="{...}" />
+                <marker date="1514307439917" expanded="true" signature="21492:21591" ph="/**...*/" />
+                <marker date="1514307439917" expanded="true" signature="21635:23144" ph="{...}" />
+                <marker date="1514307439917" expanded="true" signature="23180:23864" ph="{...}" />
+                <marker date="1514307439917" expanded="true" signature="23869:23977" ph="/**...*/" />
+                <marker date="1514307439917" expanded="true" signature="24015:25755" ph="{...}" />
+                <marker date="1514307439917" expanded="true" signature="25760:25833" ph="/**...*/" />
+                <marker date="1514307439917" expanded="false" signature="25865:25875" ph=" { " />
+                <marker date="1514307439917" expanded="false" signature="25906:25912" ph=" }" />
+                <marker date="1514307439917" expanded="true" signature="25917:26008" ph="/**...*/" />
+                <marker date="1514307439917" expanded="true" signature="26051:27023" ph="{...}" />
+                <marker date="1514307439917" expanded="true" signature="27028:27109" ph="/**...*/" />
+                <marker date="1514307439917" expanded="true" signature="27145:27295" ph="{...}" />
+                <marker date="1514307439917" expanded="true" signature="27300:27336" ph="/**...*/" />
+                <marker date="1514307439917" expanded="true" signature="27364:27596" ph="{...}" />
+                <marker date="1514307439917" expanded="true" signature="27601:27637" ph="/**...*/" />
+                <marker date="1514307439917" expanded="false" signature="27665:27675" ph=" { " />
+                <marker date="1514307439917" expanded="false" signature="27698:27704" ph=" }" />
+                <marker date="1514307439917" expanded="true" signature="27709:27784" ph="/**...*/" />
+                <marker date="1514307439917" expanded="true" signature="27824:28012" ph="{...}" />
+                <marker date="1514307439917" expanded="true" signature="28017:28130" ph="/**...*/" />
+                <marker date="1514307439917" expanded="true" signature="28174:28957" ph="{...}" />
+                <marker date="1514307439917" expanded="true" signature="28962:29017" ph="/**...*/" />
+                <marker date="1514307439917" expanded="true" signature="29056:30408" ph="{...}" />
+                <marker date="1514307439917" expanded="true" signature="30413:30465" ph="/**...*/" />
+                <marker date="1514307439917" expanded="true" signature="30507:33949" ph="{...}" />
+                <marker date="1514307439917" expanded="true" signature="33954:34019" ph="/**...*/" />
+                <marker date="1514307439917" expanded="true" signature="34055:36489" ph="{...}" />
+                <marker date="1514307439917" expanded="true" signature="36494:36559" ph="/**...*/" />
+                <marker date="1514307439917" expanded="true" signature="36595:38365" ph="{...}" />
+                <marker date="1514307439917" expanded="true" signature="38370:38416" ph="/**...*/" />
+                <marker date="1514307439917" expanded="true" signature="38443:38779" ph="{...}" />
+                <marker date="1514307439917" expanded="true" signature="38815:39329" ph="{...}" />
+                <marker date="1514307439917" expanded="true" signature="39334:39411" ph="/**...*/" />
+                <marker date="1514307439917" expanded="true" signature="39453:41562" ph="{...}" />
+                <marker date="1514307439917" expanded="true" signature="41567:41669" ph="/**...*/" />
+                <marker date="1514307439917" expanded="true" signature="41720:43535" ph="{...}" />
+                <marker date="1514307439917" expanded="true" signature="43540:43591" ph="/**...*/" />
+                <marker date="1514307439917" expanded="true" signature="43630:45254" ph="{...}" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="NotifyController.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="NotifyController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/AdminReservation/NotifyController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="164">
-              <caret line="36" column="45" lean-forward="true" selection-start-line="36" selection-start-column="45" selection-end-line="36" selection-end-column="45" />
+            <state relative-caret-position="370">
+              <caret line="38" column="27" lean-forward="false" selection-start-line="38" selection-start-column="27" selection-end-line="38" selection-end-column="27" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -137,11 +240,21 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="Notification.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/HelperClasses/Notification.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="558">
+              <caret line="43" column="52" lean-forward="true" selection-start-line="43" selection-start-column="52" selection-end-line="43" selection-end-column="52" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="setup.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/setup.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="5616">
-              <caret line="319" column="36" lean-forward="false" selection-start-line="319" selection-start-column="36" selection-end-line="319" selection-end-column="36" />
+            <state relative-caret-position="942">
+              <caret line="323" column="28" lean-forward="false" selection-start-line="323" selection-start-column="28" selection-end-line="323" selection-end-column="28" />
               <folding />
             </state>
           </provider>
@@ -163,28 +276,9 @@
       <file leaf-file-name="AdminReservationGUIController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/AdminReservation/AdminReservationGUIController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4932">
+            <state relative-caret-position="4842">
               <caret line="322" column="77" lean-forward="false" selection-start-line="322" selection-start-column="71" selection-end-line="322" selection-end-column="77" />
-              <folding>
-                <element signature="e#0#46670#0" expanded="false" />
-                <element signature="imports" expanded="false" />
-                <element signature="e#27716#27717#0" expanded="false" />
-                <element signature="e#27762#27763#0" expanded="false" />
-                <element signature="e#29518#29519#0" expanded="false" />
-                <element signature="e#29556#29557#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="BookIT.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/BookIT.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1764">
-              <caret line="109" column="66" lean-forward="false" selection-start-line="109" selection-start-column="66" selection-end-line="109" selection-end-column="66" />
-              <folding>
-                <element signature="imports" expanded="false" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -279,13 +373,14 @@
         <option value="$PROJECT_DIR$/src/BookIT.java" />
         <option value="$PROJECT_DIR$/src/AdminReservation/AdminReservation.fxml" />
         <option value="$PROJECT_DIR$/src/HelperClasses/Faculty.java" />
-        <option value="$PROJECT_DIR$/src/setup.java" />
         <option value="$PROJECT_DIR$/src/HelperClasses/Admin.java" />
         <option value="$PROJECT_DIR$/src/server.java" />
         <option value="$PROJECT_DIR$/src/AdminReservation/AdminReservationGUIController.java" />
         <option value="$PROJECT_DIR$/src/FacultyReservation/FacultyReservationGUIController.java" />
         <option value="$PROJECT_DIR$/src/StudentReservation/StudentReservationGUIController.java" />
         <option value="$PROJECT_DIR$/src/AdminReservation/NotifyController.java" />
+        <option value="$PROJECT_DIR$/src/HelperClasses/Notification.java" />
+        <option value="$PROJECT_DIR$/src/setup.java" />
       </list>
     </option>
   </component>
@@ -331,7 +426,6 @@
     <panes>
       <pane id="Scope" />
       <pane id="PackagesPane" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -548,6 +642,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -567,7 +662,7 @@
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/src/Dependencies/transaction-api-1.1.jar!/" />
   </component>
-  <component name="RunManager" selected="Application.Main">
+  <component name="RunManager" selected="Application.setup">
     <configuration default="false" name="setup" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <option name="MAIN_CLASS_NAME" value="setup" />
@@ -890,8 +985,8 @@
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Application.server" />
-        <item index="1" class="java.lang.String" itemvalue="Application.setup" />
+        <item index="0" class="java.lang.String" itemvalue="Application.setup" />
+        <item index="1" class="java.lang.String" itemvalue="Application.server" />
         <item index="2" class="java.lang.String" itemvalue="Application.Admin" />
         <item index="3" class="java.lang.String" itemvalue="Application.BookIT" />
         <item index="4" class="java.lang.String" itemvalue="Application.LoginSignupGUI" />
@@ -978,7 +1073,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/Login/LoginGUIController.java" />
     <entry file="file://$PROJECT_DIR$/src/Login/Login.fxml" />
     <entry file="file://$PROJECT_DIR$/src/Login/LoginGUI.java" />
     <entry file="file://$PROJECT_DIR$/src/Login/LoginGUIController.java" />
@@ -1139,9 +1233,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
           <caret line="17" column="40" lean-forward="false" selection-start-line="17" selection-start-column="40" selection-end-line="17" selection-end-column="40" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1175,9 +1266,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1764">
           <caret line="109" column="66" lean-forward="false" selection-start-line="109" selection-start-column="66" selection-end-line="109" selection-end-column="66" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1197,23 +1286,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/setup.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5616">
-          <caret line="319" column="36" lean-forward="false" selection-start-line="319" selection-start-column="36" selection-end-line="319" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/HelperClasses/Admin.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="5796">
           <caret line="330" column="59" lean-forward="false" selection-start-line="330" selection-start-column="59" selection-end-line="330" selection-end-column="59" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#867#868#0" expanded="false" />
-            <element signature="e#911#912#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1227,15 +1304,77 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/StudentReservation/StudentReservationGUIController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1458">
-          <caret line="121" column="67" lean-forward="false" selection-start-line="120" selection-start-column="4" selection-end-line="121" selection-end-column="67" />
+        <state relative-caret-position="2088">
+          <caret line="125" column="67" lean-forward="false" selection-start-line="125" selection-start-column="67" selection-end-line="125" selection-end-column="67" />
           <folding>
-            <element signature="e#0#44528#0" expanded="false" />
-            <element signature="imports" expanded="false" />
-            <element signature="e#25136#25137#0" expanded="false" />
-            <element signature="e#25182#25183#0" expanded="false" />
-            <element signature="e#26936#26937#0" expanded="false" />
-            <element signature="e#26974#26975#0" expanded="false" />
+            <marker date="1514307439917" expanded="true" signature="9396:9432" ph="/**...*/" />
+            <marker date="1514307439917" expanded="true" signature="9458:9664" ph="{...}" />
+            <marker date="1514307439917" expanded="true" signature="9669:9748" ph="/**...*/" />
+            <marker date="1514307439917" expanded="true" signature="9782:11209" ph="{...}" />
+            <marker date="1514307439917" expanded="true" signature="11214:11326" ph="/**...*/" />
+            <marker date="1514307439917" expanded="true" signature="11361:11981" ph="{...}" />
+            <marker date="1514307439917" expanded="true" signature="11987:12044" ph="/**...*/" />
+            <marker date="1514307439917" expanded="true" signature="12076:13324" ph="{...}" />
+            <marker date="1514307439917" expanded="true" signature="13330:13387" ph="/**...*/" />
+            <marker date="1514307439917" expanded="true" signature="13420:14038" ph="{...}" />
+            <marker date="1514307439917" expanded="true" signature="14044:14111" ph="/**...*/" />
+            <marker date="1514307439917" expanded="true" signature="14146:14740" ph="{...}" />
+            <marker date="1514307439917" expanded="true" signature="14746:14810" ph="/**...*/" />
+            <marker date="1514307439917" expanded="true" signature="14846:15103" ph="{...}" />
+            <marker date="1514307439917" expanded="true" signature="15109:15183" ph="/**...*/" />
+            <marker date="1514307439917" expanded="true" signature="15220:15375" ph="{...}" />
+            <marker date="1514307439917" expanded="true" signature="15380:15427" ph="/**...*/" />
+            <marker date="1514307439917" expanded="true" signature="15464:15859" ph="{...}" />
+            <marker date="1514307439917" expanded="true" signature="15864:15910" ph="/**...*/" />
+            <marker date="1514307439917" expanded="true" signature="15949:16246" ph="{...}" />
+            <marker date="1514307439917" expanded="true" signature="16251:16337" ph="/**...*/" />
+            <marker date="1514307439917" expanded="true" signature="16374:17258" ph="{...}" />
+            <marker date="1514307439917" expanded="true" signature="17263:17351" ph="/**...*/" />
+            <marker date="1514307439917" expanded="true" signature="17389:17806" ph="{...}" />
+            <marker date="1514307439917" expanded="true" signature="17811:17898" ph="/**...*/" />
+            <marker date="1514307439917" expanded="true" signature="17925:18465" ph="{...}" />
+            <marker date="1514307439917" expanded="true" signature="18470:18643" ph="/**...*/" />
+            <marker date="1514307439917" expanded="true" signature="18700:20657" ph="{...}" />
+            <marker date="1514307439917" expanded="true" signature="20662:20735" ph="/**...*/" />
+            <marker date="1514307439917" expanded="true" signature="20765:21486" ph="{...}" />
+            <marker date="1514307439917" expanded="true" signature="21492:21591" ph="/**...*/" />
+            <marker date="1514307439917" expanded="true" signature="21635:23144" ph="{...}" />
+            <marker date="1514307439917" expanded="true" signature="23180:23864" ph="{...}" />
+            <marker date="1514307439917" expanded="true" signature="23869:23977" ph="/**...*/" />
+            <marker date="1514307439917" expanded="true" signature="24015:25755" ph="{...}" />
+            <marker date="1514307439917" expanded="true" signature="25760:25833" ph="/**...*/" />
+            <marker date="1514307439917" expanded="false" signature="25865:25875" ph=" { " />
+            <marker date="1514307439917" expanded="false" signature="25906:25912" ph=" }" />
+            <marker date="1514307439917" expanded="true" signature="25917:26008" ph="/**...*/" />
+            <marker date="1514307439917" expanded="true" signature="26051:27023" ph="{...}" />
+            <marker date="1514307439917" expanded="true" signature="27028:27109" ph="/**...*/" />
+            <marker date="1514307439917" expanded="true" signature="27145:27295" ph="{...}" />
+            <marker date="1514307439917" expanded="true" signature="27300:27336" ph="/**...*/" />
+            <marker date="1514307439917" expanded="true" signature="27364:27596" ph="{...}" />
+            <marker date="1514307439917" expanded="true" signature="27601:27637" ph="/**...*/" />
+            <marker date="1514307439917" expanded="false" signature="27665:27675" ph=" { " />
+            <marker date="1514307439917" expanded="false" signature="27698:27704" ph=" }" />
+            <marker date="1514307439917" expanded="true" signature="27709:27784" ph="/**...*/" />
+            <marker date="1514307439917" expanded="true" signature="27824:28012" ph="{...}" />
+            <marker date="1514307439917" expanded="true" signature="28017:28130" ph="/**...*/" />
+            <marker date="1514307439917" expanded="true" signature="28174:28957" ph="{...}" />
+            <marker date="1514307439917" expanded="true" signature="28962:29017" ph="/**...*/" />
+            <marker date="1514307439917" expanded="true" signature="29056:30408" ph="{...}" />
+            <marker date="1514307439917" expanded="true" signature="30413:30465" ph="/**...*/" />
+            <marker date="1514307439917" expanded="true" signature="30507:33949" ph="{...}" />
+            <marker date="1514307439917" expanded="true" signature="33954:34019" ph="/**...*/" />
+            <marker date="1514307439917" expanded="true" signature="34055:36489" ph="{...}" />
+            <marker date="1514307439917" expanded="true" signature="36494:36559" ph="/**...*/" />
+            <marker date="1514307439917" expanded="true" signature="36595:38365" ph="{...}" />
+            <marker date="1514307439917" expanded="true" signature="38370:38416" ph="/**...*/" />
+            <marker date="1514307439917" expanded="true" signature="38443:38779" ph="{...}" />
+            <marker date="1514307439917" expanded="true" signature="38815:39329" ph="{...}" />
+            <marker date="1514307439917" expanded="true" signature="39334:39411" ph="/**...*/" />
+            <marker date="1514307439917" expanded="true" signature="39453:41562" ph="{...}" />
+            <marker date="1514307439917" expanded="true" signature="41567:41669" ph="/**...*/" />
+            <marker date="1514307439917" expanded="true" signature="41720:43535" ph="{...}" />
+            <marker date="1514307439917" expanded="true" signature="43540:43591" ph="/**...*/" />
+            <marker date="1514307439917" expanded="true" signature="43630:45254" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -1253,34 +1392,88 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AdminReservation/AdminReservationGUIController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4932">
+        <state relative-caret-position="4842">
           <caret line="322" column="77" lean-forward="false" selection-start-line="322" selection-start-column="71" selection-end-line="322" selection-end-column="77" />
-          <folding>
-            <element signature="e#0#46670#0" expanded="false" />
-            <element signature="imports" expanded="false" />
-            <element signature="e#27716#27717#0" expanded="false" />
-            <element signature="e#27762#27763#0" expanded="false" />
-            <element signature="e#29518#29519#0" expanded="false" />
-            <element signature="e#29556#29557#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/FacultyReservation/FacultyReservationGUIController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="227" column="61" lean-forward="true" selection-start-line="227" selection-start-column="29" selection-end-line="227" selection-end-column="61" />
-          <folding />
+        <state relative-caret-position="3996">
+          <caret line="231" column="61" lean-forward="false" selection-start-line="231" selection-start-column="61" selection-end-line="231" selection-end-column="61" />
+          <folding>
+            <marker date="1514307439913" expanded="true" signature="13997:14085" ph="/**...*/" />
+            <marker date="1514307439913" expanded="true" signature="14123:14540" ph="{...}" />
+            <marker date="1514307439913" expanded="true" signature="14546:14633" ph="/**...*/" />
+            <marker date="1514307439913" expanded="true" signature="14660:15200" ph="{...}" />
+            <marker date="1514307439913" expanded="true" signature="15206:15379" ph="/**...*/" />
+            <marker date="1514307439913" expanded="true" signature="15436:17393" ph="{...}" />
+            <marker date="1514307439913" expanded="true" signature="17399:17472" ph="/**...*/" />
+            <marker date="1514307439913" expanded="true" signature="17502:18221" ph="{...}" />
+            <marker date="1514307439913" expanded="true" signature="18227:18277" ph="/**...*/" />
+            <marker date="1514307439913" expanded="true" signature="18303:18509" ph="{...}" />
+            <marker date="1514307439913" expanded="true" signature="18515:18623" ph="/**...*/" />
+            <marker date="1514307439913" expanded="true" signature="18661:20414" ph="{...}" />
+            <marker date="1514307439913" expanded="true" signature="20420:20493" ph="/**...*/" />
+            <marker date="1514307439913" expanded="false" signature="20525:20535" ph=" { " />
+            <marker date="1514307439913" expanded="false" signature="20566:20572" ph=" }" />
+            <marker date="1514307439913" expanded="true" signature="20578:20669" ph="/**...*/" />
+            <marker date="1514307439913" expanded="true" signature="20712:21651" ph="{...}" />
+            <marker date="1514307439913" expanded="true" signature="21657:21738" ph="/**...*/" />
+            <marker date="1514307439913" expanded="true" signature="21774:21924" ph="{...}" />
+            <marker date="1514307439913" expanded="true" signature="21930:21966" ph="/**...*/" />
+            <marker date="1514307439913" expanded="true" signature="21994:22226" ph="{...}" />
+            <marker date="1514307439913" expanded="true" signature="22232:22268" ph="/**...*/" />
+            <marker date="1514307439913" expanded="false" signature="22296:22306" ph=" { " />
+            <marker date="1514307439913" expanded="false" signature="22329:22335" ph=" }" />
+            <marker date="1514307439913" expanded="true" signature="22341:22416" ph="/**...*/" />
+            <marker date="1514307439913" expanded="true" signature="22456:22644" ph="{...}" />
+            <marker date="1514307439913" expanded="true" signature="22650:22763" ph="/**...*/" />
+            <marker date="1514307439913" expanded="true" signature="22807:23590" ph="{...}" />
+            <marker date="1514307439913" expanded="true" signature="23596:23651" ph="/**...*/" />
+            <marker date="1514307439913" expanded="true" signature="23690:25042" ph="{...}" />
+            <marker date="1514307439913" expanded="true" signature="25048:25100" ph="/**...*/" />
+            <marker date="1514307439913" expanded="true" signature="25142:28153" ph="{...}" />
+            <marker date="1514307439913" expanded="true" signature="28158:28235" ph="/**...*/" />
+            <marker date="1514307439913" expanded="true" signature="28277:29984" ph="{...}" />
+            <marker date="1514307439913" expanded="true" signature="30020:30534" ph="{...}" />
+            <marker date="1514307439913" expanded="true" signature="30540:30605" ph="/**...*/" />
+            <marker date="1514307439913" expanded="true" signature="30641:32809" ph="{...}" />
+            <marker date="1514307439913" expanded="true" signature="32846:34222" ph="{...}" />
+            <marker date="1514307439913" expanded="true" signature="34228:34274" ph="/**...*/" />
+            <marker date="1514307439913" expanded="true" signature="34301:34637" ph="{...}" />
+            <marker date="1514307439913" expanded="true" signature="34645:34747" ph="/**...*/" />
+            <marker date="1514307439913" expanded="true" signature="34798:36216" ph="{...}" />
+            <marker date="1514307439913" expanded="true" signature="36222:36273" ph="/**...*/" />
+            <marker date="1514307439913" expanded="true" signature="36312:37512" ph="{...}" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AdminReservation/NotifyController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="164">
-          <caret line="36" column="45" lean-forward="true" selection-start-line="36" selection-start-column="45" selection-end-line="36" selection-end-column="45" />
+        <state relative-caret-position="370">
+          <caret line="38" column="27" lean-forward="false" selection-start-line="38" selection-start-column="27" selection-end-line="38" selection-end-column="27" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/setup.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="942">
+          <caret line="323" column="28" lean-forward="false" selection-start-line="323" selection-start-column="28" selection-end-line="323" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/HelperClasses/Notification.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="558">
+          <caret line="43" column="52" lean-forward="true" selection-start-line="43" selection-start-column="52" selection-end-line="43" selection-end-column="52" />
+          <folding />
         </state>
       </provider>
     </entry>

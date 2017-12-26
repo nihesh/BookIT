@@ -18,7 +18,12 @@ public class Notification implements Serializable{
     private LocalDateTime NotificationDateTime = LocalDateTime.now();
 	public Notification(String type, String status, String message, String course, LocalDate targetDate,
 			String room, String reserverEmail, ArrayList<Integer> slotID) {
-		this.type = type;
+		if(type!=null) {
+			this.type = type;
+		}
+		else{
+			this.type = "";
+		}
 		this.status = status;
 		this.message = message;
 		this.course = course;
