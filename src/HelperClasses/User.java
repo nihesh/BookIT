@@ -39,6 +39,10 @@ public class User implements Serializable{
 	}
 	public void addNotification(Notification r) {
 		this.notifications.add(r);
+		while(this.notifications.size()>100) {
+			this.notifications.remove(0);
+    		
+    	}
 	}
 	public void setNotification(ArrayList<Notification> x) {
 		notifications = x;
