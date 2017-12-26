@@ -427,7 +427,7 @@ public class FacultyReservationGUIController implements Initializable{
      */
     public void loadDate(){
         LocalDate date = datePicker.getValue();
-        if(date.isAfter(StartDate) && date.isBefore(EndDate)){
+        if(!date.isBefore(StartDate) && !date.isAfter(EndDate)){
             activeDate = date;
             datePicker.setValue(activeDate);
             setDate(activeDate);

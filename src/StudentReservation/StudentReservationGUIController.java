@@ -197,7 +197,8 @@ public class StudentReservationGUIController implements Initializable{
         }
 
         activeUser = (Student)User.getActiveUser();
-        batchLabel.setText(activeUser.getBatch());
+        //        batchLabel.setText(activeUser.getBatch());
+        batchLabel.setText("Student");
         listCoursesProcessing = false;
         isActiveReservation = false;
         changepassProcessing = false;
@@ -513,7 +514,7 @@ public class StudentReservationGUIController implements Initializable{
      */
     public void loadDate(){
         LocalDate date = datePicker.getValue();
-        if(date.isAfter(StartDate) && date.isBefore(EndDate)){
+        if(!date.isBefore(StartDate) && !date.isAfter(EndDate)){
             activeDate = date;
             datePicker.setValue(activeDate);
             setDate(activeDate);

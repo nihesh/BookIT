@@ -33,6 +33,7 @@ public class server {
 	 */
 	public static final double BookITversion = 1.0;
     public static SpamFilter spm;
+    public static int noOfConnections = 0;
     public static ExecutorService mailpool = Executors.newFixedThreadPool(2);
     public static HashMap<String, Integer> studhash=null;
     public static HashMap<String, Integer> faculthash=null;
@@ -776,7 +777,8 @@ class ConnectionHandler implements Runnable{
     	ArrayList<Notification> temp = x.getterNotification();
     	for(int i=0;i<temp.size();i++) {
     		Notification noti =temp.get(i);
-    		if(noti.getTargetDate().isBefore(LocalDate.now())) {
+            System.out.println(noti.getCourse());
+            if(noti.getTargetDate().isBefore(LocalDate.now())) {
 			 temp.remove(noti);
 		 }
 		 else {
@@ -801,6 +803,7 @@ class ConnectionHandler implements Runnable{
         return true;
     }
     public void run(){
+        server.noOfConnections++;
         ObjectInputStream in=null;
         ObjectOutputStream out=null;
         String status="";
@@ -826,7 +829,7 @@ class ConnectionHandler implements Runnable{
                 if(status.equals("Pass") || lock.tryLock(10, TimeUnit.SECONDS)) {
                     if(!status.equals("Pass")){
                         System.out.print("[ "+LocalDateTime.now()+" ] ");
-                        System.out.println(connection.getInetAddress().toString() + " | ServerLock Taken");
+                        System.out.println(connection.getInetAddress().toString() + " | ServerLock Taken - Pending connections: "+server.noOfConnections);
                     }
                     try {
                         String request = (String) in.readObject();
@@ -1108,6 +1111,7 @@ class ConnectionHandler implements Runnable{
                 ;
             }
         }while(true);
+        server.noOfConnections--;
     }
 }
 class Mail implements Runnable{
