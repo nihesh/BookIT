@@ -69,7 +69,7 @@ public class setup {
     	try {
 			Scanner x=new Scanner(new BufferedReader(new FileReader("src/AppData/PostCondition/"+CourseName+".txt")));
             while(x.hasNext()) {
-                temp.add(x.next());
+                temp.add(x.next().trim());
             }
 			x.close();
 			
@@ -93,11 +93,11 @@ public class setup {
             int capacity;
             if(flag==0){
                 flag=1;
-                file.next();
-                file.next();
+                file.next().trim();
+                file.next().trim();
                 continue;
             }
-            venue = file.next();
+            venue = file.next().trim();
             capacity = Integer.parseInt(file.next().trim());
             HashMap<LocalDate, Reservation[]> Schedule = new HashMap<LocalDate, Reservation[]>();
             LocalDate currentDate = StartDate;
@@ -115,18 +115,18 @@ public class setup {
         flag=0;
         while(file.hasNext()){
             String type,name,code,instructor,credits,acronym,day,startTime,endTime,group,message,venue;
-            type = file.next();
-            name = file.next();
-            code = file.next();
-            instructor = file.next();
-            credits = file.next();
-            acronym = file.next();
-            day = file.next().toLowerCase();
-            startTime = file.next();
-            endTime = file.next();
-            group = file.next();
-            message = file.next();
-            venue = file.next();
+            type = file.next().trim();
+            name = file.next().trim();
+            code = file.next().trim();
+            instructor = file.next().trim();
+            credits = file.next().trim();
+            acronym = file.next().trim();
+            day = file.next().trim().toLowerCase();
+            startTime = file.next().trim();
+            endTime = file.next().trim();
+            group = file.next().trim();
+            message = file.next().trim();
+            venue = file.next().trim();
             if(flag==0){
                 flag=1;
                 continue;
@@ -233,7 +233,7 @@ public class setup {
         HashMap<String,Integer> p = new HashMap<String,Integer>();
         Scanner sc = new Scanner(new BufferedReader(new FileReader("./src/AppData/StaticTimeTable/StudentEmails.txt")));
         while(sc.hasNext()){
-            p.put(sc.next(),1);
+            p.put(sc.next().trim(),1);
         }
         ObjectOutputStream out = null;
         try {
@@ -249,7 +249,7 @@ public class setup {
         HashMap<String,Integer> p = new HashMap<String,Integer>();
         Scanner sc = new Scanner(new BufferedReader(new FileReader("./src/AppData/StaticTimeTable/FacultyEmails.txt")));
         while(sc.hasNext()){
-            p.put(sc.next(),1);
+            p.put(sc.next().trim(),1);
         }
         ObjectOutputStream out = null;
         try {

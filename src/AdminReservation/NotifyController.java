@@ -31,7 +31,7 @@ public class NotifyController {
         ArrayList<String> time = new ArrayList<>();
         for (Notification notifi : myList) {
 			if(notifi!=null) {
-        	data.add(notifi.toString());
+                data.add(notifi.toString());
         	LocalDateTime t=notifi.getNotificationDateTime();
         	String hour="";
         	String minute="";
@@ -53,7 +53,6 @@ public class NotifyController {
 				break;
 			}
 			}
-        
     	int labelSize = 993;
         for(int i=0;i<data.size();i++){
             StackPane s = new StackPane();

@@ -39,7 +39,7 @@ public class SpamFilter {
             dict = new HashMap<>();
             Scanner sc = new Scanner(new BufferedReader(new FileReader("./src/AppData/SpamFilterDataset/dictionary.txt")));
             while (sc.hasNext()) {
-                String word = sc.next();
+                String word = sc.next().trim();
                 dict.put(word.toLowerCase(), true);
             }
             System.out.println("Spam filter has been set up.");
@@ -52,7 +52,7 @@ public class SpamFilter {
                 Scanner sc = new Scanner(new BufferedReader(new FileReader("./src/AppData/SpamFilterDataset/Ham/"+Integer.toString(i)+".txt")));
                 HashMap<String, Boolean> temp = new HashMap<>();
                 while(sc.hasNext()){
-                    String word = sc.next().toLowerCase();
+                    String word = sc.next().trim().toLowerCase();
                     if(!temp.containsKey(word)){
                         temp.put(word, true);
                         if(!HamData.containsKey(word)){
@@ -73,7 +73,7 @@ public class SpamFilter {
                 Scanner sc = new Scanner(new BufferedReader(new FileReader("./src/AppData/SpamFilterDataset/Spam/"+Integer.toString(i)+".txt")));
                 HashMap<String, Boolean> temp = new HashMap<>();
                 while(sc.hasNext()){
-                    String word = sc.next().toLowerCase();
+                    String word = sc.next().trim().toLowerCase();
                     if(!temp.containsKey(word)){
                         temp.put(word, true);
                         if(!SpamData.containsKey(word)){
