@@ -24,13 +24,13 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<?import java.util.ArrayList?>
 <VBox fx:id="rootPane" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FacultyReservation.FacultyReservationGUIController">
    <children>
       <MenuBar fx:id="menuBar">
         <menus>
           <Menu mnemonicParsing="false" text="File">
             <items>
+                  <MenuItem mnemonicParsing="false" onAction="#openChangePassword" text="Change Password" />
               <MenuItem mnemonicParsing="false" onAction="#signout" text="Logout" />
             </items>
           </Menu>
@@ -357,7 +357,7 @@
                         <Insets bottom="20.0" top="250.0" />
                      </StackPane.margin>
                      <children>
-                        <Button mnemonicParsing="false" onMouseClicked="#openChangePassword" opacity="0.95" prefHeight="47.0" prefWidth="194.0" stylesheets="@buttonControl.css" text="Change Pwd">
+                        <Button mnemonicParsing="false" onMouseClicked="#OpenNotifications" opacity="0.95" prefHeight="47.0" prefWidth="194.0" stylesheets="@buttonControl.css" text="Notifications">
                            <StackPane.margin>
                               <Insets bottom="2.0" left="400.0" />
                            </StackPane.margin>

@@ -323,13 +323,15 @@ public class AdminReservationGUIController implements Initializable{
     	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Notify.fxml"));
         Parent root1 = (Parent) fxmlLoader.load();
         Stage stage = new Stage();
-        stage.initModality(Modality.APPLICATION_MODAL);
+        File file = new File("./src/BookIT_icon.jpg");
+        stage.getIcons().add(new Image(file.toURI().toString()));
+		stage.initModality(Modality.APPLICATION_MODAL);
         //stage.initStyle(StageStyle.UNDECORATED);
-        stage.setTitle("ABC");
+        stage.setTitle("Notification");
         stage.setScene(new Scene(root1));  
         stage.show();}
     	catch(Exception e) {
-    		
+    		e.printStackTrace();
     	}
     }
     public void exitCancelBooking(){

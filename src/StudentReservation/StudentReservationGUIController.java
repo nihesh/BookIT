@@ -11,6 +11,7 @@ import javafx.animation.SequentialTransition;
 import javafx.animation.TranslateTransition;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -23,9 +24,12 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.event.Event;
 import javafx.scene.text.Font;
+import javafx.stage.Modality;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.util.Callback;
@@ -245,7 +249,22 @@ public class StudentReservationGUIController implements Initializable{
         loadDate();
         loadCourses();
     }
-
+    public void OpenNotifications() {
+    	try {
+    	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../AdminReservation/Notify.fxml"));
+        Parent root1 = (Parent) fxmlLoader.load();
+        Stage stage = new Stage();
+        File file = new File("./src/BookIT_icon.jpg");
+        stage.getIcons().add(new Image(file.toURI().toString()));
+		stage.initModality(Modality.APPLICATION_MODAL);
+        //stage.initStyle(StageStyle.UNDECORATED);
+        stage.setTitle("Notification");
+        stage.setScene(new Scene(root1));  
+        stage.show();}
+    	catch(Exception e) {
+    		
+    	}
+    }
     /**
      * Logs out the user
      */

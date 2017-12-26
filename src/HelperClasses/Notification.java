@@ -27,6 +27,19 @@ public class Notification implements Serializable{
 		this.reserverEmail = reserverEmail;
 		this.slotIDs = slotID;
 	}
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		String slots="";
+		if(slotIDs!=null) {
+		for (Integer integer : slotIDs) {
+			slots+=Reservation.getSlotRange(integer)+",\n";
+		}
+		}
+		String text = type+"\nStatus: "+status+"\nMessage: "+message+"Course: "+course+"\nDate"+targetDate.toString()
+		+"\nRoom: "+room+ "\nEmail: "+reserverEmail+"\nSlots: "+slots;
+		return text;
+	}
 	public String getSlotIDasString() {
 		String ans="";
 		for (Integer integer : slotIDs) {

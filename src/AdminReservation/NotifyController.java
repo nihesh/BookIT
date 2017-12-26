@@ -14,21 +14,47 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+import HelperClasses.Notification;
+import HelperClasses.User;
+
 public class NotifyController {
     @FXML
     private VBox notificationPane;
     @FXML
     public void initialize(){
-        ArrayList<String> data = new ArrayList<>();
-        ArrayList<String> time = new ArrayList<>();
-        for(int i=0;i<4;i++) {             // this is just a temp code to illustrate working of this controller
-            data.add("nihesh16059@iiitd.ac.in has cancelled his booking");
-            time.add("26-12-2017 | 16:24");
-        }
-        loadNotifications(data, time);
+        User x=User.getActiveUser();
+        loadNotifications(x.getNotifications(false));
+        
     }
-    private void loadNotifications(ArrayList<String> data, ArrayList<String> time){ // assert: data.size() == time.size()
-        int labelSize = 993;
+    private void loadNotifications(ArrayList<Notification> myList){ // assert: data.size() == time.size()
+    	ArrayList<String> data = new ArrayList<>();
+        ArrayList<String> time = new ArrayList<>();
+        for (Notification notifi : myList) {
+			if(notifi!=null) {
+        	data.add(notifi.toString());
+        	LocalDateTime t=notifi.getNotificationDateTime();
+        	String hour="";
+        	String minute="";
+        	if(t.getHour()==0) {
+        		hour+="00";
+        	}
+        	else {
+        		hour+=t.getHour();
+        	}
+        	if(t.getMinute()<10) {
+        		minute+="0"+t.getMinute();
+        	}
+        	else {
+        		minute+=t.getMinute();
+        	}
+        	time.add(hour+":"+minute+", "+t.getDayOfMonth()+"/"+t.getMonthValue()+"/"+t.getYear());
+			}
+			else {
+				break;
+			}
+			}
+        
+    	int labelSize = 993;
         for(int i=0;i<data.size();i++){
             StackPane s = new StackPane();
             s.setPrefHeight(10);
