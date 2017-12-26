@@ -4,28 +4,33 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="AdminReservation.NotifyController">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="666.0" prefWidth="1000.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="AdminReservation.NotifyController">
    <children>
-      <StackPane prefHeight="50.0" prefWidth="200.0">
+      <StackPane prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: linear-gradient( #2C3E50,#1B2631);">
          <StackPane.margin>
-            <Insets bottom="355.0" />
+            <Insets bottom="596.0" />
          </StackPane.margin>
          <children>
-            <Label alignment="CENTER" prefHeight="35.0" prefWidth="590.0" text="Notifications">
+            <Label alignment="CENTER" prefHeight="40.0" prefWidth="800.0" style="-fx-background-color: linear-gradient(green,darkgreen);" text="Notifications">
                <font>
-                  <Font size="19.0" />
+                  <Font name="System Bold" size="26.0" />
                </font>
             </Label>
          </children>
       </StackPane>
-      <ScrollPane prefHeight="200.0" prefWidth="200.0">
+      <ScrollPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: black;">
          <StackPane.margin>
-            <Insets top="45.0" />
+            <Insets top="70.0" />
          </StackPane.margin>
          <content>
-            <StackPane fx:id="notificationPane" prefWidth="598.0" />
+            <VBox fx:id="notificationPane" minHeight="594.0" style="-fx-background-color: #1B2631;">
+               <padding>
+                  <Insets left="5.0" />
+               </padding>
+            </VBox>
          </content>
       </ScrollPane>
    </children>
