@@ -774,15 +774,10 @@ class ConnectionHandler implements Runnable{
     public ArrayList<Notification> GetNotifications(String email){
     	User x  = getUser(email);
     	ArrayList<Notification> temp = x.getterNotification();
-    	for(int i=0;i<temp.size();i++) {
-    		Notification noti =temp.get(i);
-    		if(noti.getTargetDate().isBefore(LocalDate.now())) {
-			 temp.remove(noti);
-		 }
-		 else {
-			 break;
-		 }
-		}
+    	while(temp.size()>100) {
+			temp.remove(0);
+    		
+    	}
     	x.setNotification(temp);
     	serializeUser(x);
     	return temp;
