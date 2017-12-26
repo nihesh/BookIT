@@ -773,21 +773,15 @@ class ConnectionHandler implements Runnable{
         }
     }
     public ArrayList<Notification> GetNotifications(String email){
-    	User x  = getUser(email);
-    	ArrayList<Notification> temp = x.getterNotification();
-    	for(int i=0;i<temp.size();i++) {
-    		Notification noti =temp.get(i);
-            System.out.println(noti.getCourse());
-            if(noti.getTargetDate().isBefore(LocalDate.now())) {
-			 temp.remove(noti);
-		 }
-		 else {
-			 break;
-		 }
-		}
-    	x.setNotification(temp);
-    	serializeUser(x);
-    	return temp;
+        User x  = getUser(email);
+        ArrayList<Notification> temp = x.getterNotification();
+        while(temp.size()>100) {
+            temp.remove(0);
+
+        }
+        x.setNotification(temp);
+        serializeUser(x);
+        return temp;
     }
     public Boolean checkBulkBooking(String room, ArrayList<Integer> slots, LocalDate start, LocalDate end){
         Room r = Room.deserializeRoom(room);
