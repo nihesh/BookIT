@@ -7,23 +7,28 @@ import java.util.ArrayList;
 
 public class Notification implements Serializable{
 	private static final long serialVersionUID = 1L;
-    private String type;
-    private String status;
-	private String message;
-    private String course;
+    private String type="";
+    private String status="";
+	private String message="";
+    private String course="";
     private LocalDate targetDate;
-    private String room;
-    private String reserverEmail;
+    private String room="";
+    private String reserverEmail="";
     private ArrayList<Integer> slotIDs;
     private LocalDateTime NotificationDateTime = LocalDateTime.now();
 	public Notification(String type, String status, String message, String course, LocalDate targetDate,
 			String room, String reserverEmail, ArrayList<Integer> slotID) {
-		this.type = type;
-		this.status = status;
-		this.message = message;
-		this.course = course;
+		if(type!=null) {
+		this.type = type;}
+		if(status!=null) {
+		this.status = status;}
+		if(message!=null) {
+		this.message = message;}
+		if(course!=null) {
+		this.course = course;}
 		this.targetDate = targetDate;
-		this.room = room;
+		if(room!=null) {
+		this.room = room;}
 		this.reserverEmail = reserverEmail;
 		this.slotIDs = slotID;
 	}
