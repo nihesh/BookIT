@@ -38,7 +38,7 @@ public class Notification implements Serializable{
 		String slots="";
 		if(slotIDs!=null) {
 		for (Integer integer : slotIDs) {
-			slots+=Reservation.getSlotRange(integer)+",\n";
+			slots+=Reservation.getSlotRange(integer)+", ";
 		}
 		}
 		String text = type+" by "+reserverEmail +",\tStatus: "+status+"\n"+message+"Course: "+course+"\nDate: "+targetDate.toString()

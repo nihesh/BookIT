@@ -39,8 +39,9 @@ public class NotifyController {
     	}
     	ArrayList<String> data = new ArrayList<>();
         ArrayList<String> time = new ArrayList<>();
-        for (Notification notifi : myList) {
-			if(notifi!=null) {
+        for (int i=myList.size()-1;i>=0;i--) {
+			Notification notifi = myList.get(i);
+        	if(notifi!=null) {
         	data.add(notifi.toString());
         	LocalDateTime t=notifi.getNotificationDateTime();
         	String hour="";
