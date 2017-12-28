@@ -433,6 +433,7 @@ class ConnectionHandler implements Runnable{
             
             for (int i=0;i<data.size();i++) {
                 Reservation reservation = r.get(data.get(i));
+                reservation.removeRequestFlag();
                 x.add(reservation.getReservationSlot());
                 TimeSlots+=Reservation.getSlotRange(reservation.getReservationSlot())+"\n";
                 temp.addReservation(r.get(0).getTargetDate(), reservation.getReservationSlot(), reservation);
@@ -651,7 +652,6 @@ class ConnectionHandler implements Runnable{
             c.deleteReservation(queryDate, slotID,r.getTopGroup());
             c.serialize();
         }
-        temp.serialize();
         return true;
     }
     public boolean changePassword(String email, String oldPassword, String newPassword) {

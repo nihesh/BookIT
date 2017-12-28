@@ -51,6 +51,9 @@ public class Reservation implements java.io.Serializable{
         this.groupVenue.add(room);
         this.isRequest = false;
     }
+    public void removeRequestFlag(){
+        this.isRequest = false;
+    }
     public void requestAdmin(){
         this.isRequest = true;
     }
