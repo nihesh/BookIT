@@ -180,13 +180,16 @@ public class LoginSignupGUIController {
 					Guser= new Admin(GName, null, Gemail, "Admin");
 				}
 				Guser.serialize(false);
+				Guser.setActiveUser();
+				Stage stage = (Stage) Login_password_btn.getScene().getWindow();
+				stage.close();
 				//Guser.generatePass(false);
 				//Guser.mailPass(false);
-				Alert alert = new Alert(AlertType.INFORMATION);
+				/*Alert alert = new Alert(AlertType.INFORMATION);
 				alert.setTitle("Information Dialog");
 				alert.setHeaderText(null);
 				alert.setContentText("Account Created Successfully. Use google sign in button again to gain access to account");
-				alert.showAndWait();
+				alert.showAndWait();*/
 				return;
 			}
 			java.net.CookieManager manager = new java.net.CookieManager();

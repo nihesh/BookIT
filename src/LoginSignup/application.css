@@ -144,7 +144,24 @@
     -fx-background-position: 0%;
 	
 }
-
+.butGGG{
+	 -fx-background-image: url('./googleplussignin.png');
+	-fx-background-size: 176px 33.6px;
+	-fx-background-radius: 4px ;
+	-fx-background-insets: 2;
+	 -fx-background-repeat: no-repeat;
+    -fx-background-position: 0%;
+}
+.butGGG:hover{
+	 -fx-background-image: url('./googleplussignin.png');
+	-fx-background-size: 176px 33.6px;
+	-fx-background-radius: 4px ;
+	-fx-background-insets: 2;
+	 -fx-background-repeat: no-repeat;
+	 -fx-effect: dropshadow(three-pass-box, derive(red, +40%), 10, 0, 4, 4) ;
+    -fx-background-position: 0%;
+	
+}
 .butGG1080p{
 	
 	 -fx-background-image: url('./signup-google.png');
@@ -159,6 +176,27 @@
 	
 	 -fx-background-image: url('./signup-google.png');
 	-fx-background-size: 191px 50px;
+	-fx-background-radius: 4px ;
+	-fx-background-insets: 2;
+	-fx-effect: dropshadow(three-pass-box, derive(red, +40%), 10, 0, 4, 4) ;
+	 -fx-background-repeat: no-repeat;
+    -fx-background-position: 0%;
+	
+}
+.butGGG1080p{
+	
+	 -fx-background-image: url('./googleplussignin.png');
+	-fx-background-size: 216px 47px;
+	-fx-background-radius: 4px ;
+	-fx-background-insets: 2;
+	 -fx-background-repeat: no-repeat;
+    -fx-background-position: 0%;
+	
+}
+.butGGG1080p:hover{
+	
+	 -fx-background-image: url('./googleplussignin.png');
+	-fx-background-size: 216px 47px;
 	-fx-background-radius: 4px ;
 	-fx-background-insets: 2;
 	-fx-effect: dropshadow(three-pass-box, derive(red, +40%), 10, 0, 4, 4) ;
