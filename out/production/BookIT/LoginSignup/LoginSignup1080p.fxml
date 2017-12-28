@@ -19,10 +19,10 @@
    <children>
       <AnchorPane fx:id="Login_Pane" layoutX="425.0" layoutY="-10.0" opacity="0.84" prefHeight="550.0" prefWidth="419.0" styleClass="modal-dialog-glass">
          <children>
-            <TextField fx:id="Login_email" layoutX="59.0" layoutY="219.0" prefHeight="36.0" prefWidth="301.0" promptText="Email" styleClass="text-field1" AnchorPane.bottomAnchor="295.0" AnchorPane.leftAnchor="59.0" AnchorPane.rightAnchor="59.0" AnchorPane.topAnchor="219.0" />
+            <TextField fx:id="Login_email" layoutX="59.0" layoutY="219.0" prefHeight="36.0" prefWidth="301.0" promptText="Email" styleClass="text-field1" visible="false" AnchorPane.bottomAnchor="295.0" AnchorPane.leftAnchor="59.0" AnchorPane.rightAnchor="59.0" AnchorPane.topAnchor="219.0" />
             <PasswordField fx:id="Login_password" layoutX="59.0" layoutY="219.0" prefHeight="36.0" prefWidth="301.0" promptText="Password" styleClass="text-field1" visible="false" />
             <Label fx:id="Login_password_label" layoutX="59.0" layoutY="219.0" prefHeight="36.0" prefWidth="301.0" styleClass="labelG" text="Label" visible="false" AnchorPane.bottomAnchor="295.0" AnchorPane.leftAnchor="59.0" AnchorPane.rightAnchor="59.0" AnchorPane.topAnchor="219.0" />
-            <Button fx:id="Login_email_btn" layoutX="282.0" layoutY="282.0" mnemonicParsing="false" onMouseClicked="#Login_NEXT" onMouseEntered="#BtnEffect" onMouseExited="#BtnEffectRev" prefHeight="36.0" prefWidth="82.0" styleClass="but1" text="NEXT" AnchorPane.bottomAnchor="232.0" AnchorPane.leftAnchor="282.0" AnchorPane.rightAnchor="55.0" AnchorPane.topAnchor="282.0" />
+            <Button fx:id="Login_email_btn" layoutX="282.0" layoutY="282.0" mnemonicParsing="false" onMouseClicked="#Login_NEXT" onMouseEntered="#BtnEffect" onMouseExited="#BtnEffectRev" prefHeight="36.0" prefWidth="82.0" styleClass="but1" text="NEXT" visible="false" AnchorPane.bottomAnchor="232.0" AnchorPane.leftAnchor="282.0" AnchorPane.rightAnchor="55.0" AnchorPane.topAnchor="282.0" />
             <Button fx:id="Login_password_btn" layoutX="282.0" layoutY="351.0" mnemonicParsing="false" onMouseClicked="#Login_NEXT2" onMouseEntered="#BtnEffect" onMouseExited="#BtnEffectRev" prefHeight="36.0" prefWidth="82.0" styleClass="but1" text="DONE" visible="false" />
             <Label layoutX="131.0" layoutY="89.0" prefHeight="68.0" prefWidth="157.0" text="  LOGIN">
                <font>
@@ -43,6 +43,7 @@
                </font>
             </Label>
             <Button fx:id="Lback_btn" layoutX="32.0" layoutY="30.0" mnemonicParsing="false" onMouseClicked="#backL" prefHeight="36.0" prefWidth="40.0" styleClass="back2" stylesheets="@application.css" visible="false" AnchorPane.bottomAnchor="484.0" AnchorPane.leftAnchor="32.0" AnchorPane.rightAnchor="347.0" AnchorPane.topAnchor="30.0" />
+            <Button fx:id="GBtn" layoutX="107.0" layoutY="219.0" mnemonicParsing="false" onMouseClicked="#PressG" prefHeight="47.0" prefWidth="216.0" styleClass="butGGG1080p" />
          </children></AnchorPane>
       <AnchorPane fx:id="Signup_Pane" layoutX="817.0" layoutY="-10.0" opacity="0.84" prefHeight="550.0" prefWidth="419.0" styleClass="modal-dialog-glass">
          <children>
@@ -100,7 +101,6 @@
          </padding>
       </Label>
       <Button fx:id="Cred_btn" layoutY="260.0" mnemonicParsing="false" onMouseClicked="#CredNext" prefHeight="47.0" prefWidth="50.0" styleClass="butCred" />
-      <Button fx:id="GBtn" layoutX="118.0" layoutY="473.0" mnemonicParsing="false" onMouseClicked="#PressG" prefHeight="47.0" prefWidth="191.0" styleClass="butGG1080p" />
       <AnchorPane fx:id="Cred_Pane" layoutX="-425.0" prefHeight="567.0" prefWidth="425.0" styleClass="pane32">
          <children>
             <Label layoutX="9.0" layoutY="47.0" prefHeight="47.0" prefWidth="370.0" styleClass="labelC" text="BOOKIT v1.0" />
