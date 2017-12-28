@@ -30,15 +30,7 @@ public class NotifyController {
     public void initialize(){
         User x=User.getActiveUser();
         loadNotifications(x.getNotifications(false));
-        Rectangle2D visualBounds = Screen.getPrimary().getVisualBounds();
-        double width = visualBounds.getWidth();
-        double height = visualBounds.getHeight();
-        double scaleWidth = (width)/1920;
-        double scaleHeight = (height)/1005;
-
-        rootPane.setScaleX(scaleWidth);
-        rootPane.setScaleY(scaleHeight);
-
+        
     }
     private void loadNotifications(ArrayList<Notification> myList){ // assert: data.size() == time.size()
     	if(myList.size()==0) {
