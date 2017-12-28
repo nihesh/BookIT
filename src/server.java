@@ -825,293 +825,638 @@ class ConnectionHandler implements Runnable{
         catch (ClassNotFoundException c){
             ;
         }
-        do {
+        try {
+            if(!status.equals("Pass")){
+                System.out.print("[ "+LocalDateTime.now()+" ] ");
+                System.out.println(connection.getInetAddress().toString() + " | ServerLock Taken - Pending connections: "+server.noOfConnections);
+            }
             try {
-                if(status.equals("Pass") || lock.tryLock(10, TimeUnit.SECONDS)) {
-                    if(!status.equals("Pass")){
-                        System.out.print("[ "+LocalDateTime.now()+" ] ");
-                        System.out.println(connection.getInetAddress().toString() + " | ServerLock Taken - Pending connections: "+server.noOfConnections);
-                    }
-                    try {
-                        String request = (String) in.readObject();
-                        System.out.print("[ "+LocalDateTime.now()+" ] ");
-                        System.out.println(connection.getInetAddress().toString() + " | Performing " + request);
-                        Course c;
-                        User u;
-                        Room r;
-                        Reservation res;
-                        HashMap<String, Integer> joinCode;
-                        String code, email, course, room;
-                        LocalDate queryDate;
-                        Boolean result;
-                        int slotID;
-                        LocalDate start;
-                        LocalDate end;
-                        PriorityQueue<ArrayList<Reservation>> req;
-                        switch (request) {
-                            case "GetUser":
-                                email = (String) in.readObject();
-                                u = getUser(email);
-                                out.writeObject(u);
-                                out.flush();
-                                break;
-                            case "WriteUser":
-                                u = (User) in.readObject();
-                                serializeUser(u);
-                                break;
-                            case "getNotifications":
-                            	email = (String)in.readObject();
-                            	ArrayList<Notification> array = GetNotifications(email);
-                            	out.writeObject(array);
-                                out.flush();
-                            	break;
-                            case "AllCourses":
-                                ArrayList<String> arr = getAllCourses();
-                                out.writeObject(arr);
-                                out.flush();
-                                break;
-                            case "WriteJoinCode":
-                                joinCode = (HashMap<String, Integer>) in.readObject();
-                                serializeJoinCode(joinCode);
-                                break;
-                            case "ReadJoinCode":
-                                joinCode = deserializeJoinCodes();
-                                out.writeObject(joinCode);
-                                out.flush();
-                                break;
-                            case "WriteRequest":
-                                req = (PriorityQueue<ArrayList<Reservation>>) in.readObject();
-                                serializeRequests(req);
-                                break;
-                            case "ReadRequest":
-                                req = deserializeRequests();
-                                out.writeObject(req);
-                                out.flush();
-                                break;
-                            case "SpamCheck":
-                                String message = (String) in.readObject();
-                                Boolean spamStatus = SpamFilter.Predict(message);
-                                out.writeObject(spamStatus);
-                                out.flush();
-                                break;
-                            case "GetStartEndDate":
-                                ArrayList<LocalDate> StartEndDate;
-                                StartEndDate = fetchSemDate();
-                                out.writeObject(StartEndDate);
-                                out.flush();
-                                break;
-                            case "admin_BookingCancelNotification":
-                                queryDate = (LocalDate) in.readObject();
-                                slotID = (int) in.readObject();
-                                String RoomID = (String) in.readObject();
-                                String cancellationMessage = (String) in.readObject();
-                                BookingCancellationNotifier(queryDate, slotID, RoomID, cancellationMessage);
-                                break;
-                            case "generateJoinCode":
-                                String type = (String) in.readObject();
-                                out.writeObject(generateJoincode(type));
-                                out.flush();
-                                break;
-                            case "containsJoinCode":
-                                code = (String) in.readObject();
-                                out.writeObject(containsJoinCode(code));
-                                out.flush();
-                                break;
-                            case "removeJoinCode":
-                                code = (String) in.readObject();
-                                removeJoinCode(code);
-                                break;
-                            case "getRequest":
-                                out.writeObject(getRequest());
-                                out.flush();
-                                break;
-                            case "acceptRequest":
-                                ArrayList<Integer> data = (ArrayList<Integer>) in.readObject();
-                                out.writeObject(acceptRequest(data));
-                                out.flush();
-                                break;
-                            case "rejectRequest":
-                                out.writeObject(rejectRequest());
-                                out.flush();
-                                break;
-                            case "adminandfaculty_bookroom":
-                                start = (LocalDate) in.readObject();
-                                end = (LocalDate) in.readObject();
-                                slotID = (int) in.readObject();
-                                res = (Reservation) in.readObject();
-                                out.writeObject(adminandfaculty_bookRoom(start, end, slotID, res));
-                                out.flush();
-                                break;
-                            case "faculty_addCourse":
-                                email = (String) in.readObject();
-                                course = (String) in.readObject();
-                                faculty_addCourse(email, course);
-                                break;
-                            case "student_sendReservationRequest":
-                                ArrayList<Reservation> reservations = (ArrayList<Reservation>) in.readObject();
-                                result = sendReservationRequest(reservations);
-                                out.writeObject(result);
-                                out.flush();
-                                break;
-                            case "student_searchCourse":
-                                ArrayList<String> keyword = (ArrayList<String>) in.readObject();
-                                ArrayList<String> shortlist = searchCourse(keyword);
-                                out.writeObject(shortlist);
-                                out.flush();
-                                break;
-                            case "student_addCourse":
-                                course = (String) in.readObject();
-                                email = (String) in.readObject();
-                                result = student_addCourse(course, email);
-                                out.writeObject(result);
-                                out.flush();
-                                break;
-                            case "studentandfaculty_cancelBooking":
-                                queryDate = (LocalDate) in.readObject();
-                                slotID = (int) in.readObject();
-                                RoomID = (String) in.readObject();
-                                result = studentAndFaculty_cancelBooking(queryDate, slotID, RoomID);
-                                out.writeObject(result);
-                                out.flush();
-                                break;
-                            case "changePassword":
-                                email = (String) in.readObject();
-                                String oldPass = (String) in.readObject();
-                                String newPass = (String) in.readObject();
-                                result = changePassword(email, oldPass, newPass);
-                                out.writeObject(result);
-                                out.flush();
-                                break;
-                            case "validateLogin":
-                                email = (String) in.readObject();
-                                out.writeObject(validateLogin(email));
-                                out.flush();
-                                break;
-                            case "setCourseInstructor":
-                                course = (String) in.readObject();
-                                email = (String) in.readObject();
-                                setInstructor(email, course);
-                                break;
-                            case "reservation_facultyEmail":
-                                course = (String) in.readObject();
-                                out.writeObject(reservation_facultyEmail(course));
-                                out.flush();
-                                break;
-                            case "getRoomDailySchedule":
-                                queryDate = (LocalDate) in.readObject();
-                                room = (String) in.readObject();
-                                out.writeObject(getRoomDailySchedule(queryDate, room));
-                                out.flush();
-                                break;
-                            case "getRoomCapacity":
-                                room = (String) in.readObject();
-                                out.writeObject(getRoomCapacity(room));
-                                out.flush();
-                                break;
-                            case "checkRoomExistence":
-                                room = (String) in.readObject();
-                                out.writeObject(RoomExists(room));
-                                out.flush();
-                                break;
-                            case "course_getFaculty":
-                                course = (String) in.readObject();
-                                out.writeObject(course_getFaculty(course));
-                                out.flush();
-                                break;
-                            case "course_getStudentTT":
-                                queryDate = (LocalDate) in.readObject();
-                                ArrayList<String> myCourses = (ArrayList<String>) in.readObject();
-                                out.writeObject(course_getStudentTT(queryDate, myCourses));
-                                out.flush();
-                                break;
-                            case "course_getAcronym":
-                                course = (String) in.readObject();
-                                out.writeObject(course_getAcronym(course));
-                                out.flush();
-                                break;
-                            case "course_getReservation":
-                                course = (String) in.readObject();
-                                queryDate = (LocalDate) in.readObject();
-                                slotID = (int) in.readObject();
-                                out.writeObject(course_getReservation(course, queryDate, slotID));
-                                out.flush();
-                                break;
-                            case "mailPass":
-                                email = (String) in.readObject();
-                                mailPass(email);
-                                break;
-                            case "generatePass":
-                                email = (String) in.readObject();
-                                generatePass(email);
-                                break;
-                            case "getUserType":
-                                email = (String) in.readObject();
-                                out.writeObject(getUserType(email));
-                                out.flush();
-                                break;
-                            case "CompatibilityCheck":
-                                double version = (double) in.readObject();
-                                out.writeObject(isCompatible(version));
-                                out.flush();
-                                break;
-                            case "admin_getRequestsQueue":
-                                out.writeObject(deserializeRequests());
-                                out.flush();
-                                break;
-                            case "studentDeleteReservationRequest":
-                                email = (String) in.readObject();
-                                queryDate = (LocalDate) in.readObject();
-                                slotID = (int) in.readObject();
-                                room = (String) in.readObject();
-                                r = Room.deserializeRoom(room);
-                                r.deleteRequest(email, queryDate, slotID);
-                                r.serialize();
-                                break;
-                            case "studentGetReservationRequest":
-                                email = (String) in.readObject();
-                                queryDate = (LocalDate) in.readObject();
-                                slotID = (int) in.readObject();
-                                room = (String) in.readObject();
-                                r = Room.deserializeRoom(room);
-                                out.writeObject(r.fetchRequest(email, queryDate, slotID));
-                                out.flush();
-                                break;
-                            case "studentGetPendingReservations":
-                                email = (String) in.readObject();
-                                queryDate = (LocalDate) in.readObject();
-                                room = (String) in.readObject();
-                                r = Room.deserializeRoom(room);
-                                out.writeObject(r.getPendingReservations(email, queryDate));
-                                out.flush();
-                                break;
-                            case "checkBulkBooking":
-                                room = (String) in.readObject();
-                                ArrayList<Integer> slots = (ArrayList<Integer>) in.readObject();
-                                start = (LocalDate) in.readObject();
-                                end = (LocalDate) in.readObject();
-                                out.writeObject(checkBulkBooking(room, slots, start, end));
-                                out.flush();
-                                break;
+                String request = (String) in.readObject();
+                System.out.print("[ "+LocalDateTime.now()+" ] ");
+                System.out.println(connection.getInetAddress().toString() + " | Performing " + request);
+                Course c;
+                User u;
+                Room r;
+                Reservation res;
+                HashMap<String, Integer> joinCode;
+                String code, email, course, room;
+                LocalDate queryDate;
+                Boolean result;
+                int slotID;
+                LocalDate start;
+                Boolean ans;
+                LocalDate end;
+                PriorityQueue<ArrayList<Reservation>> req;
+                switch (request) {
+                    case "GetUser":
+                        email = (String) in.readObject();
+                        u = null;
+                        if(status.equals("Pass") || lock.tryLock()) {
+                            u = getUser(email);
                         }
                         if(lock.isLocked() && lock.isHeldByCurrentThread()){
                             System.out.print("[ "+LocalDateTime.now()+" ] ");
                             System.out.println(connection.getInetAddress().toString() + " | ServerLock Released");
                             lock.unlock();
                         }
-                        in.close();
-                        out.close();
-                    } catch (IOException e) {
-                        System.out.println("Error Occured while handling connection");
-                    } catch (ClassNotFoundException e) {
-                        System.out.println("Error Occured while handling connection");
-                    }
-                    break;
+                        out.writeObject(u);
+                        out.flush();
+                        break;
+                    case "WriteUser":
+                        u = (User) in.readObject();
+                        if(status.equals("Pass") || lock.tryLock()) {
+                            serializeUser(u);
+                        }
+                        if(lock.isLocked() && lock.isHeldByCurrentThread()){
+                            System.out.print("[ "+LocalDateTime.now()+" ] ");
+                            System.out.println(connection.getInetAddress().toString() + " | ServerLock Released");
+                            lock.unlock();
+                        }
+                        break;
+                    case "getNotifications":
+                        email = (String)in.readObject();
+                        ArrayList<Notification> array=null;
+                        if(status.equals("Pass") || lock.tryLock()) {
+                            array = GetNotifications(email);
+                        }
+                        if(lock.isLocked() && lock.isHeldByCurrentThread()){
+                            System.out.print("[ "+LocalDateTime.now()+" ] ");
+                            System.out.println(connection.getInetAddress().toString() + " | ServerLock Released");
+                            lock.unlock();
+                        }
+                        out.writeObject(array);
+                        out.flush();
+                        break;
+                    case "AllCourses":
+                        ArrayList<String> arr=null;
+                        if(status.equals("Pass") || lock.tryLock()) {
+                            arr = getAllCourses();
+                        }
+                        if(lock.isLocked() && lock.isHeldByCurrentThread()){
+                            System.out.print("[ "+LocalDateTime.now()+" ] ");
+                            System.out.println(connection.getInetAddress().toString() + " | ServerLock Released");
+                            lock.unlock();
+                        }
+                        out.writeObject(arr);
+                        out.flush();
+                        break;
+                    case "WriteJoinCode":
+                        joinCode = (HashMap<String, Integer>) in.readObject();
+                        if(status.equals("Pass") || lock.tryLock()) {
+                            serializeJoinCode(joinCode);
+                        }
+                        if(lock.isLocked() && lock.isHeldByCurrentThread()){
+                            System.out.print("[ "+LocalDateTime.now()+" ] ");
+                            System.out.println(connection.getInetAddress().toString() + " | ServerLock Released");
+                            lock.unlock();
+                        }
+                        break;
+                    case "ReadJoinCode":
+                        joinCode = null;
+                        if(status.equals("Pass") || lock.tryLock()) {
+                            joinCode = deserializeJoinCodes();
+                        }
+                        if(lock.isLocked() && lock.isHeldByCurrentThread()){
+                            System.out.print("[ "+LocalDateTime.now()+" ] ");
+                            System.out.println(connection.getInetAddress().toString() + " | ServerLock Released");
+                            lock.unlock();
+                        }
+                        out.writeObject(joinCode);
+                        out.flush();
+                        break;
+                    case "WriteRequest":
+                        req = (PriorityQueue<ArrayList<Reservation>>) in.readObject();
+                        if(status.equals("Pass") || lock.tryLock()) {
+                            serializeRequests(req);
+                        }
+                        if(lock.isLocked() && lock.isHeldByCurrentThread()){
+                            System.out.print("[ "+LocalDateTime.now()+" ] ");
+                            System.out.println(connection.getInetAddress().toString() + " | ServerLock Released");
+                            lock.unlock();
+                        }
+                        break;
+                    case "ReadRequest":
+                        req=null;
+                        if(status.equals("Pass") || lock.tryLock()) {
+                            req = deserializeRequests();
+                        }
+                        if(lock.isLocked() && lock.isHeldByCurrentThread()){
+                            System.out.print("[ "+LocalDateTime.now()+" ] ");
+                            System.out.println(connection.getInetAddress().toString() + " | ServerLock Released");
+                            lock.unlock();
+                        }
+                        out.writeObject(req);
+                        out.flush();
+                        break;
+                    case "SpamCheck":
+                        String message = (String) in.readObject();
+                        Boolean spamStatus = true;
+                        if(status.equals("Pass") || lock.tryLock()) {
+                            spamStatus = SpamFilter.Predict(message);
+                        }
+                        if(lock.isLocked() && lock.isHeldByCurrentThread()){
+                            System.out.print("[ "+LocalDateTime.now()+" ] ");
+                            System.out.println(connection.getInetAddress().toString() + " | ServerLock Released");
+                            lock.unlock();
+                        }
+                        out.writeObject(spamStatus);
+                        out.flush();
+                        break;
+                    case "GetStartEndDate":
+                        ArrayList<LocalDate> StartEndDate=null;
+                        if(status.equals("Pass") || lock.tryLock()) {
+                            StartEndDate = fetchSemDate();
+                        }
+                        if(lock.isLocked() && lock.isHeldByCurrentThread()){
+                            System.out.print("[ "+LocalDateTime.now()+" ] ");
+                            System.out.println(connection.getInetAddress().toString() + " | ServerLock Released");
+                            lock.unlock();
+                        }
+                        out.writeObject(StartEndDate);
+                        out.flush();
+                        break;
+                    case "admin_BookingCancelNotification":
+                        queryDate = (LocalDate) in.readObject();
+                        slotID = (int) in.readObject();
+                        String RoomID = (String) in.readObject();
+                        String cancellationMessage = (String) in.readObject();
+                        if(status.equals("Pass") || lock.tryLock()) {
+                            BookingCancellationNotifier(queryDate, slotID, RoomID, cancellationMessage);
+                        }
+                        if(lock.isLocked() && lock.isHeldByCurrentThread()){
+                            System.out.print("[ "+LocalDateTime.now()+" ] ");
+                            System.out.println(connection.getInetAddress().toString() + " | ServerLock Released");
+                            lock.unlock();
+                        }
+                        break;
+                    case "generateJoinCode":
+                        String type = (String) in.readObject();
+                        String temp = null;
+                        if(status.equals("Pass") || lock.tryLock()) {
+                            temp = generateJoincode(type);
+                        }
+                        if(lock.isLocked() && lock.isHeldByCurrentThread()){
+                            System.out.print("[ "+LocalDateTime.now()+" ] ");
+                            System.out.println(connection.getInetAddress().toString() + " | ServerLock Released");
+                            lock.unlock();
+                        }
+                        out.writeObject(temp);
+                        out.flush();
+                        break;
+                    case "containsJoinCode":
+                        code = (String) in.readObject();
+                        Boolean ret = false;
+                        if(status.equals("Pass") || lock.tryLock()) {
+                            ret = containsJoinCode(code);
+                        }
+                        if(lock.isLocked() && lock.isHeldByCurrentThread()){
+                            System.out.print("[ "+LocalDateTime.now()+" ] ");
+                            System.out.println(connection.getInetAddress().toString() + " | ServerLock Released");
+                            lock.unlock();
+                        }
+                        out.writeObject(ret);
+                        out.flush();
+                        break;
+                    case "removeJoinCode":
+                        code = (String) in.readObject();
+                        if(status.equals("Pass") || lock.tryLock()) {
+                            removeJoinCode(code);
+                        }
+                        if(lock.isLocked() && lock.isHeldByCurrentThread()){
+                            System.out.print("[ "+LocalDateTime.now()+" ] ");
+                            System.out.println(connection.getInetAddress().toString() + " | ServerLock Released");
+                            lock.unlock();
+                        }
+                        break;
+                    case "getRequest":
+                        ArrayList<Reservation> requ = null;
+                        if(status.equals("Pass") || lock.tryLock()) {
+                            requ = getRequest();
+                        }
+                        if(lock.isLocked() && lock.isHeldByCurrentThread()){
+                            System.out.print("[ "+LocalDateTime.now()+" ] ");
+                            System.out.println(connection.getInetAddress().toString() + " | ServerLock Released");
+                            lock.unlock();
+                        }
+                        out.writeObject(requ);
+                        out.flush();
+                        break;
+                    case "acceptRequest":
+                        ArrayList<Integer> data = (ArrayList<Integer>) in.readObject();
+                        ans = false;
+                        if(status.equals("Pass") || lock.tryLock()) {
+                            ans = acceptRequest(data);
+                        }
+                        if(lock.isLocked() && lock.isHeldByCurrentThread()){
+                            System.out.print("[ "+LocalDateTime.now()+" ] ");
+                            System.out.println(connection.getInetAddress().toString() + " | ServerLock Released");
+                            lock.unlock();
+                        }
+                        out.writeObject(ans);
+                        out.flush();
+                        break;
+                    case "rejectRequest":
+                        ans = false;
+                        if(status.equals("Pass") || lock.tryLock()) {
+                            ans=rejectRequest();
+                        }
+                        if(lock.isLocked() && lock.isHeldByCurrentThread()){
+                            System.out.print("[ "+LocalDateTime.now()+" ] ");
+                            System.out.println(connection.getInetAddress().toString() + " | ServerLock Released");
+                            lock.unlock();
+                        }
+                        out.writeObject(ans);
+                        out.flush();
+                        break;
+                    case "adminandfaculty_bookroom":
+                        start = (LocalDate) in.readObject();
+                        end = (LocalDate) in.readObject();
+                        slotID = (int) in.readObject();
+                        res = (Reservation) in.readObject();
+                        ans = false;
+                        if(status.equals("Pass") || lock.tryLock()) {
+                            ans = adminandfaculty_bookRoom(start, end, slotID, res);
+                        }
+                        if(lock.isLocked() && lock.isHeldByCurrentThread()){
+                            System.out.print("[ "+LocalDateTime.now()+" ] ");
+                            System.out.println(connection.getInetAddress().toString() + " | ServerLock Released");
+                            lock.unlock();
+                        }
+                        out.writeObject(ans);
+                        out.flush();
+                        break;
+                    case "faculty_addCourse":
+                        email = (String) in.readObject();
+                        course = (String) in.readObject();
+                        if(status.equals("Pass") || lock.tryLock()) {
+                            faculty_addCourse(email, course);
+                        }
+                        if(lock.isLocked() && lock.isHeldByCurrentThread()){
+                            System.out.print("[ "+LocalDateTime.now()+" ] ");
+                            System.out.println(connection.getInetAddress().toString() + " | ServerLock Released");
+                            lock.unlock();
+                        }
+                        break;
+                    case "student_sendReservationRequest":
+                        ArrayList<Reservation> reservations = (ArrayList<Reservation>) in.readObject();
+                        result = false;
+                        if(status.equals("Pass") || lock.tryLock()) {
+                            result = sendReservationRequest(reservations);
+                        }
+                        if(lock.isLocked() && lock.isHeldByCurrentThread()){
+                            System.out.print("[ "+LocalDateTime.now()+" ] ");
+                            System.out.println(connection.getInetAddress().toString() + " | ServerLock Released");
+                            lock.unlock();
+                        }
+                        out.writeObject(result);
+                        out.flush();
+                        break;
+                    case "student_searchCourse":
+                        ArrayList<String> keyword = (ArrayList<String>) in.readObject();
+                        ArrayList<String> shortlist = null;
+                        if(status.equals("Pass") || lock.tryLock()) {
+                            shortlist = searchCourse(keyword);
+                        }
+                        if(lock.isLocked() && lock.isHeldByCurrentThread()){
+                            System.out.print("[ "+LocalDateTime.now()+" ] ");
+                            System.out.println(connection.getInetAddress().toString() + " | ServerLock Released");
+                            lock.unlock();
+                        }
+                        out.writeObject(shortlist);
+                        out.flush();
+                        break;
+                    case "student_addCourse":
+                        course = (String) in.readObject();
+                        email = (String) in.readObject();
+                        result = false;
+                        if(status.equals("Pass") || lock.tryLock()) {
+                            result = student_addCourse(course, email);
+                        }
+                        if(lock.isLocked() && lock.isHeldByCurrentThread()){
+                            System.out.print("[ "+LocalDateTime.now()+" ] ");
+                            System.out.println(connection.getInetAddress().toString() + " | ServerLock Released");
+                            lock.unlock();
+                        }
+                        out.writeObject(result);
+                        out.flush();
+                        break;
+                    case "studentandfaculty_cancelBooking":
+                        queryDate = (LocalDate) in.readObject();
+                        slotID = (int) in.readObject();
+                        RoomID = (String) in.readObject();
+                        result = false;
+                        if(status.equals("Pass") || lock.tryLock()) {
+                            result = studentAndFaculty_cancelBooking(queryDate, slotID, RoomID);
+                        }
+                        if(lock.isLocked() && lock.isHeldByCurrentThread()){
+                            System.out.print("[ "+LocalDateTime.now()+" ] ");
+                            System.out.println(connection.getInetAddress().toString() + " | ServerLock Released");
+                            lock.unlock();
+                        }
+                        out.writeObject(result);
+                        out.flush();
+                        break;
+                    case "changePassword":
+                        email = (String) in.readObject();
+                        String oldPass = (String) in.readObject();
+                        String newPass = (String) in.readObject();
+                        result = false;
+                        if(status.equals("Pass") || lock.tryLock()) {
+                            result = changePassword(email, oldPass, newPass);
+                        }
+                        if(lock.isLocked() && lock.isHeldByCurrentThread()){
+                            System.out.print("[ "+LocalDateTime.now()+" ] ");
+                            System.out.println(connection.getInetAddress().toString() + " | ServerLock Released");
+                            lock.unlock();
+                        }
+                        out.writeObject(result);
+                        out.flush();
+                        break;
+                    case "validateLogin":
+                        email = (String) in.readObject();
+                        result = false;
+                        if(status.equals("Pass") || lock.tryLock()) {
+                            result = validateLogin(email);
+                        }
+                        if(lock.isLocked() && lock.isHeldByCurrentThread()){
+                            System.out.print("[ "+LocalDateTime.now()+" ] ");
+                            System.out.println(connection.getInetAddress().toString() + " | ServerLock Released");
+                            lock.unlock();
+                        }
+                        out.writeObject(result);
+                        out.flush();
+                        break;
+                    case "setCourseInstructor":
+                        course = (String) in.readObject();
+                        email = (String) in.readObject();
+                        if(status.equals("Pass") || lock.tryLock()) {
+                            setInstructor(email, course);
+                        }
+                        if(lock.isLocked() && lock.isHeldByCurrentThread()){
+                            System.out.print("[ "+LocalDateTime.now()+" ] ");
+                            System.out.println(connection.getInetAddress().toString() + " | ServerLock Released");
+                            lock.unlock();
+                        }
+                        break;
+                    case "reservation_facultyEmail":
+                        course = (String) in.readObject();
+                        email = "";
+                        if(status.equals("Pass") || lock.tryLock()) {
+                            email = reservation_facultyEmail(course);
+                        }
+                        if(lock.isLocked() && lock.isHeldByCurrentThread()){
+                            System.out.print("[ "+LocalDateTime.now()+" ] ");
+                            System.out.println(connection.getInetAddress().toString() + " | ServerLock Released");
+                            lock.unlock();
+                        }
+                        out.writeObject(email);
+                        out.flush();
+                        break;
+                    case "getRoomDailySchedule":
+                        queryDate = (LocalDate) in.readObject();
+                        room = (String) in.readObject();
+                        Reservation[] tempReservation = null;
+                        if(status.equals("Pass") || lock.tryLock()) {
+                            tempReservation = getRoomDailySchedule(queryDate, room);
+                        }
+                        if(lock.isLocked() && lock.isHeldByCurrentThread()){
+                            System.out.print("[ "+LocalDateTime.now()+" ] ");
+                            System.out.println(connection.getInetAddress().toString() + " | ServerLock Released");
+                            lock.unlock();
+                        }
+                        out.writeObject(tempReservation);
+                        out.flush();
+                        break;
+                    case "getRoomCapacity":
+                        room = (String) in.readObject();
+                        int roomsize = 0;
+                        if(status.equals("Pass") || lock.tryLock()) {
+                            roomsize = getRoomCapacity(room);
+                        }
+                        if(lock.isLocked() && lock.isHeldByCurrentThread()){
+                            System.out.print("[ "+LocalDateTime.now()+" ] ");
+                            System.out.println(connection.getInetAddress().toString() + " | ServerLock Released");
+                            lock.unlock();
+                        }
+                        out.writeObject(roomsize);
+                        out.flush();
+                        break;
+                    case "checkRoomExistence":
+                        room = (String) in.readObject();
+                        result = false;
+                        if(status.equals("Pass") || lock.tryLock()) {
+                            result = RoomExists(room);
+                        }
+                        if(lock.isLocked() && lock.isHeldByCurrentThread()){
+                            System.out.print("[ "+LocalDateTime.now()+" ] ");
+                            System.out.println(connection.getInetAddress().toString() + " | ServerLock Released");
+                            lock.unlock();
+                        }
+                        out.writeObject(result);
+                        out.flush();
+                        break;
+                    case "course_getFaculty":
+                        course = (String) in.readObject();
+                        email="";
+                        if(status.equals("Pass") || lock.tryLock()) {
+                            email = course_getFaculty(course);
+                        }
+                        if(lock.isLocked() && lock.isHeldByCurrentThread()){
+                            System.out.print("[ "+LocalDateTime.now()+" ] ");
+                            System.out.println(connection.getInetAddress().toString() + " | ServerLock Released");
+                            lock.unlock();
+                        }
+                        out.writeObject(email);
+                        out.flush();
+                        break;
+                    case "course_getStudentTT":
+                        queryDate = (LocalDate) in.readObject();
+                        ArrayList<String> myCourses = (ArrayList<String>) in.readObject();
+                        Reservation[] tempSchedule = null;
+                        if(status.equals("Pass") || lock.tryLock()) {
+                            tempSchedule = course_getStudentTT(queryDate, myCourses);
+                        }
+                        if(lock.isLocked() && lock.isHeldByCurrentThread()){
+                            System.out.print("[ "+LocalDateTime.now()+" ] ");
+                            System.out.println(connection.getInetAddress().toString() + " | ServerLock Released");
+                            lock.unlock();
+                        }
+                        out.writeObject(tempSchedule);
+                        out.flush();
+                        break;
+                    case "course_getAcronym":
+                        course = (String) in.readObject();
+                        String acronym = "";
+                        if(status.equals("Pass") || lock.tryLock()) {
+                            acronym = course_getAcronym(course);
+                        }
+                        if(lock.isLocked() && lock.isHeldByCurrentThread()){
+                            System.out.print("[ "+LocalDateTime.now()+" ] ");
+                            System.out.println(connection.getInetAddress().toString() + " | ServerLock Released");
+                            lock.unlock();
+                        }
+                        out.writeObject(acronym);
+                        out.flush();
+                        break;
+                    case "course_getReservation":
+                        course = (String) in.readObject();
+                        queryDate = (LocalDate) in.readObject();
+                        slotID = (int) in.readObject();
+                        res = null;
+                        if(status.equals("Pass") || lock.tryLock()) {
+                            res = course_getReservation(course, queryDate, slotID);
+                        }
+                        if(lock.isLocked() && lock.isHeldByCurrentThread()){
+                            System.out.print("[ "+LocalDateTime.now()+" ] ");
+                            System.out.println(connection.getInetAddress().toString() + " | ServerLock Released");
+                            lock.unlock();
+                        }
+                        out.writeObject(res);
+                        out.flush();
+                        break;
+                    case "mailPass":
+                        email = (String) in.readObject();
+                        if(status.equals("Pass") || lock.tryLock()) {
+                            mailPass(email);
+                        }
+                        if(lock.isLocked() && lock.isHeldByCurrentThread()){
+                            System.out.print("[ "+LocalDateTime.now()+" ] ");
+                            System.out.println(connection.getInetAddress().toString() + " | ServerLock Released");
+                            lock.unlock();
+                        }
+                        break;
+                    case "generatePass":
+                        email = (String) in.readObject();
+                        if(status.equals("Pass") || lock.tryLock()) {
+                            generatePass(email);
+                        }
+                        if(lock.isLocked() && lock.isHeldByCurrentThread()){
+                            System.out.print("[ "+LocalDateTime.now()+" ] ");
+                            System.out.println(connection.getInetAddress().toString() + " | ServerLock Released");
+                            lock.unlock();
+                        }
+                        break;
+                    case "getUserType":
+                        email = (String) in.readObject();
+                        String usertype = "";
+                        if(status.equals("Pass") || lock.tryLock()) {
+                            usertype = getUserType(email);
+                        }
+                        if(lock.isLocked() && lock.isHeldByCurrentThread()){
+                            System.out.print("[ "+LocalDateTime.now()+" ] ");
+                            System.out.println(connection.getInetAddress().toString() + " | ServerLock Released");
+                            lock.unlock();
+                        }
+                        out.writeObject(usertype);
+                        out.flush();
+                        break;
+                    case "CompatibilityCheck":
+                        double version = (double) in.readObject();
+                        result = false;
+                        if(status.equals("Pass") || lock.tryLock()) {
+                            result = isCompatible(version);
+                        }
+                        if(lock.isLocked() && lock.isHeldByCurrentThread()){
+                            System.out.print("[ "+LocalDateTime.now()+" ] ");
+                            System.out.println(connection.getInetAddress().toString() + " | ServerLock Released");
+                            lock.unlock();
+                        }
+                        out.writeObject(result);
+                        out.flush();
+                        break;
+                    case "admin_getRequestsQueue":
+                        PriorityQueue<ArrayList<Reservation>> pqReq = null;
+                        if(status.equals("Pass") || lock.tryLock()) {
+                            pqReq = deserializeRequests();
+                        }
+                        if(lock.isLocked() && lock.isHeldByCurrentThread()){
+                            System.out.print("[ "+LocalDateTime.now()+" ] ");
+                            System.out.println(connection.getInetAddress().toString() + " | ServerLock Released");
+                            lock.unlock();
+                        }
+                        out.writeObject(pqReq);
+                        out.flush();
+                        break;
+                    case "studentDeleteReservationRequest":
+                        email = (String) in.readObject();
+                        queryDate = (LocalDate) in.readObject();
+                        slotID = (int) in.readObject();
+                        room = (String) in.readObject();
+                        if(status.equals("Pass") || lock.tryLock()) {
+                            r = Room.deserializeRoom(room);
+                            r.deleteRequest(email, queryDate, slotID);
+                            r.serialize();
+                        }
+                        if(lock.isLocked() && lock.isHeldByCurrentThread()){
+                            System.out.print("[ "+LocalDateTime.now()+" ] ");
+                            System.out.println(connection.getInetAddress().toString() + " | ServerLock Released");
+                            lock.unlock();
+                        }
+                        break;
+                    case "studentGetReservationRequest":
+                        email = (String) in.readObject();
+                        queryDate = (LocalDate) in.readObject();
+                        slotID = (int) in.readObject();
+                        room = (String) in.readObject();
+                        res = null;
+                        if(status.equals("Pass") || lock.tryLock()) {
+                            r = Room.deserializeRoom(room);
+                            res = r.fetchRequest(email, queryDate, slotID);
+                        }
+                        if(lock.isLocked() && lock.isHeldByCurrentThread()){
+                            System.out.print("[ "+LocalDateTime.now()+" ] ");
+                            System.out.println(connection.getInetAddress().toString() + " | ServerLock Released");
+                            lock.unlock();
+                        }
+                        out.writeObject(res);
+                        out.flush();
+                        break;
+                    case "studentGetPendingReservations":
+                        email = (String) in.readObject();
+                        queryDate = (LocalDate) in.readObject();
+                        room = (String) in.readObject();
+                        Reservation[] pending = null;
+                        if(status.equals("Pass") || lock.tryLock()) {
+                            r = Room.deserializeRoom(room);
+                            pending = r.getPendingReservations(email, queryDate);
+                        }
+                        if(lock.isLocked() && lock.isHeldByCurrentThread()){
+                            System.out.print("[ "+LocalDateTime.now()+" ] ");
+                            System.out.println(connection.getInetAddress().toString() + " | ServerLock Released");
+                            lock.unlock();
+                        }
+                        out.writeObject(pending);
+                        out.flush();
+                        break;
+                    case "checkBulkBooking":
+                        room = (String) in.readObject();
+                        ArrayList<Integer> slots = (ArrayList<Integer>) in.readObject();
+                        start = (LocalDate) in.readObject();
+                        end = (LocalDate) in.readObject();
+                        result = false;
+                        if(status.equals("Pass") || lock.tryLock()) {
+                            result = checkBulkBooking(room, slots,start,end);
+                        }
+                        if(lock.isLocked() && lock.isHeldByCurrentThread()){
+                            System.out.print("[ "+LocalDateTime.now()+" ] ");
+                            System.out.println(connection.getInetAddress().toString() + " | ServerLock Released");
+                            lock.unlock();
+                        }
+                        out.writeObject(result);
+                        out.flush();
+                        break;
                 }
+                in.close();
+                out.close();
+            } catch (IOException e) {
+                System.out.println("Error Occured while handling connection");
+            } catch (ClassNotFoundException e) {
+                System.out.println("Error Occured while handling connection");
             }
-            catch(InterruptedException l){
-                ;
-            }
-        }while(true);
+        }
+        catch(Exception l){
+            ;
+        }
         server.noOfConnections--;
     }
 }
