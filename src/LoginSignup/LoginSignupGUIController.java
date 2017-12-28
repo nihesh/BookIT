@@ -155,40 +155,37 @@ public class LoginSignupGUIController {
 			if(PortListener.email!=null && PortListener.email.contains("iiitd.ac.in")) {
 				Gemail = new Email(PortListener.email);
 				GName=PortListener.Name;
-				if(User.getUser(Gemail.getEmailID(), false)!=null) {
+				User inQ = User.getUser(Gemail.getEmailID(), false); 
+				if(inQ != null) {
 					System.out.println("account already exists");
 					java.net.CookieManager manager = new java.net.CookieManager();
 					java.net.CookieHandler.setDefault(manager);
-					Alert alert = new Alert(AlertType.INFORMATION);
 					PortListener.authcode="none";
 					PortListener.email=null;PortListener.Name=null;
 					PortListener.status="NotUpdated";
-					alert.setTitle("Information Dialog");
-					alert.setHeaderText(null);
-					alert.setContentText("This Account Already exists. Please use standard login");
-					alert.showAndWait();
-					
+					inQ.setActiveUser();
+					Stage stage = (Stage) Login_password_btn.getScene().getWindow();
+					stage.close();
 					return;
 				}
 				String usertype = User.getUserType(Gemail.getEmailID(), false);
 				
 				if(usertype.equals("Faculty")) {
-					Guser = new Faculty(GName, "", Gemail, "Faculty", new ArrayList<String>());
+					Guser = new Faculty(GName, null, Gemail, "Faculty", new ArrayList<String>());
 				}
 				else if(usertype.equals("Student")) {
-					Guser = new Student(GName, "", Gemail, "Student", "", new ArrayList<String>());
+					Guser = new Student(GName, null, Gemail, "Student", "", new ArrayList<String>());
 				}
 				else{
-					Guser= new Admin(GName, "", Gemail, "Admin");
+					Guser= new Admin(GName, null, Gemail, "Admin");
 				}
-				
 				Guser.serialize(false);
-				Guser.generatePass(false);
-				Guser.mailPass(false);
+				//Guser.generatePass(false);
+				//Guser.mailPass(false);
 				Alert alert = new Alert(AlertType.INFORMATION);
 				alert.setTitle("Information Dialog");
 				alert.setHeaderText(null);
-				alert.setContentText("Account Created Successfully. A mail has been sent to you");
+				alert.setContentText("Account Created Successfully. Use google sign in button again to gain access to account");
 				alert.showAndWait();
 				return;
 			}
@@ -395,6 +392,15 @@ public class LoginSignupGUIController {
 	 */
 	private void Login_NEXT2() {
 		user=User.getUser(email.getEmailID(), false);
+		if(user.getPassword()==null) {
+			Login_password.clear();
+			user=null;
+			if(!Login_password.getStyleClass().contains("text-field2")) {
+				Login_password.getStyleClass().add("text-field2");
+			}
+			return;
+			
+		}
 		if(user.authenticate(Login_password.getText())) {
 			if(Login_password.getStyleClass().contains("text-field2")) {
 				Login_password.getStyleClass().remove("text-field2");
