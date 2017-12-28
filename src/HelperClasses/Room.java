@@ -166,11 +166,13 @@ public class Room implements java.io.Serializable{
         studentRequests.get(queryDate)[slot].remove(email);
     }
     public Reservation fetchRequest(String email, LocalDate queryDate, int slot){
-        if(!studentRequests.containsKey(queryDate)){
-            return null;
-        }
-        if(!studentRequests.get(queryDate)[slot].containsKey(email)){
-            return null;
+        if(!studentRequests.containsKey(queryDate) || !studentRequests.get(queryDate)[slot].containsKey(email)){
+            if(!Schedule.containsKey(queryDate) || Schedule.get(queryDate)[slot] == null) {
+                return null;
+            }
+            else{
+                return Schedule.get(queryDate)[slot];
+            }
         }
         return studentRequests.get(queryDate)[slot].get(email);
     }

@@ -443,9 +443,12 @@ class ConnectionHandler implements Runnable{
             }
             Notification n = new Notification("Room Reservation Request", "Accepted", r.get(0).getMessage(), r.get(0).getCourseName(), r.get(0).getTargetDate(), r.get(0).getRoomName(), r.get(0).getReserverEmail(), x);
             Student Stud = (Student)getUser(recipient);
+            Admin a = (Admin) getUser(adminAcc);
             Stud.addNotification(n);
+            a.addNotification(n);
             serializeUser(Stud);
-            server.mailpool.execute(new Mail(recipient,"BooKIT - Room booking cancelled", GreetText+","+"\n\nThe following request of yours have been accepted by the admin:\n\n"+"Room: "+r.get(0).getVenueName()+"\nDate: "+r.get(0).getTargetDate().getDayOfMonth()+"/"+r.get(0).getTargetDate().getMonthValue()+"/"+r.get(0).getTargetDate().getYear()+"\nTime:\n"+TimeSlots+"\n\nIf you think this is a mistake, please contact admin.\n\nRegards,\nBookIT Team"));
+            serializeUser(a);
+            server.mailpool.execute(new Mail(recipient,"BooKIT - Room reservation request accepted", GreetText+","+"\n\nThe following request of yours have been accepted by the admin:\n\n"+"Room: "+r.get(0).getVenueName()+"\nDate: "+r.get(0).getTargetDate().getDayOfMonth()+"/"+r.get(0).getTargetDate().getMonthValue()+"/"+r.get(0).getTargetDate().getYear()+"\nTime:\n"+TimeSlots+"\n\nIf you think this is a mistake, please contact admin.\n\nRegards,\nBookIT Team"));
             
         }
         if(ctemp!=null) {
@@ -472,7 +475,10 @@ class ConnectionHandler implements Runnable{
         Notification n = new Notification("Room Reservation Request", "Declined", r.get(0).getMessage(), r.get(0).getCourseName(), r.get(0).getTargetDate(), r.get(0).getRoomName(), r.get(0).getReserverEmail(), x);
         Student Stud = (Student)getUser(recipient);
         Stud.addNotification(n);
-        server.mailpool.execute(new Mail(recipient,"BooKIT - Room booking cancelled", GreetText+","+"\n\nThe following request of yours have been rejected by the admin:\n\n"+"Room: "+r.get(0).getVenueName()+"\nDate: "+r.get(0).getTargetDate().getDayOfMonth()+"/"+r.get(0).getTargetDate().getMonthValue()+"/"+r.get(0).getTargetDate().getYear()+"\nTime:\n"+TimeSlots+"\n\nIf you think this is a mistake, please contact admin.\n\nRegards,\nBookIT Team"));
+        Admin a = (Admin) getUser(adminAcc);
+        a.addNotification(n);
+        serializeUser(a);
+        server.mailpool.execute(new Mail(recipient,"BooKIT - Room booking request rejected", GreetText+","+"\n\nThe following request of yours have been rejected by the admin:\n\n"+"Room: "+r.get(0).getVenueName()+"\nDate: "+r.get(0).getTargetDate().getDayOfMonth()+"/"+r.get(0).getTargetDate().getMonthValue()+"/"+r.get(0).getTargetDate().getYear()+"\nTime:\n"+TimeSlots+"\n\nIf you think this is a mistake, please contact admin.\n\nRegards,\nBookIT Team"));
         p.poll();
         serializeUser(Stud);
         serializeRequests(p);
@@ -645,6 +651,7 @@ class ConnectionHandler implements Runnable{
             c.deleteReservation(queryDate, slotID,r.getTopGroup());
             c.serialize();
         }
+        temp.serialize();
         return true;
     }
     public boolean changePassword(String email, String oldPassword, String newPassword) {

@@ -64,11 +64,31 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="server.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="server.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/server.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="152">
-              <caret line="390" column="28" lean-forward="true" selection-start-line="390" selection-start-column="28" selection-end-line="390" selection-end-column="28" />
+              <caret line="643" column="30" lean-forward="false" selection-start-line="643" selection-start-column="19" selection-end-line="643" selection-end-column="30" />
+              <folding>
+                <element signature="e#14370#14379#0" expanded="true" />
+                <element signature="e#16744#16753#0" expanded="true" />
+                <element signature="e#19545#19554#0" expanded="true" />
+                <element signature="e#20133#20142#0" expanded="true" />
+                <element signature="e#21836#21845#0" expanded="true" />
+                <element signature="e#22979#22998#0" expanded="true" />
+                <element signature="e#23138#23146#0" expanded="true" />
+                <element signature="e#48441#48647#0" expanded="true" />
+                <element signature="e#48646#48647#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="User.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/HelperClasses/User.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="152">
+              <caret line="202" column="10" lean-forward="false" selection-start-line="202" selection-start-column="8" selection-end-line="202" selection-end-column="10" />
               <folding />
             </state>
           </provider>
@@ -77,9 +97,11 @@
       <file leaf-file-name="SpamFilter.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/HelperClasses/SpamFilter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="134">
-              <caret line="53" column="36" lean-forward="true" selection-start-line="53" selection-start-column="36" selection-end-line="53" selection-end-column="36" />
-              <folding />
+            <state relative-caret-position="828">
+              <caret line="53" column="36" lean-forward="false" selection-start-line="53" selection-start-column="36" selection-end-line="53" selection-end-column="36" />
+              <folding>
+                <element signature="imports" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -87,8 +109,18 @@
       <file leaf-file-name="FacultyReservationGUIController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/FacultyReservation/FacultyReservationGUIController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="188">
-              <caret line="429" column="62" lean-forward="false" selection-start-line="429" selection-start-column="62" selection-end-line="429" selection-end-column="62" />
+            <state relative-caret-position="224">
+              <caret line="327" column="41" lean-forward="true" selection-start-line="327" selection-start-column="41" selection-end-line="327" selection-end-column="41" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Student.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/HelperClasses/Student.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="18">
+              <caret line="75" column="45" lean-forward="true" selection-start-line="75" selection-start-column="45" selection-end-line="75" selection-end-column="45" />
               <folding />
             </state>
           </provider>
@@ -98,7 +130,7 @@
         <entry file="file://$PROJECT_DIR$/src/AdminReservation/NotifyController.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="380">
-              <caret line="87" column="9" lean-forward="true" selection-start-line="87" selection-start-column="9" selection-end-line="87" selection-end-column="9" />
+              <caret line="87" column="9" lean-forward="false" selection-start-line="87" selection-start-column="9" selection-end-line="87" selection-end-column="9" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -109,19 +141,22 @@
       <file leaf-file-name="StudentReservationGUIController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/StudentReservation/StudentReservationGUIController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="188">
-              <caret line="516" column="62" lean-forward="false" selection-start-line="516" selection-start-column="11" selection-end-line="516" selection-end-column="62" />
+            <state relative-caret-position="144">
+              <caret line="664" column="29" lean-forward="true" selection-start-line="664" selection-start-column="29" selection-end-line="664" selection-end-column="29" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Notification.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/HelperClasses/Notification.java">
+      <file leaf-file-name="Room.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/HelperClasses/Room.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="142">
-              <caret line="40" column="54" lean-forward="false" selection-start-line="40" selection-start-column="54" selection-end-line="40" selection-end-column="54" />
-              <folding />
+            <state relative-caret-position="18">
+              <caret line="287" column="9" lean-forward="true" selection-start-line="287" selection-start-column="9" selection-end-line="287" selection-end-column="9" />
+              <folding>
+                <element signature="e#13562#13563#0" expanded="true" />
+                <element signature="e#13609#13610#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -129,31 +164,8 @@
       <file leaf-file-name="setup.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/setup.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="242">
-              <caret line="143" column="29" lean-forward="false" selection-start-line="143" selection-start-column="29" selection-end-line="143" selection-end-column="29" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="StudentReservation.fxml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/StudentReservation/StudentReservation.fxml">
-          <provider editor-type-id="JavaFX-Scene-Builder">
-            <state />
-          </provider>
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="244">
-              <caret line="940" column="36" lean-forward="false" selection-start-line="940" selection-start-column="36" selection-end-line="940" selection-end-column="36" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="BookIT.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/BookIT.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="24">
-              <caret line="95" column="26" lean-forward="true" selection-start-line="95" selection-start-column="26" selection-end-line="95" selection-end-column="26" />
+            <state relative-caret-position="206">
+              <caret line="324" column="42" lean-forward="false" selection-start-line="324" selection-start-column="42" selection-end-line="324" selection-end-column="42" />
               <folding />
             </state>
           </provider>
@@ -162,9 +174,22 @@
       <file leaf-file-name="AdminReservationGUIController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/AdminReservation/AdminReservationGUIController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="188">
+            <state relative-caret-position="7704">
               <caret line="481" column="62" lean-forward="false" selection-start-line="481" selection-start-column="62" selection-end-line="481" selection-end-column="62" />
-              <folding />
+              <folding>
+                <element signature="e#0#46816#0" expanded="false" />
+                <element signature="imports" expanded="false" />
+                <element signature="e#3712#3728#0" expanded="false" />
+                <element signature="e#7877#8342#0" expanded="false" />
+                <element signature="e#8341#8342#0" expanded="false" />
+                <element signature="e#21067#21075#0" expanded="false" />
+                <element signature="e#22991#23000#0" expanded="false" />
+                <element signature="e#27862#27863#0" expanded="false" />
+                <element signature="e#27908#27909#0" expanded="false" />
+                <element signature="e#29664#29665#0" expanded="false" />
+                <element signature="e#29702#29703#0" expanded="false" />
+                <element signature="e#33120#33128#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -181,19 +206,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>please use onl</find>
-      <find>portListe</find>
-      <find>PortListe</find>
-      <find>iiitd</find>
-      <find>PortList</find>
-      <find>pullDownRese</find>
-      <find>preBo</find>
-      <find>BulkBo</find>
-      <find>preBooking</find>
-      <find>BookingCo</find>
-      <find>checkBu</find>
-      <find>addReservation</find>
-      <find>BookingCom</find>
       <find>createFirs</find>
       <find>BookRoom</find>
       <find>BookRoo</find>
@@ -211,6 +223,19 @@
       <find>loadDate</find>
       <find>loadDa</find>
       <find>&gt;&gt;</find>
+      <find>serverFet</find>
+      <find>studentGetRe</find>
+      <find>studentGetRese</find>
+      <find>getReservationReq</find>
+      <find>getRes</find>
+      <find>studentGet</find>
+      <find>fetchReq</find>
+      <find>serverDelete</find>
+      <find>getReservationRe</find>
+      <find>cancelBooking</find>
+      <find>cancelBook</find>
+      <find>deleteRese</find>
+      <find>studentandf</find>
     </findStrings>
   </component>
   <component name="FindManager">
@@ -251,7 +276,6 @@
         <option value="$PROJECT_DIR$/src/AdminReservation/AdminReservationGUI.java" />
         <option value="$PROJECT_DIR$/src/FacultyReservation/FacultyReservation.fxml" />
         <option value="$PROJECT_DIR$/src/HelperClasses/Reservation.java" />
-        <option value="$PROJECT_DIR$/src/HelperClasses/Room.java" />
         <option value="$PROJECT_DIR$/src/LoginSignup/LoginSignup1080p.fxml" />
         <option value="$PROJECT_DIR$/src/LoginSignup/LoginSignupGUIController.java" />
         <option value="$PROJECT_DIR$/src/BookIT.java" />
@@ -262,10 +286,11 @@
         <option value="$PROJECT_DIR$/src/AdminReservation/NotifyController.java" />
         <option value="$PROJECT_DIR$/src/HelperClasses/SpamFilter.java" />
         <option value="$PROJECT_DIR$/src/StudentReservation/StudentReservation.fxml" />
+        <option value="$PROJECT_DIR$/src/AdminReservation/AdminReservationGUIController.java" />
         <option value="$PROJECT_DIR$/src/setup.java" />
+        <option value="$PROJECT_DIR$/src/HelperClasses/Room.java" />
         <option value="$PROJECT_DIR$/src/StudentReservation/StudentReservationGUIController.java" />
         <option value="$PROJECT_DIR$/src/FacultyReservation/FacultyReservationGUIController.java" />
-        <option value="$PROJECT_DIR$/src/AdminReservation/AdminReservationGUIController.java" />
         <option value="$PROJECT_DIR$/src/server.java" />
       </list>
     </option>
@@ -310,8 +335,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -482,28 +505,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="User" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="BookIT" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="BookIT" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AppData" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="Server" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -528,6 +529,8 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="Scratches" />
     </panes>
   </component>
@@ -548,7 +551,7 @@
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/src/Dependencies/transaction-api-1.1.jar!/" />
   </component>
-  <component name="RunManager" selected="Application.setup">
+  <component name="RunManager" selected="Application.Main">
     <configuration default="false" name="setup" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <option name="MAIN_CLASS_NAME" value="setup" />
@@ -902,7 +905,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="36" width="1920" height="1044" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -913,14 +916,13 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32725322" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.41416308" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.41416308" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1684046" sideWeight="0.6703755" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24973932" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -931,6 +933,7 @@
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24973932" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Profiler" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
@@ -1050,14 +1053,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/HelperClasses/User.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="18">
-          <caret line="177" column="13" lean-forward="false" selection-start-line="177" selection-start-column="13" selection-end-line="177" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/AdminReservation/AdminReservationGUI.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="198">
@@ -1086,14 +1081,6 @@
             <element signature="e#2166#2167#0" expanded="false" />
             <element signature="e#2203#2204#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/HelperClasses/Student.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="594">
-          <caret line="45" column="28" lean-forward="false" selection-start-line="45" selection-start-column="19" selection-end-line="45" selection-end-column="28" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1130,14 +1117,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/HelperClasses/Room.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="18">
-          <caret line="121" column="24" lean-forward="false" selection-start-line="121" selection-start-column="24" selection-end-line="121" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/HelperClasses/Faculty.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1908">
@@ -1167,26 +1146,52 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/BookIT.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="24">
-          <caret line="95" column="26" lean-forward="true" selection-start-line="95" selection-start-column="26" selection-end-line="95" selection-end-column="26" />
+        <state relative-caret-position="1512">
+          <caret line="95" column="26" lean-forward="false" selection-start-line="95" selection-start-column="26" selection-end-line="95" selection-end-column="26" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/HelperClasses/Notification.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="142">
+        <state relative-caret-position="666">
           <caret line="40" column="54" lean-forward="false" selection-start-line="40" selection-start-column="54" selection-end-line="40" selection-end-column="54" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AdminReservation/NotifyController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="380">
-          <caret line="87" column="9" lean-forward="true" selection-start-line="87" selection-start-column="9" selection-end-line="87" selection-end-column="9" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#1625#1626#0" expanded="false" />
+            <element signature="e#1643#1644#0" expanded="false" />
+            <element signature="e#1672#1673#0" expanded="false" />
+            <element signature="e#1692#1693#0" expanded="false" />
+            <element signature="e#1722#1723#0" expanded="false" />
+            <element signature="e#1743#1744#0" expanded="false" />
+            <element signature="e#1772#1773#0" expanded="false" />
+            <element signature="e#1792#1793#0" expanded="false" />
+            <element signature="e#1828#1829#0" expanded="false" />
+            <element signature="e#1852#1853#0" expanded="false" />
+            <element signature="e#1879#1880#0" expanded="false" />
+            <element signature="e#1897#1898#0" expanded="false" />
+            <element signature="e#1933#1934#0" expanded="false" />
+            <element signature="e#1960#1961#0" expanded="false" />
+            <element signature="e#2002#2003#0" expanded="false" />
+            <element signature="e#2023#2024#0" expanded="false" />
+            <element signature="e#2059#2060#0" expanded="false" />
+            <element signature="e#2082#2083#0" expanded="false" />
+            <element signature="e#2122#2123#0" expanded="false" />
+            <element signature="e#2149#2150#0" expanded="false" />
+            <element signature="e#2191#2192#0" expanded="false" />
+            <element signature="e#2220#2221#0" expanded="false" />
+            <element signature="e#2260#2261#0" expanded="false" />
+            <element signature="e#2287#2288#0" expanded="false" />
+            <element signature="e#2338#2339#0" expanded="false" />
+            <element signature="e#2373#2374#0" expanded="false" />
+            <element signature="e#2423#2424#0" expanded="false" />
+            <element signature="e#2457#2458#0" expanded="false" />
+            <element signature="e#2618#2619#0" expanded="false" />
+            <element signature="e#2641#2642#0" expanded="false" />
+            <element signature="e#2695#2696#0" expanded="false" />
+            <element signature="e#2736#2737#0" expanded="false" />
+            <element signature="e#2788#2789#0" expanded="false" />
+            <element signature="e#2816#2817#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1196,7 +1201,7 @@
         <state />
       </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="244">
+        <state relative-caret-position="16920">
           <caret line="940" column="36" lean-forward="false" selection-start-line="940" selection-start-column="36" selection-end-line="940" selection-end-column="36" />
           <folding />
         </state>
@@ -1204,48 +1209,110 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/HelperClasses/SpamFilter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="134">
-          <caret line="53" column="36" lean-forward="true" selection-start-line="53" selection-start-column="36" selection-end-line="53" selection-end-column="36" />
-          <folding />
+        <state relative-caret-position="828">
+          <caret line="53" column="36" lean-forward="false" selection-start-line="53" selection-start-column="36" selection-end-line="53" selection-end-column="36" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AdminReservation/AdminReservationGUIController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="7704">
+          <caret line="481" column="62" lean-forward="false" selection-start-line="481" selection-start-column="62" selection-end-line="481" selection-end-column="62" />
+          <folding>
+            <element signature="e#0#46816#0" expanded="false" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#3712#3728#0" expanded="false" />
+            <element signature="e#7877#8342#0" expanded="false" />
+            <element signature="e#8341#8342#0" expanded="false" />
+            <element signature="e#21067#21075#0" expanded="false" />
+            <element signature="e#22991#23000#0" expanded="false" />
+            <element signature="e#27862#27863#0" expanded="false" />
+            <element signature="e#27908#27909#0" expanded="false" />
+            <element signature="e#29664#29665#0" expanded="false" />
+            <element signature="e#29702#29703#0" expanded="false" />
+            <element signature="e#33120#33128#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/setup.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="242">
-          <caret line="143" column="29" lean-forward="false" selection-start-line="143" selection-start-column="29" selection-end-line="143" selection-end-column="29" />
+        <state relative-caret-position="206">
+          <caret line="324" column="42" lean-forward="false" selection-start-line="324" selection-start-column="42" selection-end-line="324" selection-end-column="42" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/StudentReservation/StudentReservationGUIController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="188">
-          <caret line="516" column="62" lean-forward="false" selection-start-line="516" selection-start-column="11" selection-end-line="516" selection-end-column="62" />
+        <state relative-caret-position="144">
+          <caret line="664" column="29" lean-forward="true" selection-start-line="664" selection-start-column="29" selection-end-line="664" selection-end-column="29" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/FacultyReservation/FacultyReservationGUIController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="188">
-          <caret line="429" column="62" lean-forward="false" selection-start-line="429" selection-start-column="62" selection-end-line="429" selection-end-column="62" />
+        <state relative-caret-position="224">
+          <caret line="327" column="41" lean-forward="true" selection-start-line="327" selection-start-column="41" selection-end-line="327" selection-end-column="41" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AdminReservation/AdminReservationGUIController.java">
+    <entry file="file://$PROJECT_DIR$/src/HelperClasses/Student.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="188">
-          <caret line="481" column="62" lean-forward="false" selection-start-line="481" selection-start-column="62" selection-end-line="481" selection-end-column="62" />
+        <state relative-caret-position="18">
+          <caret line="75" column="45" lean-forward="true" selection-start-line="75" selection-start-column="45" selection-end-line="75" selection-end-column="45" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AdminReservation/NotifyController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="380">
+          <caret line="87" column="9" lean-forward="false" selection-start-line="87" selection-start-column="9" selection-end-line="87" selection-end-column="9" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/HelperClasses/Room.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="18">
+          <caret line="287" column="9" lean-forward="true" selection-start-line="287" selection-start-column="9" selection-end-line="287" selection-end-column="9" />
+          <folding>
+            <element signature="e#13562#13563#0" expanded="true" />
+            <element signature="e#13609#13610#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/server.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="152">
-          <caret line="390" column="28" lean-forward="true" selection-start-line="390" selection-start-column="28" selection-end-line="390" selection-end-column="28" />
+          <caret line="643" column="30" lean-forward="false" selection-start-line="643" selection-start-column="19" selection-end-line="643" selection-end-column="30" />
+          <folding>
+            <element signature="e#14370#14379#0" expanded="true" />
+            <element signature="e#16744#16753#0" expanded="true" />
+            <element signature="e#19545#19554#0" expanded="true" />
+            <element signature="e#20133#20142#0" expanded="true" />
+            <element signature="e#21836#21845#0" expanded="true" />
+            <element signature="e#22979#22998#0" expanded="true" />
+            <element signature="e#23138#23146#0" expanded="true" />
+            <element signature="e#48441#48647#0" expanded="true" />
+            <element signature="e#48646#48647#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/HelperClasses/User.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="202" column="10" lean-forward="false" selection-start-line="202" selection-start-column="8" selection-end-line="202" selection-end-column="10" />
           <folding />
         </state>
       </provider>
