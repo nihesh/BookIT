@@ -2,6 +2,7 @@ package AdminReservation;
 
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Control;
 import javafx.scene.control.Label;
@@ -18,15 +19,26 @@ import java.util.ResourceBundle;
 
 import HelperClasses.Notification;
 import HelperClasses.User;
+import javafx.stage.Screen;
 
 public class NotifyController {
     @FXML
     private VBox notificationPane;
     @FXML
+    private StackPane rootPane;
+    @FXML
     public void initialize(){
         User x=User.getActiveUser();
         loadNotifications(x.getNotifications(false));
-        
+        Rectangle2D visualBounds = Screen.getPrimary().getVisualBounds();
+        double width = visualBounds.getWidth();
+        double height = visualBounds.getHeight();
+        double scaleWidth = (width)/1920;
+        double scaleHeight = (height)/1005;
+
+        rootPane.setScaleX(scaleWidth);
+        rootPane.setScaleY(scaleHeight);
+
     }
     private void loadNotifications(ArrayList<Notification> myList){ // assert: data.size() == time.size()
     	if(myList.size()==0) {
