@@ -181,6 +181,8 @@ public class LoginSignupGUIController {
 				}
 				Guser.serialize(false);
 				Guser.setActiveUser();
+				java.net.CookieManager manager = new java.net.CookieManager();
+				java.net.CookieHandler.setDefault(manager);
 				Stage stage = (Stage) Login_password_btn.getScene().getWindow();
 				stage.close();
 				//Guser.generatePass(false);
