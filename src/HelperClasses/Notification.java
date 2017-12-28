@@ -11,7 +11,7 @@ public class Notification implements Serializable{
     private String status="";
 	private String message="";
     private String course="";
-    private LocalDate targetDate;
+    private LocalDate targetDate=LocalDate.of(1960, 11, 1);
     private String room="";
     private String reserverEmail="";
     private ArrayList<Integer> slotIDs;
@@ -26,7 +26,8 @@ public class Notification implements Serializable{
 			this.message = message;}
 		if(course!=null) {
 			this.course = course;}
-		this.targetDate = targetDate;
+		if(targetDate!=null) {
+		this.targetDate = targetDate;}
 		if(room!=null) {
 			this.room = room;}
 		this.reserverEmail = reserverEmail;
@@ -34,6 +35,7 @@ public class Notification implements Serializable{
 	}
 	@Override
 	public String toString() {
+		System.out.println(targetDate);
 		// TODO Auto-generated method stub
 		String slots="";
 		if(slotIDs!=null) {
@@ -41,7 +43,13 @@ public class Notification implements Serializable{
 			slots+=Reservation.getSlotRange(integer)+", ";
 		}
 		}
-		String text = type+" by "+reserverEmail +",\tStatus: "+status+"\n"+message+"Course: "+course+"\nDate: "+targetDate.toString()
+		String text = type
+				+" by "+
+				reserverEmail +",\tStatus: "+
+				status+"\n"+
+				message+"Course: "+
+				course+"\nDate: "+
+				targetDate.toString()
 		+"\nSlots: "+slots;
 		return text;
 	}
