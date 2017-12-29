@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.PriorityQueue;
 import java.util.Scanner;
 import HelperClasses.*;
+import com.sun.org.apache.xpath.internal.operations.Bool;
 
 
 /**
@@ -43,18 +44,23 @@ public class setup {
     public static LocalDate StartDate;
     public static LocalDate EndDate;
     public static ArrayList<Integer> getSlots(String startTime, String endTime){
+        ArrayList<Integer> listOfSlots = new ArrayList<Integer>();;
         String[] slots = {"0800AM","0830AM","0900AM","0930AM","1000AM","1030AM","1100AM","1130AM","1200PM","1230PM","0100PM","0130PM","0200PM","0230PM","0300PM","0330PM","0400PM","0430PM","0500PM","0530PM","0600PM","0630PM","0700PM","0730PM","0800PM","0830PM","0900PM","0930PM","1000PM"};
         int counter=0;
-        while(!startTime.equals(slots[counter])){
-            counter++;
-            continue;
-        }
-        ArrayList<Integer> listOfSlots = new ArrayList<Integer>();
-        listOfSlots.add(counter);
-        counter++;
-        while(!endTime.equals(slots[counter])){
+        try {
+            while(!startTime.equals(slots[counter])){
+                counter++;
+                continue;
+            }
             listOfSlots.add(counter);
             counter++;
+            while (!endTime.equals(slots[counter])) {
+                listOfSlots.add(counter);
+                counter++;
+            }
+        }
+        catch (Exception e){
+            System.out.println(startTime+" to "+endTime+" booking is invalid. Please recheck csv");
         }
         return listOfSlots;
     }
@@ -74,8 +80,8 @@ public class setup {
 			x.close();
 			
     	} catch (Exception e) {
-			e.printStackTrace();
-		}
+            System.out.println("Course Post Condition list for "+CourseName+" not found");
+        }
 		return temp;
     }
     public static void loadRoomAndCourseObjects() throws IOException,FileNotFoundException{
@@ -115,9 +121,8 @@ public class setup {
         flag=0;
         while(file.hasNext()){
             String type,name,code,instructor,credits,acronym,day,startTime,endTime,group,message,venue;
-            type = file.next().trim();
-            name = file.next().trim();
             code = file.next().trim();
+            name = file.next().trim();
             instructor = file.next().trim();
             credits = file.next().trim();
             acronym = file.next().trim();
@@ -176,11 +181,15 @@ public class setup {
             for(int i=0;i<listOfSlots.size();i++){
                 int currentSlot = listOfSlots.get(i);
                 LocalDate currentDate = StartDate;
+                Boolean reservationSuccessFlag = true;
                 while(!currentDate.isAfter(EndDate)) {
                     if(day.equals(currentDate.getDayOfWeek().toString().toLowerCase())) {
                         Reservation r = new Reservation(message, group, name, "", venue, message, currentSlot);
                         r.setTargetDate(currentDate);
-                        roomData.get(venue).addReservation(currentDate, currentSlot, r);
+                        if(!roomData.get(venue).addReservation(currentDate, currentSlot, r) && reservationSuccessFlag){
+                            reservationSuccessFlag = false;
+                            System.out.println(name+" "+startTime+" "+endTime+" "+venue+" has a collision with an earlier reservation. Please rectify csv");
+                        }
                         currentDate = currentDate.plusDays(7);
                     }
                     else {

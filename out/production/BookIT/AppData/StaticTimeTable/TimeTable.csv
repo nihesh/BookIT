@@ -1,59 +1,277 @@
-Mandatory/Elective,Course Name,Course Code,Instructor,Credits,Acronym,Day,Start Time,End Time,Group,Message,Venue
-Mandatory,Discrete Mathematics,CSE121,Donghoon Chang,4,DM,Tuesday,0130PM,0300PM,0,Lecture,C21
-Mandatory,Discrete Mathematics,CSE121,Donghoon Chang,4,DM,Friday,1130AM,0100PM,0,Lecture,C21
-Mandatory,Discrete Mathematics,CSE121,Donghoon Chang,4,DM,Wednesday,0400PM,0530PM,1,Tutorial,S01
-Mandatory,Discrete Mathematics,CSE121,Donghoon Chang,4,DM,Friday,0400PM,0530PM,2,Tutorial,LR1
-Mandatory,Discrete Mathematics,CSE121,Donghoon Chang,4,DM,Friday,0400PM,0530PM,3,Tutorial,LR2
-Mandatory,Discrete Mathematics,CSE121,Donghoon Chang,4,DM,Friday,0400PM,0530PM,4,Tutorial,LR3
-Mandatory,Advanced Programming,CSE201,Vivek Kumar,4,AP,Monday,1100AM,1200PM,0,Lecture,C21
-Mandatory,Advanced Programming,CSE201,Vivek Kumar,4,AP,Wednesday,1100AM,1200PM,0,Lecture,C21
-Mandatory,Advanced Programming,CSE201,Vivek Kumar,4,AP,Thursday,1100AM,1200PM,0,Lecture,C21
-Mandatory,Advanced Programming,CSE201,Vivek Kumar,4,AP,Monday,1200PM,0100PM,1,Tutorial,LR1
-Mandatory,Advanced Programming,CSE201,Vivek Kumar,4,AP,Monday,1200PM,0100PM,2,Tutorial,LR2
-Mandatory,Advanced Programming,CSE201,Vivek Kumar,4,AP,Monday,1200PM,0100PM,3,Tutorial,S01
-Mandatory,Advanced Programming,CSE201,Vivek Kumar,4,AP,Monday,1200PM,0100PM,4,Tutorial,S02
-Mandatory,Advanced Programming,CSE201,Vivek Kumar,4,AP,Thursday,1200PM,0100PM,1,Lab,L21
-Mandatory,Advanced Programming,CSE201,Vivek Kumar,4,AP,Thursday,1200PM,0100PM,2,Lab,L22
-Mandatory,Advanced Programming,CSE201,Vivek Kumar,4,AP,Thursday,1200PM,0100PM,3,Lab,L23
-Mandatory,Advanced Programming,CSE201,Vivek Kumar,4,AP,Thursday,1200PM,0100PM,4,Lab,L23
-Mandatory,Computer Organization,CSE112,Naveen Prakash(G),4,CO ,Wednesday,0230PM,0400PM,0,Lecture,C21
-Mandatory,Computer Organization,CSE112,Naveen Prakash(G),4,CO ,Thursday,0400PM,0530PM,0,Lecture,C01
-Mandatory,Computer Organization,CSE112,Naveen Prakash(G),4,CO ,Wednesday,0130PM,0230PM,1,Tutorial,LR2
-Mandatory,Computer Organization,CSE112,Naveen Prakash(G),4,CO ,Wednesday,0130PM,0230PM,2,Tutorial,LR3
-Mandatory,Computer Organization,CSE112,Naveen Prakash(G),4,CO ,Wednesday,0130PM,0230PM,3,Tutorial,C22
-Mandatory,Computer Organization,CSE112,Naveen Prakash(G),4,CO ,Wednesday,0130PM,0230PM,4,Tutorial,C23
-Elective,Math-III,MTH203,Sarthok Sircar,4,M-III,Tuesday,0300PM,0400PM,0,Lecture,C21
-Elective,Math-III,MTH203,Sarthok Sircar,4,M-III,Thursday,0300PM,0400PM,0,Lecture,C21
-Elective,Math-III,MTH203,Sarthok Sircar,4,M-III,Friday,0300PM,0400PM,0,Lecture,C21
-Elective,Math-III,MTH203,Sarthok Sircar,4,M-III,Monday,0830AM,1000AM,1,Tutorial,LR1
-Elective,Math-III,MTH203,Sarthok Sircar,4,M-III,Monday,0130PM,0300PM,2,Tutorial,LR1
-Elective,Signal & Systems,ECE250,Anubha Gupta,4,S&S,Tuesday,1100AM,1200PM,0,Lecture,C21
-Elective,Signal & Systems,ECE250,Anubha Gupta,4,S&S,Thursday,0200PM,0300PM,0,Lecture,C21
-Elective,Signal & Systems,ECE250,Anubha Gupta,4,S&S,Friday,0200PM,0300PM,0,Lecture,C21
-Elective,Signal & Systems,ECE250,Anubha Gupta,4,S&S,Monday,0200PM,0300PM,1,Tutorial,LR3
-Elective,Real Analysis I,MTH2xx,Samaresh Chatterji(V),4,RA,Monday,0300PM,0400PM,0,Lecture,C02
-Elective,Real Analysis I,MTH2xx,Samaresh Chatterji(V),4,RA,Tuesday,1000AM,1100AM,0,Lecture,C02
-Elective,Real Analysis I,MTH2xx,Samaresh Chatterji(V),4,RA,Thursday,1000AM,1100AM,0,Lecture,C02
-Elective,Real Analysis I,MTH2xx,Samaresh Chatterji(V),4,RA,Monday,0130PM,0300PM,1,Tutorial,S01
-Elective,Real Analysis I,MTH2xx,Samaresh Chatterji(V),4,RA,Monday,0130PM,0300PM,2,Tutorial,S02
-Elective,Number Theory,MTH2xx,Anuradha Sharma,4,NT,Monday,1000AM,1100AM,0,Lecture,C12
-Elective,Number Theory,MTH2xx,Anuradha Sharma,4,NT,Wednesday,1000AM,1100AM,0,Lecture,C12
-Elective,Number Theory,MTH2xx,Anuradha Sharma,4,NT,Friday,0930AM,1030AM,0,Lecture,C12
-Elective,Number Theory,MTH2xx,Anuradha Sharma,4,NT,Friday,1030AM,1130AM,1,Tutorial,C12
-HSS Elective,Perspectives of Knowledge,HSS202,Raj Ayyar (V),4,PoK,Monday,0400PM,0530PM,0,Lecture,C24
-HSS Elective,Perspectives of Knowledge,HSS202,Raj Ayyar (V),4,PoK,Wednesday,0400PM,0530PM,0,Lecture,C24
-HSS Elective,Introduction to Psychology,HSS204,Akshay Kumar(V),4,Psy,Monday,0400PM,0530PM,0,Lecture,C01
-HSS Elective,Introduction to Psychology,HSS204,Akshay Kumar(V),4,Psy,Wednesday,0400PM,0530PM,0,Lecture,C01
-HSS Elective,Theory & Practice of Engineering Ethics,HSS208,Raj Ayyar (V),4,TPEE,Tuesday,0400PM,0530PM,0,Lecture,C22
-HSS Elective,Theory & Practice of Engineering Ethics,HSS208,Raj Ayyar (V),4,TPEE,Friday,0400PM,0530PM,0,Lecture,C22
-HSS Elective,Theatre Apperciation,HSS211,Manohar Khushlani(V),4,TA,Monday,0400PM,0530PM,0,Lecture,C12
-HSS Elective,Theatre Apperciation,HSS211,Manohar Khushlani(V),4,TA,Wednesday,0400PM,0530PM,0,Lecture,C12
-HSS Elective,Key Concepts in Economic Sociology,HSS2ES,Amrit Srinivasan(V),4,ES,Tuesday,0400PM,0530PM,0,Lecture,C24
-HSS Elective,Key Concepts in Economic Sociology,HSS2ES,Amrit Srinivasan(V),4,ES,Friday,0400PM,0530PM,0,Lecture,C24
-HSS Elective,Introduction to Digital Ethonography,HSS2xx,Shriram Venkatraman,4,IDE,Monday,0400PM,0530PM,0,Lecture,C11
-HSS Elective,Introduction to Digital Ethonography,HSS2xx,Shriram Venkatraman,4,IDE,Wednesday,0400PM,0530PM,0,Lecture,C11
-HSS Elective,Introduction to Media In Society - A Public Sphere Approach,HSS2xx,Aasim Khan,4,IMS,Tuesday,0400PM,0530PM,0,Lecture,C03
-HSS Elective,Introduction to Media In Society - A Public Sphere Approach,HSS2xx,Aasim Khan,4,IMS,Friday,0400PM,0530PM,0,Lecture,C03
-HSS Elective,Introduction to Social Informatics,HSS2xx,Venkata Ratandeep Suri,4,ISI,Tuesday,0400PM,0530PM,0,Lecture,C13
-HSS Elective,Introduction to Social Informatics,HSS2xx,Venkata Ratandeep Suri,4,ISI,Friday,0400PM,0530PM,0,Lecture,C13
-HSS Elective,Introduction to Poetry,HSS223A,Saumya Kulshreshtha(G),2,PO,Tuesday,0430PM,0600PM,0,Lecture,C02
+Course Code,Course Name,Instructor,Credits,Acronym,Day,Start Time,End Time,Group,Message,Venue
+CSE102,Data Structures & Algorithms - A,Arun Balaji,4,DSA,Tuesday,0930AM,1030AM,0,Lecture,C01
+CSE102,Data Structures & Algorithms - A,Arun Balaji,4,DSA,Wednesday,1030AM,1130AM,0,Lecture,C01
+CSE102,Data Structures & Algorithms - A,Arun Balaji,4,DSA,Friday,1030AM,1130AM,0,Lecture,C01
+CSE102,Data Structures & Algorithms - A,Arun Balaji,4,DSA,Tuesday,0200PM,0400PM,3,Lab,L22
+CSE102,Data Structures & Algorithms - A,Arun Balaji,4,DSA,Tuesday,0200PM,0400PM,5,Lab,L23
+CSE102,Data Structures & Algorithms - A,Arun Balaji,4,DSA,Thursday,0130PM,0330PM,1,Lab,L21
+CSE102,Data Structures & Algorithms - A,Arun Balaji,4,DSA,Thursday,0130PM,0330PM,2,Lab,L22
+CSE102,Data Structures & Algorithms - A,Arun Balaji,4,DSA,Thursday,0130PM,0330PM,4,Lab,L23
+CSE102,Data Structures & Algorithms - A,Arun Balaji,4,DSA,Monday,0230PM,0400PM,4,Tutorial,LR1
+CSE102,Data Structures & Algorithms - A,Arun Balaji,4,DSA,Monday,0230PM,0400PM,5,Tutorial,LR2
+CSE102,Data Structures & Algorithms - A,Arun Balaji,4,DSA,Wednesday,0230PM,0400PM,1,Tutorial,S01
+CSE102,Data Structures & Algorithms - A,Arun Balaji,4,DSA,Wednesday,0230PM,0400PM,2,Tutorial,S02
+CSE102,Data Structures & Algorithms - A,Arun Balaji,4,DSA,Wednesday,0230PM,0400PM,3,Tutorial,C03
+CSE102,Data Structures & Algorithms - B,Rahul Purandare,4,DSA,Tuesday,0930AM,1030AM,0,Lecture,C11
+CSE102,Data Structures & Algorithms - B,Rahul Purandare,4,DSA,Wednesday,1030AM,1130AM,0,Lecture,C11
+CSE102,Data Structures & Algorithms - B,Rahul Purandare,4,DSA,Friday,1030AM,1130AM,0,Lecture,C11
+CSE102,Data Structures & Algorithms - B,Rahul Purandare,4,DSA,Monday,0200PM,0400PM,1,Lab,L21
+CSE102,Data Structures & Algorithms - B,Rahul Purandare,4,DSA,Monday,0200PM,0400PM,2,Lab,L22
+CSE102,Data Structures & Algorithms - B,Rahul Purandare,4,DSA,Monday,0200PM,0400PM,3,Lab,L23
+CSE102,Data Structures & Algorithms - B,Rahul Purandare,4,DSA,Thursday,0200PM,0400PM,4,Lab,L21
+CSE102,Data Structures & Algorithms - B,Rahul Purandare,4,DSA,Thursday,0200PM,0400PM,5,Lab,L22
+CSE102,Data Structures & Algorithms - B,Rahul Purandare,4,DSA,Tuesday,0230PM,0400PM,3,Tutorial,LR1
+CSE102,Data Structures & Algorithms - B,Rahul Purandare,4,DSA,Tuesday,0230PM,0400PM,4,Tutorial,LR2
+CSE102,Data Structures & Algorithms - B,Rahul Purandare,4,DSA,Thursday,0200PM,0330PM,0,Lecture,LR1
+CSE102,Data Structures & Algorithms - B,Rahul Purandare,4,DSA,Thursday,0200PM,0330PM,0,Lecture,LR2
+CSE102,Data Structures & Algorithms - B,Rahul Purandare,4,DSA,Thursday,0200PM,0330PM,0,Lecture,LR3
+MTH201,Probability & Statistics - A,Sanjit Kaul,4,PS ,Monday,0900AM,1000AM,0,Lecture,C01
+MTH201,Probability & Statistics - A,Sanjit Kaul,4,PS ,Wednesday,0930AM,1030AM,0,Lecture,C01
+MTH201,Probability & Statistics - A,Sanjit Kaul,4,PS ,Thursday,0900AM,1000AM,0,Lecture,C01
+MTH201,Probability & Statistics - A,Sanjit Kaul,4,PS ,Friday,1130AM,0100PM,1,Tutorial,LR1
+MTH201,Probability & Statistics - A,Sanjit Kaul,4,PS ,Friday,1130AM,0100PM,2,Tutorial,LR2
+MTH201,Probability & Statistics - A,Sanjit Kaul,4,PS ,Friday,1130AM,0100PM,3,Tutorial,LR3
+MTH201,Probability & Statistics - A,Sanjit Kaul,4,PS ,Friday,1130AM,0100PM,4,Tutorial,S01
+MTH201,Probability & Statistics - A,Sanjit Kaul,4,PS ,Friday,1130AM,0100PM,5,Tutorial,S02
+MTH201,Probability & Statistics - B,Angshul Majumdar,4,PS ,Monday,1030AM,1130AM,0,Lecture,C11
+MTH201,Probability & Statistics - B,Angshul Majumdar,4,PS ,Wednesday,0930AM,1030AM,0,Lecture,C11
+MTH201,Probability & Statistics - B,Angshul Majumdar,4,PS ,Thursday,1030AM,1130AM,0,Lecture,C11
+MTH201,Probability & Statistics - B,Angshul Majumdar,4,PS ,Monday,0900AM,1030AM,1,Tutorial,LR1
+MTH201,Probability & Statistics - B,Angshul Majumdar,4,PS ,Monday,0900AM,1030AM,1,Tutorial,LR2
+MTH201,Probability & Statistics - B,Angshul Majumdar,4,PS ,Monday,0900AM,1030AM,1,Tutorial,LR3
+MTH201,Probability & Statistics - B,Angshul Majumdar,4,PS ,Monday,0900AM,1030AM,1,Tutorial,S01
+MTH201,Probability & Statistics - B,Angshul Majumdar,4,PS ,Monday,0900AM,1030AM,1,Tutorial,S02
+DES130,Introduction to Engineering Design,Aman Parnami,4,IED,Tuesday,1030AM,1200PM,0,Lecture,A11
+DES130,Introduction to Engineering Design,Aman Parnami,4,IED,Tuesday,1030AM,1200PM,0,Lecture,A12
+DES130,Introduction to Engineering Design,Aman Parnami,4,IED,Thursday,1000AM,1130AM,0,Lecture,A11
+DES130,Introduction to Engineering Design,Aman Parnami,4,IED,Thursday,1000AM,1130AM,0,Lecture,A12
+DES130,Introduction to Engineering Design,Aman Parnami,4,IED,Tuesday,0800AM,0930AM,0,Lecture,A11
+DES130,Introduction to Engineering Design,Aman Parnami,4,IED,Tuesday,0800AM,0930AM,0,Lecture,A12
+DES130,Introduction to Engineering Design,Aman Parnami,4,IED,Thursday,0830AM,1000AM,0,Lecture,A11
+DES130,Introduction to Engineering Design,Aman Parnami,4,IED,Thursday,0830AM,1000AM,0,Lecture,A12
+DES130,Introduction to Engineering Design,Aman Parnami,4,IED,Tuesday,0400PM,0600PM,5,Lab,L32
+DES130,Introduction to Engineering Design,Aman Parnami,4,IED,Thursday,0130PM,0330PM,3,Lab,L33
+DES130,Introduction to Engineering Design,Aman Parnami,4,IED,Tuesday,0330PM,0530PM,1,Lab,L32
+DES130,Introduction to Engineering Design,Aman Parnami,4,IED,Wednesday,0330PM,0530PM,4,Lab,L33
+DES130,Introduction to Engineering Design,Aman Parnami,4,IED,Friday,0400PM,0530PM,2,Lab,L33
+DES130,Introduction to Engineering Design,Aman Parnami,4,IED,Monday,0200PM,0400PM,5,Lab,L32
+DES130,Introduction to Engineering Design,Aman Parnami,4,IED,Tuesday,0200PM,0400PM,2,Lab,L32
+DES130,Introduction to Engineering Design,Aman Parnami,4,IED,Wednesday,0200PM,0400PM,1,Lab,L32
+DES130,Introduction to Engineering Design,Aman Parnami,4,IED,Thursday,0130PM,0330PM,4,Lab,L32
+DES130,Introduction to Engineering Design,Aman Parnami,4,IED,Friday,0200PM,0400PM,3,Lab,L32
+ECE113,Basic Electronics - A,Sanat Biswas,4,BE,Tuesday,1200PM,0100PM,0,Lecture,C01
+ECE113,Basic Electronics - A,Sanat Biswas,4,BE,Thursday,1130AM,1230PM,0,Lecture,C01
+ECE113,Basic Electronics - A,Sanat Biswas,4,BE,Friday,0930AM,1030AM,0,Lecture,C01
+ECE113,Basic Electronics - B,Vivek Bohara,4,BE,Tuesday,1200PM,0100PM,0,Lecture,C11
+ECE113,Basic Electronics - B,Vivek Bohara,4,BE,Thursday,1130AM,1230PM,0,Lecture,C11
+ECE113,Basic Electronics - B,Vivek Bohara,4,BE,Friday,0930AM,1030AM,0,Lecture,C11
+ECE113,Basic Electronics - A,Sanat Biswas,4,BE,Monday,1030AM,1130AM,1,Tutorial,LR1
+ECE113,Basic Electronics - A,Sanat Biswas,4,BE,Monday,1030AM,1130AM,2,Tutorial,LR2
+ECE113,Basic Electronics - A,Sanat Biswas,4,BE,Monday,1030AM,1130AM,3,Tutorial,LR3
+ECE113,Basic Electronics - A,Sanat Biswas,4,BE,Monday,1030AM,1130AM,4,Tutorial,S01
+ECE113,Basic Electronics - A,Sanat Biswas,4,BE,Monday,1030AM,1130AM,5,Tutorial,S02
+ECE113,Basic Electronics - B,Vivek Bohara,4,BE,Friday,1130AM,1230PM,1,Tutorial,LR1
+ECE113,Basic Electronics - B,Vivek Bohara,4,BE,Friday,1130AM,1230PM,2,Tutorial,LR2
+ECE113,Basic Electronics - B,Vivek Bohara,4,BE,Friday,1130AM,1230PM,3,Tutorial,LR3
+ECE113,Basic Electronics - B,Vivek Bohara,4,BE,Friday,1130AM,1230PM,4,Tutorial,S01
+ECE113,Basic Electronics - B,Vivek Bohara,4,BE,Friday,1130AM,1230PM,5,Tutorial,S02
+DES1xx,Design Drawing and Visualization,Indrani De Parker,4,DDV,Tuesday,1200PM,0130PM,0,Lecture,A11
+DES1xx,Design Drawing and Visualization,Indrani De Parker,4,DDV,Thursday,1130AM,0100PM,0,Lecture,A11
+DES1xx,Design Drawing and Visualization,Indrani De Parker,4,DDV,Tuesday,0400PM,0530PM,1,Lab,A11
+DES1xx,Design Drawing and Visualization,Indrani De Parker,4,DDV,Thursday,0330PM,0500PM,1,Lab,A11
+SSH101,Critical Thinking and Readings in Social Science,Aasim Khan,4,CTRSS,Tuesday,1200PM,0100PM,0,Lecture,C12
+SSH101,Critical Thinking and Readings in Social Science,Aasim Khan,4,CTRSS,Thursday,1130AM,1230PM,0,Lecture,C12
+SSH101,Critical Thinking and Readings in Social Science,Aasim Khan,4,CTRSS,Friday,0930AM,1030AM,0,Lecture,C12
+ECO101,Microeconomics,Gaurav Arora,4,ME,Monday,1130AM,0100PM,0,Lecture,C01
+ECO101,Microeconomics,Gaurav Arora,4,ME,Wednesday,1130AM,0100PM,0,Lecture,C01
+CSE202,Fundamentals of Database Systems,Vikram Goyal,4,DBMS,Tuesday,0830AM,1000AM,0,Lecture,C21
+CSE202,Fundamentals of Database Systems,Vikram Goyal,4,DBMS,Friday,0830AM,1000AM,0,Lecture,C21
+CSE202,Fundamentals of Database Systems,Vikram Goyal,4,DBMS,Wednesday,1000AM,1130AM,1,Tutorial,LR1
+CSE202,Fundamentals of Database Systems,Vikram Goyal,4,DBMS,Wednesday,1000AM,1130AM,2,Tutorial,LR2
+CSE202,Fundamentals of Database Systems,Vikram Goyal,4,DBMS,Wednesday,1000AM,1130AM,3,Tutorial,LR3
+CSE202,Fundamentals of Database Systems,Vikram Goyal,4,DBMS,Wednesday,1000AM,1130AM,4,Tutorial,S01
+CSE222,Algorithm Design & Analysis,Debaraka Sebgupta,4,ADA,Monday,1000AM,1100AM,0,Lecture,C21
+CSE222,Algorithm Design & Analysis,Debaraka Sebgupta,4,ADA,Wednesday,0900AM,1000AM,0,Lecture,C21
+CSE222,Algorithm Design & Analysis,Debaraka Sebgupta,4,ADA,Thursday,1230PM,0130PM,0,Lecture,C21
+CSE222,Algorithm Design & Analysis,Debaraka Sebgupta,4,ADA,Tuesday,1130AM,0130PM,1,Lab,L21
+CSE222,Algorithm Design & Analysis,Debaraka Sebgupta,4,ADA,Tuesday,1130AM,0130PM,2,Lab,L22
+CSE222,Algorithm Design & Analysis,Debaraka Sebgupta,4,ADA,Tuesday,1130AM,0130PM,3,Lab,L23
+CSE222,Algorithm Design & Analysis,Debaraka Sebgupta,4,ADA,Friday,1130AM,0130PM,1,Tutorial,L21
+CSE222,Algorithm Design & Analysis,Debaraka Sebgupta,4,ADA,Friday,1130AM,0130PM,2,Tutorial,L22
+CSE222,Algorithm Design & Analysis,Debaraka Sebgupta,4,ADA,Friday,1130AM,0130PM,3,Tutorial,L23
+CSE222,Algorithm Design & Analysis,Debaraka Sebgupta,4,ADA,Monday,1100AM,0100PM,1,Lab,L21
+CSE222,Algorithm Design & Analysis,Debaraka Sebgupta,4,ADA,Monday,1100AM,0100PM,2,Lab,L22
+CSE222,Algorithm Design & Analysis,Debaraka Sebgupta,4,ADA,Wednesday,1130AM,0130PM,1,Tutorial,L21
+CSE222,Algorithm Design & Analysis,Debaraka Sebgupta,4,ADA,Wednesday,1130AM,0130PM,2,Tutorial,L22
+CSE231,Operating Systems,Sambuddho Chakravarty,4,OS,Monday,1100AM,1230PM,0,Lecture,C21
+CSE231,Operating Systems,Sambuddho Chakravarty,4,OS,Wednesday,1130AM,0100PM,0,Lecture,C21
+CSE231,Operating Systems,Sambuddho Chakravarty,4,OS,Thursday,1100AM,1230PM,1,Tutorial,LR1
+CSE231,Operating Systems,Sambuddho Chakravarty,4,OS,Thursday,1100AM,1230PM,2,Tutorial,LR2
+CSE231,Operating Systems,Sambuddho Chakravarty,4,OS,Thursday,1100AM,1230PM,3,Tutorial,LR3
+CSE231,Operating Systems,Sambuddho Chakravarty,4,OS,Thursday,1100AM,1230PM,4,Tutorial,S01
+CSE322,Theory of Computation,Debajyoti Bera,4,TOC,Tuesday,0400PM,0530PM,0,Lecture,C11
+CSE322,Theory of Computation,Debajyoti Bera,4,TOC,Friday,0400PM,0530PM,0,Lecture,C11
+CSE322,Theory of Computation,Debajyoti Bera,4,TOC,Wednesday,0230PM,0330PM,1,Tutorial,C22
+CSE322,Theory of Computation,Debajyoti Bera,4,TOC,Wednesday,0230PM,0330PM,2,Tutorial,C23
+CSE322,Theory of Computation,Debajyoti Bera,4,TOC,Wednesday,0230PM,0330PM,1,Tutorial,C24
+CSE322,Theory of Computation,Debajyoti Bera,4,TOC,Wednesday,0230PM,0330PM,2,Tutorial,C13
+ECE230,Fields and Waves,Shobha Sundaram,4,FW,Tuesday,1130AM,1230PM,0,Lecture,C02
+ECE230,Fields and Waves,Shobha Sundaram,4,FW,Thursday,1130AM,1230PM,0,Lecture,C02
+ECE230,Fields and Waves,Shobha Sundaram,4,FW,Friday,1130AM,1230PM,0,Lecture,C02
+ECE230,Fields and Waves,Shobha Sundaram,4,FW,Monday,1130AM,1230PM,1,Tutorial,LR1
+ECE230,Fields and Waves,Shobha Sundaram,4,FW,Monday,1130AM,1230PM,2,Tutorial,LR2
+ECE214,Integrated Electronics,Sujay Deb,4,IE ,Tuesday,1000AM,1130AM,0,Lecture,C02
+ECE214,Integrated Electronics,Sujay Deb,4,IE ,Friday,1000AM,1130AM,0,Lecture,C02
+ECE214,Integrated Electronics,Sujay Deb,4,IE ,Wednesday,0930AM,1230PM,1,Lab,SCL
+ECE214,Integrated Electronics,Sujay Deb,4,IE ,Wednesday,0930AM,1230PM,2,Lab,L33
+ECE214,Integrated Electronics,Sujay Deb,4,IE ,Thursday,1230PM,0130PM,1,Tutorial,LR1
+ECE214,Integrated Electronics,Sujay Deb,4,IE ,Thursday,1230PM,0130PM,2,Tutorial,LR2
+ECE240,Principles of Communication Systems,Anand Srivastava,4,PCS,Monday,1230PM,0200PM,0,Lecture,C02
+ECE240,Principles of Communication Systems,Anand Srivastava,4,PCS,Thursday,0930AM,1100AM,0,Lecture,C02
+ECE240,Principles of Communication Systems,Anand Srivastava,4,PCS,Tuesday,1230PM,0130PM,1,Tutorial,LR1
+ECE240,Principles of Communication Systems,Anand Srivastava,4,PCS,Tuesday,1230PM,0130PM,2,Tutorial,LR2
+ECE240,Principles of Communication Systems,Anand Srivastava,4,PCS,Thursday,0230PM,0400PM,1,Tutorial,S01
+MTH204,Maths IV,Sarthok Sircar,4,M-IV,Tuesday,0230PM,0400PM,0,Lecture,C21
+MTH204,Maths IV,Sarthok Sircar,4,M-IV,Friday,0230PM,0400PM,0,Lecture,C21
+MTH204,Maths IV,Sarthok Sircar,4,M-IV,Monday,0830AM,1000AM,1,Tutorial,C22
+MTH204,Maths IV,Sarthok Sircar,4,M-IV,Tuesday,0400PM,0530PM,1,Tutorial,LR1
+MTH204,Maths IV,Sarthok Sircar,4,M-IV,Tuesday,0400PM,0530PM,2,Tutorial,LR2
+MTH204,Maths IV,Sarthok Sircar,4,M-IV,Thursday,1000AM,1130AM,1,Tutorial,S02
+MTH204,Maths IV,Sarthok Sircar,4,M-IV,Thursday,1000AM,1130AM,2,Tutorial,C24
+MTH212,Abstract Algebra-I,Anuradha Sharma,4,ALG,Tuesday,1000AM,1130AM,0,Lecture,C02
+MTH212,Abstract Algebra-I,Anuradha Sharma,4,ALG,Friday,1000AM,1130AM,0,Lecture,C02
+MTH212,Abstract Algebra-I,Anuradha Sharma,4,ALG,Wednesday,0230PM,0400PM,1,Tutorial,LR2
+MTH212,Abstract Algebra-I,Anuradha Sharma,4,ALG,Wednesday,1000AM,1130AM,1,Tutorial,C12
+MTH212,Abstract Algebra-I,Anuradha Sharma,4,ALG,Wednesday,1000AM,1130AM,2,Tutorial,C24
+MTH200,Introduction to Mathematical Logic,Sankha Basu,4,IML,Monday,0230PM,0400PM,0,Lecture,C02
+MTH200,Introduction to Mathematical Logic,Sankha Basu,4,IML,Thursday,0230PM,0400PM,0,Lecture,C02
+CSE234,Computer Architecture and Operating Systems,Bijoy Chand Chatterjee,4,CAOS,Tuesday,1230PM,0130PM,0,Lecture,C02
+CSE234,Computer Architecture and Operating Systems,Bijoy Chand Chatterjee,4,CAOS,Friday,1230PM,0130PM,0,Lecture,C02
+BIO213,Introduction to Quantitative Biology,Subhadip Raichudhuri,4,IQB,Monday,0230PM,0400PM,0,Lecture,C21
+BIO213,Introduction to Quantitative Biology,Subhadip Raichudhuri,4,IQB,Thursday,0230PM,0400PM,0,Lecture,C21
+MTH303,Graph Theory,Samaresh Chatterji(V),4,GT,Monday,0400PM,0530PM,0,Lecture,C21
+MTH303,Graph Theory,Samaresh Chatterji(V),4,GT,Wednesday,0400PM,0530PM,0,Lecture,C21
+MTH303,Graph Theory,Samaresh Chatterji(V),4,GT,Monday,1230PM,0200PM,1,Tutorial,C22
+MTH303,Graph Theory,Samaresh Chatterji(V),4,GT,Monday,1230PM,0200PM,2,Tutorial,C23
+MTH303,Graph Theory,Samaresh Chatterji(V),4,GT,Monday,1230PM,0200PM,3,Tutorial,C24
+MTH303,Graph Theory,Samaresh Chatterji(V),4,GT,Wednesday,0230PM,0400PM,1,Tutorial,LR1
+MTH311,Combinatorics and its Applications,Samrith Ram,4,CIA,Monday,0230PM,0400PM,0,Lecture,C03
+MTH311,Combinatorics and its Applications,Samrith Ram,4,CIA,Thursday,0230PM,0400PM,0,Lecture,C03
+BIO531,Introduction to Mathematical Biology,Subhadip Raichudhuri,4,IMB,Wednesday,1000AM,1130AM,0,Lecture,A01
+BIO531,Introduction to Mathematical Biology,Subhadip Raichudhuri,4,IMB,Friday,1000AM,1130AM,0,Lecture,A01
+BIO534,Introduction to Computational Neuroscience,Sriram K,4,ICN,Tuesday,1000AM,1130AM,0,Lecture,C13
+BIO534,Introduction to Computational Neuroscience,Sriram K,4,ICN,Thursday,1130AM,0100PM,0,Lecture,C13
+BIO533,Systems and Synthetic Biology,Sriram K,4,SSB,Tuesday,0230PM,0400PM,0,Lecture,C03
+BIO533,Systems and Synthetic Biology,Sriram K,4,SSB,Friday,0230PM,0400PM,0,Lecture,C03
+BIO571,Network Science,Ganesh Bagler,4,NS,Tuesday,1130AM,0100PM,0,Lecture,C22
+BIO571,Network Science,Ganesh Bagler,4,NS,Friday,1130AM,0100PM,0,Lecture,C22
+BIO523,Cheminoformatics,Ganesh Bagler,4,CHI,Tuesday,0400PM,0530PM,0,Lecture,C03
+BIO523,Cheminoformatics,Ganesh Bagler,4,CHI,Friday,0400PM,0530PM,0,Lecture,C03
+BIO543,Big Data Mining in Healthcare,GPS Raghava,4,BDMH,Monday,0230PM,0400PM,0,Lecture,C24
+BIO543,Big Data Mining in Healthcare,GPS Raghava,4,BDMH,Thursday,0230PM,0400PM,0,Lecture,C24
+CSE341/CSE541,Biometrics/Advanced Biometrics,Mayank Vatsa,4,BIOM,Wednesday,0400PM,0700PM,0,Lecture,C02
+CSE342/CSE542,Pattern Recognition,Richa Singh,4,PR,Tuesday,0230PM,0400PM,0,Lecture,A01
+CSE342/CSE542,Pattern Recognition,Richa Singh,4,PR,Friday,0230PM,0400PM,0,Lecture,A01
+CSE344/CSE544/ECE344/ECE544,Computer Vision,Saket Anand,4,CV,Monday,1130AM,0100PM,0,Lecture,A01
+CSE344/CSE544/ECE344/ECE544,Computer Vision,Saket Anand,4,CV,Wednesday,1130AM,0100PM,0,Lecture,A01
+CSE501,Designing Human-Centred Systems,Ponnurangam Kumaraguru,4,DHCS,Monday,1000AM,1130AM,0,Lecture,C01
+CSE501,Designing Human-Centred Systems,Ponnurangam Kumaraguru,4,DHCS,Thursday,1000AM,1130AM,0,Lecture,C01
+CSE502,Foundations of Parallel Programming,Vivek Kumar,4,FPP,Monday,1130AM,0100PM,0,Lecture,A12
+CSE502,Foundations of Parallel Programming,Vivek Kumar,4,FPP,Wednesday,1130AM,0100PM,0,Lecture,A12
+CSE502,Foundations of Parallel Programming,Vivek Kumar,4,FPP,Wednesday,0430PM,0530PM,0,Lecture,L23
+CSE508,Information Retrieval,Tanmoy Chakraborty,4,IR,Tuesday,1130AM,0100PM,0,Lecture,A02
+CSE508,Information Retrieval,Tanmoy Chakraborty,4,IR,Friday,1130AM,0100PM,0,Lecture,A02
+CSE510A,Big Data Analytics ,Vikram Goyal,2,BDA,Tuesday,0400PM,0530PM,0,Lecture,C02
+CSE523,Randomised Algorithms,Rajiv Raman,4,RA,Tuesday,1000AM,1130AM,0,Lecture,C23
+CSE523,Randomised Algorithms,Rajiv Raman,4,RA,Thursday,1130AM,0100PM,0,Lecture,C23
+CSE524,Theory of Modern Cryptography,Donghoon Chang,4,TMC,Tuesday,1000AM,1130AM,0,Lecture,C03
+CSE524,Theory of Modern Cryptography,Donghoon Chang,4,TMC,Thursday,1130AM,0100PM,0,Lecture,C03
+CSE734,Advance Topics in Mobile Computing,Mukulika Maity,4,ATMC,Monday,0230PM,0400PM,0,Lecture,C03
+CSE734,Advance Topics in Mobile Computing,Mukulika Maity,4,ATMC,Thursday,0230PM,0400PM,0,Lecture,C03
+CSE535,Mobile Computing,Pushpendra Singh,4,MC,Tuesday,0400PM,0530PM,0,Lecture,A01
+CSE535,Mobile Computing,Pushpendra Singh,4,MC,Friday,0400PM,0530PM,0,Lecture,A01
+CSE560,GPU Computing,Ojaswa Sharma,4,GPU,Monday,1000AM,1130AM,0,Lecture,C13
+CSE560,GPU Computing,Ojaswa Sharma,4,GPU,Thursday,1000AM,1130AM,0,Lecture,C13
+CSE561,Probabilistic Graphical Models,Chetan Arora,4,PGM,Monday,1000AM,1130AM,0,Lecture,C03
+CSE561,Probabilistic Graphical Models,Chetan Arora,4,PGM,Thursday,1000AM,1130AM,0,Lecture,C03
+CSE609,Statistical Computation,Vibhor Kumar,4,SC,Monday,1000AM,1130AM,0,Lecture,C23
+CSE609,Statistical Computation,Vibhor Kumar,4,SC,Thursday,1000AM,1130AM,0,Lecture,C23
+CSE622,Introduction to Quantum Computing,Debajyoti Bera,4,IQC,Tuesday,1130AM,0100PM,0,Lecture,C03
+CSE622,Introduction to Quantum Computing,Debajyoti Bera,4,IQC,Friday,1130AM,0100PM,0,Lecture,C03
+CSE633/ECE670,Robotics,P B Sujit,4,Rob,Tuesday,1130AM,0100PM,0,Lecture,C23
+CSE633/ECE670,Robotics,P B Sujit,4,Rob,Friday,1130AM,0100PM,0,Lecture,C23
+CSE641,Deep Learning,Chetan Arora+ Saket Anand,4,DL,Monday,0230PM,0400PM,0,Lecture,A01
+CSE641,Deep Learning,Chetan Arora+ Saket Anand,4,DL,Thursday,0230PM,0400PM,0,Lecture,A01
+CSE694F/ECE651,Multimedia Security,A V Subramanyam,4,MS,Wednesday,1000AM,1130AM,0,Lecture,C22
+CSE694F/ECE651,Multimedia Security,A V Subramanyam,4,MS,Friday,1000AM,1130AM,0,Lecture,C22
+CSE570,Virtual Reality,Ojaswa Sharma,4,VR,Monday,0230PM,0400PM,0,Lecture,C13
+CSE570,Virtual Reality,Ojaswa Sharma,4,VR,Thursday,0230PM,0400PM,0,Lecture,C13
+CSE570,Virtual Reality,Ojaswa Sharma,4,VR,Wednesday,0230PM,0400PM,1,Lab,L23
+CSE563,Multimedia Computing and Applications,Rajiv Ratn Shah,4,MCA,Wednesday,1000AM,1130AM,0,Lecture,C13
+CSE563,Multimedia Computing and Applications,Rajiv Ratn Shah,4,MCA,Friday,1000AM,1130AM,0,Lecture,C13
+CSE577,Advanced Internet of Things,Juhi Ranjan,4,AIOT,Wednesday,1000AM,1130AM,0,Lecture,C03
+CSE577,Advanced Internet of Things,Juhi Ranjan,4,AIOT,Friday,1000AM,1130AM,0,Lecture,C03
+CSE631,Advanced Operating Systems,Piyus Kedia,4,AOS,Wednesday,1000AM,1130AM,0,Lecture,A02
+CSE631,Advanced Operating Systems,Piyus Kedia,4,AOS,Friday,1000AM,1130AM,0,Lecture,A02
+CSE606,Data Warehousing,Naveen Prakash(G),4,DW,Monday,0400PM,0530PM,0,Lecture,C13
+CSE606,Data Warehousing,Naveen Prakash(G),4,DW,Wednesday,0400PM,0530PM,0,Lecture,C13
+CSE5xx/ECE5xx,Reinforcement Learning,Sanjit Kaul,4,RL,Monday,1130AM,0100PM,0,Lecture,C03
+CSE5xx/ECE5xx,Reinforcement Learning,Sanjit Kaul,4,RL,Wednesday,1130AM,0100PM,0,Lecture,C03
+DES302,Animation and Graphics,Manohar Khushlani(V),4,A&G,Tuesday,1000AM,1130AM,0,Lecture,C12
+DES302,Animation and Graphics,Manohar Khushlani(V),4,A&G,Thursday,1130AM,0100PM,0,Lecture,C12
+DES302,Animation and Graphics,Manohar Khushlani(V),4,A&G,Tuesday,1000AM,1130AM,0,Lecture,L21
+DES302,Animation and Graphics,Manohar Khushlani(V),4,A&G,Thursday,1130AM,0100PM,0,Lecture,L21
+DES5xx,Game Design and Development,Timoty Moyer,4,GDD,Tuesday,0230PM,0400PM,0,Lecture,L21
+DES5xx,Game Design and Development,Timoty Moyer,4,GDD,Friday,0230PM,0400PM,0,Lecture,L21
+ECE343,Mobile Communication,Abhijit Mitra(V),4,MCom,Tuesday,1130AM,0100PM,0,Lecture,C22
+ECE343,Mobile Communication,Abhijit Mitra(V),4,MCom,Friday,1130AM,0100PM,0,Lecture,C22
+ECE452/ECE552,Statistical Signal Processing,Pravesh Biyani,4,SSP,Monday,0230PM,0400PM,0,Lecture,C22
+ECE452/ECE552,Statistical Signal Processing,Pravesh Biyani,4,SSP,Thursday,0230PM,0400PM,0,Lecture,C22
+ECE510,Digital Hardware Design,Sumit Darak,4,DHD,Tuesday,1130AM,0100PM,0,Lecture,C24
+ECE510,Digital Hardware Design,Sumit Darak,4,DHD,Friday,1130AM,0130PM,0,Lab,L32
+ECE534,Optical Communication Systems,Anand Srivastava,4,OCMS,Tuesday,1000AM,1130AM,0,Lecture,C22
+ECE534,Optical Communication Systems,Anand Srivastava,4,OCMS,Thursday,1130AM,0100PM,0,Lecture,C22
+ECE539,Wireless System Implementation,Vivek Bohara  ,4,WSI,Tuesday,0230PM,0400PM,0,Lecture,C24
+ECE539,Wireless System Implementation,Vivek Bohara  ,4,WSI,Friday,0230PM,0400PM,0,Lecture,C24
+ECE571,Optimal Control Systems,P B Sujit,4,OCS,Tuesday,0230PM,0400PM,0,Lecture,C22
+ECE571,Optimal Control Systems,P B Sujit,4,OCS,Friday,0230PM,0400PM,0,Lecture,C22
+ECE573,Advanced Embedded Logic Design,Sumit Mediratta(V),4,AELD,Monday,1130AM,0100PM,0,Lecture,A02
+ECE573,Advanced Embedded Logic Design,Sumit Mediratta(V),4,AELD,Wednesday,1130AM,0100PM,0,Lecture,A02
+ECE611,Memory Design and Testing,Anuj Grover,4,MDT,Tuesday,0400PM,0530PM,0,Lecture,C13
+ECE611,Memory Design and Testing,Anuj Grover,4,MDT,Friday,0400PM,0530PM,0,Lecture,C13
+ECE612,Mixed Signal Design,Pydi Ganga Mamba Bahubalindruni,4,MSD,Wednesday,1000AM,1130AM,0,Lecture,C23
+ECE612,Mixed Signal Design,Pydi Ganga Mamba Bahubalindruni,4,MSD,Friday,1000AM,1130AM,0,Lecture,C23
+ECE632,Radar Systems,Shobha Sundaram,4,RS,Tuesday,0400PM,0530PM,0,Lecture,C22
+ECE632,Radar Systems,Shobha Sundaram,4,RS,Friday,0400PM,0530PM,0,Lecture,C22
+ECE1517,Introduction to Nanoelectronics,Sneh Saurabh,4,INE,Monday,1000AM,1130AM,0,Lecture,A01
+ECE1517,Introduction to Nanoelectronics,Sneh Saurabh,4,INE,Thursday,1000AM,1130AM,0,Lecture,A01
+ECE536s,Optical Networks,Bijoy Chand Chatterjee(V),2,ON,Wednesday,0400PM,0530PM,0,Lecture,C23
+ENG599s,Research Methods,Anubha Gupta,2,RM,Monday,0400PM,0530PM,0,Lecture,C11
+MTH305/MTH505,Linear Optimization,Pravesh Biyani,4,LO,Monday,1000AM,1130AM,0,Lecture,C22
+MTH305/MTH505,Linear Optimization,Pravesh Biyani,4,LO,Thursday,1000AM,1130AM,0,Lecture,C22
+MTH570,Numerical Solutions for Differential Equations,Kaushik Kalyanaraman,4,NSDE,Tuesday,0230PM,0400PM,0,Lecture,C13
+MTH570,Numerical Solutions for Differential Equations,Kaushik Kalyanaraman,4,NSDE,Friday,0230PM,0400PM,0,Lecture,C13
+ECO313,Market Design,Rakesh Chaturvedi,4,MD,Monday,0400PM,0530PM,0,Lecture,C22
+ECO313,Market Design,Rakesh Chaturvedi,4,MD,Wednesday,0400PM,0530PM,0,Lecture,C22
+ENT402,Entrepreneurship II,Hemant Kumar(V),2,ENTII,Monday,0230PM,0400PM,0,Lecture,C23
+FIN402,Valuation and Portfolio Management,Pankaj Vajpayee(V),4,VPM,Tuesday,1130AM,0100PM,0,Lecture,C21
+FIN402,Valuation and Portfolio Management,Pankaj Vajpayee(V),4,VPM,Friday,1130AM,0100PM,0,Lecture,C21
+MGT310,Effective Supply Chain Management for E Commerce,Sanjiva Dubey(G),4,SCM,Tuesday,0400PM,0530PM,0,Lecture,C24
+MGT310,Effective Supply Chain Management for E Commerce,Sanjiva Dubey(G),4,SCM,Friday,0400PM,0530PM,0,Lecture,C24
+PSY202,Positive Psychology,Akshay Kumar(V),4,PPSY,Monday,0400PM,0530PM,0,Lecture,C01
+PSY202,Positive Psychology,Akshay Kumar(V),4,PPSY,Wednesday,0400PM,0530PM,0,Lecture,C01
+PSY301,Introduction to Cognitive Psychology,Venkat Ratandeep Suri,4,CPSY,Monday,0400PM,0530PM,0,Lecture,C24
+PSY301,Introduction to Cognitive Psychology,Venkat Ratandeep Suri,4,CPSY,Wednesday,0400PM,0530PM,0,Lecture,C24
+SOC201,Introduction to Sociology/Anthropology,Amrit Srinivasan(V),4,ISA,Monday,1130AM,0100PM,0,Lecture,C13
+SOC201,Introduction to Sociology/Anthropology,Amrit Srinivasan(V),4,ISA,Wednesday,1130AM,0100PM,0,Lecture,C13
+SOC205,Anthropology of Social Media,Shriram Venkatraman,4,ASM,Monday,1130AM,0100PM,0,Lecture,A11
+SOC205,Anthropology of Social Media,Shriram Venkatraman,4,ASM,Wednesday,1130AM,0100PM,0,Lecture,A11
+SSH121,Introduction to Philosophy,Raj Ayyar(V),4,IPHI,Monday,1130AM,0100PM,0,Lecture,C12
+SSH121,Introduction to Philosophy,Raj Ayyar(V),4,IPHI,Wednesday,1130AM,0100PM,0,Lecture,C12
+SSH124,Critical Thinking,Raj Ayyar(V),4,CT ,Monday,0400PM,0530PM,0,Lecture,C12
+SSH124,Critical Thinking,Raj Ayyar(V),4,CT ,Wednesday,0400PM,0530PM,0,Lecture,C12
+SSH214,Introduction to the Study of Literature,Honey Jhalani(G),4,Lit,Monday,0400PM,0530PM,0,Lecture,C03
+SSH214,Introduction to the Study of Literature,Honey Jhalani(G),4,Lit,Wednesday,0400PM,0530PM,0,Lecture,C03
+SSH217,Indian Poetry through the Ages,Saumya Kulshreshtha(G),2,IPA,Tuesday,0430PM,0600PM,0,Lecture,C12
+CSE5xx ,Approximation Algorithm,,4,AAG,Tuesday,1130AM,0100PM,0,Lecture,C13
+CSE5xx ,Approximation Algorithm,,4,AAG,Friday,1130AM,0100PM,0,Lecture,C13
