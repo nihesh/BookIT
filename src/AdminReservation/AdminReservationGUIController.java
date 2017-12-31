@@ -309,7 +309,7 @@ public class AdminReservationGUIController implements Initializable{
             out.close();
             in.close();
             server.close();
-            JOptionPane.showMessageDialog(null, "Download Complete! The downloaded file is located in ./src/AppData/Downloads", "Notification", JOptionPane.ERROR_MESSAGE);
+            Notification.throwAlert("Notification","Download Complete! The downloaded file is located in ./src/AppData/Downloads");
         }
         catch(IOException e){
             System.out.println(e.getMessage());
@@ -451,7 +451,7 @@ public class AdminReservationGUIController implements Initializable{
                 showLogo();
             }
             else{
-                JOptionPane.showMessageDialog(null, "Either the old password is wrong, or the new passwords don't match", "Error", JOptionPane.ERROR_MESSAGE);
+                Notification.throwAlert("Error","Either the old password is wrong, or the new passwords don't match");
             }
         }
         oldPass.clear();
@@ -491,7 +491,7 @@ public class AdminReservationGUIController implements Initializable{
             setDate(activeDate);
             topPane.setDisable(true);
             mainPane.setDisable(true);
-            JOptionPane.showMessageDialog(null, "Sorry, BookIT server is down", "Server Error", JOptionPane.ERROR_MESSAGE);
+            Notification.throwAlert("Server Error","Sorry, BookIT server is down");
         }
     }
     /**
@@ -665,7 +665,7 @@ public class AdminReservationGUIController implements Initializable{
     public void showRequests(){
         ArrayList<Reservation> requests = activeUser.getRequest(false);              // GUI Integration begins
         if(requests == null){
-            JOptionPane.showMessageDialog(null, "There are no more pending requests", "Error", JOptionPane.ERROR_MESSAGE);
+            Notification.throwAlert("Notification","There are no more pending requests");
             return;
         }
         requestProcessing = true;
@@ -984,7 +984,7 @@ public class AdminReservationGUIController implements Initializable{
             chosenCourse = courseDropDown.getSelectionModel().getSelectedItem().toString();
         }
         catch(NullPointerException e){
-            JOptionPane.showMessageDialog(null, "Course Field can't be empty", "Error", JOptionPane.ERROR_MESSAGE);
+            Notification.throwAlert("Error","Course Field can't be empty");
             return;
         }
         String chosenGroup;
@@ -999,7 +999,7 @@ public class AdminReservationGUIController implements Initializable{
             chosenPurpose = purposeDropDown.getSelectionModel().getSelectedItem().toString();
         }
         catch(NullPointerException e){
-            JOptionPane.showMessageDialog(null, "Purpose Field can't be empty", "Error", JOptionPane.ERROR_MESSAGE);
+            Notification.throwAlert("Error","Purpose Field can't be empty");
             return;
         }
         String chosenFaculty;
@@ -1020,7 +1020,7 @@ public class AdminReservationGUIController implements Initializable{
             listOfReservations.add(r);
         }                                                   // GUI Integration Ends
         if(!Admin.checkBulkBooking(activeRoom, chosenSlots, startDate.getValue(), endDate.getValue(), false)){
-            JOptionPane.showMessageDialog(null, "Cannot complete booking. Please close this session and try again", "Error", JOptionPane.ERROR_MESSAGE);
+            Notification.throwAlert("Error","Cannot complete booking as there is some other confirmed booking in one of the slots that you are trying to book");
             return;
         }
         for(int i=0;i<listOfReservations.size();i++){
@@ -1037,6 +1037,7 @@ public class AdminReservationGUIController implements Initializable{
         String chosenPurpose;
         chosenPurpose = purposeBox.getText();
         if(chosenPurpose.equals("")){
+            Notification.throwAlert("Error","Purpose field can't be empty");
             return;
         }
         String chosenFaculty="";
@@ -1051,11 +1052,13 @@ public class AdminReservationGUIController implements Initializable{
             listOfReservations.add(r);
         }                                                   // GUI Integration Ends
         if(!Admin.checkBulkBooking(activeRoom, chosenSlots, startDate.getValue(), endDate.getValue(), false)){
-            JOptionPane.showMessageDialog(null, "Cannot complete booking. Please close this session and try again", "Error", JOptionPane.ERROR_MESSAGE);
+            Notification.throwAlert("Cannot complete booking. Please close this session and try again", "Error");
             return;
         }
         for(int i=0;i<listOfReservations.size();i++){
-            activeUser.bookRoom(startDate.getValue(), endDate.getValue(), listOfReservations.get(i).getReservationSlot(), listOfReservations.get(i), false);
+            if(!activeUser.bookRoom(startDate.getValue(), endDate.getValue(), listOfReservations.get(i).getReservationSlot(), listOfReservations.get(i), false)){
+                Notification.throwAlert("Booking Error","The booking couldn't be completed as one of the slots you've chosen has been booked. Please refresh the page and try a different slot");
+            }
         }
         closeReservationPane();
         flyRight();
@@ -1136,11 +1139,11 @@ public class AdminReservationGUIController implements Initializable{
     public void preBookingProceed(){
         try {
             if(startDate.getValue().isAfter(endDate.getValue())){
-                JOptionPane.showMessageDialog(null, "Start Date is after End Date", "Error", JOptionPane.ERROR_MESSAGE);
+                Notification.throwAlert("Error","Start Date is after End Date");
                 return;
             }
             if (!Admin.checkBulkBooking(activeRoom,chosenSlots, startDate.getValue(), endDate.getValue(), false)) {
-                JOptionPane.showMessageDialog(null, "The requested slots on some of the requested days can't be completed as there is some other confirmed booking in this range", "Error", JOptionPane.ERROR_MESSAGE);
+                Notification.throwAlert("Error","The requested slots on some of the requested days can't be completed as there is some other confirmed booking in this range");
                 return;
             }
             currentPurpose = optionDropDown.getSelectionModel().getSelectedItem().toString();

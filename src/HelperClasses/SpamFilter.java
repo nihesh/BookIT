@@ -36,6 +36,7 @@ public class SpamFilter {
         totalSpam = 0;
         try {
             System.out.println("Setting up spam filter... ");
+            System.out.println("Spam Filter has been disabled due to inaccurate predictions");
             dict = new HashMap<>();
             Scanner sc = new Scanner(new BufferedReader(new FileReader("./src/AppData/SpamFilterDataset/dictionary.txt")));
             while (sc.hasNext()) {

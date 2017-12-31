@@ -485,7 +485,7 @@ public class StudentReservationGUIController implements Initializable{
                 showLogo();
             }
             else{
-                JOptionPane.showMessageDialog(null, "Either the old password is wrong, or the new passwords don't match", "Error", JOptionPane.ERROR_MESSAGE);
+                Notification.throwAlert("Error","Either the old password is wrong, or the new passwords don't match");
             }
         }
         oldPass.clear();
@@ -525,7 +525,7 @@ public class StudentReservationGUIController implements Initializable{
             setDate(activeDate);
             topPane.setDisable(true);
             mainPane.setDisable(true);
-            JOptionPane.showMessageDialog(null, "Sorry, BookIT server is down", "Server Error", JOptionPane.ERROR_MESSAGE);
+            Notification.throwAlert("Server Error","Sorry, BookIT server is down");
         }
     }
     /**
@@ -933,7 +933,7 @@ public class StudentReservationGUIController implements Initializable{
             chosenCourse = courseDropDown.getSelectionModel().getSelectedItem().toString();
         }
         catch(NullPointerException e){
-            JOptionPane.showMessageDialog(null, "Course Field can't be empty", "Error", JOptionPane.ERROR_MESSAGE);
+            Notification.throwAlert("Error","Course Field can't be empty");
             return;
         }
         String chosenGroup;
@@ -948,7 +948,7 @@ public class StudentReservationGUIController implements Initializable{
             chosenPurpose = purposeDropDown.getSelectionModel().getSelectedItem().toString();
         }
         catch(NullPointerException e){
-            JOptionPane.showMessageDialog(null, "Purpose Field can't be empty", "Error", JOptionPane.ERROR_MESSAGE);
+            Notification.throwAlert("Error","Purpose Field can't be empty");
             return;
         }
         String chosenFaculty;
@@ -970,7 +970,7 @@ public class StudentReservationGUIController implements Initializable{
             listOfReservations.add(r);
         }                                                   // GUI Integration Ends
         if(!activeUser.sendReservationRequest(listOfReservations, false)){
-            JOptionPane.showMessageDialog(null, "The booking couldn't be completed as there is another reservation for the course corresponding to this time slot", "Booking Error", JOptionPane.ERROR_MESSAGE);
+            Notification.throwAlert("Booking Error","The booking couldn't be completed as there is another reservation for the course corresponding to this time slot");
         }
         else{
             for(int i=0;i<chosenSlots.size();i++){
@@ -988,15 +988,9 @@ public class StudentReservationGUIController implements Initializable{
      */
     public void bookingCompleted2(){
         String chosenPurpose="";
-        try {
-            chosenPurpose = purposeBox.getText();
-        }
-        catch(NullPointerException e){
-            JOptionPane.showMessageDialog(null, "Purpose Field can't be empty", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
+        chosenPurpose = purposeBox.getText();
         if(chosenPurpose.equals("")){
-            JOptionPane.showMessageDialog(null, "Purpose Field can't be empty", "Error", JOptionPane.ERROR_MESSAGE);
+            Notification.throwAlert("Error","Purpose field can't be empty");
             return;
         }
         String chosenMessage;
@@ -1011,7 +1005,7 @@ public class StudentReservationGUIController implements Initializable{
             listOfReservations.add(r);
         }                                                   // GUI Integration Ends
         if(!activeUser.sendReservationRequest(listOfReservations, false)){
-            JOptionPane.showMessageDialog(null, "The booking couldn't be completed as one of the slots you've chosen has been booked. Please refresh the page and try again", "Booking Error", JOptionPane.ERROR_MESSAGE);
+            Notification.throwAlert("Booking Error","The booking couldn't be completed as one of the slots you've chosen has been booked. Please refresh the page and try a different slot");
         }
         else{
             for(int i=0;i<chosenSlots.size();i++){

@@ -381,7 +381,7 @@ public class FacultyReservationGUIController implements Initializable{
                 showLogo();
             }
             else{
-                JOptionPane.showMessageDialog(null, "Either the old password is wrong, or the new passwords don't match", "Error", JOptionPane.ERROR_MESSAGE);
+                Notification.throwAlert("Error","Either the old password is wrong, or the new passwords don't match");
             }
         }
         oldPass.clear();
@@ -438,7 +438,7 @@ public class FacultyReservationGUIController implements Initializable{
             setDate(activeDate);
             topPane.setDisable(true);
             mainPane.setDisable(true);
-            JOptionPane.showMessageDialog(null, "Sorry, BookIT server is down", "Server Error", JOptionPane.ERROR_MESSAGE);
+            Notification.throwAlert("Server Error","Sorry, BookIT server is down");
         }
     }
 
@@ -860,7 +860,7 @@ public class FacultyReservationGUIController implements Initializable{
             chosenCourse = courseDropDown.getSelectionModel().getSelectedItem().toString();
         }
         catch(NullPointerException e){
-            JOptionPane.showMessageDialog(null, "Course Field can't be empty", "Error", JOptionPane.ERROR_MESSAGE);
+            Notification.throwAlert("Error","Course Field can't be empty");
             return;
         }
         String chosenGroup;
@@ -875,7 +875,7 @@ public class FacultyReservationGUIController implements Initializable{
             chosenPurpose = purposeDropDown.getSelectionModel().getSelectedItem().toString();
         }
         catch(NullPointerException e){
-            JOptionPane.showMessageDialog(null, "Purpose Field can't be empty", "Error", JOptionPane.ERROR_MESSAGE);
+            Notification.throwAlert("Error","Purpose Field can't be empty");
             return;
         }
         String chosenFaculty;
@@ -910,7 +910,7 @@ public class FacultyReservationGUIController implements Initializable{
         String chosenPurpose;
         chosenPurpose = purposeBox.getText();
         if(chosenPurpose.equals("")){
-            JOptionPane.showMessageDialog(null, "Purpose Field can't be empty", "Error", JOptionPane.ERROR_MESSAGE);
+            Notification.throwAlert("Error","Purpose field can't be empty");
             return;
         }
         String chosenFaculty="";
@@ -925,7 +925,9 @@ public class FacultyReservationGUIController implements Initializable{
             listOfReservations.add(r);
         }                                                   // GUI Integration Ends
         for(int i=0;i<listOfReservations.size();i++){
-            activeUser.bookRoom(listOfReservations.get(i).getTargetDate(),listOfReservations.get(i).getTargetDate(), listOfReservations.get(i).getReservationSlot(), listOfReservations.get(i), false);
+            if(!activeUser.bookRoom(listOfReservations.get(i).getTargetDate(),listOfReservations.get(i).getTargetDate(), listOfReservations.get(i).getReservationSlot(), listOfReservations.get(i), false)){
+                Notification.throwAlert("Booking Error","The booking couldn't be completed as one of the slots you've chosen has been booked. Please refresh the page and try a different room");
+            }
         }
         closeReservationPane();
         flyRight();

@@ -6,7 +6,6 @@ import java.util.HashMap;
 import java.util.PriorityQueue;
 import java.util.Scanner;
 import HelperClasses.*;
-import com.sun.org.apache.xpath.internal.operations.Bool;
 
 
 /**
@@ -85,6 +84,14 @@ public class setup {
 		return temp;
     }
     public static void loadRoomAndCourseObjects() throws IOException,FileNotFoundException{
+        File directory = new File("./src/AppData/Room");
+        for(File file: directory.listFiles()){
+            file.delete();
+        }
+        directory = new File("./src/AppData/Course");
+        for(File file: directory.listFiles()){
+            file.delete();
+        }
         File file2 = new File("./src/AppData/ActiveUser");
         if(!file2.exists()){
             file2.mkdir();

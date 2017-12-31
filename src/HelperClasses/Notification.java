@@ -1,5 +1,7 @@
 package HelperClasses;
 
+import javafx.scene.control.Alert;
+
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -32,6 +34,13 @@ public class Notification implements Serializable{
 			this.room = room;}
 		this.reserverEmail = reserverEmail;
 		this.slotIDs = slotID;
+	}
+	public static void throwAlert(String title, String message){
+		Alert alert = new Alert(Alert.AlertType.INFORMATION);
+		alert.setTitle(title);
+		alert.setHeaderText(null);
+		alert.setContentText(message);
+		alert.showAndWait();
 	}
 	@Override
 	public String toString() {
