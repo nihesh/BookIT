@@ -301,17 +301,18 @@ public class setup {
     public static void clearUserData(){
         File file = new File("./src/AppData/User/");
         File[] users = file.listFiles();
-        for(int i=0;i<users.length;i++){
-            User u = User.getUser(users[i].getName().substring(0,users[i].getName().length()-4), false);
-            if(u.getUsertype().equals("Faculty")){
-                Faculty f = (Faculty) u;
-                f.getCourses().clear();
-                f.serialize(false);
-            }
-            else if(u.getUsertype().equals("Student")){
-                Student s = (Student) u;
-                s.getMyCourses().clear();
-                s.serialize(false);
+        if(users!=null) {
+            for (int i = 0; i < users.length; i++) {
+                User u = User.getUser(users[i].getName().substring(0, users[i].getName().length() - 4), false);
+                if (u.getUsertype().equals("Faculty")) {
+                    Faculty f = (Faculty) u;
+                    f.getCourses().clear();
+                    f.serialize(false);
+                } else if (u.getUsertype().equals("Student")) {
+                    Student s = (Student) u;
+                    s.getMyCourses().clear();
+                    s.serialize(false);
+                }
             }
         }
     }
@@ -351,6 +352,7 @@ public class setup {
             serialiseEmptyJoinCodeMap();
             serialiseFacultyHashMap();
             serialiseStudentHashMap();
+            serialiseAdminHashMap();
         }
         catch(Exception e){
         	e.printStackTrace();
