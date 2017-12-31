@@ -40,7 +40,7 @@ public class NotifyController {
 			alert.setHeaderText(null);
 			alert.setContentText("There are no new notifications");
 			alert.showAndWait();
-			Stage stage = (Stage) notificationPane.getScene().getWindow();
+			Stage stage = (Stage) rootPane.getScene().getWindow();
 			stage.close();
     	}
     	ArrayList<String> data = new ArrayList<>();
