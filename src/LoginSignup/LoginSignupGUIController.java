@@ -176,8 +176,11 @@ public class LoginSignupGUIController {
 				else if(usertype.equals("Student")) {
 					Guser = new Student(GName, null, Gemail, "Student", "", new ArrayList<String>());
 				}
-				else{
+				else if(usertype.equals("Admin")){
 					Guser= new Admin(GName, null, Gemail, "Admin");
+				}
+				else {
+					System.out.println("user doesnt belong to any type error");
 				}
 				Guser.serialize(false);
 				Guser.setActiveUser();

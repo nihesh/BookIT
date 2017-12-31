@@ -37,6 +37,7 @@ public class server {
     public static ExecutorService mailpool = Executors.newFixedThreadPool(2);
     public static HashMap<String, Integer> studhash=null;
     public static HashMap<String, Integer> faculthash=null;
+    public static HashMap<String, Integer> adminhash=null;
     public static HashMap<String, Integer> connectedIPs=null;
 
     public static void loadHashMaps(){
@@ -48,6 +49,8 @@ public class server {
             studhash = (HashMap<String, Integer>)in.readObject();
             in2 = new ObjectInputStream(new FileInputStream("./src/AppData/Server/FacultyEmails.dat"));
             faculthash = (HashMap<String, Integer>)in.readObject();
+            in2 = new ObjectInputStream(new FileInputStream("./src/AppData/Server/AdminEmails.dat"));
+            adminhash = (HashMap<String, Integer>)in.readObject();
         }
         catch(Exception e){
             ;
@@ -763,8 +766,11 @@ class ConnectionHandler implements Runnable{
         if(server.studhash!=null && server.studhash.containsKey(email)){
             ans="Student";
         }
-        if(server.faculthash!=null && server.faculthash.containsKey(email)) {
+        else if(server.faculthash!=null && server.faculthash.containsKey(email)) {
             ans="Faculty";
+        }
+        else if(server.adminhash!=null && server.adminhash.containsKey(email)) {
+        	ans = "Admin";
         }
        return ans;
         // write code here

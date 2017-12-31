@@ -270,6 +270,22 @@ public class setup {
             }
         }
     }
+    public static void serialiseAdminHashMap() throws IOException, ClassNotFoundException{
+        HashMap<String,Integer> p = new HashMap<String,Integer>();
+        Scanner sc = new Scanner(new BufferedReader(new FileReader("./src/AppData/StaticTimeTable/AdminEmails.txt")));
+        while(sc.hasNext()){
+            p.put(sc.next().trim(),1);
+        }
+        ObjectOutputStream out = null;
+        try {
+            out = new ObjectOutputStream(new FileOutputStream("./src/AppData/Server/AdminEmails.dat", false));
+            out.writeObject(p);
+        } finally {
+            if (out != null) {
+                out.close();
+            }
+        }
+    }
     public static void serialiseEmptyJoinCodeMap() throws IOException, ClassNotFoundException{
         HashMap<String, Integer> p = new HashMap<String, Integer>();
         ObjectOutputStream out = null;

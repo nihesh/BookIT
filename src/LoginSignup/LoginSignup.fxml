@@ -91,7 +91,7 @@
             <PasswordField fx:id="CnfPass" layoutX="46.0" layoutY="181.0" prefHeight="31.0" prefWidth="212.0" promptText="Confirm Password" styleClass="text-field1" stylesheets="@textfield.css" visible="false" />
          </children>
       </AnchorPane>
-      <ImageView fitHeight="241.0" fitWidth="322.0" layoutX="31.0" layoutY="58.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="241.0" fitWidth="322.0" layoutX="50.0" layoutY="90.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@Untitled.png" />
          </image>
