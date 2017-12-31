@@ -230,7 +230,7 @@ public class setup {
         PriorityQueue<ArrayList<Reservation>> p = new PriorityQueue<>(new RequestCompare());
         ObjectOutputStream out = null;
         try {
-            out = new ObjectOutputStream(new FileOutputStream("./src/AppData/Requests/requests.txt", false));
+        	out = new ObjectOutputStream(new FileOutputStream("./src/AppData/Requests/requests.txt", false));
             out.writeObject(p);
         } finally {
             if (out != null) {
@@ -246,6 +246,12 @@ public class setup {
         }
         ObjectOutputStream out = null;
         try {
+        	File f = new File("./src/AppData/Server/StudentEmails.dat");
+        	System.out.println(f.exists());
+        	f.delete();
+        	
+        	f.createNewFile();
+            
             out = new ObjectOutputStream(new FileOutputStream("./src/AppData/Server/StudentEmails.dat", false));
             out.writeObject(p);
         } finally {
@@ -262,6 +268,11 @@ public class setup {
         }
         ObjectOutputStream out = null;
         try {
+        	File f = new File("./src/AppData/Server/FacultyEmails.dat");
+        	System.out.println(f.exists());
+        	f.delete();
+        	f.createNewFile();
+            
             out = new ObjectOutputStream(new FileOutputStream("./src/AppData/Server/FacultyEmails.dat", false));
             out.writeObject(p);
         } finally {
@@ -278,7 +289,12 @@ public class setup {
         }
         ObjectOutputStream out = null;
         try {
-            out = new ObjectOutputStream(new FileOutputStream("./src/AppData/Server/AdminEmails.dat", false));
+        	File f = new File("./src/AppData/Server/AdminEmails.dat");
+        	System.out.println(f.exists());
+        	f.delete();
+        	f.createNewFile();
+            
+        	out = new ObjectOutputStream(new FileOutputStream("./src/AppData/Server/AdminEmails.dat", false));
             out.writeObject(p);
         } finally {
             if (out != null) {
