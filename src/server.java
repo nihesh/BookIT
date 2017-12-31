@@ -43,14 +43,16 @@ public class server {
     public static void loadHashMaps(){
         ObjectInputStream in=null;
         ObjectInputStream in2=null;
+        ObjectInputStream in3=null;
+        
         try
         {
             in = new ObjectInputStream(new FileInputStream("./src/AppData/Server/StudentEmails.dat"));
             studhash = (HashMap<String, Integer>)in.readObject();
             in2 = new ObjectInputStream(new FileInputStream("./src/AppData/Server/FacultyEmails.dat"));
-            faculthash = (HashMap<String, Integer>)in.readObject();
-            in2 = new ObjectInputStream(new FileInputStream("./src/AppData/Server/AdminEmails.dat"));
-            adminhash = (HashMap<String, Integer>)in.readObject();
+            faculthash = (HashMap<String, Integer>)in2.readObject();
+            in3 = new ObjectInputStream(new FileInputStream("./src/AppData/Server/AdminEmails.dat"));
+            adminhash = (HashMap<String, Integer>)in3.readObject();
         }
         catch(Exception e){
             ;
@@ -65,6 +67,14 @@ public class server {
                 }
             }
             if(in2!=null) {
+                try {
+                    in.close();
+                }
+                catch (Exception e){
+                    ;
+                }
+            }
+            if(in3!=null) {
                 try {
                     in.close();
                 }

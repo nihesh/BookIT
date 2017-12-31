@@ -173,11 +173,14 @@ public class LoginSignupGUIController {
 				if(usertype.equals("Faculty")) {
 					Guser = new Faculty(GName, null, Gemail, "Faculty", new ArrayList<String>());
 				}
-				else if(usertype.equals("Student")) {
-					Guser = new Student(GName, null, Gemail, "Student", "", new ArrayList<String>());
-				}
+				
 				else if(usertype.equals("Admin")){
+					System.out.println("erejjjjjjjjjjj");
 					Guser= new Admin(GName, null, Gemail, "Admin");
+				}
+				else if(usertype.equals("Student")) {
+					System.out.println("here");
+					Guser = new Student(GName, null, Gemail, "Student", "", new ArrayList<String>());
 				}
 				else {
 					System.out.println("user doesnt belong to any type error");
