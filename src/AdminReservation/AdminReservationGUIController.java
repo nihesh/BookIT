@@ -125,6 +125,7 @@ public class AdminReservationGUIController implements Initializable{
     private LocalDate StartDate;
     private LocalDate EndDate;
     private Button[] b1;
+    private static int animation = 200;
 
     /**
      * Constructor for setting up Faculty Reservation GUI. It includes the adaptor code to suit any dimensional screen
@@ -384,7 +385,7 @@ public class AdminReservationGUIController implements Initializable{
         rightPane.setDisable(true);
         mainPane.setDisable(true);
         hideLogo();
-        FadeTransition appear = new FadeTransition(Duration.millis(1000), joiningCodePane);
+        FadeTransition appear = new FadeTransition(Duration.millis(animation), joiningCodePane);
         appear.setFromValue(0);
         appear.setToValue(1);
         appear.play();
@@ -411,7 +412,7 @@ public class AdminReservationGUIController implements Initializable{
         leftPane.setDisable(true);
         rightPane.setDisable(true);
         mainPane.setDisable(true);
-        FadeTransition appear = new FadeTransition(Duration.millis(1000), changePasswordPane);
+        FadeTransition appear = new FadeTransition(Duration.millis(animation), changePasswordPane);
         changePasswordPane.setVisible(true);
         appear.setFromValue(0);
         appear.setToValue(1);
@@ -783,7 +784,7 @@ public class AdminReservationGUIController implements Initializable{
             }
         }
         statusFreeSlots.setText("  "+Integer.toString(freeSlots));                         // GUI-Helper integration ends here
-        FadeTransition appear = new FadeTransition(Duration.millis(1000), classStatus);
+        FadeTransition appear = new FadeTransition(Duration.millis(animation), classStatus);
         classStatus.setOpacity(0);
         classStatus.setVisible(true);
         appear.setFromValue(0);
@@ -806,7 +807,7 @@ public class AdminReservationGUIController implements Initializable{
      * Shows BookIT logo
      */
     private void showLogo(){
-        FadeTransition appear = new FadeTransition(Duration.millis(1000), logo);
+        FadeTransition appear = new FadeTransition(Duration.millis(animation), logo);
         logo.setOpacity(0);
         logo.setVisible(true);
         appear.setFromValue(0);
@@ -882,9 +883,9 @@ public class AdminReservationGUIController implements Initializable{
             sequence.getChildren().add(translate);
         }
         sequence.play();
-        FadeTransition appearBookBtn = new FadeTransition(Duration.millis(1000), BookBtn);
+        FadeTransition appearBookBtn = new FadeTransition(Duration.millis(animation), BookBtn);
         appearBookBtn.setToValue(1);
-        FadeTransition appearBackBtn = new FadeTransition(Duration.millis(1000), BackBtn);
+        FadeTransition appearBackBtn = new FadeTransition(Duration.millis(animation), BackBtn);
         appearBackBtn.setToValue(1);
         ParallelTransition inParallel = new ParallelTransition(appearBookBtn, appearBackBtn);
         inParallel.play();
@@ -964,9 +965,9 @@ public class AdminReservationGUIController implements Initializable{
             sequence.getChildren().add(translate);
         }
         sequence.play();
-        FadeTransition appearBookBtn = new FadeTransition(Duration.millis(1000), BookBtn);
+        FadeTransition appearBookBtn = new FadeTransition(Duration.millis(animation), BookBtn);
         appearBookBtn.setToValue(0);
-        FadeTransition appearBackBtn = new FadeTransition(Duration.millis(1000), BackBtn);
+        FadeTransition appearBackBtn = new FadeTransition(Duration.millis(animation), BackBtn);
         appearBackBtn.setToValue(0);
         ParallelTransition inParallel = new ParallelTransition(appearBookBtn, appearBackBtn);
         inParallel.play();
@@ -1066,7 +1067,7 @@ public class AdminReservationGUIController implements Initializable{
         rightPane.setDisable(true);
         mainPane.setDisable(true);
         slotInfoPane.setVisible(false);
-        FadeTransition appear = new FadeTransition(Duration.millis(500), cancelMessagePane);
+        FadeTransition appear = new FadeTransition(Duration.millis(animation), cancelMessagePane);
         cancelMessagePane.setOpacity(0);
         cancelMessagePane.setVisible(true);
         appear.setFromValue(0);
@@ -1077,7 +1078,7 @@ public class AdminReservationGUIController implements Initializable{
      * Reservation pane flys right
      */
     public void flyRight(){
-        FadeTransition sequence = new FadeTransition(Duration.millis(500), HoverPane);
+        FadeTransition sequence = new FadeTransition(Duration.millis(animation), HoverPane);
         sequence.setToValue(0);
         sequence.play();
         closeClassStatus();
@@ -1122,11 +1123,11 @@ public class AdminReservationGUIController implements Initializable{
         induceDelay(appearAfter_HoverPane);
         HoverPane.setVisible(true);
         HoverPane.setDisable(false);
-        FadeTransition appear = new FadeTransition(Duration.millis(1000), HoverPane);
+        FadeTransition appear = new FadeTransition(Duration.millis(animation), HoverPane);
         appear.setToValue(1);
-        FadeTransition appearBookBtn = new FadeTransition(Duration.millis(1000), BookBtn);
+        FadeTransition appearBookBtn = new FadeTransition(Duration.millis(animation), BookBtn);
         appearBookBtn.setToValue(1);
-        FadeTransition appearBackBtn = new FadeTransition(Duration.millis(1000), BackBtn);
+        FadeTransition appearBackBtn = new FadeTransition(Duration.millis(animation), BackBtn);
         appearBackBtn.setToValue(1);
         ParallelTransition inParallel = new ParallelTransition(appear, appearBookBtn, appearBackBtn);
         inParallel.play();
@@ -1185,7 +1186,7 @@ public class AdminReservationGUIController implements Initializable{
         induceDelay(appearAfter_HoverPane);
         HoverPane.setVisible(true);
         HoverPane.setDisable(true);
-        FadeTransition appear = new FadeTransition(Duration.millis(700), HoverPane);
+        FadeTransition appear = new FadeTransition(Duration.millis(animation), HoverPane);
         if(HoverPane.getOpacity()==opacitySaturation){
             appear.setFromValue(0.6);
         }
@@ -1202,7 +1203,7 @@ public class AdminReservationGUIController implements Initializable{
     public void exitReadOnlyBookings(){
         if(!isActiveReservation && !requestProcessing) {
             induceDelay(appearAfter_HoverPane);
-            FadeTransition appear = new FadeTransition(Duration.millis(700), HoverPane);
+            FadeTransition appear = new FadeTransition(Duration.millis(animation), HoverPane);
             appear.setToValue(0);
             appear.play();
             closeClassStatus();

@@ -106,8 +106,14 @@ public class BookIT extends Application{
                 break;
             }
             else{
-                User u = User.getActiveUser();
-                User.getUser(u.getEmail().getEmailID(), false).setActiveUser();
+                try {
+                    User u = User.getActiveUser();
+                    User.getUser(u.getEmail().getEmailID(), false).setActiveUser();
+                }
+                catch (Exception e){
+                    file.delete();
+                    continue;
+                }
             }
             reservationGUI(stage);
             file = new File("./src/AppData/ActiveUser/ActiveUser.txt");
