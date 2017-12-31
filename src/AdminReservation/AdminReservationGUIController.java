@@ -324,27 +324,24 @@ public class AdminReservationGUIController implements Initializable{
     	try {
     		User x=User.getActiveUser();
     		if(x.getNotifications(false).size()==0) {
-    		Alert alert = new Alert(AlertType.INFORMATION);
-			alert.setTitle("Information Dialog");
-			alert.setHeaderText(null);
-			alert.setContentText("There are no new notifications");
-			alert.showAndWait();
-			return;
+    		    Notification.throwAlert("Information Dialog", "There are no new notifications");
+			    return;
+    	    }
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Notify.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load();
+            Stage stage = new Stage();
+            File file = new File("./src/BookIT_icon.jpg");
+            stage.getIcons().add(new Image(file.toURI().toString()));
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setResizable(false);
+            //stage.initStyle(StageStyle.UNDECORATED);
+            stage.setTitle("Notification");
+            stage.setScene(new Scene(root1));
+            stage.show();
     	}
-    	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Notify.fxml"));
-        Parent root1 = (Parent) fxmlLoader.load();
-        Stage stage = new Stage();
-        File file = new File("./src/BookIT_icon.jpg");
-        stage.getIcons().add(new Image(file.toURI().toString()));
-		stage.initModality(Modality.APPLICATION_MODAL);
-		stage.setResizable(false);
-        //stage.initStyle(StageStyle.UNDECORATED);
-        stage.setTitle("Notification");
-        stage.setScene(new Scene(root1));  
-        stage.show();}
     	catch(Exception e) {
-    		e.printStackTrace();
-    	}
+            System.out.println("Error occurred while opening notifications");
+        }
     }
     public void exitCancelBooking(){
         cancelBookingProcessing = false;

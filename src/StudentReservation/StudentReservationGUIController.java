@@ -256,26 +256,23 @@ public class StudentReservationGUIController implements Initializable{
     	try {
     		User x=User.getActiveUser();
             if(x.getNotifications(false).size()==0) {
-            Alert alert = new Alert(AlertType.INFORMATION);
-            alert.setTitle("Information Dialog");
-            alert.setHeaderText(null);
-            alert.setContentText("There are no new notifications");
-            alert.showAndWait();
-            return;
-        }
-    	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../AdminReservation/Notify.fxml"));
-        Parent root1 = (Parent) fxmlLoader.load();
-        Stage stage = new Stage();
-        File file = new File("./src/BookIT_icon.jpg");
-        stage.getIcons().add(new Image(file.toURI().toString()));
-		stage.initModality(Modality.APPLICATION_MODAL);
-        //stage.initStyle(StageStyle.UNDECORATED);
-        stage.setTitle("Notification");
-        stage.setScene(new Scene(root1));  
-        stage.show();}
-    	catch(Exception e) {
-    		
+                Notification.throwAlert("Information Dialog", "There are no new notifications");
+                return;
+            }
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../AdminReservation/Notify.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load();
+            Stage stage = new Stage();
+            File file = new File("./src/BookIT_icon.jpg");
+            stage.getIcons().add(new Image(file.toURI().toString()));
+            stage.initModality(Modality.APPLICATION_MODAL);
+            //stage.initStyle(StageStyle.UNDECORATED);
+            stage.setTitle("Notification");
+            stage.setScene(new Scene(root1));
+            stage.show();
     	}
+    	catch(Exception e) {
+            System.out.println("Error occurred while opening notifications");
+        }
     }
     /**
      * Logs out the user
