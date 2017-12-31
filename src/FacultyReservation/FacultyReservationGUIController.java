@@ -390,6 +390,15 @@ public class FacultyReservationGUIController implements Initializable{
     }
     public void OpenNotifications() {
     	try {
+            User x=User.getActiveUser();
+            if(x.getNotifications(false).size()==0) {
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setTitle("Information Dialog");
+            alert.setHeaderText(null);
+            alert.setContentText("There are no new notifications");
+            alert.showAndWait();
+            return;
+        }
     	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../AdminReservation/Notify.fxml"));
         Parent root1 = (Parent) fxmlLoader.load();
         Stage stage = new Stage();

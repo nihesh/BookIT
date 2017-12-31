@@ -34,15 +34,7 @@ public class NotifyController {
         
     }
     private void loadNotifications(ArrayList<Notification> myList){ // assert: data.size() == time.size()
-    	if(myList.size()==0) {
-    		Alert alert = new Alert(AlertType.INFORMATION);
-			alert.setTitle("Information Dialog");
-			alert.setHeaderText(null);
-			alert.setContentText("There are no new notifications");
-			alert.showAndWait();
-			Stage stage = (Stage) rootPane.getScene().getWindow();
-			stage.close();
-    	}
+    	
     	ArrayList<String> data = new ArrayList<>();
         ArrayList<String> time = new ArrayList<>();
         for (int i=myList.size()-1;i>=0;i--) {
