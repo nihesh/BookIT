@@ -169,21 +169,30 @@ public class LoginSignupGUIController {
 					return;
 				}
 				String usertype = User.getUserType(Gemail.getEmailID(), false);
-				
+				if(usertype==null) {
+					java.net.CookieManager manager = new java.net.CookieManager();
+					java.net.CookieHandler.setDefault(manager);
+					PortListener.authcode="none";
+					PortListener.email=null;PortListener.Name=null;
+					PortListener.status="NotUpdated";
+					GName=null;Gemail=null;Guser=null;
+					Alert alert = new Alert(AlertType.INFORMATION);
+					alert.setTitle("Information Dialog");
+					alert.setHeaderText(null);
+					alert.setContentText("You can't have access to the app. Please contact Admin for this");
+					alert.showAndWait();
+					return;
+					
+				}
 				if(usertype.equals("Faculty")) {
 					Guser = new Faculty(GName, null, Gemail, "Faculty", new ArrayList<String>());
 				}
 				
 				else if(usertype.equals("Admin")){
-					System.out.println("erejjjjjjjjjjj");
 					Guser= new Admin(GName, null, Gemail, "Admin");
 				}
 				else if(usertype.equals("Student")) {
-					System.out.println("here");
 					Guser = new Student(GName, null, Gemail, "Student", "", new ArrayList<String>());
-				}
-				else {
-					System.out.println("user doesnt belong to any type error");
 				}
 				Guser.serialize(false);
 				Guser.setActiveUser();

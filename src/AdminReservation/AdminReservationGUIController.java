@@ -327,6 +327,7 @@ public class AdminReservationGUIController implements Initializable{
         File file = new File("./src/BookIT_icon.jpg");
         stage.getIcons().add(new Image(file.toURI().toString()));
 		stage.initModality(Modality.APPLICATION_MODAL);
+		stage.setResizable(false);
         //stage.initStyle(StageStyle.UNDECORATED);
         stage.setTitle("Notification");
         stage.setScene(new Scene(root1));  

@@ -20,6 +20,7 @@ import java.util.ResourceBundle;
 import HelperClasses.Notification;
 import HelperClasses.User;
 import javafx.stage.Screen;
+import javafx.stage.Stage;
 
 public class NotifyController {
     @FXML
@@ -39,7 +40,8 @@ public class NotifyController {
 			alert.setHeaderText(null);
 			alert.setContentText("There are no new notifications");
 			alert.showAndWait();
-			
+			Stage stage = (Stage) notificationPane.getScene().getWindow();
+			stage.close();
     	}
     	ArrayList<String> data = new ArrayList<>();
         ArrayList<String> time = new ArrayList<>();
