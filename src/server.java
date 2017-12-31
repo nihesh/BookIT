@@ -41,6 +41,19 @@ public class server {
     public static HashMap<String, Integer> connectedIPs=null;
 
     public static void loadHashMaps(){
+
+        try {
+            System.out.println("Loading allowed user database");
+            setup.serialiseFacultyHashMap();
+            setup.serialiseStudentHashMap();
+            setup.serialiseAdminHashMap();
+            System.out.println("Allowed user database loaded");
+            System.out.println();
+        }
+        catch (Exception e){
+            System.out.println("IOException occurred while serialising student/faculty/admin hashmaps");
+        }
+
         ObjectInputStream in=null;
         ObjectInputStream in2=null;
         ObjectInputStream in3=null;

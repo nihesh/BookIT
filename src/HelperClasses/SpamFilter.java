@@ -96,6 +96,7 @@ public class SpamFilter {
      * @return true if spam, false otherwise
      */
     public static Boolean Predict(String raw_message){            // Returns true if spam. Currently disabled
+        System.out.println("Spam filter has been disabled as it's inaccurate");
         return false;
 //        String[] processedMessage = raw_message.split("\\s+");
 //        ArrayList<String> message = new ArrayList<>();

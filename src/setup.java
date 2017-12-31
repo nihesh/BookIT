@@ -366,9 +366,6 @@ public class setup {
             clearUserData();
             serialiseEmptyPriorityQueue();
             serialiseEmptyJoinCodeMap();
-            serialiseFacultyHashMap();
-            serialiseStudentHashMap();
-            serialiseAdminHashMap();
         }
         catch(Exception e){
         	e.printStackTrace();

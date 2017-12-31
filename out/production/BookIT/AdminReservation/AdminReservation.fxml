@@ -14,6 +14,7 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -23,20 +24,17 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-
 <?import java.util.ArrayList?>
+
 <VBox fx:id="rootPane" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="AdminReservation.AdminReservationGUIController">
    <children>
       <MenuBar fx:id="menuBar">
         <menus>
           <Menu mnemonicParsing="false" text="File">
             <items>
+                  <MenuItem mnemonicParsing="false" onAction="#openChangePassword" text="Change Pwd" />
+                  <MenuItem mnemonicParsing="false" onAction="#downloadRequests" text="Download Requests" />
               <MenuItem mnemonicParsing="false" onAction="#signout" text="Logout" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Help">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Documentation" />
             </items>
           </Menu>
         </menus>
@@ -194,7 +192,7 @@
                                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                  </padding>
                               </ScrollPane>
-                              <Button fx:id="cancelSlotBooking" mnemonicParsing="false" onMouseClicked="#cancelSlotBooking" prefHeight="38.0" prefWidth="42.0" stylesheets="@buttonDropDown.css">
+                              <Button fx:id="cancelSlotBooking" mnemonicParsing="false" onMouseClicked="#cancelBookingMessage" prefHeight="38.0" prefWidth="42.0" stylesheets="@buttonDropDown.css">
                                  <StackPane.margin>
                                     <Insets bottom="230.0" left="492.0" />
                                  </StackPane.margin>
@@ -271,6 +269,29 @@
                               <Button mnemonicParsing="false" onMouseClicked="#cancelChangePassword" prefHeight="36.0" prefWidth="115.0" stylesheets="@buttonChangePwd.css" text="Cancel">
                                  <StackPane.margin>
                                     <Insets right="130.0" top="180.0" />
+                                 </StackPane.margin>
+                              </Button>
+                           </children>
+                        </StackPane>
+                        <StackPane fx:id="cancelMessagePane" layoutX="10.0" layoutY="10.0" prefHeight="150.0" prefWidth="200.0" style="visibility: false;">
+                           <children>
+                              <ImageView fx:id="cancelMessageBG" fitHeight="311.0" fitWidth="610.0" opacity="0.8" pickOnBounds="true" preserveRatio="true" />
+                              <TextArea fx:id="cancelMessageText" opacity="0.91" promptText="Reason for cancellation (*)" wrapText="true">
+                                 <StackPane.margin>
+                                    <Insets bottom="70.0" left="20.0" right="20.0" top="20.0" />
+                                 </StackPane.margin>
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </TextArea>
+                              <Button mnemonicParsing="false" onMouseClicked="#cancelSlotBooking" prefHeight="40.0" prefWidth="180.0" stylesheets="@buttonChangePwd.css" text="Confirm">
+                                 <StackPane.margin>
+                                    <Insets left="175.0" top="240.0" />
+                                 </StackPane.margin>
+                              </Button>
+                              <Button layoutX="225.0" layoutY="266.0" mnemonicParsing="false" onMouseClicked="#exitCancelBooking" prefHeight="40.0" prefWidth="150.0" stylesheets="@buttonChangePwd.css" text="Cancel">
+                                 <StackPane.margin>
+                                    <Insets right="175.0" top="240.0" />
                                  </StackPane.margin>
                               </Button>
                            </children>
@@ -367,7 +388,7 @@
                         <Insets bottom="20.0" top="250.0" />
                      </StackPane.margin>
                      <children>
-                        <Button mnemonicParsing="false" onMouseClicked="#openChangePassword" opacity="0.95" prefHeight="47.0" prefWidth="194.0" stylesheets="@buttonControl.css" text="Change Pwd">
+                        <Button mnemonicParsing="false" onMouseClicked="#OpenNotifications" opacity="0.95" prefHeight="47.0" prefWidth="194.0" stylesheets="@buttonControl.css" text="Notifications">
                            <StackPane.margin>
                               <Insets bottom="2.0" left="400.0" />
                            </StackPane.margin>
@@ -469,22 +490,22 @@
                         </Button>
                         <Button mnemonicParsing="false" onMouseClicked="#openBooking" onMouseEntered="#showReadOnlyBookings" opacity="0.76" prefHeight="54.0" prefWidth="225.0" stylesheets="@button.css" text="C23" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
                         <Button mnemonicParsing="false" onMouseClicked="#openBooking" onMouseEntered="#showReadOnlyBookings" opacity="0.76" prefHeight="54.0" prefWidth="225.0" stylesheets="@button.css" text="LR3" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
-                        <Button mnemonicParsing="false" onMouseClicked="#openBooking" onMouseEntered="#showReadOnlyBookings" opacity="0.76" prefHeight="54.0" prefWidth="225.0" stylesheets="@button.css" text="L33" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
+                        <Button mnemonicParsing="false" onMouseClicked="#openBooking" onMouseEntered="#showReadOnlyBookings" opacity="0.76" prefHeight="54.0" prefWidth="225.0" stylesheets="@button.css" text="A02" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
                         <Button mnemonicParsing="false" onMouseClicked="#openBooking" onMouseEntered="#showReadOnlyBookings" opacity="0.76" prefHeight="54.0" prefWidth="225.0" stylesheets="@button.css" text="C02" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
                         <Button mnemonicParsing="false" onMouseClicked="#openBooking" onMouseEntered="#showReadOnlyBookings" opacity="0.76" prefHeight="54.0" prefWidth="225.0" stylesheets="@button.css" text="C13" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
                         <Button mnemonicParsing="false" onMouseClicked="#openBooking" onMouseEntered="#showReadOnlyBookings" opacity="0.76" prefHeight="54.0" prefWidth="225.0" stylesheets="@button.css" text="C24" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
-                        <Button mnemonicParsing="false" onMouseClicked="#openBooking" onMouseEntered="#showReadOnlyBookings" opacity="0.76" prefHeight="54.0" prefWidth="225.0" stylesheets="@button.css" text="L21" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
-                        <Button mnemonicParsing="false" onMouseClicked="#openBooking" onMouseEntered="#showReadOnlyBookings" opacity="0.76" prefHeight="54.0" prefWidth="225.0" stylesheets="@button.css" text="S21" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
+                        <Button mnemonicParsing="false" onMouseClicked="#openBooking" onMouseEntered="#showReadOnlyBookings" opacity="0.76" prefHeight="54.0" prefWidth="225.0" stylesheets="@button.css" text="S01" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+                        <Button mnemonicParsing="false" onMouseClicked="#openBooking" onMouseEntered="#showReadOnlyBookings" opacity="0.76" prefHeight="54.0" prefWidth="225.0" stylesheets="@button.css" text="A11" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
                         <Button mnemonicParsing="false" onMouseClicked="#openBooking" onMouseEntered="#showReadOnlyBookings" opacity="0.76" prefHeight="54.0" prefWidth="225.0" stylesheets="@button.css" text="C03" GridPane.columnIndex="2" GridPane.halignment="CENTER" />
                         <Button mnemonicParsing="false" onMouseClicked="#openBooking" onMouseEntered="#showReadOnlyBookings" opacity="0.76" prefHeight="54.0" prefWidth="225.0" stylesheets="@button.css" text="C21" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
                         <Button mnemonicParsing="false" onMouseClicked="#openBooking" onMouseEntered="#showReadOnlyBookings" opacity="0.76" prefHeight="54.0" prefWidth="225.0" stylesheets="@button.css" text="LR1" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
-                        <Button mnemonicParsing="false" onMouseClicked="#openBooking" onMouseEntered="#showReadOnlyBookings" opacity="0.76" prefHeight="54.0" prefWidth="225.0" stylesheets="@button.css" text="L22" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
-                        <Button mnemonicParsing="false" onMouseClicked="#openBooking" onMouseEntered="#showReadOnlyBookings" opacity="0.76" prefHeight="54.0" prefWidth="225.0" stylesheets="@button.css" text="S01" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
+                        <Button mnemonicParsing="false" onMouseClicked="#openBooking" onMouseEntered="#showReadOnlyBookings" opacity="0.76" prefHeight="54.0" prefWidth="225.0" stylesheets="@button.css" text="S02" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+                        <Button mnemonicParsing="false" onMouseClicked="#openBooking" onMouseEntered="#showReadOnlyBookings" opacity="0.76" prefHeight="54.0" prefWidth="225.0" stylesheets="@button.css" text="A12" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
                         <Button mnemonicParsing="false" onMouseClicked="#openBooking" onMouseEntered="#showReadOnlyBookings" opacity="0.76" prefHeight="54.0" prefWidth="225.0" stylesheets="@button.css" text="C11" GridPane.columnIndex="3" GridPane.halignment="CENTER" />
                         <Button mnemonicParsing="false" onMouseClicked="#openBooking" onMouseEntered="#showReadOnlyBookings" opacity="0.76" prefHeight="54.0" prefWidth="225.0" stylesheets="@button.css" text="C22" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
                         <Button mnemonicParsing="false" onMouseClicked="#openBooking" onMouseEntered="#showReadOnlyBookings" opacity="0.76" prefHeight="54.0" prefWidth="225.0" stylesheets="@button.css" text="LR2" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
-                        <Button mnemonicParsing="false" onMouseClicked="#openBooking" onMouseEntered="#showReadOnlyBookings" opacity="0.76" prefHeight="54.0" prefWidth="225.0" stylesheets="@button.css" text="L23" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
-                        <Button mnemonicParsing="false" onMouseClicked="#openBooking" onMouseEntered="#showReadOnlyBookings" opacity="0.76" prefHeight="54.0" prefWidth="225.0" stylesheets="@button.css" text="S02" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
+                        <Button mnemonicParsing="false" onMouseClicked="#openBooking" onMouseEntered="#showReadOnlyBookings" opacity="0.76" prefHeight="54.0" prefWidth="225.0" stylesheets="@button.css" text="A01" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+                        <Button disable="true" mnemonicParsing="false" onMouseClicked="#openBooking" onMouseEntered="#showReadOnlyBookings" opacity="0.76" prefHeight="54.0" prefWidth="225.0" stylesheets="@button.css" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
                      </children>
                      <StackPane.margin>
                         <Insets bottom="100.0" left="350.0" right="350.0" top="200.0" />
@@ -1110,9 +1131,6 @@
                </children>
             </StackPane>
             <StackPane fx:id="pullDownPane" prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: #2a2a2a; visibility: false;">
-               <StackPane.margin>
-                  <Insets bottom="50.0" left="300.0" right="300.0" />
-               </StackPane.margin>
                <children>
                   <StackPane prefHeight="150.0" prefWidth="1320.0" style="-fx-border-width: 2; -fx-border-color: white;" StackPane.alignment="CENTER">
                      <children>
@@ -1125,76 +1143,170 @@
                            </font>
                         </Label>
                         <ScrollPane prefHeight="541.0" prefWidth="1209.0">
-                          <content>
-                            <AnchorPane fx:id="selectedSlotsScrollPane" minHeight="0.0" minWidth="0.0" prefHeight="474.0" prefWidth="494.0" style="-fx-background-color: #424949;" />
-                          </content>
+                           <content>
+                              <AnchorPane fx:id="selectedSlotsScrollPane" minHeight="0.0" minWidth="0.0" prefHeight="474.0" prefWidth="494.0" style="-fx-background-color: #424949;" />
+                           </content>
                            <StackPane.margin>
                               <Insets bottom="20.0" left="20.0" right="800.0" top="100.0" />
                            </StackPane.margin>
                         </ScrollPane>
-                        <ComboBox fx:id="courseDropDown" prefHeight="38.0" prefWidth="331.0" promptText="Choose Course (Optional)">
-                           <StackPane.margin>
-                              <Insets bottom="420.0" left="750.0" />
-                           </StackPane.margin>
-                        </ComboBox>
-                        <ComboBox fx:id="groupDropDown" prefHeight="38.0" prefWidth="331.0" promptText="Choose Group (Optional)">
-                           <StackPane.margin>
-                              <Insets bottom="320.0" left="750.0" />
-                           </StackPane.margin>
-                        </ComboBox>
-                        <Label prefHeight="45.0" prefWidth="155.0" text="Course" textFill="WHITE">
-                           <StackPane.margin>
-                              <Insets bottom="420.0" left="150.0" />
-                           </StackPane.margin>
-                           <font>
-                              <Font size="27.0" />
-                           </font>
-                        </Label>
-                        <Label prefHeight="45.0" prefWidth="155.0" text="Group" textFill="WHITE">
-                           <font>
-                              <Font size="27.0" />
-                           </font>
-                           <StackPane.margin>
-                              <Insets bottom="320.0" left="150.0" />
-                           </StackPane.margin>
-                        </Label>
-                        <Label prefHeight="45.0" prefWidth="155.0" text="Message" textFill="WHITE">
-                           <font>
-                              <Font size="27.0" />
-                           </font>
-                           <StackPane.margin>
-                              <Insets bottom="85.0" left="150.0" />
-                           </StackPane.margin>
-                        </Label>
-                        <TextArea fx:id="requestMessage" prefHeight="200.0" prefWidth="200.0" promptText="Mention the purpose of booking this slot. Note that this message will be displayed on the time-table.">
-                           <StackPane.margin>
-                              <Insets bottom="100.0" left="655.0" right="115.0" top="290.0" />
-                           </StackPane.margin>
-                           <font>
-                              <Font size="20.0" />
-                           </font>
-                        </TextArea>
-                        <Button mnemonicParsing="false" onMouseClicked="#bookingCompleted" stylesheets="@button.css" text="Confirm Booking">
-                           <StackPane.margin>
-                              <Insets left="540.0" top="500.0" />
-                           </StackPane.margin>
-                        </Button>
-                        <Label prefHeight="45.0" prefWidth="155.0" text="Purpose" textFill="WHITE">
-                           <font>
-                              <Font size="27.0" />
-                           </font>
-                           <StackPane.margin>
-                              <Insets bottom="215.0" left="150.0" />
-                           </StackPane.margin>
-                        </Label>
-                        <ComboBox fx:id="purposeDropDown" prefHeight="38.0" prefWidth="331.0" promptText="Choose Purpose (Optional)">
-                           <StackPane.margin>
-                              <Insets bottom="220.0" left="750.0" />
-                           </StackPane.margin>
-                        </ComboBox>
-                     </children></StackPane>
-                  <Button alignment="TOP_CENTER" contentDisplay="TOP" mnemonicParsing="false" onMouseClicked="#closeReservationPane" opacity="0.5" prefHeight="12.0" prefWidth="1320.0" stylesheets="@buttonDropDown.css" text="v" textAlignment="CENTER" StackPane.alignment="TOP_CENTER" />
+                        <StackPane fx:id="courseBooking" prefHeight="150.0" prefWidth="200.0" style="visibility: false;">
+                           <children>
+                              <ComboBox fx:id="groupDropDown" prefHeight="38.0" prefWidth="331.0" promptText="Choose Group (Optional)">
+                                 <StackPane.margin>
+                                    <Insets bottom="320.0" left="750.0" />
+                                 </StackPane.margin>
+                              </ComboBox>
+                              <ComboBox fx:id="purposeDropDown" prefHeight="38.0" prefWidth="331.0" promptText="Choose Purpose (*)">
+                                 <StackPane.margin>
+                                    <Insets bottom="220.0" left="750.0" />
+                                 </StackPane.margin>
+                              </ComboBox>
+                              <Label prefHeight="45.0" prefWidth="155.0" text="Group" textFill="WHITE">
+                                 <StackPane.margin>
+                                    <Insets bottom="320.0" left="150.0" />
+                                 </StackPane.margin>
+                                 <font>
+                                    <Font size="27.0" />
+                                 </font>
+                              </Label>
+                              <Label prefHeight="45.0" prefWidth="155.0" text="Purpose" textFill="WHITE">
+                                 <font>
+                                    <Font size="27.0" />
+                                 </font>
+                                 <StackPane.margin>
+                                    <Insets bottom="215.0" left="150.0" />
+                                 </StackPane.margin>
+                              </Label>
+                              <Label prefHeight="45.0" prefWidth="155.0" text="Message" textFill="WHITE">
+                                 <font>
+                                    <Font size="27.0" />
+                                 </font>
+                                 <StackPane.margin>
+                                    <Insets bottom="85.0" left="150.0" />
+                                 </StackPane.margin>
+                              </Label>
+                              <TextArea fx:id="requestMessage" prefHeight="200.0" prefWidth="200.0" promptText="Mention the purpose of booking this slot. Note that this message will be displayed on the time-table.">
+                                 <StackPane.margin>
+                                    <Insets bottom="100.0" left="655.0" right="115.0" top="290.0" />
+                                 </StackPane.margin>
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </TextArea>
+                              <Button mnemonicParsing="false" onMouseClicked="#bookingCompleted1" stylesheets="@../FacultyReservation/button.css" text="Confirm Booking">
+                                 <StackPane.margin>
+                                    <Insets left="540.0" top="500.0" />
+                                 </StackPane.margin>
+                              </Button>
+                              <ComboBox fx:id="courseDropDown" prefHeight="38.0" prefWidth="331.0" promptText="Choose Course (*)">
+                                 <StackPane.margin>
+                                    <Insets bottom="420.0" left="750.0" />
+                                 </StackPane.margin>
+                              </ComboBox>
+                              <Label prefHeight="45.0" prefWidth="155.0" text="Course" textFill="WHITE">
+                                 <font>
+                                    <Font size="27.0" />
+                                 </font>
+                                 <StackPane.margin>
+                                    <Insets bottom="420.0" left="150.0" />
+                                 </StackPane.margin>
+                              </Label>
+                           </children>
+                        </StackPane>
+                        <StackPane fx:id="otherBooking" layoutX="12.0" layoutY="12.0" prefHeight="150.0" prefWidth="200.0" style="visibility: false;">
+                           <children>
+                              <Label prefHeight="45.0" prefWidth="155.0" text="Purpose" textFill="WHITE" translateY="-30.0">
+                                 <font>
+                                    <Font size="27.0" />
+                                 </font>
+                                 <StackPane.margin>
+                                    <Insets bottom="260.0" left="150.0" />
+                                 </StackPane.margin>
+                              </Label>
+                              <Label prefHeight="45.0" prefWidth="155.0" text="Message" textFill="WHITE" translateY="-30.0">
+                                 <font>
+                                    <Font size="27.0" />
+                                 </font>
+                                 <StackPane.margin>
+                                    <Insets bottom="85.0" left="150.0" />
+                                 </StackPane.margin>
+                              </Label>
+                              <TextArea fx:id="requestMessage2" prefHeight="38.0" prefWidth="331.0" promptText="Mention the purpose of booking this slot. Note that this message will be displayed on the time-table." translateY="-30.0">
+                                 <StackPane.margin>
+                                    <Insets bottom="100.0" left="655.0" right="115.0" top="290.0" />
+                                 </StackPane.margin>
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </TextArea>
+                              <Button mnemonicParsing="false" onMouseClicked="#bookingCompleted2" stylesheets="@../FacultyReservation/button.css" text="Confirm Booking" translateY="-30.0">
+                                 <StackPane.margin>
+                                    <Insets left="540.0" top="500.0" />
+                                 </StackPane.margin>
+                              </Button>
+                              <TextField fx:id="purposeBox" prefHeight="38.0" prefWidth="331.0" promptText="Required (*)" translateY="-30.0">
+                                 <StackPane.margin>
+                                    <Insets bottom="255.0" left="850.0" right="115.0" />
+                                 </StackPane.margin>
+                              </TextField>
+                           </children>
+                        </StackPane>
+                        <StackPane fx:id="preBooking" layoutX="12.0" layoutY="12.0" prefHeight="150.0" prefWidth="200.0" style="visibility: true;">
+                           <children>
+                              <Label prefHeight="45.0" prefWidth="155.0" text="Purpose" textFill="WHITE">
+                                 <font>
+                                    <Font size="27.0" />
+                                 </font>
+                                 <StackPane.margin>
+                                    <Insets bottom="200.0" left="150.0" />
+                                 </StackPane.margin>
+                              </Label>
+                              <Button mnemonicParsing="false" onMouseClicked="#preBookingProceed" stylesheets="@../FacultyReservation/button.css" text="Proceed">
+                                 <StackPane.margin>
+                                    <Insets left="540.0" top="200.0" />
+                                 </StackPane.margin>
+                              </Button>
+                              <ComboBox fx:id="optionDropDown" prefHeight="38.0" prefWidth="331.0">
+                                 <StackPane.margin>
+                                    <Insets bottom="200.0" left="850.0" right="115.0" />
+                                 </StackPane.margin>
+                              </ComboBox>
+                              <Label layoutX="666.0" layoutY="186.0" prefHeight="45.0" prefWidth="155.0" text="Start Date" textFill="WHITE">
+                                 <font>
+                                    <Font size="27.0" />
+                                 </font>
+                                 <StackPane.margin>
+                                    <Insets bottom="100.0" left="150.0" />
+                                 </StackPane.margin>
+                              </Label>
+                              <DatePicker fx:id="startDate" prefHeight="38.0" prefWidth="331.0">
+                                 <StackPane.margin>
+                                    <Insets bottom="100.0" left="850.0" right="115.0" />
+                                 </StackPane.margin>
+                              </DatePicker>
+                              <Label layoutX="666.0" layoutY="251.0" prefHeight="45.0" prefWidth="155.0" text="End Date" textFill="WHITE">
+                                 <font>
+                                    <Font size="27.0" />
+                                 </font>
+                                 <StackPane.margin>
+                                    <Insets left="150.0" />
+                                 </StackPane.margin>
+                              </Label>
+                              <DatePicker fx:id="endDate" layoutX="870.0" layoutY="254.0" prefHeight="38.0" prefWidth="331.0">
+                                 <StackPane.margin>
+                                    <Insets left="850.0" right="115.0" />
+                                 </StackPane.margin>
+                              </DatePicker>
+                           </children>
+                        </StackPane>
+                     </children>
+                  </StackPane>
+                  <Button alignment="TOP_CENTER" contentDisplay="TOP" mnemonicParsing="false" onMouseClicked="#closeReservationPane" opacity="0.5" prefHeight="12.0" prefWidth="1320.0" stylesheets="@../FacultyReservation/buttonDropDown.css" text="v" textAlignment="CENTER" StackPane.alignment="TOP_CENTER" />
                </children>
+               <StackPane.margin>
+                  <Insets bottom="50.0" left="300.0" right="300.0" />
+               </StackPane.margin>
             </StackPane>
             <StackPane fx:id="pullDownPane2" layoutX="310.0" layoutY="10.0" prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: #2a2a2a; visibility: false;">
                <children>
@@ -1232,14 +1344,6 @@
                               <Insets bottom="360.0" left="150.0" />
                            </StackPane.margin>
                         </Label>
-                        <Label prefHeight="45.0" prefWidth="155.0" text="Message" textFill="WHITE">
-                           <font>
-                              <Font size="27.0" />
-                           </font>
-                           <StackPane.margin>
-                              <Insets bottom="150.0" left="150.0" />
-                           </StackPane.margin>
-                        </Label>
                         <Button mnemonicParsing="false" onMouseClicked="#acceptRequest" stylesheets="@button.css" text="Accept">
                            <StackPane.margin>
                               <Insets left="300.0" top="500.0" />
@@ -1261,7 +1365,7 @@
                               <Insets bottom="360.0" left="465.0" />
                            </StackPane.margin>
                         </Label>
-                        <ScrollPane prefHeight="200.0" prefWidth="200.0">
+                        <ScrollPane prefHeight="200.0" prefWidth="200.0" translateY="20.0">
                           <content>
                             <AnchorPane minHeight="234.0" minWidth="0.0" prefWidth="543.0" style="-fx-background-color: white;">
                                  <children>
@@ -1299,6 +1403,22 @@
                            </font>
                            <StackPane.margin>
                               <Insets bottom="270.0" left="465.0" />
+                           </StackPane.margin>
+                        </Label>
+                        <Label layoutX="668.0" layoutY="153.0" prefHeight="45.0" prefWidth="155.0" text="Initiator" textFill="WHITE">
+                           <font>
+                              <Font size="27.0" />
+                           </font>
+                           <StackPane.margin>
+                              <Insets bottom="180.0" left="150.0" />
+                           </StackPane.margin>
+                        </Label>
+                        <Label fx:id="AccRejSource" layoutX="806.0" layoutY="156.0" prefHeight="38.0" prefWidth="400.0" text="&lt;initiator email&gt; " textFill="WHITE">
+                           <font>
+                              <Font size="21.0" />
+                           </font>
+                           <StackPane.margin>
+                              <Insets bottom="180.0" left="670.0" />
                            </StackPane.margin>
                         </Label>
                      </children>
