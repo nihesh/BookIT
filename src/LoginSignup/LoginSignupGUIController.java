@@ -157,7 +157,7 @@ public class LoginSignupGUIController {
 				GName=PortListener.Name;
 				User inQ = User.getUser(Gemail.getEmailID(), false); 
 				if(inQ != null) {
-					System.out.println("account already exists");
+					//System.out.println("account already exists");
 					java.net.CookieManager manager = new java.net.CookieManager();
 					java.net.CookieHandler.setDefault(manager);
 					PortListener.authcode="none";
@@ -211,7 +211,7 @@ public class LoginSignupGUIController {
 			}
 			java.net.CookieManager manager = new java.net.CookieManager();
 			java.net.CookieHandler.setDefault(manager);
-			System.out.println("wrong creds");
+			//System.out.println("wrong creds");
 			//give some indication
 			PortListener.authcode="none";
 			PortListener.email=null;PortListener.Name=null;
@@ -860,8 +860,8 @@ class PortListener implements Runnable{
 			    String[] finalAns=result2.split("\n");
 			    Name = finalAns[4].substring(10, finalAns[4].length()-2);
 			    email = finalAns[2].substring(11, finalAns[2].length()-2);
-			    System.out.println(Name);
-			    System.out.println(email);
+			    //System.out.println(Name);
+			    //System.out.println(email);
 			    status = "Updated";
 			    PrintWriter out = new PrintWriter(sock.getOutputStream());
 			    out.println("HTTP/1.1 200 OK");
