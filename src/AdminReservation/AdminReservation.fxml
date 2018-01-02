@@ -33,6 +33,7 @@
           <Menu mnemonicParsing="false" text="File">
             <items>
                   <MenuItem mnemonicParsing="false" onAction="#downloadRequests" text="Download Requests" />
+                  <MenuItem mnemonicParsing="false" onAction="#restartServer" text="Restart Server" />
               <MenuItem mnemonicParsing="false" onAction="#signout" text="Logout" />
             </items>
           </Menu>

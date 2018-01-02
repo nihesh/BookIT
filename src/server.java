@@ -99,7 +99,6 @@ public class server {
     }
     public static void main(String[] args)throws IOException{
         BookITconstants b = new BookITconstants();
-        connectedIPs = new HashMap<>();
         loadHashMaps();
         ServerSocket s = new ServerSocket(BookITconstants.serverPort);
         ConnectionHandler.lock = new ReentrantLock();
@@ -1474,6 +1473,15 @@ class ConnectionHandler implements Runnable{
                         out.writeObject(result);
                         out.flush();
                         break;
+                    case "softResetServer":
+                        if(status.equals("Pass") || lock.tryLock()) {           // Must take lock to ensure consistency
+                            server.loadHashMaps();
+                        }
+                        if(lock.isLocked() && lock.isHeldByCurrentThread()){
+                            System.out.print("[ "+LocalDateTime.now()+" ] ");
+                            System.out.println(connection.getInetAddress().toString() + " | ServerLock Released");
+                            lock.unlock();
+                        }
                 }
                 in.close();
                 out.close();

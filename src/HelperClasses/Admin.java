@@ -105,6 +105,27 @@ public class Admin extends User{
 			System.out.println("IOException occured while getting request");
 		}
 	}
+	public void softResetServer(Boolean lock){
+		try {
+			Socket server = new Socket(BookITconstants.serverIP, BookITconstants.serverPort);
+			ObjectOutputStream out = new ObjectOutputStream(server.getOutputStream());
+			ObjectInputStream in = new ObjectInputStream(server.getInputStream());
+			if(lock){
+				out.writeObject("Hold");
+			}
+			else{
+				out.writeObject("Pass");
+			}
+			out.writeObject("softResetServer");
+			out.flush();
+			out.close();
+			in.close();
+			server.close();
+		}
+		catch (IOException ie){
+			System.out.println("IOException occured while soft resetting the server");
+		}
+	}
 	public static Boolean checkBulkBooking(String room, ArrayList<Integer> slots, LocalDate start, LocalDate end, Boolean lock){
 		try {
 			File file = new File("./src/AppData/GeneratedJoinCode/list.txt");

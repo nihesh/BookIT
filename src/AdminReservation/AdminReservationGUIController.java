@@ -343,6 +343,12 @@ public class AdminReservationGUIController implements Initializable{
             System.out.println("Error occurred while opening notifications");
         }
     }
+    public void restartServer(){
+        rootPane.setDisable(true);
+        activeUser.softResetServer(false);
+        Notification.throwAlert("Notification","Server has been successfully restarted");
+        rootPane.setDisable(false);
+    }
     public void exitCancelBooking(){
         cancelBookingProcessing = false;
         leftPane.setDisable(false);
