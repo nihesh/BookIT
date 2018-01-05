@@ -24,23 +24,9 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-
-<StackPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+<?import java.util.ArrayList?>
+<StackPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="AdminReservation.AdminReservationGUIController">
    <children>
-      <MenuBar fx:id="menuBar">
-         <menus>
-            <Menu mnemonicParsing="false" text="File">
-               <items>
-                  <MenuItem mnemonicParsing="false" onAction="#downloadRequests" text="Download Requests" />
-                  <MenuItem mnemonicParsing="false" onAction="#restartServer" text="Restart Server" />
-                  <MenuItem mnemonicParsing="false" onAction="#signout" text="Logout" />
-               </items>
-            </Menu>
-         </menus>
-         <StackPane.margin>
-            <Insets bottom="970.0" />
-         </StackPane.margin>
-      </MenuBar>
       <StackPane fx:id="topPane" prefHeight="382.0" prefWidth="1920.0">
          <children>
             <StackPane fx:id="leftPane" onMouseEntered="#exitReadOnlyBookings" prefHeight="312.0" prefWidth="1652.0" style="-fx-background-color: #2C3E50;">
@@ -458,15 +444,20 @@
             <Insets bottom="650.0" top="30.0" />
          </StackPane.margin>
       </StackPane>
-      <SplitPane fx:id="sp3" disable="true" dividerPositions="0.5" orientation="VERTICAL" prefHeight="0.0" prefWidth="1920.0">
-         <items>
-            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="242.0" prefWidth="1918.0" />
-            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" />
-         </items>
+      <MenuBar fx:id="menuBar">
+         <menus>
+            <Menu mnemonicParsing="false" text="File">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#downloadRequests" text="Download Requests" />
+                  <MenuItem mnemonicParsing="false" onAction="#restartServer" text="Restart Server" />
+                  <MenuItem mnemonicParsing="false" onAction="#signout" text="Logout" />
+               </items>
+            </Menu>
+         </menus>
          <StackPane.margin>
-            <Insets bottom="650.0" top="350.0" />
+            <Insets bottom="940.0" />
          </StackPane.margin>
-      </SplitPane>
+      </MenuBar>
       <StackPane fx:id="mainPane" prefHeight="720.0" prefWidth="1920.0" style="-fx-background-color: linear-gradient( #2C3E50,#1B2631);">
          <children>
             <StackPane fx:id="roomGridPane" prefHeight="150.0" prefWidth="200.0">
@@ -853,6 +844,38 @@
                               <Tooltip text="Click to select this slot for booking. Click again to cancel" />
                            </tooltip>
                         </Button>
+                        <fx:define>
+                           <ArrayList fx:id="slotButtons">
+                              <fx:reference source="btn1" />
+                              <fx:reference source="btn2" />
+                              <fx:reference source="btn3" />
+                              <fx:reference source="btn4" />
+                              <fx:reference source="btn5" />
+                              <fx:reference source="btn6" />
+                              <fx:reference source="btn7" />
+                              <fx:reference source="btn8" />
+                              <fx:reference source="btn9" />
+                              <fx:reference source="btn10" />
+                              <fx:reference source="btn11" />
+                              <fx:reference source="btn12" />
+                              <fx:reference source="btn13" />
+                              <fx:reference source="btn14" />
+                              <fx:reference source="btn15" />
+                              <fx:reference source="btn16" />
+                              <fx:reference source="btn17" />
+                              <fx:reference source="btn18" />
+                              <fx:reference source="btn19" />
+                              <fx:reference source="btn20" />
+                              <fx:reference source="btn21" />
+                              <fx:reference source="btn22" />
+                              <fx:reference source="btn23" />
+                              <fx:reference source="btn24" />
+                              <fx:reference source="btn25" />
+                              <fx:reference source="btn26" />
+                              <fx:reference source="btn27" />
+                              <fx:reference source="btn28" />
+                           </ArrayList>
+                        </fx:define>
                         <Label alignment="CENTER" onMouseClicked="#showSlotInfo" prefHeight="42.0" prefWidth="238.0" style="-fx-background-color: #B03A2E; -fx-border-color: white; -fx-border-width: 4;" text="0800AM - 0830AM" GridPane.rowIndex="1" GridPane.valignment="TOP">
                            <GridPane.margin>
                               <Insets left="5.0" right="5.0" top="5.0" />
@@ -1975,5 +1998,14 @@
             <Insets top="355.0" />
          </StackPane.margin>
       </StackPane>
+      <SplitPane fx:id="sp3" disable="true" dividerPositions="0.5" orientation="VERTICAL" prefHeight="0.0" prefWidth="1920.0">
+         <items>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="242.0" prefWidth="1918.0" />
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" />
+         </items>
+         <StackPane.margin>
+            <Insets bottom="650.0" top="350.0" />
+         </StackPane.margin>
+      </SplitPane>
    </children>
 </StackPane>
