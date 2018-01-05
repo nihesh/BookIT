@@ -67,30 +67,30 @@
       <file leaf-file-name="server.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/server.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="676">
-              <caret line="1479" column="24" lean-forward="true" selection-start-line="1479" selection-start-column="24" selection-end-line="1479" selection-end-column="24" />
+            <state relative-caret-position="26154">
+              <caret line="1479" column="24" lean-forward="false" selection-start-line="1479" selection-start-column="24" selection-end-line="1479" selection-end-column="24" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AdminReservation.fxml" pinned="false" current-in-tab="true">
+      <file leaf-file-name="AdminReservation.fxml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/AdminReservation/AdminReservation.fxml">
-          <provider editor-type-id="JavaFX-Scene-Builder">
-            <state />
-          </provider>
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="123">
-              <caret line="847" column="35" lean-forward="true" selection-start-line="847" selection-start-column="35" selection-end-line="847" selection-end-column="35" />
+            <state relative-caret-position="396">
+              <caret line="832" column="30" lean-forward="false" selection-start-line="832" selection-start-column="30" selection-end-line="832" selection-end-column="30" />
               <folding />
             </state>
+          </provider>
+          <provider editor-type-id="JavaFX-Scene-Builder">
+            <state />
           </provider>
         </entry>
       </file>
       <file leaf-file-name="Admin.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/HelperClasses/Admin.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="448">
+            <state relative-caret-position="1998">
               <caret line="119" column="24" lean-forward="false" selection-start-line="119" selection-start-column="24" selection-end-line="119" selection-end-column="24" />
               <folding />
             </state>
@@ -115,26 +115,20 @@
             <state relative-caret-position="6444">
               <caret line="401" column="58" lean-forward="false" selection-start-line="401" selection-start-column="58" selection-end-line="401" selection-end-column="58" />
               <folding>
-                <element signature="e#0#38045#0" expanded="false" />
-                <element signature="imports" expanded="false" />
-                <element signature="e#20899#20900#0" expanded="false" />
-                <element signature="e#20945#20946#0" expanded="false" />
-                <element signature="e#22680#22681#0" expanded="false" />
-                <element signature="e#22718#22719#0" expanded="false" />
                 <marker date="1514739215956" expanded="false" signature="3369:3385" ph="&lt;~&gt;" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AdminReservationGUIController.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="AdminReservationGUIController.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/AdminReservation/AdminReservationGUIController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="438">
-              <caret line="344" column="5" lean-forward="true" selection-start-line="344" selection-start-column="5" selection-end-line="344" selection-end-column="5" />
+            <state relative-caret-position="244">
+              <caret line="149" column="0" lean-forward="true" selection-start-line="149" selection-start-column="0" selection-end-line="149" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <marker date="1514874844501" expanded="false" signature="3757:3773" ph="&lt;~&gt;" />
+                <marker date="1515137888533" expanded="false" signature="3762:3778" ph="&lt;~&gt;" />
               </folding>
             </state>
           </provider>
@@ -145,43 +139,7 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="630">
               <caret line="40" column="34" lean-forward="false" selection-start-line="40" selection-start-column="34" selection-end-line="40" selection-end-column="34" />
-              <folding>
-                <element signature="imports" expanded="false" />
-                <element signature="e#2007#2008#0" expanded="false" />
-                <element signature="e#2025#2026#0" expanded="false" />
-                <element signature="e#2054#2055#0" expanded="false" />
-                <element signature="e#2074#2075#0" expanded="false" />
-                <element signature="e#2104#2105#0" expanded="false" />
-                <element signature="e#2125#2126#0" expanded="false" />
-                <element signature="e#2154#2155#0" expanded="false" />
-                <element signature="e#2174#2175#0" expanded="false" />
-                <element signature="e#2210#2211#0" expanded="false" />
-                <element signature="e#2234#2235#0" expanded="false" />
-                <element signature="e#2261#2262#0" expanded="false" />
-                <element signature="e#2279#2280#0" expanded="false" />
-                <element signature="e#2315#2316#0" expanded="false" />
-                <element signature="e#2342#2343#0" expanded="false" />
-                <element signature="e#2384#2385#0" expanded="false" />
-                <element signature="e#2405#2406#0" expanded="false" />
-                <element signature="e#2441#2442#0" expanded="false" />
-                <element signature="e#2464#2465#0" expanded="false" />
-                <element signature="e#2504#2505#0" expanded="false" />
-                <element signature="e#2531#2532#0" expanded="false" />
-                <element signature="e#2573#2574#0" expanded="false" />
-                <element signature="e#2602#2603#0" expanded="false" />
-                <element signature="e#2642#2643#0" expanded="false" />
-                <element signature="e#2669#2670#0" expanded="false" />
-                <element signature="e#2720#2721#0" expanded="false" />
-                <element signature="e#2755#2756#0" expanded="false" />
-                <element signature="e#2805#2806#0" expanded="false" />
-                <element signature="e#2839#2840#0" expanded="false" />
-                <element signature="e#3000#3001#0" expanded="false" />
-                <element signature="e#3023#3024#0" expanded="false" />
-                <element signature="e#3077#3078#0" expanded="false" />
-                <element signature="e#3118#3119#0" expanded="false" />
-                <element signature="e#3170#3171#0" expanded="false" />
-                <element signature="e#3198#3199#0" expanded="false" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -191,14 +149,7 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="13410">
               <caret line="802" column="32" lean-forward="false" selection-start-line="802" selection-start-column="32" selection-end-line="802" selection-end-column="32" />
-              <folding>
-                <element signature="imports" expanded="false" />
-                <element signature="e#23369#23370#0" expanded="false" />
-                <element signature="e#23389#23390#0" expanded="false" />
-                <element signature="e#23432#23433#0" expanded="false" />
-                <element signature="e#23458#23459#0" expanded="false" />
-                <element signature="e#24992#25007#0" expanded="false" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -206,7 +157,7 @@
       <file leaf-file-name="StudentReservationGUIController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/StudentReservation/StudentReservationGUIController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="215">
+            <state relative-caret-position="3816">
               <caret line="262" column="49" lean-forward="false" selection-start-line="262" selection-start-column="49" selection-end-line="262" selection-end-column="49" />
               <folding>
                 <element signature="e#3609#3625#0" expanded="true" />
@@ -224,18 +175,7 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="5472">
               <caret line="311" column="38" lean-forward="false" selection-start-line="311" selection-start-column="37" selection-end-line="311" selection-end-column="38" />
-              <folding>
-                <element signature="e#1310#1319#0" expanded="false" />
-                <element signature="e#3503#3518#0" expanded="false" />
-                <element signature="e#3578#3594#0" expanded="false" />
-                <element signature="e#4067#4093#0" expanded="false" />
-                <element signature="e#5548#5574#0" expanded="false" />
-                <element signature="e#6185#6211#0" expanded="false" />
-                <element signature="e#10458#10474#0" expanded="false" />
-                <element signature="e#11308#11324#0" expanded="false" />
-                <element signature="e#12146#12162#0" expanded="false" />
-                <element signature="e#12980#12997#0" expanded="false" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -252,7 +192,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>acceptReq</find>
       <find>sendRese</find>
       <find>cancelBooking</find>
       <find>openNotifi</find>
@@ -282,6 +221,7 @@
       <find>JOption</find>
       <find>Notification</find>
       <find>no new</find>
+      <find>rootPane</find>
     </findStrings>
   </component>
   <component name="FindManager">
@@ -336,8 +276,8 @@
         <option value="$PROJECT_DIR$/src/StudentReservation/StudentReservationGUIController.java" />
         <option value="$PROJECT_DIR$/src/server.java" />
         <option value="$PROJECT_DIR$/src/HelperClasses/Admin.java" />
-        <option value="$PROJECT_DIR$/src/AdminReservation/AdminReservationGUIController.java" />
         <option value="$PROJECT_DIR$/src/AdminReservation/AdminReservation.fxml" />
+        <option value="$PROJECT_DIR$/src/AdminReservation/AdminReservationGUIController.java" />
       </list>
     </option>
   </component>
@@ -598,8 +538,8 @@
         </subPane>
       </pane>
       <pane id="Scratches" />
-      <pane id="Scope" />
       <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -973,12 +913,11 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="36" width="1920" height="1044" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3251073" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
@@ -1005,6 +944,7 @@
       <window_info id="Profiler" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3251073" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Problems" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
@@ -1100,14 +1040,14 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/FacultyReservation/FacultyReservation.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="478">
           <caret line="821" column="31" lean-forward="false" selection-start-line="821" selection-start-column="31" selection-end-line="821" selection-end-column="31" />
           <folding />
         </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/LoginSignup/LoginSignupGUI.java">
@@ -1118,14 +1058,14 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/LoginSignup/LoginSignup1080p.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1854">
           <caret line="103" column="56" lean-forward="false" selection-start-line="103" selection-start-column="56" selection-end-line="103" selection-end-column="56" />
           <folding />
         </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/HelperClasses/Faculty.java">
@@ -1137,14 +1077,14 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/StudentReservation/StudentReservation.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="16920">
           <caret line="940" column="36" lean-forward="false" selection-start-line="940" selection-start-column="36" selection-end-line="940" selection-end-column="36" />
           <folding />
         </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/HelperClasses/Student.java">
@@ -1215,7 +1155,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1854">
           <caret line="114" column="29" lean-forward="false" selection-start-line="114" selection-start-column="29" selection-end-line="114" selection-end-column="29" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1249,43 +1188,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="630">
           <caret line="40" column="34" lean-forward="false" selection-start-line="40" selection-start-column="34" selection-end-line="40" selection-end-column="34" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#2007#2008#0" expanded="false" />
-            <element signature="e#2025#2026#0" expanded="false" />
-            <element signature="e#2054#2055#0" expanded="false" />
-            <element signature="e#2074#2075#0" expanded="false" />
-            <element signature="e#2104#2105#0" expanded="false" />
-            <element signature="e#2125#2126#0" expanded="false" />
-            <element signature="e#2154#2155#0" expanded="false" />
-            <element signature="e#2174#2175#0" expanded="false" />
-            <element signature="e#2210#2211#0" expanded="false" />
-            <element signature="e#2234#2235#0" expanded="false" />
-            <element signature="e#2261#2262#0" expanded="false" />
-            <element signature="e#2279#2280#0" expanded="false" />
-            <element signature="e#2315#2316#0" expanded="false" />
-            <element signature="e#2342#2343#0" expanded="false" />
-            <element signature="e#2384#2385#0" expanded="false" />
-            <element signature="e#2405#2406#0" expanded="false" />
-            <element signature="e#2441#2442#0" expanded="false" />
-            <element signature="e#2464#2465#0" expanded="false" />
-            <element signature="e#2504#2505#0" expanded="false" />
-            <element signature="e#2531#2532#0" expanded="false" />
-            <element signature="e#2573#2574#0" expanded="false" />
-            <element signature="e#2602#2603#0" expanded="false" />
-            <element signature="e#2642#2643#0" expanded="false" />
-            <element signature="e#2669#2670#0" expanded="false" />
-            <element signature="e#2720#2721#0" expanded="false" />
-            <element signature="e#2755#2756#0" expanded="false" />
-            <element signature="e#2805#2806#0" expanded="false" />
-            <element signature="e#2839#2840#0" expanded="false" />
-            <element signature="e#3000#3001#0" expanded="false" />
-            <element signature="e#3023#3024#0" expanded="false" />
-            <element signature="e#3077#3078#0" expanded="false" />
-            <element signature="e#3118#3119#0" expanded="false" />
-            <element signature="e#3170#3171#0" expanded="false" />
-            <element signature="e#3198#3199#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1293,18 +1196,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="5472">
           <caret line="311" column="38" lean-forward="false" selection-start-line="311" selection-start-column="37" selection-end-line="311" selection-end-column="38" />
-          <folding>
-            <element signature="e#1310#1319#0" expanded="false" />
-            <element signature="e#3503#3518#0" expanded="false" />
-            <element signature="e#3578#3594#0" expanded="false" />
-            <element signature="e#4067#4093#0" expanded="false" />
-            <element signature="e#5548#5574#0" expanded="false" />
-            <element signature="e#6185#6211#0" expanded="false" />
-            <element signature="e#10458#10474#0" expanded="false" />
-            <element signature="e#11308#11324#0" expanded="false" />
-            <element signature="e#12146#12162#0" expanded="false" />
-            <element signature="e#12980#12997#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1312,14 +1204,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="13410">
           <caret line="802" column="32" lean-forward="false" selection-start-line="802" selection-start-column="32" selection-end-line="802" selection-end-column="32" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#23369#23370#0" expanded="false" />
-            <element signature="e#23389#23390#0" expanded="false" />
-            <element signature="e#23432#23433#0" expanded="false" />
-            <element signature="e#23458#23459#0" expanded="false" />
-            <element signature="e#24992#25007#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1328,12 +1213,6 @@
         <state relative-caret-position="6444">
           <caret line="401" column="58" lean-forward="false" selection-start-line="401" selection-start-column="58" selection-end-line="401" selection-end-column="58" />
           <folding>
-            <element signature="e#0#38045#0" expanded="false" />
-            <element signature="imports" expanded="false" />
-            <element signature="e#20899#20900#0" expanded="false" />
-            <element signature="e#20945#20946#0" expanded="false" />
-            <element signature="e#22680#22681#0" expanded="false" />
-            <element signature="e#22718#22719#0" expanded="false" />
             <marker date="1514739215956" expanded="false" signature="3369:3385" ph="&lt;~&gt;" />
           </folding>
         </state>
@@ -1341,7 +1220,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/StudentReservation/StudentReservationGUIController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="215">
+        <state relative-caret-position="3816">
           <caret line="262" column="49" lean-forward="false" selection-start-line="262" selection-start-column="49" selection-end-line="262" selection-end-column="49" />
           <folding>
             <element signature="e#3609#3625#0" expanded="true" />
@@ -1355,39 +1234,39 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/server.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="676">
-          <caret line="1479" column="24" lean-forward="true" selection-start-line="1479" selection-start-column="24" selection-end-line="1479" selection-end-column="24" />
+        <state relative-caret-position="26154">
+          <caret line="1479" column="24" lean-forward="false" selection-start-line="1479" selection-start-column="24" selection-end-line="1479" selection-end-column="24" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/HelperClasses/Admin.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="448">
+        <state relative-caret-position="1998">
           <caret line="119" column="24" lean-forward="false" selection-start-line="119" selection-start-column="24" selection-end-line="119" selection-end-column="24" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AdminReservation/AdminReservationGUIController.java">
+    <entry file="file://$PROJECT_DIR$/src/AdminReservation/AdminReservation.fxml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="438">
-          <caret line="344" column="5" lean-forward="true" selection-start-line="344" selection-start-column="5" selection-end-line="344" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <marker date="1514874844501" expanded="false" signature="3757:3773" ph="&lt;~&gt;" />
-          </folding>
+        <state relative-caret-position="396">
+          <caret line="832" column="30" lean-forward="false" selection-start-line="832" selection-start-column="30" selection-end-line="832" selection-end-column="30" />
+          <folding />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AdminReservation/AdminReservation.fxml">
       <provider editor-type-id="JavaFX-Scene-Builder">
         <state />
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AdminReservation/AdminReservationGUIController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="123">
-          <caret line="847" column="35" lean-forward="true" selection-start-line="847" selection-start-column="35" selection-end-line="847" selection-end-column="35" />
-          <folding />
+        <state relative-caret-position="244">
+          <caret line="149" column="0" lean-forward="true" selection-start-line="149" selection-start-column="0" selection-end-line="149" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <marker date="1515137888533" expanded="false" signature="3762:3778" ph="&lt;~&gt;" />
+          </folding>
         </state>
       </provider>
     </entry>
