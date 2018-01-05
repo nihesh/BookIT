@@ -22,22 +22,24 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<?import java.util.ArrayList?>
-<VBox fx:id="rootPane" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="AdminReservation.AdminReservationGUIController">
+
+<StackPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <MenuBar fx:id="menuBar">
-        <menus>
-          <Menu mnemonicParsing="false" text="File">
-            <items>
+         <menus>
+            <Menu mnemonicParsing="false" text="File">
+               <items>
                   <MenuItem mnemonicParsing="false" onAction="#downloadRequests" text="Download Requests" />
                   <MenuItem mnemonicParsing="false" onAction="#restartServer" text="Restart Server" />
-              <MenuItem mnemonicParsing="false" onAction="#signout" text="Logout" />
-            </items>
-          </Menu>
-        </menus>
+                  <MenuItem mnemonicParsing="false" onAction="#signout" text="Logout" />
+               </items>
+            </Menu>
+         </menus>
+         <StackPane.margin>
+            <Insets bottom="970.0" />
+         </StackPane.margin>
       </MenuBar>
       <StackPane fx:id="topPane" prefHeight="382.0" prefWidth="1920.0">
          <children>
@@ -54,10 +56,10 @@
                </children>
             </StackPane>
             <SplitPane disable="true" dividerPositions="0.29797979797979796" prefHeight="312.0" prefWidth="2003.0">
-              <items>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" />
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" />
-              </items>
+               <items>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" />
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" />
+               </items>
                <StackPane.margin>
                   <Insets left="645.0" right="1265.0" />
                </StackPane.margin>
@@ -171,8 +173,8 @@
                                  </StackPane.margin>
                               </Label>
                               <ScrollPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #922B21;">
-                                <content>
-                                  <AnchorPane minHeight="132.0" minWidth="0.0" prefWidth="563.0" style="-fx-background-color: #922B21;">
+                                 <content>
+                                    <AnchorPane minHeight="132.0" minWidth="0.0" prefWidth="563.0" style="-fx-background-color: #922B21;">
                                        <children>
                                           <Label fx:id="slotInfoMessage" alignment="TOP_LEFT" prefWidth="555.0" text="No information available" textFill="WHITE" wrapText="true">
                                              <font>
@@ -184,7 +186,7 @@
                                           </Label>
                                        </children>
                                     </AnchorPane>
-                                </content>
+                                 </content>
                                  <StackPane.margin>
                                     <Insets bottom="10.0" left="19.0" right="18.0" top="160.0" />
                                  </StackPane.margin>
@@ -452,31 +454,37 @@
                </children>
             </StackPane>
          </children>
+         <StackPane.margin>
+            <Insets bottom="650.0" top="30.0" />
+         </StackPane.margin>
       </StackPane>
       <SplitPane fx:id="sp3" disable="true" dividerPositions="0.5" orientation="VERTICAL" prefHeight="0.0" prefWidth="1920.0">
-        <items>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="242.0" prefWidth="1918.0" />
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" />
-        </items>
+         <items>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="242.0" prefWidth="1918.0" />
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" />
+         </items>
+         <StackPane.margin>
+            <Insets bottom="650.0" top="350.0" />
+         </StackPane.margin>
       </SplitPane>
       <StackPane fx:id="mainPane" prefHeight="720.0" prefWidth="1920.0" style="-fx-background-color: linear-gradient( #2C3E50,#1B2631);">
          <children>
             <StackPane fx:id="roomGridPane" prefHeight="150.0" prefWidth="200.0">
                <children>
                   <GridPane fx:id="roomGrid" alignment="CENTER" prefHeight="233.0" prefWidth="324.0">
-                    <columnConstraints>
+                     <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                    </columnConstraints>
-                    <rowConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     </columnConstraints>
+                     <rowConstraints>
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                    </rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
                      <children>
                         <Button mnemonicParsing="false" onMouseClicked="#openBooking" onMouseEntered="#showReadOnlyBookings" opacity="0.76" prefHeight="54.0" prefWidth="225.0" stylesheets="@button.css" text="C01" GridPane.halignment="CENTER" />
                         <Button mnemonicParsing="false" onMouseClicked="#openBooking" onMouseEntered="#showReadOnlyBookings" opacity="0.76" prefHeight="54.0" prefWidth="225.0" stylesheets="@button.css" text="C12" GridPane.halignment="CENTER" GridPane.rowIndex="1">
@@ -512,22 +520,22 @@
             <StackPane fx:id="HoverPane" prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: linear-gradient(#CD6155 ,#E6B0AA,#CD6155); visibility: false;">
                <children>
                   <GridPane>
-                    <columnConstraints>
+                     <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                    </columnConstraints>
-                    <rowConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     </columnConstraints>
+                     <rowConstraints>
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                    </rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
                      <StackPane.margin>
                         <Insets bottom="100.0" left="200.0" right="200.0" top="50.0" />
                      </StackPane.margin>
@@ -845,38 +853,6 @@
                               <Tooltip text="Click to select this slot for booking. Click again to cancel" />
                            </tooltip>
                         </Button>
-                        <fx:define>
-                           <ArrayList fx:id="slotButtons">
-                              <fx:reference source="btn1" />
-                              <fx:reference source="btn2" />
-                              <fx:reference source="btn3" />
-                              <fx:reference source="btn4" />
-                              <fx:reference source="btn5" />
-                              <fx:reference source="btn6" />
-                              <fx:reference source="btn7" />
-                              <fx:reference source="btn8" />
-                              <fx:reference source="btn9" />
-                              <fx:reference source="btn10" />
-                              <fx:reference source="btn11" />
-                              <fx:reference source="btn12" />
-                              <fx:reference source="btn13" />
-                              <fx:reference source="btn14" />
-                              <fx:reference source="btn15" />
-                              <fx:reference source="btn16" />
-                              <fx:reference source="btn17" />
-                              <fx:reference source="btn18" />
-                              <fx:reference source="btn19" />
-                              <fx:reference source="btn20" />
-                              <fx:reference source="btn21" />
-                              <fx:reference source="btn22" />
-                              <fx:reference source="btn23" />
-                              <fx:reference source="btn24" />
-                              <fx:reference source="btn25" />
-                              <fx:reference source="btn26" />
-                              <fx:reference source="btn27" />
-                              <fx:reference source="btn28" />
-                           </ArrayList>
-                        </fx:define>
                         <Label alignment="CENTER" onMouseClicked="#showSlotInfo" prefHeight="42.0" prefWidth="238.0" style="-fx-background-color: #B03A2E; -fx-border-color: white; -fx-border-width: 4;" text="0800AM - 0830AM" GridPane.rowIndex="1" GridPane.valignment="TOP">
                            <GridPane.margin>
                               <Insets left="5.0" right="5.0" top="5.0" />
@@ -1362,8 +1338,8 @@
                            </StackPane.margin>
                         </Label>
                         <ScrollPane prefHeight="200.0" prefWidth="200.0" translateY="20.0">
-                          <content>
-                            <AnchorPane minHeight="234.0" minWidth="0.0" prefWidth="543.0" style="-fx-background-color: white;">
+                           <content>
+                              <AnchorPane minHeight="234.0" minWidth="0.0" prefWidth="543.0" style="-fx-background-color: white;">
                                  <children>
                                     <Label fx:id="AccRejMessage" alignment="TOP_LEFT" prefWidth="543.0" style="-fx-background-color: white;" text="Messages associated with the request will be displayed here!" wrapText="true">
                                        <font>
@@ -1375,7 +1351,7 @@
                                     </Label>
                                  </children>
                               </AnchorPane>
-                          </content>
+                           </content>
                            <StackPane.margin>
                               <Insets bottom="110.0" left="655.0" right="115.0" top="250.0" />
                            </StackPane.margin>
@@ -1995,9 +1971,9 @@
                </children>
             </StackPane>
          </children>
-         <VBox.margin>
-            <Insets />
-         </VBox.margin>
+         <StackPane.margin>
+            <Insets top="355.0" />
+         </StackPane.margin>
       </StackPane>
    </children>
-</VBox>
+</StackPane>
