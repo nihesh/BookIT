@@ -128,6 +128,7 @@ public class setup {
         flag=0;
         while(file.hasNext()){
             String type,name,code,instructor,credits,acronym,day,startTime,endTime,group,message,venue;
+            type = file.next().trim();
             code = file.next().trim();
             name = file.next().trim();
             instructor = file.next().trim();
