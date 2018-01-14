@@ -526,12 +526,12 @@ class ConnectionHandler implements Runnable{
         LocalDate temp2 = LocalDate.of(start.getYear(), start.getMonth(), start.getDayOfMonth());
         while(!temp2.isAfter(end)){
             if(addToCourse){
-                if (!(course.checkReservation(start, slot, r) == true && room.checkReservation(start, slot, r) == true)){
+                if (!(course.checkReservation(temp2, slot, r) == true && room.checkReservation(temp2, slot, r) == true)){
                     return false;
                 }
             }
             else{
-                if (!(room.checkReservation(start, slot, r) == true)) {
+                if (!(room.checkReservation(temp2, slot, r) == true)) {
                     return false;
                 }
             }

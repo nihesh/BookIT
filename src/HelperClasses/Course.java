@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import static java.lang.System.exit;
+import static java.lang.System.setOut;
 
 /**
  * describes the course class
@@ -263,8 +264,10 @@ public class Course implements java.io.Serializable{
                 if(r.getTopGroup().equals("0")){
                     return true;
                 }
-                if(!old.getGroups().contains(r.getTopGroup())){
-                    return false;
+                for(int i=0; i<r.getGroups().size();i++) {
+                    if (old.getGroups().contains(r.getGroups().get(i))) {
+                        return true;
+                    }
                 }
                 return false;
             }
@@ -374,9 +377,9 @@ public class Course implements java.io.Serializable{
             return true;
         }
         else{
-            if(Schedule.get(date)[slot].getCourseName().equals(r.getCourseName())){
-                r.setTargetDate(date);
-                Schedule.get(date)[slot].addGroup(r.getTopGroup(),r.getVenueName(),r.getMessageWithoutVenue());
+            r.setTargetDate(date);
+            if(Schedule.get(date)[slot].getCourseName().equals(r.getCourseName()) && checkReservation(date, slot, r)){
+                Schedule.get(date)[slot].addGroup(r.getGroups(), r.getVenueName(), r.getMessageWithoutVenue());
                 return true;
             }
             else {
@@ -396,20 +399,23 @@ public class Course implements java.io.Serializable{
             return true;
         }
         else{
-            if(Schedule.get(date)[slot].getCourseName().equals(r.getCourseName())){
-                if(Schedule.get(date)[slot].getTopGroup().equals("0")){
+            Reservation old = Schedule.get(date)[slot];
+            if(old.getCourseName().equals(r.getCourseName())){
+                if(old.getTopGroup().equals("0")){
                     return false;
                 }
                 if(r.getTopGroup().equals("0")){
                     return false;
                 }
-                if(!Schedule.get(date)[slot].getGroups().contains(r.getTopGroup())){
-                    return true;
+                for(int i=0; i<r.getGroups().size();i++) {
+                    if (old.getGroups().contains(r.getGroups().get(i))) {
+                        return false;
+                    }
                 }
-                return false;
+                return true;
             }
             else {
-                return false;
+                return true;
             }
         }
     }

@@ -699,8 +699,13 @@ public class StudentReservationGUIController implements Initializable{
                 facultyName = f.getName();
             }
             slotInfoFaculty.setText(facultyName);
-            slotInfoCourse.setText(temp.getCourseName());
-            slotInfoMessage.setText(temp.getMessage());
+            if(bookings[Reservation.getSlotID(curLabel.getText())].getCourseName().length()>30) {
+                slotInfoCourse.setText(bookings[Reservation.getSlotID(curLabel.getText())].getCourseName().substring(0,15)+"..."+bookings[Reservation.getSlotID(curLabel.getText())].getCourseName().substring(bookings[Reservation.getSlotID(curLabel.getText())].getCourseName().length()-10,bookings[Reservation.getSlotID(curLabel.getText())].getCourseName().length()));
+            }
+            else{
+                slotInfoCourse.setText(bookings[Reservation.getSlotID(curLabel.getText())].getCourseName());
+            }
+            slotInfoMessage.setText(bookings[Reservation.getSlotID(curLabel.getText())].getCourseName()+"\n"+bookings[Reservation.getSlotID(curLabel.getText())].getMessage());
             String currentUserEmail = activeUser.getEmail().getEmailID();
             if(currentUserEmail.equals(temp.getFacultyEmail(false)) || currentUserEmail.equals(temp.getReserverEmail())){
                 cancelSlotBooking.setDisable(false);
@@ -894,6 +899,7 @@ public class StudentReservationGUIController implements Initializable{
         courseDropDown.getItems().clear();
         purposeDropDown.getItems().clear();
         groupDropDown.getItems().clear();
+        allCourses.sort(String::compareToIgnoreCase);
         for(int j=0;j<allCourses.size();j++) {
             courseDropDown.getItems().add(allCourses.get(j));
         }
@@ -943,12 +949,12 @@ public class StudentReservationGUIController implements Initializable{
             Notification.throwAlert("Error","Course Field can't be empty");
             return;
         }
-        String chosenGroup;
+        ArrayList<String> chosenGroup = new ArrayList<>();
         try {
-            chosenGroup = groupDropDown.getSelectionModel().getSelectedItem().toString();
+            chosenGroup.add(groupDropDown.getSelectionModel().getSelectedItem().toString());
         }
         catch(NullPointerException e){
-            chosenGroup = "0";
+            chosenGroup.add("0");
         }
         String chosenPurpose;
         try {
@@ -994,6 +1000,8 @@ public class StudentReservationGUIController implements Initializable{
      * Event handler for confirming booking of a room
      */
     public void bookingCompleted2(){
+        ArrayList<String> chosenGroup = new ArrayList<>();
+        chosenGroup.add("0");
         String chosenPurpose="";
         chosenPurpose = purposeBox.getText();
         if(chosenPurpose.equals("")){
@@ -1005,7 +1013,7 @@ public class StudentReservationGUIController implements Initializable{
         ArrayList<Reservation> listOfReservations = new ArrayList<>();
         for(int i=0;i<chosenSlots.size();i++){              // GUI Integration Begins
             Reservation r;
-            r = new Reservation(chosenMessage, "0", "", "", activeRoom, chosenPurpose, chosenSlots.get(i));
+            r = new Reservation(chosenMessage, chosenGroup, "", "", activeRoom, chosenPurpose, chosenSlots.get(i));
             r.requestAdmin();
             r.setTargetDate(activeDate);
             r.setReserverEmail(activeUser.getEmail().getEmailID());

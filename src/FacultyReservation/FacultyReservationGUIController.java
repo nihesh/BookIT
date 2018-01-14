@@ -568,8 +568,13 @@ public class FacultyReservationGUIController implements Initializable{
                 facultyName = f.getName();
             }
             slotInfoFaculty.setText(facultyName);
-            slotInfoCourse.setText(bookings[Reservation.getSlotID(curLabel.getText())].getCourseName());
-            slotInfoMessage.setText(bookings[Reservation.getSlotID(curLabel.getText())].getMessage());
+            if(bookings[Reservation.getSlotID(curLabel.getText())].getCourseName().length()>30) {
+                slotInfoCourse.setText(bookings[Reservation.getSlotID(curLabel.getText())].getCourseName().substring(0,15)+"..."+bookings[Reservation.getSlotID(curLabel.getText())].getCourseName().substring(bookings[Reservation.getSlotID(curLabel.getText())].getCourseName().length()-10,bookings[Reservation.getSlotID(curLabel.getText())].getCourseName().length()));
+            }
+            else{
+                slotInfoCourse.setText(bookings[Reservation.getSlotID(curLabel.getText())].getCourseName());
+            }
+            slotInfoMessage.setText(bookings[Reservation.getSlotID(curLabel.getText())].getCourseName()+"\n"+bookings[Reservation.getSlotID(curLabel.getText())].getMessage());
             String currentUserEmail = activeUser.getEmail().getEmailID();
             if(currentUserEmail.equals(bookings[Reservation.getSlotID(curLabel.getText())].getFacultyEmail(false)) || currentUserEmail.equals(bookings[Reservation.getSlotID(curLabel.getText())].getReserverEmail())){
                 cancelSlotBooking.setDisable(false);
@@ -767,6 +772,7 @@ public class FacultyReservationGUIController implements Initializable{
         courseDropDown.getItems().clear();
         purposeDropDown.getItems().clear();
         groupDropDown.getItems().clear();
+        allCourses.sort(String::compareToIgnoreCase);
         for(int j=0;j<allCourses.size();j++) {
             courseDropDown.getItems().add(allCourses.get(j));
         }
@@ -862,6 +868,7 @@ public class FacultyReservationGUIController implements Initializable{
      */
     public void bookingCompleted1(){
         String chosenCourse;
+        ArrayList<String> chosenGroup = new ArrayList<>();
         Course courseObject = null;
         try {
             chosenCourse = courseDropDown.getSelectionModel().getSelectedItem().toString();
@@ -870,12 +877,11 @@ public class FacultyReservationGUIController implements Initializable{
             Notification.throwAlert("Error","Course Field can't be empty");
             return;
         }
-        String chosenGroup;
         try {
-            chosenGroup = groupDropDown.getSelectionModel().getSelectedItem().toString();
+            chosenGroup.add(groupDropDown.getSelectionModel().getSelectedItem().toString());
         }
         catch(NullPointerException e){
-            chosenGroup = "0";
+            chosenGroup.add("0");
         }
         String chosenPurpose;
         try {
@@ -903,8 +909,17 @@ public class FacultyReservationGUIController implements Initializable{
             r.setReserverEmail(activeUser.getEmail().getEmailID());
             listOfReservations.add(r);
         }                                                   // GUI Integration Ends
+        Boolean failure = false;
         for(int i=0;i<listOfReservations.size();i++){
-            activeUser.bookRoom(listOfReservations.get(i).getTargetDate(),listOfReservations.get(i).getTargetDate(), listOfReservations.get(i).getReservationSlot(), listOfReservations.get(i), false);
+            if(!activeUser.bookRoom(listOfReservations.get(i).getTargetDate(),listOfReservations.get(i).getTargetDate(), listOfReservations.get(i).getReservationSlot(), listOfReservations.get(i), false)){
+                failure = true;
+            }
+        }
+        if(!failure){
+            Notification.throwAlert("Success", "Your booking has been completed. Kindly verify");
+        }
+        else{
+            Notification.throwAlert("Booking Failed", "Some bookings couldn't be completed. Kindly check notifications for successful bookings");
         }
         closeReservationPane();
         flyRight();
@@ -913,7 +928,8 @@ public class FacultyReservationGUIController implements Initializable{
 
     public void bookingCompleted2(){
         String chosenCourse="";
-        String chosenGroup="0";
+        ArrayList<String> chosenGroup = new ArrayList<>();
+        chosenGroup.add("0");
         String chosenPurpose;
         chosenPurpose = purposeBox.getText();
         if(chosenPurpose.equals("")){

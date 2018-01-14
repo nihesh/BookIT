@@ -761,8 +761,13 @@ public class AdminReservationGUIController implements Initializable{
                 facultyName = f.getName();
             }
             slotInfoFaculty.setText(facultyName);
-            slotInfoCourse.setText(bookings[Reservation.getSlotID(curLabel.getText())].getCourseName());
-            slotInfoMessage.setText(bookings[Reservation.getSlotID(curLabel.getText())].getMessage());
+            if(bookings[Reservation.getSlotID(curLabel.getText())].getCourseName().length()>30) {
+                slotInfoCourse.setText(bookings[Reservation.getSlotID(curLabel.getText())].getCourseName().substring(0,15)+"..."+bookings[Reservation.getSlotID(curLabel.getText())].getCourseName().substring(bookings[Reservation.getSlotID(curLabel.getText())].getCourseName().length()-10,bookings[Reservation.getSlotID(curLabel.getText())].getCourseName().length()));
+            }
+            else{
+                slotInfoCourse.setText(bookings[Reservation.getSlotID(curLabel.getText())].getCourseName());
+            }
+            slotInfoMessage.setText(bookings[Reservation.getSlotID(curLabel.getText())].getCourseName()+"\n"+bookings[Reservation.getSlotID(curLabel.getText())].getMessage());
         }
         else{
             cancelSlotBooking.setDisable(true);
@@ -956,6 +961,7 @@ public class AdminReservationGUIController implements Initializable{
         courseDropDown.getItems().clear();
         purposeDropDown.getItems().clear();
         groupDropDown.getItems().clear();
+        allCourses.sort(String::compareToIgnoreCase);
         for(int j=0;j<allCourses.size();j++) {
             courseDropDown.getItems().add(allCourses.get(j));
         }
@@ -1000,12 +1006,12 @@ public class AdminReservationGUIController implements Initializable{
             Notification.throwAlert("Error","Course Field can't be empty");
             return;
         }
-        String chosenGroup;
+        ArrayList<String> chosenGroup = new ArrayList<>();
         try {
-            chosenGroup = groupDropDown.getSelectionModel().getSelectedItem().toString();
+            chosenGroup.add(groupDropDown.getSelectionModel().getSelectedItem().toString());
         }
         catch(NullPointerException e){
-            chosenGroup = "0";
+            chosenGroup.add("0");
         }
         String chosenPurpose;
         try {
@@ -1036,8 +1042,17 @@ public class AdminReservationGUIController implements Initializable{
             Notification.throwAlert("Error","Cannot complete booking as there is some other confirmed booking in one of the slots that you are trying to book");
             return;
         }
+        Boolean failure = false;
         for(int i=0;i<listOfReservations.size();i++){
-            activeUser.bookRoom(startDate.getValue(), endDate.getValue(), listOfReservations.get(i).getReservationSlot(), listOfReservations.get(i), false);
+            if(!activeUser.bookRoom(startDate.getValue(), endDate.getValue(), listOfReservations.get(i).getReservationSlot(), listOfReservations.get(i), false)){
+                failure = true;
+            }
+        }
+        if(!failure){
+            Notification.throwAlert("Success", "Your booking has been completed. Kindly verify");
+        }
+        else{
+            Notification.throwAlert("Booking Failed", "Some bookings couldn't be completed. Kindly check notifications for successful bookings");
         }
         closeReservationPane();
         flyRight();
@@ -1046,7 +1061,8 @@ public class AdminReservationGUIController implements Initializable{
 
     public void bookingCompleted2(){
         String chosenCourse="";
-        String chosenGroup="0";
+        ArrayList<String> chosenGroup = new ArrayList<>();
+        chosenGroup.add("0");
         String chosenPurpose;
         chosenPurpose = purposeBox.getText();
         if(chosenPurpose.equals("")){

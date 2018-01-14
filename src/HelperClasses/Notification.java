@@ -44,7 +44,6 @@ public class Notification implements Serializable{
 	}
 	@Override
 	public String toString() {
-		System.out.println(targetDate);
 		// TODO Auto-generated method stub
 		String slots="";
 		if(slotIDs!=null) {

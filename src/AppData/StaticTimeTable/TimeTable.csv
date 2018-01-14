@@ -36,32 +36,32 @@ Mandatory,MTH201,Probability & Statistics - A,Sanjit Kaul,4,PS ,Friday,1130AM,01
 Mandatory,MTH201,Probability & Statistics - A,Sanjit Kaul,4,PS ,Friday,1130AM,0100PM,4,Tutorial,S01
 Mandatory,MTH201,Probability & Statistics - A,Sanjit Kaul,4,PS ,Friday,1130AM,0100PM,5,Tutorial,S02
 Mandatory,MTH201,Probability & Statistics - A,Sanjit Kaul,4,PS ,Friday,1130AM,0100PM,6,Tutorial,C24
-Mandatory,MTH201,Probability & Statistics,Angshul Majumdar,4,PS ,Monday,1030AM,1130AM,0,Lecture,C11
-Mandatory,MTH201,Probability & Statistics,Angshul Majumdar,4,PS ,Wednesday,0930AM,1030AM,0,Lecture,C11
-Mandatory,MTH201,Probability & Statistics,Angshul Majumdar,4,PS ,Thursday,1030AM,1130AM,0,Lecture,C11
-Mandatory,MTH201,Probability & Statistics,Angshul Majumdar,4,PS ,Monday,0900AM,1030AM,1,Tutorial,LR1
-Mandatory,MTH201,Probability & Statistics,Angshul Majumdar,4,PS ,Monday,0900AM,1030AM,2,Tutorial,LR2
-Mandatory,MTH201,Probability & Statistics,Angshul Majumdar,4,PS ,Monday,0900AM,1030AM,3,Tutorial,LR3
-Mandatory,MTH201,Probability & Statistics,Angshul Majumdar,4,PS ,Monday,0900AM,1030AM,4,Tutorial,S01
-Mandatory,MTH201,Probability & Statistics,Angshul Majumdar,4,PS ,Monday,0900AM,1030AM,5,Tutorial,S02
-Mandatory,DES130,Introduction to Engineering Design,Aman Parnami,4,IED,Tuesday,1030AM,1200PM,0,Lecture,A106
-Mandatory,DES130,Introduction to Engineering Design,Aman Parnami,4,IED,Tuesday,1030AM,1200PM,0,Lecture,B105
-Mandatory,DES130,Introduction to Engineering Design,Aman Parnami,4,IED,Thursday,1000AM,1130AM,0,Lecture,A106
-Mandatory,DES130,Introduction to Engineering Design,Aman Parnami,4,IED,Thursday,1000AM,1130AM,0,Lecture,B105
-Mandatory,DES130,Introduction to Engineering Design,Aman Parnami,4,IED,Tuesday,0800AM,0930AM,0,Lecture,A106
-Mandatory,DES130,Introduction to Engineering Design,Aman Parnami,4,IED,Tuesday,0800AM,0930AM,0,Lecture,B105
-Mandatory,DES130,Introduction to Engineering Design,Aman Parnami,4,IED,Thursday,0830AM,1000AM,0,Lecture,A106
-Mandatory,DES130,Introduction to Engineering Design,Aman Parnami,4,IED,Thursday,0830AM,1000AM,0,Lecture,B105
-Mandatory,DES130,Introduction to Engineering Design,Aman Parnami,4,IED,Monday,0200PM,0400PM,5,Lab,L33
-Mandatory,DES130,Introduction to Engineering Design,Aman Parnami,4,IED,Thursday,0330PM,0530PM,3,Lab,L33
-Mandatory,DES130,Introduction to Engineering Design,Aman Parnami,4,IED,Thursday,0330PM,0530PM,1,Lab,L32
-Mandatory,DES130,Introduction to Engineering Design,Aman Parnami,4,IED,Thursday,0130PM,0330PM,4,Lab,L33
-Mandatory,DES130,Introduction to Engineering Design,Aman Parnami,4,IED,Friday,0200PM,0400PM,2,Lab,L33
-Mandatory,DES130,Introduction to Engineering Design,Aman Parnami,4,IED,Monday,0200PM,0400PM,6,Lab,L32
-Mandatory,DES130,Introduction to Engineering Design,Aman Parnami,4,IED,Tuesday,0200PM,0400PM,2,Lab,L33
-Mandatory,DES130,Introduction to Engineering Design,Aman Parnami,4,IED,Wednesday,0200PM,0400PM,1,Lab,L33
-Mandatory,DES130,Introduction to Engineering Design,Aman Parnami,4,IED,Thursday,0130PM,0330PM,4,Lab,L32
-Mandatory,DES130,Introduction to Engineering Design,Aman Parnami,4,IED,Friday,0200PM,0400PM,3,Lab,L32
+Mandatory,MTH201,Probability & Statistics - B,Angshul Majumdar,4,PS ,Monday,1030AM,1130AM,0,Lecture,C11
+Mandatory,MTH201,Probability & Statistics - B,Angshul Majumdar,4,PS ,Wednesday,0930AM,1030AM,0,Lecture,C11
+Mandatory,MTH201,Probability & Statistics - B,Angshul Majumdar,4,PS ,Thursday,1030AM,1130AM,0,Lecture,C11
+Mandatory,MTH201,Probability & Statistics - B,Angshul Majumdar,4,PS ,Monday,0900AM,1030AM,1,Tutorial,LR1
+Mandatory,MTH201,Probability & Statistics - B,Angshul Majumdar,4,PS ,Monday,0900AM,1030AM,2,Tutorial,LR2
+Mandatory,MTH201,Probability & Statistics - B,Angshul Majumdar,4,PS ,Monday,0900AM,1030AM,3,Tutorial,LR3
+Mandatory,MTH201,Probability & Statistics - B,Angshul Majumdar,4,PS ,Monday,0900AM,1030AM,4,Tutorial,S01
+Mandatory,MTH201,Probability & Statistics - B,Angshul Majumdar,4,PS ,Monday,0900AM,1030AM,5,Tutorial,S02
+Mandatory,DES130,Introduction to Engineering Design - A,Aman Parnami,4,IED,Tuesday,1030AM,1200PM,CSE,Lecture,A106
+Mandatory,DES130,Introduction to Engineering Design - A,Aman Parnami,4,IED,Tuesday,1030AM,1200PM,CSAM,Lecture,B105
+Mandatory,DES130,Introduction to Engineering Design - A,Aman Parnami,4,IED,Thursday,1000AM,1130AM,CSE,Lecture,A106
+Mandatory,DES130,Introduction to Engineering Design - A,Aman Parnami,4,IED,Thursday,1000AM,1130AM,CSAM,Lecture,B105
+Mandatory,DES130,Introduction to Engineering Design - B,Aman Parnami,4,IED,Tuesday,0800AM,0930AM,ECE,Lecture,A106
+Mandatory,DES130,Introduction to Engineering Design - B,Aman Parnami,4,IED,Tuesday,0800AM,0930AM,CSD/ITSS,Lecture,B105
+Mandatory,DES130,Introduction to Engineering Design - B,Aman Parnami,4,IED,Thursday,0830AM,1000AM,ECE,Lecture,A106
+Mandatory,DES130,Introduction to Engineering Design - B,Aman Parnami,4,IED,Thursday,0830AM,1000AM,CSD/ITSS,Lecture,B105
+Mandatory,DES130,Introduction to Engineering Design - B,Aman Parnami,4,IED,Monday,0200PM,0400PM,5,Lab,L33
+Mandatory,DES130,Introduction to Engineering Design - A,Aman Parnami,4,IED,Thursday,0330PM,0530PM,3,Lab,L33
+Mandatory,DES130,Introduction to Engineering Design - A,Aman Parnami,4,IED,Thursday,0330PM,0530PM,1,Lab,L32
+Mandatory,DES130,Introduction to Engineering Design - A,Aman Parnami,4,IED,Thursday,0130PM,0330PM,4,Lab,L33
+Mandatory,DES130,Introduction to Engineering Design - A,Aman Parnami,4,IED,Friday,0200PM,0400PM,2,Lab,L33
+Mandatory,DES130,Introduction to Engineering Design - A,Aman Parnami,4,IED,Monday,0200PM,0400PM,6,Lab,L32
+Mandatory,DES130,Introduction to Engineering Design - B,Aman Parnami,4,IED,Tuesday,0200PM,0400PM,2,Lab,L33
+Mandatory,DES130,Introduction to Engineering Design - B,Aman Parnami,4,IED,Wednesday,0200PM,0400PM,1,Lab,L33
+Mandatory,DES130,Introduction to Engineering Design - B,Aman Parnami,4,IED,Thursday,0130PM,0330PM,4,Lab,L32
+Mandatory,DES130,Introduction to Engineering Design - B,Aman Parnami,4,IED,Friday,0200PM,0400PM,3,Lab,L32
 Mandatory,ECE113,Basic Electronics - A,Sanat Biswas,4,BE,Tuesday,1200PM,0100PM,0,Lecture,C01
 Mandatory,ECE113,Basic Electronics - A,Sanat Biswas,4,BE,Thursday,1130AM,1230PM,0,Lecture,C01
 Mandatory,ECE113,Basic Electronics - A,Sanat Biswas,4,BE,Friday,0930AM,1030AM,0,Lecture,C01
@@ -76,18 +76,16 @@ Mandatory,ECE113,Basic Electronics - A,Sanat Biswas,4,BE,Monday,0230PM,0330PM,1,
 Mandatory,ECE113,Basic Electronics - A,Sanat Biswas,4,BE,Tuesday,0400PM,0600PM,4,Lab,SCL
 Mandatory,ECE113,Basic Electronics - A,Sanat Biswas,4,BE,Friday,0200PM,0400PM,3,Lab,SCL
 Mandatory,ECE113,Basic Electronics - A,Sanat Biswas,4,BE,Thursday,0330PM,0530PM,2,Lab,SCL
-Mandatory,ECE113,Basic Electronics - B,Vivek Bohara,4,BE,Monday,1030AM,1130AM,1,Tutorial,C02
-Mandatory,ECE113,Basic Electronics - B,Vivek Bohara,4,BE,Monday,1030AM,1130AM,2,Tutorial,C02
-Mandatory,ECE113,Basic Electronics - B,Vivek Bohara,4,BE,Tuesday,1030AM,1130AM,1,Tutorial,C11
-Mandatory,ECE113,Basic Electronics - B,Vivek Bohara,4,BE,Tuesday,1030AM,1130AM,2,Tutorial,C11
-Mandatory,ECE113,Basic Electronics - B,Vivek Bohara,4,BE,Tuesday,0200PM,0400PM,1,Tutorial,L32
-Mandatory,ECE113,Basic Electronics - B,Vivek Bohara,4,BE,Tuesday,0200PM,0400PM,1,Tutorial,SCL
-Mandatory,ECE113,Basic Electronics - B,Vivek Bohara,4,BE,Wednesday,0200PM,0400PM,2,Tutorial,L32
-Mandatory,ECE113,Basic Electronics - B,Vivek Bohara,4,BE,Wednesday,0200PM,0400PM,2,Tutorial,SCL
+Mandatory,ECE113,Basic Electronics - B,Vivek Bohara,4,BE,Monday,1030AM,1130AM,1 2,Tutorial,C02
+Mandatory,ECE113,Basic Electronics - B,Vivek Bohara,4,BE,Tuesday,1030AM,1130AM,1 2,Tutorial,C11
+Mandatory,ECE113,Basic Electronics - B,Vivek Bohara,4,BE,Tuesday,0200PM,0400PM,1(ECE),Tutorial,L32
+Mandatory,ECE113,Basic Electronics - B,Vivek Bohara,4,BE,Tuesday,0200PM,0400PM,1(CSAM),Tutorial,SCL
+Mandatory,ECE113,Basic Electronics - B,Vivek Bohara,4,BE,Wednesday,0200PM,0400PM,2(ECE),Tutorial,L32
+Mandatory,ECE113,Basic Electronics - B,Vivek Bohara,4,BE,Wednesday,0200PM,0400PM,2(CSAM),Tutorial,SCL
 Mandatory,DES1xx,Design Drawing and Visualization,Indrani De Parker,4,DDV,Tuesday,1200PM,0130PM,0,Lecture,A106
 Mandatory,DES1xx,Design Drawing and Visualization,Indrani De Parker,4,DDV,Thursday,1130AM,0100PM,0,Lecture,A106
-Mandatory,DES1xx,Design Drawing and Visualization,Indrani De Parker,4,DDV,Tuesday,0400PM,0530PM,1,Lecture,A106
-Mandatory,DES1xx,Design Drawing and Visualization,Indrani De Parker,4,DDV,Thursday,0330PM,0500PM,1,Lecture,A106
+Mandatory,DES1xx,Design Drawing and Visualization,Indrani De Parker,4,DDV,Tuesday,0400PM,0530PM,0,Lecture,A106
+Mandatory,DES1xx,Design Drawing and Visualization,Indrani De Parker,4,DDV,Thursday,0330PM,0500PM,0,Lecture,A106
 Mandatory,SSH101,Critical Thinking and Readings in Social Science,Aasim Khan,4,CTRSS,Tuesday,1200PM,0100PM,0,Lecture,C24
 Mandatory,SSH101,Critical Thinking and Readings in Social Science,Aasim Khan,4,CTRSS,Thursday,1130AM,1230PM,0,Lecture,C24
 Mandatory,SSH101,Critical Thinking and Readings in Social Science,Aasim Khan,4,CTRSS,Friday,0930AM,1030AM,0,Lecture,C24
@@ -122,8 +120,8 @@ Mandatory,CSE322,Theory of Computation,Debajyoti Bera,4,TOC,Tuesday,0400PM,0530P
 Mandatory,CSE322,Theory of Computation,Debajyoti Bera,4,TOC,Friday,0400PM,0530PM,0,Lecture,C11
 Mandatory,CSE322,Theory of Computation,Debajyoti Bera,4,TOC,Wednesday,0230PM,0330PM,1,Tutorial,C22
 Mandatory,CSE322,Theory of Computation,Debajyoti Bera,4,TOC,Wednesday,0230PM,0330PM,2,Tutorial,C23
-Mandatory,CSE322,Theory of Computation,Debajyoti Bera,4,TOC,Wednesday,0230PM,0330PM,1,Tutorial,C24
-Mandatory,CSE322,Theory of Computation,Debajyoti Bera,4,TOC,Wednesday,0230PM,0330PM,2,Tutorial,C13
+Mandatory,CSE322,Theory of Computation,Debajyoti Bera,4,TOC,Wednesday,0230PM,0330PM,1(CSAM),Tutorial,C24
+Mandatory,CSE322,Theory of Computation,Debajyoti Bera,4,TOC,Wednesday,0230PM,0330PM,2(CSAM),Tutorial,C13
 Mandatory,ECE230,Fields and Waves,Shobha Sundaram,4,FW,Tuesday,1130AM,1230PM,0,Lecture,C02
 Mandatory,ECE230,Fields and Waves,Shobha Sundaram,4,FW,Thursday,1130AM,1230PM,0,Lecture,C02
 Mandatory,ECE230,Fields and Waves,Shobha Sundaram,4,FW,Friday,1130AM,1230PM,0,Lecture,C02
@@ -178,8 +176,8 @@ Elective,BIO543,Big Data Mining in Healthcare,GPS Raghava,4,BDMH,Thursday,0230PM
 Elective,CSE341/CSE541,Biometrics/Advanced Biometrics,Mayank Vatsa,4,BIOM,Wednesday,0400PM,0700PM,0,Lecture,C24
 Elective,CSE342/CSE542,Statistical Machine Learning,Richa Singh,4,SML,Tuesday,0230PM,0400PM,0,Lecture,C11
 Elective,CSE342/CSE542,Statistical Machine Learning,Richa Singh,4,SML,Friday,0230PM,0400PM,0,Lecture,C11
-Elective,"CSE344/CSE544/ECE344/ECE544",Computer Vision,Saket Anand,4,CV,Monday,1130AM,0100PM,0,Lecture,C24
-Elective,"CSE344/CSE544/ECE344/ECE544",Computer Vision,Saket Anand,4,CV,Wednesday,1130AM,0100PM,0,Lecture,C24
+Elective,CSE344/CSE544/ECE344/ECE544,Computer Vision,Saket Anand,4,CV,Monday,1130AM,0100PM,0,Lecture,C24
+Elective,CSE344/CSE544/ECE344/ECE544,Computer Vision,Saket Anand,4,CV,Wednesday,1130AM,0100PM,0,Lecture,C24
 Elective,CSE501,Designing Human-Centred Systems,Ponnurangam Kumaraguru,4,DHCS,Monday,1000AM,1130AM,0,Lecture,A106
 Elective,CSE501,Designing Human-Centred Systems,Ponnurangam Kumaraguru,4,DHCS,Thursday,1000AM,1130AM,0,Lecture,C01
 Elective,CSE502,Foundations of Parallel Programming,Vivek Kumar,4,FPP,Monday,1130AM,0100PM,0,Lecture,B105
@@ -223,10 +221,10 @@ Elective,CSE606,Data Warehousing,Naveen Prakash(G),4,DW,Monday,0400PM,0530PM,0,L
 Elective,CSE606,Data Warehousing,Naveen Prakash(G),4,DW,Wednesday,0400PM,0530PM,0,Lecture,C13
 Elective,CSE5xx/ECE5xx,Reinforcement Learning,Sanjit Kaul,4,RL,Monday,1130AM,0100PM,0,Lecture,C03
 Elective,CSE5xx/ECE5xx,Reinforcement Learning,Sanjit Kaul,4,RL,Wednesday,1130AM,0100PM,0,Lecture,C03
-Elective,DES302,Animation and Graphics,Manohar Khushlani(V),4,A&G,Tuesday,1000AM,1130AM,0,Lecture,C24
-Elective,DES302,Animation and Graphics,Manohar Khushlani(V),4,A&G,Thursday,1130AM,0100PM,0,Lecture,A006
-Elective,DES302,Animation and Graphics,Manohar Khushlani(V),4,A&G,Tuesday,1000AM,1130AM,0,Lecture,L21
-Elective,DES302,Animation and Graphics,Manohar Khushlani(V),4,A&G,Thursday,1130AM,0100PM,0,Lecture,L21
+Elective,DES302,Animation and Graphics,Manohar Khushlani(V),4,A&G,Tuesday,1000AM,1130AM,1,Lecture,C24
+Elective,DES302,Animation and Graphics,Manohar Khushlani(V),4,A&G,Thursday,1130AM,0100PM,1,Lecture,A006
+Elective,DES302,Animation and Graphics,Manohar Khushlani(V),4,A&G,Tuesday,1000AM,1130AM,2,Lecture,L21
+Elective,DES302,Animation and Graphics,Manohar Khushlani(V),4,A&G,Thursday,1130AM,0100PM,2,Lecture,L21
 Elective,DES5xx,Game Design and Development,Timoty Moyer,4,GDD,Tuesday,0230PM,0400PM,0,Lecture,L21
 Elective,DES5xx,Game Design and Development,Timoty Moyer,4,GDD,Friday,0230PM,0400PM,0,Lecture,L21
 Elective,ECE343,Mobile Communication,Abhijit Mitra(V),4,MCom,Tuesday,1130AM,0100PM,0,Lecture,C12

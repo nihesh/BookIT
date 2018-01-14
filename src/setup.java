@@ -127,7 +127,7 @@ public class setup {
         file.useDelimiter(",|\\n");
         flag=0;
         while(file.hasNext()){
-            String type,name,code,instructor,credits,acronym,day,startTime,endTime,group,message,venue;
+            String type,name,code,instructor,credits,acronym,day,startTime,endTime,chosenGroup,message,venue;
             type = file.next().trim();
             code = file.next().trim();
             name = file.next().trim();
@@ -137,7 +137,12 @@ public class setup {
             day = file.next().trim().toLowerCase();
             startTime = file.next().trim();
             endTime = file.next().trim();
-            group = file.next().trim();
+            chosenGroup = file.next().trim();
+            ArrayList<String> group = new ArrayList<>();
+            String[] splitGroups = chosenGroup.split(" ");
+            for(int i=0; i<splitGroups.length; i++) {
+                group.add(splitGroups[i]);
+            }
             message = file.next().trim();
             venue = file.next().trim();
             if(flag==0){
@@ -173,12 +178,16 @@ public class setup {
             for(int i=0;i<listOfSlots.size();i++){
                 int currentSlot = listOfSlots.get(i);
                 LocalDate currentDate = StartDate;
+                Boolean courseFlag = false;
                 while(!currentDate.isAfter(EndDate))
                 {
                     if(day.equals(currentDate.getDayOfWeek().toString().toLowerCase())) {
                         Reservation r = new Reservation(message, group, name, "", venue, message, currentSlot);
                         r.setTargetDate(currentDate);
-                        courseData.get(name).addReservation(currentDate, currentSlot, r);
+                        if(!courseData.get(name).addReservation(currentDate, currentSlot, r) && !courseFlag){
+                            courseFlag = true;
+                            System.out.println(name+" "+startTime+" "+endTime+" "+venue+" has a collision within the course. Please rectify csv");
+                        }
                         currentDate = currentDate.plusDays(7);
                     }
                     else {

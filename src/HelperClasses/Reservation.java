@@ -35,20 +35,22 @@ public class Reservation implements java.io.Serializable{
      * @param type lecture/lab/tutorial. Can be left blank as well
      * @param slotID the time slot in Integer
      */
-    public Reservation(String Message, String group, String course, String facultyEmail, String room, String type, int slotID){
+    public Reservation(String Message, ArrayList<String> group, String course, String facultyEmail, String room, String type, int slotID){
         this.reserverEmail = "";
         this.slotID = slotID;
         this.message = new ArrayList<String>();
         this.type = type;
-        this.message.add(Message);
         this.course = course;
         this.facultyEmail = facultyEmail;
         this.room = room;
         this.creationDate = LocalDateTime.now();
         this.groups = new ArrayList<String>();
         this.groupVenue = new ArrayList<String>();
-        this.groups.add(group);
-        this.groupVenue.add(room);
+        for(int i=0;i<group.size();i++) {
+            this.groups.add(group.get(i));
+            this.groupVenue.add(room);
+            this.message.add(Message);
+        }
         this.isRequest = false;
     }
     public void removeRequestFlag(){
@@ -222,8 +224,10 @@ public class Reservation implements java.io.Serializable{
      * @param venue the venue of the group
      * @param message message describing the reservation
      */
-    public void addGroup(String group, String venue, String message){
-        this.groups.add(group);
+    public void addGroup(ArrayList<String> group, String venue, String message){
+        for(int i=0; i<group.size();i++) {
+            this.groups.add(group.get(i));
+        }
         this.groupVenue.add(venue);
         this.message.add(message);
     }
