@@ -340,11 +340,18 @@ public class setup {
                 if (u.getUsertype().equals("Faculty")) {
                     Faculty f = (Faculty) u;
                     f.getCourses().clear();
+                    f.clearNotifications();
                     f.serialize(false);
                 } else if (u.getUsertype().equals("Student")) {
                     Student s = (Student) u;
                     s.getMyCourses().clear();
+                    s.clearNotifications();
                     s.serialize(false);
+                }
+                else if(u.getUsertype().equals("Admin")){
+                    Admin a = (Admin) u;
+                    u.clearNotifications();
+                    u.serialize(false);
                 }
             }
         }

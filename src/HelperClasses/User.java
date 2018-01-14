@@ -34,6 +34,9 @@ public class User implements Serializable{
 		this.emailID = emailID;
 		this.userType = userType;
 	}
+	public void clearNotifications(){
+		notifications.clear();
+	}
 	public ArrayList<Notification> getterNotification(){
 		return notifications;
 	}
