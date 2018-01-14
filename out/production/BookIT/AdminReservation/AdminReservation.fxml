@@ -28,7 +28,7 @@
 <?import java.util.ArrayList?>
 <VBox fx:id="rootPane" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="AdminReservation.AdminReservationGUIController">
    <children>
-      <MenuBar fx:id="menuBar">
+      <MenuBar fx:id="menuBar" minHeight="29.0" minWidth="1920.0">
         <menus>
           <Menu mnemonicParsing="false" text="File">
             <items>
@@ -39,7 +39,7 @@
           </Menu>
         </menus>
       </MenuBar>
-      <StackPane fx:id="topPane" prefHeight="382.0" prefWidth="1920.0">
+      <StackPane fx:id="topPane" minHeight="312.0" minWidth="1920.0" prefHeight="382.0" prefWidth="1920.0">
          <children>
             <StackPane fx:id="leftPane" onMouseEntered="#exitReadOnlyBookings" prefHeight="312.0" prefWidth="1652.0" style="-fx-background-color: #2C3E50;">
                <StackPane.margin>
@@ -453,7 +453,7 @@
             </StackPane>
          </children>
       </StackPane>
-      <SplitPane fx:id="sp3" disable="true" dividerPositions="0.5" orientation="VERTICAL" prefHeight="0.0" prefWidth="1920.0">
+      <SplitPane fx:id="sp3" disable="true" dividerPositions="0.5" minHeight="10.0" minWidth="1920.0" orientation="VERTICAL" prefHeight="0.0" prefWidth="1920.0">
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="242.0" prefWidth="1918.0" />
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" />
@@ -461,7 +461,7 @@
       </SplitPane>
       <StackPane fx:id="mainPane" prefHeight="720.0" prefWidth="1920.0" style="-fx-background-color: linear-gradient( #2C3E50,#1B2631);">
          <children>
-            <StackPane fx:id="roomGridPane" prefHeight="150.0" prefWidth="200.0">
+            <StackPane fx:id="roomGridPane" minHeight="650.0" minWidth="1920.0" prefHeight="150.0" prefWidth="200.0">
                <children>
                   <GridPane fx:id="roomGrid" alignment="CENTER" prefHeight="233.0" prefWidth="324.0">
                     <columnConstraints>

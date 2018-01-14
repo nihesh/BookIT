@@ -173,9 +173,9 @@ public class AdminReservationGUIController implements Initializable{
 
         rootPane.setScaleX(scaleWidth);
         rootPane.setScaleY(scaleHeight);
-        menuBar.setScaleX(1/(menuFactor*scaleWidth));
-        mainPane.setScaleX(1/(reservationFactor*scaleWidth));
-        sp3.setScaleX(splitBar*reservationFactor);
+//        menuBar.setScaleX(1/(menuFactor*scaleWidth));
+//        mainPane.setScaleX(1/(reservationFactor*scaleWidth));
+//        sp3.setScaleX(splitBar*reservationFactor);
 
         try {
             Socket server = new Socket(BookITconstants.serverIP, BookITconstants.serverPort);
