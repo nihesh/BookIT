@@ -569,6 +569,7 @@ class ConnectionHandler implements Runnable{
                 	serializeUser(tempAdmin);
                 }
             }
+            System.out.println("hi");
             start = start.plusDays(1);
         }
         room.serialize();
