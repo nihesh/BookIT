@@ -26,7 +26,7 @@ public class StudentReservationGUI extends Application {
             User activeUser = (User) User.getActiveUser();
             primaryStage.setTitle("BookIT - "+activeUser.getEmail().getEmailID());
             primaryStage.setMaximized(true);
-            primaryStage.setResizable(false);
+            primaryStage.setResizable(true);
             primaryStage.setScene(new Scene(root));
             primaryStage.showAndWait();
         }

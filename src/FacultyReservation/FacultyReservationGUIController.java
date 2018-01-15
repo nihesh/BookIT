@@ -140,43 +140,11 @@ public class FacultyReservationGUIController implements Initializable{
         double width = visualBounds.getWidth();
         double height = visualBounds.getHeight();
         double scaleWidth = (width)/1920;
-        double scaleHeight = (height)/1005;
+        double scaleHeight = (height)/1037;
 
-        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        double Screenwidth = screenSize.getWidth();
-        double Screenheight = screenSize.getHeight();
-        double menuFactor;
-        double reservationFactor;
-        double splitBar;
-
-        if(Screenwidth==1920 && Screenheight==1080){
-            menuFactor = 1;
-            reservationFactor = 1;
-            scaleHeight = (height-44)/1000;
-            splitBar=1;
-        }
-        else if(Screenwidth==1600 && Screenheight==900){
-            menuFactor = 1;
-            reservationFactor = 1.14;
-            splitBar=1;
-        }
-        else if((Screenwidth==1360 || Screenwidth==1368 || Screenwidth==1366) && Screenheight==768){
-            scaleHeight = (height+55)/1005;
-            menuFactor = 1;
-            reservationFactor = 1.33;
-            splitBar=1.33;
-        }
-        else{
-            menuFactor = 1;
-            reservationFactor = 1;
-            splitBar=1;
-        }
 
         rootPane.setScaleX(scaleWidth);
         rootPane.setScaleY(scaleHeight);
-        menuBar.setScaleX(1/(menuFactor*scaleWidth));
-        mainPane.setScaleX(1/(reservationFactor*scaleWidth));
-        sp2.setScaleX(splitBar*reservationFactor);
 
         try {
             Socket server = new Socket(BookITconstants.serverIP, BookITconstants.serverPort);
@@ -261,6 +229,7 @@ public class FacultyReservationGUIController implements Initializable{
                 items.add(allCourses.get(i));
             }
         }
+        items.sort(String::compareToIgnoreCase);
         int i=0;
         while(i<items.size()){
             courseLabels.add(new CheckBox());

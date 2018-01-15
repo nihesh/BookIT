@@ -2,6 +2,7 @@
 import AdminReservation.AdminReservationGUI;
 import FacultyReservation.FacultyReservationGUI;
 import HelperClasses.BookITconstants;
+import HelperClasses.Notification;
 import HelperClasses.User;
 import LoginSignup.LoginSignupGUI;
 import StudentReservation.StudentReservationGUI;
@@ -56,7 +57,7 @@ public class BookIT extends Application{
             admin.start(primaryStage);
         }
     }
-    public Boolean CheckCompatibility(double version, Boolean lock){
+    public int CheckCompatibility(double version, Boolean lock){
         try{
             Socket server = new Socket(BookITconstants.serverIP, BookITconstants.serverPort);
             ObjectOutputStream out = new ObjectOutputStream(server.getOutputStream());
@@ -76,19 +77,31 @@ public class BookIT extends Application{
             out.close();
             in.close();
             server.close();
-            return c;
+            int result;
+            if(c){
+                result = 1;
+            }
+            else{
+                result = 0;
+            }
+            return result;
         }
         catch(IOException e){
-            System.out.println("IO Exception occurred while checking compatibility");
+            ;
         }
         catch (ClassNotFoundException c){
-            System.out.println("ClassNotFound exception occurred while checking compatibility");
+            ;
         }
-        return false;
+        return 2;
     }
     public void start(Stage primaryStage){
-        if(!CheckCompatibility(BookITversion, false)){
-            JOptionPane.showMessageDialog(null, "You are currently using BookIT v"+BookITversion+". Please download the latest version of BookIT to continue using the application.", "Launch Error", JOptionPane.ERROR_MESSAGE);
+        int compatibilityCheck = CheckCompatibility(BookITversion, false);
+        if(compatibilityCheck == 0){
+            Notification.throwAlert("Launch Error", "You are currently using BookIT v"+BookITversion+". Please download the latest version of BookIT to continue using the application.");
+            return;
+        }
+        else if(compatibilityCheck == 2){
+            Notification.throwAlert("Network Error", "Unable to reach BookIT server");
             return;
         }
         File file2 = new File("./src/AppData/ActiveUser");

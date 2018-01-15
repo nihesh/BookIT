@@ -13,3 +13,4 @@ FEATURES DISABLED
 ISSUES
 	- User notifications are not getting cleared upon running setup.java
 	- Adding GUI feature for selecting multiple groups for a room
+	- Join Course optimisation for faculty booking
