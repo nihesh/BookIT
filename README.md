@@ -11,7 +11,7 @@ FEATURES DISABLED
 	- Spam Filter 		: Inaccurate predictions
 
 ISSUES
-	- User notifications are not getting cleared upon running setup.java
 	- Adding GUI feature for selecting multiple groups for a room
-	- Join Course optimisation for faculty booking
-	- Create admin notification pool
+	- Login GUI Scaling
+	- Faculty Backend big bug
+	
