@@ -221,14 +221,7 @@ public class FacultyReservationGUIController implements Initializable{
      */
     public void openCoursesList(){
         courseLabels.clear();
-        ArrayList<String> items = new ArrayList<>();
-        ArrayList<String> allCourses = Course.getAllCourses();
-        for(int i=0;i<allCourses.size();i++){
-            String email = Course.getCourseFaculty(allCourses.get(i), false);
-            if(email.equals("")){
-                items.add(allCourses.get(i));
-            }
-        }
+        ArrayList<String> items = Course.getFreeCourses(false);
         items.sort(String::compareToIgnoreCase);
         int i=0;
         while(i<items.size()){

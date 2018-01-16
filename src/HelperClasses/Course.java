@@ -243,6 +243,34 @@ public class Course implements java.io.Serializable{
         }
         return null;
     }
+    public static ArrayList<String> getFreeCourses(Boolean lock){       // Courses not registered by faculty
+        try {
+            Socket server = new Socket(BookITconstants.serverIP, BookITconstants.serverPort);
+            ObjectOutputStream out = new ObjectOutputStream(server.getOutputStream());
+            ObjectInputStream in = new ObjectInputStream(server.getInputStream());
+            if(lock) {
+                out.writeObject("Pass");
+            }
+            else{
+                out.writeObject("Hold");
+            }
+            out.flush();
+            out.writeObject("faculty_freeCourses");
+            out.flush();
+            ArrayList<String> c = (ArrayList<String>)in.readObject();
+            out.close();
+            in.close();
+            server.close();
+            return c;
+        }
+        catch (IOException e){
+            System.out.println("IO exception occurred while writing to server");
+        }
+        catch (ClassNotFoundException x){
+            System.out.println("ClassNotFound exception occurred while reading from server");
+        }
+        return null;
+    }
     /**
      * detects a collision inside a course object while processing a reservation by admin
      * @param r the reservation object

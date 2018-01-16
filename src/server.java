@@ -40,6 +40,21 @@ public class server {
     public static HashMap<String, Integer> faculthash=null;
     public static HashMap<String, Integer> adminhash=null;
     public static HashMap<String, Integer> connectedIPs=null;
+    public static ArrayList<String> freeCourses = null;
+
+    public static void loadFreeCourses(){
+        System.out.println("Loading non registered courses");
+        freeCourses = new ArrayList<>();
+        ArrayList<String> allCourses = ConnectionHandler.getAllCourses();       // Static helper in connection handler
+        for(int i=0;i<allCourses.size();i++){
+            String email = ConnectionHandler.course_getFaculty(allCourses.get(i));
+            if(email.equals("")){
+                freeCourses.add(allCourses.get(i));
+            }
+        }
+        System.out.println("Loaded non registered courses");
+        System.out.println();
+    }
 
     public static void loadHashMaps(){
 
@@ -101,6 +116,7 @@ public class server {
     public static void main(String[] args)throws IOException{
         BookITconstants b = new BookITconstants();
         loadHashMaps();
+        loadFreeCourses();
         ServerSocket s = new ServerSocket(BookITconstants.serverPort);
         ConnectionHandler.lock = new ReentrantLock();
         spm = new SpamFilter();
@@ -128,7 +144,7 @@ class ConnectionHandler implements Runnable{
      * 
      * @return list of all courses
      */
-    public ArrayList<String> getAllCourses(){
+    public static ArrayList<String> getAllCourses(){
         File directory= new File("./src/AppData/Course");
         ArrayList<String> courses = new ArrayList<>();
         File[] courseFiles=directory.listFiles();
@@ -733,7 +749,7 @@ class ConnectionHandler implements Runnable{
             return true;
         }
     }
-    public String course_getFaculty(String course){
+    public static String course_getFaculty(String course){
         Course c = Course.deserializeCourse(course);
         return c.getInstructorEmail();
     }
@@ -1478,12 +1494,18 @@ class ConnectionHandler implements Runnable{
                     case "softResetServer":
                         if(status.equals("Pass") || lock.tryLock()) {           // Must take lock to ensure consistency
                             server.loadHashMaps();
+                            server.loadFreeCourses();
                         }
                         if(lock.isLocked() && lock.isHeldByCurrentThread()){
                             System.out.print("[ "+LocalDateTime.now()+" ] ");
                             System.out.println(connection.getInetAddress().toString() + " | ServerLock Released");
                             lock.unlock();
                         }
+                        break;
+                    case "faculty_freeCourses":
+                        out.writeObject(server.freeCourses);
+                        out.flush();
+                        break;
                 }
                 in.close();
                 out.close();
