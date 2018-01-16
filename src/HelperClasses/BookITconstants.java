@@ -13,11 +13,20 @@ import java.util.Scanner;
 public class BookITconstants {
     public static String serverIP;
     public static int serverPort;
+    public static String NoReplyEmail;
+    public static String NoReplyPassword;
+    public static String NoReplyUsername;
+    
+    
     public BookITconstants(){
         try {
             Scanner sc = new Scanner(new BufferedReader(new FileReader("./src/AppData/Server/ServerInfo.txt")));
             serverIP = sc.next();
             serverPort = Integer.parseInt(sc.next());
+            sc = new Scanner(new BufferedReader(new FileReader("./src/AppData/StaticTimeTable/NoReply.txt")));
+            NoReplyEmail = sc.next();
+            NoReplyUsername = sc.next();
+            NoReplyPassword = sc.next();
         }
         catch(FileNotFoundException f){
             ;
