@@ -223,8 +223,8 @@ public class setup {
         });
     }
     public static void createFirstAdmin(){
-        Email masterEmail = new Email("admin@iiitd.ac.in");
-        Admin master = new Admin("IIITDadmin","adminiiitd",masterEmail,"Admin");
+        Email masterEmail = new Email(HelperClasses.BookITconstants.NoReplyEmail);
+        Admin master = new Admin("IIITDnoreply","noreply",masterEmail,"Admin");
         master.setActiveUser();
         master.serialize(false);
     }

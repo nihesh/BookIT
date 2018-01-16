@@ -133,8 +133,7 @@ public class server {
  *
  */
 class ConnectionHandler implements Runnable{
-	public static String adminAcc = "admin@iiitd.ac.in";
-    private Socket connection;
+	private Socket connection;
     public static ReentrantLock lock;
     private static String JoinString="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
     public ConnectionHandler(Socket connection){
@@ -486,7 +485,7 @@ class ConnectionHandler implements Runnable{
             }
             Notification n = new Notification("Room Reservation Request", "Accepted", r.get(0).getMessage(), r.get(0).getCourseName(), r.get(0).getTargetDate(), r.get(0).getRoomName(), r.get(0).getReserverEmail(), x);
             Student Stud = (Student)getUser(recipient);
-            Admin a = (Admin) getUser(adminAcc);
+            Admin a = (Admin) getUser(Mail.from);
             Stud.addNotification(n);
             a.addNotification(n);
             serializeUser(Stud);
@@ -518,7 +517,7 @@ class ConnectionHandler implements Runnable{
         Notification n = new Notification("Room Reservation Request", "Declined", r.get(0).getMessage(), r.get(0).getCourseName(), r.get(0).getTargetDate(), r.get(0).getRoomName(), r.get(0).getReserverEmail(), x);
         Student Stud = (Student)getUser(recipient);
         Stud.addNotification(n);
-        Admin a = (Admin) getUser(adminAcc);
+        Admin a = (Admin) getUser(Mail.from);
         a.addNotification(n);
         serializeUser(a);
         server.mailpool.execute(new Mail(recipient,"BooKIT - Room booking request rejected", GreetText+","+"\n\nThe following request of yours have been rejected by the admin:\n\n"+"Room: "+r.get(0).getVenueName()+"\nDate: "+r.get(0).getTargetDate().getDayOfMonth()+"/"+r.get(0).getTargetDate().getMonthValue()+"/"+r.get(0).getTargetDate().getYear()+"\nTime:\n"+TimeSlots+"\n\nIf you think this is a mistake, please contact admin.\n\nRegards,\nBookIT Team"));
@@ -569,10 +568,21 @@ class ConnectionHandler implements Runnable{
                 x.add(r.getReservationSlot());
                 Notification n = new Notification("Classroom Booking", "Done", r.getMessage(), r.getCourseName(), r.getTargetDate(), r.getRoomName(), r.getReserverEmail(),x );
                 temp.addNotification(n);
+                String recipient = r.getReserverEmail();
+                String GreetText="Hello User";
+                User xy=getUser(recipient);
+                if(xy!=null) {
+                    GreetText = "Hello "+xy.getName();
+                }
+                server.mailpool.execute(new Mail(recipient,"BooKIT - Room booking completed", GreetText+","+"\n\nThe following booking of yours have been confirmed:\n\n"+"Room: "+r.getRoomName()+"\nDate: "+r.getTargetDate().getDayOfMonth()+"/"+r.getTargetDate().getMonthValue()+"/"+r.getTargetDate().getYear()+"\nTime: "+ Reservation.getSlotRange(r.getReservationSlot())+" \nReason: "+r.getMessageWithoutVenue()+"\n\nIf you think this is a mistake, please contact admin.\n\nRegards,\nBookIT Team"));
+                
                 if(flag==1) {
-                	tempAdmin = getUser(adminAcc);
+                	tempAdmin = getUser(Mail.from);
                 	tempAdmin.addNotification(n);
                 	serializeUser(tempAdmin);
+                	GreetText = "Hello " + tempAdmin.getName();
+                	recipient = tempAdmin.getEmail().getEmailID();
+                	server.mailpool.execute(new Mail(recipient,"BooKIT - Room booking completed", GreetText+","+"\n\nThe following booking of yours have been confirmed:\n\n"+"Room: "+r.getRoomName()+"\nDate: "+r.getTargetDate().getDayOfMonth()+"/"+r.getTargetDate().getMonthValue()+"/"+r.getTargetDate().getYear()+"\nTime: "+ Reservation.getSlotRange(r.getReservationSlot())+" \nReason: "+r.getMessageWithoutVenue()+"\n\nIf you think this is a mistake, please contact admin.\n\nRegards,\nBookIT Team"));
                 }
             } else {
                 room.addReservation(start, slot, r);
@@ -580,11 +590,23 @@ class ConnectionHandler implements Runnable{
                 x.add(r.getReservationSlot());
                 Notification n = new Notification("Classroom Booking", "Done", r.getMessage(), r.getCourseName(), r.getTargetDate(), r.getRoomName(), r.getReserverEmail(), x);
                 temp.addNotification(n);
+                String recipient = r.getReserverEmail();
+                String GreetText="Hello User";
+                User xy=getUser(recipient);
+                if(xy!=null) {
+                    GreetText = "Hello "+xy.getName();
+                }
+                server.mailpool.execute(new Mail(recipient,"BooKIT - Room booking completed", GreetText+","+"\n\nThe following booking of yours have been confirmed:\n\n"+"Room: "+r.getRoomName()+"\nDate: "+r.getTargetDate().getDayOfMonth()+"/"+r.getTargetDate().getMonthValue()+"/"+r.getTargetDate().getYear()+"\nTime: "+ Reservation.getSlotRange(r.getReservationSlot())+" \nReason: "+r.getMessageWithoutVenue()+"\n\nIf you think this is a mistake, please contact admin.\n\nRegards,\nBookIT Team"));
+                
                 if(flag==1) {
-                	tempAdmin = getUser(adminAcc);
+                	tempAdmin = getUser(Mail.from);
                 	tempAdmin.addNotification(n);
                 	serializeUser(tempAdmin);
+                	GreetText = "Hello " + tempAdmin.getName();
+                	recipient = tempAdmin.getEmail().getEmailID();
+                	server.mailpool.execute(new Mail(recipient,"BooKIT - Room booking completed", GreetText+","+"\n\nThe following booking of yours have been confirmed:\n\n"+"Room: "+r.getRoomName()+"\nDate: "+r.getTargetDate().getDayOfMonth()+"/"+r.getTargetDate().getMonthValue()+"/"+r.getTargetDate().getYear()+"\nTime: "+ Reservation.getSlotRange(r.getReservationSlot())+" \nReason: "+r.getMessageWithoutVenue()+"\n\nIf you think this is a mistake, please contact admin.\n\nRegards,\nBookIT Team"));
                 }
+                
             }
             System.out.println("hi");
             start = start.plusDays(1);
@@ -620,7 +642,7 @@ class ConnectionHandler implements Runnable{
         }
         Student tempStudent=(Student)getUser(r.get(0).getReserverEmail());
         ArrayList<Integer> x= new ArrayList<Integer>();
-        Admin tempAd = (Admin)getUser(adminAcc);
+        Admin tempAd = (Admin)getUser(Mail.from);
         p = deserializeRequests();
         p.add(r);
         serializeRequests(p);
@@ -1523,9 +1545,9 @@ class ConnectionHandler implements Runnable{
 }
 class Mail implements Runnable{
     String recipient,Subject,Body;
-    static String from = "harsh.pathak.temp@gmail.com";//change accordingly
-    final static String username = "harsh.pathak.temp";//change accordingly
-    final static String password = "1a2bb3ccc";//change accordingly
+    static String from = HelperClasses.BookITconstants.NoReplyEmail;//change accordingly
+    final static String username = HelperClasses.BookITconstants.NoReplyUserName;//change accordingly
+    final static String password = HelperClasses.BookITconstants.NoReplyPassword;//change accordingly
     public Mail(String target,String subject,String body) {
         recipient=target;Subject=subject;Body=body;
     }
@@ -1549,9 +1571,6 @@ class Mail implements Runnable{
              // Set From: header field of the header.
              message.setFrom(new InternetAddress(from));
              // Set To: header field of the header.
-             if(recipient.equals("admin@iiitd.ac.in")) {
-            	 recipient = "harsh16041@iiitd.ac.in";
-             }
              message.setRecipients(Message.RecipientType.TO,InternetAddress.parse(recipient));
              // Set Subject: header field
              message.setSubject(Subject);
