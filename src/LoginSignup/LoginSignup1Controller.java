@@ -118,6 +118,7 @@ public class LoginSignup1Controller {
 				Gemail = new Email(PortListener.email);
 				GName=PortListener.Name;
 				User inQ = User.getUser(Gemail.getEmailID(), false); 
+				System.out.println(Gemail.getEmailID());
 				if(inQ != null) {
 					//System.out.println("account already exists");
 					java.net.CookieManager manager = new java.net.CookieManager();
@@ -131,6 +132,7 @@ public class LoginSignup1Controller {
 					return;
 				}
 				String usertype = User.getUserType(Gemail.getEmailID(), false);
+				System.out.println(usertype);
 				if(usertype==null) {
 					java.net.CookieManager manager = new java.net.CookieManager();
 					java.net.CookieHandler.setDefault(manager);

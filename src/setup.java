@@ -259,8 +259,10 @@ public class setup {
         HashMap<String,Integer> p = new HashMap<String,Integer>();
         Scanner sc = new Scanner(new BufferedReader(new FileReader("./src/AppData/StaticTimeTable/StudentEmails.txt")));
         while(sc.hasNext()){
-            p.put(sc.next().trim(),1);
+        	String te = sc.next().trim();
+        	p.put(te,1);
         }
+        sc.close();
         ObjectOutputStream out = null;
         try {
         	File f = new File("./src/AppData/Server/StudentEmails.dat");
@@ -281,8 +283,10 @@ public class setup {
         HashMap<String,Integer> p = new HashMap<String,Integer>();
         Scanner sc = new Scanner(new BufferedReader(new FileReader("./src/AppData/StaticTimeTable/FacultyEmails.txt")));
         while(sc.hasNext()){
-            p.put(sc.next().trim(),1);
+        	String te = sc.next().trim();
+        	p.put(te,1);
         }
+        sc.close();
         ObjectOutputStream out = null;
         try {
         	File f = new File("./src/AppData/Server/FacultyEmails.dat");
@@ -302,8 +306,10 @@ public class setup {
         HashMap<String,Integer> p = new HashMap<String,Integer>();
         Scanner sc = new Scanner(new BufferedReader(new FileReader("./src/AppData/StaticTimeTable/AdminEmails.txt")));
         while(sc.hasNext()){
-            p.put(sc.next().trim(),1);
+        	String te = sc.next().trim();
+        	p.put(te,1);
         }
+        sc.close();
         ObjectOutputStream out = null;
         try {
         	File f = new File("./src/AppData/Server/AdminEmails.dat");
@@ -337,18 +343,19 @@ public class setup {
         if(users!=null) {
             for (int i = 0; i < users.length; i++) {
                 User u = User.getUser(users[i].getName().substring(0, users[i].getName().length() - 4), false);
-                if (u.getUsertype().equals("Faculty")) {
+                System.out.println(users[i].getName().substring(0, users[i].getName().length() - 4));
+                if (u!=null && u.getUsertype().equals("Faculty")) {
                     Faculty f = (Faculty) u;
                     f.getCourses().clear();
                     f.clearNotifications();
                     f.serialize(false);
-                } else if (u.getUsertype().equals("Student")) {
+                } else if (u!=null && u.getUsertype().equals("Student")) {
                     Student s = (Student) u;
                     s.getMyCourses().clear();
                     s.clearNotifications();
                     s.serialize(false);
                 }
-                else if(u.getUsertype().equals("Admin")){
+                else if(u!=null && u.getUsertype().equals("Admin")){
                     Admin a = (Admin) u;
                     u.clearNotifications();
                     u.serialize(false);
@@ -388,6 +395,7 @@ public class setup {
         try {
             loadRoomAndCourseObjects();                    // Creates Room and Course Objects for all rooms and courses in AppData. This should be used for initialisation only
             clearUserData();
+            createFirstAdmin();
             serialiseEmptyPriorityQueue();
             serialiseEmptyJoinCodeMap();
         }

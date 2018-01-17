@@ -1546,7 +1546,7 @@ class ConnectionHandler implements Runnable{
 class Mail implements Runnable{
     String recipient,Subject,Body;
     static String from = HelperClasses.BookITconstants.NoReplyEmail;//change accordingly
-    final static String username = HelperClasses.BookITconstants.NoReplyUserName;//change accordingly
+    final static String username = HelperClasses.BookITconstants.NoReplyUsername;//change accordingly
     final static String password = HelperClasses.BookITconstants.NoReplyPassword;//change accordingly
     public Mail(String target,String subject,String body) {
         recipient=target;Subject=subject;Body=body;
