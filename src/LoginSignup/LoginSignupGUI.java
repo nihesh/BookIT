@@ -24,16 +24,9 @@ public class LoginSignupGUI extends Application{
 			double screenHeight = screenSize.getHeight();
 			Parent root;
 			double width,height;
-			/*if(Screenwidth>=1920) {
-				root = FXMLLoader.load(getClass().getResource("LoginSignup1080p.fxml"));
-				width=850;
-				height=567;
-			}*/
-			//else{
-				root = FXMLLoader.load(getClass().getResource("LoginSignup1.fxml"));
-				width=(int)(600.0 * screenWidth/1366.0);
-				height=(int)(400.0 * screenHeight/768.0);
-			//}
+			root = FXMLLoader.load(getClass().getResource("LoginSignup.fxml"));
+			width=(int)(600.0 * screenWidth/1366.0);
+			height=(int)(400.0 * screenHeight/768.0);
 			Scene scene = new Scene(root,width,height);
 			primaryStage.setScene(scene);
 			primaryStage.setResizable(false);
@@ -45,13 +38,7 @@ public class LoginSignupGUI extends Application{
 					temp.close();}
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
-					System.out.println("error in line 48 Login\n" +
-							"1920.0\n" +
-							"1080.0\n" +
-							"1.4055636896046853\n" +
-							"1.40625\n" +
-							"843.0\n" +
-							"562.0\nSignupGUI.java");;
+					System.out.println("error in line 48 Login\n");
 				}
 			});
 			primaryStage.getIcons().add(new Image(file.toURI().toString()));

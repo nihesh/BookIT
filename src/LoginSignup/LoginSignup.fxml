@@ -1,150 +1,190 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.PasswordField?>
-<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.paint.LinearGradient?>
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.web.WebView?>
-<?import javafx.stage.Screen?>
 
-<AnchorPane fx:id="FirstPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="${screen.visualBounds.height/768.0*600}" prefWidth="${screen.visualBounds.width/1366.0*400}" styleClass="pane22" stylesheets="@application.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="LoginSignup.LoginSignupGUIController">
-   <fx:define>
-        <Screen fx:factory="getPrimary" fx:id="screen"/>
-    </fx:define>
+<StackPane fx:id="FirstPane" maxHeight="400.0" maxWidth="600.0" minHeight="400.0" minWidth="600.0" prefHeight="400.0" prefWidth="600.0" styleClass="pane22" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="LoginSignup.LoginSignupGUIController">
    <children>
-   
-      <AnchorPane fx:id="Login_Pane" layoutX="310" layoutY="-7.0" opacity="0.84" prefHeight="${screen.visualBounds.height/768.0*420.0}" prefWidth="${screen.visualBounds.width/1366.0*300.0}" styleClass="modal-dialog-glass" stylesheets="@application.css">
+      <StackPane maxHeight="400.0" maxWidth="600.0" prefHeight="150.0" prefWidth="200.0" StackPane.alignment="CENTER">
          <children>
-            <TextField id="Login_email" fx:id="Login_email" layoutX="46.0" layoutY="133.0" prefHeight="31.0" prefWidth="212.0" promptText="Email" styleClass="text-field1" stylesheets="@textfield.css" visible="false">
-               <cursor>
-                  <Cursor fx:constant="DEFAULT" />
-               </cursor>
-               <opaqueInsets>
+            <Label fx:id="footer1" maxHeight="20.0" maxWidth="620.0" minHeight="20.0" minWidth="600.0" prefHeight="20.0" prefWidth="617.0" styleClass="labelD" text="BookIT  -  Harsh Pathak, Nihesh Anderson" textFill="WHITE" StackPane.alignment="BOTTOM_LEFT">
+               <StackPane.margin>
                   <Insets />
-               </opaqueInsets>
-            </TextField>
-            <Button id="Login_email_btn" fx:id="Login_email_btn" layoutX="194.0" layoutY="179.0" mnemonicParsing="false" onMouseClicked="#Login_NEXT" onMouseEntered="#BtnEffect" onMouseExited="#BtnEffectRev" opacity="0.93" prefHeight="25.0" prefWidth="64.0" styleClass="but1" stylesheets="@application.css" text="NEXT" visible="false" />
-            <Button id="Login_password_btn" fx:id="Login_password_btn" layoutX="194.0" layoutY="222.0" mnemonicParsing="false" onMouseClicked="#Login_NEXT2" onMouseEntered="#BtnEffect" onMouseExited="#BtnEffectRev" prefHeight="25.0" prefWidth="64.0" styleClass="but1" stylesheets="@application.css" text="DONE" visible="false" />
-            <Label id="Login_password_label" fx:id="Login_password_label" disable="true" layoutX="46.0" layoutY="133.0" prefHeight="25.0" prefWidth="212.0" styleClass="labelG" stylesheets="@application.css" text="Email" visible="false">
+               </StackPane.margin>
+               <padding>
+                  <Insets left="5.0" />
+               </padding>
+            </Label>
+            <Label fx:id="footer2" alignment="CENTER_RIGHT" contentDisplay="RIGHT" maxHeight="20.0" maxWidth="158.0" minHeight="20.0" minWidth="120.0" prefHeight="20.0" prefWidth="158.0" styleClass="labelD" text="New Delhi, 2018" textAlignment="RIGHT" textFill="WHITE" StackPane.alignment="BOTTOM_CENTER">
+               <StackPane.margin>
+                  <Insets left="450.0" />
+               </StackPane.margin>
+               <padding>
+                  <Insets right="5.0" />
+               </padding>
+            </Label>
+         </children>
+      </StackPane>
+      <StackPane maxHeight="400.0" maxWidth="600.0" prefHeight="150.0" prefWidth="200.0">
+         <children>
+            <ImageView fitHeight="328.0" fitWidth="298.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="CENTER_LEFT">
+               <image>
+                  <Image url="@Untitled.png" />
+               </image>
+               <StackPane.margin>
+                  <Insets left="45.0" />
+               </StackPane.margin>
+            </ImageView>
+         </children>
+      </StackPane>
+      <StackPane maxHeight="400.0" maxWidth="600.0" prefHeight="400.0" prefWidth="567.0" StackPane.alignment="CENTER">
+         <children>
+            <Button fx:id="Cred_btn" maxHeight="25.0" maxWidth="27.0" minHeight="25.0" minWidth="27.0" mnemonicParsing="false" onMouseClicked="#Press_Cred" prefHeight="25.0" prefWidth="27.0" styleClass="butCred" StackPane.alignment="CENTER_LEFT" />
+         </children>
+         <StackPane.margin>
+            <Insets />
+         </StackPane.margin>
+      </StackPane>
+      <VBox fx:id="Login_Pane" alignment="CENTER" maxHeight="400.0" maxWidth="300.0" minHeight="400.0" minWidth="300.0" opacity="0.84" prefHeight="400.0" prefWidth="295.0" spacing="20.0" styleClass="modal-dialog-glass" StackPane.alignment="CENTER">
+         <children>
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="32.0" prefWidth="75.0" text="LOGIN">
+               <VBox.margin>
+                  <Insets bottom="50.0" />
+               </VBox.margin>
                <font>
-                  <Font name="Arial Black" size="12.0" />
+                  <Font size="22.0" />
                </font>
                <textFill>
                   <LinearGradient endX="1.0" endY="1.0">
                      <stops>
-                        <Stop color="#ff0303" />
-                        <Stop color="#4400ff" offset="1.0" />
+                        <Stop color="#1438e8" />
+                        <Stop color="BLACK" offset="1.0" />
                      </stops>
                   </LinearGradient>
                </textFill>
             </Label>
-            <Label layoutX="91.0" layoutY="68.0" prefHeight="38.0" prefWidth="104.0" stylesheets="@application.css" text="   LOGIN" textAlignment="CENTER" AnchorPane.bottomAnchor="274.0" AnchorPane.leftAnchor="91.0" AnchorPane.rightAnchor="87.0" AnchorPane.topAnchor="68.0">
-               <font>
-                  <Font size="21.0" />
-               </font>
-               <textFill>
-                  <LinearGradient endX="1.0" endY="1.0">
-                     <stops>
-                        <Stop color="BLACK" />
-                        <Stop color="#ed0000" offset="1.0" />
-                     </stops>
-                  </LinearGradient>
-               </textFill>
-            </Label>
-            <PasswordField fx:id="Login_password" layoutX="46.0" layoutY="133.0" prefHeight="31.0" prefWidth="212.0" styleClass="text-field1" stylesheets="@textfield.css" visible="false" />
-            <Button fx:id="Lback_btn" layoutX="25.0" layoutY="28.0" mnemonicParsing="false" onMouseClicked="#backL" prefHeight="32.0" prefWidth="36.0" styleClass="back2" stylesheets="@application.css" visible="false" />
-            <Label fx:id="AccCre" layoutX="44.0" layoutY="256.0" prefHeight="19.0" prefWidth="212.0" styleClass="labelB" stylesheets="@application.css" text="     Account Successfully Created!" visible="false" />
-            <Button fx:id="GBtn" layoutX="62.0" layoutY="162.0" mnemonicParsing="false" onMouseClicked="#PressG" prefHeight="${screen.visualBounds.height/768.0*33.6}" prefWidth="${screen.visualBounds.width/1366.0*176.0}" styleClass="butGGG" />
+            <Button fx:id="GBtn" alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" onMouseClicked="#PressG" prefHeight="34.0" prefWidth="181.0" styleClass="butGGG">
+               <VBox.margin>
+                  <Insets bottom="80.0" />
+               </VBox.margin>
+            </Button>
          </children>
-      </AnchorPane>
-      <AnchorPane fx:id="Signup_Pane" layoutX="580.0" layoutY="-7.0" opacity="0.84" prefHeight="${screen.visualBounds.height/768.0*420.0}" prefWidth="${screen.visualBounds.width/1366.0*300.0}" styleClass="modal-dialog-glass" stylesheets="@application.css">
+         <StackPane.margin>
+            <Insets left="300.0" />
+         </StackPane.margin>
+      </VBox>
+      <StackPane fx:id="GPane" maxHeight="400.0" maxWidth="600.0" minHeight="400.0" minWidth="600.0" prefHeight="400.0" prefWidth="600.0" styleClass="Web" visible="false">
          <children>
-            <TextField id="Signup_email" fx:id="Signup_email" layoutX="46.0" layoutY="133.0" prefHeight="31.0" prefWidth="212.0" promptText="Email " styleClass="text-field1" stylesheets="@textfield.css">
-               <cursor>
-                  <Cursor fx:constant="DEFAULT" />
-               </cursor>
-            </TextField>
-            <Button id="Signup_email_btn" fx:id="Signup_email_btn" layoutX="194.0" layoutY="179.0" mnemonicParsing="false" onMouseClicked="#Signup_NEXT" onMouseEntered="#BtnEffect" onMouseExited="#BtnEffectRev" prefHeight="25.0" prefWidth="64.0" styleClass="but1" stylesheets="@application.css" text="NEXT" />
-            <Button id="Signup_password_btn" fx:id="Signup_password_btn" layoutX="194.0" layoutY="227.0" mnemonicParsing="false" onMouseClicked="#Signup_NEXT2" onMouseEntered="#BtnEffect" onMouseExited="#BtnEffectRev" prefHeight="25.0" prefWidth="64.0" styleClass="but1" stylesheets="@application.css" text="DONE" visible="false" />
-            <TextField fx:id="Signup_joincode" layoutX="46.0" layoutY="133.0" prefHeight="31.0" prefWidth="212.0" promptText="Enter Joincode" styleClass="text-field1" stylesheets="@textfield.css" visible="false" />
-            <Button fx:id="Signup_joincode_btn" layoutX="194.0" layoutY="179.0" mnemonicParsing="false" onMouseClicked="#Signup_NEXT3" onMouseEntered="#BtnEffect" onMouseExited="#BtnEffectRev" prefHeight="25.0" prefWidth="64.0" styleClass="but1" stylesheets="@application.css" text="DONE" visible="false" />
-            <Label layoutX="101.0" layoutY="68.0" prefHeight="38.0" prefWidth="104.0" stylesheets="@application.css" text=" SIGNUP" textAlignment="CENTER">
-               <font>
-                  <Font size="21.0" />
-               </font>
-               <textFill>
-                  <LinearGradient endX="1.0" endY="1.0">
-                     <stops>
-                        <Stop color="BLACK" />
-                        <Stop color="#ed0000" offset="1.0" />
-                     </stops>
-                  </LinearGradient>
-               </textFill>
-            </Label>
-            <PasswordField fx:id="Signup_password" layoutX="46.0" layoutY="133.0" prefHeight="31.0" prefWidth="212.0" promptText="Password" styleClass="text-field1" stylesheets="@textfield.css" visible="false" />
-            <Button fx:id="Sback_btn" layoutX="25.0" layoutY="28.0" mnemonicParsing="false" onMouseClicked="#backS" prefHeight="32.0" prefWidth="36.0" styleClass="back2" stylesheets="@application.css" visible="false" />
-            <TextField fx:id="Name" layoutX="46.0" layoutY="133.0" prefHeight="31.0" prefWidth="212.0" promptText="Name" styleClass="text-field1" stylesheets="@textfield.css" visible="false" />
-            <Button fx:id="Signup_done_btn" layoutX="194.0" layoutY="228.0" mnemonicParsing="false" onMouseClicked="#Signup_NEXT4" onMouseEntered="#BtnEffect" onMouseExited="#BtnEffectRev" prefHeight="25.0" prefWidth="64.0" styleClass="but1" stylesheets="@application.css" text="DONE" visible="false" />
-            <PasswordField fx:id="CnfPass" layoutX="46.0" layoutY="181.0" prefHeight="31.0" prefWidth="212.0" promptText="Confirm Password" styleClass="text-field1" stylesheets="@textfield.css" visible="false" />
+            <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="166.0" prefWidth="600.0">
+               <children>
+                  <Button fx:id="Gcancel" maxHeight="29.0" maxWidth="84.0" minHeight="29.0" minWidth="61.0" mnemonicParsing="false" onMouseClicked="#Close" prefHeight="29.0" prefWidth="84.0" styleClass="butX" text="BACK">
+                     <HBox.margin>
+                        <Insets left="2.0" top="2.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Label alignment="CENTER" maxHeight="27.0" maxWidth="248.0" minHeight="27.0" minWidth="248.0" prefHeight="27.0" prefWidth="271.0" text="BookIT embeddded browser, v1.0" textFill="#fffbfb">
+                     <HBox.margin>
+                        <Insets left="90.0" />
+                     </HBox.margin>
+                  </Label>
+                  <Button fx:id="Gdone" maxHeight="29.0" maxWidth="84.0" minHeight="29.0" minWidth="55.0" mnemonicParsing="false" onMouseClicked="#Continue" prefHeight="29.0" prefWidth="84.0" styleClass="but1" text="DONE">
+                     <HBox.margin>
+                        <Insets left="90.0" top="2.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+               <StackPane.margin>
+                  <Insets bottom="360.0" />
+               </StackPane.margin>
+            </HBox>
+            <WebView fx:id="browser" minHeight="-1.0" minWidth="-1.0" prefHeight="200.0" prefWidth="200.0" StackPane.alignment="BOTTOM_CENTER">
+               <StackPane.margin>
+                  <Insets top="35.0" />
+               </StackPane.margin>
+            </WebView>
          </children>
-      </AnchorPane>
-      <ImageView fitHeight="241.0" fitWidth="322.0" layoutX="50.0" layoutY="90.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@Untitled.png" />
-         </image>
-      </ImageView>
-      <Button fx:id="Login_btn" layoutX="77.0" layoutY="257.0" mnemonicParsing="false" onMouseClicked="#Signup_TranslateRight" prefHeight="41.0" prefWidth="127.0" styleClass="but34" stylesheets="@application.css" text="LOGIN" visible="false" />
-      <Button fx:id="Signup_btn" layoutX="77.0" layoutY="257.0" mnemonicParsing="false" onMouseClicked="#Signup_TranslateLeft" prefHeight="41.0" prefWidth="127.0" styleClass="but34" stylesheets="@application.css" text="SIGNUP" visible="false" />
-      <Label layoutY="385.0" prefHeight="25.0" prefWidth="615.0" styleClass="labelD" text="BookIT Nihesh Anderson, Harsh Pathak                                 " textFill="WHITE">
-         <padding>
-            <Insets left="15.0" />
-         </padding>
-      </Label>
-      <Label alignment="CENTER_RIGHT" layoutX="300.0" layoutY="385.0" prefHeight="25.0" prefWidth="300.0" styleClass="labelD" text="New Delhi, India @2018" textFill="WHITE">
-         <padding>
-            <Insets right="10.0" />
-         </padding>
-      </Label>
-      <Button fx:id="Cred_btn" layoutY="208.0" mnemonicParsing="false" onMouseClicked="#CredNext" prefHeight="${screen.visualBounds.height/768.0*25.0}" prefWidth="${screen.visualBounds.width/1366.0*36.0}" styleClass="butCred2" />
-      <AnchorPane fx:id="Cred_Pane" layoutX="-310.0" prefHeight="${screen.visualBounds.height/768.0*410.0}" prefWidth="${screen.visualBounds.width/1366.0*310.0}" styleClass="pane3">
+      </StackPane>
+      <StackPane fx:id="Cred_Pane" maxHeight="400.0" maxWidth="275.0" minHeight="400.0" minWidth="275.0" prefHeight="400.0" prefWidth="275.0" styleClass="pane32" translateX="-280.0">
+         <StackPane.margin>
+            <Insets right="325.0" />
+         </StackPane.margin>
          <children>
-            <Label layoutX="9.0" layoutY="66.0" prefHeight="${screen.visualBounds.height/768.0*38.0}" prefWidth="${screen.visualBounds.width/1366.0*271.0}" styleClass="labelB" text="CREDITS " />
-            <Label layoutX="9.0" layoutY="26.0" prefHeight="${screen.visualBounds.height/768.0*42.0}" prefWidth="${screen.visualBounds.width/1366.0*234.0}" styleClass="labelC" text="BOOKIT  v1.0" />
-            <Label layoutX="9.0" layoutY="150.0" prefHeight="${screen.visualBounds.height/768.0*38.0}" prefWidth="${screen.visualBounds.width/1366.0*271.0}" styleClass="labelB" text="Harsh Pathak" />
-            <Label layoutX="9.0" layoutY="210.0" prefHeight="${screen.visualBounds.height/768.0*38.0}" prefWidth="${screen.visualBounds.width/1366.0*271.0}" styleClass="labelB" text="Nihesh Anderson " />
-            <Label layoutX="9.0" layoutY="230.0" prefHeight="${screen.visualBounds.height/768.0*38.0}" prefWidth="${screen.visualBounds.width/1366.0*271.0}" styleClass="labelBEmail" text="nihesh16059@iiitd.ac.in">
+            <Button fx:id="CredBack_btn" mnemonicParsing="false" onMouseClicked="#Press_Cred_Back" prefHeight="23.0" prefWidth="15.0" styleClass="butCredBack2" text="Button" StackPane.alignment="CENTER_RIGHT" />
+            <Label prefHeight="17.0" prefWidth="224.0" styleClass="labelBB" text="BookIT v1.0" StackPane.alignment="TOP_LEFT">
                <font>
-                  <Font name="Segoe UI Semibold Italic" size="13.0" />
-               </font></Label>
-            <Label layoutX="9.0" layoutY="270.0" prefHeight="${screen.visualBounds.height/768.0*38.0}" prefWidth="${screen.visualBounds.width/1366.0*271.0}" styleClass="labelB" text="Dr. Vivek Kumar" />
-            <Button fx:id="CredBack_btn" layoutX="273.0" layoutY="205.0" mnemonicParsing="false" onMouseClicked="#CredBack" prefHeight="${screen.visualBounds.height/768.0*25.0}" prefWidth="${screen.visualBounds.width/1366.0*36.0}" styleClass="butCredBack2" />
-            <Label layoutX="9.0" layoutY="290.0" prefHeight="${screen.visualBounds.height/768.0*38.0}" prefWidth="${screen.visualBounds.width/1366.0*271.0}" styleClass="labelBEmail" text="vivekk@iiitd.ac.in">
-               <font>
-                  <Font name="Segoe UI Semibold Italic" size="13.0" />
+                  <Font size="18.0" />
                </font>
+               <StackPane.margin>
+                  <Insets top="30.0" />
+               </StackPane.margin>
+               <padding>
+                  <Insets left="5.0" />
+               </padding>
             </Label>
-            <Label layoutX="9.0" layoutY="170.0" prefHeight="${screen.visualBounds.height/768.0*38.0}" prefWidth="${screen.visualBounds.width/1366.0*271.0}" styleClass="labelBEmail" text="harsh16041@iiitd.ac.in">
-               <font>
-                  <Font name="Segoe UI Semibold Italic" size="13.0" />
-               </font>
+            <Label styleClass="labelB" text="CREDITS" StackPane.alignment="TOP_LEFT">
+               <StackPane.margin>
+                  <Insets top="60.0" />
+               </StackPane.margin>
+               <padding>
+                  <Insets left="5.0" />
+               </padding>
+            </Label>
+            <Label styleClass="labelB" text="Harsh Pathak" StackPane.alignment="TOP_LEFT">
+               <StackPane.margin>
+                  <Insets top="100.0" />
+               </StackPane.margin>
+               <padding>
+                  <Insets left="5.0" />
+               </padding>
+            </Label>
+            <Label styleClass="labelBEmail" text="harsh16041@iiitd.ac.in" StackPane.alignment="TOP_LEFT">
+               <StackPane.margin>
+                  <Insets left="20.0" top="130.0" />
+               </StackPane.margin>
+            </Label>
+            <Label styleClass="labelB" text="Nihesh Anderson" StackPane.alignment="TOP_LEFT">
+               <StackPane.margin>
+                  <Insets top="160.0" />
+               </StackPane.margin>
+               <padding>
+                  <Insets left="5.0" />
+               </padding>
+            </Label>
+            <Label styleClass="labelBEmail" text="nihesh16059@iiitd.ac.in" StackPane.alignment="TOP_LEFT">
+               <StackPane.margin>
+                  <Insets left="20.0" top="190.0" />
+               </StackPane.margin>
+            </Label>
+            <Label styleClass="labelB" text="Dr. Vivek Kumar" StackPane.alignment="TOP_LEFT">
+               <StackPane.margin>
+                  <Insets left="5.0" top="220.0" />
+               </StackPane.margin>
+            </Label>
+            <Label styleClass="labelBEmail" text="vivekk@iiitd.ac.in" StackPane.alignment="TOP_LEFT">
+               <StackPane.margin>
+                  <Insets left="20.0" top="250.0" />
+               </StackPane.margin>
             </Label>
          </children>
-      </AnchorPane>
-      <AnchorPane fx:id="GPane" prefHeight="${screen.visualBounds.height/768.0*400.0}" prefWidth="${screen.visualBounds.width/1366.0*620.0}" styleClass="Web" visible="false">
-         <children>
-            <WebView fx:id="browser" layoutX="5.0" layoutY="32.0" prefHeight="368.0" prefWidth="600.0" />
-            <Button fx:id="Gcancel" layoutX="22.0" layoutY="2.0" mnemonicParsing="false" onMouseClicked="#Close" prefHeight="22.0" prefWidth="64.0" styleClass="butX" text="BACK" />
-            <Button fx:id="Gdone" layoutX="510.0" layoutY="2.0" mnemonicParsing="false" onMouseClicked="#Continue" prefHeight="22.0" prefWidth="64.0" styleClass="but1" text="DONE" />
-            <Label layoutX="200.0" prefHeight="17.0" prefWidth="271.0" text="BookIT embedded browser v1.0" textFill="WHITE" />
-         </children>
-      </AnchorPane>
+         <effect>
+            <DropShadow height="0.0" radius="3.2675" width="15.07" />
+         </effect>
+      </StackPane>
    </children>
-</AnchorPane>
+   <stylesheets>
+      <URL value="@application.css" />
+      <URL value="@textfield.css" />
+   </stylesheets>
+</StackPane>
