@@ -2,6 +2,8 @@ package LoginSignup;
 
 
 import java.awt.Desktop;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -53,6 +55,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.stage.Screen;
@@ -66,6 +69,7 @@ import main.java.com.google.api.services.samples.oauth2.cmdline.OAuth2Sample;
  */
 public class LoginSignup1Controller {
 	private double initOpacity=0.84;
+	private double init_Cred_Pane;
 	private Email Gemail;
 	private String GName;
 	private User Guser;
@@ -73,6 +77,8 @@ public class LoginSignup1Controller {
 	private Email email;
 	private String joincode;
 	private User user;
+	@FXML
+	private VBox Login_Pane;
 	@FXML
 	private Button GBtn;
 	@FXML
@@ -82,7 +88,7 @@ public class LoginSignup1Controller {
 	@FXML
 	private Button CredBack_btn;
 	@FXML 
-	private BorderPane GPane;
+	private StackPane GPane;
 	@FXML
 	private WebView browser;
 	@FXML
@@ -91,6 +97,36 @@ public class LoginSignup1Controller {
 	private Button Gcancel;
 	@FXML
 	public WebEngine e;
+	@FXML
+	private StackPane Cred_Pane;
+	@FXML
+	private Label footer1;
+	@FXML
+	private Label footer2;
+	@FXML
+	private void Press_Cred() {
+		Login_Pane.setDisable(true);
+		Cred_Pane.setVisible(true);
+		TranslateTransition transright=new TranslateTransition();
+		//System.out.println(Cred_Pane.getTranslateX());
+		transright.setNode(Cred_Pane);
+		transright.setToX(0);
+		transright.setDuration(Duration.millis(700));
+		transright.play();
+	}
+	@FXML
+	private void Press_Cred_Back() {
+		//Cred_Pane.setVisible(false);
+		Login_Pane.setDisable(false);
+		TranslateTransition transleft=new TranslateTransition();
+		transleft.setNode(Cred_Pane);
+		transleft.setToX(init_Cred_Pane);
+		transleft.setDuration(Duration.millis(700));
+		transleft.play();
+		transleft.setOnFinished(e->{
+			Cred_Pane.setVisible(true);
+		});
+	}
 	@FXML
 	private void Close() {
 		PortListener.authcode="none";
@@ -207,14 +243,19 @@ public class LoginSignup1Controller {
 	
 	@FXML
 	public void initialize() {
-		Rectangle2D visualBounds = Screen.getPrimary().getVisualBounds();
-        double width = visualBounds.getWidth();
-        double height = visualBounds.getHeight();
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		double width = screenSize.getWidth();
+        double height = screenSize.getHeight();
         double scaleWidth = (width)/1366;
         double scaleHeight = (height)/768;
-
         FirstPane.setScaleX(scaleWidth);
         FirstPane.setScaleY(scaleHeight);
+        Cred_Pane.setTranslateX((width)/1366.0 * Cred_Pane.getTranslateX());
+        init_Cred_Pane = Cred_Pane.getTranslateX();
+        //footer1.setScaleX((width)/1366.0 * footer1.getWidth());
+       // footer2.setScaleX((width)/1366.0 * footer2.getWidth());
+       // footer1.setScaleX((width)/768.0 * footer1.getHeight());
+       // footer2.setScaleX((width)/768.0 * footer2.getHeight());
 
 			
 	}
