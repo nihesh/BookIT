@@ -15,17 +15,46 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.web.WebView?>
 
-<StackPane fx:id="FirstPane" prefHeight="400.0" prefWidth="600.0" styleClass="pane22" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="LoginSignup.LoginSignup1Controller">
+<StackPane fx:id="FirstPane" maxHeight="400.0" maxWidth="600.0" minHeight="400.0" minWidth="600.0" prefHeight="400.0" prefWidth="600.0" styleClass="pane22" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="LoginSignup.LoginSignup1Controller">
    <children>
-      <ImageView fitHeight="328.0" fitWidth="298.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="CENTER_LEFT">
-         <image>
-            <Image url="@Untitled.png" />
-         </image>
+      <StackPane maxHeight="400.0" maxWidth="600.0" minHeight="400.0" minWidth="600.0" prefHeight="150.0" prefWidth="200.0" StackPane.alignment="CENTER">
+         <children>
+            <Label fx:id="footer1" maxHeight="20.0" maxWidth="620.0" minHeight="20.0" minWidth="600.0" prefHeight="20.0" prefWidth="617.0" styleClass="labelD" text="BookIT  -  Harsh Pathak, Nihesh Anderson" textFill="WHITE" StackPane.alignment="BOTTOM_LEFT">
+               <StackPane.margin>
+                  <Insets />
+               </StackPane.margin>
+               <padding>
+                  <Insets left="5.0" />
+               </padding>
+            </Label>
+            <Label fx:id="footer2" maxHeight="20.0" maxWidth="92.0" minHeight="20.0" minWidth="92.0" prefHeight="20.0" prefWidth="92.0" styleClass="labelD" text="New Delhi, 2018" textFill="WHITE" StackPane.alignment="BOTTOM_RIGHT">
+               <padding>
+                  <Insets right="5.0" />
+               </padding>
+            </Label>
+         </children>
+      </StackPane>
+      <StackPane maxHeight="400.0" maxWidth="600.0" minHeight="400.0" minWidth="600.0" prefHeight="150.0" prefWidth="200.0">
+         <children>
+            <ImageView fitHeight="328.0" fitWidth="298.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="CENTER_LEFT">
+               <image>
+                  <Image url="@Untitled.png" />
+               </image>
+               <StackPane.margin>
+                  <Insets left="45.0" />
+               </StackPane.margin>
+            </ImageView>
+         </children>
+      </StackPane>
+      <StackPane maxHeight="400.0" maxWidth="600.0" minHeight="400.0" minWidth="567.0" prefHeight="400.0" prefWidth="567.0" StackPane.alignment="CENTER">
+         <children>
+            <Button fx:id="Cred_btn" maxHeight="25.0" maxWidth="27.0" minHeight="25.0" minWidth="27.0" mnemonicParsing="false" onMouseClicked="#Press_Cred" prefHeight="25.0" prefWidth="27.0" styleClass="butCred" StackPane.alignment="CENTER_LEFT" />
+         </children>
          <StackPane.margin>
-            <Insets left="45.0" />
+            <Insets />
          </StackPane.margin>
-      </ImageView>
-      <VBox fx:id="Login_Pane" alignment="CENTER" opacity="0.84" prefHeight="400.0" prefWidth="295.0" spacing="20.0" styleClass="modal-dialog-glass" StackPane.alignment="CENTER">
+      </StackPane>
+      <VBox fx:id="Login_Pane" alignment="CENTER" maxHeight="400.0" maxWidth="300.0" minHeight="400.0" minWidth="300.0" opacity="0.84" prefHeight="400.0" prefWidth="295.0" spacing="20.0" styleClass="modal-dialog-glass" StackPane.alignment="CENTER">
          <children>
             <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="32.0" prefWidth="75.0" text="LOGIN">
                <VBox.margin>
@@ -53,8 +82,7 @@
             <Insets left="300.0" />
          </StackPane.margin>
       </VBox>
-      <Button fx:id="Cred_btn" mnemonicParsing="false" onMouseClicked="#Press_Cred" prefHeight="25.0" prefWidth="27.0" styleClass="butCred" StackPane.alignment="CENTER_LEFT" />
-      <StackPane fx:id="GPane" prefHeight="150.0" prefWidth="200.0" styleClass="Web" visible="false">
+      <StackPane fx:id="GPane" maxHeight="400.0" maxWidth="600.0" minHeight="400.0" minWidth="600.0" prefHeight="400.0" prefWidth="600.0" styleClass="Web" visible="false">
          <children>
             <HBox prefHeight="32.0" prefWidth="600.0">
                <children>
@@ -85,7 +113,7 @@
             </WebView>
          </children>
       </StackPane>
-      <StackPane fx:id="Cred_Pane" prefHeight="150.0" prefWidth="200.0" styleClass="pane32" translateX="-300.0">
+      <StackPane fx:id="Cred_Pane" maxHeight="400.0" maxWidth="275.0" minHeight="400.0" minWidth="275.0" prefHeight="400.0" prefWidth="275.0" styleClass="pane32" translateX="-280.0">
          <StackPane.margin>
             <Insets right="325.0" />
          </StackPane.margin>
@@ -148,22 +176,9 @@
             </Label>
          </children>
          <effect>
-            <DropShadow height="0.0" radius="14.3875" spread="0.26" width="59.55" />
+            <DropShadow height="0.0" radius="3.2675" width="15.07" />
          </effect>
       </StackPane>
-      <Label fx:id="footer1" prefHeight="17.0" prefWidth="608.0" styleClass="labelD" text="BookIT  -  Harsh Pathak, Nihesh Anderson" textFill="WHITE" StackPane.alignment="BOTTOM_LEFT">
-         <StackPane.margin>
-            <Insets />
-         </StackPane.margin>
-         <padding>
-            <Insets left="5.0" />
-         </padding>
-      </Label>
-      <Label fx:id="footer2" styleClass="labelD" text="New Delhi, 2018" textFill="WHITE" StackPane.alignment="BOTTOM_RIGHT">
-         <padding>
-            <Insets right="5.0" />
-         </padding>
-      </Label>
    </children>
    <stylesheets>
       <URL value="@application.css" />

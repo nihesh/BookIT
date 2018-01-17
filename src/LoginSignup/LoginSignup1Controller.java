@@ -248,9 +248,11 @@ public class LoginSignup1Controller {
         double height = screenSize.getHeight();
         double scaleWidth = (width)/1366;
         double scaleHeight = (height)/768;
+        System.out.println(scaleWidth);
+        System.out.println(scaleHeight);
         FirstPane.setScaleX(scaleWidth);
         FirstPane.setScaleY(scaleHeight);
-        Cred_Pane.setTranslateX((width)/1366.0 * Cred_Pane.getTranslateX());
+        //Cred_Pane.setTranslateX((width)/1366.0 * Cred_Pane.getTranslateX());
         init_Cred_Pane = Cred_Pane.getTranslateX();
         //footer1.setScaleX((width)/1366.0 * footer1.getWidth());
        // footer2.setScaleX((width)/1366.0 * footer2.getWidth());
