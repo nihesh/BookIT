@@ -1528,10 +1528,12 @@ class ConnectionHandler implements Runnable{
                     case "faculty_freeCourses":
                         out.writeObject(server.freeCourses);
                         out.flush();
+                        System.out.println(connection.getInetAddress().toString() + " | ServerLock request cancelled");
                         break;
                     case "adminEmail":
                         out.writeObject(BookITconstants.NoReplyEmail);
                         out.flush();
+                        System.out.println(connection.getInetAddress().toString() + " | ServerLock request cancelled");
                 }
                 in.close();
                 out.close();
