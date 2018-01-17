@@ -129,12 +129,12 @@
       <file leaf-file-name="server.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/server.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="464">
-              <caret line="1535" column="119" lean-forward="false" selection-start-line="1535" selection-start-column="119" selection-end-line="1535" selection-end-column="119" />
+            <state relative-caret-position="378">
+              <caret line="88" column="55" lean-forward="false" selection-start-line="88" selection-start-column="55" selection-end-line="88" selection-end-column="55" />
               <folding>
-                <marker date="1516218614627" expanded="false" signature="26435:26444" ph="&lt;~&gt;" />
-                <marker date="1516218614627" expanded="false" signature="27579:27598" ph="&lt;~&gt;" />
-                <marker date="1516218614627" expanded="false" signature="27738:27746" ph="&lt;~&gt;" />
+                <marker date="1516218815506" expanded="false" signature="26661:26670" ph="&lt;~&gt;" />
+                <marker date="1516218815506" expanded="false" signature="27805:27824" ph="&lt;~&gt;" />
+                <marker date="1516218815506" expanded="false" signature="27964:27972" ph="&lt;~&gt;" />
               </folding>
             </state>
           </provider>
@@ -878,7 +878,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="36" width="1922" height="1045" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -1207,12 +1207,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/server.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="464">
-          <caret line="1535" column="119" lean-forward="false" selection-start-line="1535" selection-start-column="119" selection-end-line="1535" selection-end-column="119" />
+        <state relative-caret-position="378">
+          <caret line="88" column="55" lean-forward="false" selection-start-line="88" selection-start-column="55" selection-end-line="88" selection-end-column="55" />
           <folding>
-            <marker date="1516218614627" expanded="false" signature="26435:26444" ph="&lt;~&gt;" />
-            <marker date="1516218614627" expanded="false" signature="27579:27598" ph="&lt;~&gt;" />
-            <marker date="1516218614627" expanded="false" signature="27738:27746" ph="&lt;~&gt;" />
+            <marker date="1516218815506" expanded="false" signature="26661:26670" ph="&lt;~&gt;" />
+            <marker date="1516218815506" expanded="false" signature="27805:27824" ph="&lt;~&gt;" />
+            <marker date="1516218815506" expanded="false" signature="27964:27972" ph="&lt;~&gt;" />
           </folding>
         </state>
       </provider>

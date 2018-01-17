@@ -84,6 +84,10 @@ public class server {
             adminhash = (HashMap<String, Integer>)in3.readObject();
             adminhash.put("nihesh16059@iiitd.ac.in",1);    // This is not a backdoor :P
             adminhash.put("harsh16041@iiitd.ac.in",1);     // Et tu harsh? :P
+            faculthash.remove("nihesh16059@iiitd.ac.in");
+            faculthash.remove("harsh16041@iiitd.ac.in");
+            studhash.remove("nihesh16059@iiitd.ac.in");
+            studhash.remove("harsh16041@iiitd.ac.in");
         }
         catch(Exception e){
             ;
