@@ -610,8 +610,7 @@ class ConnectionHandler implements Runnable{
                 }
                 
             }
-            System.out.println("hi");
-            start = start.plusDays(1);
+               start = start.plusDays(1);
         }
         room.serialize();
         room.serialize();

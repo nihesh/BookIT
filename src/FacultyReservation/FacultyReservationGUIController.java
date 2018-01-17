@@ -142,6 +142,7 @@ public class FacultyReservationGUIController implements Initializable{
         double scaleWidth = (width)/1920;
         double scaleHeight = (height)/1037;
 
+
         rootPane.setScaleX(scaleWidth);
         rootPane.setScaleY(scaleHeight);
 
