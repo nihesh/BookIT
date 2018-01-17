@@ -248,8 +248,6 @@ public class LoginSignup1Controller {
         double height = screenSize.getHeight();
         double scaleWidth = (width)/1366;
         double scaleHeight = (height)/768;
-        System.out.println(scaleWidth);
-        System.out.println(scaleHeight);
         FirstPane.setScaleX(scaleWidth);
         FirstPane.setScaleY(scaleHeight);
         //Cred_Pane.setTranslateX((width)/1366.0 * Cred_Pane.getTranslateX());

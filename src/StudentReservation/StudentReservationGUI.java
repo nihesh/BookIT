@@ -11,6 +11,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.io.File;
@@ -27,7 +28,7 @@ public class StudentReservationGUI extends Application {
             primaryStage.setTitle("BookIT - "+activeUser.getEmail().getEmailID());
             primaryStage.setMaximized(true);
             primaryStage.setResizable(true);
-            primaryStage.setScene(new Scene(root));
+            primaryStage.setScene(new Scene(root, Color.BLACK));
             primaryStage.showAndWait();
         }
         catch(Exception e){

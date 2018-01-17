@@ -224,7 +224,7 @@ public class setup {
     }
     public static void createFirstAdmin(){
         Email masterEmail = new Email(HelperClasses.BookITconstants.NoReplyEmail);
-        Admin master = new Admin("IIITDnoreply","noreply",masterEmail,"Admin");
+        Admin master = new Admin("IIITD Admin","noreply",masterEmail,"Admin");
         master.setActiveUser();
         master.serialize(false);
     }
@@ -343,7 +343,6 @@ public class setup {
         if(users!=null) {
             for (int i = 0; i < users.length; i++) {
                 User u = User.getUser(users[i].getName().substring(0, users[i].getName().length() - 4), false);
-                System.out.println(users[i].getName().substring(0, users[i].getName().length() - 4));
                 if (u!=null && u.getUsertype().equals("Faculty")) {
                     Faculty f = (Faculty) u;
                     f.getCourses().clear();

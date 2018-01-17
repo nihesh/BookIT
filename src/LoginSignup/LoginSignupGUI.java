@@ -22,8 +22,6 @@ public class LoginSignupGUI extends Application{
 			Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 			double screenWidth = screenSize.getWidth();
 			double screenHeight = screenSize.getHeight();
-			System.out.println(screenWidth);
-			System.out.println(screenHeight);
 			Parent root;
 			double width,height;
 			/*if(Screenwidth>=1920) {
@@ -34,9 +32,7 @@ public class LoginSignupGUI extends Application{
 			//else{
 				root = FXMLLoader.load(getClass().getResource("LoginSignup1.fxml"));
 				width=(int)(600.0 * screenWidth/1366.0);
-				System.out.println(width);
 				height=(int)(400.0 * screenHeight/768.0);
-				System.out.println(height);
 			//}
 			Scene scene = new Scene(root,width,height);
 			primaryStage.setScene(scene);

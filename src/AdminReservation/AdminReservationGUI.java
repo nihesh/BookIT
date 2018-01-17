@@ -3,6 +3,7 @@
 // File     : BookIT.java
 
 package AdminReservation;
+import javafx.scene.paint.Color;
 
 import HelperClasses.BookITconstants;
 import HelperClasses.User;
@@ -31,7 +32,7 @@ public class AdminReservationGUI extends Application {
             primaryStage.setTitle("BookIT - "+activeUser.getEmail().getEmailID());
             primaryStage.setMaximized(true);
             primaryStage.setResizable(true);
-            primaryStage.setScene(new Scene(root));
+            primaryStage.setScene(new Scene(root, Color.BLACK));
             primaryStage.showAndWait();
         }
         catch (Exception e){

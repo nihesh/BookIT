@@ -38,6 +38,9 @@
             </items>
           </Menu>
         </menus>
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
       </MenuBar>
       <StackPane fx:id="topPane" maxHeight="312.0" maxWidth="1920.0" minHeight="312.0" minWidth="1920.0" prefHeight="382.0" prefWidth="1920.0">
          <children>
