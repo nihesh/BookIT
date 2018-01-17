@@ -258,7 +258,8 @@ public class LoginSignup1Controller {
        // footer2.setScaleX((width)/1366.0 * footer2.getWidth());
        // footer1.setScaleX((width)/768.0 * footer1.getHeight());
        // footer2.setScaleX((width)/768.0 * footer2.getHeight());
-
+        browser.setZoom(0.8);
+        
 			
 	}
 	@FXML
