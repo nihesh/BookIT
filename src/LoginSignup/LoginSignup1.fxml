@@ -27,10 +27,13 @@
                   <Insets left="5.0" />
                </padding>
             </Label>
-            <Label fx:id="footer2" maxHeight="20.0" maxWidth="118.0" minHeight="20.0" minWidth="92.0" prefHeight="20.0" prefWidth="118.0" styleClass="labelD" text="New Delhi, 2018" textFill="WHITE" StackPane.alignment="BOTTOM_CENTER">
+            <Label fx:id="footer2" alignment="CENTER_RIGHT" contentDisplay="RIGHT" maxHeight="20.0" maxWidth="158.0" minHeight="20.0" minWidth="120.0" prefHeight="20.0" prefWidth="158.0" styleClass="labelD" text="New Delhi, 2018" textAlignment="RIGHT" textFill="WHITE" StackPane.alignment="BOTTOM_CENTER">
                <StackPane.margin>
-                  <Insets left="510.0" />
+                  <Insets left="450.0" />
                </StackPane.margin>
+               <padding>
+                  <Insets right="5.0" />
+               </padding>
             </Label>
          </children>
       </StackPane>
