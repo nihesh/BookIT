@@ -1,18 +1,18 @@
 .pane2{
 	-fx-background-image: url('./5SEZKVU.jpg');
-	-fx-background-size: 860px 580px;
+	-fx-background-size: cover;
 	-fx-background-repeat: no-repeat;
 	-fx-background-position: 100%;
 }
 .pane22{
 	-fx-background-image: url('./5SEZKVU.jpg');
-	-fx-background-size: 860px 580px;
+	-fx-background-size: cover;
 	-fx-background-repeat: no-repeat;
-	-fx-background-position: 100%;
+	-fx-background-position: 0%;
 }
 .pane3{
 	-fx-background-image: url('./colorful_polygons-wide.jpg');
-	-fx-background-size: 330px 430px;
+	-fx-background-size: cover;
 	-fx-border-width: 10px;
 	-fx-background-repeat: no-repeat;
 	-fx-background-position: 10%;
@@ -21,7 +21,7 @@
 }
 .pane32{
 	-fx-background-image: url('./colorful_polygons-wide.jpg');
-	-fx-background-size: 425px 567px;
+	-fx-background-size: cover;
 	-fx-border-width: 10px;
 	-fx-background-repeat: no-repeat;
 	-fx-background-position: 10%;
@@ -39,7 +39,7 @@
 .back2{
 	-fx-background-image: url('./app-1646213_640.png'); 
 	-fx-background-color: transparent;
-	-fx-background-size: 25px 25px;
+	-fx-background-size: cover;
 	-fx-background-repeat: no-repeat;
 	-fx-background-position: 30%;
 }
@@ -126,9 +126,7 @@
 .butGG{
 	
 	 -fx-background-image: url('./signup-google.png');
-	-fx-background-size: 176px 33.6px;
-	-fx-background-radius: 4px ;
-	-fx-background-insets: 2;
+	-fx-background-size: cover;
 	 -fx-background-repeat: no-repeat;
     -fx-background-position: 0%;
 	
@@ -136,7 +134,7 @@
 .butGG:hover{
 	
 	 -fx-background-image: url('./signup-google.png');
-	-fx-background-size: 176px 33.6px;
+	-fx-background-size: cover;
 	-fx-background-radius: 4px ;
 	-fx-background-insets: 2;
 	 -fx-background-repeat: no-repeat;
@@ -146,7 +144,7 @@
 }
 .butGGG{
 	 -fx-background-image: url('./googleplussignin.png');
-	-fx-background-size: 176px 33.6px;
+	-fx-background-size:cover;
 	-fx-background-radius: 4px ;
 	-fx-background-insets: 2;
 	 -fx-background-repeat: no-repeat;
@@ -154,7 +152,7 @@
 }
 .butGGG:hover{
 	 -fx-background-image: url('./googleplussignin.png');
-	-fx-background-size: 176px 33.6px;
+	-fx-background-size: cover;
 	-fx-background-radius: 4px ;
 	-fx-background-insets: 2;
 	 -fx-background-repeat: no-repeat;
@@ -165,7 +163,7 @@
 .butGG1080p{
 	
 	 -fx-background-image: url('./signup-google.png');
-	-fx-background-size: 191px 50px;
+	-fx-background-size: cover;
 	-fx-background-radius: 4px ;
 	-fx-background-insets: 2;
 	 -fx-background-repeat: no-repeat;
@@ -175,7 +173,7 @@
 .butGG1080p:hover{
 	
 	 -fx-background-image: url('./signup-google.png');
-	-fx-background-size: 191px 50px;
+	-fx-background-size: cover;
 	-fx-background-radius: 4px ;
 	-fx-background-insets: 2;
 	-fx-effect: dropshadow(three-pass-box, derive(red, +40%), 10, 0, 4, 4) ;
@@ -186,7 +184,7 @@
 .butGGG1080p{
 	
 	 -fx-background-image: url('./googleplussignin.png');
-	-fx-background-size: 216px 47px;
+	-fx-background-size: cover;
 	-fx-background-radius: 4px ;
 	-fx-background-insets: 2;
 	 -fx-background-repeat: no-repeat;
@@ -196,7 +194,7 @@
 .butGGG1080p:hover{
 	
 	 -fx-background-image: url('./googleplussignin.png');
-	-fx-background-size: 216px 47px;
+	-fx-background-size: cover;
 	-fx-background-radius: 4px ;
 	-fx-background-insets: 2;
 	-fx-effect: dropshadow(three-pass-box, derive(red, +40%), 10, 0, 4, 4) ;
@@ -256,7 +254,7 @@
 	-fx-background-color: rgba(255,255,255,0.4);
 	-fx-effect: dropshadow(three-pass-box, derive(black, +40%), 10, 0, 4, 4); 
   	-fx-background-color: derive(white,20%); 
-  	-fx-background-insets: 20; 
+  	-fx-background-insets: 12 12 30 20; 
   	-fx-background-radius: 12;
   
 }
@@ -268,7 +266,7 @@
 }
 .labelG {
 	-fx-background-image: url('./Green-Tick-Transparent-Background.png');
-	-fx-background-size: 26px;
+	-fx-background-size: cover;
 	-fx-font-size: 15px;
 	-fx-text-fill:black;
     -fx-font-family: "Segoe UI Semibold";
@@ -317,7 +315,7 @@
 }
 .butCred{
 	-fx-background-image: url('./right-double-arrow-png-image-97177.png');
-	-fx-background-size: 35px;
+	-fx-background-size: cover;
 	-fx-background-repeat: no-repeat;
     -fx-background-position: 5%;
 	-fx-background-color: transparent;
@@ -328,7 +326,7 @@
 .butCred:hover{
 	-fx-background-image: url('./right-double-arrow-png-image-97177.png');
 	-fx-opacity: .8;
-	-fx-background-size: 35px;
+	-fx-background-size: cover;
 	-fx-background-repeat: no-repeat;
     -fx-background-position: 8%;
 	-fx-background-color: transparent;
@@ -338,7 +336,7 @@
 }
 .butCredBack{
 	-fx-background-image: url('./hamburger_vert.png');
-	-fx-background-size: 45px;
+	-fx-background-size: cover;
 	-fx-background-repeat: no-repeat;
     -fx-background-position: 5%;
 	-fx-background-color: transparent;
@@ -349,7 +347,7 @@
 .butCredBack:hover{
 	-fx-background-image: url('./hamburger_vert.png');
 	-fx-opacity: .8;
-	-fx-background-size: 45px;
+	-fx-background-size: cover;
 	-fx-background-repeat: no-repeat;
     -fx-background-position: 8%;
 	-fx-background-color: transparent;
@@ -359,7 +357,7 @@
 }
 .butCredBack2{
 	-fx-background-image: url('./hamburger_vert.png');
-	-fx-background-size: 20px;
+	-fx-background-size: cover;
 	-fx-background-repeat: no-repeat;
     -fx-background-position: 5%;
 	-fx-background-color: transparent;

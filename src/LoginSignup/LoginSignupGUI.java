@@ -32,12 +32,10 @@ public class LoginSignupGUI extends Application{
 				height=567;
 			}*/
 			//else{
-			screenWidth = 1366;
-			screenHeight = 768;
 				root = FXMLLoader.load(getClass().getResource("LoginSignup1.fxml"));
-				width=(int)(590.0 * screenWidth/1366.0);
+				width=(int)(600.0 * screenWidth/1366.0);
 				System.out.println(width);
-				height=(int)(391.0 * screenHeight/768.0);
+				height=(int)(400.0 * screenHeight/768.0);
 				System.out.println(height);
 			//}
 			Scene scene = new Scene(root,width,height);
@@ -51,7 +49,13 @@ public class LoginSignupGUI extends Application{
 					temp.close();}
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
-					System.out.println("error in line 48 LoginSignupGUI.java");;
+					System.out.println("error in line 48 Login\n" +
+							"1920.0\n" +
+							"1080.0\n" +
+							"1.4055636896046853\n" +
+							"1.40625\n" +
+							"843.0\n" +
+							"562.0\nSignupGUI.java");;
 				}
 			});
 			primaryStage.getIcons().add(new Image(file.toURI().toString()));

@@ -132,7 +132,7 @@ public class StudentReservationGUIController implements Initializable{
         double width = visualBounds.getWidth();
         double height = visualBounds.getHeight();
         double scaleWidth = (width)/1920;
-        double scaleHeight = (height)/1037;
+        double scaleHeight = (height)/1044;
 
         rootPane.setScaleX(scaleWidth);
         rootPane.setScaleY(scaleHeight);
