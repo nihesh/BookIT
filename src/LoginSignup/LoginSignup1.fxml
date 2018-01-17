@@ -15,9 +15,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.web.WebView?>
 
-<StackPane fx:id="FirstPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="400.0" prefWidth="600.0" styleClass="pane22" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="LoginSignup.LoginSignup1Controller">
+<StackPane fx:id="FirstPane" maxHeight="400.0" maxWidth="600.0" minHeight="400.0" minWidth="600.0" prefHeight="400.0" prefWidth="600.0" styleClass="pane22" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="LoginSignup.LoginSignup1Controller">
    <children>
-      <StackPane maxHeight="400.0" maxWidth="600.0" minHeight="400.0" minWidth="600.0" prefHeight="150.0" prefWidth="200.0" StackPane.alignment="CENTER">
+      <StackPane maxHeight="400.0" maxWidth="600.0" prefHeight="150.0" prefWidth="200.0" StackPane.alignment="CENTER">
          <children>
             <Label fx:id="footer1" maxHeight="20.0" maxWidth="620.0" minHeight="20.0" minWidth="600.0" prefHeight="20.0" prefWidth="617.0" styleClass="labelD" text="BookIT  -  Harsh Pathak, Nihesh Anderson" textFill="WHITE" StackPane.alignment="BOTTOM_LEFT">
                <StackPane.margin>
@@ -37,7 +37,7 @@
             </Label>
          </children>
       </StackPane>
-      <StackPane maxHeight="400.0" maxWidth="600.0" minHeight="400.0" minWidth="600.0" prefHeight="150.0" prefWidth="200.0">
+      <StackPane maxHeight="400.0" maxWidth="600.0" prefHeight="150.0" prefWidth="200.0">
          <children>
             <ImageView fitHeight="328.0" fitWidth="298.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="CENTER_LEFT">
                <image>
@@ -49,7 +49,7 @@
             </ImageView>
          </children>
       </StackPane>
-      <StackPane maxHeight="400.0" maxWidth="600.0" minHeight="400.0" minWidth="567.0" prefHeight="400.0" prefWidth="567.0" StackPane.alignment="CENTER">
+      <StackPane maxHeight="400.0" maxWidth="600.0" prefHeight="400.0" prefWidth="567.0" StackPane.alignment="CENTER">
          <children>
             <Button fx:id="Cred_btn" maxHeight="25.0" maxWidth="27.0" minHeight="25.0" minWidth="27.0" mnemonicParsing="false" onMouseClicked="#Press_Cred" prefHeight="25.0" prefWidth="27.0" styleClass="butCred" StackPane.alignment="CENTER_LEFT" />
          </children>
