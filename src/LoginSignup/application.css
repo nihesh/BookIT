@@ -254,7 +254,7 @@
 	-fx-background-color: rgba(255,255,255,0.4);
 	-fx-effect: dropshadow(three-pass-box, derive(black, +40%), 10, 0, 4, 4); 
   	-fx-background-color: derive(white,20%); 
-  	-fx-background-insets: 10 20 25 20; 
+  	-fx-background-insets: 12 12 30 20; 
   	-fx-background-radius: 12;
   
 }

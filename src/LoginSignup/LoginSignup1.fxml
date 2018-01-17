@@ -27,10 +27,10 @@
                   <Insets left="5.0" />
                </padding>
             </Label>
-            <Label fx:id="footer2" maxHeight="20.0" maxWidth="92.0" minHeight="20.0" minWidth="92.0" prefHeight="20.0" prefWidth="92.0" styleClass="labelD" text="New Delhi, 2018" textFill="WHITE" StackPane.alignment="BOTTOM_RIGHT">
-               <padding>
-                  <Insets right="5.0" />
-               </padding>
+            <Label fx:id="footer2" maxHeight="20.0" maxWidth="118.0" minHeight="20.0" minWidth="92.0" prefHeight="20.0" prefWidth="118.0" styleClass="labelD" text="New Delhi, 2018" textFill="WHITE" StackPane.alignment="BOTTOM_CENTER">
+               <StackPane.margin>
+                  <Insets left="510.0" />
+               </StackPane.margin>
             </Label>
          </children>
       </StackPane>
@@ -58,7 +58,7 @@
          <children>
             <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="32.0" prefWidth="75.0" text="LOGIN">
                <VBox.margin>
-                  <Insets bottom="60.0" />
+                  <Insets bottom="50.0" />
                </VBox.margin>
                <font>
                   <Font size="22.0" />
@@ -72,9 +72,9 @@
                   </LinearGradient>
                </textFill>
             </Label>
-            <Button fx:id="GBtn" alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" onMouseClicked="#PressG" prefHeight="34.0" prefWidth="181.0" styleClass="butGG">
+            <Button fx:id="GBtn" alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" onMouseClicked="#PressG" prefHeight="34.0" prefWidth="181.0" styleClass="butGGG">
                <VBox.margin>
-                  <Insets bottom="75.0" />
+                  <Insets bottom="80.0" />
                </VBox.margin>
             </Button>
          </children>
@@ -86,12 +86,12 @@
          <children>
             <HBox prefHeight="32.0" prefWidth="600.0">
                <children>
-                  <Button fx:id="Gcancel" mnemonicParsing="false" onMouseClicked="#Close" prefHeight="29.0" prefWidth="78.0" styleClass="butX" text="BACK">
+                  <Button fx:id="Gcancel" maxHeight="29.0" maxWidth="55.0" minHeight="29.0" minWidth="55.0" mnemonicParsing="false" onMouseClicked="#Close" prefHeight="29.0" prefWidth="78.0" styleClass="butX" text="BACK">
                      <HBox.margin>
                         <Insets left="2.0" top="2.0" />
                      </HBox.margin>
                   </Button>
-                  <Label prefHeight="17.0" prefWidth="199.0" text="BookIT embeddded browser, v1.0" textFill="#fffbfb">
+                  <Label maxHeight="27.0" maxWidth="248.0" minHeight="27.0" minWidth="248.0" prefHeight="27.0" prefWidth="271.0" text="BookIT embeddded browser, v1.0" textFill="#fffbfb">
                      <HBox.margin>
                         <Insets left="120.0" />
                      </HBox.margin>
@@ -99,14 +99,14 @@
                         <Insets top="10.0" />
                      </padding>
                   </Label>
-                  <Button fx:id="Gdone" mnemonicParsing="false" onMouseClicked="#Continue" prefHeight="29.0" prefWidth="78.0" styleClass="but1" text="DONE">
+                  <Button fx:id="Gdone" maxHeight="29.0" maxWidth="55.0" minHeight="29.0" minWidth="55.0" mnemonicParsing="false" onMouseClicked="#Continue" prefHeight="29.0" prefWidth="78.0" styleClass="but1" text="DONE">
                      <HBox.margin>
                         <Insets left="120.0" top="2.0" />
                      </HBox.margin>
                   </Button>
                </children>
             </HBox>
-            <WebView fx:id="browser" prefHeight="200.0" prefWidth="200.0" StackPane.alignment="BOTTOM_CENTER">
+            <WebView fx:id="browser" maxHeight="365.0" maxWidth="600.0" minHeight="365.0" minWidth="600.0" prefHeight="200.0" prefWidth="200.0" StackPane.alignment="BOTTOM_CENTER">
                <StackPane.margin>
                   <Insets top="35.0" />
                </StackPane.margin>
