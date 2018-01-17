@@ -1,8 +1,7 @@
 package HelperClasses;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
+import java.io.*;
+import java.net.Socket;
 import java.util.Scanner;
 
 /**
@@ -18,15 +17,35 @@ public class BookITconstants {
     public static String NoReplyUsername;
     
     
-    public BookITconstants(){
+    public BookITconstants(String mode){
         try {
             Scanner sc = new Scanner(new BufferedReader(new FileReader("./src/AppData/Server/ServerInfo.txt")));
             serverIP = sc.next();
             serverPort = Integer.parseInt(sc.next());
-            sc = new Scanner(new BufferedReader(new FileReader("./src/AppData/StaticTimeTable/NoReply.txt")));
-            NoReplyEmail = sc.next();
-            NoReplyUsername = sc.next();
-            NoReplyPassword = sc.next();
+            if(mode.equals("Server")) {
+                sc = new Scanner(new BufferedReader(new FileReader("./src/AppData/StaticTimeTable/NoReply.txt")));
+                NoReplyEmail = sc.next();
+                NoReplyUsername = sc.next();
+                NoReplyPassword = sc.next();
+            }
+            else{
+                try{
+                    Socket server = new Socket(BookITconstants.serverIP, BookITconstants.serverPort);
+                    ObjectOutputStream out = new ObjectOutputStream(server.getOutputStream());
+                    ObjectInputStream in = new ObjectInputStream(server.getInputStream());
+                    out.writeObject("Pass");
+                    out.flush();
+                    out.writeObject("adminEmail");
+                    out.flush();
+                    NoReplyEmail = (String) in.readObject();
+                    out.close();
+                    in.close();
+                    server.close();
+                }
+                catch(Exception e){
+                    ;
+                }
+            }
         }
         catch(FileNotFoundException f){
             ;

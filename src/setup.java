@@ -363,7 +363,7 @@ public class setup {
         }
     }
     public static void main(String[] args){
-        BookITconstants b = new BookITconstants();
+        BookITconstants b = new BookITconstants("Server");
         Scanner sc = new Scanner(System.in);
         System.out.print("Semester start date: ");
         int date, month, year;

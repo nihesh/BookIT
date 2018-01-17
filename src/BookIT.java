@@ -136,7 +136,7 @@ public class BookIT extends Application{
         }
     }
     public static void main(String[] args) throws IOException{
-        BookITconstants b = new BookITconstants();
+        BookITconstants b = new BookITconstants("Client");
         launch(args);
     }
 }

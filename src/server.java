@@ -116,7 +116,7 @@ public class server {
         }
     }
     public static void main(String[] args)throws IOException{
-        BookITconstants b = new BookITconstants();
+        BookITconstants b = new BookITconstants("Server");
         loadHashMaps();
         loadFreeCourses();
         ServerSocket s = new ServerSocket(BookITconstants.serverPort);
@@ -1529,6 +1529,9 @@ class ConnectionHandler implements Runnable{
                         out.writeObject(server.freeCourses);
                         out.flush();
                         break;
+                    case "adminEmail":
+                        out.writeObject(BookITconstants.NoReplyEmail);
+                        out.flush();
                 }
                 in.close();
                 out.close();
