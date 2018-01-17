@@ -15,7 +15,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.web.WebView?>
 
-<StackPane fx:id="FirstPane" maxHeight="400.0" maxWidth="600.0" minHeight="400.0" minWidth="600.0" prefHeight="400.0" prefWidth="600.0" styleClass="pane22" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="LoginSignup.LoginSignup1Controller">
+<StackPane fx:id="FirstPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="400.0" prefWidth="600.0" styleClass="pane22" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="LoginSignup.LoginSignup1Controller">
    <children>
       <StackPane maxHeight="400.0" maxWidth="600.0" minHeight="400.0" minWidth="600.0" prefHeight="150.0" prefWidth="200.0" StackPane.alignment="CENTER">
          <children>
@@ -85,31 +85,28 @@
             <Insets left="300.0" />
          </StackPane.margin>
       </VBox>
-      <StackPane fx:id="GPane" maxHeight="400.0" maxWidth="600.0" minHeight="400.0" minWidth="600.0" prefHeight="400.0" prefWidth="600.0" styleClass="Web" visible="false">
+      <StackPane fx:id="GPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="400.0" prefWidth="600.0" styleClass="Web" visible="false">
          <children>
             <HBox prefHeight="32.0" prefWidth="600.0">
                <children>
-                  <Button fx:id="Gcancel" maxHeight="29.0" maxWidth="55.0" minHeight="29.0" minWidth="55.0" mnemonicParsing="false" onMouseClicked="#Close" prefHeight="29.0" prefWidth="78.0" styleClass="butX" text="BACK">
+                  <Button fx:id="Gcancel" maxHeight="29.0" maxWidth="84.0" minHeight="29.0" minWidth="61.0" mnemonicParsing="false" onMouseClicked="#Close" prefHeight="29.0" prefWidth="84.0" styleClass="butX" text="BACK">
                      <HBox.margin>
                         <Insets left="2.0" top="2.0" />
                      </HBox.margin>
                   </Button>
-                  <Label maxHeight="27.0" maxWidth="248.0" minHeight="27.0" minWidth="248.0" prefHeight="27.0" prefWidth="271.0" text="BookIT embeddded browser, v1.0" textFill="#fffbfb">
+                  <Label alignment="CENTER" maxHeight="27.0" maxWidth="248.0" minHeight="27.0" minWidth="248.0" prefHeight="27.0" prefWidth="271.0" text="BookIT embeddded browser, v1.0" textFill="#fffbfb">
                      <HBox.margin>
-                        <Insets left="120.0" />
+                        <Insets left="90.0" />
                      </HBox.margin>
-                     <padding>
-                        <Insets top="10.0" />
-                     </padding>
                   </Label>
-                  <Button fx:id="Gdone" maxHeight="29.0" maxWidth="55.0" minHeight="29.0" minWidth="55.0" mnemonicParsing="false" onMouseClicked="#Continue" prefHeight="29.0" prefWidth="78.0" styleClass="but1" text="DONE">
+                  <Button fx:id="Gdone" maxHeight="29.0" maxWidth="84.0" minHeight="29.0" minWidth="55.0" mnemonicParsing="false" onMouseClicked="#Continue" prefHeight="29.0" prefWidth="84.0" styleClass="but1" text="DONE">
                      <HBox.margin>
-                        <Insets left="120.0" top="2.0" />
+                        <Insets left="90.0" top="2.0" />
                      </HBox.margin>
                   </Button>
                </children>
             </HBox>
-            <WebView fx:id="browser" maxHeight="365.0" maxWidth="600.0" minHeight="365.0" minWidth="600.0" prefHeight="200.0" prefWidth="200.0" StackPane.alignment="BOTTOM_CENTER">
+            <WebView fx:id="browser" minHeight="-1.0" minWidth="-1.0" prefHeight="200.0" prefWidth="200.0" StackPane.alignment="BOTTOM_CENTER">
                <StackPane.margin>
                   <Insets top="35.0" />
                </StackPane.margin>
