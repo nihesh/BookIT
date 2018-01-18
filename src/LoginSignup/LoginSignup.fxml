@@ -37,7 +37,7 @@
                <StackPane.margin>
                   <Insets left="45.0" />
                </StackPane.margin>
-            </ImageView>
+            </ImageView>s
          </children>
       </StackPane>
       <VBox fx:id="Login_Pane" alignment="CENTER" maxHeight="400.0" maxWidth="300.0" minHeight="400.0" minWidth="300.0" opacity="0.84" prefHeight="400.0" prefWidth="295.0" spacing="20.0" styleClass="modal-dialog-glass" StackPane.alignment="CENTER">
@@ -150,7 +150,7 @@
                   <Insets bottom="20.0" />
                </StackPane.margin>
                <image>
-                  <Image url="@Minato.png" />
+                  <Image url="@DSCN9553.jpg" />
                </image>
             </ImageView>
             <Label alignment="CENTER" prefHeight="17.0" prefWidth="183.0" styleClass="labelBB" text="Nihesh Anderson" StackPane.alignment="CENTER_LEFT">

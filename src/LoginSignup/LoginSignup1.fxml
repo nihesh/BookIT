@@ -156,7 +156,7 @@
                   <Insets bottom="20.0" />
                </StackPane.margin>
                <image>
-                  <Image url="@Minato.png" />
+                  <Image url="@DSCN9553.jpg" />
                </image>
             </ImageView>
             <Label alignment="CENTER" prefHeight="25.0" prefWidth="100.0" styleClass="labelBAbout800" text="Nihesh Anderson" StackPane.alignment="CENTER_LEFT">
