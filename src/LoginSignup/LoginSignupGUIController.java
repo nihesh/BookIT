@@ -51,11 +51,13 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.shape.Circle;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.stage.Screen;
@@ -83,10 +85,6 @@ public class LoginSignupGUIController {
 	private Button GBtn;
 	@FXML
 	private StackPane FirstPane;
-	@FXML
-	private Button Cred_btn;
-	@FXML
-	private Button CredBack_btn;
 	@FXML 
 	private StackPane GPane;
 	@FXML
@@ -102,29 +100,34 @@ public class LoginSignupGUIController {
 	@FXML
 	private Label footer1;
 	@FXML
-	private Label footer2;
+	private ImageView NihI;
+	@FXML
+	private ImageView VivI;
+	@FXML
+	private ImageView HarI;
+	@FXML
+	private Button CloseAbout;
+	@FXML
+	private Button OpenAbout;
 	@FXML
 	private void Press_Cred() {
-		Login_Pane.setDisable(true);
 		Cred_Pane.setVisible(true);
-		TranslateTransition transright=new TranslateTransition();
-		//System.out.println(Cred_Pane.getTranslateX());
-		transright.setNode(Cred_Pane);
-		transright.setToX(0);
-		transright.setDuration(Duration.millis(700));
-		transright.play();
+		FadeTransition fadein = new FadeTransition(Duration.millis(500), Cred_Pane);
+		fadein.setFromValue(0);
+		fadein.setToValue(1);
+		fadein.play();
+		
+		
 	}
 	@FXML
 	private void Press_Cred_Back() {
-		//Cred_Pane.setVisible(false);
-		Login_Pane.setDisable(false);
-		TranslateTransition transleft=new TranslateTransition();
-		transleft.setNode(Cred_Pane);
-		transleft.setToX(init_Cred_Pane);
-		transleft.setDuration(Duration.millis(700));
-		transleft.play();
-		transleft.setOnFinished(e->{
-			Cred_Pane.setVisible(true);
+		FadeTransition fadeout = new FadeTransition(Duration.millis(500), Cred_Pane);
+		fadeout.setFromValue(1);
+		fadeout.setToValue(0);
+		fadeout.play();
+		fadeout.setOnFinished(e->{
+			Cred_Pane.setVisible(false);
+				
 		});
 	}
 	@FXML
