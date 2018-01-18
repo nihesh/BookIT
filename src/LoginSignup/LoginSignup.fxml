@@ -70,7 +70,7 @@
       </VBox>
       <StackPane maxHeight="400.0" maxWidth="200.0" prefHeight="150.0" prefWidth="200.0">
          <children>
-            <Button fx:id="OpenAbout" mnemonicParsing="false" onMouseClicked="#Press_Cred" prefHeight="20.0" prefWidth="78.0" styleClass="but34" text="ABOUT" StackPane.alignment="TOP_LEFT">
+            <Button fx:id="OpenAbout" mnemonicParsing="false" onMouseClicked="#Press_Cred" prefHeight="42.0" prefWidth="94.0" styleClass="but34" text="ABOUT" StackPane.alignment="TOP_LEFT">
                <StackPane.margin>
                   <Insets left="5.0" top="5.0" />
                </StackPane.margin>
@@ -134,7 +134,7 @@
                   <Insets bottom="20.0" left="10.0" />
                </StackPane.margin>
                <image>
-                  <Image url="@../../../../Desktop/Minato.png" />
+                  <Image url="@Minato.png" />
                </image>
             </ImageView>
             <ImageView fx:id="HarI" fitHeight="132.0" fitWidth="183.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="CENTER_RIGHT">
@@ -142,7 +142,7 @@
                   <Insets bottom="20.0" right="10.0" />
                </StackPane.margin>
                <image>
-                  <Image url="@../../../../Desktop/Minato.png" />
+                  <Image url="@Minato.png" />
                </image>
             </ImageView>
             <ImageView fx:id="VivI" fitHeight="132.0" fitWidth="183.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="CENTER">
@@ -150,7 +150,7 @@
                   <Insets bottom="20.0" />
                </StackPane.margin>
                <image>
-                  <Image url="@../../../../Desktop/Minato.png" />
+                  <Image url="@Minato.png" />
                </image>
             </ImageView>
             <Label alignment="CENTER" prefHeight="17.0" prefWidth="183.0" styleClass="labelBB" text="Nihesh Anderson" StackPane.alignment="CENTER_LEFT">

@@ -237,8 +237,16 @@ public class LoginSignupGUIController {
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		double width = screenSize.getWidth();
         double height = screenSize.getHeight();
-        double scaleWidth = (width)/1366;
-        double scaleHeight = (height)/768;
+        double scaleWidth; 
+        double scaleHeight;
+        if(width <= 1300) {
+        	scaleWidth = (width)/800;
+            scaleHeight = (height)/600;
+        }
+        else {
+        	scaleWidth = (width)/1366;
+            scaleHeight = (height)/768;
+        }
         FirstPane.setScaleX(scaleWidth);
         FirstPane.setScaleY(scaleHeight);
         //Cred_Pane.setTranslateX((width)/1366.0 * Cred_Pane.getTranslateX());

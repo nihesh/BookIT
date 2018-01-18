@@ -24,9 +24,16 @@ public class LoginSignupGUI extends Application{
 			double screenHeight = screenSize.getHeight();
 			Parent root;
 			double width,height;
+			if(screenWidth > 1300) {
 			root = FXMLLoader.load(getClass().getResource("LoginSignup.fxml"));
 			width=(int)(600.0 * screenWidth/1366.0);
 			height=(int)(400.0 * screenHeight/768.0);
+			}
+			else {
+				root = FXMLLoader.load(getClass().getResource("LoginSignup1.fxml"));
+				width=(int)(352.0 * screenWidth/800.0);
+				height=(int)(235.0 * screenHeight/600.0);
+			}
 			Scene scene = new Scene(root,width,height);
 			primaryStage.setScene(scene);
 			primaryStage.setResizable(false);

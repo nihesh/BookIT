@@ -50,6 +50,14 @@
 	-fx-text-fill: black;
 	-fx-background-color: transparent;
 }
+.labelCC{
+	
+	-fx-font-size: 16px;
+	-fx-font-family: "TrebuchetMS";
+	-fx-text-fill: black;
+	-fx-background-color: transparent;
+}
+
 .back2:hover{
 	-fx-background-color: darkgray ;
 }
@@ -100,6 +108,24 @@
 	-fx-font-size: 13px; 
 	
 }
+.butX800{
+	-fx-background-color: red;
+	-fx-background-radius: 4px ;
+	-fx-background-insets: 2;
+	-fx-effect: dropshadow(three-pass-box, derive(red, +40%), 10, 0, 4, 4) ;
+	-fx-text-fill: white;
+	-fx-font-size: 8px; 
+	
+}
+.butX800:hover{
+	-fx-background-color: red;
+	-fx-background-radius: 4px ;
+	-fx-background-insets: 2;
+	-fx-effect: dropshadow(three-pass-box, derive(red, +90%), 10, 0, 4, 4) ;
+	-fx-text-fill: white;
+	-fx-font-size: 8px; 
+	
+}
 
 .but1{
 	-fx-background-color: blue;
@@ -107,7 +133,7 @@
 	-fx-background-insets: 2;
 	-fx-effect: dropshadow(three-pass-box, derive(blue, +40%), 10, 0, 4, 4) ;
 	-fx-text-fill: white;
-	-fx-font-size: 13px; 
+	-fx-font-size: 8px; 
 	
 }
 .but1:hover{
@@ -123,6 +149,29 @@
 	-fx-text-fill: white;
 	
 }
+.but1Ab800{
+	-fx-background-color: blue;
+	-fx-background-radius: 4px ;
+	-fx-background-insets: 2;
+	-fx-effect: dropshadow(three-pass-box, derive(blue, +40%), 10, 0, 4, 4) ;
+	-fx-text-fill: white;
+	-fx-font-size: 8px; 
+	
+}
+.but1Ab800:hover{
+	
+	 -fx-background-image: url('./rightArrow.png');
+	-fx-background-size: 4px;
+	-fx-background-color: blue;
+	-fx-background-radius: 4px ;
+	-fx-background-insets: 2;
+	 -fx-background-repeat: no-repeat;
+    -fx-background-position: 85%;
+	-fx-effect: dropshadow(three-pass-box, derive(blue, +40%), 10, 0, 4, 4) ;
+	-fx-text-fill: white;
+	
+}
+
 .butGG{
 	
 	 -fx-background-image: url('./signup-google.png');
@@ -227,7 +276,7 @@
 	-fx-text-fill: black;
 }
 .but34{
-	-fx-font-size: 14px;
+	-fx-font-size: 12px;
 	-fx-background-color: transparent;
 	-fx-border-color: black;
 	-fx-border-width: 1px;
@@ -239,7 +288,7 @@
 	
 }
 .but34:hover{
-	-fx-font-size: 13px;
+	-fx-font-size: 11px;
 	-fx-background-color: rgba(255,255,255,0.4);
 	-fx-border-color: black;
 	-fx-border-insets: 5;
@@ -249,12 +298,42 @@
 	-fx-background-insets: 4;
 	-fx-text-fill: black;
 }
-
+.but3455{
+	-fx-font-size: 8px;
+	-fx-background-color: transparent;
+	-fx-border-color: black;
+	-fx-border-width: 1px;
+	-fx-border-insets: 5;
+	-fx-border-radius: 8px;
+	-fx-background-radius: 8 ;
+	-fx-background-insets: 3;
+	-fx-text-fill: black  ;
+	
+}
+.but3455:hover{
+	-fx-font-size: 7px;
+	-fx-background-color: rgba(255,255,255,0.4);
+	-fx-border-color: black;
+	-fx-border-insets: 5;
+	-fx-border-width: 2px;
+	-fx-border-radius: 8px;
+	-fx-background-radius: 8 ;
+	-fx-background-insets: 3;
+	-fx-text-fill: black;
+}
 .modal-dialog-glass {
 	-fx-background-color: rgba(255,255,255,0.4);
 	-fx-effect: dropshadow(three-pass-box, derive(black, +40%), 10, 0, 4, 4); 
   	-fx-background-color: derive(white,20%); 
   	-fx-background-insets: 12 12 30 20; 
+  	-fx-background-radius: 12;
+  
+}
+.modal-dialog-glass2 {
+	-fx-background-color: rgba(255,255,255,0.4);
+	-fx-effect: dropshadow(three-pass-box, derive(black, +40%), 5, 0, 4, 4); 
+  	-fx-background-color: derive(white,20%); 
+  	-fx-background-insets: 7 7 18 15; 
   	-fx-background-radius: 12;
   
 }
@@ -265,17 +344,24 @@
     -fx-effect: dropshadow( gaussian , rgba(255,255,255,0.5) , 0,0,0,1 );
 }
 .labelG {
-	-fx-background-image: url('./Green-Tick-Transparent-Background.png');
 	-fx-background-size: cover;
 	-fx-font-size: 15px;
 	-fx-text-fill:black;
     -fx-font-family: "Segoe UI Semibold";
     -fx-opacity: 1.0;
-    -fx-background-repeat: no-repeat;
-    -fx-background-position: 95%;
     -fx-font-style: oblique ;
     
 }
+.labelAboutLabel800 {
+	-fx-background-size: cover;
+	-fx-font-size: 9px;
+	-fx-text-fill:black;
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-opacity: 1.0;
+    -fx-font-style: oblique ;
+    
+}
+
 .labelBB {
     
     -fx-font-size: 16px;
@@ -313,6 +399,25 @@
     -fx-font-weight: bold;
     -fx-effect: dropshadow( gaussian , rgba(255,255,255,0.5) , 0,0,0,1 );
 }
+.labelBAbout800 {
+    
+    -fx-font-size: 10px;
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-text-fill:black;
+    -fx-opacity: 1.0;
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow( gaussian , rgba(255,255,255,0.5) , 0,0,0,1 );
+}
+.labelBEmailAbout800 {
+    
+    -fx-font-size: 9.5px;
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-text-fill:black;
+    -fx-opacity: 1.0;
+    -fx-font-style: oblique;
+    -fx-effect: dropshadow( gaussian , rgba(255,255,255,0.5) , 0,0,0,1 );
+}
+
 .butCred{
 	-fx-background-image: url('./right-double-arrow-png-image-97177.png');
 	-fx-background-size: cover;
