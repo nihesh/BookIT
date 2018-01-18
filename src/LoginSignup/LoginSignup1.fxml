@@ -148,7 +148,7 @@
                   <Insets bottom="20.0" right="10.0" />
                </StackPane.margin>
                <image>
-                  <Image url="@Minato.png" />
+                  <Image url="@IMG_20170530_155416.jpg" />
                </image>
             </ImageView>
             <ImageView fx:id="VivI" fitHeight="83.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="CENTER">

@@ -37,7 +37,7 @@
                <StackPane.margin>
                   <Insets left="45.0" />
                </StackPane.margin>
-            </ImageView>s
+            </ImageView>
          </children>
       </StackPane>
       <VBox fx:id="Login_Pane" alignment="CENTER" maxHeight="400.0" maxWidth="300.0" minHeight="400.0" minWidth="300.0" opacity="0.84" prefHeight="400.0" prefWidth="295.0" spacing="20.0" styleClass="modal-dialog-glass" StackPane.alignment="CENTER">
@@ -142,7 +142,7 @@
                   <Insets bottom="20.0" right="10.0" />
                </StackPane.margin>
                <image>
-                  <Image url="@Minato.png" />
+                  <Image url="@IMG_20170530_155416.jpg" />
                </image>
             </ImageView>
             <ImageView fx:id="VivI" fitHeight="132.0" fitWidth="183.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="CENTER">
