@@ -10,11 +10,16 @@ Refer to README.txt in BookIT - client and BookIT - server to set up the applica
 FEATURES DISABLED
 	- Spam Filter 		: Inaccurate predictions
 
+VM Details
+
+IP 192.168.2.103
+User - iiitd
+password - To@0L]d9
+
 ISSUES
-	- Reservation pane close button
 	- Credits pane
 	- noreply email from IT
-	- Mark mandatory fields
-	- Remove year in signin
 	- Active user hack
+	- Login screen for lower resolutions
+	- Watch statement in login (Prints Admin/Faculty/Student after signin)
 	

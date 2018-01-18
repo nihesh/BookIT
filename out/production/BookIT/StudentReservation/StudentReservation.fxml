@@ -1252,7 +1252,7 @@
                                     <Insets bottom="220.0" left="750.0" />
                                  </StackPane.margin>
                               </ComboBox>
-                              <Label prefHeight="45.0" prefWidth="155.0" text="Course" textFill="WHITE">
+                              <Label prefHeight="45.0" prefWidth="155.0" text="Course (*)" textFill="WHITE">
                                  <StackPane.margin>
                                     <Insets bottom="420.0" left="150.0" />
                                  </StackPane.margin>
@@ -1260,7 +1260,7 @@
                                     <Font size="27.0" />
                                  </font>
                               </Label>
-                              <Label prefHeight="45.0" prefWidth="155.0" text="Purpose" textFill="WHITE">
+                              <Label prefHeight="45.0" prefWidth="155.0" text="Purpose (*)" textFill="WHITE">
                                  <font>
                                     <Font size="27.0" />
                                  </font>
@@ -1306,7 +1306,7 @@
                         </StackPane>
                         <StackPane fx:id="otherBooking" prefHeight="150.0" prefWidth="200.0" style="visibility: false;">
                            <children>
-                              <Label prefHeight="45.0" prefWidth="155.0" text="Purpose" textFill="WHITE" translateY="-30.0">
+                              <Label prefHeight="45.0" prefWidth="155.0" text="Purpose (*)" textFill="WHITE" translateY="-30.0">
                                  <font>
                                     <Font size="27.0" />
                                  </font>
@@ -1365,7 +1365,7 @@
                            </children>
                         </StackPane>
                      </children></StackPane>
-                  <Button alignment="TOP_CENTER" contentDisplay="TOP" mnemonicParsing="false" onMouseClicked="#closeReservationPane" opacity="0.5" prefHeight="12.0" prefWidth="1320.0" stylesheets="@buttonDropDown.css" text="v" textAlignment="CENTER" StackPane.alignment="TOP_CENTER" />
+                  <Button alignment="TOP_CENTER" contentDisplay="TOP" mnemonicParsing="false" onMouseClicked="#closeReservationPane" opacity="0.5" prefHeight="12.0" prefWidth="1320.0" stylesheets="@buttonDropDown.css" text="Close" textAlignment="CENTER" StackPane.alignment="TOP_CENTER" />
                </children>
             </StackPane>
             <StackPane fx:id="TimeTablePane" layoutX="10.0" layoutY="10.0" prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: linear-gradient(#CD6155 ,#E6B0AA,#CD6155); visibility: false;">

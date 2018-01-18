@@ -262,6 +262,7 @@ public class FacultyReservationGUIController implements Initializable{
             activeUser.addCourse(selectedCourses.get(i), false);
             Course.setInstructor(selectedCourses.get(i), activeUser.getEmail().getEmailID(), false);
         }
+        activeUser.setActiveUser();
         loadCourses();
         leftPane.setDisable(false);
         rightPane.setDisable(false);

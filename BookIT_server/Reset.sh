@@ -1,3 +1,3 @@
 #!/bin/sh
 
-java -jar Reset.jar
+java -jar Setup.jar
