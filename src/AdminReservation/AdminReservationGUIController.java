@@ -302,8 +302,15 @@ public class AdminReservationGUIController implements Initializable{
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.setResizable(false);
             //stage.initStyle(StageStyle.UNDECORATED);
+            Rectangle2D visualBounds = Screen.getPrimary().getVisualBounds();
+            double width = visualBounds.getWidth();
+            double height = visualBounds.getHeight();
+            double scaleWidth = (width)/1920;
+            double scaleHeight = (height)/1037;
             stage.setTitle("Notification");
-            stage.setScene(new Scene(root1));
+            stage.setWidth(1000*scaleWidth);
+            stage.setHeight(666*scaleHeight);
+            stage.setScene(new Scene(root1,1000*scaleWidth, 666*scaleHeight));
             stage.show();
     	}
     	catch(Exception e) {

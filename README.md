@@ -11,7 +11,10 @@ FEATURES DISABLED
 	- Spam Filter 		: Inaccurate predictions
 
 ISSUES
-	- Adding GUI feature for selecting multiple groups for a room
-	- Login GUI Scaling
-	- Faculty Backend big bug
+	- Reservation pane close button
+	- Credits pane
+	- noreply email from IT
+	- Mark mandatory fields
+	- Remove year in signin
+	- Active user hack
 	

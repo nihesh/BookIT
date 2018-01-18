@@ -29,6 +29,16 @@ public class NotifyController {
     private StackPane rootPane;
     @FXML
     public void initialize(){
+
+        Rectangle2D visualBounds = Screen.getPrimary().getVisualBounds();
+        double width = visualBounds.getWidth();
+        double height = visualBounds.getHeight();
+        double scaleWidth = (width)/1920;
+        double scaleHeight = (height)/1037;
+
+        rootPane.setScaleX(scaleWidth);
+        rootPane.setScaleY(scaleHeight);
+
         User x=User.getActiveUser();
         loadNotifications(x.getNotifications(false));
         
