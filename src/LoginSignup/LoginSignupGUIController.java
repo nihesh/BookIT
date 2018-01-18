@@ -242,20 +242,18 @@ public class LoginSignupGUIController {
         if(width <= 1300) {
         	scaleWidth = (width)/800;
             scaleHeight = (height)/600;
+        	browser.setZoom(0.65);
         }
         else {
         	scaleWidth = (width)/1366;
             scaleHeight = (height)/768;
+        	 browser.setZoom(0.8);
+       
         }
         FirstPane.setScaleX(scaleWidth);
         FirstPane.setScaleY(scaleHeight);
         //Cred_Pane.setTranslateX((width)/1366.0 * Cred_Pane.getTranslateX());
         init_Cred_Pane = Cred_Pane.getTranslateX();
-        //footer1.setScaleX((width)/1366.0 * footer1.getWidth());
-       // footer2.setScaleX((width)/1366.0 * footer2.getWidth());
-       // footer1.setScaleX((width)/768.0 * footer1.getHeight());
-       // footer2.setScaleX((width)/768.0 * footer2.getHeight());
-        browser.setZoom(0.8);
         
 			
 	}
