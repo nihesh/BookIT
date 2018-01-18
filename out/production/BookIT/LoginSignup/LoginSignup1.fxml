@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="313.0" prefWidth="352.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <VBox prefHeight="308.0" prefWidth="207.0" styleClass="modal-dialog-glass">
+         <StackPane.margin>
+            <Insets bottom="30.0" left="185.0" top="30.0" />
+         </StackPane.margin>
+         <stylesheets>
+            <URL value="@application.css" />
+            <URL value="@textfield.css" />
+         </stylesheets>
+      </VBox>
+   </children>
+</StackPane>
