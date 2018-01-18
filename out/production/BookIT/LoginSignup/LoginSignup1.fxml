@@ -71,7 +71,7 @@
             <Insets bottom="5.0" left="180.0" />
          </StackPane.margin>
       </VBox>
-      <StackPane maxHeight="400.0" maxWidth="200.0" prefHeight="150.0" prefWidth="200.0">
+      <StackPane maxHeight="235.0" maxWidth="152.0" minHeight="236.0" minWidth="152.0" prefHeight="150.0" prefWidth="200.0">
          <children>
             <Button fx:id="OpenAbout" mnemonicParsing="false" onMouseClicked="#Press_Cred" prefHeight="13.0" prefWidth="54.0" styleClass="but3455" text="ABOUT" StackPane.alignment="TOP_LEFT">
                <StackPane.margin>
@@ -110,7 +110,7 @@
                   <Insets bottom="220.0" />
                </StackPane.margin>
             </HBox>
-            <WebView fx:id="browser" minHeight="-1.0" minWidth="-1.0" prefHeight="200.0" prefWidth="200.0" StackPane.alignment="BOTTOM_CENTER">
+            <WebView fx:id="browser" maxHeight="215.0" maxWidth="352.0" minHeight="215.0" minWidth="352.0" prefHeight="200.0" prefWidth="200.0" StackPane.alignment="BOTTOM_CENTER">
                <StackPane.margin>
                   <Insets top="20.0" />
                </StackPane.margin>
