@@ -1134,7 +1134,7 @@
                                     <Insets bottom="220.0" left="750.0" />
                                  </StackPane.margin>
                               </ComboBox>
-                              <Label prefHeight="45.0" prefWidth="155.0" text="Group (*)" textFill="WHITE">
+                              <Label prefHeight="45.0" prefWidth="155.0" text="Group" textFill="WHITE">
                                  <StackPane.margin>
                                     <Insets bottom="320.0" left="150.0" />
                                  </StackPane.margin>
@@ -1176,7 +1176,7 @@
                                     <Insets bottom="420.0" left="750.0" />
                                  </StackPane.margin>
                               </ComboBox>
-                              <Label prefHeight="45.0" prefWidth="155.0" text="Course" textFill="WHITE">
+                              <Label prefHeight="45.0" prefWidth="155.0" text="Course (*)" textFill="WHITE">
                                  <font>
                                     <Font size="27.0" />
                                  </font>

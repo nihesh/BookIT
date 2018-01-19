@@ -19,7 +19,7 @@ Option - 1
 
 Option - 2
 
-ServerInfo.txt has to be manually configured to mention server IP and port. This is a one time procedure
+./src/AppData/Server/ServerInfo.txt has to be manually configured to mention server IP and port. This is a one time procedure
 
 File format:
 <ServerIP>
@@ -38,6 +38,8 @@ executed, else an error is thrown!
 
 Database can also be reset using ./Reset.sh or sh Reset.sh commands on linux. However, the server must be 
 running in parallel when this command is executed, else an error is thrown!
+
+Before resetting the server, admin must ensure that all the files in ./src/AppData/StaticTimeTable are filled up properly
 
 --------------------------------------------------------------------------------------------------------------
 

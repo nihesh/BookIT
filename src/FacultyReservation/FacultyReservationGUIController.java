@@ -865,8 +865,7 @@ public class FacultyReservationGUIController implements Initializable{
             chosenFaculty = "";
         }
         else{
-            courseObject = Course.deserializeCourse(chosenCourse);
-            chosenFaculty = courseObject.getInstructorEmail();
+            chosenFaculty = Course.getCourseFaculty(chosenCourse, false);
         }
         String chosenMessage;
         chosenMessage = requestMessage.getText();

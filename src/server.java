@@ -772,6 +772,9 @@ class ConnectionHandler implements Runnable{
     }
     public static String course_getFaculty(String course){
         Course c = Course.deserializeCourse(course);
+        if(c==null){
+            return "";
+        }
         return c.getInstructorEmail();
     }
     public String course_getAcronym(String course){
