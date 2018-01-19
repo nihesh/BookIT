@@ -1,0 +1,505 @@
+.pane2{
+	-fx-background-image: url('./5SEZKVU.jpg');
+	-fx-background-size: cover;
+	-fx-background-repeat: no-repeat;
+	-fx-background-position: 100%;
+}
+.pane22{
+	-fx-background-image: url('./5SEZKVU.jpg');
+	-fx-background-size: cover;
+	-fx-background-repeat: no-repeat;
+	-fx-background-position: 0%;
+}
+.pane3{
+	-fx-background-image: url('./colorful_polygons-wide.jpg');
+	-fx-background-size: cover;
+	-fx-border-width: 10px;
+	-fx-background-repeat: no-repeat;
+	-fx-background-position: 10%;
+	-fx-background-insets: 20px; 
+  	-fx-background-radius: 12px; 
+}
+.pane32{
+	-fx-background-image: url('./colorful_polygons-wide.jpg');
+	-fx-background-size: cover;
+	-fx-border-width: 10px;
+	-fx-background-repeat: no-repeat;
+	-fx-background-position: 10%;
+	-fx-background-insets: 20px; 
+  	-fx-background-radius: 12px; 
+}
+.Web{
+	-fx-background-color: rgba(255,255,255,0.4);
+	-fx-effect: dropshadow(three-pass-box, derive(black, +40%), 10, 0, 4, 4); 
+  	-fx-background-color: derive(black,20%); 
+  	
+  	-fx-background-radius: 3;
+}
+
+.back2{
+	-fx-background-image: url('./app-1646213_640.png'); 
+	-fx-background-color: transparent;
+	-fx-background-size: cover;
+	-fx-background-repeat: no-repeat;
+	-fx-background-position: 30%;
+}
+.labelC{
+	
+	-fx-font-size: 25px;
+	-fx-font-family: "TrebuchetMS";
+	-fx-text-fill: black;
+	-fx-background-color: transparent;
+}
+.labelCC{
+	
+	-fx-font-size: 16px;
+	-fx-font-family: "TrebuchetMS";
+	-fx-text-fill: black;
+	-fx-background-color: transparent;
+}
+
+.back2:hover{
+	-fx-background-color: darkgray ;
+}
+.back{
+	-fx-background-color: transparent;
+	-fx-background-insets: 4px;
+	-fx-border-width: 1px;
+	-fx-text-fill: black ;
+	-fx-font-size: 12px;
+	-fx-font-smoothing-type: lcd ;
+	-fx-font-weight: bold;
+	-fx-border-radius: 12px;
+	-fx-border-insets: 10px;
+	-fx-border-color: black ;
+}
+.back:hover{
+	-fx-font-weight: bold;
+	-fx-text-fill: black;
+	-fx-font-size: 12px;
+	-fx-background-color: transparent;
+	-fx-background-radius: 12px;
+	-fx-background-insets: 8px;
+	-fx-border-width: 2px;
+	-fx-border-color: linear-gradient(red,blue)  ;
+	-fx-border-radius: 12px;
+	-fx-border-insets: 10px;
+	
+}
+
+.root {
+  -fx-opacity: 0.9;
+}
+.butX{
+	-fx-background-color: red;
+	-fx-background-radius: 4px ;
+	-fx-background-insets: 2;
+	-fx-effect: dropshadow(three-pass-box, derive(red, +40%), 10, 0, 4, 4) ;
+	-fx-text-fill: white;
+	-fx-font-size: 13px; 
+	
+}
+.butX:hover{
+	-fx-background-color: red;
+	-fx-background-radius: 4px ;
+	-fx-background-insets: 2;
+	-fx-effect: dropshadow(three-pass-box, derive(red, +90%), 10, 0, 4, 4) ;
+	-fx-text-fill: white;
+	-fx-font-size: 13px; 
+	
+}
+.butX800{
+	-fx-background-color: red;
+	-fx-background-radius: 4px ;
+	-fx-background-insets: 2;
+	-fx-effect: dropshadow(three-pass-box, derive(red, +40%), 10, 0, 4, 4) ;
+	-fx-text-fill: white;
+	-fx-font-size: 8px; 
+	
+}
+.butX800:hover{
+	-fx-background-color: red;
+	-fx-background-radius: 4px ;
+	-fx-background-insets: 2;
+	-fx-effect: dropshadow(three-pass-box, derive(red, +90%), 10, 0, 4, 4) ;
+	-fx-text-fill: white;
+	-fx-font-size: 8px; 
+	
+}
+
+.but1{
+	-fx-background-color: blue;
+	-fx-background-radius: 4px ;
+	-fx-background-insets: 2;
+	-fx-effect: dropshadow(three-pass-box, derive(blue, +40%), 10, 0, 4, 4) ;
+	-fx-text-fill: white;
+	-fx-font-size: 8px; 
+	
+}
+.but1:hover{
+	
+	 -fx-background-image: url('./rightArrow.png');
+	-fx-background-size: 6px;
+	-fx-background-color: blue;
+	-fx-background-radius: 4px ;
+	-fx-background-insets: 2;
+	 -fx-background-repeat: no-repeat;
+    -fx-background-position: 85%;
+	-fx-effect: dropshadow(three-pass-box, derive(blue, +40%), 10, 0, 4, 4) ;
+	-fx-text-fill: white;
+	
+}
+.but1Ab800{
+	-fx-background-color: blue;
+	-fx-background-radius: 4px ;
+	-fx-background-insets: 2;
+	-fx-effect: dropshadow(three-pass-box, derive(blue, +40%), 10, 0, 4, 4) ;
+	-fx-text-fill: white;
+	-fx-font-size: 8px; 
+	
+}
+.but1Ab800:hover{
+	
+	 -fx-background-image: url('./rightArrow.png');
+	-fx-background-size: 4px;
+	-fx-background-color: blue;
+	-fx-background-radius: 4px ;
+	-fx-background-insets: 2;
+	 -fx-background-repeat: no-repeat;
+    -fx-background-position: 85%;
+	-fx-effect: dropshadow(three-pass-box, derive(blue, +40%), 10, 0, 4, 4) ;
+	-fx-text-fill: white;
+	
+}
+
+.butGG{
+	
+	 -fx-background-image: url('./signup-google.png');
+	-fx-background-size: cover;
+	 -fx-background-repeat: no-repeat;
+    -fx-background-position: 0%;
+	
+}
+.butGG:hover{
+	
+	 -fx-background-image: url('./signup-google.png');
+	-fx-background-size: cover;
+	-fx-background-radius: 4px ;
+	-fx-background-insets: 2;
+	 -fx-background-repeat: no-repeat;
+	 -fx-effect: dropshadow(three-pass-box, derive(red, +40%), 10, 0, 4, 4) ;
+    -fx-background-position: 0%;
+	
+}
+.butGGG{
+	 -fx-background-image: url('./googleplussignin.png');
+	-fx-background-size:cover;
+	-fx-background-radius: 4px ;
+	-fx-background-insets: 2;
+	 -fx-background-repeat: no-repeat;
+    -fx-background-position: 0%;
+}
+.butGGG:hover{
+	 -fx-background-image: url('./googleplussignin.png');
+	-fx-background-size: cover;
+	-fx-background-radius: 4px ;
+	-fx-background-insets: 2;
+	 -fx-background-repeat: no-repeat;
+	 -fx-effect: dropshadow(three-pass-box, derive(red, +40%), 10, 0, 4, 4) ;
+    -fx-background-position: 0%;
+	
+}
+.butGG1080p{
+	
+	 -fx-background-image: url('./signup-google.png');
+	-fx-background-size: cover;
+	-fx-background-radius: 4px ;
+	-fx-background-insets: 2;
+	 -fx-background-repeat: no-repeat;
+    -fx-background-position: 0%;
+	
+}
+.butGG1080p:hover{
+	
+	 -fx-background-image: url('./signup-google.png');
+	-fx-background-size: cover;
+	-fx-background-radius: 4px ;
+	-fx-background-insets: 2;
+	-fx-effect: dropshadow(three-pass-box, derive(red, +40%), 10, 0, 4, 4) ;
+	 -fx-background-repeat: no-repeat;
+    -fx-background-position: 0%;
+	
+}
+.butGGG1080p{
+	
+	 -fx-background-image: url('./googleplussignin.png');
+	-fx-background-size: cover;
+	-fx-background-radius: 4px ;
+	-fx-background-insets: 2;
+	 -fx-background-repeat: no-repeat;
+    -fx-background-position: 0%;
+	
+}
+.butGGG1080p:hover{
+	
+	 -fx-background-image: url('./googleplussignin.png');
+	-fx-background-size: cover;
+	-fx-background-radius: 4px ;
+	-fx-background-insets: 2;
+	-fx-effect: dropshadow(three-pass-box, derive(red, +40%), 10, 0, 4, 4) ;
+	 -fx-background-repeat: no-repeat;
+    -fx-background-position: 0%;
+	
+}
+
+.but2{
+	-fx-font-size: 21px;
+	-fx-background-color: transparent;
+	-fx-border-color: black;
+	-fx-border-width: 1px;
+	-fx-border-insets: 5;
+	-fx-border-radius: 25px;
+	-fx-background-radius: 25 ;
+	-fx-background-insets: 2;
+	-fx-text-fill: black  ;
+	
+}
+.but2:hover{
+	-fx-font-size: 20px;
+	-fx-background-color: rgba(255,255,255,0.4);
+	-fx-border-color: black;
+	-fx-border-insets: 5;
+	-fx-border-width: 2px;
+	-fx-border-radius: 25px;
+	-fx-background-radius: 25 ;
+	-fx-background-insets: 2;
+	-fx-text-fill: black;
+}
+.but34{
+	-fx-font-size: 12px;
+	-fx-background-color: transparent;
+	-fx-border-color: black;
+	-fx-border-width: 1px;
+	-fx-border-insets: 5;
+	-fx-border-radius: 12px;
+	-fx-background-radius: 12 ;
+	-fx-background-insets: 4;
+	-fx-text-fill: black  ;
+	
+}
+.but34:hover{
+	-fx-font-size: 11px;
+	-fx-background-color: rgba(255,255,255,0.4);
+	-fx-border-color: black;
+	-fx-border-insets: 5;
+	-fx-border-width: 2px;
+	-fx-border-radius: 12px;
+	-fx-background-radius: 12 ;
+	-fx-background-insets: 4;
+	-fx-text-fill: black;
+}
+.but3455{
+	-fx-font-size: 8px;
+	-fx-background-color: transparent;
+	-fx-border-color: black;
+	-fx-border-width: 1px;
+	-fx-border-insets: 5;
+	-fx-border-radius: 8px;
+	-fx-background-radius: 8 ;
+	-fx-background-insets: 3;
+	-fx-text-fill: black  ;
+	
+}
+.but3455:hover{
+	-fx-font-size: 7px;
+	-fx-background-color: rgba(255,255,255,0.4);
+	-fx-border-color: black;
+	-fx-border-insets: 5;
+	-fx-border-width: 2px;
+	-fx-border-radius: 8px;
+	-fx-background-radius: 8 ;
+	-fx-background-insets: 3;
+	-fx-text-fill: black;
+}
+.modal-dialog-glass {
+	-fx-background-color: rgba(255,255,255,0.4);
+	-fx-effect: dropshadow(three-pass-box, derive(black, +40%), 10, 0, 4, 4); 
+  	-fx-background-color: derive(white,20%); 
+  	-fx-background-insets: 12 12 30 20; 
+  	-fx-background-radius: 12;
+  
+}
+.modal-dialog-glass2 {
+	-fx-background-color: rgba(255,255,255,0.4);
+	-fx-effect: dropshadow(three-pass-box, derive(black, +40%), 5, 0, 4, 4); 
+  	-fx-background-color: derive(white,20%); 
+  	-fx-background-insets: 7 7 18 15; 
+  	-fx-background-radius: 12;
+  
+}
+.labelD {
+	-fx-background-color: black;
+	
+    -fx-opacity: 1.0;
+    -fx-effect: dropshadow( gaussian , rgba(255,255,255,0.5) , 0,0,0,1 );
+}
+.labelG {
+	-fx-background-size: cover;
+	-fx-font-size: 15px;
+	-fx-text-fill:black;
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-opacity: 1.0;
+    -fx-font-style: oblique ;
+    
+}
+.labelAboutLabel800 {
+	-fx-background-size: cover;
+	-fx-font-size: 9px;
+	-fx-text-fill:black;
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-opacity: 1.0;
+    -fx-font-style: oblique ;
+    
+}
+
+.labelBB {
+    
+    -fx-font-size: 16px;
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-text-fill:black;
+    -fx-opacity: 1.0;
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow( gaussian , rgba(255,255,255,0.5) , 0,0,0,1 );
+}
+.labelBBEmail {
+    
+    -fx-font-size: 15px;
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-text-fill:black;
+    -fx-opacity: 1.0;
+    -fx-font-style: oblique;
+    -fx-effect: dropshadow( gaussian , rgba(255,255,255,0.5) , 0,0,0,1 );
+}
+.labelBEmail {
+    
+    -fx-font-size: 13px;
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-text-fill:black;
+    -fx-opacity: 1.0;
+    -fx-font-style: oblique;
+    -fx-effect: dropshadow( gaussian , rgba(255,255,255,0.5) , 0,0,0,1 );
+}
+
+.labelB {
+    
+    -fx-font-size: 14px;
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-text-fill:black;
+    -fx-opacity: 1.0;
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow( gaussian , rgba(255,255,255,0.5) , 0,0,0,1 );
+}
+.labelBAbout800 {
+    
+    -fx-font-size: 10px;
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-text-fill:black;
+    -fx-opacity: 1.0;
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow( gaussian , rgba(255,255,255,0.5) , 0,0,0,1 );
+}
+.labelBEmailAbout800 {
+    
+    -fx-font-size: 9.5px;
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-text-fill:black;
+    -fx-opacity: 1.0;
+    -fx-font-style: oblique;
+    -fx-effect: dropshadow( gaussian , rgba(255,255,255,0.5) , 0,0,0,1 );
+}
+
+.butCred{
+	-fx-background-image: url('./right-double-arrow-png-image-97177.png');
+	-fx-background-size: cover;
+	-fx-background-repeat: no-repeat;
+    -fx-background-position: 5%;
+	-fx-background-color: transparent;
+	-fx-background-radius: 12 ;
+	-fx-background-insets: 4;
+	
+}
+.butCred:hover{
+	-fx-background-image: url('./right-double-arrow-png-image-97177.png');
+	-fx-opacity: .8;
+	-fx-background-size: cover;
+	-fx-background-repeat: no-repeat;
+    -fx-background-position: 8%;
+	-fx-background-color: transparent;
+	-fx-background-radius: 12 ;
+	-fx-background-insets: 4;
+	
+}
+.butCredBack{
+	-fx-background-image: url('./hamburger_vert.png');
+	-fx-background-size: cover;
+	-fx-background-repeat: no-repeat;
+    -fx-background-position: 5%;
+	-fx-background-color: transparent;
+	-fx-background-radius: 12 ;
+	-fx-background-insets: 4;
+	
+}
+.butCredBack:hover{
+	-fx-background-image: url('./hamburger_vert.png');
+	-fx-opacity: .8;
+	-fx-background-size: cover;
+	-fx-background-repeat: no-repeat;
+    -fx-background-position: 8%;
+	-fx-background-color: transparent;
+	-fx-background-radius: 12 ;
+	-fx-background-insets: 4;
+	
+}
+.butCredBack2{
+	-fx-background-image: url('./hamburger_vert.png');
+	-fx-background-size: cover;
+	-fx-background-repeat: no-repeat;
+    -fx-background-position: 5%;
+	-fx-background-color: transparent;
+	-fx-background-radius: 12 ;
+	-fx-background-insets: 4;
+	
+}
+.butCredBack2:hover{
+	-fx-background-image: url('./hamburger_vert.png');
+	-fx-opacity: .8;
+	-fx-background-size: 20px;
+	-fx-background-repeat: no-repeat;
+    -fx-background-position: 8%;
+	-fx-background-color: transparent;
+	-fx-background-radius: 12 ;
+	-fx-background-insets: 4;
+	
+}
+
+.butCred2{
+	-fx-background-image: url('./right-double-arrow-png-image-97177.png');
+	-fx-background-size: 20px;
+	-fx-background-repeat: no-repeat;
+    -fx-background-position: 5%;
+	-fx-background-color: transparent;
+	-fx-background-radius: 12 ;
+	-fx-background-insets: 4;
+	
+}
+.butCred2:hover{
+	-fx-background-image: url('./right-double-arrow-png-image-97177.png');
+	-fx-background-size: 20px;
+	-fx-opacity: .8;
+	-fx-background-repeat: no-repeat;
+    -fx-background-position: 8%;
+	-fx-background-color: transparent;
+	-fx-background-radius: 12 ;
+	-fx-background-insets: 4;
+	
+}

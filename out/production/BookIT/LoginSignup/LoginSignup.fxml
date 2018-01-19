@@ -114,78 +114,83 @@
       <StackPane fx:id="Cred_Pane" maxHeight="400.0" maxWidth="600.0" minHeight="400.0" minWidth="600.0" prefHeight="150.0" prefWidth="200.0" styleClass="pane22" visible="false">
          <children>
             <Label alignment="CENTER" prefHeight="43.0" prefWidth="124.0" styleClass="labelC" text="ABOUT" StackPane.alignment="TOP_CENTER" />
-            <Label alignment="CENTER" prefHeight="17.0" prefWidth="603.0" styleClass="labelG" text="BookIT is a classroom management software to manage room bookings in IIITD. The  " StackPane.alignment="TOP_LEFT">
+            <Label alignment="CENTER" prefHeight="17.0" prefWidth="603.0" styleClass="labelG" text="BookIT is a classroom management software to manage room" StackPane.alignment="TOP_LEFT">
                <StackPane.margin>
                   <Insets top="40.0" />
                </StackPane.margin>
             </Label>
-            <Label alignment="CENTER" prefHeight="17.0" prefWidth="634.0" styleClass="labelG" text="motivation behind BookIT was to ease the load on faculty and administration. " StackPane.alignment="TOP_LEFT">
+            <Label alignment="CENTER" prefHeight="17.0" prefWidth="634.0" styleClass="labelG" text="bookings in IIITD. The motivation behind BookIT was to ease the" StackPane.alignment="TOP_LEFT">
                <StackPane.margin>
                   <Insets top="60.0" />
                </StackPane.margin>
             </Label>
             <Label alignment="CENTER" prefHeight="36.0" prefWidth="633.0" styleClass="labelC" text="TEAM" StackPane.alignment="TOP_LEFT">
                <StackPane.margin>
-                  <Insets top="80.0" />
+                  <Insets top="100.0" />
                </StackPane.margin>
             </Label>
             <ImageView fx:id="NihI" fitHeight="132.0" fitWidth="183.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="CENTER_LEFT">
                <StackPane.margin>
-                  <Insets bottom="20.0" left="10.0" />
+                  <Insets left="10.0" />
                </StackPane.margin>
                <image>
-                  <Image url="@Minato.png" />
+                  <Image url="@nihesh.png" />
                </image>
             </ImageView>
+            <Label alignment="CENTER" prefHeight="17.0" prefWidth="639.0" styleClass="labelG" text="load on faculty and administration." StackPane.alignment="TOP_LEFT">
+               <StackPane.margin>
+                  <Insets top="80.0" />
+               </StackPane.margin>
+            </Label>
             <ImageView fx:id="HarI" fitHeight="132.0" fitWidth="183.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="CENTER_RIGHT">
                <StackPane.margin>
-                  <Insets bottom="20.0" right="10.0" />
+                  <Insets right="10.0" />
                </StackPane.margin>
                <image>
-                  <Image url="@Minato.png" />
+                  <Image url="@IMG_20170530_155416.jpg" />
                </image>
             </ImageView>
             <ImageView fx:id="VivI" fitHeight="132.0" fitWidth="183.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="CENTER">
                <StackPane.margin>
-                  <Insets bottom="20.0" />
+                  <Insets />
                </StackPane.margin>
                <image>
-                  <Image url="@Minato.png" />
+                  <Image url="@DSCN9553.jpg" />
                </image>
             </ImageView>
             <Label alignment="CENTER" prefHeight="17.0" prefWidth="183.0" styleClass="labelBB" text="Nihesh Anderson" StackPane.alignment="CENTER_LEFT">
                <StackPane.margin>
-                  <Insets left="10.0" top="150.0" />
+                  <Insets left="10.0" top="170.0" />
                </StackPane.margin>
             </Label>
             <Label alignment="CENTER" prefHeight="25.0" prefWidth="181.0" styleClass="labelBB" text="Dr. Vivek Kumar" StackPane.alignment="CENTER">
                <StackPane.margin>
-                  <Insets top="150.0" />
+                  <Insets top="170.0" />
                </StackPane.margin>
             </Label>
             <Label alignment="CENTER" layoutX="251.0" layoutY="273.0" prefHeight="25.0" prefWidth="183.0" styleClass="labelBB" text="Harsh Pathak" StackPane.alignment="CENTER_RIGHT">
                <StackPane.margin>
-                  <Insets right="10.0" top="150.0" />
+                  <Insets right="10.0" top="170.0" />
                </StackPane.margin>
             </Label>
             <Label alignment="CENTER" prefHeight="17.0" prefWidth="181.0" styleClass="labelBEmail" text="nihesh16059@iiitd.ac.in" StackPane.alignment="CENTER_LEFT">
                <StackPane.margin>
-                  <Insets left="10.0" top="190.0" />
+                  <Insets left="10.0" top="210.0" />
                </StackPane.margin>
             </Label>
             <Label alignment="CENTER" layoutX="20.0" layoutY="297.0" prefHeight="17.0" prefWidth="181.0" styleClass="labelBEmail" text="vivekk@iiitd.ac.in" StackPane.alignment="CENTER">
                <StackPane.margin>
-                  <Insets top="190.0" />
+                  <Insets top="210.0" />
                </StackPane.margin>
             </Label>
             <Label alignment="CENTER" layoutX="220.0" layoutY="297.0" prefHeight="17.0" prefWidth="185.0" styleClass="labelBEmail" text="harsh16041@iiitd.ac.in" StackPane.alignment="CENTER_RIGHT">
                <StackPane.margin>
-                  <Insets right="10.0" top="190.0" />
+                  <Insets right="10.0" top="210.0" />
                </StackPane.margin>
             </Label>
             <Button fx:id="CloseAbout" mnemonicParsing="false" onMouseClicked="#Press_Cred_Back" styleClass="text-field2" text="CLOSE" StackPane.alignment="BOTTOM_CENTER">
                <StackPane.margin>
-                  <Insets bottom="50.0" />
+                  <Insets bottom="30.0" />
                </StackPane.margin>
             </Button>
          </children>
