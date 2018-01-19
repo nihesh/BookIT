@@ -133,7 +133,7 @@
 	-fx-background-insets: 2;
 	-fx-effect: dropshadow(three-pass-box, derive(blue, +40%), 10, 0, 4, 4) ;
 	-fx-text-fill: white;
-	-fx-font-size: 8px; 
+	-fx-font-size: 13px; 
 	
 }
 .but1:hover{
