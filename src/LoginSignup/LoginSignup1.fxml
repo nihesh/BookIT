@@ -140,7 +140,7 @@
                   <Insets left="10.0" />
                </StackPane.margin>
                <image>
-                  <Image url="@Minato.png" />
+                  <Image url="@nihesh.png" />
                </image>
             </ImageView>
             <Label alignment="CENTER" prefHeight="13.0" prefWidth="377.0" styleClass="labelAboutLabel800" text="load on faculty on administration." StackPane.alignment="TOP_LEFT">

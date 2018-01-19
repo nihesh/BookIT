@@ -134,7 +134,7 @@
                   <Insets left="10.0" />
                </StackPane.margin>
                <image>
-                  <Image url="@Minato.png" />
+                  <Image url="@nihesh.png" />
                </image>
             </ImageView>
             <Label alignment="CENTER" prefHeight="17.0" prefWidth="639.0" styleClass="labelG" text="load on faculty and administration." StackPane.alignment="TOP_LEFT">
