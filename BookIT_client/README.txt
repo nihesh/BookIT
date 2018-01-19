@@ -6,25 +6,12 @@
 
 Setup procedure for linux systems
 
-Option - 1
+Run BookIT-linux executable to open the application. Ensure that the application is executed from the executable's 
+directory
 
--> While setting up for the first time, the following command needs to be executed
+Setup procedure for windows systems
 
-./BookIT.sh  <ServerIP>  <ServerPort> (or) sh BookIT.sh  <ServerIP>  <ServerPort>  
-
--> Once server IP and port are set-up, the app can be executed normally using ./BookIT.sh (or) sh BookIT.sh
-
-Option - 2
-
-ServerInfo.txt has to be manually configured to mention server IP and port. This is a one time procedure
-
-File format:
-<ServerIP>
-<ServerPort> 
-
-A sample has been mentioned in the file
-
-Once the setup is done, the jar file can be executed directly using Java 1.8+
+Double click BookIT.exe to open the application
 
 --------------------------------------------------------------------------------------------------------------
 

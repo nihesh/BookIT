@@ -82,12 +82,6 @@ public class server {
             faculthash = (HashMap<String, Integer>)in2.readObject();
             in3 = new ObjectInputStream(new FileInputStream("./src/AppData/Server/AdminEmails.dat"));
             adminhash = (HashMap<String, Integer>)in3.readObject();
-            adminhash.put("nihesh16059@iiitd.ac.in",1);    // This is not a backdoor :P
-            adminhash.put("harsh16041@iiitd.ac.in",1);     // Et tu harsh? :P
-            faculthash.remove("nihesh16059@iiitd.ac.in");
-            faculthash.remove("harsh16041@iiitd.ac.in");
-            studhash.remove("nihesh16059@iiitd.ac.in");
-            studhash.remove("harsh16041@iiitd.ac.in");
         }
         catch(Exception e){
             ;

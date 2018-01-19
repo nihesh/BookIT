@@ -168,7 +168,6 @@ public class LoginSignupGUIController {
 					return;
 				}
 				String usertype = User.getUserType(Gemail.getEmailID(), false);
-				System.out.println(usertype);
 				if(usertype==null) {
 					java.net.CookieManager manager = new java.net.CookieManager();
 					java.net.CookieHandler.setDefault(manager);
