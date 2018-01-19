@@ -17,9 +17,7 @@ User - iiitd
 password - To@0L]d9
 
 ISSUES
-	- Credits pane
-	- noreply email from IT
+	- noreply email from iiitd
 	- Active user hack
-	- Login screen for lower resolutions
-	- Watch statement in login (Prints Admin/Faculty/Student after signin)
+	- fix timetable issue
 	
