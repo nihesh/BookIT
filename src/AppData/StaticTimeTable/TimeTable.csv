@@ -100,16 +100,15 @@ Mandatory,CSE202,Fundamentals of Database Systems,Vikram Goyal,4,DBMS,Wednesday,
 Mandatory,CSE222,Algorithm Design & Analysis,Debaraka Sebgupta,4,ADA,Monday,1000AM,1100AM,0,Lecture,C21
 Mandatory,CSE222,Algorithm Design & Analysis,Debaraka Sebgupta,4,ADA,Wednesday,0900AM,1000AM,0,Lecture,C21
 Mandatory,CSE222,Algorithm Design & Analysis,Debaraka Sebgupta,4,ADA,Thursday,1230PM,0130PM,0,Lecture,C21
-Mandatory,CSE222,Algorithm Design & Analysis,Debaraka Sebgupta,4,ADA,Friday,1130AM,0130PM,1,Lab,L21
-Mandatory,CSE222,Algorithm Design & Analysis,Debaraka Sebgupta,4,ADA,Friday,1130AM,0130PM,2,Lab,L22
-Mandatory,CSE222,Algorithm Design & Analysis,Debaraka Sebgupta,4,ADA,Friday,1130AM,0130PM,3,Lab,L23
-Mandatory,CSE222,Algorithm Design & Analysis,Debaraka Sebgupta,4,ADA,Monday,1100AM,0100PM,1,Lab,L21
-Mandatory,CSE222,Algorithm Design & Analysis,Debaraka Sebgupta,4,ADA,Monday,1100AM,0100PM,2,Lab,L22
-Mandatory,CSE222,Algorithm Design & Analysis,Debaraka Sebgupta,4,ADA,Tuesday,1130AM,0130PM,1,Tutorial,L21
-Mandatory,CSE222,Algorithm Design & Analysis,Debaraka Sebgupta,4,ADA,Tuesday,1130AM,0130PM,2,Tutorial,L22
-Mandatory,CSE222,Algorithm Design & Analysis,Debaraka Sebgupta,4,ADA,Tuesday,1130AM,0130PM,3,Tutorial,L23
-Mandatory,CSE222,Algorithm Design & Analysis,Debaraka Sebgupta,4,ADA,Wednesday,1130AM,0130PM,1,Tutorial,L21
-Mandatory,CSE222,Algorithm Design & Analysis,Debaraka Sebgupta,4,ADA,Wednesday,1130AM,0130PM,2,Tutorial,L22
+Mandatory,CSE222,Algorithm Design & Analysis,Debaraka Sebgupta,4,ADA,Friday,1130AM,0130PM,1(CSE),Lab,L21
+Mandatory,CSE222,Algorithm Design & Analysis,Debaraka Sebgupta,4,ADA,Friday,1130AM,0130PM,2(CSE),Lab,L22
+Mandatory,CSE222,Algorithm Design & Analysis,Debaraka Sebgupta,4,ADA,Friday,1130AM,0130PM,3(CSE),Lab,L23
+Mandatory,CSE222,Algorithm Design & Analysis,Debaraka Sebgupta,4,ADA,Monday,1100AM,0100PM,1(CSAM),Lab,L21
+Mandatory,CSE222,Algorithm Design & Analysis,Debaraka Sebgupta,4,ADA,Monday,1100AM,0100PM,2(CSAM),Lab,L22
+Mandatory,CSE222,Algorithm Design & Analysis,Debaraka Sebgupta,4,ADA,Tuesday,1200PM,0200PM,1(CSE),Tutorial,S01
+Mandatory,CSE222,Algorithm Design & Analysis,Debaraka Sebgupta,4,ADA,Tuesday,1200PM,0200PM,2(CSE),Tutorial,S02
+Mandatory,CSE222,Algorithm Design & Analysis,Debaraka Sebgupta,4,ADA,Tuesday,1200PM,0200PM,3(CSE) 4(CSE),Tutorial,B105
+Mandatory,CSE222,Algorithm Design & Analysis,Debaraka Sebgupta,4,ADA,Wednesday,1130AM,0130PM,1(CSAM) 2(CSAM),Tutorial,C02
 Mandatory,CSE231,Operating Systems,Sambuddho Chakravarty,4,OS,Monday,1100AM,1230PM,0,Lecture,C21
 Mandatory,CSE231,Operating Systems,Sambuddho Chakravarty,4,OS,Wednesday,1130AM,0100PM,0,Lecture,C21
 Mandatory,CSE231,Operating Systems,Sambuddho Chakravarty,4,OS,Thursday,1100AM,1230PM,1,Tutorial,LR1
