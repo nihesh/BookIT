@@ -23,6 +23,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.*;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -58,7 +59,7 @@ public class StudentReservationGUIController implements Initializable{
     @FXML
     private Button BackBtn, cancelSlotBooking;
     @FXML
-    private Button BookBtn;
+    private Button BookBtn, ttbutton, addCourse;
     @FXML
     private ImageView logo;
     @FXML
@@ -213,6 +214,29 @@ public class StudentReservationGUIController implements Initializable{
         loadDate();
         loadCourses();
     }
+    @FXML
+    void keyPressed(KeyEvent event) {
+        switch(event.getCode()) {
+            case ESCAPE:
+                if(pullDownPane.isVisible()){
+                    closeReservationPane();
+                }
+                else if(listCoursesPane.isVisible()){
+                    gobackFetchCourses();
+                }
+                else if(fetchCoursesPane.isVisible()){
+                    closeFetchCourses();
+                }
+                else if(TimeTablePane.isVisible()){
+                    CloseTimeTable();
+                }
+                else if(HoverPane.isVisible()){
+                    exitReadOnlyBookings();
+                }
+            default:
+                break;
+        }
+    }
     public void OpenNotifications() {
     	try {
     		User x=User.getActiveUser();
@@ -345,7 +369,10 @@ public class StudentReservationGUIController implements Initializable{
                 courseSlotButtons.get(i).setText("Free");
             }
         }
+        datePicker.setVisible(false);
         roomGridPane.setDisable(true);
+        addCourse.setDisable(true);
+        ttbutton.setDisable(true);
     }
 
     /**
@@ -354,6 +381,9 @@ public class StudentReservationGUIController implements Initializable{
     public void CloseTimeTable(){
         timetableprocessing = false;
         datePicker.setVisible(true);
+        addCourse.setDisable(false);
+        datePicker.setVisible(true);
+        ttbutton.setDisable(false);
         showLogo();
         slotInfoPane.setVisible(false);
         FadeTransition appear = new FadeTransition(Duration.millis(animation), TimeTablePane);
@@ -1061,6 +1091,9 @@ public class StudentReservationGUIController implements Initializable{
         if(reservation == null || requests == null){
             return;
         }
+        datePicker.setVisible(false);
+        addCourse.setDisable(true);
+        ttbutton.setDisable(true);
         selection.clear();
         classEvent = action;
         updateClassStatus(action);
@@ -1158,6 +1191,9 @@ public class StudentReservationGUIController implements Initializable{
             appear.setToValue(0);
             appear.play();
             closeClassStatus();
+            addCourse.setDisable(false);
+            ttbutton.setDisable(false);
+            datePicker.setVisible(true);
             selection.forEach((currentBtn, val) -> {
                 currentBtn.setText("Free");
                 currentBtn.setStyle("-fx-background-color:  #424949;");

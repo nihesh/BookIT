@@ -22,6 +22,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.*;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -66,7 +67,7 @@ public class FacultyReservationGUIController implements Initializable{
     @FXML
     private Button BackBtn, cancelSlotBooking;
     @FXML
-    private Button BookBtn;
+    private Button BookBtn, joinCourse;
     @FXML
     private ImageView logo, listCoursesBG;
     @FXML
@@ -215,7 +216,23 @@ public class FacultyReservationGUIController implements Initializable{
         loadDate();
         loadCourses();
     }
-
+    @FXML
+    void keyPressed(KeyEvent event) {
+        switch(event.getCode()) {
+            case ESCAPE:
+                if(pullDownPane.isVisible()){
+                    closeReservationPane();
+                }
+                else if(listCoursesPane.isVisible()){
+                    exitAddCourses();
+                }
+                else if(HoverPane.isVisible()){
+                    exitReadOnlyBookings();
+                }
+            default:
+                break;
+        }
+    }
     /**
      * Shows a list of valid courses on clicking Join course option
      */
@@ -797,6 +814,7 @@ public class FacultyReservationGUIController implements Initializable{
             return;
         }
         selection.clear();
+        joinCourse.setDisable(true);
         classEvent = action;
         updateClassStatus(action);
         HoverPane.setTranslateX(0);
@@ -899,7 +917,7 @@ public class FacultyReservationGUIController implements Initializable{
             }
         }
         if(!failure){
-            Notification.throwAlert("Success", "Your booking has been completed. Kindly verify");
+            ;
         }
         else{
             Notification.throwAlert("Booking Failed", "Some bookings couldn't be completed. Kindly check notifications for successful bookings");
@@ -1009,6 +1027,7 @@ public class FacultyReservationGUIController implements Initializable{
             appear.play();
             closeClassStatus();
             datePicker.setVisible(true);
+            joinCourse.setDisable(false);
             selection.forEach((currentBtn, val) -> {
                 currentBtn.setText("Free");
                 currentBtn.setStyle("-fx-background-color:  #424949;");

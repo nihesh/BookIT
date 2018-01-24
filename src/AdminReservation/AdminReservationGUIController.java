@@ -871,14 +871,12 @@ public class AdminReservationGUIController implements Initializable{
             currentBtn.setStyle("-fx-background-color:  linear-gradient(#229954,#27AE60,#229954)");
         }
         if(selection.size()==0){
-            System.out.println(selection.size());
             BookBtn.setDisable(true);
             BookBtn.setOpacity(1);
             BookBtn.setVisible(true);
             error1.setVisible(true);
         }
         else{
-            System.out.println(selection.size());
             BookBtn.setVisible(true);
             BookBtn.setOpacity(1);
             BookBtn.setDisable(false);
@@ -1052,7 +1050,7 @@ public class AdminReservationGUIController implements Initializable{
             }
         }
         if(!failure){
-            Notification.throwAlert("Success", "Your booking has been completed. Kindly verify");
+            ;
         }
         else{
             Notification.throwAlert("Booking Failed", "Some bookings couldn't be completed. Kindly check notifications for successful bookings");

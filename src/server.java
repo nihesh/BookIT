@@ -964,9 +964,10 @@ class ConnectionHandler implements Runnable{
                     case "GetUser":
                         email = (String) in.readObject();
                         u = null;
-                        if(status.equals("Pass") || lock.tryLock()) {
-                            u = getUser(email);
+                        if(!status.equals("Pass")) {
+                            lock.lockInterruptibly();
                         }
+                        u = getUser(email);
                         if(lock.isLocked() && lock.isHeldByCurrentThread()){
                             System.out.print("[ "+LocalDateTime.now()+" ] ");
                             System.out.println(connection.getInetAddress().toString() + " | ServerLock Released");
@@ -977,9 +978,10 @@ class ConnectionHandler implements Runnable{
                         break;
                     case "WriteUser":
                         u = (User) in.readObject();
-                        if(status.equals("Pass") || lock.tryLock()) {
-                            serializeUser(u);
+                        if(!status.equals("Pass")) {
+                            lock.lockInterruptibly();
                         }
+                        serializeUser(u);
                         if(lock.isLocked() && lock.isHeldByCurrentThread()){
                             System.out.print("[ "+LocalDateTime.now()+" ] ");
                             System.out.println(connection.getInetAddress().toString() + " | ServerLock Released");
@@ -989,9 +991,10 @@ class ConnectionHandler implements Runnable{
                     case "getNotifications":
                         email = (String)in.readObject();
                         ArrayList<Notification> array=null;
-                        if(status.equals("Pass") || lock.tryLock()) {
-                            array = GetNotifications(email);
+                        if(!status.equals("Pass")) {
+                            lock.lockInterruptibly();
                         }
+                        array = GetNotifications(email);
                         if(lock.isLocked() && lock.isHeldByCurrentThread()){
                             System.out.print("[ "+LocalDateTime.now()+" ] ");
                             System.out.println(connection.getInetAddress().toString() + " | ServerLock Released");
@@ -1002,9 +1005,10 @@ class ConnectionHandler implements Runnable{
                         break;
                     case "AllCourses":
                         ArrayList<String> arr=null;
-                        if(status.equals("Pass") || lock.tryLock()) {
-                            arr = getAllCourses();
+                        if(!status.equals("Pass")) {
+                            lock.lockInterruptibly();
                         }
+                        arr = getAllCourses();
                         if(lock.isLocked() && lock.isHeldByCurrentThread()){
                             System.out.print("[ "+LocalDateTime.now()+" ] ");
                             System.out.println(connection.getInetAddress().toString() + " | ServerLock Released");
@@ -1015,9 +1019,10 @@ class ConnectionHandler implements Runnable{
                         break;
                     case "WriteJoinCode":
                         joinCode = (HashMap<String, Integer>) in.readObject();
-                        if(status.equals("Pass") || lock.tryLock()) {
-                            serializeJoinCode(joinCode);
+                        if(!status.equals("Pass")) {
+                            lock.lockInterruptibly();
                         }
+                        serializeJoinCode(joinCode);
                         if(lock.isLocked() && lock.isHeldByCurrentThread()){
                             System.out.print("[ "+LocalDateTime.now()+" ] ");
                             System.out.println(connection.getInetAddress().toString() + " | ServerLock Released");
@@ -1026,9 +1031,10 @@ class ConnectionHandler implements Runnable{
                         break;
                     case "ReadJoinCode":
                         joinCode = null;
-                        if(status.equals("Pass") || lock.tryLock()) {
-                            joinCode = deserializeJoinCodes();
+                        if(!status.equals("Pass")) {
+                            lock.lockInterruptibly();
                         }
+                        joinCode = deserializeJoinCodes();
                         if(lock.isLocked() && lock.isHeldByCurrentThread()){
                             System.out.print("[ "+LocalDateTime.now()+" ] ");
                             System.out.println(connection.getInetAddress().toString() + " | ServerLock Released");
@@ -1039,9 +1045,10 @@ class ConnectionHandler implements Runnable{
                         break;
                     case "WriteRequest":
                         req = (PriorityQueue<ArrayList<Reservation>>) in.readObject();
-                        if(status.equals("Pass") || lock.tryLock()) {
-                            serializeRequests(req);
+                        if(!status.equals("Pass")) {
+                            lock.lockInterruptibly();
                         }
+                        serializeRequests(req);
                         if(lock.isLocked() && lock.isHeldByCurrentThread()){
                             System.out.print("[ "+LocalDateTime.now()+" ] ");
                             System.out.println(connection.getInetAddress().toString() + " | ServerLock Released");
@@ -1050,9 +1057,10 @@ class ConnectionHandler implements Runnable{
                         break;
                     case "ReadRequest":
                         req=null;
-                        if(status.equals("Pass") || lock.tryLock()) {
-                            req = deserializeRequests();
+                        if(!status.equals("Pass")) {
+                            lock.lockInterruptibly();
                         }
+                        req = deserializeRequests();
                         if(lock.isLocked() && lock.isHeldByCurrentThread()){
                             System.out.print("[ "+LocalDateTime.now()+" ] ");
                             System.out.println(connection.getInetAddress().toString() + " | ServerLock Released");
@@ -1064,9 +1072,10 @@ class ConnectionHandler implements Runnable{
                     case "SpamCheck":
                         String message = (String) in.readObject();
                         Boolean spamStatus = true;
-                        if(status.equals("Pass") || lock.tryLock()) {
-                            spamStatus = SpamFilter.Predict(message);
+                        if(!status.equals("Pass")) {
+                            lock.lockInterruptibly();
                         }
+                        spamStatus = SpamFilter.Predict(message);
                         if(lock.isLocked() && lock.isHeldByCurrentThread()){
                             System.out.print("[ "+LocalDateTime.now()+" ] ");
                             System.out.println(connection.getInetAddress().toString() + " | ServerLock Released");
@@ -1077,9 +1086,10 @@ class ConnectionHandler implements Runnable{
                         break;
                     case "GetStartEndDate":
                         ArrayList<LocalDate> StartEndDate=null;
-                        if(status.equals("Pass") || lock.tryLock()) {
-                            StartEndDate = fetchSemDate();
+                        if(!status.equals("Pass")) {
+                            lock.lockInterruptibly();
                         }
+                        StartEndDate = fetchSemDate();
                         if(lock.isLocked() && lock.isHeldByCurrentThread()){
                             System.out.print("[ "+LocalDateTime.now()+" ] ");
                             System.out.println(connection.getInetAddress().toString() + " | ServerLock Released");
@@ -1093,9 +1103,10 @@ class ConnectionHandler implements Runnable{
                         slotID = (int) in.readObject();
                         String RoomID = (String) in.readObject();
                         String cancellationMessage = (String) in.readObject();
-                        if(status.equals("Pass") || lock.tryLock()) {
-                            BookingCancellationNotifier(queryDate, slotID, RoomID, cancellationMessage);
+                        if(!status.equals("Pass")) {
+                            lock.lockInterruptibly();
                         }
+                        BookingCancellationNotifier(queryDate, slotID, RoomID, cancellationMessage);
                         if(lock.isLocked() && lock.isHeldByCurrentThread()){
                             System.out.print("[ "+LocalDateTime.now()+" ] ");
                             System.out.println(connection.getInetAddress().toString() + " | ServerLock Released");
@@ -1105,9 +1116,10 @@ class ConnectionHandler implements Runnable{
                     case "generateJoinCode":
                         String type = (String) in.readObject();
                         String temp = null;
-                        if(status.equals("Pass") || lock.tryLock()) {
-                            temp = generateJoincode(type);
+                        if(!status.equals("Pass")) {
+                            lock.lockInterruptibly();
                         }
+                        temp = generateJoincode(type);
                         if(lock.isLocked() && lock.isHeldByCurrentThread()){
                             System.out.print("[ "+LocalDateTime.now()+" ] ");
                             System.out.println(connection.getInetAddress().toString() + " | ServerLock Released");
@@ -1119,9 +1131,10 @@ class ConnectionHandler implements Runnable{
                     case "containsJoinCode":
                         code = (String) in.readObject();
                         Boolean ret = false;
-                        if(status.equals("Pass") || lock.tryLock()) {
-                            ret = containsJoinCode(code);
+                        if(!status.equals("Pass")) {
+                            lock.lockInterruptibly();
                         }
+                        ret = containsJoinCode(code);
                         if(lock.isLocked() && lock.isHeldByCurrentThread()){
                             System.out.print("[ "+LocalDateTime.now()+" ] ");
                             System.out.println(connection.getInetAddress().toString() + " | ServerLock Released");
@@ -1132,9 +1145,10 @@ class ConnectionHandler implements Runnable{
                         break;
                     case "removeJoinCode":
                         code = (String) in.readObject();
-                        if(status.equals("Pass") || lock.tryLock()) {
-                            removeJoinCode(code);
+                        if(!status.equals("Pass")) {
+                            lock.lockInterruptibly();
                         }
+                        removeJoinCode(code);
                         if(lock.isLocked() && lock.isHeldByCurrentThread()){
                             System.out.print("[ "+LocalDateTime.now()+" ] ");
                             System.out.println(connection.getInetAddress().toString() + " | ServerLock Released");
@@ -1143,9 +1157,10 @@ class ConnectionHandler implements Runnable{
                         break;
                     case "getRequest":
                         ArrayList<Reservation> requ = null;
-                        if(status.equals("Pass") || lock.tryLock()) {
-                            requ = getRequest();
+                        if(!status.equals("Pass")) {
+                            lock.lockInterruptibly();
                         }
+                        requ = getRequest();
                         if(lock.isLocked() && lock.isHeldByCurrentThread()){
                             System.out.print("[ "+LocalDateTime.now()+" ] ");
                             System.out.println(connection.getInetAddress().toString() + " | ServerLock Released");
@@ -1157,9 +1172,10 @@ class ConnectionHandler implements Runnable{
                     case "acceptRequest":
                         ArrayList<Integer> data = (ArrayList<Integer>) in.readObject();
                         ans = false;
-                        if(status.equals("Pass") || lock.tryLock()) {
-                            ans = acceptRequest(data);
+                        if(!status.equals("Pass")) {
+                            lock.lockInterruptibly();
                         }
+                        ans = acceptRequest(data);
                         if(lock.isLocked() && lock.isHeldByCurrentThread()){
                             System.out.print("[ "+LocalDateTime.now()+" ] ");
                             System.out.println(connection.getInetAddress().toString() + " | ServerLock Released");
@@ -1170,9 +1186,10 @@ class ConnectionHandler implements Runnable{
                         break;
                     case "rejectRequest":
                         ans = false;
-                        if(status.equals("Pass") || lock.tryLock()) {
-                            ans=rejectRequest();
+                        if(!status.equals("Pass")) {
+                            lock.lockInterruptibly();
                         }
+                        ans=rejectRequest();
                         if(lock.isLocked() && lock.isHeldByCurrentThread()){
                             System.out.print("[ "+LocalDateTime.now()+" ] ");
                             System.out.println(connection.getInetAddress().toString() + " | ServerLock Released");
@@ -1187,9 +1204,10 @@ class ConnectionHandler implements Runnable{
                         slotID = (int) in.readObject();
                         res = (Reservation) in.readObject();
                         ans = false;
-                        if(status.equals("Pass") || lock.tryLock()) {
-                            ans = adminandfaculty_bookRoom(start, end, slotID, res);
+                        if(!status.equals("Pass")) {
+                            lock.lockInterruptibly();
                         }
+                        ans = adminandfaculty_bookRoom(start, end, slotID, res);
                         if(lock.isLocked() && lock.isHeldByCurrentThread()){
                             System.out.print("[ "+LocalDateTime.now()+" ] ");
                             System.out.println(connection.getInetAddress().toString() + " | ServerLock Released");
@@ -1201,9 +1219,10 @@ class ConnectionHandler implements Runnable{
                     case "faculty_addCourse":
                         email = (String) in.readObject();
                         course = (String) in.readObject();
-                        if(status.equals("Pass") || lock.tryLock()) {
-                            faculty_addCourse(email, course);
+                        if(!status.equals("Pass")) {
+                            lock.lockInterruptibly();
                         }
+                        faculty_addCourse(email, course);
                         if(lock.isLocked() && lock.isHeldByCurrentThread()){
                             System.out.print("[ "+LocalDateTime.now()+" ] ");
                             System.out.println(connection.getInetAddress().toString() + " | ServerLock Released");
@@ -1213,9 +1232,10 @@ class ConnectionHandler implements Runnable{
                     case "student_sendReservationRequest":
                         ArrayList<Reservation> reservations = (ArrayList<Reservation>) in.readObject();
                         result = false;
-                        if(status.equals("Pass") || lock.tryLock()) {
-                            result = sendReservationRequest(reservations);
+                        if(!status.equals("Pass")) {
+                            lock.lockInterruptibly();
                         }
+                        result = sendReservationRequest(reservations);
                         if(lock.isLocked() && lock.isHeldByCurrentThread()){
                             System.out.print("[ "+LocalDateTime.now()+" ] ");
                             System.out.println(connection.getInetAddress().toString() + " | ServerLock Released");
@@ -1227,9 +1247,10 @@ class ConnectionHandler implements Runnable{
                     case "student_searchCourse":
                         ArrayList<String> keyword = (ArrayList<String>) in.readObject();
                         ArrayList<String> shortlist = null;
-                        if(status.equals("Pass") || lock.tryLock()) {
-                            shortlist = searchCourse(keyword);
+                        if(!status.equals("Pass")) {
+                            lock.lockInterruptibly();
                         }
+                        shortlist = searchCourse(keyword);
                         if(lock.isLocked() && lock.isHeldByCurrentThread()){
                             System.out.print("[ "+LocalDateTime.now()+" ] ");
                             System.out.println(connection.getInetAddress().toString() + " | ServerLock Released");
@@ -1242,9 +1263,10 @@ class ConnectionHandler implements Runnable{
                         course = (String) in.readObject();
                         email = (String) in.readObject();
                         result = false;
-                        if(status.equals("Pass") || lock.tryLock()) {
-                            result = student_addCourse(course, email);
+                        if(!status.equals("Pass")) {
+                            lock.lockInterruptibly();
                         }
+                        result = student_addCourse(course, email);
                         if(lock.isLocked() && lock.isHeldByCurrentThread()){
                             System.out.print("[ "+LocalDateTime.now()+" ] ");
                             System.out.println(connection.getInetAddress().toString() + " | ServerLock Released");
@@ -1258,9 +1280,10 @@ class ConnectionHandler implements Runnable{
                         slotID = (int) in.readObject();
                         RoomID = (String) in.readObject();
                         result = false;
-                        if(status.equals("Pass") || lock.tryLock()) {
-                            result = studentAndFaculty_cancelBooking(queryDate, slotID, RoomID);
+                        if(!status.equals("Pass")) {
+                            lock.lockInterruptibly();
                         }
+                        result = studentAndFaculty_cancelBooking(queryDate, slotID, RoomID);
                         if(lock.isLocked() && lock.isHeldByCurrentThread()){
                             System.out.print("[ "+LocalDateTime.now()+" ] ");
                             System.out.println(connection.getInetAddress().toString() + " | ServerLock Released");
@@ -1274,9 +1297,10 @@ class ConnectionHandler implements Runnable{
                         String oldPass = (String) in.readObject();
                         String newPass = (String) in.readObject();
                         result = false;
-                        if(status.equals("Pass") || lock.tryLock()) {
-                            result = changePassword(email, oldPass, newPass);
+                        if(!status.equals("Pass")) {
+                            lock.lockInterruptibly();
                         }
+                        result = changePassword(email, oldPass, newPass);
                         if(lock.isLocked() && lock.isHeldByCurrentThread()){
                             System.out.print("[ "+LocalDateTime.now()+" ] ");
                             System.out.println(connection.getInetAddress().toString() + " | ServerLock Released");
@@ -1288,9 +1312,10 @@ class ConnectionHandler implements Runnable{
                     case "validateLogin":
                         email = (String) in.readObject();
                         result = false;
-                        if(status.equals("Pass") || lock.tryLock()) {
-                            result = validateLogin(email);
+                        if(!status.equals("Pass")) {
+                            lock.lockInterruptibly();
                         }
+                        result = validateLogin(email);
                         if(lock.isLocked() && lock.isHeldByCurrentThread()){
                             System.out.print("[ "+LocalDateTime.now()+" ] ");
                             System.out.println(connection.getInetAddress().toString() + " | ServerLock Released");
@@ -1302,9 +1327,10 @@ class ConnectionHandler implements Runnable{
                     case "setCourseInstructor":
                         course = (String) in.readObject();
                         email = (String) in.readObject();
-                        if(status.equals("Pass") || lock.tryLock()) {
-                            setInstructor(email, course);
+                        if(!status.equals("Pass")) {
+                            lock.lockInterruptibly();
                         }
+                        setInstructor(email, course);
                         if(lock.isLocked() && lock.isHeldByCurrentThread()){
                             System.out.print("[ "+LocalDateTime.now()+" ] ");
                             System.out.println(connection.getInetAddress().toString() + " | ServerLock Released");
@@ -1314,9 +1340,10 @@ class ConnectionHandler implements Runnable{
                     case "reservation_facultyEmail":
                         course = (String) in.readObject();
                         email = "";
-                        if(status.equals("Pass") || lock.tryLock()) {
-                            email = reservation_facultyEmail(course);
+                        if(!status.equals("Pass")) {
+                            lock.lockInterruptibly();
                         }
+                        email = reservation_facultyEmail(course);
                         if(lock.isLocked() && lock.isHeldByCurrentThread()){
                             System.out.print("[ "+LocalDateTime.now()+" ] ");
                             System.out.println(connection.getInetAddress().toString() + " | ServerLock Released");
@@ -1329,9 +1356,10 @@ class ConnectionHandler implements Runnable{
                         queryDate = (LocalDate) in.readObject();
                         room = (String) in.readObject();
                         Reservation[] tempReservation = null;
-                        if(status.equals("Pass") || lock.tryLock()) {
-                            tempReservation = getRoomDailySchedule(queryDate, room);
+                        if(!status.equals("Pass")){
+                            lock.lockInterruptibly();
                         }
+                        tempReservation = getRoomDailySchedule(queryDate, room);
                         if(lock.isLocked() && lock.isHeldByCurrentThread()){
                             System.out.print("[ "+LocalDateTime.now()+" ] ");
                             System.out.println(connection.getInetAddress().toString() + " | ServerLock Released");
@@ -1343,9 +1371,10 @@ class ConnectionHandler implements Runnable{
                     case "getRoomCapacity":
                         room = (String) in.readObject();
                         int roomsize = 0;
-                        if(status.equals("Pass") || lock.tryLock()) {
-                            roomsize = getRoomCapacity(room);
+                        if(!status.equals("Pass")){
+                            lock.lockInterruptibly();
                         }
+                        roomsize = getRoomCapacity(room);
                         if(lock.isLocked() && lock.isHeldByCurrentThread()){
                             System.out.print("[ "+LocalDateTime.now()+" ] ");
                             System.out.println(connection.getInetAddress().toString() + " | ServerLock Released");
@@ -1357,9 +1386,10 @@ class ConnectionHandler implements Runnable{
                     case "checkRoomExistence":
                         room = (String) in.readObject();
                         result = false;
-                        if(status.equals("Pass") || lock.tryLock()) {
-                            result = RoomExists(room);
+                        if(!status.equals("Pass")) {
+                            lock.lockInterruptibly();
                         }
+                        result = RoomExists(room);
                         if(lock.isLocked() && lock.isHeldByCurrentThread()){
                             System.out.print("[ "+LocalDateTime.now()+" ] ");
                             System.out.println(connection.getInetAddress().toString() + " | ServerLock Released");
@@ -1371,9 +1401,10 @@ class ConnectionHandler implements Runnable{
                     case "course_getFaculty":
                         course = (String) in.readObject();
                         email="";
-                        if(status.equals("Pass") || lock.tryLock()) {
-                            email = course_getFaculty(course);
+                        if(!status.equals("Pass")) {
+                            lock.lockInterruptibly();
                         }
+                        email = course_getFaculty(course);
                         if(lock.isLocked() && lock.isHeldByCurrentThread()){
                             System.out.print("[ "+LocalDateTime.now()+" ] ");
                             System.out.println(connection.getInetAddress().toString() + " | ServerLock Released");
@@ -1386,9 +1417,10 @@ class ConnectionHandler implements Runnable{
                         queryDate = (LocalDate) in.readObject();
                         ArrayList<String> myCourses = (ArrayList<String>) in.readObject();
                         Reservation[] tempSchedule = null;
-                        if(status.equals("Pass") || lock.tryLock()) {
-                            tempSchedule = course_getStudentTT(queryDate, myCourses);
+                        if(!status.equals("Pass")) {
+                            lock.lockInterruptibly();
                         }
+                        tempSchedule = course_getStudentTT(queryDate, myCourses);
                         if(lock.isLocked() && lock.isHeldByCurrentThread()){
                             System.out.print("[ "+LocalDateTime.now()+" ] ");
                             System.out.println(connection.getInetAddress().toString() + " | ServerLock Released");
@@ -1400,9 +1432,10 @@ class ConnectionHandler implements Runnable{
                     case "course_getAcronym":
                         course = (String) in.readObject();
                         String acronym = "";
-                        if(status.equals("Pass") || lock.tryLock()) {
-                            acronym = course_getAcronym(course);
+                        if(!status.equals("Pass")) {
+                            lock.lockInterruptibly();
                         }
+                        acronym = course_getAcronym(course);
                         if(lock.isLocked() && lock.isHeldByCurrentThread()){
                             System.out.print("[ "+LocalDateTime.now()+" ] ");
                             System.out.println(connection.getInetAddress().toString() + " | ServerLock Released");
@@ -1416,9 +1449,10 @@ class ConnectionHandler implements Runnable{
                         queryDate = (LocalDate) in.readObject();
                         slotID = (int) in.readObject();
                         res = null;
-                        if(status.equals("Pass") || lock.tryLock()) {
-                            res = course_getReservation(course, queryDate, slotID);
+                        if(!status.equals("Pass")) {
+                            lock.lockInterruptibly();
                         }
+                        res = course_getReservation(course, queryDate, slotID);
                         if(lock.isLocked() && lock.isHeldByCurrentThread()){
                             System.out.print("[ "+LocalDateTime.now()+" ] ");
                             System.out.println(connection.getInetAddress().toString() + " | ServerLock Released");
@@ -1429,9 +1463,10 @@ class ConnectionHandler implements Runnable{
                         break;
                     case "mailPass":
                         email = (String) in.readObject();
-                        if(status.equals("Pass") || lock.tryLock()) {
-                            mailPass(email);
+                        if(!status.equals("Pass")) {
+                            lock.lockInterruptibly();
                         }
+                        mailPass(email);
                         if(lock.isLocked() && lock.isHeldByCurrentThread()){
                             System.out.print("[ "+LocalDateTime.now()+" ] ");
                             System.out.println(connection.getInetAddress().toString() + " | ServerLock Released");
@@ -1440,9 +1475,10 @@ class ConnectionHandler implements Runnable{
                         break;
                     case "generatePass":
                         email = (String) in.readObject();
-                        if(status.equals("Pass") || lock.tryLock()) {
-                            generatePass(email);
+                        if(!status.equals("Pass")) {
+                            lock.lockInterruptibly();
                         }
+                        generatePass(email);
                         if(lock.isLocked() && lock.isHeldByCurrentThread()){
                             System.out.print("[ "+LocalDateTime.now()+" ] ");
                             System.out.println(connection.getInetAddress().toString() + " | ServerLock Released");
@@ -1452,9 +1488,10 @@ class ConnectionHandler implements Runnable{
                     case "getUserType":
                         email = (String) in.readObject();
                         String usertype = "";
-                        if(status.equals("Pass") || lock.tryLock()) {
-                            usertype = getUserType(email);
+                        if(!status.equals("Pass")) {
+                            lock.lockInterruptibly();
                         }
+                        usertype = getUserType(email);
                         if(lock.isLocked() && lock.isHeldByCurrentThread()){
                             System.out.print("[ "+LocalDateTime.now()+" ] ");
                             System.out.println(connection.getInetAddress().toString() + " | ServerLock Released");
@@ -1466,9 +1503,10 @@ class ConnectionHandler implements Runnable{
                     case "CompatibilityCheck":
                         double version = (double) in.readObject();
                         result = false;
-                        if(status.equals("Pass") || lock.tryLock()) {
-                            result = isCompatible(version);
+                        if(!status.equals("Pass")) {
+                            lock.lockInterruptibly();
                         }
+                        result = isCompatible(version);
                         if(lock.isLocked() && lock.isHeldByCurrentThread()){
                             System.out.print("[ "+LocalDateTime.now()+" ] ");
                             System.out.println(connection.getInetAddress().toString() + " | ServerLock Released");
@@ -1479,9 +1517,10 @@ class ConnectionHandler implements Runnable{
                         break;
                     case "admin_getRequestsQueue":
                         PriorityQueue<ArrayList<Reservation>> pqReq = null;
-                        if(status.equals("Pass") || lock.tryLock()) {
-                            pqReq = deserializeRequests();
+                        if(!status.equals("Pass")) {
+                            lock.lockInterruptibly();
                         }
+                        pqReq = deserializeRequests();
                         if(lock.isLocked() && lock.isHeldByCurrentThread()){
                             System.out.print("[ "+LocalDateTime.now()+" ] ");
                             System.out.println(connection.getInetAddress().toString() + " | ServerLock Released");
@@ -1495,11 +1534,12 @@ class ConnectionHandler implements Runnable{
                         queryDate = (LocalDate) in.readObject();
                         slotID = (int) in.readObject();
                         room = (String) in.readObject();
-                        if(status.equals("Pass") || lock.tryLock()) {
-                            r = Room.deserializeRoom(room);
-                            r.deleteRequest(email, queryDate, slotID);
-                            r.serialize();
+                        if(!status.equals("Pass")) {
+                            lock.lockInterruptibly();
                         }
+                        r = Room.deserializeRoom(room);
+                        r.deleteRequest(email, queryDate, slotID);
+                        r.serialize();
                         if(lock.isLocked() && lock.isHeldByCurrentThread()){
                             System.out.print("[ "+LocalDateTime.now()+" ] ");
                             System.out.println(connection.getInetAddress().toString() + " | ServerLock Released");
@@ -1512,10 +1552,11 @@ class ConnectionHandler implements Runnable{
                         slotID = (int) in.readObject();
                         room = (String) in.readObject();
                         res = null;
-                        if(status.equals("Pass") || lock.tryLock()) {
-                            r = Room.deserializeRoom(room);
-                            res = r.fetchRequest(email, queryDate, slotID);
+                        if(!status.equals("Pass")) {
+                            lock.lockInterruptibly();
                         }
+                        r = Room.deserializeRoom(room);
+                        res = r.fetchRequest(email, queryDate, slotID);
                         if(lock.isLocked() && lock.isHeldByCurrentThread()){
                             System.out.print("[ "+LocalDateTime.now()+" ] ");
                             System.out.println(connection.getInetAddress().toString() + " | ServerLock Released");
@@ -1529,10 +1570,11 @@ class ConnectionHandler implements Runnable{
                         queryDate = (LocalDate) in.readObject();
                         room = (String) in.readObject();
                         Reservation[] pending = null;
-                        if(status.equals("Pass") || lock.tryLock()) {
-                            r = Room.deserializeRoom(room);
-                            pending = r.getPendingReservations(email, queryDate);
+                        if(!status.equals("Pass")) {
+                            lock.lockInterruptibly();
                         }
+                        r = Room.deserializeRoom(room);
+                        pending = r.getPendingReservations(email, queryDate);
                         if(lock.isLocked() && lock.isHeldByCurrentThread()){
                             System.out.print("[ "+LocalDateTime.now()+" ] ");
                             System.out.println(connection.getInetAddress().toString() + " | ServerLock Released");
@@ -1547,9 +1589,10 @@ class ConnectionHandler implements Runnable{
                         start = (LocalDate) in.readObject();
                         end = (LocalDate) in.readObject();
                         result = false;
-                        if(status.equals("Pass") || lock.tryLock()) {
-                            result = checkBulkBooking(room, slots,start,end);
+                        if(!status.equals("Pass")) {
+                            lock.lockInterruptibly();
                         }
+                        result = checkBulkBooking(room, slots,start,end);
                         if(lock.isLocked() && lock.isHeldByCurrentThread()){
                             System.out.print("[ "+LocalDateTime.now()+" ] ");
                             System.out.println(connection.getInetAddress().toString() + " | ServerLock Released");
@@ -1559,10 +1602,11 @@ class ConnectionHandler implements Runnable{
                         out.flush();
                         break;
                     case "softResetServer":
-                        if(status.equals("Pass") || lock.tryLock()) {           // Must take lock to ensure consistency
-                            server.loadHashMaps();
-                            server.loadFreeCourses();
+                        if(!status.equals("Pass")){         // Must take lock to ensure consistency
+                            lock.lockInterruptibly();
                         }
+                        server.loadHashMaps();
+                        server.loadFreeCourses();
                         if(lock.isLocked() && lock.isHeldByCurrentThread()){
                             System.out.print("[ "+LocalDateTime.now()+" ] ");
                             System.out.println(connection.getInetAddress().toString() + " | ServerLock Released");
