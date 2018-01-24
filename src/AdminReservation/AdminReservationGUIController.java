@@ -24,6 +24,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.*;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -285,6 +286,23 @@ public class AdminReservationGUIController implements Initializable{
         }
         catch (ClassNotFoundException c){
             System.out.println("ClassNotFound exception occurred while downloading requests");
+        }
+    }
+    @FXML
+    void keyPressed(KeyEvent event) {
+        switch(event.getCode()) {
+            case ESCAPE:
+                if(pullDownPane.isVisible()){
+                    closeReservationPane();
+                }
+                else if(pullDownPane2.isVisible()){
+                    hideRequests();
+                }
+                else if(HoverPane.isVisible()){
+                    exitReadOnlyBookings();
+                }
+            default:
+                break;
         }
     }
     public void OpenNotifications() {
@@ -671,7 +689,7 @@ public class AdminReservationGUIController implements Initializable{
             translate.setNode(pullDownPane2);
             translate.setToY(location);
             translate.setDuration(Duration.millis(15));
-            step++;
+            step+=2;
             location-=step;
             sequence.getChildren().add(translate);
         }
@@ -853,12 +871,16 @@ public class AdminReservationGUIController implements Initializable{
             currentBtn.setStyle("-fx-background-color:  linear-gradient(#229954,#27AE60,#229954)");
         }
         if(selection.size()==0){
+            System.out.println(selection.size());
             BookBtn.setDisable(true);
+            BookBtn.setOpacity(1);
             BookBtn.setVisible(true);
             error1.setVisible(true);
         }
         else{
+            System.out.println(selection.size());
             BookBtn.setVisible(true);
+            BookBtn.setOpacity(1);
             BookBtn.setDisable(false);
             error1.setVisible(false);
         }
@@ -961,7 +983,7 @@ public class AdminReservationGUIController implements Initializable{
             translate.setNode(pullDownPane);
             translate.setToY(location);
             translate.setDuration(Duration.millis(15));
-            step++;
+            step+=2;
             location-=step;
             sequence.getChildren().add(translate);
         }
@@ -1118,6 +1140,7 @@ public class AdminReservationGUIController implements Initializable{
         if(reservation == null){
             return;
         }
+        selection.clear();
         updateClassStatus(action);
         classEvent = action;
         HoverPane.setTranslateX(0);

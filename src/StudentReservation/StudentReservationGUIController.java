@@ -791,11 +791,13 @@ public class StudentReservationGUIController implements Initializable{
         }
         if(selection.size()==0){
             BookBtn.setDisable(true);
+            BookBtn.setOpacity(1);
             BookBtn.setVisible(true);
             error1.setVisible(true);
         }
         else{
             BookBtn.setVisible(true);
+            BookBtn.setOpacity(1);
             BookBtn.setDisable(false);
             error1.setVisible(false);
         }
@@ -898,7 +900,7 @@ public class StudentReservationGUIController implements Initializable{
             translate.setNode(pullDownPane);
             translate.setToY(location);
             translate.setDuration(Duration.millis(15));
-            step++;
+            step+=2;
             location-=max(step,20);
             sequence.getChildren().add(translate);
         }
@@ -1059,6 +1061,7 @@ public class StudentReservationGUIController implements Initializable{
         if(reservation == null || requests == null){
             return;
         }
+        selection.clear();
         classEvent = action;
         updateClassStatus(action);
         HoverPane.setTranslateX(0);
