@@ -15,6 +15,18 @@ public class BookITconstants {
     public static String NoReplyEmail;
     public static String NoReplyPassword;
     public static String NoReplyUsername;
+    public static FileWriter log;
+
+    public static void writeLog(String s){
+        try {
+            log.write(s + "\n");
+            log.flush();
+        }
+        catch(Exception e){
+            System.out.println("Log writing failed");
+            System.out.println(e.getMessage());
+        }
+    }
     
     
     public BookITconstants(String mode){

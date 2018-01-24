@@ -6,11 +6,7 @@ import java.net.Socket;
 import java.security.spec.ECField;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.PriorityQueue;
-import java.util.Properties;
-import java.util.Random;
+import java.util.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
@@ -67,7 +63,7 @@ public class server {
             System.out.println();
         }
         catch (Exception e){
-            System.out.println("IOException occurred while serialising student/faculty/admin hashmaps");
+            BookITconstants.writeLog("IOException occurred while serialising student/faculty/admin hashmaps");
         }
 
         ObjectInputStream in=null;
@@ -115,6 +111,7 @@ public class server {
     }
     public static void main(String[] args)throws IOException{
         BookITconstants b = new BookITconstants("Server");
+        BookITconstants.log = new FileWriter(new File("./src/AppData/Server/ServerBugs.txt"), true);
         loadHashMaps();
         loadFreeCourses();
         ServerSocket s = new ServerSocket(BookITconstants.serverPort);
@@ -172,7 +169,7 @@ class ConnectionHandler implements Runnable{
 
         }
         catch (IOException e){
-            System.out.println("file not found");
+            BookITconstants.writeLog("file not found");
         }
     }
     /**
@@ -217,7 +214,7 @@ class ConnectionHandler implements Runnable{
             }
         }
         catch (IOException e){
-            System.out.println("file not found");
+            BookITconstants.writeLog("file not found");
         }
     }
     /**
@@ -294,7 +291,7 @@ class ConnectionHandler implements Runnable{
 
         }
         catch (IOException e){
-            System.out.println("file not found");
+            BookITconstants.writeLog("file not found");
         }
     }
     public ArrayList<LocalDate> fetchSemDate(){
@@ -755,6 +752,9 @@ class ConnectionHandler implements Runnable{
     }
     public Reservation[] getRoomDailySchedule(LocalDate queryDate, String room){
         Room r = Room.deserializeRoom(room);
+        if(r==null){
+            return null;
+        }
         return r.getSchedule(queryDate);
     }
     public int getRoomCapacity(String room){
@@ -1541,9 +1541,9 @@ class ConnectionHandler implements Runnable{
                 in.close();
                 out.close();
             } catch (IOException e) {
-                System.out.println("Error Occured while handling connection");
+                BookITconstants.writeLog("Error Occured while handling connection");
             } catch (ClassNotFoundException e) {
-                System.out.println("Error Occured while handling connection");
+                BookITconstants.writeLog("Error Occured while handling connection");
             }
         }
         catch(Exception l){

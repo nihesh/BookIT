@@ -1042,6 +1042,11 @@ public class StudentReservationGUIController implements Initializable{
         if(check==false){
             return;
         }
+        Reservation[] reservation = Room.getDailySchedule(activeDate, activeRoom, false);
+        Reservation[] requests = Room.getPendingReservations(activeUser.getEmail().getEmailID(), activeDate, activeRoom, false);
+        if(reservation == null || requests == null){
+            return;
+        }
         classEvent = action;
         HoverPane.setTranslateX(0);
         error1.setVisible(true);
@@ -1052,8 +1057,6 @@ public class StudentReservationGUIController implements Initializable{
         BackBtn.setOpacity(0);
         RoomNo.setText(current.getText());
         activeRoom = current.getText();
-        Reservation[] reservation = Room.getDailySchedule(activeDate, activeRoom, false);
-        Reservation[] requests = Room.getPendingReservations(activeUser.getEmail().getEmailID(), activeDate, activeRoom, false);
         for(int i=0;i<28;i++){
             if(reservation[i] != null){
                 slotButtons.get(i).setText("Booked");

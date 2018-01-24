@@ -275,7 +275,9 @@ public class Room implements java.io.Serializable{
             return (Room)in.readObject();
         }
         catch (Exception e){
-            System.out.println("Exception occured while deserialising Room");
+            BookITconstants.writeLog("Exception occured while deserialising Room");
+            BookITconstants.writeLog(e.getMessage());
+            BookITconstants.writeLog("Handled safely");
             return null;
         }
         finally {

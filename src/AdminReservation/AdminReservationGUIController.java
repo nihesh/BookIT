@@ -345,8 +345,8 @@ public class AdminReservationGUIController implements Initializable{
         Button current = slotButtons.get(Reservation.getSlotID(currentlyShowingSlot));
         current.setDisable(false);
         current.setText("Free");
-        updateClassStatus(classEvent);
         cancelMessagePane.setVisible(false);
+        updateClassStatus(classEvent);
     }
 
     /**
@@ -722,11 +722,14 @@ public class AdminReservationGUIController implements Initializable{
      * @param e Event object
      */
     public void showSlotInfo(Event e){
+        Reservation[] bookings = Room.getDailySchedule(activeDate, statusRoomID.getText(), false);
+        if(bookings == null){
+            return;
+        }
         slotInfoPane.setVisible(true);
         Label curLabel = (Label) e.getSource();
         slotInfo.setText(curLabel.getText());
         currentlyShowingSlot = curLabel.getText();         // GUI-Helper Integration starts
-        Reservation[] bookings = Room.getDailySchedule(activeDate, statusRoomID.getText(), false);
         if(bookings[Reservation.getSlotID(curLabel.getText())]!=null) {
             cancelSlotBooking.setDisable(false);
             String facultyName="~~~~";
@@ -765,11 +768,15 @@ public class AdminReservationGUIController implements Initializable{
     public void updateClassStatus(Event e){
         hideLogo();
         hideSlotPane();
-        Button current = (Button) e.getSource();
-        statusRoomID.setText(current.getText());
-        int capacity = Room.getCapacity(current.getText(),false);                                  // GUI-Helper integration begins here
+        statusRoomID.setText(activeRoom);
+        int capacity = Room.getCapacity(activeRoom,false);                                  // GUI-Helper integration begins here
         statusClassSize.setText("  "+Integer.toString(capacity));
-        Reservation[] reservation = Room.getDailySchedule(activeDate,current.getText(), false);
+        Reservation[] reservation = Room.getDailySchedule(activeDate,activeRoom, false);
+        if(reservation == null){
+            showLogo();
+            exitReadOnlyBookings();
+            return;
+        }
         int freeSlots=0;
         for(int i=0;i<28;i++){
             if(reservation[i] == null){
@@ -1102,12 +1109,19 @@ public class AdminReservationGUIController implements Initializable{
      */
     public void openBooking(Event action){
         Button current = (Button) action.getSource();
+        activeRoom = current.getText();
         Boolean check = Room.exists(current.getText(),false);                               // Loading buttons
         if(check==false){
             return;
         }
+        Reservation[] reservation = Room.getDailySchedule(activeDate, current.getText(), false);
+        if(reservation == null){
+            return;
+        }
+        updateClassStatus(action);
         classEvent = action;
         HoverPane.setTranslateX(0);
+        datePicker.setVisible(false);
         error1.setVisible(true);
         BookBtn.setDisable(true);
         BackBtn.setVisible(true);
@@ -1115,8 +1129,6 @@ public class AdminReservationGUIController implements Initializable{
         BookBtn.setOpacity(0);
         BackBtn.setOpacity(0);
         RoomNo.setText(current.getText());
-        activeRoom = current.getText();
-        Reservation[] reservation = Room.getDailySchedule(activeDate, current.getText(), false);
         for(int i=0;i<28;i++){
             if(reservation[i] != null){
                 slotButtons.get(i).setText("Booked");
@@ -1209,10 +1221,10 @@ public class AdminReservationGUIController implements Initializable{
      */
     public void exitReadOnlyBookings(){
         if(!isActiveReservation && !requestProcessing) {
-            induceDelay(appearAfter_HoverPane);
             FadeTransition appear = new FadeTransition(Duration.millis(animation), HoverPane);
             appear.setToValue(0);
             appear.play();
+            datePicker.setVisible(true);
             closeClassStatus();
             selection.forEach((currentBtn, val) -> {
                 currentBtn.setText("Free");
