@@ -28,7 +28,7 @@ public class server {
 	/**
 	 * spam filter object for detecting spam messages
 	 */
-	public static final double BookITversion = 1.0;
+	public static final double BookITversion = 1.1;
     public static SpamFilter spm;
     public static int noOfConnections = 0;
     public static ExecutorService mailpool = Executors.newFixedThreadPool(2);
@@ -502,6 +502,7 @@ class ConnectionHandler implements Runnable{
             serializeRequests(p);
             return false;
         }
+        System.out.println("hi");
         ArrayList<Reservation> r = p.peek();
         String recipient = r.get(0).getReserverEmail();
         String GreetText = getUser(recipient).getName();

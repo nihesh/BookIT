@@ -18,6 +18,5 @@ password - To@0L]d9
 
 ISSUES
 	- noreply email from iiitd
-	- Active user hack
-	- fix timetable issue
+	- student booking request acceptance
 	

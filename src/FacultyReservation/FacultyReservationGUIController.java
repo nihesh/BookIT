@@ -525,11 +525,14 @@ public class FacultyReservationGUIController implements Initializable{
      * @param e Event object
      */
     public void showSlotInfo(Event e){
-        slotInfoPane.setVisible(true);
         Label curLabel = (Label) e.getSource();
-        slotInfo.setText(curLabel.getText());
         currentlyShowingSlot = curLabel.getText();                   // GUI-Helper Integration starts
         Reservation[] bookings = Room.getDailySchedule(activeDate, statusRoomID.getText(), false);
+        if(bookings == null){
+            return;
+        }
+        slotInfoPane.setVisible(true);
+        slotInfo.setText(curLabel.getText());
         if(bookings[Reservation.getSlotID(curLabel.getText())]!=null) {
             String facultyName="~~~~";
             if (!bookings[Reservation.getSlotID(curLabel.getText())].getFacultyEmail(false).equals("")){
@@ -574,10 +577,14 @@ public class FacultyReservationGUIController implements Initializable{
     public void updateClassStatus(Event e){
         hideLogo();
         hideSlotPane();
-        Button current = (Button) e.getSource();
-        statusRoomID.setText(current.getText());                                  // GUI-Helper integration begins here
-        statusClassSize.setText("  "+Integer.toString(Room.getCapacity(current.getText(), false)));
-        Reservation[] reservation = Room.getDailySchedule(activeDate, current.getText(), false);
+        statusRoomID.setText(activeRoom);                                  // GUI-Helper integration begins here
+        statusClassSize.setText("  "+Integer.toString(Room.getCapacity(activeRoom, false)));
+        Reservation[] reservation = Room.getDailySchedule(activeDate, activeRoom, false);
+        if(reservation == null){
+            showLogo();
+            exitReadOnlyBookings();
+            return;
+        }
         int freeSlots=0;
         for(int i=0;i<28;i++){
             if(reservation[i] == null){
@@ -778,7 +785,8 @@ public class FacultyReservationGUIController implements Initializable{
      */
     public void openBooking(Event action){
         Button current = (Button) action.getSource();
-        Boolean r = Room.exists(current.getText(),false);                               // Loading buttons
+        activeRoom = current.getText();
+        Boolean r = Room.exists(activeRoom,false);                               // Loading buttons
         if(r==false){
             return;
         }
@@ -787,15 +795,16 @@ public class FacultyReservationGUIController implements Initializable{
             return;
         }
         classEvent = action;
+        updateClassStatus(action);
         HoverPane.setTranslateX(0);
+        datePicker.setVisible(false);
         error1.setVisible(true);
         BookBtn.setDisable(true);
         BackBtn.setVisible(true);
         BookBtn.setVisible(true);
         BookBtn.setOpacity(0);
         BackBtn.setOpacity(0);
-        RoomNo.setText(current.getText());
-        activeRoom = current.getText();
+        RoomNo.setText(activeRoom);
         for(int i=0;i<28;i++){
             if(reservation[i] != null){
                 slotButtons.get(i).setText("Booked");
@@ -992,11 +1001,11 @@ public class FacultyReservationGUIController implements Initializable{
      */
     public void exitReadOnlyBookings(){
         if(!isActiveReservation) {
-            induceDelay(appearAfter_HoverPane);
             FadeTransition appear = new FadeTransition(Duration.millis(animation), HoverPane);
             appear.setToValue(0);
             appear.play();
             closeClassStatus();
+            datePicker.setVisible(true);
             selection.forEach((currentBtn, val) -> {
                 currentBtn.setText("Free");
                 currentBtn.setStyle("-fx-background-color:  #424949;");

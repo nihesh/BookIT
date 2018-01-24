@@ -317,14 +317,18 @@ public class StudentReservationGUIController implements Initializable{
      * Open's the student's custom time table
      */
     public void OpenTimeTable(){
+        ArrayList<String> myCourses = activeUser.getMyCourses();
+        Reservation[] listOfReservations = Course.getStudentTT(activeDate, myCourses, false);
+        if(listOfReservations == null){
+            return;
+        }
+        datePicker.setVisible(false);
         timetableprocessing = true;
         TimeTablePane.setVisible(true);
-        ArrayList<String> myCourses = activeUser.getMyCourses();
         FadeTransition appear = new FadeTransition(Duration.millis(animation), TimeTablePane);
         appear.setFromValue(0);
         appear.setToValue(1);
         appear.play();
-        Reservation[] listOfReservations = Course.getStudentTT(activeDate, myCourses, false);
         String date = Integer.toString(activeDate.getDayOfMonth());
         if(date.length() == 1){
             date="0"+date;
@@ -341,8 +345,6 @@ public class StudentReservationGUIController implements Initializable{
                 courseSlotButtons.get(i).setText("Free");
             }
         }
-        rightPane.setDisable(true);
-        leftPane.setDisable(true);
         roomGridPane.setDisable(true);
     }
 
@@ -351,6 +353,7 @@ public class StudentReservationGUIController implements Initializable{
      */
     public void CloseTimeTable(){
         timetableprocessing = false;
+        datePicker.setVisible(true);
         showLogo();
         slotInfoPane.setVisible(false);
         FadeTransition appear = new FadeTransition(Duration.millis(animation), TimeTablePane);
@@ -364,8 +367,6 @@ public class StudentReservationGUIController implements Initializable{
         showLogo();
         appear.setOnFinished(e->{
             TimeTablePane.setVisible(false);
-            rightPane.setDisable(false);
-            leftPane.setDisable(false);
             roomGridPane.setDisable(false);
         });
     }
@@ -651,12 +652,18 @@ public class StudentReservationGUIController implements Initializable{
      * @param e Event object
      */
     public void showSlotInfo(Event e){
+        Reservation[] bookings = Room.getDailySchedule(activeDate, statusRoomID.getText(), false);
+        Reservation[] requests = Room.getPendingReservations(activeUser.getEmail().getEmailID(), activeDate, statusRoomID.getText(), false);
+        if(bookings == null){
+            return;
+        }
+        if(requests == null){
+            return;
+        }
         slotInfoPane.setVisible(true);
         Label curLabel = (Label) e.getSource();
         slotInfo.setText(curLabel.getText());
         currentlyShowingSlot = curLabel.getText();        // GUI-Helper Integration starts
-        Reservation[] bookings = Room.getDailySchedule(activeDate, statusRoomID.getText(), false);
-        Reservation[] requests = Room.getPendingReservations(activeUser.getEmail().getEmailID(), activeDate, statusRoomID.getText(), false);
         Reservation temp = bookings[Reservation.getSlotID(curLabel.getText())];
         if(temp==null){
             temp = requests[Reservation.getSlotID(curLabel.getText())];
@@ -668,13 +675,13 @@ public class StudentReservationGUIController implements Initializable{
                 facultyName = f.getName();
             }
             slotInfoFaculty.setText(facultyName);
-            if(bookings[Reservation.getSlotID(curLabel.getText())].getCourseName().length()>30) {
-                slotInfoCourse.setText(bookings[Reservation.getSlotID(curLabel.getText())].getCourseName().substring(0,15)+"..."+bookings[Reservation.getSlotID(curLabel.getText())].getCourseName().substring(bookings[Reservation.getSlotID(curLabel.getText())].getCourseName().length()-10,bookings[Reservation.getSlotID(curLabel.getText())].getCourseName().length()));
+            if(temp.getCourseName().length()>30) {
+                slotInfoCourse.setText(temp.getCourseName().substring(0,15)+"..."+temp.getCourseName().substring(temp.getCourseName().length()-10,temp.getCourseName().length()));
             }
             else{
-                slotInfoCourse.setText(bookings[Reservation.getSlotID(curLabel.getText())].getCourseName());
+                slotInfoCourse.setText(temp.getCourseName());
             }
-            slotInfoMessage.setText(bookings[Reservation.getSlotID(curLabel.getText())].getCourseName()+"\n"+bookings[Reservation.getSlotID(curLabel.getText())].getMessage());
+            slotInfoMessage.setText(temp.getCourseName()+"\n"+temp.getMessage());
             String currentUserEmail = activeUser.getEmail().getEmailID();
             if(currentUserEmail.equals(temp.getFacultyEmail(false)) || currentUserEmail.equals(temp.getReserverEmail())){
                 cancelSlotBooking.setDisable(false);
@@ -703,11 +710,15 @@ public class StudentReservationGUIController implements Initializable{
     public void updateClassStatus(Event e){
         hideLogo();
         hideSlotPane();
-        Button current = (Button) e.getSource();
-        statusRoomID.setText(current.getText());
-        int capacity = Room.getCapacity(current.getText(), false);                                  // GUI-Helper integration begins here
+        statusRoomID.setText(activeRoom);
+        int capacity = Room.getCapacity(activeRoom, false);                                  // GUI-Helper integration begins here
         statusClassSize.setText("  "+Integer.toString(capacity));
-        Reservation[] reservation = Room.getDailySchedule(activeDate, current.getText(), false);
+        Reservation[] reservation = Room.getDailySchedule(activeDate, activeRoom, false);
+        if(reservation == null){
+            showLogo();
+            exitReadOnlyBookings();
+            return;
+        }
         int freeSlots=0;
         for(int i=0;i<28;i++){
             if(reservation[i] == null){
@@ -1038,7 +1049,8 @@ public class StudentReservationGUIController implements Initializable{
      */
     public void openBooking(Event action){
         Button current = (Button) action.getSource();
-        Boolean check = Room.exists(current.getText(),false);                               // Loading buttons
+        activeRoom = current.getText();
+        Boolean check = Room.exists(activeRoom,false);                               // Loading buttons
         if(check==false){
             return;
         }
@@ -1048,6 +1060,7 @@ public class StudentReservationGUIController implements Initializable{
             return;
         }
         classEvent = action;
+        updateClassStatus(action);
         HoverPane.setTranslateX(0);
         error1.setVisible(true);
         BookBtn.setDisable(true);
@@ -1055,8 +1068,7 @@ public class StudentReservationGUIController implements Initializable{
         BookBtn.setVisible(true);
         BookBtn.setOpacity(0);
         BackBtn.setOpacity(0);
-        RoomNo.setText(current.getText());
-        activeRoom = current.getText();
+        RoomNo.setText(activeRoom);
         for(int i=0;i<28;i++){
             if(reservation[i] != null){
                 slotButtons.get(i).setText("Booked");
@@ -1139,7 +1151,6 @@ public class StudentReservationGUIController implements Initializable{
      */
     public void exitReadOnlyBookings(){
         if(!isActiveReservation) {
-            induceDelay(appearAfter_HoverPane);
             FadeTransition appear = new FadeTransition(Duration.millis(animation), HoverPane);
             appear.setToValue(0);
             appear.play();

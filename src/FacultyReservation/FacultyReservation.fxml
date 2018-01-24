@@ -37,7 +37,7 @@
       </MenuBar>
       <StackPane fx:id="topPane" maxHeight="312.0" maxWidth="1920.0" minHeight="312.0" minWidth="1920.0" prefHeight="382.0" prefWidth="1920.0">
          <children>
-            <StackPane fx:id="leftPane" onMouseEntered="#exitReadOnlyBookings" prefHeight="312.0" prefWidth="1652.0" style="-fx-background-color: #2C3E50;">
+            <StackPane fx:id="leftPane" prefHeight="312.0" prefWidth="1652.0" style="-fx-background-color: #2C3E50;">
                <StackPane.margin>
                   <Insets right="1275.0" />
                </StackPane.margin>
@@ -324,7 +324,7 @@
                   <Insets left="1265.0" right="645.0" />
                </StackPane.margin>
             </SplitPane>
-            <StackPane fx:id="rightPane" layoutX="670.0" layoutY="10.0" onMouseEntered="#exitReadOnlyBookings" prefHeight="312.0" prefWidth="1652.0" style="-fx-background-color: #2C3E50;">
+            <StackPane fx:id="rightPane" layoutX="670.0" layoutY="10.0" prefHeight="312.0" prefWidth="1652.0" style="-fx-background-color: #2C3E50;">
                <StackPane.margin>
                   <Insets left="1275.0" />
                </StackPane.margin>
@@ -441,30 +441,30 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Button mnemonicParsing="false" onMouseClicked="#openBooking" onMouseEntered="#showReadOnlyBookings" opacity="0.76" prefHeight="54.0" prefWidth="225.0" stylesheets="@button.css" text="C01" GridPane.halignment="CENTER" />
-                        <Button mnemonicParsing="false" onMouseClicked="#openBooking" onMouseEntered="#showReadOnlyBookings" opacity="0.76" prefHeight="54.0" prefWidth="225.0" stylesheets="@button.css" text="C12" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                        <Button mnemonicParsing="false" onMouseClicked="#openBooking" opacity="0.76" prefHeight="54.0" prefWidth="225.0" stylesheets="@button.css" text="C01" GridPane.halignment="CENTER" />
+                        <Button mnemonicParsing="false" onMouseClicked="#openBooking" opacity="0.76" prefHeight="54.0" prefWidth="225.0" stylesheets="@button.css" text="C12" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                            <GridPane.margin>
                               <Insets />
                            </GridPane.margin>
                         </Button>
-                        <Button mnemonicParsing="false" onMouseClicked="#openBooking" onMouseEntered="#showReadOnlyBookings" opacity="0.76" prefHeight="54.0" prefWidth="225.0" stylesheets="@button.css" text="C23" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
-                        <Button mnemonicParsing="false" onMouseClicked="#openBooking" onMouseEntered="#showReadOnlyBookings" opacity="0.76" prefHeight="54.0" prefWidth="225.0" stylesheets="@button.css" text="LR3" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
-                        <Button mnemonicParsing="false" onMouseClicked="#openBooking" onMouseEntered="#showReadOnlyBookings" opacity="0.76" prefHeight="54.0" prefWidth="225.0" stylesheets="@button.css" text="A106" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
-                        <Button mnemonicParsing="false" onMouseClicked="#openBooking" onMouseEntered="#showReadOnlyBookings" opacity="0.76" prefHeight="54.0" prefWidth="225.0" stylesheets="@button.css" text="C02" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
-                        <Button mnemonicParsing="false" onMouseClicked="#openBooking" onMouseEntered="#showReadOnlyBookings" opacity="0.76" prefHeight="54.0" prefWidth="225.0" stylesheets="@button.css" text="C13" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-                        <Button mnemonicParsing="false" onMouseClicked="#openBooking" onMouseEntered="#showReadOnlyBookings" opacity="0.76" prefHeight="54.0" prefWidth="225.0" stylesheets="@button.css" text="C24" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
-                        <Button mnemonicParsing="false" onMouseClicked="#openBooking" onMouseEntered="#showReadOnlyBookings" opacity="0.76" prefHeight="54.0" prefWidth="225.0" stylesheets="@button.css" text="S01" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
-                        <Button mnemonicParsing="false" onMouseClicked="#openBooking" onMouseEntered="#showReadOnlyBookings" opacity="0.76" prefHeight="54.0" prefWidth="225.0" stylesheets="@button.css" text="B105" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
-                        <Button mnemonicParsing="false" onMouseClicked="#openBooking" onMouseEntered="#showReadOnlyBookings" opacity="0.76" prefHeight="54.0" prefWidth="225.0" stylesheets="@button.css" text="C03" GridPane.columnIndex="2" GridPane.halignment="CENTER" />
-                        <Button mnemonicParsing="false" onMouseClicked="#openBooking" onMouseEntered="#showReadOnlyBookings" opacity="0.76" prefHeight="54.0" prefWidth="225.0" stylesheets="@button.css" text="C21" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-                        <Button mnemonicParsing="false" onMouseClicked="#openBooking" onMouseEntered="#showReadOnlyBookings" opacity="0.76" prefHeight="54.0" prefWidth="225.0" stylesheets="@button.css" text="LR1" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
-                        <Button mnemonicParsing="false" onMouseClicked="#openBooking" onMouseEntered="#showReadOnlyBookings" opacity="0.76" prefHeight="54.0" prefWidth="225.0" stylesheets="@button.css" text="S02" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
-                        <Button disable="true" mnemonicParsing="false" onMouseClicked="#openBooking" onMouseEntered="#showReadOnlyBookings" opacity="0.76" prefHeight="54.0" prefWidth="225.0" stylesheets="@button.css" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
-                        <Button mnemonicParsing="false" onMouseClicked="#openBooking" onMouseEntered="#showReadOnlyBookings" opacity="0.76" prefHeight="54.0" prefWidth="225.0" stylesheets="@button.css" text="C11" GridPane.columnIndex="3" GridPane.halignment="CENTER" />
-                        <Button mnemonicParsing="false" onMouseClicked="#openBooking" onMouseEntered="#showReadOnlyBookings" opacity="0.76" prefHeight="54.0" prefWidth="225.0" stylesheets="@button.css" text="C22" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-                        <Button mnemonicParsing="false" onMouseClicked="#openBooking" onMouseEntered="#showReadOnlyBookings" opacity="0.76" prefHeight="54.0" prefWidth="225.0" stylesheets="@button.css" text="LR2" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
-                        <Button mnemonicParsing="false" onMouseClicked="#openBooking" onMouseEntered="#showReadOnlyBookings" opacity="0.76" prefHeight="54.0" prefWidth="225.0" stylesheets="@button.css" text="A006" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
-                        <Button disable="true" mnemonicParsing="false" onMouseClicked="#openBooking" onMouseEntered="#showReadOnlyBookings" opacity="0.76" prefHeight="54.0" prefWidth="225.0" stylesheets="@button.css" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
+                        <Button mnemonicParsing="false" onMouseClicked="#openBooking" opacity="0.76" prefHeight="54.0" prefWidth="225.0" stylesheets="@button.css" text="C23" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+                        <Button mnemonicParsing="false" onMouseClicked="#openBooking" opacity="0.76" prefHeight="54.0" prefWidth="225.0" stylesheets="@button.css" text="LR3" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+                        <Button mnemonicParsing="false" onMouseClicked="#openBooking" opacity="0.76" prefHeight="54.0" prefWidth="225.0" stylesheets="@button.css" text="A106" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
+                        <Button mnemonicParsing="false" onMouseClicked="#openBooking" opacity="0.76" prefHeight="54.0" prefWidth="225.0" stylesheets="@button.css" text="C02" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
+                        <Button mnemonicParsing="false" onMouseClicked="#openBooking" opacity="0.76" prefHeight="54.0" prefWidth="225.0" stylesheets="@button.css" text="C13" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+                        <Button mnemonicParsing="false" onMouseClicked="#openBooking" opacity="0.76" prefHeight="54.0" prefWidth="225.0" stylesheets="@button.css" text="C24" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+                        <Button mnemonicParsing="false" onMouseClicked="#openBooking" opacity="0.76" prefHeight="54.0" prefWidth="225.0" stylesheets="@button.css" text="S01" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+                        <Button mnemonicParsing="false" onMouseClicked="#openBooking" opacity="0.76" prefHeight="54.0" prefWidth="225.0" stylesheets="@button.css" text="B105" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
+                        <Button mnemonicParsing="false" onMouseClicked="#openBooking" opacity="0.76" prefHeight="54.0" prefWidth="225.0" stylesheets="@button.css" text="C03" GridPane.columnIndex="2" GridPane.halignment="CENTER" />
+                        <Button mnemonicParsing="false" onMouseClicked="#openBooking" opacity="0.76" prefHeight="54.0" prefWidth="225.0" stylesheets="@button.css" text="C21" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+                        <Button mnemonicParsing="false" onMouseClicked="#openBooking" opacity="0.76" prefHeight="54.0" prefWidth="225.0" stylesheets="@button.css" text="LR1" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+                        <Button mnemonicParsing="false" onMouseClicked="#openBooking" opacity="0.76" prefHeight="54.0" prefWidth="225.0" stylesheets="@button.css" text="S02" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+                        <Button disable="true" mnemonicParsing="false" onMouseClicked="#openBooking" opacity="0.76" prefHeight="54.0" prefWidth="225.0" stylesheets="@button.css" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
+                        <Button mnemonicParsing="false" onMouseClicked="#openBooking" opacity="0.76" prefHeight="54.0" prefWidth="225.0" stylesheets="@button.css" text="C11" GridPane.columnIndex="3" GridPane.halignment="CENTER" />
+                        <Button mnemonicParsing="false" onMouseClicked="#openBooking" opacity="0.76" prefHeight="54.0" prefWidth="225.0" stylesheets="@button.css" text="C22" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+                        <Button mnemonicParsing="false" onMouseClicked="#openBooking" opacity="0.76" prefHeight="54.0" prefWidth="225.0" stylesheets="@button.css" text="LR2" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+                        <Button mnemonicParsing="false" onMouseClicked="#openBooking" opacity="0.76" prefHeight="54.0" prefWidth="225.0" stylesheets="@button.css" text="A006" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+                        <Button disable="true" mnemonicParsing="false" onMouseClicked="#openBooking" opacity="0.76" prefHeight="54.0" prefWidth="225.0" stylesheets="@button.css" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
                      </children>
                      <StackPane.margin>
                         <Insets bottom="100.0" left="350.0" right="350.0" top="200.0" />

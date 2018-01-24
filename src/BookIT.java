@@ -18,7 +18,7 @@ import java.net.Socket;
  *
  */
 public class BookIT extends Application{
-    public static final double BookITversion = 1.0;
+    public static final double BookITversion = 1.1;
 	/**
 	 * launches the login/signup gui
 	 * @param primaryStage stage object
