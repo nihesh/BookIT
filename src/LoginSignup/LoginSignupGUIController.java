@@ -23,6 +23,7 @@ import java.util.List;
 
 import javax.swing.JOptionPane;
 
+import HelperClasses.*;
 import org.apache.http.HttpEntity;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
@@ -31,11 +32,6 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.message.BasicNameValuePair;
 
-import HelperClasses.Admin;
-import HelperClasses.Email;
-import HelperClasses.Faculty;
-import HelperClasses.Student;
-import HelperClasses.User;
 import javafx.animation.FadeTransition;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
@@ -326,8 +322,8 @@ class PortListener implements Runnable{
 			try {
 				serversocket=new ServerSocket(9004);
 			} catch (IOException e) {
+				Notification.throwAlert("Multiple Client Error", "Kindly close the previous session of the app and try again");
 				// TODO Auto-generated catch block
-				System.out.println("server already in use");
 			}
 		}
 		

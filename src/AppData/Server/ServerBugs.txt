@@ -26,3 +26,51 @@ Handled safely
 Exception occured while deserialising Room
 ./src/AppData/Room/null.dat (No such file or directory)
 Handled safely
+Exception occured while deserialising Room
+./src/AppData/Room/null.dat (No such file or directory)
+Handled safely
+Exception occured while deserialising Room
+./src/AppData/Room/null.dat (No such file or directory)
+Handled safely
+Exception occured while deserialising Room
+./src/AppData/Room/null.dat (No such file or directory)
+Handled safely
+Exception occured while deserialising Room
+./src/AppData/Room/null.dat (No such file or directory)
+Handled safely
+Exception occured while deserialising Room
+./src/AppData/Room/null.dat (No such file or directory)
+Handled safely
+Exception occured while deserialising Room
+./src/AppData/Room/null.dat (No such file or directory)
+Handled safely
+Exception occured while deserialising Room
+./src/AppData/Room/null.dat (No such file or directory)
+Handled safely
+Exception occured while deserialising Room
+./src/AppData/Room/null.dat (No such file or directory)
+Handled safely
+Exception occured while deserialising Room
+./src/AppData/Room/null.dat (No such file or directory)
+Handled safely
+Exception occured while deserialising Room
+./src/AppData/Room/null.dat (No such file or directory)
+Handled safely
+Exception occured while deserialising Room
+./src/AppData/Room/null.dat (No such file or directory)
+Handled safely
+Exception occured while deserialising Room
+./src/AppData/Room/null.dat (No such file or directory)
+Handled safely
+Exception occured while deserialising Room
+./src/AppData/Room/null.dat (No such file or directory)
+Handled safely
+Exception occured while deserialising Room
+./src/AppData/Room/null.dat (No such file or directory)
+Handled safely
+Exception occured while deserialising Room
+./src/AppData/Room/null.dat (No such file or directory)
+Handled safely
+Exception occured while deserialising Room
+./src/AppData/Room/null.dat (No such file or directory)
+Handled safely
