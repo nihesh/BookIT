@@ -97,7 +97,7 @@ public class BookIT extends Application{
     public void start(Stage primaryStage){
         int compatibilityCheck = CheckCompatibility(BookITversion, false);
         if(compatibilityCheck == 0){
-            Notification.throwAlert("Launch Error", "You are currently using BookIT v"+BookITversion+". Please download the latest version of BookIT to continue using the application.");
+            Notification.throwAlert("Launch Error", "You are currently using BookIT v"+BookITversion+". Please download the latest version of BookIT");
             return;
         }
         else if(compatibilityCheck == 2){
