@@ -106,6 +106,32 @@ public class LoginSignupGUIController {
 	@FXML
 	private Button OpenAbout;
 	@FXML
+	void keyPressed(KeyEvent event) {
+		switch(event.getCode()) {
+		case ESCAPE:
+			if(Cred_Pane.isVisible() == true) {
+				Press_Cred_Back();
+			}
+			else if(GPane.isVisible() == true) {
+				Close();
+			}
+			break;
+		case V:
+			if(Cred_Pane.isVisible() == false && GPane.isVisible() == false) {
+				PressG();
+			}
+			else if(GPane.isVisible() == true) {
+				Continue();
+			}
+		case C:
+			if(Cred_Pane.isVisible() == false && GPane.isVisible() == false) {
+				Press_Cred();
+			}
+		default:
+			break;
+		}
+	}
+	@FXML
 	private void Press_Cred() {
 		Cred_Pane.setVisible(true);
 		FadeTransition fadein = new FadeTransition(Duration.millis(500), Cred_Pane);

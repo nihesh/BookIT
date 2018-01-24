@@ -14,7 +14,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.web.WebView?>
 
-<StackPane fx:id="FirstPane" maxHeight="235.0" maxWidth="352.0" minHeight="235.0" minWidth="352.0" prefHeight="235.0" prefWidth="352.0" styleClass="pane22" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="LoginSignup.LoginSignupGUIController">
+<StackPane fx:id="FirstPane" maxHeight="235.0" maxWidth="352.0" minHeight="235.0" minWidth="352.0" onKeyPressed="#keyPressed" prefHeight="235.0" prefWidth="352.0" styleClass="pane22" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="LoginSignup.LoginSignupGUIController">
    <children>
       <StackPane maxHeight="235.0" maxWidth="352.0" minHeight="235.0" minWidth="352.0" prefHeight="235.0" prefWidth="352.0" StackPane.alignment="CENTER">
          <children>
