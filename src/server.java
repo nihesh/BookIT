@@ -309,63 +309,36 @@ class ConnectionHandler implements Runnable{
         }
     }
     public void BookingCancellationNotifier(LocalDate queryDate, int slotID, String RoomID, String cancellationMessage){
-
+    	HashMap<String, Integer> h = new HashMap<>();
         Room temp=Room.deserializeRoom(RoomID);
         Reservation r=temp.getSchedule(queryDate)[slotID];
         String recipient = r.getReserverEmail();
-        int fo = 0;
-        int isfac = 0;
-        int iscsv = 0;
-        int facrec = 0;
-        String fac = null;
+        if(recipient != null) {
+        h.put(recipient, 1);}
         if(r.getCourseName() != null && (!r.getCourseName().equals(""))) {
-        	isfac = 1;
-        	fac = course_getFaculty(r.getCourseName());
-        }
-        if(recipient == null || recipient.equals("")) {
-        	iscsv = 1;
-        	recipient = Mail.from;
-        }
-        else {
-        	if(fac != null) {
-        		if(fac.equals(recipient)) {
-        			facrec = 1;
-        		}
+        	String facultyemail = course_getFaculty(r.getCourseName());
+        	if(facultyemail != null) {
+        	h.put(facultyemail, 1);
         	}
-        	
         }
-        String GreetText="Hello User";
-        User x=getUser(recipient);
-        if(x!=null) {
-            GreetText = "Hello "+x.getName();
-        }
-        server.mailpool.execute(new Mail(recipient,"BooKIT - Room booking cancelled", GreetText+","+"\n\nThe following booking of yours have been cancelled by the admin:\n\n"+"Room: "+RoomID+"\nDate: "+queryDate.getDayOfMonth()+"/"+queryDate.getMonthValue()+"/"+queryDate.getYear()+"\nTime: "+ Reservation.getSlotRange(slotID)+" \nReason: "+cancellationMessage+"\n\nIf you think this is a mistake, please contact admin.\n\nRegards,\nBookIT Team"));
-        if(facrec != 1) {
-        	GreetText="Hello User";
-            x=getUser(fac);
-            if(x!=null) {
-                GreetText = "Hello "+x.getName();
-            }
-            server.mailpool.execute(new Mail(fac,"BooKIT - Room booking cancelled", GreetText+","+"\n\nThe following booking of yours have been cancelled by the admin:\n\n"+"Room: "+RoomID+"\nDate: "+queryDate.getDayOfMonth()+"/"+queryDate.getMonthValue()+"/"+queryDate.getYear()+"\nTime: "+ Reservation.getSlotRange(slotID)+" \nReason: "+cancellationMessage+"\n\nIf you think this is a mistake, please contact admin.\n\nRegards,\nBookIT Team"));
-            
-        }
-        if(iscsv != 1) {
-        	GreetText="Hello User";
-            x=getUser(fac);
-            if(x!=null) {
-            GreetText = "Hello "+x.getName();
-            }
-            server.mailpool.execute(new Mail(Mail.from,"BooKIT - Room booking cancelled", GreetText+","+"\n\nThe following booking of yours have been cancelled by the admin:\n\n"+"Room: "+RoomID+"\nDate: "+queryDate.getDayOfMonth()+"/"+queryDate.getMonthValue()+"/"+queryDate.getYear()+"\nTime: "+ Reservation.getSlotRange(slotID)+" \nReason: "+cancellationMessage+"\n\nIf you think this is a mistake, please contact admin.\n\nRegards,\nBookIT Team"));
-                    
-        
-        	
-        }
+        h.put(Mail.from, 1);
         temp.deleteReservation(queryDate, slotID);
         temp.serialize();
         Course c=Course.deserializeCourse(r.getCourseName());
         if(c!=null) {
             c.deleteReservation(queryDate, slotID,r.getTopGroup());
             c.serialize();
+        }
+        for(String email : h.keySet()) {
+        	System.out.println("dsadas");
+        	if(!email.equals("")) {
+        		User x=getUser(email);
+        		String GreetText="Hello User";
+                if(x != null) {
+                	GreetText = "Hello" + x.getName();
+                }
+                server.mailpool.execute(new Mail(email,"BooKIT - Room booking cancelled", GreetText+","+"\n\nThe following booking of yours have been cancelled by the admin:\n\n"+"Room: "+RoomID+"\nDate: "+queryDate.getDayOfMonth()+"/"+queryDate.getMonthValue()+"/"+queryDate.getYear()+"\nTime: "+ Reservation.getSlotRange(slotID)+" \nReason: "+cancellationMessage+"\n\nIf you think this is a mistake, please contact admin.\n\nRegards,\nBookIT Team"));
+            }
         }
     }
     public String generateJoincode(String type){
@@ -506,7 +479,7 @@ class ConnectionHandler implements Runnable{
         ArrayList<Integer> x=new ArrayList<Integer>();
         if(r!=null) {
         	String recipient = r.get(0).getReserverEmail();
-            String GreetText = getUser(recipient).getName();
+            String GreetText = "Hello " + getUser(recipient).getName();
             String TimeSlots="";
             
             for (int i=0;i<data.size();i++) {
@@ -528,7 +501,16 @@ class ConnectionHandler implements Runnable{
             serializeUser(Stud);
             serializeUser(a);
             server.mailpool.execute(new Mail(recipient,"BooKIT - Room reservation request accepted", GreetText+","+"\n\nThe following request of yours have been accepted by the admin:\n\n"+"Room: "+r.get(0).getVenueName()+"\nDate: "+r.get(0).getTargetDate().getDayOfMonth()+"/"+r.get(0).getTargetDate().getMonthValue()+"/"+r.get(0).getTargetDate().getYear()+"\nTime:\n"+TimeSlots+"\n\nIf you think this is a mistake, please contact admin.\n\nRegards,\nBookIT Team"));
-            
+            if(ctemp != null) {
+            	if(ctemp.getInstructorEmail() != null && (!ctemp.getInstructorEmail().equals(""))) {
+            		Faculty ft = (Faculty)getUser(ctemp.getInstructorEmail());
+            		ft.addNotification(n);
+            		serializeUser(ft);
+            		GreetText = "Hello" + ft.getName();
+            		server.mailpool.execute(new Mail(ctemp.getInstructorEmail(),"BooKIT - Room reservation request accepted", GreetText+","+"\n\nThe following request of yours have been accepted by the admin:\n\n"+"Room: "+r.get(0).getVenueName()+"\nDate: "+r.get(0).getTargetDate().getDayOfMonth()+"/"+r.get(0).getTargetDate().getMonthValue()+"/"+r.get(0).getTargetDate().getYear()+"\nTime:\n"+TimeSlots+"\n\nIf you think this is a mistake, please contact admin.\n\nRegards,\nBookIT Team"));
+                    
+            	}
+            }
         }
         if(ctemp!=null) {
             ctemp.serialize();
@@ -741,15 +723,38 @@ class ConnectionHandler implements Runnable{
         return true;
     }
     public boolean studentAndFaculty_cancelBooking(LocalDate queryDate, int slotID, String RoomID) {
-        Room temp=Room.deserializeRoom(RoomID);
+    	HashMap<String, Integer> h = new HashMap<>();
+        h.put(Mail.from, 1);
+        
+    	Room temp=Room.deserializeRoom(RoomID);
         Reservation r=temp.getSchedule(queryDate)[slotID];
+        if(r.getReserverEmail() != null) {
+        	h.put(r.getReserverEmail(), 1);
+        }
         temp.deleteReservation(queryDate, slotID);
         temp.serialize();
         Course c=Course.deserializeCourse(r.getCourseName());
         if(c!=null) {
+        	if(c.getInstructorEmail() != null) {
+        	h.put(c.getInstructorEmail(), 1);}
             c.deleteReservation(queryDate, slotID,r.getTopGroup());
             c.serialize();
         }
+        for(String email : h.keySet()) {
+        	if(!email.equals("")) {
+        		String GreetText = "Hello User";
+        		User x = getUser(email);
+        		ArrayList<Integer> slot= new ArrayList<Integer>();
+        		slot.add(r.getReservationSlot());
+        		Notification n = new Notification("Room Booking", "Cancelled", r.getMessage(), r.getCourseName(), r.getTargetDate(), r.getRoomName(), r.getReserverEmail(), slot);
+                if(x != null) {
+        			GreetText = "Hello " + x.getName();
+        			x.addNotification(n);
+        		}
+        		server.mailpool.execute(new Mail(email,"BooKIT - Room booking cancelled", GreetText+","+"\n\nThe following booking of yours have been cancelled by the admin:\n\n"+"Room: "+RoomID+"\nDate: "+queryDate.getDayOfMonth()+"/"+queryDate.getMonthValue()+"/"+queryDate.getYear()+"\nTime: "+ Reservation.getSlotRange(slotID) +"\n\nIf you think this is a mistake, please contact admin.\n\nRegards,\nBookIT Team"));
+        		serializeUser(x);
+        	}
+        	}
         return true;
     }
     public boolean changePassword(String email, String oldPassword, String newPassword) {
