@@ -33,8 +33,8 @@ public class LoginSignupGUI extends Application{
 			}
 			else {
 				root = FXMLLoader.load(getClass().getResource("LoginSignup1.fxml"));
-				width=(int)(347.0 * screenWidth/800.0);
-				height=(int)(230.0 * screenHeight/600.0);
+				width=(int)(342.0 * screenWidth/800.0);
+				height=(int)(225.0 * screenHeight/600.0);
 			}
 			}
 			else {
