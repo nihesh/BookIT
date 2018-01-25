@@ -25,6 +25,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyCodeCombination;
+import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.*;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -294,6 +297,11 @@ public class AdminReservationGUIController implements Initializable{
     }
     @FXML
     void keyPressed(KeyEvent event) {
+    	KeyCombination kb = new KeyCodeCombination(KeyCode.L, KeyCombination.CONTROL_DOWN);
+    	if(kb.match(event)) {
+    		signout();
+    	}
+    	else{
         switch(event.getCode()) {
             case ESCAPE:
                 if(pullDownPane.isVisible()){
@@ -311,6 +319,7 @@ public class AdminReservationGUIController implements Initializable{
             default:
                 break;
         }
+    }
     }
     public void OpenNotifications() {
     	try {
