@@ -329,15 +329,20 @@ class ConnectionHandler implements Runnable{
             c.serialize();
         }
         for(String email : h.keySet()) {
-        	System.out.println("dsadas");
         	if(!email.equals("")) {
+        		
         		User x=getUser(email);
-        		String GreetText="Hello User";
+        		ArrayList<Integer> t = new ArrayList<>();
+        		t.add(r.getReservationSlot());
+        		Notification n = new Notification("Room Booking", "Cancelled", r.getMessage(), r.getCourseName(), r.getTargetDate(), r.getRoomName(), r.getReserverEmail(),t);
+                String GreetText="Hello User";
                 if(x != null) {
                 	GreetText = "Hello" + x.getName();
+                	x.addNotification(n);
                 }
                 server.mailpool.execute(new Mail(email,"BooKIT - Room booking cancelled", GreetText+","+"\n\nThe following booking of yours have been cancelled by the admin:\n\n"+"Room: "+RoomID+"\nDate: "+queryDate.getDayOfMonth()+"/"+queryDate.getMonthValue()+"/"+queryDate.getYear()+"\nTime: "+ Reservation.getSlotRange(slotID)+" \nReason: "+cancellationMessage+"\n\nIf you think this is a mistake, please contact admin.\n\nRegards,\nBookIT Team"));
-            }
+                serializeUser(x);
+        	}
         }
     }
     public String generateJoincode(String type){
