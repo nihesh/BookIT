@@ -237,6 +237,12 @@ public class FacultyReservationGUIController implements Initializable{
                 else if(HoverPane.isVisible()){
                     exitReadOnlyBookings();
                 }
+                break;
+            case ENTER:
+                if(HoverPane.isVisible()){
+                    pullDownReservationPane();
+                }
+                break;
             default:
                 break;
         }
@@ -566,7 +572,9 @@ public class FacultyReservationGUIController implements Initializable{
             String facultyName="~~~~";
             if (!bookings[Reservation.getSlotID(curLabel.getText())].getFacultyEmail(false).equals("")){
                 Faculty f = (Faculty)User.getUser(bookings[Reservation.getSlotID(curLabel.getText())].getFacultyEmail(false), false);
-                facultyName = f.getName();
+                if(f!=null) {
+                    facultyName = f.getName();
+                }
             }
             slotInfoFaculty.setText(facultyName);
             if(bookings[Reservation.getSlotID(curLabel.getText())].getCourseName().length()>30) {
@@ -775,7 +783,7 @@ public class FacultyReservationGUIController implements Initializable{
             i++;
         }
         selectedSlotsScrollPane.setPrefSize(494,max(474,50*i));
-        ArrayList<String> allCourses = Course.getAllCourses(    );                  // GUI Integration
+        ArrayList<String> allCourses = activeUser.getCourses();
         courseDropDown.getItems().clear();
         purposeDropDown.getItems().clear();
         groupDropDown.getItems().clear();

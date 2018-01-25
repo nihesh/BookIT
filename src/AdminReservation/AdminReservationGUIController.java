@@ -247,7 +247,9 @@ public class AdminReservationGUIController implements Initializable{
             out.writeObject("admin_getRequestsQueue");
             out.flush();
             PriorityQueue<ArrayList<Reservation>> c = (PriorityQueue<ArrayList<Reservation>>) in.readObject();
-            FileWriter file = new FileWriter(new File("./src/AppData/Downloads/Requests.txt"), false);
+            File f = new File("./Downloads");
+            f.mkdirs();
+            FileWriter file = new FileWriter(new File("./Downloads/Requests.txt"), false);
             int i=1;
             while(!c.isEmpty()){
                 ArrayList<Reservation> r = c.peek();
@@ -285,7 +287,7 @@ public class AdminReservationGUIController implements Initializable{
             out.close();
             in.close();
             server.close();
-            Notification.throwAlert("Notification","Download Complete! The downloaded file is located in ./src/AppData/Downloads");
+            Notification.throwAlert("Notification","Download Complete! The downloaded file is located in ./Downloads/requests.txt");
         }
         catch(IOException e){
             System.out.println(e.getMessage());
@@ -316,6 +318,12 @@ public class AdminReservationGUIController implements Initializable{
                 else if(HoverPane.isVisible()){
                     exitReadOnlyBookings();
                 }
+                break;
+            case ENTER:
+                if(HoverPane.isVisible()){
+                    pullDownReservationPane();
+                }
+                break;
             default:
                 break;
         }
@@ -772,7 +780,9 @@ public class AdminReservationGUIController implements Initializable{
             String facultyName="~~~~";
             if (!bookings[Reservation.getSlotID(curLabel.getText())].getFacultyEmail(false).equals("")){
                 Faculty f = (Faculty)User.getUser(bookings[Reservation.getSlotID(curLabel.getText())].getFacultyEmail(false), false);
-                facultyName = f.getName();
+                if(f!=null) {
+                    facultyName = f.getName();
+                }
             }
             slotInfoFaculty.setText(facultyName);
             if(bookings[Reservation.getSlotID(curLabel.getText())].getCourseName().length()>30) {

@@ -241,6 +241,12 @@ public class StudentReservationGUIController implements Initializable{
                 else if(HoverPane.isVisible()){
                     exitReadOnlyBookings();
                 }
+                break;
+            case ENTER:
+                if(HoverPane.isVisible()){
+                    pullDownReservationPane();
+                }
+                break;
             default:
                 break;
         }
@@ -717,7 +723,9 @@ public class StudentReservationGUIController implements Initializable{
             String facultyName="~~~~";
             if (!temp.getFacultyEmail(false).equals("")){
                 Faculty f = (Faculty)User.getUser(temp.getFacultyEmail(false), false);
-                facultyName = f.getName();
+                if(f!=null) {
+                    facultyName = f.getName();
+                }
             }
             slotInfoFaculty.setText(facultyName);
             if(temp.getCourseName().length()>30) {

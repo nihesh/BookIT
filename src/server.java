@@ -268,7 +268,6 @@ class ConnectionHandler implements Runnable{
                     ;
                 }
             }
-
         }
         return p;
     }

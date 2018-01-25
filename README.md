@@ -18,5 +18,5 @@ password - To@0L]d9
 
 ISSUES
 	- noreply email from iiitd
-	- student booking request acceptance
+	- Email spam for multiple slot booking
 	
