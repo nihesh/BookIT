@@ -19,4 +19,5 @@ password - To@0L]d9
 ISSUES
 	- noreply email from iiitd
 	- Email spam for multiple slot booking
+	- server time issue
 	
