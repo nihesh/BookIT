@@ -22,17 +22,32 @@ public class LoginSignupGUI extends Application{
 			Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 			double screenWidth = screenSize.getWidth();
 			double screenHeight = screenSize.getHeight();
+			
 			Parent root;
 			double width,height;
-			if(screenWidth > 1300) {
+			if(System.getProperty("os.name").contains("Windows")) {
+			if(screenWidth > 1320) {
 			root = FXMLLoader.load(getClass().getResource("LoginSignup.fxml"));
-			width=(int)(600.0 * screenWidth/1366.0);
-			height=(int)(400.0 * screenHeight/768.0);
+			width=(int)(590.0 * screenWidth/1366.0);
+			height=(int)(390.0 * screenHeight/768.0);
 			}
 			else {
 				root = FXMLLoader.load(getClass().getResource("LoginSignup1.fxml"));
-				width=(int)(352.0 * screenWidth/800.0);
-				height=(int)(235.0 * screenHeight/600.0);
+				width=(int)(342.0 * screenWidth/800.0);
+				height=(int)(225.0 * screenHeight/600.0);
+			}
+			}
+			else {
+				if(screenWidth > 1320) {
+					root = FXMLLoader.load(getClass().getResource("LoginSignup.fxml"));
+					width=(int)(600.0 * screenWidth/1366.0);
+					height=(int)(400.0 * screenHeight/768.0);
+					}
+					else {
+						root = FXMLLoader.load(getClass().getResource("LoginSignup1.fxml"));
+						width=(int)(352.0 * screenWidth/800.0);
+						height=(int)(235.0 * screenHeight/600.0);
+					}
 			}
 			Scene scene = new Scene(root,width,height);
 			primaryStage.setScene(scene);

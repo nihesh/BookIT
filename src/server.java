@@ -314,19 +314,22 @@ class ConnectionHandler implements Runnable{
         Reservation r=temp.getSchedule(queryDate)[slotID];
         String recipient = r.getReserverEmail();
         int fo = 0;
-        int eq = 0;
+        int isfac = 0;
+        int iscsv = 0;
+        int facrec = 0;
         String fac = null;
-        if(r.getCourseName() != null || (!r.getCourseName().equals(""))) {
-        fac = course_getFaculty(r.getCourseName());
+        if(r.getCourseName() != null && (!r.getCourseName().equals(""))) {
+        	isfac = 1;
+        	fac = course_getFaculty(r.getCourseName());
         }
         if(recipient == null || recipient.equals("")) {
+        	iscsv = 1;
         	recipient = Mail.from;
         }
         else {
-        	fo = 1;
         	if(fac != null) {
         		if(fac.equals(recipient)) {
-        			eq = 1;
+        			facrec = 1;
         		}
         	}
         	
@@ -337,30 +340,25 @@ class ConnectionHandler implements Runnable{
             GreetText = "Hello "+x.getName();
         }
         server.mailpool.execute(new Mail(recipient,"BooKIT - Room booking cancelled", GreetText+","+"\n\nThe following booking of yours have been cancelled by the admin:\n\n"+"Room: "+RoomID+"\nDate: "+queryDate.getDayOfMonth()+"/"+queryDate.getMonthValue()+"/"+queryDate.getYear()+"\nTime: "+ Reservation.getSlotRange(slotID)+" \nReason: "+cancellationMessage+"\n\nIf you think this is a mistake, please contact admin.\n\nRegards,\nBookIT Team"));
-        if(!recipient.equals(Mail.from)) {
+        if(facrec != 1) {
         	GreetText="Hello User";
-            x=getUser(Mail.from);
+            x=getUser(fac);
             if(x!=null) {
                 GreetText = "Hello "+x.getName();
             }
-            server.mailpool.execute(new Mail(Mail.from,"BooKIT - Room booking cancelled", GreetText+","+"\n\nThe following booking of yours have been cancelled by the admin:\n\n"+"Room: "+RoomID+"\nDate: "+queryDate.getDayOfMonth()+"/"+queryDate.getMonthValue()+"/"+queryDate.getYear()+"\nTime: "+ Reservation.getSlotRange(slotID)+" \nReason: "+cancellationMessage+"\n\nIf you think this is a mistake, please contact admin.\n\nRegards,\nBookIT Team"));
+            server.mailpool.execute(new Mail(fac,"BooKIT - Room booking cancelled", GreetText+","+"\n\nThe following booking of yours have been cancelled by the admin:\n\n"+"Room: "+RoomID+"\nDate: "+queryDate.getDayOfMonth()+"/"+queryDate.getMonthValue()+"/"+queryDate.getYear()+"\nTime: "+ Reservation.getSlotRange(slotID)+" \nReason: "+cancellationMessage+"\n\nIf you think this is a mistake, please contact admin.\n\nRegards,\nBookIT Team"));
             
         }
-        if(fac != null && (!fac.equals(""))) {
-        	if((recipient != null && recipient.equals("")) && fac.equals(recipient)) {
-        		
-        	}
-        	else {
-        		if(fac != null) {
-        			GreetText="Hello User";
-                    x=getUser(fac);
-                    if(x!=null) {
-                        GreetText = "Hello "+x.getName();
-                    }
-                    server.mailpool.execute(new Mail(fac,"BooKIT - Room booking cancelled", GreetText+","+"\n\nThe following booking of yours have been cancelled by the admin:\n\n"+"Room: "+RoomID+"\nDate: "+queryDate.getDayOfMonth()+"/"+queryDate.getMonthValue()+"/"+queryDate.getYear()+"\nTime: "+ Reservation.getSlotRange(slotID)+" \nReason: "+cancellationMessage+"\n\nIf you think this is a mistake, please contact admin.\n\nRegards,\nBookIT Team"));
+        if(iscsv != 1) {
+        	GreetText="Hello User";
+            x=getUser(fac);
+            if(x!=null) {
+            GreetText = "Hello "+x.getName();
+            }
+            server.mailpool.execute(new Mail(Mail.from,"BooKIT - Room booking cancelled", GreetText+","+"\n\nThe following booking of yours have been cancelled by the admin:\n\n"+"Room: "+RoomID+"\nDate: "+queryDate.getDayOfMonth()+"/"+queryDate.getMonthValue()+"/"+queryDate.getYear()+"\nTime: "+ Reservation.getSlotRange(slotID)+" \nReason: "+cancellationMessage+"\n\nIf you think this is a mistake, please contact admin.\n\nRegards,\nBookIT Team"));
                     
-        		}
-        	}
+        
+        	
         }
         temp.deleteReservation(queryDate, slotID);
         temp.serialize();
@@ -544,7 +542,6 @@ class ConnectionHandler implements Runnable{
             serializeRequests(p);
             return false;
         }
-        System.out.println("hi");
         ArrayList<Reservation> r = p.peek();
         String recipient = r.get(0).getReserverEmail();
         String GreetText = getUser(recipient).getName();
