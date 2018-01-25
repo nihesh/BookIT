@@ -783,6 +783,7 @@ class ConnectionHandler implements Runnable{
         Course c = Course.deserializeCourse(course);
         c.instructorEmail = f;
         c.serialize();
+        server.loadFreeCourses();
     }
     public String reservation_facultyEmail(String course) {
         Course c = Course.deserializeCourse(course);

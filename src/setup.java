@@ -184,6 +184,7 @@ public class setup {
                     if(day.equals(currentDate.getDayOfWeek().toString().toLowerCase())) {
                         Reservation r = new Reservation(message, group, name, "", venue, message, currentSlot);
                         r.setTargetDate(currentDate);
+                        r.setReserverEmail(Mail.from);
                         if(!courseData.get(name).addReservation(currentDate, currentSlot, r) && !courseFlag){
                             courseFlag = true;
                             System.out.println(name+" "+startTime+" "+endTime+" "+venue+" has a collision within the course. Please rectify csv");
@@ -203,6 +204,7 @@ public class setup {
                     if(day.equals(currentDate.getDayOfWeek().toString().toLowerCase())) {
                         Reservation r = new Reservation(message, group, name, "", venue, message, currentSlot);
                         r.setTargetDate(currentDate);
+                        r.setReserverEmail(Mail.from);
                         if(!roomData.get(venue).addReservation(currentDate, currentSlot, r) && reservationSuccessFlag){
                             reservationSuccessFlag = false;
                             System.out.println(name+" "+startTime+" "+endTime+" "+venue+" has a collision with an earlier reservation. Please rectify csv");
