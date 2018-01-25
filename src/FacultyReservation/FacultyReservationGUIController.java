@@ -306,6 +306,9 @@ public class FacultyReservationGUIController implements Initializable{
      * Event handler for deleting a booked reservation
      */
     public void cancelSlotBooking(){
+        if(!Notification.throwConfirmation("Warning", "You are about to cancel the booking. Are you sure you want to proceed?")){
+            return;
+        }
         activeUser.cancelBooking(activeDate,Reservation.getSlotID(currentlyShowingSlot),activeRoom, false);
         Button current = slotButtons.get(Reservation.getSlotID(currentlyShowingSlot));
         current.setDisable(false);

@@ -667,9 +667,15 @@ public class StudentReservationGUIController implements Initializable{
     public void cancelSlotBooking(){
         Reservation r = Room.serverFetchRequest(activeUser.getEmail().getEmailID(), activeDate, Reservation.getSlotID(currentlyShowingSlot),activeRoom,false);
         if(r.isRequest()){
+            if(!Notification.throwConfirmation("Warning", "You are about to cancel the request. Are you sure you want to proceed?")){
+                return;
+            }
             Room.serverDeleteRequest(activeUser.getEmail().getEmailID(), activeDate, Reservation.getSlotID(currentlyShowingSlot),activeRoom,false);
         }
         else {
+            if(!Notification.throwConfirmation("Warning", "You are about to cancel the booking. Are you sure you want to proceed?")){
+                return;
+            }
             activeUser.cancelBooking(activeDate, Reservation.getSlotID(currentlyShowingSlot), activeRoom, false);
         }
         Button current = slotButtons.get(Reservation.getSlotID(currentlyShowingSlot));

@@ -1106,7 +1106,7 @@
                         <Insets right="30.0" top="30.0" />
                      </StackPane.margin>
                   </Button>
-                  <Label fx:id="error1" alignment="CENTER" contentDisplay="CENTER" prefHeight="42.0" prefWidth="672.0" text="Select one or more slots to proceed to booking. Click on the time range to view details or cancel booking">
+                  <Label fx:id="error1" alignment="CENTER" contentDisplay="CENTER" prefHeight="42.0" prefWidth="1548.0" text="Select one or more slots to proceed to booking. Click on the time range to view details or cancel booking">
                      <opaqueInsets>
                         <Insets />
                      </opaqueInsets>

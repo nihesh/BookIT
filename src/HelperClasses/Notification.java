@@ -1,6 +1,7 @@
 package HelperClasses;
 
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -41,6 +42,14 @@ public class Notification implements Serializable{
 		alert.setHeaderText(null);
 		alert.setContentText(message);
 		alert.showAndWait();
+	}
+	public static Boolean throwConfirmation(String title, String message){
+		Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+		alert.setTitle(title);
+		alert.setHeaderText(null);
+		alert.setContentText(message);
+		alert.showAndWait();
+		return alert.getResult() == ButtonType.OK;
 	}
 	@Override
 	public String toString() {

@@ -298,6 +298,9 @@ public class AdminReservationGUIController implements Initializable{
                 else if(pullDownPane2.isVisible()){
                     hideRequests();
                 }
+                else if(cancelMessagePane.isVisible()){
+                    exitCancelBooking();
+                }
                 else if(HoverPane.isVisible()){
                     exitReadOnlyBookings();
                 }
@@ -353,6 +356,9 @@ public class AdminReservationGUIController implements Initializable{
      */
     public void cancelSlotBooking(){
         if(cancelMessageText.getText().equals("")){
+            return;
+        }
+        if(!Notification.throwConfirmation("Warning", "You are about to cancel the booking. Are you sure you want to proceed?")){
             return;
         }
         cancelBookingProcessing = false;
