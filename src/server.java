@@ -571,7 +571,7 @@ class ConnectionHandler implements Runnable{
         temp.serialize();
         return true;
     }
-    public boolean adminandfaculty_bookRoom(LocalDate start, LocalDate end, int slot, Reservation r) {
+    public boolean adminandfaculty_bookRoom(ArrayList<LocalDate> date, int slot, Reservation r) {
         Room room=Room.deserializeRoom(r.getRoomName());
         Boolean addToCourse = true;
         if(r.getCourseName().equals("")){
@@ -579,8 +579,7 @@ class ConnectionHandler implements Runnable{
         }
         Course course;
         course = Course.deserializeCourse(r.getCourseName());
-        LocalDate temp2 = LocalDate.of(start.getYear(), start.getMonth(), start.getDayOfMonth());
-        while(!temp2.isAfter(end)){
+        for(LocalDate temp2 : date){
             if(addToCourse){
                 if (!(course.checkReservation(temp2, slot, r) == true && room.checkReservation(temp2, slot, r) == true)){
                     return false;
@@ -591,7 +590,6 @@ class ConnectionHandler implements Runnable{
                     return false;
                 }
             }
-            temp2 = temp2.plusDays(1);
         }
         int flag=0;
         User temp = getUser(r.getReserverEmail());
@@ -600,7 +598,7 @@ class ConnectionHandler implements Runnable{
         	flag=1;
         }
         course = Course.deserializeCourse(r.getCourseName());
-        while(!start.isAfter(end)) {
+        for(LocalDate start : date){
             if (addToCourse) {
                 course.addReservation(start, slot, r);
                 room.addReservation(start, slot, r);
@@ -648,7 +646,6 @@ class ConnectionHandler implements Runnable{
                 }
                 
             }
-               start = start.plusDays(1);
         }
         room.serialize();
         room.serialize();
@@ -903,16 +900,15 @@ class ConnectionHandler implements Runnable{
         serializeUser(x);
         return temp;
     }
-    public Boolean checkBulkBooking(String room, ArrayList<Integer> slots, LocalDate start, LocalDate end){
+    public Boolean checkBulkBooking(String room, ArrayList<Integer> slots, ArrayList<LocalDate> date){
         Room r = Room.deserializeRoom(room);
-        while(!start.isAfter(end)){
+        for(LocalDate start: date){
             Reservation[] temp = r.getSchedule(start);
             for(int i=0;i<slots.size();i++){
                 if(temp[slots.get(i)]!=null){
                     return false;
                 }
             }
-            start = start.plusDays(1);
         }
         return true;
     }
@@ -1199,15 +1195,14 @@ class ConnectionHandler implements Runnable{
                         out.flush();
                         break;
                     case "adminandfaculty_bookroom":
-                        start = (LocalDate) in.readObject();
-                        end = (LocalDate) in.readObject();
+                        ArrayList<LocalDate> date = (ArrayList<LocalDate>) in.readObject();
                         slotID = (int) in.readObject();
                         res = (Reservation) in.readObject();
                         ans = false;
                         if(!status.equals("Pass")) {
                             lock.lockInterruptibly();
                         }
-                        ans = adminandfaculty_bookRoom(start, end, slotID, res);
+                        ans = adminandfaculty_bookRoom(date, slotID, res);
                         if(lock.isLocked() && lock.isHeldByCurrentThread()){
                             System.out.print("[ "+LocalDateTime.now()+" ] ");
                             System.out.println(connection.getInetAddress().toString() + " | ServerLock Released");
@@ -1586,13 +1581,12 @@ class ConnectionHandler implements Runnable{
                     case "checkBulkBooking":
                         room = (String) in.readObject();
                         ArrayList<Integer> slots = (ArrayList<Integer>) in.readObject();
-                        start = (LocalDate) in.readObject();
-                        end = (LocalDate) in.readObject();
+                        ArrayList<LocalDate> d = (ArrayList<LocalDate>) in.readObject();
                         result = false;
                         if(!status.equals("Pass")) {
                             lock.lockInterruptibly();
                         }
-                        result = checkBulkBooking(room, slots,start,end);
+                        result = checkBulkBooking(room, slots, d);
                         if(lock.isLocked() && lock.isHeldByCurrentThread()){
                             System.out.print("[ "+LocalDateTime.now()+" ] ");
                             System.out.println(connection.getInetAddress().toString() + " | ServerLock Released");

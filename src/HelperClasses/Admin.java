@@ -126,7 +126,7 @@ public class Admin extends User{
 			System.out.println("IOException occured while soft resetting the server");
 		}
 	}
-	public static Boolean checkBulkBooking(String room, ArrayList<Integer> slots, LocalDate start, LocalDate end, Boolean lock){
+	public static Boolean checkBulkBooking(String room, ArrayList<Integer> slots, ArrayList<LocalDate> date, Boolean lock){
 		try {
 			File file = new File("./src/AppData/GeneratedJoinCode/list.txt");
 			Socket server = new Socket(BookITconstants.serverIP, BookITconstants.serverPort);
@@ -145,9 +145,7 @@ public class Admin extends User{
 			out.flush();
 			out.writeObject(slots);
 			out.flush();
-			out.writeObject(start);
-			out.flush();
-			out.writeObject(end);
+			out.writeObject(date);
 			out.flush();
 			Boolean c = (Boolean) in.readObject();
 			out.close();
@@ -354,7 +352,7 @@ public class Admin extends User{
 	 * @param r the reservation object see also {@link Reservation} class
 	 * @return true if booked false otherwise
 	 */
-	public boolean bookRoom(LocalDate startDate, LocalDate endDate, int slot, Reservation r, Boolean lock) {
+	public boolean bookRoom(ArrayList<LocalDate> date, int slot, Reservation r, Boolean lock) {
 		try{
 			Socket server = new Socket(BookITconstants.serverIP, BookITconstants.serverPort);
 			ObjectOutputStream out = new ObjectOutputStream(server.getOutputStream());
@@ -368,9 +366,7 @@ public class Admin extends User{
 			out.flush();
 			out.writeObject("adminandfaculty_bookroom");
 			out.flush();
-			out.writeObject(startDate);
-			out.flush();
-			out.writeObject(endDate);
+			out.writeObject(date);
 			out.flush();
 			out.writeObject(slot);
 			out.flush();

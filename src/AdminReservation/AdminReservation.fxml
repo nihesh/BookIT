@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
@@ -1119,7 +1120,7 @@
                   </Label>
                </children>
             </StackPane>
-            <StackPane fx:id="pullDownPane" prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: #2a2a2a; visibility: false;">
+            <StackPane fx:id="pullDownPane" prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: #2a2a2a; visibility: true;">
                <children>
                   <StackPane prefHeight="150.0" prefWidth="1320.0" style="-fx-border-width: 2; -fx-border-color: white;" StackPane.alignment="CENTER">
                      <children>
@@ -1253,7 +1254,7 @@
                               </Label>
                               <Button mnemonicParsing="false" onMouseClicked="#preBookingProceed" stylesheets="@../FacultyReservation/button.css" text="Proceed">
                                  <StackPane.margin>
-                                    <Insets left="540.0" top="200.0" />
+                                    <Insets left="540.0" top="450.0" />
                                  </StackPane.margin>
                               </Button>
                               <ComboBox fx:id="optionDropDown" prefHeight="38.0" prefWidth="331.0">
@@ -1287,6 +1288,70 @@
                                     <Insets left="850.0" right="115.0" />
                                  </StackPane.margin>
                               </DatePicker>
+                              <CheckBox fx:id="mon" mnemonicParsing="false" selected="true" text="Mon" textFill="WHITE">
+                                 <StackPane.margin>
+                                    <Insets left="170.0" top="200.0" />
+                                 </StackPane.margin>
+                                 <font>
+                                    <Font size="19.0" />
+                                 </font>
+                              </CheckBox>
+                              <CheckBox fx:id="tue" layoutX="691.0" layoutY="395.0" mnemonicParsing="false" selected="true" text="Tue" textFill="WHITE">
+                                 <font>
+                                    <Font size="19.0" />
+                                 </font>
+                                 <StackPane.margin>
+                                    <Insets left="400.0" top="200.0" />
+                                 </StackPane.margin>
+                              </CheckBox>
+                              <CheckBox fx:id="wed" layoutX="631.0" layoutY="295.0" mnemonicParsing="false" selected="true" text="Wed" textFill="WHITE">
+                                 <font>
+                                    <Font size="19.0" />
+                                 </font>
+                                 <StackPane.margin>
+                                    <Insets left="630.0" top="200.0" />
+                                 </StackPane.margin>
+                              </CheckBox>
+                              <CheckBox fx:id="sun" layoutX="631.0" layoutY="295.0" mnemonicParsing="false" selected="true" text="Sun" textFill="WHITE">
+                                 <font>
+                                    <Font size="19.0" />
+                                 </font>
+                                 <StackPane.margin>
+                                    <Insets left="625.0" top="300.0" />
+                                 </StackPane.margin>
+                              </CheckBox>
+                              <CheckBox fx:id="sat" layoutX="631.0" layoutY="295.0" mnemonicParsing="false" selected="true" text="Sat" textFill="WHITE">
+                                 <font>
+                                    <Font size="19.0" />
+                                 </font>
+                                 <StackPane.margin>
+                                    <Insets left="395.0" top="300.0" />
+                                 </StackPane.margin>
+                              </CheckBox>
+                              <CheckBox fx:id="fri" layoutX="631.0" layoutY="295.0" mnemonicParsing="false" selected="true" text="Fri" textFill="WHITE">
+                                 <font>
+                                    <Font size="19.0" />
+                                 </font>
+                                 <StackPane.margin>
+                                    <Insets left="155.0" top="300.0" />
+                                 </StackPane.margin>
+                              </CheckBox>
+                              <CheckBox fx:id="thu" layoutX="631.0" layoutY="295.0" mnemonicParsing="false" selected="true" text="Thu" textFill="WHITE">
+                                 <font>
+                                    <Font size="19.0" />
+                                 </font>
+                                 <StackPane.margin>
+                                    <Insets left="860.0" top="200.0" />
+                                 </StackPane.margin>
+                              </CheckBox>
+                              <Label layoutX="666.0" layoutY="286.0" prefHeight="45.0" prefWidth="155.0" text="Days" textFill="WHITE">
+                                 <font>
+                                    <Font size="27.0" />
+                                 </font>
+                                 <StackPane.margin>
+                                    <Insets left="150.0" top="100.0" />
+                                 </StackPane.margin>
+                              </Label>
                            </children>
                         </StackPane>
                      </children>

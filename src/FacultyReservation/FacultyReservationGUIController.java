@@ -915,7 +915,9 @@ public class FacultyReservationGUIController implements Initializable{
         }                                                   // GUI Integration Ends
         Boolean failure = false;
         for(int i=0;i<listOfReservations.size();i++){
-            if(!activeUser.bookRoom(listOfReservations.get(i).getTargetDate(),listOfReservations.get(i).getTargetDate(), listOfReservations.get(i).getReservationSlot(), listOfReservations.get(i), false)){
+            ArrayList<LocalDate> date = new ArrayList<>();
+            date.add(listOfReservations.get(i).getTargetDate());
+            if(!activeUser.bookRoom(date, listOfReservations.get(i).getReservationSlot(), listOfReservations.get(i), false)){
                 failure = true;
             }
         }
@@ -952,7 +954,9 @@ public class FacultyReservationGUIController implements Initializable{
             listOfReservations.add(r);
         }                                                   // GUI Integration Ends
         for(int i=0;i<listOfReservations.size();i++){
-            if(!activeUser.bookRoom(listOfReservations.get(i).getTargetDate(),listOfReservations.get(i).getTargetDate(), listOfReservations.get(i).getReservationSlot(), listOfReservations.get(i), false)){
+            ArrayList<LocalDate> date = new ArrayList<>();
+            date.add(listOfReservations.get(i).getTargetDate());
+            if(!activeUser.bookRoom(date, listOfReservations.get(i).getReservationSlot(), listOfReservations.get(i), false)){
                 Notification.throwAlert("Booking Error","The booking couldn't be completed as one of the slots you've chosen has been booked. Please refresh the page and try a different room");
             }
         }

@@ -100,6 +100,8 @@ public class AdminReservationGUIController implements Initializable{
     private ComboBox groupDropDown, optionDropDown;
     @FXML
     private TextArea requestMessage, requestMessage2, cancelMessageText;
+    @FXML
+    private CheckBox mon, tue, wed, thu, fri, sat, sun;
 
     @FXML
     private VBox rootPane;
@@ -113,6 +115,8 @@ public class AdminReservationGUIController implements Initializable{
     private StackPane preBooking, courseBooking, otherBooking;
     @FXML
     private TextField purposeBox;
+    @FXML
+    private ArrayList<LocalDate> date;
 
     private String currentPurpose;
     private LocalDate activeDate;
@@ -1045,13 +1049,13 @@ public class AdminReservationGUIController implements Initializable{
             r.setReserverEmail(activeUser.getEmail().getEmailID());
             listOfReservations.add(r);
         }                                                   // GUI Integration Ends
-        if(!Admin.checkBulkBooking(activeRoom, chosenSlots, startDate.getValue(), endDate.getValue(), false)){
+        if(!Admin.checkBulkBooking(activeRoom, chosenSlots, date, false)){
             Notification.throwAlert("Error","Cannot complete booking as there is some other confirmed booking in one of the slots that you are trying to book");
             return;
         }
         Boolean failure = false;
         for(int i=0;i<listOfReservations.size();i++){
-            if(!activeUser.bookRoom(startDate.getValue(), endDate.getValue(), listOfReservations.get(i).getReservationSlot(), listOfReservations.get(i), false)){
+            if(!activeUser.bookRoom(date, listOfReservations.get(i).getReservationSlot(), listOfReservations.get(i), false)){
                 failure = true;
             }
         }
@@ -1087,12 +1091,12 @@ public class AdminReservationGUIController implements Initializable{
             r.setReserverEmail(activeUser.getEmail().getEmailID());
             listOfReservations.add(r);
         }                                                   // GUI Integration Ends
-        if(!Admin.checkBulkBooking(activeRoom, chosenSlots, startDate.getValue(), endDate.getValue(), false)){
+        if(!Admin.checkBulkBooking(activeRoom, chosenSlots, date, false)){
             Notification.throwAlert("Cannot complete booking. Please close this session and try again", "Error");
             return;
         }
         for(int i=0;i<listOfReservations.size();i++){
-            if(!activeUser.bookRoom(startDate.getValue(), endDate.getValue(), listOfReservations.get(i).getReservationSlot(), listOfReservations.get(i), false)){
+            if(!activeUser.bookRoom(date, listOfReservations.get(i).getReservationSlot(), listOfReservations.get(i), false)){
                 Notification.throwAlert("Booking Error","The booking couldn't be completed as one of the slots you've chosen has been booked. Please refresh the page and try a different slot");
             }
         }
@@ -1144,6 +1148,13 @@ public class AdminReservationGUIController implements Initializable{
         if(reservation == null){
             return;
         }
+        mon.setSelected(true);
+        tue.setSelected(true);
+        wed.setSelected(true);
+        thu.setSelected(true);
+        fri.setSelected(true);
+        sat.setSelected(true);
+        sun.setSelected(true);
         selection.clear();
         updateClassStatus(action);
         classEvent = action;
@@ -1184,7 +1195,41 @@ public class AdminReservationGUIController implements Initializable{
                 Notification.throwAlert("Error","Start Date is after End Date");
                 return;
             }
-            if (!Admin.checkBulkBooking(activeRoom,chosenSlots, startDate.getValue(), endDate.getValue(), false)) {
+            ArrayList<Integer> daysSelected = new ArrayList<>();
+            if(mon.isSelected()){
+                daysSelected.add(1);
+            }
+            if(tue.isSelected()){
+                daysSelected.add(2);
+            }
+            if(wed.isSelected()){
+                daysSelected.add(3);
+            }
+            if(thu.isSelected()){
+                daysSelected.add(4);
+            }
+            if(fri.isSelected()){
+                daysSelected.add(5);
+            }
+            if(sat.isSelected()){
+                daysSelected.add(6);
+            }
+            if(sun.isSelected()){
+                daysSelected.add(7);
+            }
+            date = new ArrayList<>();
+            LocalDate temp = LocalDate.of(startDate.getValue().getYear(), startDate.getValue().getMonth(), startDate.getValue().getDayOfMonth());
+            while(!temp.isAfter(endDate.getValue())){
+                if(daysSelected.contains(temp.getDayOfWeek().getValue())){
+                    date.add(temp);
+                }
+                temp = temp.plusDays(1);
+            }
+            if(date.size() == 0){
+                Notification.throwAlert("Error", "No date has been selected. All the days in the selected date range will be booked");
+                return;
+            }
+            if (!Admin.checkBulkBooking(activeRoom,chosenSlots, date, false)) {
                 Notification.throwAlert("Error","The requested slots on some of the requested days can't be completed as there is some other confirmed booking in this range");
                 return;
             }
