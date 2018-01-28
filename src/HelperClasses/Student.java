@@ -93,6 +93,8 @@ public class Student extends User{
 			out.flush();
 			out.writeObject(RoomID);
 			out.flush();
+			out.writeObject(emailID.getEmailID());
+			out.flush();
 			Boolean c = (Boolean) in.readObject();
 			out.close();
 			in.close();

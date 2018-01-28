@@ -1,0 +1,4 @@
+Date;Time;Booking Date;Booking Slot;Room;User;Purpose;Type
+28/01/2018;13:35:26;2018-01-28;0830AM - 0900AM;C01;harsh.pathak.temp@gmail.com;Advance Topics in Mobile Computing;Booking
+28/01/2018;13:35:48;2018-01-28;0200PM - 0230PM;C13;harsh.pathak.temp@gmail.com;asddas;Booking
+28/01/2018;13:35:48;2018-02-04;0200PM - 0230PM;C13;harsh.pathak.temp@gmail.com;asddas;Booking

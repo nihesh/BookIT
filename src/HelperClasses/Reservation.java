@@ -53,6 +53,9 @@ public class Reservation implements java.io.Serializable{
         }
         this.isRequest = false;
     }
+    public String getPurpose(){
+        return this.type;
+    }
     public void removeRequestFlag(){
         this.isRequest = false;
     }

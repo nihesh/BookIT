@@ -112,6 +112,7 @@ public class server {
     public static void main(String[] args)throws IOException{
         BookITconstants b = new BookITconstants("Server");
         BookITconstants.log = new FileWriter(new File("./src/AppData/Server/ServerBugs.txt"), true);
+        BookITconstants.transactions = new FileWriter(new File("./src/AppData/Server/transactions.txt"), true);
         loadHashMaps();
         loadFreeCourses();
         ServerSocket s = new ServerSocket(BookITconstants.serverPort);
@@ -307,7 +308,7 @@ class ConnectionHandler implements Runnable{
             return null;
         }
     }
-    public void BookingCancellationNotifier(LocalDate queryDate, int slotID, String RoomID, String cancellationMessage){
+    public void BookingCancellationNotifier(LocalDate queryDate, int slotID, String RoomID, String cancellationMessage, String cancelledBy){
     	HashMap<String, Integer> h = new HashMap<>();
         Room temp=Room.deserializeRoom(RoomID);
         Reservation r=temp.getSchedule(queryDate)[slotID];
@@ -321,7 +322,7 @@ class ConnectionHandler implements Runnable{
         	}
         }
         h.put(Mail.from, 1);
-        temp.deleteReservation(queryDate, slotID);
+        temp.deleteReservation(queryDate, slotID, cancelledBy);
         temp.serialize();
         Course c=Course.deserializeCourse(r.getCourseName());
         if(c!=null) {
@@ -620,7 +621,6 @@ class ConnectionHandler implements Runnable{
             }
         }
         room.serialize();
-        room.serialize();
         if(addToCourse) {
             course.serialize();
         }
@@ -714,7 +714,7 @@ class ConnectionHandler implements Runnable{
         serializeUser(user);
         return true;
     }
-    public boolean studentAndFaculty_cancelBooking(LocalDate queryDate, int slotID, String RoomID) {
+    public boolean studentAndFaculty_cancelBooking(LocalDate queryDate, int slotID, String RoomID, String cancelledBy) {
     	HashMap<String, Integer> h = new HashMap<>();
         h.put(Mail.from, 1);
         
@@ -723,7 +723,7 @@ class ConnectionHandler implements Runnable{
         if(r.getReserverEmail() != null) {
         	h.put(r.getReserverEmail(), 1);
         }
-        temp.deleteReservation(queryDate, slotID);
+        temp.deleteReservation(queryDate, slotID, cancelledBy);
         temp.serialize();
         Course c=Course.deserializeCourse(r.getCourseName());
         if(c!=null) {
@@ -951,6 +951,7 @@ class ConnectionHandler implements Runnable{
                 Boolean ans;
                 LocalDate end;
                 PriorityQueue<ArrayList<Reservation>> req;
+                String cancelledBy;
                 switch (request) {
                     case "GetUser":
                         email = (String) in.readObject();
@@ -1094,10 +1095,11 @@ class ConnectionHandler implements Runnable{
                         slotID = (int) in.readObject();
                         String RoomID = (String) in.readObject();
                         String cancellationMessage = (String) in.readObject();
+                        cancelledBy = (String) in.readObject();
                         if(!status.equals("Pass")) {
                             lock.lockInterruptibly();
                         }
-                        BookingCancellationNotifier(queryDate, slotID, RoomID, cancellationMessage);
+                        BookingCancellationNotifier(queryDate, slotID, RoomID, cancellationMessage, cancelledBy);
                         if(lock.isLocked() && lock.isHeldByCurrentThread()){
                             System.out.print("[ "+LocalDateTime.now()+" ] ");
                             System.out.println(connection.getInetAddress().toString() + " | ServerLock Released");
@@ -1269,11 +1271,12 @@ class ConnectionHandler implements Runnable{
                         queryDate = (LocalDate) in.readObject();
                         slotID = (int) in.readObject();
                         RoomID = (String) in.readObject();
+                        cancelledBy = (String) in.readObject();
                         result = false;
                         if(!status.equals("Pass")) {
                             lock.lockInterruptibly();
                         }
-                        result = studentAndFaculty_cancelBooking(queryDate, slotID, RoomID);
+                        result = studentAndFaculty_cancelBooking(queryDate, slotID, RoomID, cancelledBy);
                         if(lock.isLocked() && lock.isHeldByCurrentThread()){
                             System.out.print("[ "+LocalDateTime.now()+" ] ");
                             System.out.println(connection.getInetAddress().toString() + " | ServerLock Released");

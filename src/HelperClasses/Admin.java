@@ -336,6 +336,8 @@ public class Admin extends User{
 			out.flush();
 			out.writeObject(cancellationMessage);
 			out.flush();
+			out.writeObject(emailID.getEmailID());
+			out.flush();
 			out.close();
 			in.close();
 			server.close();

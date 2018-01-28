@@ -96,6 +96,15 @@ public class setup {
         if(!file2.exists()){
             file2.mkdir();
         }
+        Scanner holidays = new Scanner(new BufferedReader(new FileReader("./src/AppData/StaticTimeTable/holidays.txt")));
+        holidays.useDelimiter("-|\\n");
+        HashMap<LocalDate, Boolean> blockedDates = new HashMap<>();
+        while(holidays.hasNext()){
+            int date = holidays.nextInt();
+            int month = holidays.nextInt();
+            int year = holidays.nextInt();
+            blockedDates.put(LocalDate.of(year, month, date), true);
+        }
         Scanner file = new Scanner(new FileReader("./src/AppData/StaticTimeTable/RoomData.csv"));
         HashMap<String, Room > roomData = new HashMap<String, Room >();
         HashMap<String, Course> courseData = new HashMap<String, Course>();
@@ -181,7 +190,7 @@ public class setup {
                 Boolean courseFlag = false;
                 while(!currentDate.isAfter(EndDate))
                 {
-                    if(day.equals(currentDate.getDayOfWeek().toString().toLowerCase())) {
+                    if(!blockedDates.containsKey(currentDate) && day.equals(currentDate.getDayOfWeek().toString().toLowerCase())) {
                         Reservation r = new Reservation(message, group, name, "", venue, message, currentSlot);
                         r.setTargetDate(currentDate);
                         r.setReserverEmail(Mail.from);
@@ -201,7 +210,7 @@ public class setup {
                 LocalDate currentDate = StartDate;
                 Boolean reservationSuccessFlag = true;
                 while(!currentDate.isAfter(EndDate)) {
-                    if(day.equals(currentDate.getDayOfWeek().toString().toLowerCase())) {
+                    if(!blockedDates.containsKey(currentDate) && day.equals(currentDate.getDayOfWeek().toString().toLowerCase())) {
                         Reservation r = new Reservation(message, group, name, "", venue, message, currentSlot);
                         r.setTargetDate(currentDate);
                         r.setReserverEmail(Mail.from);
@@ -364,6 +373,27 @@ public class setup {
             }
         }
     }
+    public static void deleteTransactionLog(){
+        try {
+            BookITconstants.transactions = new FileWriter(new File("./src/AppData/Server/transactions.txt"), false);
+            BookITconstants.transactions.write("Date;Time;Booking Date;Booking Slot;Room;User;Purpose;Type\n");
+            BookITconstants.transactions.flush();
+            BookITconstants.transactions.close();
+        }
+        catch (IOException e){
+            System.out.println("IO Exception while writing transaction header");
+        }
+    }
+    public static void resetServerErrorLog(){
+        File f = new File("./src/AppData/Server/ServerBugs.txt");
+        try {
+            FileWriter temp = new FileWriter(f, false);
+            temp.write("");
+        }
+        catch (IOException e){
+            System.out.println("IOException occurred while resetting server log");
+        }
+    }
     public static void main(String[] args){
         BookITconstants b = new BookITconstants("Server");
         Scanner sc = new Scanner(System.in);
@@ -395,6 +425,8 @@ public class setup {
         }
         try {
             loadRoomAndCourseObjects();                    // Creates Room and Course Objects for all rooms and courses in AppData. This should be used for initialisation only
+            deleteTransactionLog();
+            resetServerErrorLog();
             clearUserData();
             createFirstAdmin();
             serialiseEmptyPriorityQueue();

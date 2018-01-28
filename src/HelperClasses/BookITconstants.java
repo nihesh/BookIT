@@ -16,15 +16,25 @@ public class BookITconstants {
     public static String NoReplyPassword;
     public static String NoReplyUsername;
     public static FileWriter log;
+    public static FileWriter transactions;
 
+    public static void writeTransaction(String s){
+        try {
+            transactions.write(s + "\n");
+            transactions.flush();
+        }
+        catch(Exception e){
+            writeLog("Transaction writing failed");
+            writeLog(e.getMessage());
+        }
+    }
     public static void writeLog(String s){
         try {
             log.write(s + "\n");
             log.flush();
         }
         catch(Exception e){
-            System.out.println("Log writing failed");
-            System.out.println(e.getMessage());
+            ; // Ignored as it fails only during setup time
         }
     }
     

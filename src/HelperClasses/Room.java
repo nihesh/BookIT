@@ -3,6 +3,8 @@ package HelperClasses;
 import java.io.*;
 import java.net.Socket;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 
 /** The Room class for modeling schedule of various venue of courses
@@ -355,6 +357,15 @@ public class Room implements java.io.Serializable{
         if(Schedule.get(date)[slot] == null){
             r.setTargetDate(date);
             Schedule.get(date)[slot] = r;
+            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy;HH:mm:ss");
+            DateTimeFormatter dtf2 = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            LocalDateTime now = LocalDateTime.now();
+            if(r.getCourseName().equals("")){
+                BookITconstants.writeTransaction(dtf.format(now) + ";" + dtf2.format(r.getTargetDate())+";"+Reservation.getSlotRange(r.getReservationSlot()) + ";" + r.getRoomName() + ";" + r.getReserverEmail() + ";" + r.getPurpose()+";Booking");
+            }
+            else {
+                BookITconstants.writeTransaction(dtf.format(now) + ";" + dtf2.format(r.getTargetDate())+";"+Reservation.getSlotRange(r.getReservationSlot()) + ";" + r.getRoomName() + ";" + r.getReserverEmail() + ";" + r.getCourseName()+";Booking");
+            }
             return true;
         }
         else{
@@ -381,7 +392,21 @@ public class Room implements java.io.Serializable{
      * @param date the date
      * @param slot the time slot
      */
-    public void deleteReservation(LocalDate date, int slot){
+    public void deleteReservation(LocalDate date, int slot, String cancelledBy){
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy;HH:mm:ss");
+        DateTimeFormatter dtf2 = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        LocalDateTime now = LocalDateTime.now();
+        Reservation r = Schedule.get(date)[slot];
+        if(r==null){
+            BookITconstants.writeLog("Attempting to delete null transaction");
+            return;
+        }
+        if(r.getCourseName().equals("")){
+            BookITconstants.writeTransaction(dtf.format(now) + ";" + dtf2.format(r.getTargetDate())+";"+Reservation.getSlotRange(r.getReservationSlot()) + ";" + r.getRoomName() + ";" + cancelledBy + ";" + r.getPurpose()+";Cancellation");
+        }
+        else {
+            BookITconstants.writeTransaction(dtf.format(now) + ";" + dtf2.format(r.getTargetDate())+";"+Reservation.getSlotRange(r.getReservationSlot()) + ";" + r.getRoomName() + ";" + cancelledBy + ";" + r.getCourseName()+";Cancellation");
+        }
         Schedule.get(date)[slot] = null;
     }
 }
