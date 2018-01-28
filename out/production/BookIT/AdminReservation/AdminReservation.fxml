@@ -33,6 +33,7 @@
           <Menu mnemonicParsing="false" text="File">
             <items>
                   <MenuItem mnemonicParsing="false" onAction="#downloadRequests" text="Download Requests" />
+                  <MenuItem mnemonicParsing="false" onAction="#downloadBookings" text="Booking Report" />
                   <MenuItem mnemonicParsing="false" onAction="#restartServer" text="Restart Server" />
               <MenuItem mnemonicParsing="false" onAction="#signout" text="Logout" />
             </items>
@@ -1120,7 +1121,7 @@
                   </Label>
                </children>
             </StackPane>
-            <StackPane fx:id="pullDownPane" prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: #2a2a2a; visibility: true;">
+            <StackPane fx:id="pullDownPane" prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: #2a2a2a; visibility: false;">
                <children>
                   <StackPane prefHeight="150.0" prefWidth="1320.0" style="-fx-border-width: 2; -fx-border-color: white;" StackPane.alignment="CENTER">
                      <children>

@@ -1,6 +1,6 @@
 ------------------------------------------------------------------------------------------------------------
 
-										BOOKIT Client Application
+										BOOKIT Client Application (V1.1)
 
 ------------------------------------------------------------------------------------------------------------
 
@@ -23,7 +23,7 @@ Double click BookIT.exe to open the application
 
 Setup procedure for mac systems
 
-Double click BookIT.app file to execute the application
+Double click BookIT.jar file to execute the application using java jar executor
 
 --------------------------------------------------------------------------------------------------------------
 

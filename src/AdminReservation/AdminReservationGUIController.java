@@ -232,6 +232,43 @@ public class AdminReservationGUIController implements Initializable{
         joinCodeDropDown.setStyle("-fx-font-size : 13pt;-fx-background-color: #922B21;");
         loadDate();
     }
+    public void downloadBookings(){
+        try{
+            Socket server = new Socket(BookITconstants.serverIP, BookITconstants.serverPort);
+            ObjectOutputStream out = new ObjectOutputStream(server.getOutputStream());
+            ObjectInputStream in = new ObjectInputStream(server.getInputStream());
+            if(true){
+                out.writeObject("Hold");
+            }
+            else{
+                out.writeObject("Pass");
+            }
+            out.flush();
+            out.writeObject("admin_getBookingReport");
+            out.flush();
+            ArrayList<String> c = (ArrayList<String>) in.readObject();
+            File f = new File("./Downloads");
+            f.mkdirs();
+            f = new File("./Downloads/bookings.csv");
+            FileWriter file = new FileWriter(f, false);
+            for(int i=0; i<c.size();i++){
+                file.write(c.get(i)+"\n");
+                file.flush();
+            }
+            file.close();
+            out.close();
+            in.close();
+            server.close();
+            Notification.throwAlert("Notification","Successfully generated bookings.csv and moved it to Downloads folder within the BookIT directory");
+        }
+        catch(IOException e){
+            System.out.println(e.getMessage());
+            System.out.println("IO Exception occurred while downloading requests");
+        }
+        catch (ClassNotFoundException c){
+            System.out.println("ClassNotFound exception occurred while downloading requests");
+        }
+    }
     public void downloadRequests(){
         try{
             Socket server = new Socket(BookITconstants.serverIP, BookITconstants.serverPort);
@@ -287,7 +324,7 @@ public class AdminReservationGUIController implements Initializable{
             out.close();
             in.close();
             server.close();
-            Notification.throwAlert("Notification","Download Complete! The downloaded file is located in ./Downloads/requests.txt");
+            Notification.throwAlert("Notification","Successfully generated Report.txt and moved it to Downloads folder within the BookIT directory");
         }
         catch(IOException e){
             System.out.println(e.getMessage());

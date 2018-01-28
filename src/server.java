@@ -907,6 +907,20 @@ class ConnectionHandler implements Runnable{
         }
         return true;
     }
+    public ArrayList<String> getBookingReport(){
+        ArrayList<String> data = new ArrayList<>();
+        try {
+            Scanner sc = new Scanner(new BufferedReader(new FileReader("./src/AppData/Server/transactions.txt")));
+            while(sc.hasNextLine()){
+                data.add(sc.nextLine());
+            }
+        }
+        catch(Exception e){
+            BookITconstants.writeLog("Exception occurred while getting booking report");
+            BookITconstants.writeLog(e.getMessage());
+        }
+        return data;
+    }
     public void run(){
         server.noOfConnections++;
         ObjectInputStream in=null;
@@ -1616,6 +1630,20 @@ class ConnectionHandler implements Runnable{
                         out.flush();
                         System.out.print("[ "+LocalDateTime.now()+" ] ");
                         System.out.println(connection.getInetAddress().toString() + " | ServerLock request cancelled");
+                        break;
+                    case "admin_getBookingReport":
+                        if(!status.equals("Pass")) {
+                            lock.lockInterruptibly();
+                        }
+                        ArrayList<String> bookingReport = getBookingReport();
+                        if(lock.isLocked() && lock.isHeldByCurrentThread()){
+                            System.out.print("[ "+LocalDateTime.now()+" ] ");
+                            System.out.println(connection.getInetAddress().toString() + " | ServerLock Released");
+                            lock.unlock();
+                        }
+                        out.writeObject(bookingReport);
+                        out.flush();
+                        break;
                 }
                 in.close();
                 out.close();
