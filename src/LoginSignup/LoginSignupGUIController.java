@@ -372,6 +372,9 @@ class PortListener implements Runnable{
 			if(sock!=null) {
 			BufferedReader in=new BufferedReader(new InputStreamReader(sock.getInputStream()));
 			authcode=in.readLine();
+			if(authcode == null) {
+				return;
+			}
 			if(authcode.contains("denied")) {
 				authcode="none";
 				PrintWriter out = new PrintWriter(sock.getOutputStream());

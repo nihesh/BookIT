@@ -11,6 +11,7 @@ import javafx.stage.Stage;
 
 import javax.swing.*;
 import java.io.*;
+import java.net.ServerSocket;
 import java.net.Socket;
 /**
  * The BookIT class for launching the application
@@ -57,6 +58,46 @@ public class BookIT extends Application{
             admin.start(primaryStage);
         }
     }
+    public boolean TestInstance() {
+    	Socket s = null;
+    	try {
+    		s = new Socket("localhost", 9999);
+    		return false; //not available
+    	}
+    	catch(IOException e) {
+    		return true;
+    	}
+    	finally {
+    		if(s != null) {
+    			try {
+    				s.close();
+    			}
+    			catch(IOException e) {
+    				System.out.println("close socket error");
+    			}
+    		}
+    	}
+    }
+    public boolean TestClientPort() {
+    	Socket s = null;
+    	try {
+    		s = new Socket("localhost", 9004);
+    		return false; //not available
+    	}
+    	catch(IOException e) {
+    		return true;
+    	}
+    	finally {
+    		if(s != null) {
+    			try {
+    				s.close();
+    			}
+    			catch(IOException e) {
+    				System.out.println("close socket error");
+    			}
+    		}
+    	}
+    }
     public int CheckCompatibility(double version, Boolean lock){
         try{
             Socket server = new Socket(BookITconstants.serverIP, BookITconstants.serverPort);
@@ -95,7 +136,8 @@ public class BookIT extends Application{
         return 2;
     }
     public void start(Stage primaryStage){
-        int compatibilityCheck = CheckCompatibility(BookITversion, false);
+        ServerSocket ss = null;
+    	int compatibilityCheck = CheckCompatibility(BookITversion, false);
         if(compatibilityCheck == 0){
             Notification.throwAlert("Launch Error", "You are currently using BookIT v"+BookITversion+". Please download the latest version of BookIT");
             return;
@@ -103,6 +145,23 @@ public class BookIT extends Application{
         else if(compatibilityCheck == 2){
             Notification.throwAlert("Network Error", "Unable to reach BookIT server");
             return;
+        }
+        if(TestInstance() == false) {
+        	Notification.throwAlert("Multiple Client Error", "One instance of the app is already running");
+			return;
+        
+        }
+        else {
+        	try {
+				ss = new ServerSocket(9999);
+			} catch (IOException e) {
+				Notification.throwAlert("Multiple Client Error", "One instance of the app is already running");
+				// TODO Auto-generated catch block
+			}
+        }
+        if(TestClientPort() == false) {
+        	Notification.throwAlert("Port Error", "Are you running two instances of the app?");
+        	return;
         }
         File file2 = new File("./src/AppData/ActiveUser");
         if(!file2.exists()){
@@ -133,6 +192,14 @@ public class BookIT extends Application{
             if(file.exists()){
                 break;
             }
+        }
+        if(ss != null) {
+        try {
+			ss.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
         }
     }
     public static void main(String[] args) throws IOException{
