@@ -532,14 +532,14 @@ public class setup {
             System.out.println("Error occurred while serialising sem start and end dates");
         }
         try {
-//            loadRoomAndCourseObjects();                    // Creates Room and Course Objects for all rooms and courses in AppData. This should be used for initialisation only
-            modifyRoomAndCourseObjects();
-//            deleteTransactionLog();
-//            resetServerErrorLog();
-//            clearUserData();
-//            createFirstAdmin();
-//            serialiseEmptyPriorityQueue();
-//            serialiseEmptyJoinCodeMap();
+			loadRoomAndCourseObjects();                    // Creates Room and Course Objects for all rooms and courses in AppData. This should be used for initialisation only
+			modifyRoomAndCourseObjects();
+			deleteTransactionLog();
+			resetServerErrorLog();
+			clearUserData();
+			createFirstAdmin();
+			serialiseEmptyPriorityQueue();
+			serialiseEmptyJoinCodeMap();
         }
         catch(Exception e){
         	e.printStackTrace();
