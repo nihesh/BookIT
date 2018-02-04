@@ -329,19 +329,21 @@ class ConnectionHandler implements Runnable{
             c.deleteReservation(queryDate, slotID,r.getTopGroup());
             c.serialize();
         }
+        ArrayList<LocalDate> target_date = new ArrayList<>();
+        target_date.add(r.getTargetDate());
         for(String email : h.keySet()) {
         	if(!email.equals("")) {
         		
         		User x=getUser(email);
         		ArrayList<Integer> t = new ArrayList<>();
         		t.add(r.getReservationSlot());
-        		Notification n = new Notification("Room Booking", "Cancelled", r.getMessage(), r.getCourseName(), r.getTargetDate(), r.getRoomName(), r.getReserverEmail(),t);
+        		Notification n = new Notification("Room Booking", "Cancelled", r.getMessage(), r.getCourseName(), target_date, r.getRoomName(), r.getReserverEmail(),t);
                 String GreetText="Hello User";
                 if(x != null) {
                 	GreetText = "Hello" + x.getName();
                 	x.addNotification(n);
                 }
-                server.mailpool.execute(new Mail(email,"BooKIT - Room booking cancelled", GreetText+","+"\n\nThe following booking of yours have been cancelled by the admin:\n\n"+"Room: "+RoomID+"\nDate: "+queryDate.getDayOfMonth()+"/"+queryDate.getMonthValue()+"/"+queryDate.getYear()+"\nTime: "+ Reservation.getSlotRange(slotID)+" \nReason: "+cancellationMessage+"\n\nIf you think this is a mistake, please contact admin.\n\nRegards,\nBookIT Team"));
+                server.mailpool.execute(new Mail(email,"BooKIT - Room booking cancelled", GreetText+","+"\n\nThe following booking of yours have been cancelled by the admin:\n\n"+r.getMessage()+"\nDate: "+queryDate.getDayOfMonth()+"/"+queryDate.getMonthValue()+"/"+queryDate.getYear()+"\nTime: "+ Reservation.getSlotRange(slotID)+" \nReason: "+cancellationMessage+"\n\nIf you think this is a mistake, please contact admin.\n\nRegards,\nBookIT Team"));
                 serializeUser(x);
         	}
         }
@@ -498,7 +500,9 @@ class ConnectionHandler implements Runnable{
                     ctemp.addReservation(r.get(0).getTargetDate(), reservation.getReservationSlot(), reservation);
                 }
             }
-            Notification n = new Notification("Room Reservation Request", "Accepted", r.get(0).getMessage(), r.get(0).getCourseName(), r.get(0).getTargetDate(), r.get(0).getRoomName(), r.get(0).getReserverEmail(), x);
+            ArrayList<LocalDate> target_dateAList = new ArrayList<>();
+            target_dateAList.add(r.get(0).getTargetDate());
+            Notification n = new Notification("Room Reservation Request", "Accepted", r.get(0).getMessage(), r.get(0).getCourseName(), target_dateAList, r.get(0).getRoomName(), r.get(0).getReserverEmail(), x);
             Student Stud = (Student)getUser(recipient);
             Admin a = (Admin) getUser(Mail.from);
             Stud.addNotification(n);
@@ -538,7 +542,9 @@ class ConnectionHandler implements Runnable{
         	x.add(reservation.getReservationSlot());
 			TimeSlots+=Reservation.getSlotRange(reservation.getReservationSlot())+"\n";
 		}
-        Notification n = new Notification("Room Reservation Request", "Declined", r.get(0).getMessage(), r.get(0).getCourseName(), r.get(0).getTargetDate(), r.get(0).getRoomName(), r.get(0).getReserverEmail(), x);
+        ArrayList<LocalDate> t_date = new ArrayList<>();
+        t_date.add(r.get(0).getTargetDate());
+        Notification n = new Notification("Room Reservation Request", "Declined", r.get(0).getMessage(), r.get(0).getCourseName(), t_date, r.get(0).getRoomName(), r.get(0).getReserverEmail(), x);
         Student Stud = (Student)getUser(recipient);
         Stud.addNotification(n);
         Admin a = (Admin) getUser(Mail.from);
@@ -583,43 +589,34 @@ class ConnectionHandler implements Runnable{
         	
         	h.put(course.getInstructorEmail(), 1);
         }
+        ArrayList<Integer> x= new ArrayList<Integer>();
+        String slots = "";
+        slots += Reservation.getSlotRange(r.getReservationSlot()) + "\n";
+        x.add(r.getReservationSlot());
+        
         for(LocalDate start : date){
             if (addToCourse) {
                 course.addReservation(start, slot, r);
-                room.addReservation(start, slot, r);
-                
-                for(String email : h.keySet()) {
-                ArrayList<Integer> x= new ArrayList<Integer>();
-                x.add(r.getReservationSlot());
-                Notification n = new Notification("Classroom Booking", "Done", r.getMessage(), r.getCourseName(), r.getTargetDate(), r.getRoomName(), r.getReserverEmail(),x );
-                String GreetText="Hello User";
-                User xy=getUser(email);
-                if(xy!=null) {
-                	xy.addNotification(n);
-                    GreetText = "Hello "+xy.getName();
-                    server.mailpool.execute(new Mail(email,"BooKIT - Room booking completed", GreetText+","+"\n\nThe following booking of yours have been confirmed:\n\n"+"Room: "+r.getRoomName()+"\nDate: "+r.getTargetDate().getDayOfMonth()+"/"+r.getTargetDate().getMonthValue()+"/"+r.getTargetDate().getYear()+"\nTime: "+ Reservation.getSlotRange(r.getReservationSlot())+" \nReason: "+r.getMessageWithoutVenue()+"\n\nIf you think this is a mistake, please contact admin.\n\nRegards,\nBookIT Team"));
-                    serializeUser(xy);	
-                    
-                }
-                }
-            } else {
-                room.addReservation(start, slot, r);
-                for(String email : h.keySet()) {
-                    ArrayList<Integer> x= new ArrayList<Integer>();
-                    x.add(r.getReservationSlot());
-                    Notification n = new Notification("Classroom Booking", "Done", r.getMessage(), r.getCourseName(), r.getTargetDate(), r.getRoomName(), r.getReserverEmail(),x );
-                    String GreetText="Hello User";
-                    User xy=getUser(email);
-                    if(xy!=null) {
-                    	xy.addNotification(n);
-                    	GreetText = "Hello "+xy.getName();
-                    	server.mailpool.execute(new Mail(email,"BooKIT - Room booking completed", GreetText+","+"\n\nThe following booking of yours have been confirmed:\n\n"+"Room: "+r.getRoomName()+"\nDate: "+r.getTargetDate().getDayOfMonth()+"/"+r.getTargetDate().getMonthValue()+"/"+r.getTargetDate().getYear()+"\nTime: "+ Reservation.getSlotRange(r.getReservationSlot())+" \nReason: "+r.getMessageWithoutVenue()+"\n\nIf you think this is a mistake, please contact admin.\n\nRegards,\nBookIT Team"));
-                        serializeUser(xy);	
-                    	
-                    }
-                    }
             }
+            room.addReservation(start, slot, r);
+            
         }
+        Notification n = new Notification("Classroom Booking", "Done", r.getMessage(), r.getCourseName(), date, r.getRoomName(), r.getReserverEmail(),x);
+        String target_date = "";
+        for (LocalDate d : date) {
+			target_date = target_date + d.getDayOfMonth()+"/"+d.getMonthValue()+ "/"+ d.getYear()+"\n"; 
+        }
+       for(String email : h.keySet()) {
+            String GreetText="Hello User";
+            User xy=getUser(email);
+            if(xy!=null) {
+            	xy.addNotification(n);
+                GreetText = "Hello "+xy.getName();
+                server.mailpool.execute(new Mail(email,"BooKIT - Room booking completed", GreetText+","+"\n\nThe following booking of yours have been confirmed:\n\n"+r.getMessage()+"\nCourse: "+r.getCourseName() +"\nDate: "+ target_date +"\nTime: "+ slots+" \nReason: "+r.getMessageWithoutVenue()+"\n\nIf you think this is a mistake, please contact admin.\n\nRegards,\nBookIT Team"));
+                serializeUser(xy);	
+                
+            }
+            }
         room.serialize();
         if(addToCourse) {
             course.serialize();
@@ -659,7 +656,9 @@ class ConnectionHandler implements Runnable{
         	temp.addRequest(t);
             x.add(t.getReservationSlot());
         }
-        Notification n = new Notification("Room Reservation Request", "Pending", r.get(0).getMessage(), r.get(0).getCourseName(), r.get(0).getTargetDate(), r.get(0).getRoomName(), r.get(0).getReserverEmail(), x);
+        ArrayList<LocalDate> date = new ArrayList<>();
+        date.add(r.get(0).getTargetDate());
+        Notification n = new Notification("Room Reservation Request", "Pending", r.get(0).getMessage(), r.get(0).getCourseName(), date, r.get(0).getRoomName(), r.get(0).getReserverEmail(), x);
         tempAd.addNotification(n);
         tempStudent.addNotification(n);
         serializeUser(tempStudent);
@@ -732,18 +731,20 @@ class ConnectionHandler implements Runnable{
             c.deleteReservation(queryDate, slotID,r.getTopGroup());
             c.serialize();
         }
-        for(String email : h.keySet()) {
+        ArrayList<Integer> slot= new ArrayList<Integer>();
+		slot.add(r.getReservationSlot());
+		ArrayList<LocalDate> date= new ArrayList<LocalDate>();
+		date.add(r.getTargetDate());
+		for(String email : h.keySet()) {
         	if(!email.equals("")) {
         		String GreetText = "Hello User";
         		User x = getUser(email);
-        		ArrayList<Integer> slot= new ArrayList<Integer>();
-        		slot.add(r.getReservationSlot());
-        		Notification n = new Notification("Room Booking", "Cancelled", r.getMessage(), r.getCourseName(), r.getTargetDate(), r.getRoomName(), r.getReserverEmail(), slot);
+        		Notification n = new Notification("Room Booking", "Cancelled", r.getMessage(), r.getCourseName(),date, r.getRoomName(), r.getReserverEmail(), slot);
                 if(x != null) {
         			GreetText = "Hello " + x.getName();
         			x.addNotification(n);
         		}
-        		server.mailpool.execute(new Mail(email,"BooKIT - Room booking cancelled", GreetText+","+"\n\nThe following booking of yours have been cancelled by the admin:\n\n"+"Room: "+RoomID+"\nDate: "+queryDate.getDayOfMonth()+"/"+queryDate.getMonthValue()+"/"+queryDate.getYear()+"\nTime: "+ Reservation.getSlotRange(slotID) +"\n\nIf you think this is a mistake, please contact admin.\n\nRegards,\nBookIT Team"));
+        		server.mailpool.execute(new Mail(email,"BooKIT - Room booking cancelled", GreetText+","+"\n\nThe following booking of yours have been cancelled by the admin:\n\n"+r.getMessage()+"\nDate: "+queryDate.getDayOfMonth()+"/"+queryDate.getMonthValue()+"/"+queryDate.getYear()+"\nTime: "+ Reservation.getSlotRange(slotID) +"\n\nIf you think this is a mistake, please contact admin.\n\nRegards,\nBookIT Team"));
         		serializeUser(x);
         	}
         	}
