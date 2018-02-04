@@ -273,7 +273,7 @@ public class Room implements java.io.Serializable{
     public static Room deserializeRoom(String name){
         ObjectInputStream in = null;
         try{
-            in = new ObjectInputStream(new FileInputStream("./src/AppData/Room/"+name+".dat"));
+            in = new ObjectInputStream(new FileInputStream("./src/AppData/Room/"+name.replace("/","|")+".dat"));
             return (Room)in.readObject();
         }
         catch (Exception e){
@@ -333,7 +333,7 @@ public class Room implements java.io.Serializable{
         try{
             ObjectOutputStream out = null;
             try{
-                out = new ObjectOutputStream(new FileOutputStream("./src/AppData/Room/"+this.getRoomID()+".dat", false));
+                out = new ObjectOutputStream(new FileOutputStream("./src/AppData/Room/"+this.getRoomID().replace("/","|")+".dat", false));
                 out.writeObject(this);
             }
             finally {
@@ -386,6 +386,11 @@ public class Room implements java.io.Serializable{
         else{
             return false;
         }
+    }
+    public void resetSchedule(LocalDate date){        // Server only
+        Schedule.remove(date);
+        Reservation[] temp = new Reservation[30];
+        Schedule.put(date, temp);
     }
     /**
      * deletes a room reservation at a specified date and time slot

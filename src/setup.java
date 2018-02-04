@@ -1,10 +1,7 @@
 import java.io.*;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.PriorityQueue;
-import java.util.Scanner;
+import java.util.*;
+
 import HelperClasses.*;
 
 
@@ -139,7 +136,7 @@ public class setup {
             String type,name,code,instructor,credits,acronym,day,startTime,endTime,chosenGroup,message,venue;
             type = file.next().trim();
             code = file.next().trim();
-            name = file.next().trim();
+            name = file.next().trim().replace("/","|");
             instructor = file.next().trim();
             credits = file.next().trim();
             acronym = file.next().trim();
@@ -219,6 +216,117 @@ public class setup {
                             System.out.println(name+" "+startTime+" "+endTime+" "+venue+" has a collision with an earlier reservation. Please rectify csv");
                         }
                         currentDate = currentDate.plusDays(7);
+                    }
+                    else {
+                        currentDate = currentDate.plusDays(1);
+                    }
+                }
+            }
+        }
+        roomData.forEach((name, room)->{
+            room.serialize();
+        });
+        courseData.forEach((name, course)->{
+            course.serialize();
+        });
+    }
+    public static void modifyRoomAndCourseObjects() throws IOException,FileNotFoundException{
+        Scanner file = new Scanner(new FileReader("./src/AppData/StaticTimeTable/TimeTable.csv"));
+        file.useDelimiter(",|\\n");
+        int flag=0;
+        HashMap<String, Room > roomData = new HashMap<String, Room >();
+        HashMap<String, Course> courseData = new HashMap<String, Course>();
+        File f = new File("./src/AppData/Room");
+        File[] rooms = f.listFiles();
+        for(int i=0;i<rooms.length;i++){
+            roomData.put(rooms[i].getName().substring(0,rooms[i].getName().length()-4), Room.deserializeRoom(rooms[i].getName().substring(0,rooms[i].getName().length()-4)));
+        }
+        f = new File("./src/AppData/Course");
+        File[] courses = f.listFiles();
+        for(int i=0;i<courses.length;i++){
+            courseData.put(courses[i].getName().substring(0,courses[i].getName().length()-4), Course.deserializeCourse(courses[i].getName().substring(0,courses[i].getName().length()-4)));
+        }
+        Scanner data = new Scanner(new BufferedReader(new FileReader("./src/AppData/StaticTimeTable/Day-Date-Reload.csv")));
+        data.useDelimiter(";|-|\\n");
+        HashMap<LocalDate, String> dayMap = new HashMap<>();
+        while(data.hasNext()){
+            int date = data.nextInt();
+            int month = data.nextInt();
+            int year = data.nextInt();
+            String day = data.next().trim();
+            dayMap.put(LocalDate.of(year, month, date), day);
+        }
+        for(String r: roomData.keySet()){
+            Room room = roomData.get(r);
+            for(LocalDate s : dayMap.keySet()) {
+                room.resetSchedule(s);
+            }
+        }
+        for(String r: courseData.keySet()){
+            Course course = courseData.get(r);
+            for(LocalDate s : dayMap.keySet()) {
+                course.resetSchedule(s);
+            }
+        }
+        while(file.hasNext()){
+            String type,name,code,instructor,credits,acronym,day,startTime,endTime,chosenGroup,message,venue;
+            type = file.next().trim();
+            code = file.next().trim();
+            name = file.next().trim().replace("/","|");
+            instructor = file.next().trim();
+            credits = file.next().trim();
+            acronym = file.next().trim();
+            day = file.next().trim().toLowerCase();
+            startTime = file.next().trim();
+            endTime = file.next().trim();
+            chosenGroup = file.next().trim();
+            ArrayList<String> group = new ArrayList<>();
+            String[] splitGroups = chosenGroup.split(" ");
+            for(int i=0; i<splitGroups.length; i++) {
+                group.add(splitGroups[i]);
+            }
+            message = file.next().trim();
+            venue = file.next().trim();
+            if(flag==0){
+                flag=1;
+                continue;
+            }
+            ArrayList<Integer> listOfSlots = getSlots(startTime, endTime);
+            for(int i=0;i<listOfSlots.size();i++){
+                int currentSlot = listOfSlots.get(i);
+                LocalDate currentDate = StartDate;
+                Boolean courseFlag = false;
+                while(!currentDate.isAfter(EndDate))
+                {
+                    if(dayMap.containsKey(currentDate) && day.equals(dayMap.get(currentDate).toLowerCase())) {
+                        Reservation r = new Reservation(message, group, name, "", venue, message, currentSlot);
+                        r.setTargetDate(currentDate);
+                        r.setReserverEmail(Mail.from);
+                        if(!courseData.get(name).addReservation(currentDate, currentSlot, r) && !courseFlag){
+                            courseFlag = true;
+                            System.out.println(name+" "+startTime+" "+endTime+" "+venue+" has a collision within the course. Please rectify csv");
+                        }
+                        currentDate = currentDate.plusDays(1);
+                    }
+                    else {
+                        currentDate = currentDate.plusDays(1);
+                    }
+                }
+            }
+            for(int i=0;i<listOfSlots.size();i++){
+                int currentSlot = listOfSlots.get(i);
+                LocalDate currentDate = StartDate;
+                Boolean reservationSuccessFlag = true;
+                while(!currentDate.isAfter(EndDate)) {
+                    if(dayMap.containsKey(currentDate) && day.equals(dayMap.get(currentDate).toLowerCase())) {
+                        Reservation r = new Reservation(message, group, name, "", venue, message, currentSlot);
+                        r.setTargetDate(currentDate);
+                        r.setReserverEmail(Mail.from);
+                        if(!roomData.get(venue).addReservation(currentDate, currentSlot, r) && reservationSuccessFlag){
+                            reservationSuccessFlag = false;
+                            System.out.println(name+" "+startTime+" "+endTime+" "+venue+" has a collision with an earlier reservation. Please rectify csv");
+                        }
+                        currentDate = currentDate.plusDays(1);
                     }
                     else {
                         currentDate = currentDate.plusDays(1);
@@ -424,13 +532,14 @@ public class setup {
             System.out.println("Error occurred while serialising sem start and end dates");
         }
         try {
-            loadRoomAndCourseObjects();                    // Creates Room and Course Objects for all rooms and courses in AppData. This should be used for initialisation only
-            deleteTransactionLog();
-            resetServerErrorLog();
-            clearUserData();
-            createFirstAdmin();
-            serialiseEmptyPriorityQueue();
-            serialiseEmptyJoinCodeMap();
+//            loadRoomAndCourseObjects();                    // Creates Room and Course Objects for all rooms and courses in AppData. This should be used for initialisation only
+            modifyRoomAndCourseObjects();
+//            deleteTransactionLog();
+//            resetServerErrorLog();
+//            clearUserData();
+//            createFirstAdmin();
+//            serialiseEmptyPriorityQueue();
+//            serialiseEmptyJoinCodeMap();
         }
         catch(Exception e){
         	e.printStackTrace();

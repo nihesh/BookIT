@@ -61,6 +61,11 @@ public class Course implements java.io.Serializable{
         }
         return null;
     }
+    public void resetSchedule(LocalDate date){        // Server only
+        Schedule.remove(date);
+        Reservation[] temp = new Reservation[30];
+        Schedule.put(date, temp);
+    }
     public static String getCourseFaculty(String course, Boolean lock){
         try{
             Socket server = new Socket(BookITconstants.serverIP, BookITconstants.serverPort);
@@ -184,7 +189,7 @@ public class Course implements java.io.Serializable{
     public static Course deserializeCourse(String name){
         ObjectInputStream in = null;
         try{
-            in = new ObjectInputStream(new FileInputStream("./src/AppData/Course/"+name+".dat"));
+            in = new ObjectInputStream(new FileInputStream("./src/AppData/Course/"+name.replace("/","|")+".dat"));
             return (Course)in.readObject();
         }
         catch (Exception e){
@@ -378,7 +383,7 @@ public class Course implements java.io.Serializable{
         try{
             ObjectOutputStream out = null;
             try{
-                out = new ObjectOutputStream(new FileOutputStream("./src/AppData/Course/"+this.getName()+".dat", false));
+                out = new ObjectOutputStream(new FileOutputStream("./src/AppData/Course/"+this.getName().replace("/","|")+".dat", false));
                 out.writeObject(this);
             }
             finally {
