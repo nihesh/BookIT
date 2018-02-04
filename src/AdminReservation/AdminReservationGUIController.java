@@ -120,6 +120,8 @@ public class AdminReservationGUIController implements Initializable{
     private TextField purposeBox;
     @FXML
     private ArrayList<LocalDate> date;
+    @FXML
+    private VBox notificationOverviewBox;
 
     private String currentPurpose;
     private LocalDate activeDate;
@@ -741,6 +743,16 @@ public class AdminReservationGUIController implements Initializable{
         leftPane.setDisable(true);
         rightPane.setDisable(true);
         roomGridPane.setDisable(true);
+//        ArrayList<NotificationView> notifications = Admin.getNotificationView();
+        for(int i=0;i<15;i++){
+            StackPane s = new StackPane();
+            s.setStyle("-fx-background-color: #1B2631;");
+            s.setPrefSize(1295, 100);
+            Label l = new Label("Temp Label");
+            l.setPrefSize(1100, 100);
+            s.getChildren().add(l);
+            notificationOverviewBox.getChildren().add(s);
+        }
         requestedSlotsScrollPane.getChildren().clear();
         loadRequest(requests);                                                 // GUI Integration Ends
         SequentialTransition sequence = new SequentialTransition();
