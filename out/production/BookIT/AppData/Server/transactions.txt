@@ -1,3 +1,1 @@
 Date;Time;Booking Date;Booking Slot;Room;User;Purpose;Type
-04/02/2018;11:20:45;04/02/2018;0800AM - 0830AM;C01;harsh.pathak.temp@gmail.com;31232;Booking
-04/02/2018;11:20:59;05/02/2018;0930PM - 1000PM;C01;harsh.pathak.temp@gmail.com;asdsad;Booking

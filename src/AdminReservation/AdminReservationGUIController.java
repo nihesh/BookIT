@@ -15,8 +15,8 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.geometry.Pos;
-import javafx.geometry.Rectangle2D;
+import javafx.geometry.*;
+import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuBar;
@@ -729,7 +729,26 @@ public class AdminReservationGUIController implements Initializable{
         }
         loadRequest(requests);
     }
+    void loadStudentRequestList(){
 
+//        ArrayList<NotificationView> notifications = Admin.getNotificationView();
+        for(int i=0;i<15;i++){
+            StackPane s = new StackPane();
+            s.setStyle("-fx-background-color: #323232;");
+            s.setPrefSize(1295, 100);
+            Label l = new Label("Temp Label");
+            StackPane b_wrapper = new StackPane();
+            Button b = new Button("View");
+            b.getStylesheets().add("./AdminReservation/button_requestview.css");
+            b_wrapper.getChildren().add(b);
+            b_wrapper.setMargin(b, new Insets(0,0,0,1100));
+            l.setStyle("-fx-border-width: 6;");
+            l.setPrefSize(1100, 100);
+            s.getChildren().add(l);
+            s.getChildren().add(b);
+            notificationOverviewBox.getChildren().add(s);
+        }
+    }
     /**
      * Opens requests pane
      */
@@ -743,16 +762,7 @@ public class AdminReservationGUIController implements Initializable{
         leftPane.setDisable(true);
         rightPane.setDisable(true);
         roomGridPane.setDisable(true);
-//        ArrayList<NotificationView> notifications = Admin.getNotificationView();
-        for(int i=0;i<15;i++){
-            StackPane s = new StackPane();
-            s.setStyle("-fx-background-color: #1B2631;");
-            s.setPrefSize(1295, 100);
-            Label l = new Label("Temp Label");
-            l.setPrefSize(1100, 100);
-            s.getChildren().add(l);
-            notificationOverviewBox.getChildren().add(s);
-        }
+        loadStudentRequestList();
         requestedSlotsScrollPane.getChildren().clear();
         loadRequest(requests);                                                 // GUI Integration Ends
         SequentialTransition sequence = new SequentialTransition();

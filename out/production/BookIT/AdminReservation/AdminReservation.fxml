@@ -1363,7 +1363,7 @@
                   <Insets bottom="50.0" left="300.0" right="300.0" />
                </StackPane.margin>
             </StackPane>
-            <StackPane fx:id="pullDownPane2" layoutX="310.0" layoutY="10.0" prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: #2a2a2a; visibility: true;">
+            <StackPane fx:id="pullDownPane2" layoutX="310.0" layoutY="10.0" prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: #2a2a2a; visibility: false;">
                <children>
                   <StackPane prefHeight="150.0" prefWidth="1320.0" style="-fx-border-width: 2; -fx-border-color: white; visibility: false;" StackPane.alignment="CENTER">
                      <children>
@@ -1488,6 +1488,14 @@
                               <VBox fx:id="notificationOverviewBox" minHeight="552.0" />
                            </content>
                         </ScrollPane>
+                        <Label alignment="CENTER" prefHeight="40.0" prefWidth="600.0" text="Student Reservation Requests" textFill="#e1e1e1">
+                           <StackPane.margin>
+                              <Insets bottom="470.0" />
+                           </StackPane.margin>
+                           <font>
+                              <Font size="22.0" />
+                           </font>
+                        </Label>
                      </children>
                   </StackPane>
                   <Button alignment="TOP_CENTER" contentDisplay="TOP" mnemonicParsing="false" onMouseClicked="#hideRequests" opacity="0.5" prefHeight="12.0" prefWidth="1320.0" stylesheets="@buttonDropDown.css" text="Close" textAlignment="CENTER" StackPane.alignment="TOP_CENTER" />
