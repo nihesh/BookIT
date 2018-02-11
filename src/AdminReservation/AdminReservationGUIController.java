@@ -239,7 +239,7 @@ public class AdminReservationGUIController implements Initializable{
             Socket server = new Socket(BookITconstants.serverIP, BookITconstants.serverPort);
             ObjectOutputStream out = new ObjectOutputStream(server.getOutputStream());
             ObjectInputStream in = new ObjectInputStream(server.getInputStream());
-            if(true){
+            if(false){
                 out.writeObject("Hold");
             }
             else{
@@ -276,7 +276,7 @@ public class AdminReservationGUIController implements Initializable{
             Socket server = new Socket(BookITconstants.serverIP, BookITconstants.serverPort);
             ObjectOutputStream out = new ObjectOutputStream(server.getOutputStream());
             ObjectInputStream in = new ObjectInputStream(server.getInputStream());
-            if(true){
+            if(false){
                 out.writeObject("Hold");
             }
             else{
@@ -285,14 +285,14 @@ public class AdminReservationGUIController implements Initializable{
             out.flush();
             out.writeObject("admin_getRequestsQueue");
             out.flush();
-            PriorityQueue<ArrayList<Reservation>> c = (PriorityQueue<ArrayList<Reservation>>) in.readObject();
+            LinkedList<ArrayList<Reservation>> c = (LinkedList<ArrayList<Reservation>>) in.readObject();
             File f = new File("./Downloads");
             f.mkdirs();
             FileWriter file = new FileWriter(new File("./Downloads/Requests.txt"), false);
             int i=1;
             while(!c.isEmpty()){
-                ArrayList<Reservation> r = c.peek();
-                c.poll();
+                ArrayList<Reservation> r = c.get(0);
+                c.remove(0);
                 file.write("Reservation "+i+" - "+r.get(0).getCreationDate().toString()+"\n");
                 file.flush();
                 file.write("Sender: "+r.get(0).getReserverEmail()+"\n");
@@ -333,6 +333,7 @@ public class AdminReservationGUIController implements Initializable{
             System.out.println("IO Exception occurred while downloading requests");
         }
         catch (ClassNotFoundException c){
+            Notification.throwAlert("Error","There are no pending student requests to download");
             System.out.println("ClassNotFound exception occurred while downloading requests");
         }
     }
