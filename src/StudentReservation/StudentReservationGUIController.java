@@ -1018,7 +1018,7 @@ public class StudentReservationGUIController implements Initializable{
             listOfReservations.add(r);
         }                                                   // GUI Integration Ends
         if(!activeUser.sendReservationRequest(listOfReservations, false)){
-            Notification.throwAlert("Booking Error","The booking couldn't be completed as there is another reservation for the course corresponding to this time slot");
+            Notification.throwAlert("Booking Error","The booking couldn't be completed as there is another reservation corresponding to one of the requested time slot");
         }
         else{
             for(int i=0;i<chosenSlots.size();i++){

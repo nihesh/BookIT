@@ -6,32 +6,6 @@ import HelperClasses.*;
 
 
 /**
- * request comparator for the priority queue
- * @author Harsh
- */
-class RequestCompare implements Comparator<ArrayList<Reservation>>,java.io.Serializable{
-
-    @Override
-    public int compare(ArrayList<Reservation> o1, ArrayList<Reservation> o2) {
-        // TODO Auto-generated method stub
-        if(o1.get(0).getCreationDate().isBefore(o2.get(0).getCreationDate())) {
-            return -1;
-        }
-        else if(o1.get(0).getCreationDate().isAfter(o2.get(0).getCreationDate())) {
-            return 1;
-        }
-        if(o1.get(0).getTargetDate().isBefore(o2.get(0).getTargetDate())) {
-            return -1;
-        }
-        else if(o1.get(0).getTargetDate().isAfter(o2.get(0).getTargetDate())){
-            return 1;
-        }
-        return 0;
-
-    }
-
-}
-/**
  * setup class to initialize database and create default users
  * @author Nihesh
  *
@@ -362,8 +336,8 @@ public class setup {
         master.setActiveUser();
         master.serialize(false);
     }
-    public static void serialiseEmptyPriorityQueue() throws IOException, ClassNotFoundException{
-        PriorityQueue<ArrayList<Reservation>> p = new PriorityQueue<>(new RequestCompare());
+    public static void serialiseEmptyQueue() throws IOException, ClassNotFoundException{
+        LinkedList<ArrayList<Reservation>> p = new LinkedList<>();
         ObjectOutputStream out = null;
         try {
         	out = new ObjectOutputStream(new FileOutputStream("./src/AppData/Requests/requests.txt", false));
@@ -538,7 +512,7 @@ public class setup {
 			resetServerErrorLog();
 			clearUserData();
 			createFirstAdmin();
-			serialiseEmptyPriorityQueue();
+			serialiseEmptyQueue();
 			serialiseEmptyJoinCodeMap();
         }
         catch(Exception e){

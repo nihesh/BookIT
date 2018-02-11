@@ -25,10 +25,10 @@ import javax.mail.internet.MimeMessage;
  * the server class for back-end development
  */
 public class server {
-	/**
-	 * spam filter object for detecting spam messages
-	 */
-	public static final double BookITversion = 1.1;
+    /**
+     * spam filter object for detecting spam messages
+     */
+    public static final double BookITversion = 1.1;
     public static SpamFilter spm;
     public static int noOfConnections = 0;
     public static ExecutorService mailpool = Executors.newFixedThreadPool(2);
@@ -69,7 +69,7 @@ public class server {
         ObjectInputStream in=null;
         ObjectInputStream in2=null;
         ObjectInputStream in3=null;
-        
+
         try
         {
             in = new ObjectInputStream(new FileInputStream("./src/AppData/Server/StudentEmails.dat"));
@@ -131,14 +131,14 @@ public class server {
  *
  */
 class ConnectionHandler implements Runnable{
-	private Socket connection;
+    private Socket connection;
     public static ReentrantLock lock;
     private static String JoinString="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
     public ConnectionHandler(Socket connection){
         this.connection = connection;
     }
     /**
-     * 
+     *
      * @return list of all courses
      */
     public static ArrayList<String> getAllCourses(){
@@ -249,13 +249,13 @@ class ConnectionHandler implements Runnable{
      * deserialize the requests queue from the database
      * @return priority queue of requests
      */
-    public PriorityQueue<ArrayList<Reservation>> deserializeRequests(){
-        PriorityQueue<ArrayList<Reservation>> p=null;
+    public LinkedList<ArrayList<Reservation>> deserializeRequests(){
+        LinkedList<ArrayList<Reservation>> p=null;
         ObjectInputStream in=null;
         try
         {
             in = new ObjectInputStream(new FileInputStream("./src/AppData/Requests/requests.txt"));
-            p = ((PriorityQueue<ArrayList<Reservation>>)in.readObject());
+            p = ((LinkedList<ArrayList<Reservation>>)in.readObject());
         }
         catch(Exception e){
             ;
@@ -274,9 +274,9 @@ class ConnectionHandler implements Runnable{
     }
     /**
      * serialize requests queue to the server database
-     * @param r the priority queue 
+     * @param r the priority queue
      */
-    public void serializeRequests(PriorityQueue<ArrayList<Reservation>> r) {
+    public void serializeRequests(LinkedList<ArrayList<Reservation>> r) {
         try{
             ObjectOutputStream out = null;
             try{
@@ -309,17 +309,17 @@ class ConnectionHandler implements Runnable{
         }
     }
     public void BookingCancellationNotifier(LocalDate queryDate, int slotID, String RoomID, String cancellationMessage, String cancelledBy){
-    	HashMap<String, Integer> h = new HashMap<>();
+        HashMap<String, Integer> h = new HashMap<>();
         Room temp=Room.deserializeRoom(RoomID);
         Reservation r=temp.getSchedule(queryDate)[slotID];
         String recipient = r.getReserverEmail();
         if(recipient != null) {
-        h.put(recipient, 1);}
+            h.put(recipient, 1);}
         if(r.getCourseName() != null && (!r.getCourseName().equals(""))) {
-        	String facultyemail = course_getFaculty(r.getCourseName());
-        	if(facultyemail != null) {
-        	h.put(facultyemail, 1);
-        	}
+            String facultyemail = course_getFaculty(r.getCourseName());
+            if(facultyemail != null) {
+                h.put(facultyemail, 1);
+            }
         }
         h.put(Mail.from, 1);
         temp.deleteReservation(queryDate, slotID, cancelledBy);
@@ -332,20 +332,20 @@ class ConnectionHandler implements Runnable{
         ArrayList<LocalDate> target_date = new ArrayList<>();
         target_date.add(r.getTargetDate());
         for(String email : h.keySet()) {
-        	if(!email.equals("")) {
-        		
-        		User x=getUser(email);
-        		ArrayList<Integer> t = new ArrayList<>();
-        		t.add(r.getReservationSlot());
-        		Notification n = new Notification("Room Booking", "Cancelled", r.getMessage(), r.getCourseName(), target_date, r.getRoomName(), r.getReserverEmail(),t);
+            if(!email.equals("")) {
+
+                User x=getUser(email);
+                ArrayList<Integer> t = new ArrayList<>();
+                t.add(r.getReservationSlot());
+                Notification n = new Notification("Room Booking", "Cancelled", r.getMessage(), r.getCourseName(), target_date, r.getRoomName(), r.getReserverEmail(),t);
                 String GreetText="Hello User";
                 if(x != null) {
-                	GreetText = "Hello" + x.getName();
-                	x.addNotification(n);
+                    GreetText = "Hello" + x.getName();
+                    x.addNotification(n);
                 }
                 server.mailpool.execute(new Mail(email,"BooKIT - Room booking cancelled", GreetText+","+"\n\nThe following booking of yours have been cancelled by the admin:\n\n"+r.getMessage()+"\nDate: "+queryDate.getDayOfMonth()+"/"+queryDate.getMonthValue()+"/"+queryDate.getYear()+"\nTime: "+ Reservation.getSlotRange(slotID)+" \nReason: "+cancellationMessage+"\n\nIf you think this is a mistake, please contact admin.\n\nRegards,\nBookIT Team"));
                 serializeUser(x);
-        	}
+            }
         }
     }
     public String generateJoincode(String type){
@@ -383,142 +383,106 @@ class ConnectionHandler implements Runnable{
         temp.remove(code);
         serializeJoinCode(temp);
     }
-    public ArrayList<Reservation> getRequest(){
-        PriorityQueue<ArrayList<Reservation>> p = deserializeRequests();
-        ArrayList<Reservation> r = p.peek();
-        while (r != null && (SpamFilter.Predict(r.get(0).getMessageWithoutVenue()) || r.get(0).getCreationDate().plusDays(5).isBefore(LocalDateTime.now()))) {
-            p.poll();
-            r = p.peek();
-        }
-        while (r != null && (SpamFilter.Predict(r.get(0).getMessageWithoutVenue()) || r.get(0).getTargetDate().isBefore(LocalDate.now()))) {
-            p.poll();
-            r = p.peek();
-        }
-        if(r==null){
-            serializeRequests(p);
+    public ArrayList<Reservation> FilterInvalidSlots(ArrayList<Reservation> r){     // Returns null if request expired or the user deleted the request
+        if(r == null){
             return null;
         }
-        int flag=0;
-        Room temp = Room.deserializeRoom(r.get(0).getRoomName());
-        Course ctemp = Course.deserializeCourse(r.get(0).getCourseName());
-        while(r!=null) {
-            if(SpamFilter.Predict(r.get(0).getMessageWithoutVenue())){
-                p.poll();
-                r = p.peek();
-                continue;
-            }
-            Room room = Room.deserializeRoom(r.get(0).getRoomName());
-            Reservation[] pending = room.getPendingReservations(r.get(0).getReserverEmail(),r.get(0).getTargetDate());
+
+        if(SpamFilter.Predict(r.get(0).getMessageWithoutVenue()) || r.get(0).getCreationDate().plusDays(5).isBefore(LocalDateTime.now())){
+            return null;
+        }
+        else{
+            Room temp = Room.deserializeRoom(r.get(0).getRoomName());
+            Course ctemp = Course.deserializeCourse(r.get(0).getCourseName());
+            Reservation[] pending = temp.getPendingReservations(r.get(0).getReserverEmail(),r.get(0).getTargetDate());
+            int flag=0;
             for(int i=r.size()-1;i>=0;i--){
                 if(pending[r.get(i).getReservationSlot()] == null){
                     r.remove(i);
                 }
             }
-            if(r.size()==0){
-                p.poll();
-                r=p.peek();
-                continue;
-            }
-            for (Reservation reservation : r) {
-                if (!temp.checkReservation(r.get(0).getTargetDate(), reservation.getReservationSlot(), reservation)) {
-                    p.poll();
-                    flag=1;
-                    r=p.peek();
-                    break;
+            for(int i=r.size()-1;i>=0;i--){
+                if (!temp.checkReservation(r.get(0).getTargetDate(), r.get(i).getReservationSlot(), r.get(i))) {
+                    r.remove(i);
                 }
                 if(ctemp!=null) {
-                    if (ctemp.checkInternalCollision(reservation)) {
-                        p.poll();
-                        flag=1;
-                        r=p.peek();
-                        break;
+                    if (ctemp.checkInternalCollision(r.get(i))) {
+                        r.remove(i);
                     }
                 }
-                flag=0;
-
-
             }
-            if(flag==0) {
-                break;
+            return r;
+        }
+    }
+    public LinkedList<ArrayList<Reservation>> getRequest(){
+        LinkedList<ArrayList<Reservation> > requests = deserializeRequests();
+        LinkedList<ArrayList<Reservation> > filteredRequests = new LinkedList<>();
+        for(int i=0;i<requests.size();i++){
+            ArrayList<Reservation> temp = FilterInvalidSlots(requests.get(i));
+            if(temp!=null) {
+                filteredRequests.add(temp);
             }
         }
-        serializeRequests(p);
-        return r;
+        serializeRequests(filteredRequests);
+        return filteredRequests;
     }
-    public boolean acceptRequest(ArrayList<Integer> data){
-        PriorityQueue<ArrayList<Reservation>> p = deserializeRequests();
-        ArrayList<Reservation> r = p.peek();
-        if (r == null) {
-            serializeRequests(p);
+    public boolean acceptRequest(ArrayList<Reservation> acceptList, ArrayList<Reservation> rejectList){
+        int flag=0;
+        String room_Name;
+        String course_Name;
+        if(acceptList.size()>0){
+            room_Name = acceptList.get(0).getRoomName();
+            course_Name = acceptList.get(0).getCourseName();
+        }
+        else if(rejectList.size()>0){
+            room_Name = rejectList.get(0).getRoomName();
+            course_Name = rejectList.get(0).getCourseName();
+        }
+        else{
             return false;
         }
-        p.poll();
-        int flag=0;
-        Room temp = Room.deserializeRoom(r.get(0).getRoomName());
-        Course ctemp = Course.deserializeCourse(r.get(0).getCourseName());
-        while(r!=null) {
-            for (int i=0;i<data.size();i++) {
-                Reservation reservation = r.get(data.get(i));
-                if(!temp.checkReservation(r.get(0).getTargetDate(), reservation.getReservationSlot(), reservation)) {
-                    p.poll();
-                    flag=1;
-                    r=p.peek();
-                    break;
-                }
-                if(ctemp!=null) {
-                    if (ctemp.checkInternalCollision(reservation)) {
-                        p.poll();
-                        flag=1;
-                        r=p.peek();
-                        break;
-                    }
-                }
-                flag=0;
-            }
-            if(flag==0) {
-                break;
-            }
-        }
-        serializeRequests(p);
-        for(int i=0;i<r.size();i++){
-            temp.deleteRequest(r.get(0).getReserverEmail(), r.get(0).getTargetDate(), r.get(i).getReservationSlot());
+        Room temp = Room.deserializeRoom(room_Name);
+        Course ctemp = Course.deserializeCourse(course_Name);
+        for(int i=0;i<rejectList.size();i++){
+            temp.deleteRequest(rejectList.get(0).getReserverEmail(), rejectList.get(0).getTargetDate(), rejectList.get(i).getReservationSlot());
         }
         ArrayList<Integer> x=new ArrayList<Integer>();
-        if(r!=null) {
-        	String recipient = r.get(0).getReserverEmail();
+        if(acceptList.size()>0) {
+            String recipient = acceptList.get(0).getReserverEmail();
             String GreetText = "Hello " + getUser(recipient).getName();
             String TimeSlots="";
-            
-            for (int i=0;i<data.size();i++) {
-                Reservation reservation = r.get(data.get(i));
+
+            for (int i=0;i<acceptList.size();i++) {
+                Reservation reservation = acceptList.get(i);
                 reservation.removeRequestFlag();
                 x.add(reservation.getReservationSlot());
                 TimeSlots+=Reservation.getSlotRange(reservation.getReservationSlot())+"\n";
-                temp.addReservation(r.get(0).getTargetDate(), reservation.getReservationSlot(), reservation);
-                temp.deleteRequest(r.get(0).getReserverEmail(), r.get(0).getTargetDate(), r.get(i).getReservationSlot());
+                temp.addReservation(reservation.getTargetDate(), reservation.getReservationSlot(), reservation);
+                temp.deleteRequest(reservation.getReserverEmail(), reservation.getTargetDate(), reservation.getReservationSlot());
                 if(ctemp!=null) {
-                    ctemp.addReservation(r.get(0).getTargetDate(), reservation.getReservationSlot(), reservation);
+                    ctemp.addReservation(reservation.getTargetDate(), reservation.getReservationSlot(), reservation);
                 }
             }
             ArrayList<LocalDate> target_dateAList = new ArrayList<>();
-            target_dateAList.add(r.get(0).getTargetDate());
-            Notification n = new Notification("Room Reservation Request", "Accepted", r.get(0).getMessage(), r.get(0).getCourseName(), target_dateAList, r.get(0).getRoomName(), r.get(0).getReserverEmail(), x);
+            target_dateAList.add(acceptList.get(0).getTargetDate());
+            Notification n = new Notification("Room Reservation Request", "Accepted", acceptList.get(0).getMessage(), acceptList.get(0).getCourseName(), target_dateAList, acceptList.get(0).getRoomName(), acceptList.get(0).getReserverEmail(), x);
             Student Stud = (Student)getUser(recipient);
             Admin a = (Admin) getUser(Mail.from);
             Stud.addNotification(n);
             a.addNotification(n);
             serializeUser(Stud);
             serializeUser(a);
-            server.mailpool.execute(new Mail(recipient,"BooKIT - Room reservation request accepted", GreetText+","+"\n\nThe following request of yours have been accepted by the admin:\n\n"+"Room: "+r.get(0).getVenueName()+"\nDate: "+r.get(0).getTargetDate().getDayOfMonth()+"/"+r.get(0).getTargetDate().getMonthValue()+"/"+r.get(0).getTargetDate().getYear()+"\nTime:\n"+TimeSlots+"\n\nIf you think this is a mistake, please contact admin.\n\nRegards,\nBookIT Team"));
+            server.mailpool.execute(new Mail(recipient,"BooKIT - Room reservation request accepted", GreetText+","+"\n\nThe following request of yours have been accepted by the admin:\n\n"+"Room: "+acceptList.get(0).getVenueName()+"\nDate: "+acceptList.get(0).getTargetDate().getDayOfMonth()+"/"+acceptList.get(0).getTargetDate().getMonthValue()+"/"+acceptList.get(0).getTargetDate().getYear()+"\nTime:\n"+TimeSlots+"\n\nIf you think this is a mistake, please contact admin.\n\nRegards,\nBookIT Team"));
             if(ctemp != null) {
-            	if(ctemp.getInstructorEmail() != null && (!ctemp.getInstructorEmail().equals(""))) {
-            		Faculty ft = (Faculty)getUser(ctemp.getInstructorEmail());
-            		ft.addNotification(n);
-            		serializeUser(ft);
-            		GreetText = "Hello" + ft.getName();
-            		server.mailpool.execute(new Mail(ctemp.getInstructorEmail(),"BooKIT - Room reservation request accepted", GreetText+","+"\n\nThe following request of yours have been accepted by the admin:\n\n"+"Room: "+r.get(0).getVenueName()+"\nDate: "+r.get(0).getTargetDate().getDayOfMonth()+"/"+r.get(0).getTargetDate().getMonthValue()+"/"+r.get(0).getTargetDate().getYear()+"\nTime:\n"+TimeSlots+"\n\nIf you think this is a mistake, please contact admin.\n\nRegards,\nBookIT Team"));
-                    
-            	}
+                if(ctemp.getInstructorEmail() != null && (!ctemp.getInstructorEmail().equals(""))) {
+                    Faculty ft = (Faculty)getUser(ctemp.getInstructorEmail());
+                    if(ft!=null) {
+                        ft.addNotification(n);
+                        serializeUser(ft);
+                        GreetText = "Hello" + ft.getName();
+                        server.mailpool.execute(new Mail(ctemp.getInstructorEmail(), "BooKIT - Room reservation request accepted", GreetText + "," + "\n\nThe following request of yours have been accepted by the admin:\n\n" + "Room: " + acceptList.get(0).getVenueName() + "\nDate: " + acceptList.get(0).getTargetDate().getDayOfMonth() + "/" + acceptList.get(0).getTargetDate().getMonthValue() + "/" + acceptList.get(0).getTargetDate().getYear() + "\nTime:\n" + TimeSlots + "\n\nIf you think this is a mistake, please contact admin.\n\nRegards,\nBookIT Team"));
+                    }
+                }
             }
         }
         if(ctemp!=null) {
@@ -527,21 +491,23 @@ class ConnectionHandler implements Runnable{
         temp.serialize();
         return true;
     }
-    public boolean rejectRequest(){
-        PriorityQueue<ArrayList<Reservation>> p = deserializeRequests();
-        if (p.size() == 0) {
-            serializeRequests(p);
+    public boolean rejectRequest(ArrayList<Reservation> r){
+        if(r==null || r.size()==0){
             return false;
         }
-        ArrayList<Reservation> r = p.peek();
+        Room temp = Room.deserializeRoom(r.get(0).getRoomName());
+        for(int i=0;i<r.size();i++){
+            temp.deleteRequest(r.get(i).getReserverEmail(), r.get(i).getTargetDate(), r.get(i).getReservationSlot());
+        }
+        temp.serialize();
         String recipient = r.get(0).getReserverEmail();
         String GreetText = getUser(recipient).getName();
         String TimeSlots="";
         ArrayList<Integer> x=new ArrayList<Integer>();
         for (Reservation reservation : r) {
-        	x.add(reservation.getReservationSlot());
-			TimeSlots+=Reservation.getSlotRange(reservation.getReservationSlot())+"\n";
-		}
+            x.add(reservation.getReservationSlot());
+            TimeSlots+=Reservation.getSlotRange(reservation.getReservationSlot())+"\n";
+        }
         ArrayList<LocalDate> t_date = new ArrayList<>();
         t_date.add(r.get(0).getTargetDate());
         Notification n = new Notification("Room Reservation Request", "Declined", r.get(0).getMessage(), r.get(0).getCourseName(), t_date, r.get(0).getRoomName(), r.get(0).getReserverEmail(), x);
@@ -551,19 +517,12 @@ class ConnectionHandler implements Runnable{
         a.addNotification(n);
         serializeUser(a);
         server.mailpool.execute(new Mail(recipient,"BooKIT - Room booking request rejected", GreetText+","+"\n\nThe following request of yours have been rejected by the admin:\n\n"+"Room: "+r.get(0).getVenueName()+"\nDate: "+r.get(0).getTargetDate().getDayOfMonth()+"/"+r.get(0).getTargetDate().getMonthValue()+"/"+r.get(0).getTargetDate().getYear()+"\nTime:\n"+TimeSlots+"\n\nIf you think this is a mistake, please contact admin.\n\nRegards,\nBookIT Team"));
-        p.poll();
         serializeUser(Stud);
-        serializeRequests(p);
-        Room temp = Room.deserializeRoom(r.get(0).getRoomName());
-        for(int i=0;i<r.size();i++){
-            temp.deleteRequest(r.get(i).getReserverEmail(), r.get(i).getTargetDate(), r.get(i).getReservationSlot());
-        }
-        temp.serialize();
         return true;
     }
     public boolean adminandfaculty_bookRoom(ArrayList<LocalDate> date, int slot, Reservation r) {
         HashMap<String, Integer> h = new HashMap<>();
-    	h.put(Mail.from, 1);
+        h.put(Mail.from, 1);
         Room room=Room.deserializeRoom(r.getRoomName());
         Boolean addToCourse = true;
         if(r.getCourseName().equals("")){
@@ -586,37 +545,37 @@ class ConnectionHandler implements Runnable{
         h.put(r.getReserverEmail(), 1);
         course = Course.deserializeCourse(r.getCourseName());
         if(r.getCourseName()!= null && !r.getCourseName().equals("")) {
-        	
-        	h.put(course.getInstructorEmail(), 1);
+
+            h.put(course.getInstructorEmail(), 1);
         }
         ArrayList<Integer> x= new ArrayList<Integer>();
         String slots = "";
         slots += Reservation.getSlotRange(r.getReservationSlot()) + "\n";
         x.add(r.getReservationSlot());
-        
+
         for(LocalDate start : date){
             if (addToCourse) {
                 course.addReservation(start, slot, r);
             }
             room.addReservation(start, slot, r);
-            
+
         }
         Notification n = new Notification("Classroom Booking", "Done", r.getMessage(), r.getCourseName(), date, r.getRoomName(), r.getReserverEmail(),x);
         String target_date = "";
         for (LocalDate d : date) {
-			target_date = target_date + d.getDayOfMonth()+"/"+d.getMonthValue()+ "/"+ d.getYear()+"\n"; 
+            target_date = target_date + d.getDayOfMonth()+"/"+d.getMonthValue()+ "/"+ d.getYear()+"\n";
         }
-       for(String email : h.keySet()) {
+        for(String email : h.keySet()) {
             String GreetText="Hello User";
             User xy=getUser(email);
             if(xy!=null) {
-            	xy.addNotification(n);
+                xy.addNotification(n);
                 GreetText = "Hello "+xy.getName();
                 server.mailpool.execute(new Mail(email,"BooKIT - Room booking completed", GreetText+","+"\n\nThe following booking of yours have been confirmed:\n\n"+r.getMessage()+"\nCourse: "+r.getCourseName() +"\nDate: "+ target_date +"\nTime: "+ slots+" \nReason: "+r.getMessageWithoutVenue()+"\n\nIf you think this is a mistake, please contact admin.\n\nRegards,\nBookIT Team"));
-                serializeUser(xy);	
-                
+                serializeUser(xy);
+
             }
-            }
+        }
         room.serialize();
         if(addToCourse) {
             course.serialize();
@@ -629,7 +588,7 @@ class ConnectionHandler implements Runnable{
         serializeUser(f);
     }
     public boolean sendReservationRequest(ArrayList<Reservation> r) {
-        PriorityQueue<ArrayList<Reservation>> p = null;
+        LinkedList<ArrayList<Reservation>> p = null;
         Course c = Course.deserializeCourse(r.get(0).getCourseName());
         Room room = Room.deserializeRoom(r.get(0).getRoomName());
         if(c!=null){
@@ -648,12 +607,11 @@ class ConnectionHandler implements Runnable{
         ArrayList<Integer> x= new ArrayList<Integer>();
         Admin tempAd = (Admin)getUser(Mail.from);
         p = deserializeRequests();
-        p.add(r);
+        p.addLast(r);
         serializeRequests(p);
-        Room temp = Room.deserializeRoom(r.get(0).getRoomName());
         for(int i=0;i<r.size();i++){
             Reservation t=r.get(i);
-        	temp.addRequest(t);
+            room.addRequest(t);
             x.add(t.getReservationSlot());
         }
         ArrayList<LocalDate> date = new ArrayList<>();
@@ -663,7 +621,7 @@ class ConnectionHandler implements Runnable{
         tempStudent.addNotification(n);
         serializeUser(tempStudent);
         serializeUser(tempAd);
-        temp.serialize();
+        room.serialize();
         return true;
     }
     public ArrayList<String> searchCourse(ArrayList<String> keyword){
@@ -714,40 +672,40 @@ class ConnectionHandler implements Runnable{
         return true;
     }
     public boolean studentAndFaculty_cancelBooking(LocalDate queryDate, int slotID, String RoomID, String cancelledBy) {
-    	HashMap<String, Integer> h = new HashMap<>();
+        HashMap<String, Integer> h = new HashMap<>();
         h.put(Mail.from, 1);
-        
-    	Room temp=Room.deserializeRoom(RoomID);
+
+        Room temp=Room.deserializeRoom(RoomID);
         Reservation r=temp.getSchedule(queryDate)[slotID];
         if(r.getReserverEmail() != null) {
-        	h.put(r.getReserverEmail(), 1);
+            h.put(r.getReserverEmail(), 1);
         }
         temp.deleteReservation(queryDate, slotID, cancelledBy);
         temp.serialize();
         Course c=Course.deserializeCourse(r.getCourseName());
         if(c!=null) {
-        	if(c.getInstructorEmail() != null) {
-        	h.put(c.getInstructorEmail(), 1);}
+            if(c.getInstructorEmail() != null) {
+                h.put(c.getInstructorEmail(), 1);}
             c.deleteReservation(queryDate, slotID,r.getTopGroup());
             c.serialize();
         }
         ArrayList<Integer> slot= new ArrayList<Integer>();
-		slot.add(r.getReservationSlot());
-		ArrayList<LocalDate> date= new ArrayList<LocalDate>();
-		date.add(r.getTargetDate());
-		for(String email : h.keySet()) {
-        	if(!email.equals("")) {
-        		String GreetText = "Hello User";
-        		User x = getUser(email);
-        		Notification n = new Notification("Room Booking", "Cancelled", r.getMessage(), r.getCourseName(),date, r.getRoomName(), r.getReserverEmail(), slot);
+        slot.add(r.getReservationSlot());
+        ArrayList<LocalDate> date= new ArrayList<LocalDate>();
+        date.add(r.getTargetDate());
+        for(String email : h.keySet()) {
+            if(!email.equals("")) {
+                String GreetText = "Hello User";
+                User x = getUser(email);
+                Notification n = new Notification("Room Booking", "Cancelled", r.getMessage(), r.getCourseName(),date, r.getRoomName(), r.getReserverEmail(), slot);
                 if(x != null) {
-        			GreetText = "Hello " + x.getName();
-        			x.addNotification(n);
-        		}
-        		server.mailpool.execute(new Mail(email,"BooKIT - Room booking cancelled", GreetText+","+"\n\nThe following booking of yours have been cancelled by the admin:\n\n"+r.getMessage()+"\nDate: "+queryDate.getDayOfMonth()+"/"+queryDate.getMonthValue()+"/"+queryDate.getYear()+"\nTime: "+ Reservation.getSlotRange(slotID) +"\n\nIf you think this is a mistake, please contact admin.\n\nRegards,\nBookIT Team"));
-        		serializeUser(x);
-        	}
-        	}
+                    GreetText = "Hello " + x.getName();
+                    x.addNotification(n);
+                }
+                server.mailpool.execute(new Mail(email,"BooKIT - Room booking cancelled", GreetText+","+"\n\nThe following booking of yours have been cancelled by the admin:\n\n"+r.getMessage()+"\nDate: "+queryDate.getDayOfMonth()+"/"+queryDate.getMonthValue()+"/"+queryDate.getYear()+"\nTime: "+ Reservation.getSlotRange(slotID) +"\n\nIf you think this is a mistake, please contact admin.\n\nRegards,\nBookIT Team"));
+                serializeUser(x);
+            }
+        }
         return true;
     }
     public boolean changePassword(String email, String oldPassword, String newPassword) {
@@ -756,9 +714,9 @@ class ConnectionHandler implements Runnable{
             if(newPassword.length()!=0) {
                 boolean b=newPassword.matches("[A-Za-z0-9]+");
                 if(b) {
-                	Notification n = new Notification("Password Changed", "Done", null, null, null, null, null, null);
+                    Notification n = new Notification("Password Changed", "Done", null, null, null, null, null, null);
                     u.addNotification(n);
-                	u.setPassword(newPassword);
+                    u.setPassword(newPassword);
                     serializeUser(u);
                     return true;
                 }
@@ -847,19 +805,19 @@ class ConnectionHandler implements Runnable{
         return c.getSchedule(queryDate)[slotID];
     }
     public void mailPass(String email){
-    	User temp=getUser(email);
-    	server.mailpool.execute(new Mail(temp.getEmail().getEmailID(),"BooKIT - Your Account Password is here", "Hello "+temp.getName()+","+"\n\nThank you for signing up with us.\n\nYour account password is as follows:"+"\n\nPassword - "+temp.getPassword()+"\n\nIf you think this is a mistake, please contact admin.\n\nRegards,\nBookIT Team"));
-    	
+        User temp=getUser(email);
+        server.mailpool.execute(new Mail(temp.getEmail().getEmailID(),"BooKIT - Your Account Password is here", "Hello "+temp.getName()+","+"\n\nThank you for signing up with us.\n\nYour account password is as follows:"+"\n\nPassword - "+temp.getPassword()+"\n\nIf you think this is a mistake, please contact admin.\n\nRegards,\nBookIT Team"));
+
     }
     public void generatePass(String mail){
-    	 Random rnd = new Random();
-         StringBuilder sb = new StringBuilder();
-         User temp=getUser(mail);
-         while(sb.length()!=10) {
-        	 sb.append(JoinString.charAt(((int)(rnd.nextFloat() * JoinString.length()))));
-         }
-         temp.setPassword(sb.toString());
-         serializeUser(temp);
+        Random rnd = new Random();
+        StringBuilder sb = new StringBuilder();
+        User temp=getUser(mail);
+        while(sb.length()!=10) {
+            sb.append(JoinString.charAt(((int)(rnd.nextFloat() * JoinString.length()))));
+        }
+        temp.setPassword(sb.toString());
+        serializeUser(temp);
     }
     public String getUserType(String email){
         String ans=null;
@@ -870,12 +828,12 @@ class ConnectionHandler implements Runnable{
             ans="Faculty";
         }
         else if(server.adminhash!=null && server.adminhash.containsKey(email)) {
-        	ans = "Admin";
+            ans = "Admin";
         }
-       return ans;
+        return ans;
         // write code here
-    	// write code here
-    	
+        // write code here
+
     }
     public Boolean isCompatible(double version){
         if(server.BookITversion == version){
@@ -965,7 +923,7 @@ class ConnectionHandler implements Runnable{
                 LocalDate start;
                 Boolean ans;
                 LocalDate end;
-                PriorityQueue<ArrayList<Reservation>> req;
+                LinkedList<ArrayList<Reservation> > req;
                 String cancelledBy;
                 switch (request) {
                     case "GetUser":
@@ -1048,32 +1006,6 @@ class ConnectionHandler implements Runnable{
                             lock.unlock();
                         }
                         out.writeObject(joinCode);
-                        out.flush();
-                        break;
-                    case "WriteRequest":
-                        req = (PriorityQueue<ArrayList<Reservation>>) in.readObject();
-                        if(!status.equals("Pass")) {
-                            lock.lockInterruptibly();
-                        }
-                        serializeRequests(req);
-                        if(lock.isLocked() && lock.isHeldByCurrentThread()){
-                            System.out.print("[ "+LocalDateTime.now()+" ] ");
-                            System.out.println(connection.getInetAddress().toString() + " | ServerLock Released");
-                            lock.unlock();
-                        }
-                        break;
-                    case "ReadRequest":
-                        req=null;
-                        if(!status.equals("Pass")) {
-                            lock.lockInterruptibly();
-                        }
-                        req = deserializeRequests();
-                        if(lock.isLocked() && lock.isHeldByCurrentThread()){
-                            System.out.print("[ "+LocalDateTime.now()+" ] ");
-                            System.out.println(connection.getInetAddress().toString() + " | ServerLock Released");
-                            lock.unlock();
-                        }
-                        out.writeObject(req);
                         out.flush();
                         break;
                     case "SpamCheck":
@@ -1164,26 +1096,29 @@ class ConnectionHandler implements Runnable{
                         }
                         break;
                     case "getRequest":
-                        ArrayList<Reservation> requ = null;
+                        req = null;
                         if(!status.equals("Pass")) {
                             lock.lockInterruptibly();
                         }
-                        requ = getRequest();
+                        req = getRequest();
                         if(lock.isLocked() && lock.isHeldByCurrentThread()){
                             System.out.print("[ "+LocalDateTime.now()+" ] ");
                             System.out.println(connection.getInetAddress().toString() + " | ServerLock Released");
                             lock.unlock();
                         }
-                        out.writeObject(requ);
+                        out.writeObject(req);
                         out.flush();
                         break;
                     case "acceptRequest":
-                        ArrayList<Integer> data = (ArrayList<Integer>) in.readObject();
+                        ArrayList<Reservation> acceptList = null;
+                        ArrayList<Reservation> rejectList = null;
+                        acceptList = (ArrayList<Reservation>) in.readObject();
+                        rejectList = (ArrayList<Reservation>) in.readObject();
                         ans = false;
                         if(!status.equals("Pass")) {
                             lock.lockInterruptibly();
                         }
-                        ans = acceptRequest(data);
+                        ans = acceptRequest(acceptList, rejectList);
                         if(lock.isLocked() && lock.isHeldByCurrentThread()){
                             System.out.print("[ "+LocalDateTime.now()+" ] ");
                             System.out.println(connection.getInetAddress().toString() + " | ServerLock Released");
@@ -1194,10 +1129,12 @@ class ConnectionHandler implements Runnable{
                         break;
                     case "rejectRequest":
                         ans = false;
+                        ArrayList<Reservation> rejList = null;
+                        rejList = (ArrayList<Reservation>) in.readObject();
                         if(!status.equals("Pass")) {
                             lock.lockInterruptibly();
                         }
-                        ans=rejectRequest();
+                        ans=rejectRequest(rejList);
                         if(lock.isLocked() && lock.isHeldByCurrentThread()){
                             System.out.print("[ "+LocalDateTime.now()+" ] ");
                             System.out.println(connection.getInetAddress().toString() + " | ServerLock Released");
@@ -1524,7 +1461,7 @@ class ConnectionHandler implements Runnable{
                         out.flush();
                         break;
                     case "admin_getRequestsQueue":
-                        PriorityQueue<ArrayList<Reservation>> pqReq = null;
+                        LinkedList<ArrayList<Reservation>> pqReq = null;
                         if(!status.equals("Pass")) {
                             lock.lockInterruptibly();
                         }
@@ -1669,35 +1606,35 @@ class Mail implements Runnable{
         recipient=target;Subject=subject;Body=body;
     }
     public void sendMail(){
-          String host = "smtp.gmail.com";
-          Properties props = new Properties();
-          props.put("mail.smtp.auth", "true");
-          props.put("mail.smtp.starttls.enable", "true");
-          props.put("mail.smtp.host", host);
-          props.put("mail.smtp.port", "587");
-          // Get the Session object.
-          Session session = Session.getInstance(props,
-          new javax.mail.Authenticator() {
-             protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication(username, password);
-             }
-          });
-          try {
-             // Create a default MimeMessage object.
-             Message message = new MimeMessage(session);
-             // Set From: header field of the header.
-             message.setFrom(new InternetAddress(from));
-             // Set To: header field of the header.
-             message.setRecipients(Message.RecipientType.TO,InternetAddress.parse(recipient));
-             // Set Subject: header field
-             message.setSubject(Subject);
-             // Now set the actual message
-             message.setText(Body);
-             // Send message
-             Transport.send(message);
-          } catch (MessagingException e) {
-                throw new RuntimeException(e);
-          }
+        String host = "smtp.gmail.com";
+        Properties props = new Properties();
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.starttls.enable", "true");
+        props.put("mail.smtp.host", host);
+        props.put("mail.smtp.port", "587");
+        // Get the Session object.
+        Session session = Session.getInstance(props,
+                new javax.mail.Authenticator() {
+                    protected PasswordAuthentication getPasswordAuthentication() {
+                        return new PasswordAuthentication(username, password);
+                    }
+                });
+        try {
+            // Create a default MimeMessage object.
+            Message message = new MimeMessage(session);
+            // Set From: header field of the header.
+            message.setFrom(new InternetAddress(from));
+            // Set To: header field of the header.
+            message.setRecipients(Message.RecipientType.TO,InternetAddress.parse(recipient));
+            // Set Subject: header field
+            message.setSubject(Subject);
+            // Now set the actual message
+            message.setText(Body);
+            // Send message
+            Transport.send(message);
+        } catch (MessagingException e) {
+            throw new RuntimeException(e);
+        }
     }
     @Override
     public void run() {
@@ -1705,4 +1642,3 @@ class Mail implements Runnable{
         sendMail();
     }
 }
-

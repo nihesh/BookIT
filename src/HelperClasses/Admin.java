@@ -213,7 +213,7 @@ public class Admin extends User{
 	 * returns the top request in the priority queue
 	 * @return The top request; an array list of reservation objects
 	 */
-	public ArrayList<Reservation> getRequest(Boolean lock){
+	public LinkedList<ArrayList<Reservation> > getRequest(Boolean lock){
 		try{
 			Socket server = new Socket(BookITconstants.serverIP, BookITconstants.serverPort);
 			ObjectOutputStream out = new ObjectOutputStream(server.getOutputStream());
@@ -227,7 +227,7 @@ public class Admin extends User{
 			out.flush();
 			out.writeObject("getRequest");
 			out.flush();
-			ArrayList<Reservation> c = (ArrayList<Reservation>) in.readObject();
+			LinkedList<ArrayList<Reservation> > c = (LinkedList<ArrayList<Reservation> >) in.readObject();
 			out.close();
 			in.close();
 			server.close();
@@ -245,7 +245,7 @@ public class Admin extends User{
 	 * accepts the top request in the request queue
 	 * @return true if accepted and false if not able to accept because of time table clashes
 	 */
-	public boolean acceptRequest(ArrayList<Integer> data, Boolean lock){
+	public boolean acceptRequest(ArrayList<Reservation> acceptList, ArrayList<Reservation> rejectList, Boolean lock){
 		try{
 			Socket server = new Socket(BookITconstants.serverIP, BookITconstants.serverPort);
 			ObjectOutputStream out = new ObjectOutputStream(server.getOutputStream());
@@ -259,7 +259,9 @@ public class Admin extends User{
 			out.flush();
 			out.writeObject("acceptRequest");
 			out.flush();
-			out.writeObject(data);
+			out.writeObject(acceptList);
+			out.flush();
+			out.writeObject(rejectList);
 			out.flush();
 			Boolean c = (Boolean) in.readObject();
 			out.close();
@@ -279,7 +281,7 @@ public class Admin extends User{
 	 * rejects the request at top of the queue
 	 * @return true if requests gets requested, false for handling empty parameters
 	 */
-	public boolean rejectRequest(Boolean lock){
+	public boolean rejectRequest(ArrayList<Reservation> rejectList, Boolean lock){
 		try{
 			Socket server = new Socket(BookITconstants.serverIP, BookITconstants.serverPort);
 			ObjectOutputStream out = new ObjectOutputStream(server.getOutputStream());
@@ -292,6 +294,8 @@ public class Admin extends User{
 			}
 			out.flush();
 			out.writeObject("rejectRequest");
+			out.flush();
+			out.writeObject(rejectList);
 			out.flush();
 			Boolean c = (Boolean) in.readObject();
 			out.close();

@@ -36,6 +36,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.event.Event;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 import javafx.stage.Modality;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
@@ -50,10 +51,7 @@ import java.net.Socket;
 import java.net.URI;
 import java.net.URL;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.PriorityQueue;
-import java.util.ResourceBundle;
+import java.util.*;
 
 import static java.lang.Math.max;
 
@@ -137,6 +135,8 @@ public class AdminReservationGUIController implements Initializable{
     private LocalDate EndDate;
     private Button[] b1;
     private static int animation = 200;
+    private ArrayList<Reservation> currentRequest;
+    private ArrayList<Reservation> allRequests;
 
     /**
      * Constructor for setting up Faculty Reservation GUI. It includes the adaptor code to suit any dimensional screen
@@ -701,51 +701,55 @@ public class AdminReservationGUIController implements Initializable{
      */
     public void acceptRequest(){
         int i=0;
-        ArrayList<Integer> data = new ArrayList<Integer>();
+        ArrayList<Reservation> acceptList = new ArrayList<>();
+        ArrayList<Reservation> rejectList = new ArrayList<>();
         while(!b1[i].getText().equals("")){
             if(b1[i].getText().equals("Del")) {
-                data.add(i);
+                rejectList.add(currentRequest.get(i));
+            }
+            else{
+                acceptList.add(currentRequest.get(i));
             }
             i++;
         }
-        activeUser.acceptRequest(data,false);                                             // Throw not accepted warning...
-        ArrayList<Reservation> requests = activeUser.getRequest(false);
-        if(requests == null){
-            hideRequests();
-            return;
-        }
-        loadRequest(requests);
+        activeUser.acceptRequest(acceptList, rejectList,false);                                             // Throw not accepted warning...
+        // What next?
     }
 
     /**
      * Rejects a request requested by the student
      */
     public void deleteRequest(){
-        activeUser.rejectRequest(false);
-        ArrayList<Reservation> requests = activeUser.getRequest(false);
-        if(requests == null){
-            hideRequests();
-            return;
-        }
-        loadRequest(requests);
+        activeUser.rejectRequest(currentRequest, false);
+        // What next?
     }
-    void loadStudentRequestList(){
-
-//        ArrayList<NotificationView> notifications = Admin.getNotificationView();
-        for(int i=0;i<15;i++){
+    void loadStudentRequestList(LinkedList<ArrayList<Reservation>> requests){
+        notificationOverviewBox.getChildren().clear();
+        notificationOverviewBox.setStyle("-fx-background-color:  green;");
+        notificationOverviewBox.setPadding(new Insets(6,0,6,0));
+        notificationOverviewBox.setSpacing(6);
+        for(int i=0;i<requests.size();i++){
+            String content = "";
+            ArrayList<Reservation> r = requests.get(i);
+            content+=r.get(0).getReserverEmail()+"\t\t\t\t"+r.get(0).getTargetDate()+"\t\t\t\t"+r.get(0).getRoomName()+"\t\t\t\t"+r.size()+" slots"+"\n\nPurpose: "+r.get(0).getPurpose();
             StackPane s = new StackPane();
-            s.setStyle("-fx-background-color: #323232;");
+            s.setStyle("-fx-background-color: #ADD8E6; -fx-border-width: 2; -fx-border-color: black;");
             s.setPrefSize(1295, 100);
-            Label l = new Label("Temp Label");
+            StackPane l_wrapper = new StackPane();
+            Label l = new Label(content);
+            l.setTextAlignment(TextAlignment.LEFT);
+            l.setStyle("-fx-font-size: 13pt; -fx-font-weight: bold");
+            l.setPrefSize(1100, 100);
+            l_wrapper.setPadding(new Insets(0,10,0,10));
+            l_wrapper.getChildren().add(l);
             StackPane b_wrapper = new StackPane();
             Button b = new Button("View");
             b.getStylesheets().add("./AdminReservation/button_requestview.css");
             b_wrapper.getChildren().add(b);
-            b_wrapper.setMargin(b, new Insets(0,0,0,1100));
-            l.setStyle("-fx-border-width: 6;");
-            l.setPrefSize(1100, 100);
-            s.getChildren().add(l);
-            s.getChildren().add(b);
+            s.setMargin(l_wrapper, new Insets(0,200,0,0));
+            s.setMargin(b_wrapper, new Insets(0,0,0,1100));
+            s.getChildren().add(l_wrapper);
+            s.getChildren().add(b_wrapper);
             notificationOverviewBox.getChildren().add(s);
         }
     }
@@ -753,8 +757,8 @@ public class AdminReservationGUIController implements Initializable{
      * Opens requests pane
      */
     public void showRequests(){
-        ArrayList<Reservation> requests = activeUser.getRequest(false);              // GUI Integration begins
-        if(requests == null){
+        LinkedList< ArrayList<Reservation> > requests = activeUser.getRequest(false);              // GUI Integration begins
+        if(requests.size() == 0){
             Notification.throwAlert("Notification","There are no more pending requests");
             return;
         }
@@ -762,9 +766,8 @@ public class AdminReservationGUIController implements Initializable{
         leftPane.setDisable(true);
         rightPane.setDisable(true);
         roomGridPane.setDisable(true);
-        loadStudentRequestList();
-        requestedSlotsScrollPane.getChildren().clear();
-        loadRequest(requests);                                                 // GUI Integration Ends
+        loadStudentRequestList(requests);
+        requestedSlotsScrollPane.getChildren().clear();                                                // GUI Integration Ends
         SequentialTransition sequence = new SequentialTransition();
         int step=1;
         int location=pullDownPaneInitial;
