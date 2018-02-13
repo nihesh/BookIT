@@ -5,6 +5,7 @@ import java.awt.Desktop;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -211,7 +212,17 @@ public class LoginSignupGUIController {
 				}
 				
 				else if(usertype.equals("Admin")){
-					java.net.CookieManager manager = new java.net.CookieManager();
+					File file = new File("./src/AppData/ActiveUser/Email.txt");
+					try {
+						PrintWriter ex = new PrintWriter(file);
+						ex.println(Gemail.getEmailID());
+						ex.flush();
+					} catch (FileNotFoundException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					
+		            java.net.CookieManager manager = new java.net.CookieManager();
 					java.net.CookieHandler.setDefault(manager);
 					PortListener.authcode="none";
 					PortListener.email=null;PortListener.Name=null;
