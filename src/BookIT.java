@@ -136,7 +136,11 @@ public class BookIT extends Application{
         return 2;
     }
     public void start(Stage primaryStage){
-        ServerSocket ss = null;
+    	File fileex = new File("./src/AppData/ActiveUser/ActiveUser.txt");
+        if(fileex.exists()) {
+        	fileex.delete();
+        }
+    	ServerSocket ss = null;
     	int compatibilityCheck = CheckCompatibility(BookITversion, false);
         if(compatibilityCheck == 0){
             Notification.throwAlert("Launch Error", "You are currently using BookIT v"+BookITversion+". Please download the latest version of BookIT");

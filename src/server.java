@@ -520,7 +520,7 @@ class ConnectionHandler implements Runnable{
         serializeUser(Stud);
         return true;
     }
-    public boolean adminandfaculty_bookRoom(ArrayList<LocalDate> date, int slot, Reservation r) {
+    public boolean adminandfaculty_bookRoom(ArrayList<LocalDate> date, int slot, Reservation r, String admin_email) {
         HashMap<String, Integer> h = new HashMap<>();
         h.put(Mail.from, 1);
         Room room=Room.deserializeRoom(r.getRoomName());
@@ -575,6 +575,10 @@ class ConnectionHandler implements Runnable{
                 serializeUser(xy);
 
             }
+        }
+        if(admin_email != null && !h.containsKey(admin_email)) {
+        	   server.mailpool.execute(new Mail(admin_email,"BooKIT - Room booking completed", "Hello User"+","+"\n\nThe following booking of yours have been confirmed:\n\n"+r.getMessage()+"\nCourse: "+r.getCourseName() +"\nDate: "+ target_date +"\nTime: "+ slots+" \nReason: "+r.getMessageWithoutVenue()+"\n\nIf you think this is a mistake, please contact admin.\n\nRegards,\nBookIT Team"));
+               
         }
         room.serialize();
         if(addToCourse) {
@@ -1147,11 +1151,12 @@ class ConnectionHandler implements Runnable{
                         ArrayList<LocalDate> date = (ArrayList<LocalDate>) in.readObject();
                         slotID = (int) in.readObject();
                         res = (Reservation) in.readObject();
+                        String admin_email = (String) in.readObject();
                         ans = false;
                         if(!status.equals("Pass")) {
                             lock.lockInterruptibly();
                         }
-                        ans = adminandfaculty_bookRoom(date, slotID, res);
+                        ans = adminandfaculty_bookRoom(date, slotID, res, admin_email);
                         if(lock.isLocked() && lock.isHeldByCurrentThread()){
                             System.out.print("[ "+LocalDateTime.now()+" ] ");
                             System.out.println(connection.getInetAddress().toString() + " | ServerLock Released");
