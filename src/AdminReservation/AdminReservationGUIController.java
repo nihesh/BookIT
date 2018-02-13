@@ -56,6 +56,7 @@ import java.util.*;
 import static java.lang.Math.max;
 
 public class AdminReservationGUIController implements Initializable{
+	String admin_email_used = null;
     private int appearAfter_HoverPane = 200;
     @FXML
     private StackPane HoverPane;
@@ -145,7 +146,33 @@ public class AdminReservationGUIController implements Initializable{
     public void initialize(URL location, ResourceBundle resources){
 
         // Scaling elements
-        Rectangle2D visualBounds = Screen.getPrimary().getVisualBounds();
+    	File fileE = new File("./src/AppData/ActiveUser/Email.txt");
+    	if(fileE.exists()) {
+    	BufferedReader bf = null;
+		try {
+			bf = new BufferedReader(new FileReader(fileE));
+			admin_email_used = bf.readLine();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		finally {
+			if(bf != null) {
+				try {
+					bf.close();
+					fileE.delete();
+					
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+    	}
+		Rectangle2D visualBounds = Screen.getPrimary().getVisualBounds();
         double width = visualBounds.getWidth();
         double height = visualBounds.getHeight();
         double scaleWidth = (width)/1920;
@@ -1137,7 +1164,7 @@ public class AdminReservationGUIController implements Initializable{
         }
         Boolean failure = false;
         for(int i=0;i<listOfReservations.size();i++){
-            if(!activeUser.bookRoom(date, listOfReservations.get(i).getReservationSlot(), listOfReservations.get(i), false)){
+            if(!activeUser.bookRoom(date, listOfReservations.get(i).getReservationSlot(), listOfReservations.get(i),admin_email_used ,false)){
                 failure = true;
             }
         }
@@ -1178,7 +1205,7 @@ public class AdminReservationGUIController implements Initializable{
             return;
         }
         for(int i=0;i<listOfReservations.size();i++){
-            if(!activeUser.bookRoom(date, listOfReservations.get(i).getReservationSlot(), listOfReservations.get(i), false)){
+            if(!activeUser.bookRoom(date, listOfReservations.get(i).getReservationSlot(), listOfReservations.get(i), admin_email_used,false)){
                 Notification.throwAlert("Booking Error","The booking couldn't be completed as one of the slots you've chosen has been booked. Please refresh the page and try a different slot");
             }
         }
