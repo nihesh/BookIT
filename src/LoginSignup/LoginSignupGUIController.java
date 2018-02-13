@@ -217,6 +217,7 @@ public class LoginSignupGUIController {
 						PrintWriter ex = new PrintWriter(file);
 						ex.println(Gemail.getEmailID());
 						ex.flush();
+						ex.close();
 					} catch (FileNotFoundException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
