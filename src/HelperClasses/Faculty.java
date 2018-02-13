@@ -136,6 +136,8 @@ public class Faculty extends User{
 			out.flush();
 			out.writeObject(r);
 			out.flush();
+			out.writeObject(null);
+			out.flush();
 			Boolean c = (Boolean) in.readObject();
 			out.close();
 			in.close();
