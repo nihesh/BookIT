@@ -1,1 +1,3 @@
 Date;Time;Booking Date;Booking Slot;Room;User;Purpose;Type
+15/02/2018;00:06:48;15/02/2018;0730PM - 0800PM;C01;harsh16041@iiitd.ac.in;Abstract Algebra-I;Booking
+15/02/2018;00:06:48;15/02/2018;0630PM - 0700PM;C01;harsh16041@iiitd.ac.in;Abstract Algebra-I;Booking

@@ -660,6 +660,9 @@ public class AdminReservationGUIController implements Initializable{
         if(firstRequest.getCourseName().equals("")){
             course = firstRequest.getPurpose();
         }
+        else{
+            course = firstRequest.getCourseName();
+        }
         AccRejCourseName.setText(course);
         String date = Integer.toString(firstRequest.getTargetDate().getDayOfMonth());
         if(date.length()==1){
