@@ -110,7 +110,7 @@ public class setup {
             String type,name,code,instructor,credits,acronym,day,startTime,endTime,chosenGroup,message,venue;
             type = file.next().trim();
             code = file.next().trim();
-            name = file.next().trim().replace("/","|");
+            name = file.next().trim().replace("/","~");
             instructor = file.next().trim();
             credits = file.next().trim();
             acronym = file.next().trim();
@@ -246,7 +246,7 @@ public class setup {
             String type,name,code,instructor,credits,acronym,day,startTime,endTime,chosenGroup,message,venue;
             type = file.next().trim();
             code = file.next().trim();
-            name = file.next().trim().replace("/","|");
+            name = file.next().trim().replace("/","~");
             instructor = file.next().trim();
             credits = file.next().trim();
             acronym = file.next().trim();
