@@ -108,14 +108,26 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="server.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="server.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/server.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="191">
-              <caret line="508" column="43" lean-forward="true" selection-start-line="508" selection-start-column="43" selection-end-line="508" selection-end-column="43" />
+            <state relative-caret-position="101">
+              <caret line="503" column="25" lean-forward="true" selection-start-line="503" selection-start-column="25" selection-end-line="503" selection-end-column="25" />
               <folding>
                 <element signature="e#16330#16339#0" expanded="true" />
                 <element signature="e#20135#20144#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="LoginSignupGUIController.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/LoginSignup/LoginSignupGUIController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="37">
+              <caret line="399" column="17" lean-forward="false" selection-start-line="399" selection-start-column="17" selection-end-line="399" selection-end-column="17" />
+              <folding>
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -167,19 +179,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Reservation.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/HelperClasses/Reservation.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="882">
-              <caret line="56" column="25" lean-forward="false" selection-start-line="56" selection-start-column="25" selection-end-line="56" selection-end-column="25" />
-              <folding>
-                <element signature="e#2179#2180#0" expanded="true" />
-                <element signature="e#2211#2212#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="setup.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/setup.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -216,8 +215,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>readReq</find>
-      <find>&quot;Accept</find>
       <find>&quot;student</find>
       <find>getReq</find>
       <find>openBoo</find>
@@ -244,8 +241,10 @@
       <find>addRe</find>
       <find>rejectReq</find>
       <find>downloadRe</find>
-      <find>rejectRequ</find>
       <find>deleteRe</find>
+      <find>rejectRequ</find>
+      <find>You can't</find>
+      <find>alert</find>
     </findStrings>
   </component>
   <component name="FindManager">
@@ -296,7 +295,6 @@
         <option value="$PROJECT_DIR$/src/HelperClasses/Course.java" />
         <option value="$PROJECT_DIR$/src/HelperClasses/NotificationView.java" />
         <option value="$PROJECT_DIR$/src/HelperClasses/ReservationRequest.java" />
-        <option value="$PROJECT_DIR$/src/LoginSignup/LoginSignupGUIController.java" />
         <option value="$PROJECT_DIR$/src/setup.java" />
         <option value="$PROJECT_DIR$/src/StudentReservation/StudentReservationGUIController.java" />
         <option value="$PROJECT_DIR$/src/FacultyReservation/FacultyReservationGUIController.java" />
@@ -305,6 +303,7 @@
         <option value="$PROJECT_DIR$/src/AdminReservation/AdminReservation.fxml" />
         <option value="$PROJECT_DIR$/src/AdminReservation/AdminReservationGUIController.java" />
         <option value="$PROJECT_DIR$/src/HelperClasses/Admin.java" />
+        <option value="$PROJECT_DIR$/src/LoginSignup/LoginSignupGUIController.java" />
       </list>
     </option>
   </component>
@@ -422,7 +421,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="HelperClasses" />
+              <option name="myItemId" value="LoginSignup" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -440,7 +439,29 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="FacultyReservation" />
+              <option name="myItemId" value="LoginSignup" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="LoginSignupGUIController.java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.ClassesTreeStructureProvider$PsiClassOwnerTreeNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="BookIT" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="BookIT" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="HelperClasses" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -819,7 +840,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="36" width="1920" height="1044" extended-state="2" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -830,7 +851,7 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32419354" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.34549356" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.34549356" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
@@ -1055,14 +1076,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/LoginSignup/LoginSignupGUIController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="216" column="67" lean-forward="true" selection-start-line="216" selection-start-column="67" selection-end-line="216" selection-end-column="67" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/HelperClasses/ReservationRequest.java" />
     <entry file="file://$PROJECT_DIR$/src/HelperClasses/User.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -1183,11 +1196,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/server.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="191">
-          <caret line="508" column="43" lean-forward="true" selection-start-line="508" selection-start-column="43" selection-end-line="508" selection-end-column="43" />
+        <state relative-caret-position="101">
+          <caret line="503" column="25" lean-forward="true" selection-start-line="503" selection-start-column="25" selection-end-line="503" selection-end-column="25" />
           <folding>
             <element signature="e#16330#16339#0" expanded="true" />
             <element signature="e#20135#20144#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/LoginSignup/LoginSignupGUIController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="37">
+          <caret line="399" column="17" lean-forward="false" selection-start-line="399" selection-start-column="17" selection-end-line="399" selection-end-column="17" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>

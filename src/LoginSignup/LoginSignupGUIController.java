@@ -37,31 +37,18 @@ import org.apache.http.message.BasicNameValuePair;
 import javafx.animation.FadeTransition;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
-import javafx.animation.SequentialTransition;
 import javafx.animation.Timeline;
-import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
-import javafx.geometry.Rectangle2D;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.shape.Circle;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
-import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-import main.java.com.google.api.services.samples.oauth2.cmdline.OAuth2Sample;
 /**
  * controller class for login/signup gui
  * @author Harsh
@@ -73,12 +60,7 @@ public class LoginSignupGUIController {
 	private Email Gemail;
 	private String GName;
 	private User Guser;
-	
-	private Email email;
-	private String joincode;
-	private User user;
-	@FXML
-	private VBox Login_Pane;
+
 	@FXML
 	private Button GBtn;
 	@FXML
@@ -88,25 +70,9 @@ public class LoginSignupGUIController {
 	@FXML
 	private WebView browser;
 	@FXML
-	private Button Gdone;
-	@FXML
-	private Button Gcancel;
-	@FXML
 	public WebEngine e;
 	@FXML
 	private StackPane Cred_Pane;
-	@FXML
-	private Label footer1;
-	@FXML
-	private ImageView NihI;
-	@FXML
-	private ImageView VivI;
-	@FXML
-	private ImageView HarI;
-	@FXML
-	private Button CloseAbout;
-	@FXML
-	private Button OpenAbout;
 	@FXML
 	void keyPressed(KeyEvent event) {
 		switch(event.getCode()) {
@@ -199,11 +165,7 @@ public class LoginSignupGUIController {
 					PortListener.email=null;PortListener.Name=null;
 					PortListener.status="NotUpdated";
 					GName=null;Gemail=null;Guser=null;
-					Alert alert = new Alert(AlertType.INFORMATION);
-					alert.setTitle("Information Dialog");
-					alert.setHeaderText(null);
-					alert.setContentText("You can't have access to the app. Please contact Admin for this");
-					alert.showAndWait();
+					Notification.throwAlert("Error", "You don't have access to the application. Kindly contact admin to gain access");
 					return;
 					
 				}
@@ -251,18 +213,10 @@ public class LoginSignupGUIController {
 			PortListener.email=null;PortListener.Name=null;
 			PortListener.status="NotUpdated";
 			GName=null;Gemail=null;Guser=null;
-			Alert alert = new Alert(AlertType.INFORMATION);
-			alert.setTitle("Information Dialog");
-			alert.setHeaderText(null);
-			alert.setContentText("Please use a IIITD account");
-			alert.showAndWait();
+			Notification.throwAlert("Error", "Please use a IIITD account");
 			return;
 		}
-		Alert alert = new Alert(AlertType.INFORMATION);
-		alert.setTitle("Information Dialog");
-		alert.setHeaderText(null);
-		alert.setContentText("Please fill your complete info, press Accept and then press DONE Button");
-		alert.showAndWait();
+		Notification.throwAlert("Invalid Action","Kindly authenticate using valid google email and password, press Allow and then press DONE Button");
 	}
 	
 	
@@ -375,7 +329,6 @@ class PortListener implements Runnable{
 	}
 	public void startAuth() {
 		try {
-			//serversocket = new ServerSocket(9004);
 			try {
 				sock=serversocket.accept();
 			}
@@ -445,7 +398,6 @@ class PortListener implements Runnable{
 			    out.flush();
 			    out.close();
 			    }
-			    	// do something useful
 			     finally {
 			    	instream.close();
 			    }
