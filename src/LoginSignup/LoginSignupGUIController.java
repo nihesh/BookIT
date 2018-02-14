@@ -176,7 +176,7 @@ public class LoginSignupGUIController {
 				java.net.CookieManager manager = new java.net.CookieManager();
 				java.net.CookieHandler.setDefault(manager);
 			}
-			if(PortListener.email!=null && PortListener.email.contains("iiitd.ac.in")) {
+			if(PortListener.email!=null) {
 				Gemail = new Email(PortListener.email);
 				GName=PortListener.Name;
 				User inQ = User.getUser(Gemail.getEmailID(), false); 
