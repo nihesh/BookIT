@@ -384,11 +384,10 @@ class ConnectionHandler implements Runnable{
         serializeJoinCode(temp);
     }
     public ArrayList<Reservation> FilterInvalidSlots(ArrayList<Reservation> r){     // Returns null if request expired or the user deleted the request
-        if(r == null){
+        if(r == null || r.size()==0){
             return null;
         }
-
-        if(SpamFilter.Predict(r.get(0).getMessageWithoutVenue()) || r.get(0).getCreationDate().plusDays(5).isBefore(LocalDateTime.now())){
+        if(SpamFilter.Predict(r.get(0).getMessageWithoutVenue()) || r.get(0).getCreationDate().plusDays(10).isBefore(LocalDateTime.now()) || r.get(0).getTargetDate().isBefore(LocalDate.now())){
             return null;
         }
         else{
@@ -397,7 +396,7 @@ class ConnectionHandler implements Runnable{
             Reservation[] pending = temp.getPendingReservations(r.get(0).getReserverEmail(),r.get(0).getTargetDate());
             int flag=0;
             for(int i=r.size()-1;i>=0;i--){
-                if(pending[r.get(i).getReservationSlot()] == null){
+                if(pending[r.get(i).getReservationSlot()] == null || !pending[r.get(i).getReservationSlot()].getCreationDate().equals(r.get(i).getCreationDate())){
                     r.remove(i);
                 }
             }
@@ -410,6 +409,9 @@ class ConnectionHandler implements Runnable{
                         r.remove(i);
                     }
                 }
+            }
+            if(r.size()==0){
+                return null;
             }
             return r;
         }

@@ -1365,7 +1365,7 @@
             </StackPane>
             <StackPane fx:id="pullDownPane2" layoutX="310.0" layoutY="10.0" prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: #2a2a2a; visibility: false;">
                <children>
-                  <StackPane prefHeight="150.0" prefWidth="1320.0" style="-fx-border-width: 2; -fx-border-color: white; visibility: false;" StackPane.alignment="CENTER">
+                  <StackPane fx:id="singleStudentRequest" prefHeight="150.0" prefWidth="1320.0" style="-fx-border-width: 2; -fx-border-color: white; visibility: false;" StackPane.alignment="CENTER">
                      <children>
                         <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="54.0" prefWidth="495.0" text="Requested Slots" textAlignment="CENTER" textFill="WHITE" StackPane.alignment="CENTER">
                            <StackPane.margin>
@@ -1383,7 +1383,7 @@
                               <Insets bottom="20.0" left="95.0" right="725.0" top="100.0" />
                            </StackPane.margin>
                         </ScrollPane>
-                        <Label prefHeight="45.0" prefWidth="155.0" text="Course" textFill="WHITE">
+                        <Label prefHeight="45.0" prefWidth="155.0" text="Purpose" textFill="WHITE">
                            <StackPane.margin>
                               <Insets bottom="450.0" left="150.0" />
                            </StackPane.margin>
@@ -1401,8 +1401,11 @@
                         </Label>
                         <Button mnemonicParsing="false" onMouseClicked="#acceptRequest" stylesheets="@button.css" text="Accept">
                            <StackPane.margin>
-                              <Insets left="300.0" top="500.0" />
+                              <Insets left="200.0" top="500.0" />
                            </StackPane.margin>
+                           <tooltip>
+                              <Tooltip text="Only slots marked green will be accepted" />
+                           </tooltip>
                         </Button>
                         <Label fx:id="AccRejCourseName" prefHeight="38.0" prefWidth="331.0" text="&lt;course name&gt;" textFill="WHITE">
                            <StackPane.margin>
@@ -1441,8 +1444,11 @@
                         </ScrollPane>
                         <Button mnemonicParsing="false" onMouseClicked="#deleteRequest" stylesheets="@button.css" text="Reject">
                            <StackPane.margin>
-                              <Insets left="800.0" top="500.0" />
+                              <Insets left="563.0" top="500.0" />
                            </StackPane.margin>
+                           <tooltip>
+                              <Tooltip text="All the requested slots will be rejected" />
+                           </tooltip>
                         </Button>
                         <Label prefHeight="45.0" prefWidth="155.0" text="Venue" textFill="WHITE">
                            <font>
@@ -1476,9 +1482,17 @@
                               <Insets bottom="180.0" left="670.0" />
                            </StackPane.margin>
                         </Label>
+                        <Button mnemonicParsing="false" onMouseClicked="#goBackToStudentList" stylesheets="@button.css" text="Back">
+                           <StackPane.margin>
+                              <Insets left="900.0" top="500.0" />
+                           </StackPane.margin>
+                           <tooltip>
+                              <Tooltip text="Go back to all requests screen" />
+                           </tooltip>
+                        </Button>
                      </children>
                   </StackPane>
-                  <StackPane prefHeight="150.0" prefWidth="200.0">
+                  <StackPane fx:id="allStudentRequests" prefHeight="150.0" prefWidth="200.0" style="visibility: false;">
                      <children>
                         <ScrollPane prefHeight="200.0" prefWidth="200.0">
                            <StackPane.margin>

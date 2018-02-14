@@ -20,6 +20,7 @@ import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuBar;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -79,7 +80,7 @@ public class AdminReservationGUIController implements Initializable{
     @FXML
     private Label statusRoomID, slotInfo,statusClassSize, statusFreeSlots;
     @FXML
-    private StackPane leftPane,rightPane,mainPane, pullDownPane2;
+    private StackPane leftPane,rightPane,mainPane, pullDownPane2, allStudentRequests, singleStudentRequest;
     @FXML
     private AnchorPane selectedSlotsScrollPane, requestedSlotsScrollPane;
     @FXML
@@ -666,7 +667,11 @@ public class AdminReservationGUIController implements Initializable{
      */
     private void loadRequest(ArrayList<Reservation> requests){
         Reservation firstRequest = requests.get(0);
-        AccRejCourseName.setText(firstRequest.getCourseName());
+        String course = "";
+        if(firstRequest.getCourseName().equals("")){
+            course = firstRequest.getPurpose();
+        }
+        AccRejCourseName.setText(course);
         String date = Integer.toString(firstRequest.getTargetDate().getDayOfMonth());
         if(date.length()==1){
             date = "0"+date;
@@ -728,6 +733,10 @@ public class AdminReservationGUIController implements Initializable{
      * Accepts a booking requested by the student
      */
     public void acceptRequest(){
+        if(currentRequest == null || currentRequest.size()==0){
+            Notification.throwAlert("Error", "An unexpected error occurred. Please reload the app and try again");
+            return;
+        }
         int i=0;
         ArrayList<Reservation> acceptList = new ArrayList<>();
         ArrayList<Reservation> rejectList = new ArrayList<>();
@@ -741,17 +750,38 @@ public class AdminReservationGUIController implements Initializable{
             i++;
         }
         activeUser.acceptRequest(acceptList, rejectList,false);                                             // Throw not accepted warning...
-        // What next?
+        goBackToStudentList();
     }
 
     /**
      * Rejects a request requested by the student
      */
     public void deleteRequest(){
+        if(currentRequest == null || currentRequest.size()==0){
+            Notification.throwAlert("Error", "An unexpected error occurred. Please reload the app and try again");
+            return;
+        }
         activeUser.rejectRequest(currentRequest, false);
-        // What next?
+        goBackToStudentList();
     }
-    void loadStudentRequestList(LinkedList<ArrayList<Reservation>> requests){
+    public void goBackToStudentList(){
+        if(!loadStudentRequestList()){
+            hideRequests();
+        }
+    }
+    public Boolean loadStudentRequestList(){
+        LinkedList< ArrayList<Reservation> > requests = activeUser.getRequest(false);              // GUI Integration begins
+        if(requests == null || requests.size() == 0){
+            Notification.throwAlert("Notification","There are no more pending requests");
+            hideRequests();
+            return false;
+        }
+        requestProcessing = true;
+        leftPane.setDisable(true);
+        rightPane.setDisable(true);
+        roomGridPane.setDisable(true);
+        allStudentRequests.setVisible(true);
+        singleStudentRequest.setVisible(false);
         notificationOverviewBox.getChildren().clear();
         notificationOverviewBox.setStyle("-fx-background-color:  green;");
         notificationOverviewBox.setPadding(new Insets(6,0,6,0));
@@ -772,6 +802,12 @@ public class AdminReservationGUIController implements Initializable{
             l_wrapper.getChildren().add(l);
             StackPane b_wrapper = new StackPane();
             Button b = new Button("View");
+            b.setOnMouseClicked(e->{
+                currentRequest = r;
+                allStudentRequests.setVisible(false);
+                singleStudentRequest.setVisible(true);
+                loadRequest(r);
+            });
             b.getStylesheets().add("./AdminReservation/button_requestview.css");
             b_wrapper.getChildren().add(b);
             s.setMargin(l_wrapper, new Insets(0,200,0,0));
@@ -780,34 +816,28 @@ public class AdminReservationGUIController implements Initializable{
             s.getChildren().add(b_wrapper);
             notificationOverviewBox.getChildren().add(s);
         }
+        return true;
     }
     /**
      * Opens requests pane
      */
     public void showRequests(){
-        LinkedList< ArrayList<Reservation> > requests = activeUser.getRequest(false);              // GUI Integration begins
-        if(requests.size() == 0){
-            Notification.throwAlert("Notification","There are no more pending requests");
+        if(!loadStudentRequestList()){
             return;
         }
-        requestProcessing = true;
-        leftPane.setDisable(true);
-        rightPane.setDisable(true);
-        roomGridPane.setDisable(true);
-        loadStudentRequestList(requests);
         requestedSlotsScrollPane.getChildren().clear();                                                // GUI Integration Ends
         SequentialTransition sequence = new SequentialTransition();
         int step=1;
         int location=pullDownPaneInitial;
         pullDownPane2.setTranslateY(location);
         pullDownPane2.setVisible(true);
-        while(location>40) {
+        while(location>30) {
             TranslateTransition translate = new TranslateTransition();
             translate.setNode(pullDownPane2);
             translate.setToY(location);
             translate.setDuration(Duration.millis(15));
             step+=2;
-            location-=step;
+            location-=max(step,10);
             sequence.getChildren().add(translate);
         }
         sequence.play();
@@ -1095,13 +1125,13 @@ public class AdminReservationGUIController implements Initializable{
         SequentialTransition sequence = new SequentialTransition();
         int step=1;
         int location=pullDownPaneInitial;
-        while(location>40) {
+        while(location>30) {
             TranslateTransition translate = new TranslateTransition();
             translate.setNode(pullDownPane);
             translate.setToY(location);
             translate.setDuration(Duration.millis(15));
             step+=2;
-            location-=step;
+            location-=max(10,step);
             sequence.getChildren().add(translate);
         }
         sequence.play();

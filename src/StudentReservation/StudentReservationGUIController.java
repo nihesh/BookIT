@@ -948,13 +948,13 @@ public class StudentReservationGUIController implements Initializable{
         SequentialTransition sequence = new SequentialTransition();
         int step=1;
         int location=pullDownPaneInitial;
-        while(location>50) {
+        while(location>30) {
             TranslateTransition translate = new TranslateTransition();
             translate.setNode(pullDownPane);
             translate.setToY(location);
             translate.setDuration(Duration.millis(15));
             step+=2;
-            location-=max(step,20);
+            location-=max(step,10);
             sequence.getChildren().add(translate);
         }
         TranslateTransition translate = new TranslateTransition();

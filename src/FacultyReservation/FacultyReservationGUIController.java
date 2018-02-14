@@ -801,13 +801,13 @@ public class FacultyReservationGUIController implements Initializable{
         SequentialTransition sequence = new SequentialTransition();
         int step=1;
         int location=pullDownPaneInitial;
-        while(location>40) {
+        while(location>30) {
             TranslateTransition translate = new TranslateTransition();
             translate.setNode(pullDownPane);
             translate.setToY(location);
             translate.setDuration(Duration.millis(15));
             step+=2;
-            location-=step;
+            location-=max(10,step);
             sequence.getChildren().add(translate);
         }
         sequence.play();
