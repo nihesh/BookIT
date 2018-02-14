@@ -10,8 +10,6 @@ import javafx.animation.ParallelTransition;
 import javafx.animation.SequentialTransition;
 import javafx.animation.TranslateTransition;
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -20,7 +18,6 @@ import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuBar;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -33,23 +30,16 @@ import javafx.scene.layout.*;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.control.Alert.AlertType;
 import javafx.event.Event;
 import javafx.scene.text.Font;
-import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Modality;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import javafx.util.Callback;
 import javafx.util.Duration;
-
-import javax.swing.*;
-import java.awt.*;
 import java.io.*;
 import java.net.Socket;
-import java.net.URI;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.*;
@@ -109,10 +99,6 @@ public class AdminReservationGUIController implements Initializable{
     @FXML
     private VBox rootPane;
     @FXML
-    private MenuBar menuBar;
-    @FXML
-    private SplitPane sp3;
-    @FXML
     private ComboBox purposeDropDown;
     @FXML
     private StackPane preBooking, courseBooking, otherBooking;
@@ -130,7 +116,7 @@ public class AdminReservationGUIController implements Initializable{
     private ArrayList<Integer> chosenSlots;
     private Admin activeUser;
     private int pullDownPaneInitial = 650;
-    private HashMap<Button,Integer> selection = new HashMap<Button,Integer>();
+    private HashMap<Button,Integer> selection = new HashMap<>();
     private Boolean isActiveReservation,requestProcessing,changepassProcessing, joinCodeProcessing, cancelBookingProcessing;
     private Event classEvent;
     private LocalDate StartDate;
@@ -138,7 +124,6 @@ public class AdminReservationGUIController implements Initializable{
     private Button[] b1;
     private static int animation = 200;
     private ArrayList<Reservation> currentRequest;
-    private ArrayList<Reservation> allRequests;
 
     /**
      * Constructor for setting up Faculty Reservation GUI. It includes the adaptor code to suit any dimensional screen
@@ -373,6 +358,10 @@ public class AdminReservationGUIController implements Initializable{
     	}
     	else{
         switch(event.getCode()) {
+            case BACK_SPACE:
+                if(requestProcessing){
+                    loadStudentRequestList();
+                }
             case ESCAPE:
                 if(pullDownPane.isVisible()){
                     closeReservationPane();
