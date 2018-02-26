@@ -46,10 +46,23 @@ import java.net.Socket;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 
 import static java.lang.Math.max;
+
+class SlotComparator implements Comparator<String> {
+
+    @Override
+    public int compare(String a, String b) {
+        if(Reservation.getSlotID(a) < Reservation.getSlotID(b)){
+            return -1;
+        } else {
+            return 1;
+        }
+    }
+}
 
 /**
  * <h1> Controller Class for Faculty Reservation GUI</h1>
@@ -764,16 +777,17 @@ public class FacultyReservationGUIController implements Initializable{
         roomGridPane.setVisible(false);
         pullDownPane.setVisible(true);
         Label[] label = new Label[30];
-        ArrayList<Button> items = new ArrayList<Button>();
+        ArrayList<String> items = new ArrayList<>();
         selection.forEach((btn, num)->{
-            items.add(btn);
+            items.add(getReserveButtonInfo(btn.getId()));
         });
+        items.sort(new SlotComparator());
         selectedSlotsScrollPane.getChildren().clear();
         int i=0;
         while(i<items.size()){
             label[i] = new Label();
-            label[i].setText(getReserveButtonInfo(items.get(i).getId()));
-            chosenSlots.add(Reservation.getSlotID(getReserveButtonInfo(items.get(i).getId())));
+            label[i].setText(items.get(i));
+            chosenSlots.add(Reservation.getSlotID(items.get(i)));
             label[i].setPrefSize(494, 50);
             label[i].setAlignment(Pos.CENTER);
             label[i].setTranslateY(i*50);
@@ -791,13 +805,14 @@ public class FacultyReservationGUIController implements Initializable{
         for(int j=0;j<allCourses.size();j++) {
             courseDropDown.getItems().add(allCourses.get(j));
         }
+        new AutoCompleteComboBoxListener<>(courseDropDown);
         purposeDropDown.getItems().add("Lecture");
         purposeDropDown.getItems().add("Lab");
         purposeDropDown.getItems().add("Tutorial");
         purposeDropDown.getItems().add("Quiz");
         for(int j=0;j<6;j++) {
             groupDropDown.getItems().add(Integer.toString(j+1));
-        }                                                                       // GUI Integration Ends
+        }
         SequentialTransition sequence = new SequentialTransition();
         int step=1;
         int location=pullDownPaneInitial;
@@ -897,6 +912,10 @@ public class FacultyReservationGUIController implements Initializable{
         }
         catch(NullPointerException e){
             Notification.throwAlert("Error","Course Field can't be empty");
+            return;
+        }
+        if(!activeUser.getCourses().contains(chosenCourse)){
+            Notification.throwAlert("Error", "This course can't be chosen! Ensure to choose only those courses available in the drop down box");
             return;
         }
         try {

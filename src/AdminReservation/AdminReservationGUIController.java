@@ -17,7 +17,6 @@ import javafx.geometry.*;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.MenuBar;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -43,8 +42,19 @@ import java.net.Socket;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.*;
-
 import static java.lang.Math.max;
+
+class SlotComparator implements Comparator<String>{
+
+    @Override
+    public int compare(String a, String b) {
+        if(Reservation.getSlotID(a) < Reservation.getSlotID(b)){
+            return -1;
+        } else {
+            return 1;
+        }
+    }
+}
 
 public class AdminReservationGUIController implements Initializable{
 	String admin_email_used = null;
@@ -70,7 +80,7 @@ public class AdminReservationGUIController implements Initializable{
     @FXML
     private Label statusRoomID, slotInfo,statusClassSize, statusFreeSlots;
     @FXML
-    private StackPane leftPane,rightPane,mainPane, pullDownPane2, allStudentRequests, singleStudentRequest;
+    private StackPane leftPane,rightPane,mainPane, pullDownPane2, allStudentRequests, singleStudentRequest, daysCheckPane;
     @FXML
     private AnchorPane selectedSlotsScrollPane, requestedSlotsScrollPane;
     @FXML
@@ -124,6 +134,7 @@ public class AdminReservationGUIController implements Initializable{
     private Button[] b1;
     private static int animation = 200;
     private ArrayList<Reservation> currentRequest;
+    private ArrayList<String> allCourses;
 
     /**
      * Constructor for setting up Faculty Reservation GUI. It includes the adaptor code to suit any dimensional screen
@@ -195,6 +206,7 @@ public class AdminReservationGUIController implements Initializable{
         requestProcessing = false;
         changepassProcessing = false;
         cancelBookingProcessing = false;
+        allCourses = null;
         File file = new File("./src/BookIT_logo.jpg");
         Image image = new Image(file.toURI().toString());
         logo.setImage(image);
@@ -247,6 +259,10 @@ public class AdminReservationGUIController implements Initializable{
         joinCodeDropDown.setStyle("-fx-font-size : 13pt;-fx-background-color: #922B21;");
         loadDate();
     }
+
+    /**
+     * Event handler for downloading a csv of all completed bookings so far
+     */
     public void downloadBookings(){
         try{
             Socket server = new Socket(BookITconstants.serverIP, BookITconstants.serverPort);
@@ -284,6 +300,10 @@ public class AdminReservationGUIController implements Initializable{
             System.out.println("ClassNotFound exception occurred while downloading requests");
         }
     }
+
+    /**
+     * Event handler for downloading list of pending and active student requests
+     */
     public void downloadRequests(){
         try{
             Socket server = new Socket(BookITconstants.serverIP, BookITconstants.serverPort);
@@ -350,6 +370,10 @@ public class AdminReservationGUIController implements Initializable{
             System.out.println("ClassNotFound exception occurred while downloading requests");
         }
     }
+
+    /**
+     * Key shortcuts handler
+     */
     @FXML
     void keyPressed(KeyEvent event) {
     	KeyCombination kb = new KeyCodeCombination(KeyCode.L, KeyCombination.CONTROL_DOWN);
@@ -357,35 +381,39 @@ public class AdminReservationGUIController implements Initializable{
     		signout();
     	}
     	else{
-        switch(event.getCode()) {
-            case BACK_SPACE:
-                if(requestProcessing){
-                    loadStudentRequestList();
-                }
-            case ESCAPE:
-                if(pullDownPane.isVisible()){
-                    closeReservationPane();
-                }
-                else if(pullDownPane2.isVisible()){
-                    hideRequests();
-                }
-                else if(cancelMessagePane.isVisible()){
-                    exitCancelBooking();
-                }
-                else if(HoverPane.isVisible()){
-                    exitReadOnlyBookings();
-                }
-                break;
-            case ENTER:
-                if(HoverPane.isVisible()){
-                    pullDownReservationPane();
-                }
-                break;
-            default:
-                break;
+            switch(event.getCode()) {
+                case BACK_SPACE:
+                    if(requestProcessing){
+                        loadStudentRequestList();
+                    }
+                case ESCAPE:
+                    if(pullDownPane.isVisible()){
+                        closeReservationPane();
+                    }
+                    else if(pullDownPane2.isVisible()){
+                        hideRequests();
+                    }
+                    else if(cancelMessagePane.isVisible()){
+                        exitCancelBooking();
+                    }
+                    else if(HoverPane.isVisible()){
+                        exitReadOnlyBookings();
+                    }
+                    break;
+                case ENTER:
+                    if(HoverPane.isVisible()){
+                        pullDownReservationPane();
+                    }
+                    break;
+                default:
+                    break;
+            }
         }
     }
-    }
+
+    /**
+     * Event handler for opening a list of notifications in a new GUI
+     */
     public void OpenNotifications() {
     	try {
     		User x=User.getActiveUser();
@@ -416,12 +444,20 @@ public class AdminReservationGUIController implements Initializable{
             System.out.println("Error occurred while opening notifications");
         }
     }
+
+    /**
+     * Event handler for restarting the server configuration and reloading it without killing active connections
+     */
     public void restartServer(){
         rootPane.setDisable(true);
         activeUser.softResetServer(false);
         Notification.throwAlert("Notification","Server has been successfully restarted");
         rootPane.setDisable(false);
     }
+
+    /**
+     * Event handler that closes cancel booking interface
+     */
     public void exitCancelBooking(){
         cancelBookingProcessing = false;
         leftPane.setDisable(false);
@@ -429,6 +465,7 @@ public class AdminReservationGUIController implements Initializable{
         mainPane.setDisable(false);
         cancelMessagePane.setVisible(false);
     }
+
     /**
      * Event handler to cancel a booked slot
      */
@@ -452,7 +489,7 @@ public class AdminReservationGUIController implements Initializable{
     }
 
     /**
-     * Event handler to generate a new joining code
+     * Event handler to generate a new joining code. Not being used anymore
      */
     public void generateCode(){
         try {
@@ -466,7 +503,7 @@ public class AdminReservationGUIController implements Initializable{
     }
 
     /**
-     * Displays the pane where joining code can be generated
+     * Event handler that displays the pane where joining code can be generated. Not being used anymore
      */
     public void showJoiningCodePane(){
         joinCodeProcessing = true;
@@ -482,7 +519,7 @@ public class AdminReservationGUIController implements Initializable{
     }
 
     /**
-     * Closes the pane where joining code is generated
+     * Event handler that closes the pane where joining code is generated. Not being used anymore.
      */
     public void hideJoiningCodePane(){
         joiningCodeMessage.setText("");
@@ -494,7 +531,7 @@ public class AdminReservationGUIController implements Initializable{
         showLogo();
     }
     /**
-     * Opening change password pane
+     * Event handler for opening change password pane. Not being used anymore.
      */
     public void openChangePassword(){
         changepassProcessing = true;
@@ -509,7 +546,7 @@ public class AdminReservationGUIController implements Initializable{
         appear.play();
     }
     /**
-     * Closes change password pane
+     * Event handler that closes change password pane. Not being used anymore
      */
     public void cancelChangePassword(){
         oldPass.clear();
@@ -523,7 +560,7 @@ public class AdminReservationGUIController implements Initializable{
         showLogo();
     }
     /**
-     * Saves new password after validation and closes change password pane
+     * Event handler that saves new password after validation and closes change password pane. Not being used anymore
      */
     public void saveChangePassword(){
         String oldPassString = oldPass.getText();
@@ -547,8 +584,9 @@ public class AdminReservationGUIController implements Initializable{
         newPass.clear();
         renewPass.clear();
     }
+
     /**
-     * Sets the selected date on the date pane
+     * Event handler that sets the selected date on the date pane
      * @param d selected date
      */
     private void setDate(LocalDate d){
@@ -565,8 +603,9 @@ public class AdminReservationGUIController implements Initializable{
         curMon.setText(month);
         curYear.setText(year);
     }
+
     /**
-     * Reads date from the input field and sets the date into the date pane
+     * Event handler that reads date from the input field and sets the date into the date pane
      */
     public void loadDate(){
         LocalDate date = datePicker.getValue();
@@ -583,6 +622,7 @@ public class AdminReservationGUIController implements Initializable{
             Notification.throwAlert("Server Error","Sorry, BookIT server is down");
         }
     }
+
     /**
      * Returns the slot that a time range is mapped to
      * @param buttonID Slot id in the form of string
@@ -649,7 +689,109 @@ public class AdminReservationGUIController implements Initializable{
         }
         return "";
     }
-
+    public void validateBulkBookingDate(){
+        LocalDate start = startDate.getValue();
+        LocalDate end = endDate.getValue();
+        if(start == null || end == null){
+            return;
+        }
+        if(end.isBefore(start)){
+            end = start;
+            endDate.setValue(start);
+        }
+        mon.setDisable(true);
+        tue.setDisable(true);
+        wed.setDisable(true);
+        thu.setDisable(true);
+        fri.setDisable(true);
+        sat.setDisable(true);
+        sun.setDisable(true);
+        mon.setSelected(false);
+        tue.setSelected(false);
+        wed.setSelected(false);
+        thu.setSelected(false);
+        fri.setSelected(false);
+        sat.setSelected(false);
+        sun.setSelected(false);
+        Boolean init = false;
+        int counter = 1;
+        while(!start.isAfter(end) && counter<=7){
+            counter+=1;
+            switch (start.getDayOfWeek().toString().toLowerCase()){
+                case "monday":
+                    if(!init){
+                        init = true;
+                        mon.setSelected(true);
+                    }
+                    else{
+                        mon.setSelected(false);
+                    }
+                    mon.setDisable(false);
+                    break;
+                case "tuesday":
+                    if(!init){
+                        init = true;
+                        tue.setSelected(true);
+                    }
+                    else{
+                        tue.setSelected(false);
+                    }
+                    tue.setDisable(false);
+                    break;
+                case "wednesday":
+                    if(!init){
+                        init = true;
+                        wed.setSelected(true);
+                    }
+                    else{
+                        wed.setSelected(false);
+                    }
+                    wed.setDisable(false);
+                    break;
+                case "thursday":
+                    if(!init){
+                        init = true;
+                        thu.setSelected(true);
+                    }
+                    else{
+                        thu.setSelected(false);
+                    }
+                    thu.setDisable(false);
+                    break;
+                case "friday":
+                    if(!init){
+                        init = true;
+                        fri.setSelected(true);
+                    }
+                    else{
+                        fri.setSelected(false);
+                    }
+                    fri.setDisable(false);
+                    break;
+                case "saturday":
+                    if(!init){
+                        init = true;
+                        sat.setSelected(true);
+                    }
+                    else{
+                        sat.setSelected(false);
+                    }
+                    sat.setDisable(false);
+                    break;
+                case "sunday":
+                    if(!init){
+                        init = true;
+                        sun.setSelected(true);
+                    }
+                    else{
+                        sun.setSelected(false);
+                    }
+                    sun.setDisable(false);
+                    break;
+            }
+            start = start.plusDays(1);
+        }
+    }
     /**
      * Loads the most prioritized request onto the requests pane
      * @param requests
@@ -817,6 +959,9 @@ public class AdminReservationGUIController implements Initializable{
         if(!loadStudentRequestList()){
             return;
         }
+        startDate.setValue(activeDate);
+        endDate.setValue(activeDate);
+        validateBulkBookingDate();
         requestedSlotsScrollPane.getChildren().clear();                                                // GUI Integration Ends
         SequentialTransition sequence = new SequentialTransition();
         int step=1;
@@ -1080,17 +1225,18 @@ public class AdminReservationGUIController implements Initializable{
         roomGridPane.setVisible(false);
         pullDownPane.setVisible(true);
         Label[] label = new Label[30];
-        ArrayList<Button> items = new ArrayList<Button>();
+        ArrayList<String> items = new ArrayList<>();
         selection.forEach((btn, num)->{
-            items.add(btn);
+            items.add(getReserveButtonInfo(btn.getId()));
         });
+        items.sort(new SlotComparator());
         selectedSlotsScrollPane.getChildren().clear();
         int i=0;
         while(i<items.size()){
             label[i] = new Label();
-            label[i].setText(getReserveButtonInfo(items.get(i).getId()));
+            label[i].setText(items.get(i));
             label[i].setPrefSize(494, 50);
-            chosenSlots.add(Reservation.getSlotID(getReserveButtonInfo(items.get(i).getId())));
+            chosenSlots.add(Reservation.getSlotID(items.get(i)));
             label[i].setAlignment(Pos.CENTER);
             label[i].setTranslateY(i*50);
             label[i].setStyle("-fx-background-color: white; -fx-border-color:  #2a2a2a; -fx-border-width:3");
@@ -1099,21 +1245,24 @@ public class AdminReservationGUIController implements Initializable{
             i++;
         }
         selectedSlotsScrollPane.setPrefSize(494,max(474,50*i));
-        ArrayList<String> allCourses = Course.getAllCourses();                  // GUI Integration
+        if(allCourses == null) {
+            allCourses = Course.getAllCourses();
+            allCourses.sort(String::compareToIgnoreCase);
+        }
         courseDropDown.getItems().clear();
         purposeDropDown.getItems().clear();
         groupDropDown.getItems().clear();
-        allCourses.sort(String::compareToIgnoreCase);
         for(int j=0;j<allCourses.size();j++) {
             courseDropDown.getItems().add(allCourses.get(j));
         }
+        new AutoCompleteComboBoxListener<>(courseDropDown);
         purposeDropDown.getItems().add("Lecture");
         purposeDropDown.getItems().add("Lab");
         purposeDropDown.getItems().add("Tutorial");
         purposeDropDown.getItems().add("Quiz");
         for(int j=0;j<6;j++) {
             groupDropDown.getItems().add(Integer.toString(j+1));
-        }                                                                       // GUI Integration Ends
+        }
         SequentialTransition sequence = new SequentialTransition();
         int step=1;
         int location=pullDownPaneInitial;
@@ -1146,6 +1295,10 @@ public class AdminReservationGUIController implements Initializable{
         }
         catch(NullPointerException e){
             Notification.throwAlert("Error","Course Field can't be empty");
+            return;
+        }
+        if(!allCourses.contains(chosenCourse)){
+            Notification.throwAlert("Error", "This course can't be chosen! Ensure to choose only those courses available in the drop down box");
             return;
         }
         ArrayList<String> chosenGroup = new ArrayList<>();

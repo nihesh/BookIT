@@ -1,3 +1,5 @@
 Date;Time;Booking Date;Booking Slot;Room;User;Purpose;Type
 15/02/2018;00:06:48;15/02/2018;0730PM - 0800PM;C01;harsh16041@iiitd.ac.in;Abstract Algebra-I;Booking
 15/02/2018;00:06:48;15/02/2018;0630PM - 0700PM;C01;harsh16041@iiitd.ac.in;Abstract Algebra-I;Booking
+26/02/2018;22:38:57;26/02/2018;0830AM - 0900AM;C01;harsh.pathak.temp@gmail.com;Algorithm Design & Analysis;Booking
+26/02/2018;22:38:57;26/02/2018;0900AM - 0930AM;C01;harsh.pathak.temp@gmail.com;Algorithm Design & Analysis;Booking

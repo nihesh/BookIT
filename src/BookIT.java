@@ -136,7 +136,7 @@ public class BookIT extends Application{
         return 2;
     }
     public void start(Stage primaryStage){
-    	File fileex = new File("./src/AppData/ActiveUser/ActiveUser.txt");
+        File fileex = new File("./src/AppData/ActiveUser/ActiveUser.txt");
         if(fileex.exists()) {
         	fileex.delete();
         }

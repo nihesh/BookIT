@@ -1121,7 +1121,7 @@
                   </Label>
                </children>
             </StackPane>
-            <StackPane fx:id="pullDownPane" prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: #2a2a2a; visibility: false;">
+            <StackPane fx:id="pullDownPane" prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: #2a2a2a; visibility: true;">
                <children>
                   <StackPane prefHeight="150.0" prefWidth="1320.0" style="-fx-border-width: 2; -fx-border-color: white;" StackPane.alignment="CENTER">
                      <children>
@@ -1133,6 +1133,146 @@
                               <Font name="LMMonoCaps10-Oblique" size="29.0" />
                            </font>
                         </Label>
+                        <StackPane fx:id="preBooking" layoutX="12.0" layoutY="12.0" prefHeight="150.0" prefWidth="200.0" style="visibility: true;">
+                           <children>
+                              <StackPane fx:id="daysCheckPane" prefHeight="150.0" prefWidth="200.0">
+                                 <children>
+                                    <CheckBox fx:id="mon" disable="true" mnemonicParsing="false" text="Mon" textFill="WHITE">
+                                       <StackPane.margin>
+                                          <Insets left="170.0" top="200.0" />
+                                       </StackPane.margin>
+                                       <font>
+                                          <Font size="19.0" />
+                                       </font>
+                                       <tooltip>
+                                          <Tooltip text="All Mondays in the selected range will be booked" />
+                                       </tooltip>
+                                    </CheckBox>
+                                    <CheckBox fx:id="tue" disable="true" mnemonicParsing="false" text="Tue" textFill="WHITE">
+                                       <font>
+                                          <Font size="19.0" />
+                                       </font>
+                                       <StackPane.margin>
+                                          <Insets left="400.0" top="200.0" />
+                                       </StackPane.margin>
+                                       <tooltip>
+                                          <Tooltip text="All Tuesdays in the selected range will be booked" />
+                                       </tooltip>
+                                    </CheckBox>
+                                    <CheckBox fx:id="wed" disable="true" mnemonicParsing="false" text="Wed" textFill="WHITE">
+                                       <font>
+                                          <Font size="19.0" />
+                                       </font>
+                                       <StackPane.margin>
+                                          <Insets left="630.0" top="200.0" />
+                                       </StackPane.margin>
+                                       <tooltip>
+                                          <Tooltip text="All Wednesdays in the selected range will be booked" />
+                                       </tooltip>
+                                    </CheckBox>
+                                    <CheckBox fx:id="sun" disable="true" mnemonicParsing="false" text="Sun" textFill="WHITE">
+                                       <font>
+                                          <Font size="19.0" />
+                                       </font>
+                                       <StackPane.margin>
+                                          <Insets left="625.0" top="300.0" />
+                                       </StackPane.margin>
+                                       <tooltip>
+                                          <Tooltip text="All Sundays in the selected range will be booked" />
+                                       </tooltip>
+                                    </CheckBox>
+                                    <CheckBox fx:id="sat" disable="true" mnemonicParsing="false" text="Sat" textFill="WHITE">
+                                       <font>
+                                          <Font size="19.0" />
+                                       </font>
+                                       <StackPane.margin>
+                                          <Insets left="395.0" top="300.0" />
+                                       </StackPane.margin>
+                                       <tooltip>
+                                          <Tooltip text="All Saturdays in the selected range will be booked" />
+                                       </tooltip>
+                                    </CheckBox>
+                                    <CheckBox fx:id="fri" disable="true" mnemonicParsing="false" text="Fri" textFill="WHITE">
+                                       <font>
+                                          <Font size="19.0" />
+                                       </font>
+                                       <StackPane.margin>
+                                          <Insets left="155.0" top="300.0" />
+                                       </StackPane.margin>
+                                       <tooltip>
+                                          <Tooltip text="All Fridays in the selected range will be booked" />
+                                       </tooltip>
+                                    </CheckBox>
+                                    <CheckBox fx:id="thu" disable="true" mnemonicParsing="false" text="Thu" textFill="WHITE">
+                                       <font>
+                                          <Font size="19.0" />
+                                       </font>
+                                       <StackPane.margin>
+                                          <Insets left="860.0" top="200.0" />
+                                       </StackPane.margin>
+                                       <tooltip>
+                                          <Tooltip text="All Thursdays in the selected range will be booked" />
+                                       </tooltip>
+                                    </CheckBox>
+                                    <Label prefHeight="45.0" prefWidth="155.0" text="Days" textFill="WHITE">
+                                       <font>
+                                          <Font size="27.0" />
+                                       </font>
+                                       <StackPane.margin>
+                                          <Insets left="150.0" top="100.0" />
+                                       </StackPane.margin>
+                                    </Label>
+                                 </children>
+                                 <StackPane.margin>
+                                    <Insets />
+                                 </StackPane.margin>
+                              </StackPane>
+                              <Label prefHeight="45.0" prefWidth="155.0" text="Purpose" textFill="WHITE">
+                                 <font>
+                                    <Font size="27.0" />
+                                 </font>
+                                 <StackPane.margin>
+                                    <Insets bottom="200.0" left="150.0" />
+                                 </StackPane.margin>
+                              </Label>
+                              <Button mnemonicParsing="false" onMouseClicked="#preBookingProceed" stylesheets="@../FacultyReservation/button.css" text="Proceed">
+                                 <StackPane.margin>
+                                    <Insets left="540.0" top="450.0" />
+                                 </StackPane.margin>
+                              </Button>
+                              <ComboBox fx:id="optionDropDown" prefHeight="38.0" prefWidth="331.0">
+                                 <StackPane.margin>
+                                    <Insets bottom="200.0" left="850.0" right="115.0" />
+                                 </StackPane.margin>
+                              </ComboBox>
+                              <Label layoutX="666.0" layoutY="186.0" prefHeight="45.0" prefWidth="155.0" text="Start Date" textFill="WHITE">
+                                 <font>
+                                    <Font size="27.0" />
+                                 </font>
+                                 <StackPane.margin>
+                                    <Insets bottom="100.0" left="150.0" />
+                                 </StackPane.margin>
+                              </Label>
+                              <DatePicker fx:id="startDate" onAction="#validateBulkBookingDate" prefHeight="38.0" prefWidth="331.0">
+                                 <StackPane.margin>
+                                    <Insets bottom="100.0" left="850.0" right="115.0" />
+                                 </StackPane.margin>
+                              </DatePicker>
+                              <Label layoutX="666.0" layoutY="251.0" prefHeight="45.0" prefWidth="155.0" text="End Date" textFill="WHITE">
+                                 <font>
+                                    <Font size="27.0" />
+                                 </font>
+                                 <StackPane.margin>
+                                    <Insets left="150.0" />
+                                 </StackPane.margin>
+                              </Label>
+                              <DatePicker fx:id="endDate" layoutX="870.0" layoutY="254.0" onAction="#validateBulkBookingDate" prefHeight="38.0" prefWidth="331.0">
+                                 <StackPane.margin>
+                                    <Insets left="850.0" right="115.0" />
+                                 </StackPane.margin>
+                              </DatePicker>
+                           </children>
+                        </StackPane>
                         <ScrollPane prefHeight="541.0" prefWidth="1209.0">
                            <content>
                               <AnchorPane fx:id="selectedSlotsScrollPane" minHeight="0.0" minWidth="0.0" prefHeight="474.0" prefWidth="494.0" style="-fx-background-color: #424949;" />
@@ -1241,118 +1381,6 @@
                                     <Insets bottom="255.0" left="850.0" right="115.0" />
                                  </StackPane.margin>
                               </TextField>
-                           </children>
-                        </StackPane>
-                        <StackPane fx:id="preBooking" layoutX="12.0" layoutY="12.0" prefHeight="150.0" prefWidth="200.0" style="visibility: true;">
-                           <children>
-                              <Label prefHeight="45.0" prefWidth="155.0" text="Purpose" textFill="WHITE">
-                                 <font>
-                                    <Font size="27.0" />
-                                 </font>
-                                 <StackPane.margin>
-                                    <Insets bottom="200.0" left="150.0" />
-                                 </StackPane.margin>
-                              </Label>
-                              <Button mnemonicParsing="false" onMouseClicked="#preBookingProceed" stylesheets="@../FacultyReservation/button.css" text="Proceed">
-                                 <StackPane.margin>
-                                    <Insets left="540.0" top="450.0" />
-                                 </StackPane.margin>
-                              </Button>
-                              <ComboBox fx:id="optionDropDown" prefHeight="38.0" prefWidth="331.0">
-                                 <StackPane.margin>
-                                    <Insets bottom="200.0" left="850.0" right="115.0" />
-                                 </StackPane.margin>
-                              </ComboBox>
-                              <Label layoutX="666.0" layoutY="186.0" prefHeight="45.0" prefWidth="155.0" text="Start Date" textFill="WHITE">
-                                 <font>
-                                    <Font size="27.0" />
-                                 </font>
-                                 <StackPane.margin>
-                                    <Insets bottom="100.0" left="150.0" />
-                                 </StackPane.margin>
-                              </Label>
-                              <DatePicker fx:id="startDate" prefHeight="38.0" prefWidth="331.0">
-                                 <StackPane.margin>
-                                    <Insets bottom="100.0" left="850.0" right="115.0" />
-                                 </StackPane.margin>
-                              </DatePicker>
-                              <Label layoutX="666.0" layoutY="251.0" prefHeight="45.0" prefWidth="155.0" text="End Date" textFill="WHITE">
-                                 <font>
-                                    <Font size="27.0" />
-                                 </font>
-                                 <StackPane.margin>
-                                    <Insets left="150.0" />
-                                 </StackPane.margin>
-                              </Label>
-                              <DatePicker fx:id="endDate" layoutX="870.0" layoutY="254.0" prefHeight="38.0" prefWidth="331.0">
-                                 <StackPane.margin>
-                                    <Insets left="850.0" right="115.0" />
-                                 </StackPane.margin>
-                              </DatePicker>
-                              <CheckBox fx:id="mon" mnemonicParsing="false" selected="true" text="Mon" textFill="WHITE">
-                                 <StackPane.margin>
-                                    <Insets left="170.0" top="200.0" />
-                                 </StackPane.margin>
-                                 <font>
-                                    <Font size="19.0" />
-                                 </font>
-                              </CheckBox>
-                              <CheckBox fx:id="tue" layoutX="691.0" layoutY="395.0" mnemonicParsing="false" selected="true" text="Tue" textFill="WHITE">
-                                 <font>
-                                    <Font size="19.0" />
-                                 </font>
-                                 <StackPane.margin>
-                                    <Insets left="400.0" top="200.0" />
-                                 </StackPane.margin>
-                              </CheckBox>
-                              <CheckBox fx:id="wed" layoutX="631.0" layoutY="295.0" mnemonicParsing="false" selected="true" text="Wed" textFill="WHITE">
-                                 <font>
-                                    <Font size="19.0" />
-                                 </font>
-                                 <StackPane.margin>
-                                    <Insets left="630.0" top="200.0" />
-                                 </StackPane.margin>
-                              </CheckBox>
-                              <CheckBox fx:id="sun" layoutX="631.0" layoutY="295.0" mnemonicParsing="false" selected="true" text="Sun" textFill="WHITE">
-                                 <font>
-                                    <Font size="19.0" />
-                                 </font>
-                                 <StackPane.margin>
-                                    <Insets left="625.0" top="300.0" />
-                                 </StackPane.margin>
-                              </CheckBox>
-                              <CheckBox fx:id="sat" layoutX="631.0" layoutY="295.0" mnemonicParsing="false" selected="true" text="Sat" textFill="WHITE">
-                                 <font>
-                                    <Font size="19.0" />
-                                 </font>
-                                 <StackPane.margin>
-                                    <Insets left="395.0" top="300.0" />
-                                 </StackPane.margin>
-                              </CheckBox>
-                              <CheckBox fx:id="fri" layoutX="631.0" layoutY="295.0" mnemonicParsing="false" selected="true" text="Fri" textFill="WHITE">
-                                 <font>
-                                    <Font size="19.0" />
-                                 </font>
-                                 <StackPane.margin>
-                                    <Insets left="155.0" top="300.0" />
-                                 </StackPane.margin>
-                              </CheckBox>
-                              <CheckBox fx:id="thu" layoutX="631.0" layoutY="295.0" mnemonicParsing="false" selected="true" text="Thu" textFill="WHITE">
-                                 <font>
-                                    <Font size="19.0" />
-                                 </font>
-                                 <StackPane.margin>
-                                    <Insets left="860.0" top="200.0" />
-                                 </StackPane.margin>
-                              </CheckBox>
-                              <Label layoutX="666.0" layoutY="286.0" prefHeight="45.0" prefWidth="155.0" text="Days" textFill="WHITE">
-                                 <font>
-                                    <Font size="27.0" />
-                                 </font>
-                                 <StackPane.margin>
-                                    <Insets left="150.0" top="100.0" />
-                                 </StackPane.margin>
-                              </Label>
                            </children>
                         </StackPane>
                      </children>
