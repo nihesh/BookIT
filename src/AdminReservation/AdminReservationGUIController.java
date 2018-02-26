@@ -111,7 +111,7 @@ public class AdminReservationGUIController implements Initializable{
     @FXML
     private ComboBox purposeDropDown;
     @FXML
-    private StackPane preBooking, courseBooking, otherBooking;
+    private StackPane preBooking, courseBooking, otherBooking, HolidayMessage;
     @FXML
     private TextField purposeBox;
     @FXML
@@ -135,6 +135,8 @@ public class AdminReservationGUIController implements Initializable{
     private static int animation = 200;
     private ArrayList<Reservation> currentRequest;
     private ArrayList<String> allCourses;
+    private Boolean holiday;
+    private Boolean blockedday;
 
     /**
      * Constructor for setting up Faculty Reservation GUI. It includes the adaptor code to suit any dimensional screen
@@ -206,6 +208,8 @@ public class AdminReservationGUIController implements Initializable{
         requestProcessing = false;
         changepassProcessing = false;
         cancelBookingProcessing = false;
+        holiday = false;
+        blockedday = false;
         allCourses = null;
         File file = new File("./src/BookIT_logo.jpg");
         Image image = new Image(file.toURI().toString());
@@ -620,6 +624,12 @@ public class AdminReservationGUIController implements Initializable{
             topPane.setDisable(true);
             mainPane.setDisable(true);
             Notification.throwAlert("Server Error","Sorry, BookIT server is down");
+        }
+        if(activeUser.isHoliday(activeDate, false)){
+            holiday = true;
+        }
+        else{
+            holiday = false;
         }
     }
 
@@ -1091,6 +1101,12 @@ public class AdminReservationGUIController implements Initializable{
         FadeTransition appear = new FadeTransition(Duration.millis(animation), classStatus);
         classStatus.setOpacity(0);
         classStatus.setVisible(true);
+        if(holiday){
+            HolidayMessage.setVisible(true);
+        }
+        else{
+            HolidayMessage.setVisible(false);
+        }
         appear.setFromValue(0);
         appear.setToValue(1);
         appear.play();
@@ -1103,6 +1119,7 @@ public class AdminReservationGUIController implements Initializable{
         if(classStatus.isVisible()) {
             hideSlotPane();
             classStatus.setVisible(false);
+            HolidayMessage.setVisible(false);
             showLogo();
         }
     }

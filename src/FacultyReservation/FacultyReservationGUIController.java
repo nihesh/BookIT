@@ -126,7 +126,7 @@ public class FacultyReservationGUIController implements Initializable{
     @FXML
     private ComboBox purposeDropDown;
     @FXML
-    private StackPane preBooking, courseBooking, otherBooking;
+    private StackPane preBooking, courseBooking, otherBooking, HolidayMessage;
     @FXML
     private TextField purposeBox;
 
@@ -145,6 +145,8 @@ public class FacultyReservationGUIController implements Initializable{
     private LocalDate StartDate;
     private LocalDate EndDate;
     private static int animation = 200;
+    private Boolean holiday;
+    private Boolean blockedday;
 
     /**
      * Constructor for setting up Faculty Reservation GUI. It includes the adaptor code to suit any dimensional screen
@@ -464,6 +466,12 @@ public class FacultyReservationGUIController implements Initializable{
             mainPane.setDisable(true);
             Notification.throwAlert("Server Error","Sorry, BookIT server is down");
         }
+        if(activeUser.isHoliday(activeDate, false)){
+            holiday = true;
+        }
+        else{
+            holiday = false;
+        }
     }
 
     /**
@@ -641,6 +649,12 @@ public class FacultyReservationGUIController implements Initializable{
                 freeSlots++;
             }
         }
+        if(holiday){
+            HolidayMessage.setVisible(true);
+        }
+        else{
+            HolidayMessage.setVisible(false);
+        }
         statusFreeSlots.setText("  "+Integer.toString(freeSlots));                         // GUI-Helper integration ends here
         FadeTransition appear = new FadeTransition(Duration.millis(animation), classStatus);
         classStatus.setOpacity(0);
@@ -657,6 +671,7 @@ public class FacultyReservationGUIController implements Initializable{
         if(classStatus.isVisible()) {
             hideSlotPane();
             classStatus.setVisible(false);
+            HolidayMessage.setVisible(false);
             showLogo();
         }
     }

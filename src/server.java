@@ -37,6 +37,7 @@ public class server {
     public static HashMap<String, Integer> adminhash=null;
     public static HashMap<String, Integer> connectedIPs=null;
     public static ArrayList<String> freeCourses = null;
+    public static HashMap<LocalDate, Boolean> HolidaysList = null;
 
     public static void loadFreeCourses(){
         System.out.println("Loading non registered courses");
@@ -52,7 +53,25 @@ public class server {
         System.out.println();
     }
 
-    public static void loadHashMaps(){
+    public static void loadHolidaysList(){
+        try {
+            HolidaysList = new HashMap<>();
+            Scanner holidays = new Scanner(new BufferedReader(new FileReader("./src/AppData/StaticTimeTable/holidays.txt")));
+            holidays.useDelimiter("-|\\n");
+            HashMap<LocalDate, Boolean> blockedDates = new HashMap<>();
+            while (holidays.hasNext()) {
+                int date = holidays.nextInt();
+                int month = holidays.nextInt();
+                int year = holidays.nextInt();
+                HolidaysList.put(LocalDate.of(year, month, date), true);
+            }
+        }
+        catch (Exception e){
+            System.out.println("Exception occurred while loading holidays list");
+        }
+    }
+
+    public static void loadUserHashMaps(){
 
         try {
             System.out.println("Loading allowed user database");
@@ -113,8 +132,9 @@ public class server {
         BookITconstants b = new BookITconstants("Server");
         BookITconstants.log = new FileWriter(new File("./src/AppData/Server/ServerBugs.txt"), true);
         BookITconstants.transactions = new FileWriter(new File("./src/AppData/Server/transactions.txt"), true);
-        loadHashMaps();
+        loadUserHashMaps();
         loadFreeCourses();
+        loadHolidaysList();
         ServerSocket s = new ServerSocket(BookITconstants.serverPort);
         ConnectionHandler.lock = new ReentrantLock();
         spm = new SpamFilter();
@@ -886,6 +906,11 @@ class ConnectionHandler implements Runnable{
         }
         return data;
     }
+    public void softResetServer(){
+        server.loadUserHashMaps();
+        server.loadFreeCourses();
+        server.loadHolidaysList();
+    }
     public void run(){
         server.noOfConnections++;
         ObjectInputStream in=null;
@@ -1556,8 +1581,7 @@ class ConnectionHandler implements Runnable{
                         if(!status.equals("Pass")){         // Must take lock to ensure consistency
                             lock.lockInterruptibly();
                         }
-                        server.loadHashMaps();
-                        server.loadFreeCourses();
+                        softResetServer();
                         if(lock.isLocked() && lock.isHeldByCurrentThread()){
                             System.out.print("[ "+LocalDateTime.now()+" ] ");
                             System.out.println(connection.getInetAddress().toString() + " | ServerLock Released");
@@ -1587,6 +1611,26 @@ class ConnectionHandler implements Runnable{
                             lock.unlock();
                         }
                         out.writeObject(bookingReport);
+                        out.flush();
+                        break;
+                    case "checkHoliday":
+                        Boolean holiday;
+                        queryDate = (LocalDate) in.readObject();
+                        if(!status.equals("Pass")) {
+                            lock.lockInterruptibly();
+                        }
+                        if(server.HolidaysList.containsKey(queryDate)){
+                            holiday = true;
+                        }
+                        else{
+                            holiday = false;
+                        }
+                        if(lock.isLocked() && lock.isHeldByCurrentThread()){
+                            System.out.print("[ "+LocalDateTime.now()+" ] ");
+                            System.out.println(connection.getInetAddress().toString() + " | ServerLock Released");
+                            lock.unlock();
+                        }
+                        out.writeObject(holiday);
                         out.flush();
                         break;
                 }

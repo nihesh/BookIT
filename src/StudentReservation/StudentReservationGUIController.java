@@ -120,7 +120,7 @@ public class StudentReservationGUIController implements Initializable{
     @FXML
     private SplitPane sp1;
     @FXML
-    private StackPane preBooking, courseBooking, otherBooking;
+    private StackPane preBooking, courseBooking, otherBooking, HolidayMessage;
     @FXML
     private TextField purposeBox;
 
@@ -139,6 +139,8 @@ public class StudentReservationGUIController implements Initializable{
     private Event classEvent;
     private static int animation = 200;
     private ArrayList<String> allCourses;
+    private Boolean holiday;
+    private Boolean blockedday;
 
 
     /**
@@ -566,6 +568,12 @@ public class StudentReservationGUIController implements Initializable{
             mainPane.setDisable(true);
             Notification.throwAlert("Server Error","Sorry, BookIT server is down");
         }
+        if(activeUser.isHoliday(activeDate, false)){
+            holiday = true;
+        }
+        else{
+            holiday = false;
+        }
     }
     /**
      * Returns the slot that a time range is mapped to
@@ -795,6 +803,12 @@ public class StudentReservationGUIController implements Initializable{
                 freeSlots++;
             }
         }
+        if(holiday){
+            HolidayMessage.setVisible(true);
+        }
+        else{
+            HolidayMessage.setVisible(false);
+        }
         statusFreeSlots.setText("  "+Integer.toString(freeSlots));                         // GUI-Helper integration ends here
         FadeTransition appear = new FadeTransition(Duration.millis(animation), classStatus);
         classStatus.setOpacity(0);
@@ -810,6 +824,7 @@ public class StudentReservationGUIController implements Initializable{
         if(classStatus.isVisible()) {
             hideSlotPane();
             classStatus.setVisible(false);
+            HolidayMessage.setVisible(false);
             showLogo();
         }
     }

@@ -1,4 +1,6 @@
 package HelperClasses;
+import com.sun.org.apache.xpath.internal.operations.Bool;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -7,6 +9,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.net.Socket;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 /**
@@ -182,6 +185,36 @@ public class User implements Serializable{
 			System.out.println("Class not found exception occurred while getting user type");
 		}
 		return "";
+	}
+	public Boolean isHoliday(LocalDate activeDate, Boolean lock){
+		try {
+			Socket server = new Socket(BookITconstants.serverIP, BookITconstants.serverPort);
+			ObjectOutputStream out = new ObjectOutputStream(server.getOutputStream());
+			ObjectInputStream in = new ObjectInputStream(server.getInputStream());
+			if(lock){
+				out.writeObject("Hold");
+			}
+			else{
+				out.writeObject("Pass");
+			}
+			out.flush();
+			out.writeObject("checkHoliday");
+			out.flush();
+			out.writeObject(activeDate);
+			out.flush();
+			Boolean c = (Boolean) in.readObject();
+			out.close();
+			in.close();
+			server.close();
+			return c;
+		}
+		catch (IOException e){
+			System.out.println("IO exception occurred while writing to server");
+		}
+		catch (ClassNotFoundException c){
+			System.out.println("Class not found exception occurred while getting user type");
+		}
+		return true; // Error! Block the day
 	}
 	public void generatePass(Boolean lock){
 		try {

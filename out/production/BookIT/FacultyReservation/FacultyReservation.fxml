@@ -128,6 +128,18 @@
                                     <Insets left="288.0" top="115.0" />
                                  </StackPane.margin>
                               </Label>
+                              <StackPane fx:id="HolidayMessage" prefHeight="150.0" prefWidth="200.0">
+                                 <children>
+                                    <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="52.0" prefWidth="563.0" style="-fx-background-color: black;" text="Not a working day" textAlignment="CENTER" textFill="#ffffffdb">
+                                       <font>
+                                          <Font name="System Bold" size="32.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                                 <StackPane.margin>
+                                    <Insets top="270.0" />
+                                 </StackPane.margin>
+                              </StackPane>
                            </children>
                         </StackPane>
                         <StackPane fx:id="slotInfoPane" prefHeight="150.0" prefWidth="200.0" style="visibility: false;">
@@ -1104,14 +1116,6 @@
                               <Font name="LMMonoCaps10-Oblique" size="29.0" />
                            </font>
                         </Label>
-                        <ScrollPane prefHeight="541.0" prefWidth="1209.0">
-                          <content>
-                            <AnchorPane fx:id="selectedSlotsScrollPane" minHeight="0.0" minWidth="0.0" prefHeight="474.0" prefWidth="494.0" style="-fx-background-color: #424949;" />
-                          </content>
-                           <StackPane.margin>
-                              <Insets bottom="20.0" left="20.0" right="800.0" top="100.0" />
-                           </StackPane.margin>
-                        </ScrollPane>
                         <StackPane fx:id="courseBooking" prefHeight="150.0" prefWidth="200.0" style="visibility: false;">
                            <children>
                               <ComboBox fx:id="groupDropDown" prefHeight="38.0" prefWidth="331.0" promptText="Choose Group (Optional)">
@@ -1236,6 +1240,14 @@
                               </ComboBox>
                            </children>
                         </StackPane>
+                        <ScrollPane prefHeight="541.0" prefWidth="1209.0">
+                          <content>
+                            <AnchorPane fx:id="selectedSlotsScrollPane" minHeight="0.0" minWidth="0.0" prefHeight="474.0" prefWidth="494.0" style="-fx-background-color: #424949;" />
+                          </content>
+                           <StackPane.margin>
+                              <Insets bottom="20.0" left="20.0" right="800.0" top="100.0" />
+                           </StackPane.margin>
+                        </ScrollPane>
                      </children></StackPane>
                   <Button alignment="TOP_CENTER" contentDisplay="TOP" mnemonicParsing="false" onMouseClicked="#closeReservationPane" opacity="0.5" prefHeight="12.0" prefWidth="1320.0" stylesheets="@buttonDropDown.css" text="Close" textAlignment="CENTER" StackPane.alignment="TOP_CENTER" />
                </children>
