@@ -358,7 +358,7 @@ public class Admin extends User{
 	 * @param r the reservation object see also {@link Reservation} class
 	 * @return true if booked false otherwise
 	 */
-	public boolean bookRoom(ArrayList<LocalDate> date, int slot, Reservation r, String email,Boolean lock) {
+	public boolean bookRoom(ArrayList<LocalDate> date, ArrayList<Integer> slot, Reservation r, String email, Boolean lock) {
 		try{
 			Socket server = new Socket(BookITconstants.serverIP, BookITconstants.serverPort);
 			ObjectOutputStream out = new ObjectOutputStream(server.getOutputStream());

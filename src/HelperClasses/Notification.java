@@ -18,9 +18,15 @@ public class Notification implements Serializable{
     private String room="";
     private String reserverEmail="";
     private ArrayList<Integer> slotIDs;
-    private LocalDateTime NotificationDateTime = LocalDateTime.now();
+
+	public LocalDateTime getReservationStamp() {
+		return ReservationStamp;
+	}
+
+	private LocalDateTime ReservationStamp = null;
+	private LocalDateTime NotificationDateTime = LocalDateTime.now();
 	public Notification(String type, String status, String message, String course, ArrayList<LocalDate> targetDate,
-			String room, String reserverEmail, ArrayList<Integer> slotID) {
+						String room, String reserverEmail, ArrayList<Integer> slotID, LocalDateTime reservationtime) {
 		if(type!=null) {
 			this.type = type;}
 		if(status!=null) {
@@ -30,9 +36,33 @@ public class Notification implements Serializable{
 		if(course!=null) {
 			this.course = course;}
 		if(targetDate!=null) {
-		this.targetDate = targetDate;}
+			this.targetDate = targetDate;}
 		if(room!=null) {
 			this.room = room;}
+		this.reserverEmail = reserverEmail;
+		this.slotIDs = slotID;
+		this.ReservationStamp =  reservationtime;
+	}
+	public Notification(String type, String status, String message, String course, ArrayList<LocalDate> targetDate,
+						String room, String reserverEmail, ArrayList<Integer> slotID) {
+		if (type != null) {
+			this.type = type;
+		}
+		if (status != null) {
+			this.status = status;
+		}
+		if (message != null) {
+			this.message = message;
+		}
+		if (course != null) {
+			this.course = course;
+		}
+		if (targetDate != null) {
+			this.targetDate = targetDate;
+		}
+		if (room != null) {
+			this.room = room;
+		}
 		this.reserverEmail = reserverEmail;
 		this.slotIDs = slotID;
 	}
@@ -93,6 +123,7 @@ public class Notification implements Serializable{
 	public String getCourse() {
 		return course;
 	}
+
 	public ArrayList<LocalDate> getTargetDate() {
 		return targetDate;
 	}

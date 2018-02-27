@@ -1355,10 +1355,12 @@ public class AdminReservationGUIController implements Initializable{
             return;
         }
         Boolean failure = false;
+        ArrayList<Integer> slots = new ArrayList<>();
         for(int i=0;i<listOfReservations.size();i++){
-            if(!activeUser.bookRoom(date, listOfReservations.get(i).getReservationSlot(), listOfReservations.get(i),admin_email_used ,false)){
-                failure = true;
-            }
+            slots.add(listOfReservations.get(i).getReservationSlot());
+        }
+        if(!activeUser.bookRoom(date, slots, listOfReservations.get(0),admin_email_used ,false)){
+            failure = true;
         }
         if(!failure){
             ;
@@ -1396,10 +1398,12 @@ public class AdminReservationGUIController implements Initializable{
             Notification.throwAlert("Cannot complete booking. Please close this session and try again", "Error");
             return;
         }
+        ArrayList<Integer> slots = new ArrayList<>();
         for(int i=0;i<listOfReservations.size();i++){
-            if(!activeUser.bookRoom(date, listOfReservations.get(i).getReservationSlot(), listOfReservations.get(i), admin_email_used,false)){
-                Notification.throwAlert("Booking Error","The booking couldn't be completed as one of the slots you've chosen has been booked. Please refresh the page and try a different slot");
-            }
+               slots.add(listOfReservations.get(i).getReservationSlot());
+        }
+        if(!activeUser.bookRoom(date, slots, listOfReservations.get(0), admin_email_used,false)){
+            Notification.throwAlert("Booking Error","The booking couldn't be completed as one of the slots you've chosen has been booked. Please refresh the page and try a different slot");
         }
         closeReservationPane();
         flyRight();

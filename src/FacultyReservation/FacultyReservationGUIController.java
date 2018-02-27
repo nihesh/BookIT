@@ -964,13 +964,15 @@ public class FacultyReservationGUIController implements Initializable{
             r.setReserverEmail(activeUser.getEmail().getEmailID());
             listOfReservations.add(r);
         }                                                   // GUI Integration Ends
+        ArrayList<LocalDate> date = new ArrayList<>();
+        ArrayList<Integer> slots = new ArrayList<>();
         Boolean failure = false;
         for(int i=0;i<listOfReservations.size();i++){
-            ArrayList<LocalDate> date = new ArrayList<>();
             date.add(listOfReservations.get(i).getTargetDate());
-            if(!activeUser.bookRoom(date, listOfReservations.get(i).getReservationSlot(), listOfReservations.get(i), false)){
-                failure = true;
-            }
+            slots.add(listOfReservations.get(i).getReservationSlot());
+        }
+        if(!activeUser.bookRoom(date, slots, listOfReservations.get(0), false)){
+            failure = true;
         }
         if(!failure){
             ;
@@ -1003,13 +1005,16 @@ public class FacultyReservationGUIController implements Initializable{
             r.setTargetDate(activeDate);
             r.setReserverEmail(activeUser.getEmail().getEmailID());
             listOfReservations.add(r);
-        }                                                   // GUI Integration Ends
+        }
+        ArrayList<LocalDate> date = new ArrayList<>();
+        ArrayList<Integer> slots = new ArrayList<>();
+        // GUI Integration Ends
         for(int i=0;i<listOfReservations.size();i++){
-            ArrayList<LocalDate> date = new ArrayList<>();
             date.add(listOfReservations.get(i).getTargetDate());
-            if(!activeUser.bookRoom(date, listOfReservations.get(i).getReservationSlot(), listOfReservations.get(i), false)){
-                Notification.throwAlert("Booking Error","The booking couldn't be completed as one of the slots you've chosen has been booked. Please refresh the page and try a different room");
-            }
+            slots.add(listOfReservations.get(i).getReservationSlot());
+        }
+        if(!activeUser.bookRoom(date, slots, listOfReservations.get(0), false)){
+            Notification.throwAlert("Booking Error","The booking couldn't be completed as one of the slots you've chosen has been booked. Please refresh the page and try a different room");
         }
         closeReservationPane();
         flyRight();

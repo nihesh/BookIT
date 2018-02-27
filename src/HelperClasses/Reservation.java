@@ -19,12 +19,26 @@ public class Reservation implements java.io.Serializable{
     private String type;
     private ArrayList<String> groups;
     private ArrayList<String> groupVenue;
+
+    public void setCreationDate(LocalDateTime creationDate) {
+        this.creationDate = creationDate;
+    }
+
     private LocalDateTime creationDate;
     private LocalDate targetDate;
     private String room;
     private String reserverEmail;
+
+    public void setSlotID(int slotID) {
+        this.slotID = slotID;
+    }
+
     private int slotID;
     private Boolean isRequest;
+
+    public Reservation clone(){
+        return new Reservation(this.message.get(0), this.groups, this.course, this.facultyEmail, this.room, this.type, this.slotID);
+    }
     /**
      * constructor for reservation class
      * @param Message the message describing purpose for reservation
