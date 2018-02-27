@@ -901,6 +901,9 @@ class ConnectionHandler implements Runnable{
         }
         return true;
     }
+    public Boolean BulkDeleteUserNotification(Notification notification){
+        ArrayList<>
+    }
     public ArrayList<String> getBookingReport(){
         ArrayList<String> data = new ArrayList<>();
         try {
@@ -1244,6 +1247,22 @@ class ConnectionHandler implements Runnable{
                         out.writeObject(shortlist);
                         out.flush();
                         break;
+                    case "BulkDeleteUseNotification":
+                        Notification notification = (Notification) in.readObject();
+                        result = false;
+                        if(!status.equals("Pass")) {
+                            lock.lockInterruptibly();
+                        }
+                        result = BulkDeleteUserNotification(notification);
+                        if(lock.isLocked() && lock.isHeldByCurrentThread()){
+                            System.out.print("[ "+LocalDateTime.now()+" ] ");
+                            System.out.println(connection.getInetAddress().toString() + " | ServerLock Released");
+                            lock.unlock();
+                        }
+                        out.writeObject(result);
+                        out.flush();
+                        break;
+
                     case "student_addCourse":
                         course = (String) in.readObject();
                         email = (String) in.readObject();

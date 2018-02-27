@@ -1,5 +1,7 @@
 package AdminReservation;
 
+import HelperClasses.BookITconstants;
+import com.sun.jmx.remote.security.NotificationAccessController;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -17,6 +19,10 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
 
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.net.Socket;
 import java.net.URL;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -46,10 +52,10 @@ public class NotifyController {
 
         User x=User.getActiveUser();
         loadNotifications(x.getNotifications(false));
-        
+
     }
     private void loadNotifications(ArrayList<Notification> myList){ // assert: data.size() == time.size()
-    	
+
     	ArrayList<String> data = new ArrayList<>();
         ArrayList<String> time = new ArrayList<>();
         for (int i=myList.size()-1;i>=0;i--) {
@@ -77,7 +83,7 @@ public class NotifyController {
 				break;
 			}
 			}
-        
+
     	int labelSize = 993;
         for(int i=0;i<data.size();i++){
             StackPane s = new StackPane();
@@ -137,9 +143,45 @@ public class NotifyController {
             }
         }
         if(del_notification != null){
-
+            if(!deleteNotificationCallToServer(del_notification, false)){
+                Notification.throwAlert("Error","Cannot delete the bookings as they have been modified");
+            }
+            else{
+                Notification.throwAlert("Success","Deletion Successful");
+            }
         }
 
 
     }
+    public boolean deleteNotificationCallToServer(Notification notification, boolean lock){
+        try{
+            Socket server = new Socket(BookITconstants.serverIP, BookITconstants.serverPort);
+            ObjectOutputStream out = new ObjectOutputStream(server.getOutputStream());
+            ObjectInputStream in = new ObjectInputStream(server.getInputStream());
+            if(lock){
+                out.writeObject("Hold");
+            }
+            else{
+                out.writeObject("Pass");
+            }
+            out.flush();
+            out.writeObject("BulkDeleteUseNotification");
+            out.flush();
+            out.writeObject(notification);
+            out.flush();
+            Boolean c = (Boolean) in.readObject();
+            out.close();
+            in.close();
+            server.close();
+            return c;
+        }
+        catch(IOException e){
+            System.out.println("IO Exception occurred while booking room");
+        }
+        catch (ClassNotFoundException c){
+            System.out.println("Class not found exception occurred while booking room");
+        }
+        return false;
+    }
+
 }
