@@ -473,8 +473,10 @@ class ConnectionHandler implements Runnable{
             String recipient = acceptList.get(0).getReserverEmail();
             String GreetText = "Hello " + getUser(recipient).getName();
             String TimeSlots="";
+            LocalDateTime creat = LocalDateTime.now();
             for (int i=0;i<acceptList.size();i++) {
                 Reservation reservation = acceptList.get(i);
+                reservation.setCreationDate(creat);
                 reservation.removeRequestFlag();
                 x.add(reservation.getReservationSlot());
                 TimeSlots += Reservation.getSlotRange(reservation.getReservationSlot())+"\n";
@@ -574,8 +576,8 @@ class ConnectionHandler implements Runnable{
         String slots = "";
         for (Integer slot: time_slots) {
             slots += Reservation.getSlotRange(slot) + "\n";
-            slots += Reservation.getSlotRange(slot) + "\n";
         }
+        reservation.setCreationDate(LocalDateTime.now());
         for(LocalDate start : date){
             Reservation r1 = reservation.clone();
             r1.setTargetDate(start);

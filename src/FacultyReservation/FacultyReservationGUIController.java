@@ -45,6 +45,7 @@ import java.io.*;
 import java.net.Socket;
 import java.net.URL;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -957,18 +958,24 @@ public class FacultyReservationGUIController implements Initializable{
         String chosenMessage;
         chosenMessage = requestMessage.getText();
         ArrayList<Reservation> listOfReservations = new ArrayList<>();
+        LocalDateTime creat_time = LocalDateTime.now();
         for(int i=0;i<chosenSlots.size();i++){              // GUI Integration Begins
             Reservation r;
             r = new Reservation(chosenMessage, chosenGroup, chosenCourse, chosenFaculty, activeRoom, chosenPurpose, chosenSlots.get(i));
             r.setTargetDate(activeDate);
+            r.setCreationDate(creat_time);
             r.setReserverEmail(activeUser.getEmail().getEmailID());
             listOfReservations.add(r);
         }                                                   // GUI Integration Ends
         ArrayList<LocalDate> date = new ArrayList<>();
         ArrayList<Integer> slots = new ArrayList<>();
         Boolean failure = false;
+        System.out.println(listOfReservations.size());
         for(int i=0;i<listOfReservations.size();i++){
-            date.add(listOfReservations.get(i).getTargetDate());
+            if(i > 0 && date.get(date.size() - 1).isEqual(listOfReservations.get(i).getTargetDate())){}
+            else{
+                date.add(listOfReservations.get(i).getTargetDate());
+            }
             slots.add(listOfReservations.get(i).getReservationSlot());
         }
         if(!activeUser.bookRoom(date, slots, listOfReservations.get(0), false)){
@@ -1010,7 +1017,10 @@ public class FacultyReservationGUIController implements Initializable{
         ArrayList<Integer> slots = new ArrayList<>();
         // GUI Integration Ends
         for(int i=0;i<listOfReservations.size();i++){
-            date.add(listOfReservations.get(i).getTargetDate());
+            if(i > 0 && date.get(date.size() - 1).isEqual(listOfReservations.get(i).getTargetDate())){}
+            else{
+                date.add(listOfReservations.get(i).getTargetDate());
+            }
             slots.add(listOfReservations.get(i).getReservationSlot());
         }
         if(!activeUser.bookRoom(date, slots, listOfReservations.get(0), false)){

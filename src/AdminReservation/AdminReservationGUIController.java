@@ -5,6 +5,7 @@
 package AdminReservation;
 
 import HelperClasses.*;
+import com.sun.org.apache.bcel.internal.generic.LoadClass;
 import javafx.animation.FadeTransition;
 import javafx.animation.ParallelTransition;
 import javafx.animation.SequentialTransition;
@@ -41,6 +42,7 @@ import java.io.*;
 import java.net.Socket;
 import java.net.URL;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.*;
 import static java.lang.Math.max;
 
@@ -1343,10 +1345,12 @@ public class AdminReservationGUIController implements Initializable{
         String chosenMessage;
         chosenMessage = requestMessage.getText();
         ArrayList<Reservation> listOfReservations = new ArrayList<>();
+        LocalDateTime creat_time = LocalDateTime.now();
         for(int i=0;i<chosenSlots.size();i++){              // GUI Integration Begins
             Reservation r;
             r = new Reservation(chosenMessage, chosenGroup, chosenCourse, chosenFaculty, activeRoom, chosenPurpose, chosenSlots.get(i));
             r.setTargetDate(activeDate);
+            r.setCreationDate(creat_time);
             r.setReserverEmail(activeUser.getEmail().getEmailID());
             listOfReservations.add(r);
         }                                                   // GUI Integration Ends
