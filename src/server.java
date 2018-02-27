@@ -473,12 +473,13 @@ class ConnectionHandler implements Runnable{
             String recipient = acceptList.get(0).getReserverEmail();
             String GreetText = "Hello " + getUser(recipient).getName();
             String TimeSlots="";
-
+            LocalDateTime creat = LocalDateTime.now();
             for (int i=0;i<acceptList.size();i++) {
                 Reservation reservation = acceptList.get(i);
+                reservation.setCreationDate(creat);
                 reservation.removeRequestFlag();
                 x.add(reservation.getReservationSlot());
-                TimeSlots+=Reservation.getSlotRange(reservation.getReservationSlot())+"\n";
+                TimeSlots += Reservation.getSlotRange(reservation.getReservationSlot())+"\n";
                 temp.addReservation(reservation.getTargetDate(), reservation.getReservationSlot(), reservation);
                 temp.deleteRequest(reservation.getReserverEmail(), reservation.getTargetDate(), reservation.getReservationSlot());
                 if(ctemp!=null) {
@@ -487,7 +488,7 @@ class ConnectionHandler implements Runnable{
             }
             ArrayList<LocalDate> target_dateAList = new ArrayList<>();
             target_dateAList.add(acceptList.get(0).getTargetDate());
-            Notification n = new Notification("Room Reservation Request", "Accepted", acceptList.get(0).getMessage(), acceptList.get(0).getCourseName(), target_dateAList, acceptList.get(0).getRoomName(), acceptList.get(0).getReserverEmail(), x);
+            Notification n = new Notification("Room Reservation Request", "Accepted", acceptList.get(0).getMessage(), acceptList.get(0).getCourseName(), target_dateAList, acceptList.get(0).getRoomName(), acceptList.get(0).getReserverEmail(), x, acceptList.get(0).getCreationDate());
             Student Stud = (Student)getUser(recipient);
             Admin a = (Admin) getUser(Mail.from);
             Stud.addNotification(n);
@@ -542,47 +543,55 @@ class ConnectionHandler implements Runnable{
         serializeUser(Stud);
         return true;
     }
-    public boolean adminandfaculty_bookRoom(ArrayList<LocalDate> date, int slot, Reservation r, String admin_email) {
+    public boolean adminandfaculty_bookRoom(ArrayList<LocalDate> date, ArrayList<Integer> time_slots, Reservation reservation, String admin_email) {
         HashMap<String, Integer> h = new HashMap<>();
         h.put(Mail.from, 1);
-        Room room=Room.deserializeRoom(r.getRoomName());
+        Room room = Room.deserializeRoom(reservation.getRoomName());
         Boolean addToCourse = true;
-        if(r.getCourseName().equals("")){
+        if(reservation.getCourseName().equals("")){
             addToCourse = false;
         }
         Course course;
-        course = Course.deserializeCourse(r.getCourseName());
+        course = Course.deserializeCourse(reservation.getCourseName());
         for(LocalDate temp2 : date){
-            if(addToCourse){
-                if (!(course.checkReservation(temp2, slot, r) == true && room.checkReservation(temp2, slot, r) == true)){
-                    return false;
-                }
-            }
-            else{
-                if (!(room.checkReservation(temp2, slot, r) == true)) {
-                    return false;
+            for (int i = 0; i < time_slots.size(); i++) {
+                if (addToCourse) {
+                    if (!(course.checkReservation(temp2, time_slots.get(i), reservation) == true && room.checkReservation(temp2, time_slots.get(i), reservation) == true)) {
+                        return false;
+                    }
+                } else {
+                    if (!(room.checkReservation(temp2, time_slots.get(i), reservation) == true)) {
+                        return false;
+                    }
                 }
             }
         }
-        h.put(r.getReserverEmail(), 1);
-        course = Course.deserializeCourse(r.getCourseName());
-        if(r.getCourseName()!= null && !r.getCourseName().equals("")) {
+        System.out.println("check 1");
+        h.put(reservation.getReserverEmail(), 1);
+        course = Course.deserializeCourse(reservation.getCourseName());
+        if(reservation.getCourseName()!= null && !reservation.getCourseName().equals("")) {
 
             h.put(course.getInstructorEmail(), 1);
         }
-        ArrayList<Integer> x= new ArrayList<Integer>();
         String slots = "";
-        slots += Reservation.getSlotRange(r.getReservationSlot()) + "\n";
-        x.add(r.getReservationSlot());
-
-        for(LocalDate start : date){
-            if (addToCourse) {
-                course.addReservation(start, slot, r);
-            }
-            room.addReservation(start, slot, r);
-
+        for (Integer slot: time_slots) {
+            slots += Reservation.getSlotRange(slot) + "\n";
         }
-        Notification n = new Notification("Classroom Booking", "Done", r.getMessage(), r.getCourseName(), date, r.getRoomName(), r.getReserverEmail(),x);
+        reservation.setCreationDate(LocalDateTime.now());
+        for(LocalDate start : date){
+            Reservation r1 = reservation.clone();
+            r1.setTargetDate(start);
+            for (int i = 0; i < time_slots.size(); i++) {
+                Reservation r2 = r1.clone();
+                r2.setSlotID(time_slots.get(i));
+                if (addToCourse) {
+                    course.addReservation(start, time_slots.get(i), r2);
+                }
+                room.addReservation(start, time_slots.get(i), r2);
+            }
+        }
+        System.out.println("check 2");
+        Notification n = new Notification("Classroom Booking", "Done", reservation.getMessage(), reservation.getCourseName(), date, reservation.getRoomName(), reservation.getReserverEmail(),time_slots, reservation.getCreationDate());
         String target_date = "";
         for (LocalDate d : date) {
             target_date = target_date + d.getDayOfMonth()+"/"+d.getMonthValue()+ "/"+ d.getYear()+"\n";
@@ -593,14 +602,14 @@ class ConnectionHandler implements Runnable{
             if(xy!=null) {
                 xy.addNotification(n);
                 GreetText = "Hello "+xy.getName();
-                server.mailpool.execute(new Mail(email,"BooKIT - Room booking completed", GreetText+","+"\n\nThe following booking of yours have been confirmed:\n\n"+r.getMessage()+"\nCourse: "+r.getCourseName() +"\nDate: "+ target_date +"\nTime: "+ slots+" \nReason: "+r.getMessageWithoutVenue()+"\n\nIf you think this is a mistake, please contact admin.\n\nRegards,\nBookIT Team"));
+                server.mailpool.execute(new Mail(email,"BooKIT - Room booking completed", GreetText+","+"\n\nThe following booking of yours have been confirmed:\n\n"+reservation.getMessage()+"\nCourse: "+reservation.getCourseName() +"\nDate: "+ target_date +"\nTime: "+ slots+" \nReason: "+reservation.getMessageWithoutVenue()+"\n\nIf you think this is a mistake, please contact admin.\n\nRegards,\nBookIT Team"));
                 serializeUser(xy);
 
             }
         }
         if(admin_email != null && !h.containsKey(admin_email)) {
-        	   server.mailpool.execute(new Mail(admin_email,"BooKIT - Room booking completed", "Hello User"+","+"\n\nThe following booking of yours have been confirmed:\n\n"+r.getMessage()+"\nCourse: "+r.getCourseName() +"\nDate: "+ target_date +"\nTime: "+ slots+" \nReason: "+r.getMessageWithoutVenue()+"\n\nIf you think this is a mistake, please contact admin.\n\nRegards,\nBookIT Team"));
-               
+            server.mailpool.execute(new Mail(admin_email,"BooKIT - Room booking completed", "Hello User"+","+"\n\nThe following booking of yours have been confirmed:\n\n"+reservation.getMessage()+"\nCourse: "+reservation.getCourseName() +"\nDate: "+ target_date +"\nTime: "+ slots+" \nReason: "+reservation.getMessageWithoutVenue()+"\n\nIf you think this is a mistake, please contact admin.\n\nRegards,\nBookIT Team"));
+
         }
         room.serialize();
         if(addToCourse) {
@@ -1176,14 +1185,14 @@ class ConnectionHandler implements Runnable{
                         break;
                     case "adminandfaculty_bookroom":
                         ArrayList<LocalDate> date = (ArrayList<LocalDate>) in.readObject();
-                        slotID = (int) in.readObject();
-                        res = (Reservation) in.readObject();
+                        ArrayList<Integer> slotIDs = (ArrayList<Integer>) in.readObject();
+                        Reservation reservation = (Reservation) in.readObject();
                         String admin_email = (String) in.readObject();
                         ans = false;
                         if(!status.equals("Pass")) {
                             lock.lockInterruptibly();
                         }
-                        ans = adminandfaculty_bookRoom(date, slotID, res, admin_email);
+                        ans = adminandfaculty_bookRoom(date, slotIDs, reservation, admin_email);
                         if(lock.isLocked() && lock.isHeldByCurrentThread()){
                             System.out.print("[ "+LocalDateTime.now()+" ] ");
                             System.out.println(connection.getInetAddress().toString() + " | ServerLock Released");

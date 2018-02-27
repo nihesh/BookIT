@@ -3,3 +3,103 @@ Date;Time;Booking Date;Booking Slot;Room;User;Purpose;Type
 15/02/2018;00:06:48;15/02/2018;0630PM - 0700PM;C01;harsh16041@iiitd.ac.in;Abstract Algebra-I;Booking
 26/02/2018;22:38:57;26/02/2018;0830AM - 0900AM;C01;harsh.pathak.temp@gmail.com;Algorithm Design & Analysis;Booking
 26/02/2018;22:38:57;26/02/2018;0900AM - 0930AM;C01;harsh.pathak.temp@gmail.com;Algorithm Design & Analysis;Booking
+27/02/2018;16:56:34;27/02/2018;0730PM - 0800PM;C21;;Algorithm Design & Analysis;Booking
+27/02/2018;16:56:34;27/02/2018;0800PM - 0830PM;C21;;Algorithm Design & Analysis;Booking
+27/02/2018;16:56:34;27/02/2018;0830PM - 0900PM;C21;;Algorithm Design & Analysis;Booking
+27/02/2018;16:56:34;28/02/2018;0730PM - 0800PM;C21;;Algorithm Design & Analysis;Booking
+27/02/2018;16:56:34;28/02/2018;0800PM - 0830PM;C21;;Algorithm Design & Analysis;Booking
+27/02/2018;16:56:34;28/02/2018;0830PM - 0900PM;C21;;Algorithm Design & Analysis;Booking
+27/02/2018;16:56:34;01/03/2018;0730PM - 0800PM;C21;;Algorithm Design & Analysis;Booking
+27/02/2018;16:56:34;01/03/2018;0800PM - 0830PM;C21;;Algorithm Design & Analysis;Booking
+27/02/2018;16:56:34;01/03/2018;0830PM - 0900PM;C21;;Algorithm Design & Analysis;Booking
+27/02/2018;16:56:34;02/03/2018;0730PM - 0800PM;C21;;Algorithm Design & Analysis;Booking
+27/02/2018;16:56:34;02/03/2018;0800PM - 0830PM;C21;;Algorithm Design & Analysis;Booking
+27/02/2018;16:56:34;02/03/2018;0830PM - 0900PM;C21;;Algorithm Design & Analysis;Booking
+27/02/2018;16:56:34;03/03/2018;0730PM - 0800PM;C21;;Algorithm Design & Analysis;Booking
+27/02/2018;16:56:34;03/03/2018;0800PM - 0830PM;C21;;Algorithm Design & Analysis;Booking
+27/02/2018;16:56:34;03/03/2018;0830PM - 0900PM;C21;;Algorithm Design & Analysis;Booking
+27/02/2018;16:56:34;04/03/2018;0730PM - 0800PM;C21;;Algorithm Design & Analysis;Booking
+27/02/2018;16:56:34;04/03/2018;0800PM - 0830PM;C21;;Algorithm Design & Analysis;Booking
+27/02/2018;16:56:34;04/03/2018;0830PM - 0900PM;C21;;Algorithm Design & Analysis;Booking
+27/02/2018;16:56:34;05/03/2018;0730PM - 0800PM;C21;;Algorithm Design & Analysis;Booking
+27/02/2018;16:56:34;05/03/2018;0800PM - 0830PM;C21;;Algorithm Design & Analysis;Booking
+27/02/2018;16:56:34;05/03/2018;0830PM - 0900PM;C21;;Algorithm Design & Analysis;Booking
+27/02/2018;16:56:34;06/03/2018;0730PM - 0800PM;C21;;Algorithm Design & Analysis;Booking
+27/02/2018;16:56:34;06/03/2018;0800PM - 0830PM;C21;;Algorithm Design & Analysis;Booking
+27/02/2018;16:56:34;06/03/2018;0830PM - 0900PM;C21;;Algorithm Design & Analysis;Booking
+27/02/2018;16:56:34;07/03/2018;0730PM - 0800PM;C21;;Algorithm Design & Analysis;Booking
+27/02/2018;16:56:34;07/03/2018;0800PM - 0830PM;C21;;Algorithm Design & Analysis;Booking
+27/02/2018;16:56:34;07/03/2018;0830PM - 0900PM;C21;;Algorithm Design & Analysis;Booking
+27/02/2018;16:56:34;08/03/2018;0730PM - 0800PM;C21;;Algorithm Design & Analysis;Booking
+27/02/2018;16:56:34;08/03/2018;0800PM - 0830PM;C21;;Algorithm Design & Analysis;Booking
+27/02/2018;16:56:34;08/03/2018;0830PM - 0900PM;C21;;Algorithm Design & Analysis;Booking
+27/02/2018;17:12:33;27/02/2018;1200PM - 1230PM;C21;;Advanced Operating Systems;Booking
+27/02/2018;17:12:33;27/02/2018;1230PM - 0100PM;C21;;Advanced Operating Systems;Booking
+27/02/2018;17:14:55;27/02/2018;0130PM - 0200PM;C21;;Advanced Operating Systems;Booking
+27/02/2018;17:14:55;27/02/2018;0200PM - 0230PM;C21;;Advanced Operating Systems;Booking
+27/02/2018;17:14:55;27/02/2018;0230PM - 0300PM;C21;;Advanced Operating Systems;Booking
+27/02/2018;17:33:03;27/02/2018;0530PM - 0600PM;C21;;Advanced Operating Systems;Booking
+27/02/2018;17:33:03;27/02/2018;0600PM - 0630PM;C21;;Advanced Operating Systems;Booking
+27/02/2018;17:33:03;27/02/2018;0900PM - 0930PM;C21;;Advanced Operating Systems;Booking
+27/02/2018;17:33:03;27/02/2018;0930PM - 1000PM;C21;;Advanced Operating Systems;Booking
+27/02/2018;17:55:30;27/02/2018;0830AM - 0900AM;C01;;Advanced Operating Systems;Booking
+27/02/2018;17:55:30;27/02/2018;0900AM - 0930AM;C01;;Advanced Operating Systems;Booking
+27/02/2018;17:55:30;27/02/2018;0930AM - 1000AM;C01;;Advanced Operating Systems;Booking
+27/02/2018;18:00:32;27/02/2018;0900AM - 0930AM;C02;;Advance Topics in Mobile Computing;Booking
+27/02/2018;18:00:32;27/02/2018;0930AM - 1000AM;C02;;Advance Topics in Mobile Computing;Booking
+27/02/2018;18:00:32;27/02/2018;1000AM - 1030AM;C02;;Advance Topics in Mobile Computing;Booking
+27/02/2018;18:01:15;27/02/2018;0700PM - 0730PM;B105;;Abstract Algebra-I;Booking
+27/02/2018;18:01:15;27/02/2018;0730PM - 0800PM;B105;;Abstract Algebra-I;Booking
+27/02/2018;18:01:15;27/02/2018;0800PM - 0830PM;B105;;Abstract Algebra-I;Booking
+27/02/2018;18:01:15;27/02/2018;0830PM - 0900PM;B105;;Abstract Algebra-I;Booking
+27/02/2018;18:01:15;27/02/2018;0900PM - 0930PM;B105;;Abstract Algebra-I;Booking
+27/02/2018;18:01:15;28/02/2018;0700PM - 0730PM;B105;;Abstract Algebra-I;Booking
+27/02/2018;18:01:15;28/02/2018;0730PM - 0800PM;B105;;Abstract Algebra-I;Booking
+27/02/2018;18:01:15;28/02/2018;0800PM - 0830PM;B105;;Abstract Algebra-I;Booking
+27/02/2018;18:01:15;28/02/2018;0830PM - 0900PM;B105;;Abstract Algebra-I;Booking
+27/02/2018;18:01:15;28/02/2018;0900PM - 0930PM;B105;;Abstract Algebra-I;Booking
+27/02/2018;18:01:15;01/03/2018;0700PM - 0730PM;B105;;Abstract Algebra-I;Booking
+27/02/2018;18:01:15;01/03/2018;0730PM - 0800PM;B105;;Abstract Algebra-I;Booking
+27/02/2018;18:01:15;01/03/2018;0800PM - 0830PM;B105;;Abstract Algebra-I;Booking
+27/02/2018;18:01:15;01/03/2018;0830PM - 0900PM;B105;;Abstract Algebra-I;Booking
+27/02/2018;18:01:15;01/03/2018;0900PM - 0930PM;B105;;Abstract Algebra-I;Booking
+27/02/2018;18:01:15;02/03/2018;0700PM - 0730PM;B105;;Abstract Algebra-I;Booking
+27/02/2018;18:01:15;02/03/2018;0730PM - 0800PM;B105;;Abstract Algebra-I;Booking
+27/02/2018;18:01:15;02/03/2018;0800PM - 0830PM;B105;;Abstract Algebra-I;Booking
+27/02/2018;18:01:15;02/03/2018;0830PM - 0900PM;B105;;Abstract Algebra-I;Booking
+27/02/2018;18:01:15;02/03/2018;0900PM - 0930PM;B105;;Abstract Algebra-I;Booking
+27/02/2018;18:01:15;03/03/2018;0700PM - 0730PM;B105;;Abstract Algebra-I;Booking
+27/02/2018;18:01:15;03/03/2018;0730PM - 0800PM;B105;;Abstract Algebra-I;Booking
+27/02/2018;18:01:15;03/03/2018;0800PM - 0830PM;B105;;Abstract Algebra-I;Booking
+27/02/2018;18:01:15;03/03/2018;0830PM - 0900PM;B105;;Abstract Algebra-I;Booking
+27/02/2018;18:01:15;03/03/2018;0900PM - 0930PM;B105;;Abstract Algebra-I;Booking
+27/02/2018;18:01:15;04/03/2018;0700PM - 0730PM;B105;;Abstract Algebra-I;Booking
+27/02/2018;18:01:15;04/03/2018;0730PM - 0800PM;B105;;Abstract Algebra-I;Booking
+27/02/2018;18:01:15;04/03/2018;0800PM - 0830PM;B105;;Abstract Algebra-I;Booking
+27/02/2018;18:01:15;04/03/2018;0830PM - 0900PM;B105;;Abstract Algebra-I;Booking
+27/02/2018;18:01:15;04/03/2018;0900PM - 0930PM;B105;;Abstract Algebra-I;Booking
+27/02/2018;18:01:15;05/03/2018;0700PM - 0730PM;B105;;Abstract Algebra-I;Booking
+27/02/2018;18:01:15;05/03/2018;0730PM - 0800PM;B105;;Abstract Algebra-I;Booking
+27/02/2018;18:01:15;05/03/2018;0800PM - 0830PM;B105;;Abstract Algebra-I;Booking
+27/02/2018;18:01:15;05/03/2018;0830PM - 0900PM;B105;;Abstract Algebra-I;Booking
+27/02/2018;18:01:15;05/03/2018;0900PM - 0930PM;B105;;Abstract Algebra-I;Booking
+27/02/2018;18:01:15;06/03/2018;0700PM - 0730PM;B105;;Abstract Algebra-I;Booking
+27/02/2018;18:01:15;06/03/2018;0730PM - 0800PM;B105;;Abstract Algebra-I;Booking
+27/02/2018;18:01:15;06/03/2018;0800PM - 0830PM;B105;;Abstract Algebra-I;Booking
+27/02/2018;18:01:15;06/03/2018;0830PM - 0900PM;B105;;Abstract Algebra-I;Booking
+27/02/2018;18:01:15;06/03/2018;0900PM - 0930PM;B105;;Abstract Algebra-I;Booking
+27/02/2018;18:01:15;07/03/2018;0700PM - 0730PM;B105;;Abstract Algebra-I;Booking
+27/02/2018;18:01:15;07/03/2018;0730PM - 0800PM;B105;;Abstract Algebra-I;Booking
+27/02/2018;18:01:15;07/03/2018;0800PM - 0830PM;B105;;Abstract Algebra-I;Booking
+27/02/2018;18:01:15;07/03/2018;0830PM - 0900PM;B105;;Abstract Algebra-I;Booking
+27/02/2018;18:01:15;07/03/2018;0900PM - 0930PM;B105;;Abstract Algebra-I;Booking
+27/02/2018;18:01:15;08/03/2018;0700PM - 0730PM;B105;;Abstract Algebra-I;Booking
+27/02/2018;18:01:15;08/03/2018;0730PM - 0800PM;B105;;Abstract Algebra-I;Booking
+27/02/2018;18:01:15;08/03/2018;0800PM - 0830PM;B105;;Abstract Algebra-I;Booking
+27/02/2018;18:01:15;08/03/2018;0830PM - 0900PM;B105;;Abstract Algebra-I;Booking
+27/02/2018;18:01:15;08/03/2018;0900PM - 0930PM;B105;;Abstract Algebra-I;Booking
+27/02/2018;18:01:15;09/03/2018;0700PM - 0730PM;B105;;Abstract Algebra-I;Booking
+27/02/2018;18:01:15;09/03/2018;0730PM - 0800PM;B105;;Abstract Algebra-I;Booking
+27/02/2018;18:01:15;09/03/2018;0800PM - 0830PM;B105;;Abstract Algebra-I;Booking
+27/02/2018;18:01:15;09/03/2018;0830PM - 0900PM;B105;;Abstract Algebra-I;Booking
+27/02/2018;18:01:15;09/03/2018;0900PM - 0930PM;B105;;Abstract Algebra-I;Booking

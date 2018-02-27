@@ -5,6 +5,7 @@
 package AdminReservation;
 
 import HelperClasses.*;
+import com.sun.org.apache.bcel.internal.generic.LoadClass;
 import javafx.animation.FadeTransition;
 import javafx.animation.ParallelTransition;
 import javafx.animation.SequentialTransition;
@@ -41,6 +42,7 @@ import java.io.*;
 import java.net.Socket;
 import java.net.URL;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.*;
 import static java.lang.Math.max;
 
@@ -1343,10 +1345,12 @@ public class AdminReservationGUIController implements Initializable{
         String chosenMessage;
         chosenMessage = requestMessage.getText();
         ArrayList<Reservation> listOfReservations = new ArrayList<>();
+        LocalDateTime creat_time = LocalDateTime.now();
         for(int i=0;i<chosenSlots.size();i++){              // GUI Integration Begins
             Reservation r;
             r = new Reservation(chosenMessage, chosenGroup, chosenCourse, chosenFaculty, activeRoom, chosenPurpose, chosenSlots.get(i));
             r.setTargetDate(activeDate);
+            r.setCreationDate(creat_time);
             r.setReserverEmail(activeUser.getEmail().getEmailID());
             listOfReservations.add(r);
         }                                                   // GUI Integration Ends
@@ -1355,10 +1359,12 @@ public class AdminReservationGUIController implements Initializable{
             return;
         }
         Boolean failure = false;
+        ArrayList<Integer> slots = new ArrayList<>();
         for(int i=0;i<listOfReservations.size();i++){
-            if(!activeUser.bookRoom(date, listOfReservations.get(i).getReservationSlot(), listOfReservations.get(i),admin_email_used ,false)){
-                failure = true;
-            }
+            slots.add(listOfReservations.get(i).getReservationSlot());
+        }
+        if(!activeUser.bookRoom(date, slots, listOfReservations.get(0),admin_email_used ,false)){
+            failure = true;
         }
         if(!failure){
             ;
@@ -1396,10 +1402,12 @@ public class AdminReservationGUIController implements Initializable{
             Notification.throwAlert("Cannot complete booking. Please close this session and try again", "Error");
             return;
         }
+        ArrayList<Integer> slots = new ArrayList<>();
         for(int i=0;i<listOfReservations.size();i++){
-            if(!activeUser.bookRoom(date, listOfReservations.get(i).getReservationSlot(), listOfReservations.get(i), admin_email_used,false)){
-                Notification.throwAlert("Booking Error","The booking couldn't be completed as one of the slots you've chosen has been booked. Please refresh the page and try a different slot");
-            }
+               slots.add(listOfReservations.get(i).getReservationSlot());
+        }
+        if(!activeUser.bookRoom(date, slots, listOfReservations.get(0), admin_email_used,false)){
+            Notification.throwAlert("Booking Error","The booking couldn't be completed as one of the slots you've chosen has been booked. Please refresh the page and try a different slot");
         }
         closeReservationPane();
         flyRight();

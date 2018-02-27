@@ -47,6 +47,7 @@ import java.net.Socket;
 import java.net.URL;
 import java.sql.Time;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -1049,9 +1050,11 @@ public class StudentReservationGUIController implements Initializable{
         String chosenMessage;
         chosenMessage = requestMessage.getText();
         ArrayList<Reservation> listOfReservations = new ArrayList<>();
+        LocalDateTime create_time = LocalDateTime.now();
         for(int i=0;i<chosenSlots.size();i++){              // GUI Integration Begins
             Reservation r;
             r = new Reservation(chosenMessage, chosenGroup, chosenCourse, chosenFaculty, activeRoom, chosenPurpose, chosenSlots.get(i));
+            r.setCreationDate(create_time);
             r.requestAdmin();
             r.setReserverEmail(activeUser.getEmail().getEmailID());
             r.setTargetDate(activeDate);
