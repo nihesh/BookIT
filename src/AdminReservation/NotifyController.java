@@ -1,5 +1,6 @@
 package AdminReservation;
 
+import HelperClasses.Admin;
 import HelperClasses.BookITconstants;
 import com.sun.jmx.remote.security.NotificationAccessController;
 import javafx.collections.ObservableList;
@@ -152,6 +153,7 @@ public class NotifyController {
             }
             else{
                 Notification.throwAlert("Success","Deletion Successful");
+                but.setDisable(true);
             }
         }
 
@@ -174,7 +176,12 @@ public class NotifyController {
             out.flush();
             out.writeObject(notification);
             out.flush();
-            out.writeObject(user.getEmail().getEmailID());
+            if(AdminReservationGUIController.admin_email_used == null) {
+                out.writeObject(user.getEmail().getEmailID());
+            }
+            else{
+                out.writeObject(AdminReservationGUIController.admin_email_used);
+            }
             out.flush();
             Boolean c = (Boolean) in.readObject();
             out.close();

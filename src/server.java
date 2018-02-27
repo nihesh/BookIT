@@ -906,7 +906,8 @@ class ConnectionHandler implements Runnable{
     }
     public Boolean BulkDeleteUserNotification(Notification notification, String cancelledBy){
         System.out.println("hello all 000");
-
+        HashMap<String, Integer> mailList = new HashMap<>();
+        mailList.put(cancelledBy, 1);
         ArrayList<LocalDate> targetDates = notification.getTargetDate();
         ArrayList<Integer> time_slots = notification.getSlotIDs();
         String room_id = notification.getRoom();
@@ -919,6 +920,7 @@ class ConnectionHandler implements Runnable{
                  return false;
               }
               if(course != null){
+                  mailList.put(course.instructorEmail, 1);
                   if(course.getSchedule(date)[slot] == null){
                       return false;
                   }
@@ -953,6 +955,19 @@ class ConnectionHandler implements Runnable{
         }
         room.serialize();
         course.serialize();
+        String dates = "";
+        String slots = "";
+        for (LocalDate dt: targetDates) {
+            dates += dt.getDayOfMonth() + "/" + dt.getMonthValue() + "/" + dt.getYear() + ",\n";
+        }
+        for (Integer sl: time_slots) {
+            slots += Reservation.getSlotRange(sl) + ",\n";
+        }
+        for (String email: mailList.keySet()) {
+            System.out.println(email);
+            if(!email.equals("")){
+            server.mailpool.execute(new Mail(email,"BooKIT - Room booking cancelled from notifications", "Hello User"+","+"\n\nThe following booking of yours have been cancelled from notifications:\n\n"+notification.getMessage()+"\nCourse: " + notification.getCourse() +"\nDate: "+dates+"\nTime: "+ slots+"\nIf you think this is a mistake, please contact admin.\n\nRegards,\nBookIT Team"));
+        }}
         return true;
     }
     public ArrayList<String> getBookingReport(){
