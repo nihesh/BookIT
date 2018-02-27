@@ -577,13 +577,16 @@ class ConnectionHandler implements Runnable{
         for (Integer slot: time_slots) {
             slots += Reservation.getSlotRange(slot) + "\n";
         }
-        reservation.setCreationDate(LocalDateTime.now());
+        LocalDateTime creat_time = LocalDateTime.now();
+        reservation.setCreationDate(creat_time);
         for(LocalDate start : date){
             Reservation r1 = reservation.clone();
+            r1.setCreationDate(creat_time);
             r1.setTargetDate(start);
             for (int i = 0; i < time_slots.size(); i++) {
                 Reservation r2 = r1.clone();
                 r2.setSlotID(time_slots.get(i));
+                r2.setCreationDate(creat_time);
                 if (addToCourse) {
                     course.addReservation(start, time_slots.get(i), r2);
                 }
@@ -901,11 +904,56 @@ class ConnectionHandler implements Runnable{
         }
         return true;
     }
-    public Boolean BulkDeleteUserNotification(Notification notification){
+    public Boolean BulkDeleteUserNotification(Notification notification, String cancelledBy){
+        System.out.println("hello all 000");
+
         ArrayList<LocalDate> targetDates = notification.getTargetDate();
         ArrayList<Integer> time_slots = notification.getSlotIDs();
         String room_id = notification.getRoom();
+        Room room = Room.deserializeRoom(room_id);
         String course_id  = notification.getCourse();
+        Course course = Course.deserializeCourse(course_id);
+        for (LocalDate date: targetDates) {
+            for (Integer slot: time_slots) {
+              if(room.checkReservation(date, slot, null)){
+                 return false;
+              }
+              if(course != null){
+                  if(course.getSchedule(date)[slot] == null){
+                      return false;
+                  }
+              }
+            }
+        }
+        System.out.println("hello all");
+        for (LocalDate date: targetDates) {
+            for (Integer slot: time_slots) {
+                    Reservation room_res = room.getSchedule(date)[slot];
+                    if(!(notification.getReservationStamp().equals(room_res.getCreationDate()))){
+                        return false;
+                    }
+                    if(course != null){
+                        Reservation course_res = course.getSchedule(date)[slot];
+                        if(!(notification.getReservationStamp().equals(course_res.getCreationDate()))){
+                            return false;
+                        }
+                    }
+            }
+        }
+        System.out.println("hello all 22");
+
+        for (LocalDate date: targetDates) {
+            for (Integer slot: time_slots) {
+                room.deleteReservation(date, slot, cancelledBy);
+                if(course != null){
+                    Reservation course_res = course.getSchedule(date)[slot];
+                    course.deleteReservation(date, slot, course_res.getTopGroup());
+                }
+            }
+        }
+        room.serialize();
+        course.serialize();
+        return true;
     }
     public ArrayList<String> getBookingReport(){
         ArrayList<String> data = new ArrayList<>();
@@ -1252,11 +1300,13 @@ class ConnectionHandler implements Runnable{
                         break;
                     case "BulkDeleteUseNotification":
                         Notification notification = (Notification) in.readObject();
+                        String cancelled_by = (String) in.readObject();
                         result = false;
                         if(!status.equals("Pass")) {
                             lock.lockInterruptibly();
                         }
-                        result = BulkDeleteUserNotification(notification);
+                        System.out.println(cancelled_by);
+                        result = BulkDeleteUserNotification(notification,cancelled_by);
                         if(lock.isLocked() && lock.isHeldByCurrentThread()){
                             System.out.print("[ "+LocalDateTime.now()+" ] ");
                             System.out.println(connection.getInetAddress().toString() + " | ServerLock Released");
