@@ -902,7 +902,10 @@ class ConnectionHandler implements Runnable{
         return true;
     }
     public Boolean BulkDeleteUserNotification(Notification notification){
-        ArrayList<>
+        ArrayList<LocalDate> targetDates = notification.getTargetDate();
+        ArrayList<Integer> time_slots = notification.getSlotIDs();
+        String room_id = notification.getRoom();
+        String course_id  = notification.getCourse();
     }
     public ArrayList<String> getBookingReport(){
         ArrayList<String> data = new ArrayList<>();
