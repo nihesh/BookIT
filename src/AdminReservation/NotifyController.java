@@ -131,8 +131,10 @@ public class NotifyController {
         VBox vbox = (VBox) but.getParent();
         ObservableList<Node> nodes = vbox.getChildren();
         Label label = null;
+        int index = -1;
         for (int i = 0; i < nodes.size(); i++) {
             if(nodes.get(i) == but){
+                index = i;
                 label = (Label)nodes.get(i - 2);
             }
         }

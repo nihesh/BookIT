@@ -357,7 +357,7 @@ class ConnectionHandler implements Runnable{
                 User x=getUser(email);
                 ArrayList<Integer> t = new ArrayList<>();
                 t.add(r.getReservationSlot());
-                Notification n = new Notification("Room Booking", "Cancelled", r.getMessage(), r.getCourseName(), target_date, r.getRoomName(), r.getReserverEmail(),t);
+                Notification n = new Notification("Classroom Booking", "Cancelled", r.getMessage(), r.getCourseName(), target_date, r.getRoomName(), r.getReserverEmail(),t);
                 String GreetText="Hello User";
                 if(x != null) {
                     GreetText = "Hello" + x.getName();
@@ -908,6 +908,8 @@ class ConnectionHandler implements Runnable{
         System.out.println("hello all 000");
         HashMap<String, Integer> mailList = new HashMap<>();
         mailList.put(cancelledBy, 1);
+        mailList.put(notification.getReserverEmail(), 1);
+        mailList.put(Mail.from, 1);
         ArrayList<LocalDate> targetDates = notification.getTargetDate();
         ArrayList<Integer> time_slots = notification.getSlotIDs();
         String room_id = notification.getRoom();
@@ -920,7 +922,7 @@ class ConnectionHandler implements Runnable{
                  return false;
               }
               if(course != null){
-                  mailList.put(course.instructorEmail, 1);
+                  mailList.put(course.getInstructorEmail(), 1);
                   if(course.getSchedule(date)[slot] == null){
                       return false;
                   }
