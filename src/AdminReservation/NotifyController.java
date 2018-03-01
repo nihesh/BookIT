@@ -40,6 +40,7 @@ public class NotifyController {
     private VBox notificationPane;
     @FXML
     private StackPane rootPane;
+
     @FXML
     public void initialize(){
 
@@ -58,6 +59,7 @@ public class NotifyController {
     }
     private void loadNotifications(ArrayList<Notification> myList){ // assert: data.size() == time.size()
 
+        notificationPane.getChildren().clear();
     	ArrayList<String> data = new ArrayList<>();
         ArrayList<String> time = new ArrayList<>();
         for (int i=myList.size()-1;i>=0;i--) {
@@ -161,8 +163,8 @@ public class NotifyController {
                 but.setDisable(true);
             }
         }
-
-
+        User x=User.getActiveUser();
+        loadNotifications(x.getNotifications(false));
     }
     public boolean deleteNotificationCallToServer(Notification notification, boolean lock){
         try{

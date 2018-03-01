@@ -23,3 +23,13 @@ Date;Time;Booking Date;Booking Slot;Room;User;Purpose;Type
 01/03/2018;23:07:45;01/03/2018;0800AM - 0830AM;C01;nihesh16059@iiitd.ac.in;asdasd;Cancellation
 01/03/2018;23:10:14;01/03/2018;0800AM - 0830AM;C13;nihesh16059@iiitd.ac.in;sdfdf;Booking
 01/03/2018;23:10:18;01/03/2018;0800AM - 0830AM;C13;nihesh16059@iiitd.ac.in;sdfdf;Cancellation
+01/03/2018;23:12:34;01/03/2018;0800AM - 0830AM;C24;nihesh16059@iiitd.ac.in;dscsd;Booking
+01/03/2018;23:12:37;01/03/2018;0800AM - 0830AM;C24;nihesh16059@iiitd.ac.in;dscsd;Cancellation
+01/03/2018;23:14:03;01/03/2018;0800AM - 0830AM;C21;nihesh16059@iiitd.ac.in;sdfdfs;Booking
+01/03/2018;23:14:05;01/03/2018;0800AM - 0830AM;C21;nihesh16059@iiitd.ac.in;sdfdfs;Cancellation
+01/03/2018;23:25:01;01/03/2018;0800AM - 0830AM;LR1;nihesh16059@iiitd.ac.in;fdsfds;Booking
+01/03/2018;23:25:03;01/03/2018;0800AM - 0830AM;LR1;nihesh16059@iiitd.ac.in;fdsfds;Cancellation
+01/03/2018;23:26:59;01/03/2018;0800AM - 0830AM;C22;nihesh16059@iiitd.ac.in;cxczx;Booking
+01/03/2018;23:27:02;01/03/2018;0800AM - 0830AM;C22;nihesh16059@iiitd.ac.in;cxczx;Cancellation
+01/03/2018;23:31:17;01/03/2018;0800AM - 0830AM;C01;nihesh16059@iiitd.ac.in;sdadsa;Booking
+01/03/2018;23:31:20;01/03/2018;0800AM - 0830AM;C01;nihesh16059@iiitd.ac.in;sdadsa;Cancellation
