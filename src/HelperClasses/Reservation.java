@@ -13,31 +13,45 @@ import java.util.ArrayList;
  */
 public class Reservation implements java.io.Serializable{
     private static final long serialVersionUID = 1L;
-    private ArrayList<String> message;
-    private String course;
-    private String facultyEmail;
-    private String type;
-    private ArrayList<String> groups;
-    private ArrayList<String> groupVenue;
+    public ArrayList<String> message;  // cloned
+    public String course;
+    public String facultyEmail;
+    public String type;
+    public ArrayList<String> groups;
+    public ArrayList<String> groupVenue;
+    public LocalDateTime creationDate;
+    public LocalDate targetDate;
+    public String room;
+    public String reserverEmail;
+    public int slotID;
+    public Boolean isRequest;
 
     public void setCreationDate(LocalDateTime creationDate) {
         this.creationDate = creationDate;
     }
 
-    private LocalDateTime creationDate;
-    private LocalDate targetDate;
-    private String room;
-    private String reserverEmail;
-
     public void setSlotID(int slotID) {
         this.slotID = slotID;
     }
 
-    private int slotID;
-    private Boolean isRequest;
-
     public Reservation clone(){
-        return new Reservation(this.message.get(0), this.groups, this.course, this.facultyEmail, this.room, this.type, this.slotID);
+        Reservation r = new Reservation();
+        r.message = (ArrayList<String>)this.message.clone();
+        r.course = this.course;
+        r.facultyEmail = this.facultyEmail;
+        r.type = this.type;
+        r.groups = (ArrayList<String>)this.groups.clone();
+        r.groupVenue = (ArrayList<String>)this.groupVenue.clone();
+        r.creationDate = this.creationDate;
+        r.targetDate = this.targetDate;
+        r.room = this.room;
+        r.reserverEmail = this.reserverEmail;
+        r.slotID = this.slotID;
+        r.isRequest = this.isRequest;
+        return r;
+    }
+    public Reservation(){       // Default constructor for cloning
+        ;
     }
     /**
      * constructor for reservation class

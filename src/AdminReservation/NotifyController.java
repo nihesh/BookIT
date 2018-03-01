@@ -1,5 +1,6 @@
 package AdminReservation;
 
+import HelperClasses.Admin;
 import HelperClasses.BookITconstants;
 import com.sun.jmx.remote.security.NotificationAccessController;
 import javafx.collections.ObservableList;
@@ -130,24 +131,31 @@ public class NotifyController {
         VBox vbox = (VBox) but.getParent();
         ObservableList<Node> nodes = vbox.getChildren();
         Label label = null;
+        int index = -1;
         for (int i = 0; i < nodes.size(); i++) {
             if(nodes.get(i) == but){
+                index = i;
                 label = (Label)nodes.get(i - 2);
             }
         }
+        //System.out.println(label.getText());
         Notification del_notification = null;
-        ArrayList<Notification> notifications = u.getterNotification();
+        ArrayList<Notification> notifications = u.getNotifications(false);
         for (Notification nots: notifications) {
+           // System.out.println(nots.toString());
             if(nots.toString().equals(label.getText())){
                 del_notification = nots;
             }
         }
+        System.out.println("hello world");
         if(del_notification != null){
+            System.out.println(del_notification.toString());
             if(!deleteNotificationCallToServer(del_notification, false)){
                 Notification.throwAlert("Error","Cannot delete the bookings as they have been modified");
             }
             else{
                 Notification.throwAlert("Success","Deletion Successful");
+                but.setDisable(true);
             }
         }
 
@@ -155,6 +163,7 @@ public class NotifyController {
     }
     public boolean deleteNotificationCallToServer(Notification notification, boolean lock){
         try{
+            User user = User.getActiveUser();
             Socket server = new Socket(BookITconstants.serverIP, BookITconstants.serverPort);
             ObjectOutputStream out = new ObjectOutputStream(server.getOutputStream());
             ObjectInputStream in = new ObjectInputStream(server.getInputStream());
@@ -168,6 +177,13 @@ public class NotifyController {
             out.writeObject("BulkDeleteUseNotification");
             out.flush();
             out.writeObject(notification);
+            out.flush();
+            if(AdminReservationGUIController.admin_email_used == null) {
+                out.writeObject(user.getEmail().getEmailID());
+            }
+            else{
+                out.writeObject(AdminReservationGUIController.admin_email_used);
+            }
             out.flush();
             Boolean c = (Boolean) in.readObject();
             out.close();

@@ -1015,7 +1015,6 @@ public class FacultyReservationGUIController implements Initializable{
         }
         ArrayList<LocalDate> date = new ArrayList<>();
         ArrayList<Integer> slots = new ArrayList<>();
-        // GUI Integration Ends
         for(int i=0;i<listOfReservations.size();i++){
             if(i > 0 && date.get(date.size() - 1).isEqual(listOfReservations.get(i).getTargetDate())){}
             else{

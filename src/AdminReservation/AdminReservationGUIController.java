@@ -59,7 +59,7 @@ class SlotComparator implements Comparator<String>{
 }
 
 public class AdminReservationGUIController implements Initializable{
-	String admin_email_used = null;
+	public static String admin_email_used = null;
     private int appearAfter_HoverPane = 200;
     @FXML
     private StackPane HoverPane;
