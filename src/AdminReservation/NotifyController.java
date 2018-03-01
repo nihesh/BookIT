@@ -147,9 +147,7 @@ public class NotifyController {
                 del_notification = nots;
             }
         }
-        System.out.println("hello world");
         if(del_notification != null){
-            System.out.println(del_notification.toString());
             if(!deleteNotificationCallToServer(del_notification, false)){
                 Notification.throwAlert("Error","Cannot delete the bookings as they have been modified");
             }
