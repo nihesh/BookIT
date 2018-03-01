@@ -950,7 +950,9 @@ class ConnectionHandler implements Runnable{
             }
         }
         room.serialize();
-        course.serialize();
+        if(course!=null) {
+            course.serialize();
+        }
         String dates = "";
         String slots = "";
         for (LocalDate dt: targetDates) {
@@ -960,13 +962,17 @@ class ConnectionHandler implements Runnable{
             slots += Reservation.getSlotRange(sl) + ",\n";
         }
         Notification newNotification = new Notification("Classroom Booking", "Cancelled", notification.getMessage(), notification.getCourse(), targetDates, notification.getRoom(), notification.getReserverEmail(), notification.getSlotIDs());
+
         for (String email: mailList.keySet()) {
-            if(!email.equals("")){
+            if(!email.equals("")) {
                 User user = getUser(email);
-                user.addNotification(newNotification);
-                serializeUser(user);
-                server.mailpool.execute(new Mail(email,"BooKIT - Room booking cancelled from notifications", "Hello User"+","+"\n\nThe following booking of yours have been cancelled from notifications:\n\n"+notification.getMessage()+"\nCourse: " + notification.getCourse() +"\nDate: "+dates+"\nTime: "+ slots+"\nIf you think this is a mistake, please contact admin.\n\nRegards,\nBookIT Team"));
-        }}
+                if(user!=null){
+                    user.addNotification(newNotification);
+                    serializeUser(user);
+                    server.mailpool.execute(new Mail(email, "BooKIT - Room booking cancelled from notifications", "Hello User" + "," + "\n\nThe following booking of yours have been cancelled from notifications:\n\n" + notification.getMessage() + "\nCourse: " + notification.getCourse() + "\nDate: " + dates + "\nTime: " + slots + "\nIf you think this is a mistake, please contact admin.\n\nRegards,\nBookIT Team"));
+                }
+            }
+        }
         return true;
     }
     public ArrayList<String> getBookingReport(){

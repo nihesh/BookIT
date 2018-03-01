@@ -64,11 +64,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="server.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="server.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/server.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="288">
-              <caret line="909" column="37" lean-forward="false" selection-start-line="909" selection-start-column="37" selection-end-line="909" selection-end-column="37" />
+            <state relative-caret-position="360">
+              <caret line="968" column="31" lean-forward="true" selection-start-line="968" selection-start-column="31" selection-end-line="968" selection-end-column="31" />
               <folding>
                 <element signature="e#17189#17198#0" expanded="true" />
                 <element signature="e#21139#21148#0" expanded="true" />
@@ -85,47 +85,9 @@
       <file leaf-file-name="Reservation.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/HelperClasses/Reservation.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="26" column="29" lean-forward="false" selection-start-line="26" selection-start-column="29" selection-end-line="26" selection-end-column="29" />
-              <folding>
-                <element signature="imports" expanded="false" />
-                <element signature="e#917#918#0" expanded="false" />
-                <element signature="e#965#966#0" expanded="false" />
-                <element signature="e#1006#1007#0" expanded="false" />
-                <element signature="e#1042#1043#0" expanded="false" />
-                <element signature="e#1687#1688#0" expanded="false" />
-                <element signature="e#1744#1745#0" expanded="false" />
-                <element signature="e#3068#3069#0" expanded="false" />
-                <element signature="e#3100#3101#0" expanded="false" />
-                <element signature="e#3137#3138#0" expanded="false" />
-                <element signature="e#3175#3176#0" expanded="false" />
-                <element signature="e#3207#3208#0" expanded="false" />
-                <element signature="e#3244#3245#0" expanded="false" />
-                <element signature="e#3276#3277#0" expanded="false" />
-                <element signature="e#3313#3314#0" expanded="false" />
-                <element signature="e#3455#3456#0" expanded="false" />
-                <element signature="e#3489#3490#0" expanded="false" />
-                <element signature="e#3915#3916#0" expanded="false" />
-                <element signature="e#3957#3958#0" expanded="false" />
-                <element signature="e#4074#4075#0" expanded="false" />
-                <element signature="e#4115#4116#0" expanded="false" />
-                <element signature="e#5395#5396#0" expanded="false" />
-                <element signature="e#5429#5430#0" expanded="false" />
-                <element signature="e#5567#5568#0" expanded="false" />
-                <element signature="e#5605#5606#0" expanded="false" />
-                <element signature="e#6426#6427#0" expanded="false" />
-                <element signature="e#6464#6465#0" expanded="false" />
-                <element signature="e#6557#6558#0" expanded="false" />
-                <element signature="e#6589#6590#0" expanded="false" />
-                <element signature="e#6719#6720#0" expanded="false" />
-                <element signature="e#6751#6752#0" expanded="false" />
-                <element signature="e#7628#7629#0" expanded="false" />
-                <element signature="e#7662#7663#0" expanded="false" />
-                <element signature="e#8220#8221#0" expanded="false" />
-                <element signature="e#8252#8253#0" expanded="false" />
-                <element signature="e#8405#8406#0" expanded="false" />
-                <element signature="e#8445#8446#0" expanded="false" />
-              </folding>
+            <state relative-caret-position="174">
+              <caret line="181" column="22" lean-forward="false" selection-start-line="181" selection-start-column="16" selection-end-line="181" selection-end-column="22" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -145,7 +107,15 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="6570">
               <caret line="376" column="35" lean-forward="false" selection-start-line="376" selection-start-column="31" selection-end-line="376" selection-end-column="35" />
-              <folding />
+              <folding>
+                <element signature="imports" expanded="false" />
+                <element signature="e#11663#11664#0" expanded="false" />
+                <element signature="e#11709#11710#0" expanded="false" />
+                <element signature="e#11810#11811#0" expanded="false" />
+                <element signature="e#11844#11845#0" expanded="false" />
+                <element signature="e#11945#11946#0" expanded="false" />
+                <element signature="e#11981#11982#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -153,8 +123,8 @@
       <file leaf-file-name="FacultyReservationGUIController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/FacultyReservation/FacultyReservationGUIController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="390">
-              <caret line="429" column="28" lean-forward="false" selection-start-line="429" selection-start-column="28" selection-end-line="429" selection-end-column="28" />
+            <state relative-caret-position="-78">
+              <caret line="941" column="9" lean-forward="true" selection-start-line="941" selection-start-column="9" selection-end-line="941" selection-end-column="9" />
               <folding />
             </state>
           </provider>
@@ -204,7 +174,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="NotifyController.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="NotifyController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/AdminReservation/NotifyController.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="248">
@@ -276,7 +246,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>bl</find>
       <find>sendRes</find>
       <find>b1</find>
       <find>date.</find>
@@ -294,7 +263,6 @@
       <find>checkr</find>
       <find>checkrese</find>
       <find>check</find>
-      <find>delete</find>
       <find>deleteReserva</find>
       <find>some boo</find>
       <find>chec</find>
@@ -305,7 +273,9 @@
       <find>new Notifica</find>
       <find>bookroom</find>
       <find>collision</find>
+      <find>delete</find>
       <find>openNotif</find>
+      <find>BulkDeleteUser</find>
     </findStrings>
   </component>
   <component name="FindManager">
@@ -366,9 +336,9 @@
         <option value="$PROJECT_DIR$/src/AppData/StaticTimeTable/StudentEmails.txt" />
         <option value="$PROJECT_DIR$/src/AppData/StaticTimeTable/AdminEmails.txt" />
         <option value="$PROJECT_DIR$/src/AdminReservation/AdminReservationGUIController.java" />
-        <option value="$PROJECT_DIR$/src/server.java" />
         <option value="$PROJECT_DIR$/src/FacultyReservation/FacultyReservationGUIController.java" />
         <option value="$PROJECT_DIR$/src/AdminReservation/NotifyController.java" />
+        <option value="$PROJECT_DIR$/src/server.java" />
       </list>
     </option>
   </component>
@@ -438,6 +408,24 @@
             <PATH_ELEMENT>
               <option name="myItemId" value="src" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="BookIT" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="BookIT" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="server.java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.ClassesTreeStructureProvider$PsiClassOwnerTreeNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -836,8 +824,8 @@
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Application.setup" />
-        <item index="1" class="java.lang.String" itemvalue="Application.server" />
+        <item index="0" class="java.lang.String" itemvalue="Application.server" />
+        <item index="1" class="java.lang.String" itemvalue="Application.setup" />
         <item index="2" class="java.lang.String" itemvalue="Application.LoginSignupGUI" />
         <item index="3" class="java.lang.String" itemvalue="Application.Admin" />
         <item index="4" class="java.lang.String" itemvalue="Application.BookIT" />
@@ -866,7 +854,7 @@
     <option name="totallyTimeSpent" value="1302000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1" y="36" width="1922" height="1045" extended-state="7" />
+    <frame x="-1" y="36" width="1922" height="1045" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1196,52 +1184,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="6570">
           <caret line="376" column="35" lean-forward="false" selection-start-line="376" selection-start-column="31" selection-end-line="376" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/HelperClasses/Reservation.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="26" column="29" lean-forward="false" selection-start-line="26" selection-start-column="29" selection-end-line="26" selection-end-column="29" />
           <folding>
             <element signature="imports" expanded="false" />
-            <element signature="e#917#918#0" expanded="false" />
-            <element signature="e#965#966#0" expanded="false" />
-            <element signature="e#1006#1007#0" expanded="false" />
-            <element signature="e#1042#1043#0" expanded="false" />
-            <element signature="e#1687#1688#0" expanded="false" />
-            <element signature="e#1744#1745#0" expanded="false" />
-            <element signature="e#3068#3069#0" expanded="false" />
-            <element signature="e#3100#3101#0" expanded="false" />
-            <element signature="e#3137#3138#0" expanded="false" />
-            <element signature="e#3175#3176#0" expanded="false" />
-            <element signature="e#3207#3208#0" expanded="false" />
-            <element signature="e#3244#3245#0" expanded="false" />
-            <element signature="e#3276#3277#0" expanded="false" />
-            <element signature="e#3313#3314#0" expanded="false" />
-            <element signature="e#3455#3456#0" expanded="false" />
-            <element signature="e#3489#3490#0" expanded="false" />
-            <element signature="e#3915#3916#0" expanded="false" />
-            <element signature="e#3957#3958#0" expanded="false" />
-            <element signature="e#4074#4075#0" expanded="false" />
-            <element signature="e#4115#4116#0" expanded="false" />
-            <element signature="e#5395#5396#0" expanded="false" />
-            <element signature="e#5429#5430#0" expanded="false" />
-            <element signature="e#5567#5568#0" expanded="false" />
-            <element signature="e#5605#5606#0" expanded="false" />
-            <element signature="e#6426#6427#0" expanded="false" />
-            <element signature="e#6464#6465#0" expanded="false" />
-            <element signature="e#6557#6558#0" expanded="false" />
-            <element signature="e#6589#6590#0" expanded="false" />
-            <element signature="e#6719#6720#0" expanded="false" />
-            <element signature="e#6751#6752#0" expanded="false" />
-            <element signature="e#7628#7629#0" expanded="false" />
-            <element signature="e#7662#7663#0" expanded="false" />
-            <element signature="e#8220#8221#0" expanded="false" />
-            <element signature="e#8252#8253#0" expanded="false" />
-            <element signature="e#8405#8406#0" expanded="false" />
-            <element signature="e#8445#8446#0" expanded="false" />
+            <element signature="e#11663#11664#0" expanded="false" />
+            <element signature="e#11709#11710#0" expanded="false" />
+            <element signature="e#11810#11811#0" expanded="false" />
+            <element signature="e#11844#11845#0" expanded="false" />
+            <element signature="e#11945#11946#0" expanded="false" />
+            <element signature="e#11981#11982#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1312,34 +1262,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/server.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="909" column="37" lean-forward="false" selection-start-line="909" selection-start-column="37" selection-end-line="909" selection-end-column="37" />
-          <folding>
-            <element signature="e#17189#17198#0" expanded="true" />
-            <element signature="e#21139#21148#0" expanded="true" />
-            <element signature="e#27312#27321#0" expanded="true" />
-            <element signature="e#28476#28495#0" expanded="true" />
-            <element signature="e#28635#28643#0" expanded="true" />
-            <element signature="e#30610#30619#0" expanded="true" />
-            <element signature="e#30713#30724#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/HelperClasses/Course.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="228">
           <caret line="288" column="25" lean-forward="true" selection-start-line="288" selection-start-column="25" selection-end-line="288" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/FacultyReservation/FacultyReservationGUIController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="429" column="28" lean-forward="false" selection-start-line="429" selection-start-column="28" selection-end-line="429" selection-end-column="28" />
           <folding />
         </state>
       </provider>
@@ -1349,6 +1275,38 @@
         <state relative-caret-position="248">
           <caret line="67" column="48" lean-forward="true" selection-start-line="67" selection-start-column="48" selection-end-line="67" selection-end-column="48" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/HelperClasses/Reservation.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="174">
+          <caret line="181" column="22" lean-forward="false" selection-start-line="181" selection-start-column="16" selection-end-line="181" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/FacultyReservation/FacultyReservationGUIController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-78">
+          <caret line="941" column="9" lean-forward="true" selection-start-line="941" selection-start-column="9" selection-end-line="941" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/server.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="968" column="31" lean-forward="true" selection-start-line="968" selection-start-column="31" selection-end-line="968" selection-end-column="31" />
+          <folding>
+            <element signature="e#17189#17198#0" expanded="true" />
+            <element signature="e#21139#21148#0" expanded="true" />
+            <element signature="e#27312#27321#0" expanded="true" />
+            <element signature="e#28476#28495#0" expanded="true" />
+            <element signature="e#28635#28643#0" expanded="true" />
+            <element signature="e#30610#30619#0" expanded="true" />
+            <element signature="e#30713#30724#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
