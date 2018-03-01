@@ -2,7 +2,7 @@ package AdminReservation;
 
 import HelperClasses.Admin;
 import HelperClasses.BookITconstants;
-import com.sun.jmx.remote.security.NotificationAccessController;
+//import com.sun.jmx.remote.security.NotificationAccessController;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -69,6 +69,7 @@ public class NotifyController {
 
         	if(notifi!=null) {
                 if (notifi.getMax_targetdate().isAfter(LocalDate.now().minusDays(1))) {
+                    System.out.println("here");
                     data.add(notifi.toString());
                     LocalDateTime t = notifi.getNotificationDateTime();
                     String hour = "";

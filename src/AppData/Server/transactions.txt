@@ -34,3 +34,9 @@ Date;Time;Booking Date;Booking Slot;Room;User;Purpose;Type
 01/03/2018;23:31:17;01/03/2018;0800AM - 0830AM;C01;nihesh16059@iiitd.ac.in;sdadsa;Booking
 01/03/2018;23:31:20;01/03/2018;0800AM - 0830AM;C01;nihesh16059@iiitd.ac.in;sdadsa;Cancellation
 01/03/2018;23:32:42;01/03/2018;0830AM - 0900AM;C01;nihesh16059@iiitd.ac.in;sdaasd;Booking
+02/03/2018;00:22:13;04/03/2018;0430PM - 0500PM;C21;harsh.pathak.temp@gmail.com;Abstract Algebra-I;Booking
+02/03/2018;00:22:13;04/03/2018;0500PM - 0530PM;C21;harsh.pathak.temp@gmail.com;Abstract Algebra-I;Booking
+02/03/2018;00:22:13;04/03/2018;0530PM - 0600PM;C21;harsh.pathak.temp@gmail.com;Abstract Algebra-I;Booking
+02/03/2018;00:22:30;04/03/2018;0430PM - 0500PM;C21;harsh.pathak.hp@gmail.com;Abstract Algebra-I;Cancellation
+02/03/2018;00:22:30;04/03/2018;0500PM - 0530PM;C21;harsh.pathak.hp@gmail.com;Abstract Algebra-I;Cancellation
+02/03/2018;00:22:30;04/03/2018;0530PM - 0600PM;C21;harsh.pathak.hp@gmail.com;Abstract Algebra-I;Cancellation
