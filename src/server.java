@@ -886,9 +886,17 @@ class ConnectionHandler implements Runnable{
             temp.remove(0);
 
         }
-        x.setNotification(temp);
+        int index = 0;
+        ArrayList<Notification> temp2 = new ArrayList<>();
+        while(index < temp.size()){
+            if(temp.get(index).getMax_targetdate().isAfter(LocalDate.now().minusDays(1))){
+                temp2.add(temp.get(index));
+            }
+            index++;
+        }
+        x.setNotification(temp2);
         serializeUser(x);
-        return temp;
+        return temp2;
     }
     public Boolean checkBulkBooking(String room, ArrayList<Integer> slots, ArrayList<LocalDate> date){
         Room r = Room.deserializeRoom(room);

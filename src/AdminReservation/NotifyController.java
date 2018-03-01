@@ -35,6 +35,8 @@ import HelperClasses.User;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 
+import static HelperClasses.Notification.throwConfirmation;
+
 public class NotifyController {
     @FXML
     private VBox notificationPane;
@@ -131,6 +133,10 @@ public class NotifyController {
     }
     @FXML
     private void pressDelButton(MouseEvent e){
+        Boolean answer = Notification.throwConfirmation("Warning", "Are you sure you want to delete the booking?");
+        if(answer == false){
+            return;
+        }
         User u = User.getActiveUser();
         Button but  = (Button)e.getSource();
         VBox vbox = (VBox) but.getParent();
@@ -158,7 +164,6 @@ public class NotifyController {
             }
             else{
                 Notification.throwAlert("Success","Deletion Successful");
-                but.setDisable(true);
             }
         }
 
