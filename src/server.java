@@ -566,7 +566,6 @@ class ConnectionHandler implements Runnable{
                 }
             }
         }
-        System.out.println("check 1");
         h.put(reservation.getReserverEmail(), 1);
         course = Course.deserializeCourse(reservation.getCourseName());
         if(reservation.getCourseName()!= null && !reservation.getCourseName().equals("")) {
@@ -593,7 +592,6 @@ class ConnectionHandler implements Runnable{
                 room.addReservation(start, time_slots.get(i), r2);
             }
         }
-        System.out.println("check 2");
         Notification n = new Notification("Classroom Booking", "Done", reservation.getMessage(), reservation.getCourseName(), date, reservation.getRoomName(), reservation.getReserverEmail(),time_slots, reservation.getCreationDate());
         String target_date = "";
         for (LocalDate d : date) {
@@ -735,7 +733,7 @@ class ConnectionHandler implements Runnable{
             if(!email.equals("")) {
                 String GreetText = "Hello User";
                 User x = getUser(email);
-                Notification n = new Notification("Room Booking", "Cancelled", r.getMessage(), r.getCourseName(),date, r.getRoomName(), r.getReserverEmail(), slot);
+                Notification n = new Notification("Classroom Booking", "Cancelled", r.getMessage(), r.getCourseName(),date, r.getRoomName(), r.getReserverEmail(), slot);
                 if(x != null) {
                     GreetText = "Hello " + x.getName();
                     x.addNotification(n);
@@ -905,7 +903,6 @@ class ConnectionHandler implements Runnable{
         return true;
     }
     public Boolean BulkDeleteUserNotification(Notification notification, String cancelledBy){
-        System.out.println("hello all 000");
         HashMap<String, Integer> mailList = new HashMap<>();
         mailList.put(cancelledBy, 1);
         mailList.put(notification.getReserverEmail(), 1);
@@ -929,7 +926,6 @@ class ConnectionHandler implements Runnable{
               }
             }
         }
-        System.out.println("hello all");
         for (LocalDate date: targetDates) {
             for (Integer slot: time_slots) {
                     Reservation room_res = room.getSchedule(date)[slot];
@@ -944,8 +940,6 @@ class ConnectionHandler implements Runnable{
                     }
             }
         }
-        System.out.println("hello all 22");
-
         for (LocalDate date: targetDates) {
             for (Integer slot: time_slots) {
                 room.deleteReservation(date, slot, cancelledBy);
@@ -965,10 +959,13 @@ class ConnectionHandler implements Runnable{
         for (Integer sl: time_slots) {
             slots += Reservation.getSlotRange(sl) + ",\n";
         }
+        Notification newNotification = new Notification("Classroom Booking", "Cancelled", notification.getMessage(), notification.getCourse(), targetDates, notification.getRoom(), notification.getReserverEmail(), notification.getSlotIDs());
         for (String email: mailList.keySet()) {
-            System.out.println(email);
             if(!email.equals("")){
-            server.mailpool.execute(new Mail(email,"BooKIT - Room booking cancelled from notifications", "Hello User"+","+"\n\nThe following booking of yours have been cancelled from notifications:\n\n"+notification.getMessage()+"\nCourse: " + notification.getCourse() +"\nDate: "+dates+"\nTime: "+ slots+"\nIf you think this is a mistake, please contact admin.\n\nRegards,\nBookIT Team"));
+                User user = getUser(email);
+                user.addNotification(newNotification);
+                serializeUser(user);
+                server.mailpool.execute(new Mail(email,"BooKIT - Room booking cancelled from notifications", "Hello User"+","+"\n\nThe following booking of yours have been cancelled from notifications:\n\n"+notification.getMessage()+"\nCourse: " + notification.getCourse() +"\nDate: "+dates+"\nTime: "+ slots+"\nIf you think this is a mistake, please contact admin.\n\nRegards,\nBookIT Team"));
         }}
         return true;
     }
@@ -1322,7 +1319,6 @@ class ConnectionHandler implements Runnable{
                         if(!status.equals("Pass")) {
                             lock.lockInterruptibly();
                         }
-                        System.out.println(cancelled_by);
                         result = BulkDeleteUserNotification(notification,cancelled_by);
                         if(lock.isLocked() && lock.isHeldByCurrentThread()){
                             System.out.print("[ "+LocalDateTime.now()+" ] ");

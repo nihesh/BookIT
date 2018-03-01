@@ -19,6 +19,11 @@ public class Notification implements Serializable{
     private String reserverEmail="";
     private ArrayList<Integer> slotIDs;
 
+	public LocalDate getMax_targetdate() {
+		return max_targetdate;
+	}
+
+	private LocalDate max_targetdate = null;
 	public LocalDateTime getReservationStamp() {
 		return ReservationStamp;
 	}
@@ -42,6 +47,12 @@ public class Notification implements Serializable{
 		this.reserverEmail = reserverEmail;
 		this.slotIDs = slotID;
 		this.ReservationStamp =  reservationtime;
+		max_targetdate = this.targetDate.get(0);
+		for (LocalDate date: this.targetDate) {
+			if(max_targetdate.isBefore(date)){
+				max_targetdate = date;
+			}
+		}
 	}
 	public Notification(String type, String status, String message, String course, ArrayList<LocalDate> targetDate,
 						String room, String reserverEmail, ArrayList<Integer> slotID) {
@@ -65,6 +76,12 @@ public class Notification implements Serializable{
 		}
 		this.reserverEmail = reserverEmail;
 		this.slotIDs = slotID;
+		max_targetdate = this.targetDate.get(0);
+		for (LocalDate date: this.targetDate) {
+			if(max_targetdate.isBefore(date)){
+				max_targetdate = date;
+			}
+		}
 	}
 	public static void throwAlert(String title, String message){
 		Alert alert = new Alert(Alert.AlertType.INFORMATION);

@@ -25,6 +25,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.net.URL;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -61,25 +62,26 @@ public class NotifyController {
         ArrayList<String> time = new ArrayList<>();
         for (int i=myList.size()-1;i>=0;i--) {
 			Notification notifi = myList.get(i);
+
         	if(notifi!=null) {
-        	data.add(notifi.toString());
-        	LocalDateTime t=notifi.getNotificationDateTime();
-        	String hour="";
-        	String minute="";
-        	if(t.getHour()==0) {
-        		hour+="00";
-        	}
-        	else {
-        		hour+=t.getHour();
-        	}
-        	if(t.getMinute()<10) {
-        		minute+="0"+t.getMinute();
-        	}
-        	else {
-        		minute+=t.getMinute();
-        	}
-        	time.add(hour+":"+minute+", "+t.getDayOfMonth()+"/"+t.getMonthValue()+"/"+t.getYear());
-			}
+                if (notifi.getMax_targetdate().isAfter(LocalDate.now())) {
+                    data.add(notifi.toString());
+                    LocalDateTime t = notifi.getNotificationDateTime();
+                    String hour = "";
+                    String minute = "";
+                    if (t.getHour() == 0) {
+                        hour += "00";
+                    } else {
+                        hour += t.getHour();
+                    }
+                    if (t.getMinute() < 10) {
+                        minute += "0" + t.getMinute();
+                    } else {
+                        minute += t.getMinute();
+                    }
+                    time.add(hour + ":" + minute + ", " + t.getDayOfMonth() + "/" + t.getMonthValue() + "/" + t.getYear());
+                }
+            }
 			else {
 				break;
 			}
@@ -108,6 +110,9 @@ public class NotifyController {
             notificationPane.getChildren().add(l);
             Button but = new Button();
             but.setText("Delete");
+            if(!((data.get(i).contains("Classroom Booking") && data.get(i).contains("Done")) || (data.get(i).contains("Room Reservation Request") && data.get(i).contains("Accepted")))){
+                but.setDisable(true);
+            }
             but.setOnMouseClicked(new EventHandler<MouseEvent>() {
                 @Override
                 public void handle(MouseEvent event) {
@@ -147,9 +152,7 @@ public class NotifyController {
                 del_notification = nots;
             }
         }
-        System.out.println("hello world");
         if(del_notification != null){
-            System.out.println(del_notification.toString());
             if(!deleteNotificationCallToServer(del_notification, false)){
                 Notification.throwAlert("Error","Cannot delete the bookings as they have been modified");
             }
