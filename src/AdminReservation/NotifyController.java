@@ -64,7 +64,7 @@ public class NotifyController {
 			Notification notifi = myList.get(i);
 
         	if(notifi!=null) {
-                if (notifi.getMax_targetdate().isAfter(LocalDate.now())) {
+                if (notifi.getMax_targetdate().isAfter(LocalDate.now().minusDays(1))) {
                     data.add(notifi.toString());
                     LocalDateTime t = notifi.getNotificationDateTime();
                     String hour = "";
