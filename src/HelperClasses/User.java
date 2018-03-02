@@ -132,6 +132,36 @@ public class User implements Serializable{
             }
         }
 	}
+	public static Boolean isBlockedDay(LocalDate queryDate, Boolean lock){
+		try {
+			Socket server = new Socket(BookITconstants.serverIP, BookITconstants.serverPort);
+			ObjectOutputStream out = new ObjectOutputStream(server.getOutputStream());
+			ObjectInputStream in = new ObjectInputStream(server.getInputStream());
+			if(lock){
+				out.writeObject("Hold");
+			}
+			else{
+				out.writeObject("Pass");
+			}
+			out.flush();
+			out.writeObject("checkBlockedDay");
+			out.flush();
+			out.writeObject(queryDate);
+			out.flush();
+			Boolean c = (Boolean)in.readObject();
+			out.close();
+			in.close();
+			server.close();
+			return c;
+		}
+		catch (ClassNotFoundException c){
+			System.out.println("Class not found exception occurred while typecasting result");
+		}
+		catch (IOException e){
+			System.out.println("IO exception occurred while writing to server");
+		}
+		return true;
+	}
 	public void mailPass(Boolean lock){
 		try {
 			Socket server = new Socket(BookITconstants.serverIP, BookITconstants.serverPort);

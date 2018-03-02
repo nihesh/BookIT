@@ -113,7 +113,7 @@ public class AdminReservationGUIController implements Initializable{
     @FXML
     private ComboBox purposeDropDown;
     @FXML
-    private StackPane preBooking, courseBooking, otherBooking, HolidayMessage;
+    private StackPane preBooking, courseBooking, otherBooking, HolidayMessage, BlockedDayMessage;
     @FXML
     private TextField purposeBox;
     @FXML
@@ -633,6 +633,12 @@ public class AdminReservationGUIController implements Initializable{
         else{
             holiday = false;
         }
+        if(activeUser.isBlockedDay(activeDate, false)){
+            blockedday = true;
+        }
+        else{
+            blockedday = false;
+        }
     }
 
     /**
@@ -1109,6 +1115,13 @@ public class AdminReservationGUIController implements Initializable{
         else{
             HolidayMessage.setVisible(false);
         }
+        if(blockedday){
+            BlockedDayMessage.setVisible(true);
+            HolidayMessage.setVisible(false);
+        }
+        else{
+            BlockedDayMessage.setVisible(false);
+        }
         appear.setFromValue(0);
         appear.setToValue(1);
         appear.play();
@@ -1122,6 +1135,7 @@ public class AdminReservationGUIController implements Initializable{
             hideSlotPane();
             classStatus.setVisible(false);
             HolidayMessage.setVisible(false);
+            BlockedDayMessage.setVisible(false);
             showLogo();
         }
     }

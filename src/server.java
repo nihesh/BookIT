@@ -38,6 +38,7 @@ public class server {
     public static HashMap<String, Integer> connectedIPs=null;
     public static ArrayList<String> freeCourses = null;
     public static HashMap<LocalDate, Boolean> HolidaysList = null;
+    public static HashMap<LocalDate, Boolean> BlockedDaysList = null;
 
     public static void loadFreeCourses(){
         System.out.println("Loading non registered courses");
@@ -52,13 +53,27 @@ public class server {
         System.out.println("Loaded non registered courses");
         System.out.println();
     }
-
+    public static void loadBlockedDaysList(){
+        try {
+            BlockedDaysList = new HashMap<>();
+            Scanner blockeddays = new Scanner(new BufferedReader(new FileReader("./src/AppData/StaticTimeTable/blocked_days.txt")));
+            blockeddays.useDelimiter("-|\\n");
+            while (blockeddays.hasNext()) {
+                int date = blockeddays.nextInt();
+                int month = blockeddays.nextInt();
+                int year = blockeddays.nextInt();
+                BlockedDaysList.put(LocalDate.of(year, month, date), true);
+            }
+        }
+        catch (Exception e){
+            System.out.println("Exception occurred while loading blocked days list");
+        }
+    }
     public static void loadHolidaysList(){
         try {
             HolidaysList = new HashMap<>();
             Scanner holidays = new Scanner(new BufferedReader(new FileReader("./src/AppData/StaticTimeTable/holidays.txt")));
             holidays.useDelimiter("-|\\n");
-            HashMap<LocalDate, Boolean> blockedDates = new HashMap<>();
             while (holidays.hasNext()) {
                 int date = holidays.nextInt();
                 int month = holidays.nextInt();
@@ -135,6 +150,7 @@ public class server {
         loadUserHashMaps();
         loadFreeCourses();
         loadHolidaysList();
+        loadBlockedDaysList();
         ServerSocket s = new ServerSocket(BookITconstants.serverPort);
         ConnectionHandler.lock = new ReentrantLock();
         spm = new SpamFilter();
@@ -1003,6 +1019,7 @@ class ConnectionHandler implements Runnable{
         server.loadUserHashMaps();
         server.loadFreeCourses();
         server.loadHolidaysList();
+        server.loadBlockedDaysList();
     }
     public void run(){
         server.noOfConnections++;
@@ -1741,6 +1758,26 @@ class ConnectionHandler implements Runnable{
                             lock.unlock();
                         }
                         out.writeObject(holiday);
+                        out.flush();
+                        break;
+                    case "checkBlockedDay":
+                        Boolean blockedDay;
+                        queryDate = (LocalDate) in.readObject();
+                        if(!status.equals("Pass")) {
+                            lock.lockInterruptibly();
+                        }
+                        if(server.BlockedDaysList.containsKey(queryDate)){
+                            blockedDay = true;
+                        }
+                        else{
+                            blockedDay = false;
+                        }
+                        if(lock.isLocked() && lock.isHeldByCurrentThread()){
+                            System.out.print("[ "+LocalDateTime.now()+" ] ");
+                            System.out.println(connection.getInetAddress().toString() + " | ServerLock Released");
+                            lock.unlock();
+                        }
+                        out.writeObject(blockedDay);
                         out.flush();
                         break;
                 }

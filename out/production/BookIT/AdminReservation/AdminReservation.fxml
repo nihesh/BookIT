@@ -50,7 +50,7 @@
                   <Insets right="1275.0" />
                </StackPane.margin>
                <children>
-                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="195.0" prefWidth="440.0" styleClass="adminIdentfier" text="Admin Panel">
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="195.0" prefWidth="440.0" styleClass="adminIdentfier" text="Admin Panel" textFill="WHITE">
                      <font>
                         <Font size="61.0" />
                      </font>
@@ -123,6 +123,15 @@
                                  </StackPane.margin>
                                  <children>
                                     <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="52.0" prefWidth="563.0" style="-fx-background-color: black;" text="Not a working day" textAlignment="CENTER" textFill="#ffffffdb">
+                                       <font>
+                                          <Font name="System Bold" size="32.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </StackPane>
+                              <StackPane fx:id="BlockedDayMessage" layoutX="10.0" layoutY="280.0" prefHeight="150.0" prefWidth="200.0">
+                                 <children>
+                                    <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="52.0" prefWidth="563.0" style="-fx-background-color: black;" text="Bookings blocked for faculty/students" textAlignment="CENTER" textFill="#ffffffdb">
                                        <font>
                                           <Font name="System Bold" size="32.0" />
                                        </font>

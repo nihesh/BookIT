@@ -121,7 +121,7 @@ public class StudentReservationGUIController implements Initializable{
     @FXML
     private SplitPane sp1;
     @FXML
-    private StackPane preBooking, courseBooking, otherBooking, HolidayMessage;
+    private StackPane preBooking, courseBooking, otherBooking, HolidayMessage, BlockedDayMessage;
     @FXML
     private TextField purposeBox;
 
@@ -575,6 +575,12 @@ public class StudentReservationGUIController implements Initializable{
         else{
             holiday = false;
         }
+        if(activeUser.isBlockedDay(activeDate, false)){
+            blockedday = true;
+        }
+        else{
+            blockedday = false;
+        }
     }
     /**
      * Returns the slot that a time range is mapped to
@@ -810,6 +816,13 @@ public class StudentReservationGUIController implements Initializable{
         else{
             HolidayMessage.setVisible(false);
         }
+        if(blockedday){
+            BlockedDayMessage.setVisible(true);
+            HolidayMessage.setVisible(false);
+        }
+        else{
+            BlockedDayMessage.setVisible(false);
+        }
         statusFreeSlots.setText("  "+Integer.toString(freeSlots));                         // GUI-Helper integration ends here
         FadeTransition appear = new FadeTransition(Duration.millis(animation), classStatus);
         classStatus.setOpacity(0);
@@ -826,6 +839,7 @@ public class StudentReservationGUIController implements Initializable{
             hideSlotPane();
             classStatus.setVisible(false);
             HolidayMessage.setVisible(false);
+            BlockedDayMessage.setVisible(false);
             showLogo();
         }
     }
@@ -1171,23 +1185,40 @@ public class StudentReservationGUIController implements Initializable{
         BookBtn.setOpacity(0);
         BackBtn.setOpacity(0);
         RoomNo.setText(activeRoom);
-        for(int i=0;i<28;i++){
-            if(reservation[i] != null){
-                slotButtons.get(i).setText("Booked");
-                slotButtons.get(i).setDisable(true);
-            }
-            else{
-                Reservation temp = requests[i];
-                if(temp==null) {
-                    slotButtons.get(i).setText("Free");
-                    slotButtons.get(i).setDisable(false);
-                }
-                else{
-                    slotButtons.get(i).setText("Requested");
+        if(blockedday){
+            for (int i = 0; i < 28; i++) {
+                if (reservation[i] != null) {
+                    slotButtons.get(i).setText("Booked");
                     slotButtons.get(i).setDisable(true);
+                } else {
+                    Reservation temp = requests[i];
+                    if (temp == null) {
+                        slotButtons.get(i).setText("Free");
+                        slotButtons.get(i).setDisable(true);
+                    } else {
+                        slotButtons.get(i).setText("Requested");
+                        slotButtons.get(i).setDisable(true);
+                    }
                 }
             }
-        }                                                                               // Loading ends
+        }
+        else {
+            for (int i = 0; i < 28; i++) {
+                if (reservation[i] != null) {
+                    slotButtons.get(i).setText("Booked");
+                    slotButtons.get(i).setDisable(true);
+                } else {
+                    Reservation temp = requests[i];
+                    if (temp == null) {
+                        slotButtons.get(i).setText("Free");
+                        slotButtons.get(i).setDisable(false);
+                    } else {
+                        slotButtons.get(i).setText("Requested");
+                        slotButtons.get(i).setDisable(true);
+                    }
+                }
+            }
+        }
         induceDelay(appearAfter_HoverPane);
         HoverPane.setVisible(true);
         HoverPane.setDisable(false);

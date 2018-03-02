@@ -289,24 +289,25 @@ public class Course implements java.io.Serializable{
             return false;
         }
         else{
-            Reservation old = Schedule.get(r.getTargetDate())[r.getReservationSlot()];
-            if(old.getCourseName().equals(r.getCourseName())){
-                if(old.getTopGroup().equals("0")){
-                    return true;
-                }
-                if(r.getTopGroup().equals("0")){
-                    return true;
-                }
-                for(int i=0; i<r.getGroups().size();i++) {
-                    if (old.getGroups().contains(r.getGroups().get(i))) {
-                        return true;
-                    }
-                }
-                return false;
-            }
-            else {
-                return false;
-            }
+            return false; // Collision system disabled. Do not delete the comments. It's required to enable later
+//            Reservation old = Schedule.get(r.getTargetDate())[r.getReservationSlot()];
+//            if(old.getCourseName().equals(r.getCourseName())){
+//                if(old.getTopGroup().equals("0")){
+//                    return true;
+//                }
+//                if(r.getTopGroup().equals("0")){
+//                    return true;
+//                }
+//                for(int i=0; i<r.getGroups().size();i++) {
+//                    if (old.getGroups().contains(r.getGroups().get(i))) {
+//                        return true;
+//                    }
+//                }
+//                return false;
+//            }
+//            else {
+//                return false;
+//            }
         }
     }
     /**
