@@ -621,7 +621,7 @@ class ConnectionHandler implements Runnable{
             if(xy!=null) {
                 xy.addNotification(n);
                 GreetText = "Hello "+xy.getName();
-                server.mailpool.execute(new Mail(email,"BooKIT - Room booking completed", GreetText+","+"\n\nThe following booking of yours have been confirmed:\n\n"+reservation.getMessage()+"\nCourse: "+reservation.getCourseName() +"\nDate: "+ target_date +"\nTime: "+ slots+" \nReason: "+reservation.getMessageWithoutVenue()+"\n\nIf you think this is a mistake, please contact admin.\n\nRegards,\nBookIT Team"));
+                server.mailpool.execute(new Mail(email,"BooKIT - Room booking completed", GreetText+","+"\n\nThe following booking of yours have been confirmed:\n\n"+reservation.getMessage()+"\nCourse: "+reservation.getCourseName() +"\nDate: "+ target_date +"\nTime: "+ slots +"\n\nIf you think this is a mistake, please contact admin.\n\nRegards,\nBookIT Team"));
                 serializeUser(xy);
 
             }
