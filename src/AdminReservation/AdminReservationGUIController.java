@@ -1421,7 +1421,7 @@ public class AdminReservationGUIController implements Initializable{
                slots.add(listOfReservations.get(i).getReservationSlot());
         }
         if(!activeUser.bookRoom(date, slots, listOfReservations.get(0), admin_email_used,false)){
-            Notification.throwAlert("Booking Error","The booking couldn't be completed as one of the slots you've chosen has been booked. Please refresh the page and try a different slot");
+            Notification.throwAlert("Booking Error","The booking couldn't be completed as one of the slots you've chosen has been booked by someone else");
         }
         closeReservationPane();
         flyRight();
