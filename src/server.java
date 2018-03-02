@@ -59,13 +59,17 @@ public class server {
             Scanner blockeddays = new Scanner(new BufferedReader(new FileReader("./src/AppData/StaticTimeTable/blocked_days.txt")));
             blockeddays.useDelimiter("-|\\n");
             while (blockeddays.hasNext()) {
-                int date = blockeddays.nextInt();
-                int month = blockeddays.nextInt();
-                int year = blockeddays.nextInt();
-                BlockedDaysList.put(LocalDate.of(year, month, date), true);
+                int date = Integer.parseInt(blockeddays.next().trim());
+                //System.out.println(date);
+                int month = Integer.parseInt(blockeddays.next().trim());
+                //System.out.println(month);
+                int year = Integer.parseInt(blockeddays.next().trim());
+                //System.out.println(year);
+                // BlockedDaysList.put(LocalDate.of(year, month, date), true);
             }
         }
         catch (Exception e){
+            e.printStackTrace();
             System.out.println("Exception occurred while loading blocked days list");
         }
     }
@@ -75,9 +79,9 @@ public class server {
             Scanner holidays = new Scanner(new BufferedReader(new FileReader("./src/AppData/StaticTimeTable/holidays.txt")));
             holidays.useDelimiter("-|\\n");
             while (holidays.hasNext()) {
-                int date = holidays.nextInt();
-                int month = holidays.nextInt();
-                int year = holidays.nextInt();
+                int date = Integer.parseInt(holidays.next().trim());
+                int month = Integer.parseInt(holidays.next().trim());
+                int year = Integer.parseInt(holidays.next().trim());
                 HolidaysList.put(LocalDate.of(year, month, date), true);
             }
         }
