@@ -2,6 +2,8 @@ package HelperClasses;
 
 //import com.sun.org.apache.xpath.internal.operations.Bool;
 
+import AdminReservation.AdminReservationGUIController;
+
 import java.io.*;
 import java.net.Socket;
 import java.time.LocalDate;
@@ -340,7 +342,12 @@ public class Admin extends User{
 			out.flush();
 			out.writeObject(cancellationMessage);
 			out.flush();
+			if(AdminReservationGUIController.admin_email_used != null){
+				out.writeObject(AdminReservationGUIController.admin_email_used);
+			}
+			else{
 			out.writeObject(emailID.getEmailID());
+			}
 			out.flush();
 			out.close();
 			in.close();
