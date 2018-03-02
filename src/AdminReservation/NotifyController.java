@@ -68,8 +68,6 @@ public class NotifyController {
 			Notification notifi = myList.get(i);
 
         	if(notifi!=null) {
-                if (notifi.getMax_targetdate().isAfter(LocalDate.now().minusDays(1))) {
-                    System.out.println("here");
                     data.add(notifi.toString());
                     LocalDateTime t = notifi.getNotificationDateTime();
                     String hour = "";
@@ -85,7 +83,7 @@ public class NotifyController {
                         minute += t.getMinute();
                     }
                     time.add(hour + ":" + minute + ", " + t.getDayOfMonth() + "/" + t.getMonthValue() + "/" + t.getYear());
-                }
+
             }
 			else {
 				break;
@@ -114,7 +112,7 @@ public class NotifyController {
             l.setStyle("-fx-background-color: grey;");
             notificationPane.getChildren().add(l);
             Button but = new Button();
-            but.setText("Delete");
+            but.setText("Delete Booking");
             if(!((data.get(i).contains("Classroom Booking") && data.get(i).contains("Done")) || (data.get(i).contains("Room Reservation Request") && data.get(i).contains("Accepted")))){
                 but.setDisable(true);
             }

@@ -18,6 +18,15 @@ public class Notification implements Serializable{
     private String room="";
     private String reserverEmail="";
     private ArrayList<Integer> slotIDs;
+    private String cancelledBy = null;
+
+	public String getCancelledBy() {
+		return cancelledBy;
+	}
+
+	public void setCancelledBy(String cancelledBy) {
+		this.cancelledBy = cancelledBy;
+	}
 
 	public LocalDate getMax_targetdate() {
 		return max_targetdate;
@@ -114,8 +123,11 @@ public class Notification implements Serializable{
 		String text = type
 				+" by "+
 				reserverEmail +",\tStatus: "+
-				status+"\n"+
-				message+"Course: "+
+				status;
+				if(this.cancelledBy != null){
+					text += "\nCancelled By: " + this.cancelledBy;
+				}
+				text += "\n" + message + "Course: "+
 				course+"\nDate: "+
 				date
 		+"\nSlots: "+slots;

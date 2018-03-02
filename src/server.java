@@ -358,6 +358,7 @@ class ConnectionHandler implements Runnable{
                 ArrayList<Integer> t = new ArrayList<>();
                 t.add(r.getReservationSlot());
                 Notification n = new Notification("Classroom Booking", "Cancelled", r.getMessage(), r.getCourseName(), target_date, r.getRoomName(), r.getReserverEmail(),t);
+                n.setCancelledBy(cancelledBy);
                 String GreetText="Hello User";
                 if(x != null) {
                     GreetText = "Hello" + x.getName();
@@ -734,6 +735,7 @@ class ConnectionHandler implements Runnable{
                 String GreetText = "Hello User";
                 User x = getUser(email);
                 Notification n = new Notification("Classroom Booking", "Cancelled", r.getMessage(), r.getCourseName(),date, r.getRoomName(), r.getReserverEmail(), slot);
+                n.setCancelledBy(cancelledBy);
                 if(x != null) {
                     GreetText = "Hello " + x.getName();
                     x.addNotification(n);
@@ -970,7 +972,7 @@ class ConnectionHandler implements Runnable{
             slots += Reservation.getSlotRange(sl) + ",\n";
         }
         Notification newNotification = new Notification("Classroom Booking", "Cancelled", notification.getMessage(), notification.getCourse(), targetDates, notification.getRoom(), notification.getReserverEmail(), notification.getSlotIDs());
-
+        newNotification.setCancelledBy(cancelledBy);
         for (String email: mailList.keySet()) {
             if(!email.equals("")) {
                 User user = getUser(email);
