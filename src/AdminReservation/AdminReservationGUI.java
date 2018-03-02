@@ -16,10 +16,7 @@ import javafx.scene.image.Image;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.io.*;
 import java.net.Socket;
 
 public class AdminReservationGUI extends Application {
@@ -31,7 +28,12 @@ public class AdminReservationGUI extends Application {
             File file = new File("./src/BookIT_icon.jpg");
             primaryStage.getIcons().add(new Image(file.toURI().toString()));
             User activeUser = (User) User.getActiveUser();
-            primaryStage.setTitle("BookIT - "+activeUser.getEmail().getEmailID());
+            if(AdminReservationGUIController.admin_email_used != null){
+                primaryStage.setTitle("BookIT - " + AdminReservationGUIController.admin_email_used);
+            }
+            else {
+                primaryStage.setTitle("BookIT - " + activeUser.getEmail().getEmailID());
+            }
             Rectangle2D visualBounds = Screen.getPrimary().getVisualBounds();
             double width = visualBounds.getWidth();
             double height = visualBounds.getHeight();

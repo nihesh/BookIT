@@ -22,3 +22,5 @@ Date;Time;Booking Date;Booking Slot;Room;User;Purpose;Type
 02/03/2018;15:00:48;14/03/2018;0800AM - 0830AM;C21;harsh.pathak.hp@gmail.com;Animation and Graphics;Cancellation
 02/03/2018;15:00:48;15/03/2018;0800AM - 0830AM;C21;harsh.pathak.hp@gmail.com;Animation and Graphics;Cancellation
 02/03/2018;15:02:49;05/03/2018;1000AM - 1030AM;C21;harsh.pathak.temp@gmail.com;Algorithm Design & Analysis;Cancellation
+02/03/2018;15:31:07;02/03/2018;1230PM - 0100PM;C21;harsh.pathak.temp@gmail.com;Advanced Embedded Logic Design;Booking
+02/03/2018;15:31:15;02/03/2018;1230PM - 0100PM;C21;harsh.pathak.hp@gmail.com;Advanced Embedded Logic Design;Cancellation

@@ -346,7 +346,7 @@ class PortListener implements Runnable{
 			    out.println("HTTP/1.1 200 OK");
 			    out.println("Content-Type: text/html");
 			    out.println("\r\n");
-			    out.println("<p>Access denied by user. Please click back button/p>");
+			    out.println("<p>Access denied by user. Please click back button</p>");
 			    out.flush();
 			    out.close();
 				java.net.CookieManager manager = new java.net.CookieManager();
