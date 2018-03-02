@@ -144,10 +144,13 @@
                                  <children>
                                     <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="52.0" prefWidth="563.0" style="-fx-background-color: black;" text="Bookings blocked by admin" textAlignment="CENTER" textFill="#ffffffdb">
                                        <font>
-                                          <Font name="System Bold" size="32.0" />
+                                          <Font name="System Bold" size="28.0" />
                                        </font>
                                     </Label>
                                  </children>
+                                 <StackPane.margin>
+                                    <Insets top="270.0" />
+                                 </StackPane.margin>
                               </StackPane>
                            </children>
                         </StackPane>

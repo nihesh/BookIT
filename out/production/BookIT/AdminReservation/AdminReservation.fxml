@@ -25,7 +25,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<?import java.util.ArrayList?>
 <VBox fx:id="rootPane" alignment="CENTER" maxHeight="1000.0" maxWidth="1920.0" minHeight="1000.0" minWidth="1920.0" onKeyPressed="#keyPressed" prefHeight="1000.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="AdminReservation.AdminReservationGUIController">
    <children>
       <MenuBar fx:id="menuBar" maxHeight="29.0" maxWidth="1920.0" minHeight="29.0" minWidth="1920.0">
@@ -133,10 +132,13 @@
                                  <children>
                                     <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="52.0" prefWidth="563.0" style="-fx-background-color: black;" text="Bookings blocked for faculty/students" textAlignment="CENTER" textFill="#ffffffdb">
                                        <font>
-                                          <Font name="System Bold" size="32.0" />
+                                          <Font name="System Bold" size="23.0" />
                                        </font>
                                     </Label>
                                  </children>
+                                 <StackPane.margin>
+                                    <Insets top="270.0" />
+                                 </StackPane.margin>
                               </StackPane>
                            </children>
                         </StackPane>
