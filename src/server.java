@@ -929,7 +929,7 @@ class ConnectionHandler implements Runnable{
         }
         return true;
     }
-    public Boolean BulkDeleteUserNotification(Notification notification, String cancelledBy){
+    public Boolean BulkDeleteUserNotification(Notification notification,String reason_delete ,String cancelledBy){
         HashMap<String, Integer> mailList = new HashMap<>();
         mailList.put(cancelledBy, 1);
         mailList.put(notification.getReserverEmail(), 1);
@@ -990,14 +990,15 @@ class ConnectionHandler implements Runnable{
         }
         Notification newNotification = new Notification("Classroom Booking", "Cancelled", notification.getMessage(), notification.getCourse(), targetDates, notification.getRoom(), notification.getReserverEmail(), notification.getSlotIDs());
         newNotification.setCancelledBy(cancelledBy);
+        newNotification.setReason_cancel(reason_delete);
         for (String email: mailList.keySet()) {
             if(!email.equals("")) {
                 User user = getUser(email);
                 if(user!=null){
                     user.addNotification(newNotification);
                     serializeUser(user);
-                    server.mailpool.execute(new Mail(email, "BooKIT - Room booking cancelled from notifications", "Hello User" + "," + "\n\nThe following booking of yours have been cancelled from notifications:\n\n" + notification.getMessage() + "\nCourse: " + notification.getCourse() + "\nDate: " + dates + "\nTime: " + slots + "\nIf you think this is a mistake, please contact admin.\n\nRegards,\nBookIT Team"));
                 }
+                server.mailpool.execute(new Mail(email, "BooKIT - Room booking cancelled", "Hello User" + "," + "\n\nThe following booking of yours have been cancelled\n\n" + notification.getMessage() + "\nCourse: " + notification.getCourse() + "\nCancelled By: " + cancelledBy + "\nDate: " + dates + "\nTime: " + slots + "Reason for deletion: "+ reason_delete +"\nIf you think this is a mistake, please contact admin.\n\nRegards,\nBookIT Team"));
             }
         }
         return true;
@@ -1348,12 +1349,13 @@ class ConnectionHandler implements Runnable{
                         break;
                     case "BulkDeleteUseNotification":
                         Notification notification = (Notification) in.readObject();
+                        String reason_delete = (String) in.readObject();
                         String cancelled_by = (String) in.readObject();
                         result = false;
                         if(!status.equals("Pass")) {
                             lock.lockInterruptibly();
                         }
-                        result = BulkDeleteUserNotification(notification,cancelled_by);
+                        result = BulkDeleteUserNotification(notification,reason_delete,cancelled_by);
                         if(lock.isLocked() && lock.isHeldByCurrentThread()){
                             System.out.print("[ "+LocalDateTime.now()+" ] ");
                             System.out.println(connection.getInetAddress().toString() + " | ServerLock Released");

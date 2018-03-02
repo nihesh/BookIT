@@ -9,15 +9,13 @@ import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.Control;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 
 import java.io.IOException;
@@ -111,11 +109,17 @@ public class NotifyController {
             l.setPadding(new Insets(3,5,3,5));
             l.setStyle("-fx-background-color: grey;");
             notificationPane.getChildren().add(l);
+            TextField reason_delete = new TextField();
+            reason_delete.setPromptText("Enter reason to delete this booking(Required)");
             Button but = new Button();
             but.setText("Delete Booking");
             if(!((data.get(i).contains("Classroom Booking") && data.get(i).contains("Done")) || (data.get(i).contains("Room Reservation Request") && data.get(i).contains("Accepted")))){
                 but.setDisable(true);
+                reason_delete.setPromptText("");
+                reason_delete.setDisable(true);
+
             }
+            notificationPane.getChildren().add(reason_delete);
             but.setOnMouseClicked(new EventHandler<MouseEvent>() {
                 @Override
                 public void handle(MouseEvent event) {
@@ -134,21 +138,29 @@ public class NotifyController {
     }
     @FXML
     private void pressDelButton(MouseEvent e){
-        Boolean answer = Notification.throwConfirmation("Warning", "Are you sure you want to delete the booking?");
-        if(answer == false){
-            return;
-        }
+
         User u = User.getActiveUser();
         Button but  = (Button)e.getSource();
         VBox vbox = (VBox) but.getParent();
         ObservableList<Node> nodes = vbox.getChildren();
         Label label = null;
+        TextField Reason = null;
         int index = -1;
         for (int i = 0; i < nodes.size(); i++) {
             if(nodes.get(i) == but){
                 index = i;
-                label = (Label)nodes.get(i - 2);
+                label = (Label)nodes.get(i - 3);
+                Reason = (TextField)nodes.get(i - 1);
             }
+        }
+        String str = Reason.getText().trim();
+        if(str.equals("")){
+            Notification.throwAlert("Error", "Please specify a reason for deletion");
+            return;
+        }
+        Boolean answer = Notification.throwConfirmation("Warning", "Are you sure you want to delete the booking?");
+        if(answer == false){
+            return;
         }
         //System.out.println(label.getText());
         Notification del_notification = null;
@@ -160,7 +172,8 @@ public class NotifyController {
             }
         }
         if(del_notification != null){
-            if(!deleteNotificationCallToServer(del_notification, false)){
+
+            if(!deleteNotificationCallToServer(del_notification, str,false)){
                 Notification.throwAlert("Error","Cannot delete the bookings as they have been modified");
             }
             else{
@@ -170,7 +183,7 @@ public class NotifyController {
         User x=User.getActiveUser();
         loadNotifications(x.getNotifications(false));
     }
-    public boolean deleteNotificationCallToServer(Notification notification, boolean lock){
+    public boolean deleteNotificationCallToServer(Notification notification,String reason_delete ,boolean lock){
         try{
             User user = User.getActiveUser();
             Socket server = new Socket(BookITconstants.serverIP, BookITconstants.serverPort);
@@ -186,6 +199,8 @@ public class NotifyController {
             out.writeObject("BulkDeleteUseNotification");
             out.flush();
             out.writeObject(notification);
+            out.flush();
+            out.writeObject(reason_delete);
             out.flush();
             if(AdminReservationGUIController.admin_email_used == null) {
                 out.writeObject(user.getEmail().getEmailID());

@@ -24,3 +24,23 @@ Date;Time;Booking Date;Booking Slot;Room;User;Purpose;Type
 02/03/2018;15:02:49;05/03/2018;1000AM - 1030AM;C21;harsh.pathak.temp@gmail.com;Algorithm Design & Analysis;Cancellation
 02/03/2018;15:31:07;02/03/2018;1230PM - 0100PM;C21;harsh.pathak.temp@gmail.com;Advanced Embedded Logic Design;Booking
 02/03/2018;15:31:15;02/03/2018;1230PM - 0100PM;C21;harsh.pathak.hp@gmail.com;Advanced Embedded Logic Design;Cancellation
+02/03/2018;22:32:21;02/03/2018;1200PM - 1230PM;C21;harsh.pathak.temp@gmail.com;Advanced Operating Systems;Booking
+02/03/2018;22:32:21;02/03/2018;1230PM - 0100PM;C21;harsh.pathak.temp@gmail.com;Advanced Operating Systems;Booking
+02/03/2018;22:33:16;02/03/2018;0800AM - 0830AM;C21;harsh.pathak.temp@gmail.com;Fields and Waves;Booking
+02/03/2018;22:33:16;02/03/2018;0830AM - 0900AM;C21;harsh.pathak.temp@gmail.com;Fields and Waves;Booking
+02/03/2018;22:33:16;02/03/2018;0900AM - 0930AM;C21;harsh.pathak.temp@gmail.com;Fields and Waves;Booking
+02/03/2018;22:33:16;03/03/2018;0800AM - 0830AM;C21;harsh.pathak.temp@gmail.com;Fields and Waves;Booking
+02/03/2018;22:33:16;03/03/2018;0830AM - 0900AM;C21;harsh.pathak.temp@gmail.com;Fields and Waves;Booking
+02/03/2018;22:33:16;03/03/2018;0900AM - 0930AM;C21;harsh.pathak.temp@gmail.com;Fields and Waves;Booking
+02/03/2018;22:33:16;04/03/2018;0800AM - 0830AM;C21;harsh.pathak.temp@gmail.com;Fields and Waves;Booking
+02/03/2018;22:33:16;04/03/2018;0830AM - 0900AM;C21;harsh.pathak.temp@gmail.com;Fields and Waves;Booking
+02/03/2018;22:33:16;04/03/2018;0900AM - 0930AM;C21;harsh.pathak.temp@gmail.com;Fields and Waves;Booking
+02/03/2018;22:34:56;02/03/2018;0800AM - 0830AM;C21;harsh.pathak.hp@gmail.com;Fields and Waves;Cancellation
+02/03/2018;22:34:56;02/03/2018;0830AM - 0900AM;C21;harsh.pathak.hp@gmail.com;Fields and Waves;Cancellation
+02/03/2018;22:34:56;02/03/2018;0900AM - 0930AM;C21;harsh.pathak.hp@gmail.com;Fields and Waves;Cancellation
+02/03/2018;22:34:56;03/03/2018;0800AM - 0830AM;C21;harsh.pathak.hp@gmail.com;Fields and Waves;Cancellation
+02/03/2018;22:34:56;03/03/2018;0830AM - 0900AM;C21;harsh.pathak.hp@gmail.com;Fields and Waves;Cancellation
+02/03/2018;22:34:56;03/03/2018;0900AM - 0930AM;C21;harsh.pathak.hp@gmail.com;Fields and Waves;Cancellation
+02/03/2018;22:34:56;04/03/2018;0800AM - 0830AM;C21;harsh.pathak.hp@gmail.com;Fields and Waves;Cancellation
+02/03/2018;22:34:56;04/03/2018;0830AM - 0900AM;C21;harsh.pathak.hp@gmail.com;Fields and Waves;Cancellation
+02/03/2018;22:34:56;04/03/2018;0900AM - 0930AM;C21;harsh.pathak.hp@gmail.com;Fields and Waves;Cancellation
