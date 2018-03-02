@@ -60,18 +60,9 @@ public class server {
             blockeddays.useDelimiter("-|\\n");
             while (blockeddays.hasNext()) {
                 int date = Integer.parseInt(blockeddays.next().trim());
-<<<<<<< HEAD
-                //System.out.println(date);
-                int month = Integer.parseInt(blockeddays.next().trim());
-                //System.out.println(month);
-                int year = Integer.parseInt(blockeddays.next().trim());
-                //System.out.println(year);
-                // BlockedDaysList.put(LocalDate.of(year, month, date), true);
-=======
                 int month = Integer.parseInt(blockeddays.next().trim());
                 int year = Integer.parseInt(blockeddays.next().trim());
                 BlockedDaysList.put(LocalDate.of(year, month, date), true);
->>>>>>> 9bc816709c96315080b88a940367a8849a94ae81
             }
         }
         catch (Exception e){
