@@ -33,6 +33,11 @@
               <MenuItem mnemonicParsing="false" onAction="#signout" text="Logout" />
             </items>
           </Menu>
+            <Menu mnemonicParsing="false" text="Help">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#signout" text="Contact Us" />
+               </items>
+            </Menu>
         </menus>
       </MenuBar>
       <StackPane fx:id="topPane" maxHeight="312.0" maxWidth="1920.0" minHeight="312.0" minWidth="1920.0" prefHeight="382.0" prefWidth="1920.0">
@@ -42,7 +47,7 @@
                   <Insets right="1275.0" />
                </StackPane.margin>
                <children>
-                  <ScrollPane prefHeight="541.0" prefWidth="1209.0">
+                  <ScrollPane prefHeight="541.0" prefWidth="1209.0" translateY="-15.0">
                      <content>
                         <AnchorPane fx:id="myCoursesScrollPane" minHeight="170.0" minWidth="0.0" prefWidth="543.0" style="-fx-background-color: #424949;" />
                      </content>
@@ -50,7 +55,7 @@
                         <Insets bottom="20.0" left="50.0" right="50.0" top="120.0" />
                      </StackPane.margin>
                   </ScrollPane>
-                  <Label alignment="CENTER" contentDisplay="CENTER" opacity="0.95" prefHeight="46.0" prefWidth="545.0" style="-fx-background-color: #CD6155; -fx-border-color: white; -fx-border-width: 2;" text="Enrolled Courses">
+                  <Label alignment="CENTER" contentDisplay="CENTER" opacity="0.95" prefHeight="46.0" prefWidth="545.0" style="-fx-background-color: #CD6155; -fx-border-color: white; -fx-border-width: 2;" text="Enrolled Courses" translateY="-15.0">
                      <font>
                         <Font size="23.0" />
                      </font>
@@ -58,7 +63,7 @@
                         <Insets bottom="130.0" />
                      </StackPane.margin>
                   </Label>
-                  <Label alignment="CENTER" contentDisplay="CENTER" opacity="0.95" prefHeight="46.0" prefWidth="200.0" style="-fx-background-color: #CD6155; -fx-border-color: white; -fx-border-width: 2;" text="Faculty">
+                  <Label alignment="CENTER" contentDisplay="CENTER" opacity="0.95" prefHeight="46.0" prefWidth="200.0" style="-fx-background-color: #CD6155; -fx-border-color: white; -fx-border-width: 2;" text="Faculty" translateY="-15.0">
                      <font>
                         <Font size="23.0" />
                      </font>
@@ -66,6 +71,11 @@
                         <Insets bottom="219.0" />
                      </StackPane.margin>
                   </Label>
+                  <Button fx:id="LeaveCourseButton" mnemonicParsing="false" onMouseClicked="#leaveCourse" opacity="0.95" prefHeight="34.0" prefWidth="188.0" stylesheets="@LeaveCourseButton.css" text="Leave Course">
+                     <StackPane.margin>
+                        <Insets left="5.0" top="274.0" />
+                     </StackPane.margin>
+                  </Button>
                </children>
             </StackPane>
             <SplitPane disable="true" dividerPositions="0.29797979797979796" prefHeight="312.0" prefWidth="2003.0">

@@ -1,17 +1,14 @@
-import AdminReservation.AdminReservationGUIController;
+
 import HelperClasses.*;
 
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.security.spec.ECField;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
-import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.ReentrantLock;
 
 import javax.mail.Message;
@@ -42,7 +39,6 @@ public class server {
     public static HashMap<LocalDate, Boolean> BlockedDaysList = null;
 
     public static void loadFreeCourses(){
-        System.out.println("Loading non registered courses");
         freeCourses = new ArrayList<>();
         ArrayList<String> allCourses = ConnectionHandler.getAllCourses();       // Static helper in connection handler
         for(int i=0;i<allCourses.size();i++){
@@ -51,8 +47,6 @@ public class server {
                 freeCourses.add(allCourses.get(i));
             }
         }
-        System.out.println("Loaded non registered courses");
-        System.out.println();
     }
     public static void loadBlockedDaysList(){
         try {
@@ -932,6 +926,21 @@ class ConnectionHandler implements Runnable{
         }
         return true;
     }
+    public Boolean faculty_leaveCourse(ArrayList<String> courses, String email){
+        if(courses == null || courses.size() == 0){
+            return false;
+        }
+        Faculty f = (Faculty) getUser(email);
+        for(int i=0;i<courses.size();i++){
+            Course c = Course.deserializeCourse(courses.get(i));
+            if(c.getInstructorEmail().equals(email)){
+                f.getCourses().remove(courses.get(i));
+                setInstructor("", courses.get(i));
+            }
+        }
+        serializeUser(f);
+        return true;
+    }
     public Boolean BulkDeleteUserNotification(Notification notification,String reason_delete ,String cancelledBy){
         HashMap<String, Integer> mailList = new HashMap<>();
         mailList.put(cancelledBy, 1);
@@ -1791,6 +1800,20 @@ class ConnectionHandler implements Runnable{
                         out.writeObject(blockedDay);
                         out.flush();
                         break;
+                    case "faculty_removeCourses":
+                        ArrayList<String> coursesToBeRemoved = (ArrayList<String>) in.readObject();
+                        email = (String) in.readObject();
+                        if(!status.equals("Pass")) {
+                            lock.lockInterruptibly();
+                        }
+                        result = faculty_leaveCourse(coursesToBeRemoved, email);
+                        if(lock.isLocked() && lock.isHeldByCurrentThread()){
+                            System.out.print("[ "+LocalDateTime.now()+" ] ");
+                            System.out.println(connection.getInetAddress().toString() + " | ServerLock Released");
+                            lock.unlock();
+                        }
+                        out.writeObject(result);
+                        out.flush();
                 }
                 in.close();
                 out.close();

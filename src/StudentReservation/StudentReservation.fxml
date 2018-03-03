@@ -33,6 +33,11 @@
                   <MenuItem mnemonicParsing="false" onAction="#signout" text="Logout" />
                </items>
             </Menu>
+            <Menu mnemonicParsing="false" text="Help">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#signout" text="Contact Us" />
+               </items>
+            </Menu>
          </menus>
       </MenuBar>
       <StackPane fx:id="topPane" maxHeight="312.0" maxWidth="1920.0" minHeight="312.0" minWidth="1920.0" prefHeight="382.0" prefWidth="1920.0">

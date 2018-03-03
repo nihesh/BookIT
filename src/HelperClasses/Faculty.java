@@ -67,6 +67,47 @@ public class Faculty extends User{
 		}
 		this.setActiveUser();
 	}
+	public void leaveCourses(ArrayList<String> courses, Boolean lock){
+		Boolean result = false;
+		try {
+			Socket server = new Socket(BookITconstants.serverIP, BookITconstants.serverPort);
+			ObjectOutputStream out = new ObjectOutputStream(server.getOutputStream());
+			ObjectInputStream in = new ObjectInputStream(server.getInputStream());
+			if (lock) {
+				out.writeObject("Hold");
+			} else {
+				out.writeObject("Pass");
+			}
+			out.flush();
+			out.writeObject("faculty_removeCourses");
+			out.flush();
+			out.writeObject(courses);
+			out.flush();
+			out.writeObject(this.getEmail().getEmailID());
+			out.flush();
+			result = (Boolean) in.readObject();
+			out.close();
+			in.close();
+			server.close();
+		}
+		catch (IOException e){
+			System.out.println("IO Exception occurred while leaving course");
+		}
+		catch (ClassNotFoundException c){
+			System.out.println("Class not found exception occurred while typecasting result while leaving course");
+		}
+		if(result) {
+			for(int i=0;i<courses.size();i++){
+				try{
+					myCourses.remove(courses.get(i));
+				}
+				catch (Exception e){
+					System.out.println("Course not found while attempting to leave course");
+				}
+			}
+			this.setActiveUser();
+		}
+	}
 	/**
 	 * cancel a booking done by faculty
 	 * @param queryDate date on which to cancel booking

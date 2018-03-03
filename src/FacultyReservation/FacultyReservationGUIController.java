@@ -84,7 +84,7 @@ public class FacultyReservationGUIController implements Initializable{
     @FXML
     private Button BackBtn, cancelSlotBooking;
     @FXML
-    private Button BookBtn, joinCourse;
+    private Button BookBtn, joinCourse, LeaveCourseButton;
     @FXML
     private ImageView logo, listCoursesBG;
     @FXML
@@ -148,6 +148,8 @@ public class FacultyReservationGUIController implements Initializable{
     private static int animation = 200;
     private Boolean holiday;
     private Boolean blockedday;
+    private CheckBox[] mycourses;
+    private int numberOfCheckedCourses;
 
     /**
      * Constructor for setting up Faculty Reservation GUI. It includes the adaptor code to suit any dimensional screen
@@ -192,6 +194,7 @@ public class FacultyReservationGUIController implements Initializable{
         listCoursesProcessing = false;
         isActiveReservation = false;
         changepassProcessing = false;
+        numberOfCheckedCourses = 0;
         File file = new File("./src/BookIT_logo.jpg");
         Image image = new Image(file.toURI().toString());
         logo.setImage(image);
@@ -555,24 +558,54 @@ public class FacultyReservationGUIController implements Initializable{
      * Loads the list of user's courses onto the courses pane
      */
     public void loadCourses(){
+        numberOfCheckedCourses = 0;
+        numberOfCheckedCourses = 0;
+        LeaveCourseButton.setVisible(false);
         myCoursesScrollPane.getChildren().clear();
-        Label[] label = new Label[100];
+        mycourses = new CheckBox[100];
         ArrayList<String> items = activeUser.getCourses();
+        items.sort(String::compareTo);
         int i=0;
         while(i<items.size()){
-            label[i] = new Label();
-            label[i].setText(items.get(i));
-            label[i].setPrefSize(543, 35);
-            label[i].setAlignment(Pos.CENTER);
-            label[i].setTranslateY(i*35);
-            label[i].setStyle("-fx-background-color: #229954; -fx-border-color:  white; -fx-border-width:2");
-            label[i].setFont(new Font(16));
-            myCoursesScrollPane.getChildren().add(label[i]);
+            mycourses[i] = new CheckBox();
+            mycourses[i].setText(items.get(i));
+            mycourses[i].setPrefSize(543, 35);
+            mycourses[i].setAlignment(Pos.CENTER);
+            mycourses[i].setTranslateY(i*35);
+            mycourses[i].setStyle("-fx-background-color: #229954; -fx-border-color:  white; -fx-border-width:2; -fx-padding: 0.166667em 0.166667em 0.25em 0.25em;");
+            mycourses[i].setFont(new Font(16));
+            mycourses[i].setOnMouseClicked(e->{
+                CheckBox curButton = (CheckBox)e.getSource();
+                if(curButton.isSelected()){
+                    numberOfCheckedCourses++;
+                }
+                else{
+                    numberOfCheckedCourses--;
+                }
+                if(numberOfCheckedCourses==0){
+                    LeaveCourseButton.setVisible(false);
+                }
+                else {
+                    LeaveCourseButton.setVisible(true);
+                }
+            });
+            myCoursesScrollPane.getChildren().add(mycourses[i]);
             i++;
         }
         myCoursesScrollPane.setPrefSize(543,max(170,34*i));
     }
-
+    @FXML
+    public void leaveCourse(){
+        ArrayList<String> todelete = new ArrayList<>();
+        for(int i=0;i<activeUser.getCourses().size();i++){
+            if(mycourses[i].isSelected()){
+                todelete.add(mycourses[i].getText());
+                mycourses[i].setSelected(false);
+            }
+        }
+        activeUser.leaveCourses(todelete, false);
+        loadCourses();
+    }
     /**
      * Event handler for logout button
      */
@@ -888,6 +921,7 @@ public class FacultyReservationGUIController implements Initializable{
         HoverPane.setTranslateX(0);
         datePicker.setVisible(false);
         error1.setVisible(true);
+        LeaveCourseButton.setDisable(true);
         BookBtn.setDisable(true);
         BackBtn.setVisible(true);
         BookBtn.setVisible(true);
@@ -1137,6 +1171,7 @@ public class FacultyReservationGUIController implements Initializable{
             appear.setOnFinished(e -> {
                 HoverPane.setVisible(false);
                 HoverPane.setDisable(false);
+                LeaveCourseButton.setDisable(false);
                 HoverPane.setOpacity(1);
                 rightPane.setDisable(false);
                 leftPane.setDisable(false);
