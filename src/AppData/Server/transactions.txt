@@ -122,3 +122,12 @@ Date;Time;Booking Date;Booking Slot;Room;User;Purpose;Type
 03/03/2018;12:34:11;20/03/2018;0700PM - 0730PM;C21;harsh.pathak.temp@gmail.com;Introduction to Computational Neuroscience;Booking
 03/03/2018;12:34:11;20/03/2018;0730PM - 0800PM;C21;harsh.pathak.temp@gmail.com;Introduction to Computational Neuroscience;Booking
 03/03/2018;12:34:11;20/03/2018;0800PM - 0830PM;C21;harsh.pathak.temp@gmail.com;Introduction to Computational Neuroscience;Booking
+03/03/2018;13:02:00;03/03/2018;0100PM - 0130PM;C21;harsh16041@iiitd.ac.in;Advanced Embedded Logic Design;Booking
+03/03/2018;13:02:00;03/03/2018;0130PM - 0200PM;C21;harsh16041@iiitd.ac.in;Advanced Embedded Logic Design;Booking
+03/03/2018;13:02:00;03/03/2018;0200PM - 0230PM;C21;harsh16041@iiitd.ac.in;Advanced Embedded Logic Design;Booking
+03/03/2018;13:09:55;03/03/2018;0100PM - 0130PM;C21;harsh16041@iiitd.ac.in;Advanced Embedded Logic Design;Cancellation
+03/03/2018;13:09:55;03/03/2018;0130PM - 0200PM;C21;harsh16041@iiitd.ac.in;Advanced Embedded Logic Design;Cancellation
+03/03/2018;13:09:55;03/03/2018;0200PM - 0230PM;C21;harsh16041@iiitd.ac.in;Advanced Embedded Logic Design;Cancellation
+03/03/2018;13:18:34;03/03/2018;0100PM - 0130PM;C21;harsh16041@iiitd.ac.in;Advanced Embedded Logic Design;Booking
+03/03/2018;13:18:34;03/03/2018;0130PM - 0200PM;C21;harsh16041@iiitd.ac.in;Advanced Embedded Logic Design;Booking
+03/03/2018;13:24:05;03/03/2018;0100PM - 0130PM;C21;harsh16041@iiitd.ac.in;Advanced Embedded Logic Design;Cancellation

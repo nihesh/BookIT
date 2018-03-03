@@ -760,7 +760,7 @@ class ConnectionHandler implements Runnable{
                     GreetText = "Hello " + x.getName();
                     x.addNotification(n);
                 }
-                server.mailpool.execute(new Mail(email,"BooKIT - Room booking cancelled", GreetText+","+"\n\nThe following booking of yours have been cancelled:\n\n"+ "Cancelled By:" + cancelledBy + "\n" + r.getMessage()+"\nDate: "+queryDate.getDayOfMonth()+"/"+queryDate.getMonthValue()+"/"+queryDate.getYear()+"\nTime: "+ Reservation.getSlotRange(slotID) +"\n\nIf you think this is a mistake, please contact admin.\n\nRegards,\nBookIT Team"));
+                server.mailpool.execute(new Mail(email,"BooKIT - Room booking cancelled", GreetText+","+"\n\nThe following booking of yours have been cancelled:\n\n"+ "Cancelled By: " + cancelledBy + "\n" + r.getMessage()+"\nDate: "+queryDate.getDayOfMonth()+"/"+queryDate.getMonthValue()+"/"+queryDate.getYear()+"\nTime: "+ Reservation.getSlotRange(slotID) +"\n\nIf you think this is a mistake, please contact admin.\n\nRegards,\nBookIT Team"));
                 serializeUser(x);
             }
         }
@@ -1005,7 +1005,7 @@ class ConnectionHandler implements Runnable{
                     server.mailpool.execute(new Mail(email, "BooKIT - Room booking cancelled", "Hello User" + "," + "\n\nThe following booking of yours have been cancelled\n\n" + notification.getMessage() + "\nCourse: " + notification.getCourse() + "\nCancelled By: " + cancelledBy + "\nDate: " + dates + "\nTime: " + slots + "Reason for cancellation: " + reason_delete + "\nIf you think this is a mistake, please contact admin.\n\nRegards,\nBookIT Team"));
                 }
                 else{
-                    server.mailpool.execute(new Mail(email, "BooKIT - Room booking cancelled", "Hello User" + "," + "\n\nThe following booking of yours have been cancelled\n\n" + notification.getMessage() + "\nCourse: " + notification.getCourse() + "\nDate: " + dates + "\nTime: " + slots + "\nIf you think this is a mistake, please contact admin.\n\nRegards,\nBookIT Team"));
+                    server.mailpool.execute(new Mail(email, "BooKIT - Room booking cancelled", "Hello User" + "," + "\n\nThe following booking of yours have been cancelled\n\n" + "Cancelled By: " + cancelledBy + "\n" + notification.getMessage() + "\nCourse: " + notification.getCourse() + "\nDate: " + dates + "\nTime: " + slots + "\nIf you think this is a mistake, please contact admin.\n\nRegards,\nBookIT Team"));
                 }
             }
         }

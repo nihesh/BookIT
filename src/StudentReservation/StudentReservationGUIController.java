@@ -285,6 +285,7 @@ public class StudentReservationGUIController implements Initializable{
             File file = new File("./src/BookIT_icon.jpg");
             stage.getIcons().add(new Image(file.toURI().toString()));
             stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setResizable(false);
             //stage.initStyle(StageStyle.UNDECORATED);
             Rectangle2D visualBounds = Screen.getPrimary().getVisualBounds();
             double width = visualBounds.getWidth();
