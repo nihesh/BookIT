@@ -1,1 +1,3 @@
 Date;Time;Booking Date;Booking Slot;Room;User;Purpose;Type
+02/03/2018;20:54:44;02/03/2018;0900AM - 0930AM;C02;nihesh16059@iiitd.ac.in;afddfa;Booking
+02/03/2018;20:54:44;02/03/2018;0930AM - 1000AM;C02;nihesh16059@iiitd.ac.in;afddfa;Booking

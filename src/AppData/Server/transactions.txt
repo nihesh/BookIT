@@ -1,26 +1,16 @@
 Date;Time;Booking Date;Booking Slot;Room;User;Purpose;Type
-02/03/2018;14:43:37;02/03/2018;0800AM - 0830AM;C21;harsh.pathak.temp@gmail.com;Animation and Graphics;Booking
-02/03/2018;14:43:37;05/03/2018;0800AM - 0830AM;C21;harsh.pathak.temp@gmail.com;Animation and Graphics;Booking
-02/03/2018;14:43:37;06/03/2018;0800AM - 0830AM;C21;harsh.pathak.temp@gmail.com;Animation and Graphics;Booking
-02/03/2018;14:43:37;07/03/2018;0800AM - 0830AM;C21;harsh.pathak.temp@gmail.com;Animation and Graphics;Booking
-02/03/2018;14:43:37;08/03/2018;0800AM - 0830AM;C21;harsh.pathak.temp@gmail.com;Animation and Graphics;Booking
-02/03/2018;14:43:37;09/03/2018;0800AM - 0830AM;C21;harsh.pathak.temp@gmail.com;Animation and Graphics;Booking
-02/03/2018;14:43:37;12/03/2018;0800AM - 0830AM;C21;harsh.pathak.temp@gmail.com;Animation and Graphics;Booking
-02/03/2018;14:43:37;13/03/2018;0800AM - 0830AM;C21;harsh.pathak.temp@gmail.com;Animation and Graphics;Booking
-02/03/2018;14:43:37;14/03/2018;0800AM - 0830AM;C21;harsh.pathak.temp@gmail.com;Animation and Graphics;Booking
-02/03/2018;14:43:37;15/03/2018;0800AM - 0830AM;C21;harsh.pathak.temp@gmail.com;Animation and Graphics;Booking
-02/03/2018;14:56:00;02/03/2018;1130AM - 1200PM;C21;harsh.pathak.temp@gmail.com;Advance Topics in Mobile Computing;Booking
-02/03/2018;14:59:45;02/03/2018;1130AM - 1200PM;C21;harsh.pathak.temp@gmail.com;Advance Topics in Mobile Computing;Cancellation
-02/03/2018;15:00:48;02/03/2018;0800AM - 0830AM;C21;harsh.pathak.hp@gmail.com;Animation and Graphics;Cancellation
-02/03/2018;15:00:48;05/03/2018;0800AM - 0830AM;C21;harsh.pathak.hp@gmail.com;Animation and Graphics;Cancellation
-02/03/2018;15:00:48;06/03/2018;0800AM - 0830AM;C21;harsh.pathak.hp@gmail.com;Animation and Graphics;Cancellation
-02/03/2018;15:00:48;07/03/2018;0800AM - 0830AM;C21;harsh.pathak.hp@gmail.com;Animation and Graphics;Cancellation
-02/03/2018;15:00:48;08/03/2018;0800AM - 0830AM;C21;harsh.pathak.hp@gmail.com;Animation and Graphics;Cancellation
-02/03/2018;15:00:48;09/03/2018;0800AM - 0830AM;C21;harsh.pathak.hp@gmail.com;Animation and Graphics;Cancellation
-02/03/2018;15:00:48;12/03/2018;0800AM - 0830AM;C21;harsh.pathak.hp@gmail.com;Animation and Graphics;Cancellation
-02/03/2018;15:00:48;13/03/2018;0800AM - 0830AM;C21;harsh.pathak.hp@gmail.com;Animation and Graphics;Cancellation
-02/03/2018;15:00:48;14/03/2018;0800AM - 0830AM;C21;harsh.pathak.hp@gmail.com;Animation and Graphics;Cancellation
-02/03/2018;15:00:48;15/03/2018;0800AM - 0830AM;C21;harsh.pathak.hp@gmail.com;Animation and Graphics;Cancellation
-02/03/2018;15:02:49;05/03/2018;1000AM - 1030AM;C21;harsh.pathak.temp@gmail.com;Algorithm Design & Analysis;Cancellation
-02/03/2018;15:31:07;02/03/2018;1230PM - 0100PM;C21;harsh.pathak.temp@gmail.com;Advanced Embedded Logic Design;Booking
-02/03/2018;15:31:15;02/03/2018;1230PM - 0100PM;C21;harsh.pathak.hp@gmail.com;Advanced Embedded Logic Design;Cancellation
+02/03/2018;20:54:44;02/03/2018;0900AM - 0930AM;C02;nihesh16059@iiitd.ac.in;afddfa;Booking
+02/03/2018;20:54:44;02/03/2018;0930AM - 1000AM;C02;nihesh16059@iiitd.ac.in;afddfa;Booking
+02/03/2018;20:56:40;02/03/2018;0900AM - 0930AM;C02;asknihesh1999@gmail.com;afddfa;Cancellation
+02/03/2018;20:56:40;02/03/2018;0930AM - 1000AM;C02;asknihesh1999@gmail.com;afddfa;Cancellation
+02/03/2018;20:57:45;02/03/2018;0800AM - 0830AM;C02;nihesh16059@iiitd.ac.in;fdsfdsfdf;Booking
+02/03/2018;20:57:45;02/03/2018;0830AM - 0900AM;C02;nihesh16059@iiitd.ac.in;fdsfdsfdf;Booking
+02/03/2018;20:57:56;02/03/2018;0930AM - 1000AM;C02;nihesh16059@iiitd.ac.in;fdsfds;Booking
+02/03/2018;20:57:56;02/03/2018;1000AM - 1030AM;C02;nihesh16059@iiitd.ac.in;fdsfds;Booking
+02/03/2018;20:58:03;02/03/2018;1100AM - 1130AM;C02;nihesh16059@iiitd.ac.in;sdffds;Booking
+02/03/2018;20:58:03;02/03/2018;1130AM - 1200PM;C02;nihesh16059@iiitd.ac.in;sdffds;Booking
+02/03/2018;21:01:26;02/03/2018;0800AM - 0830AM;C02;asknihesh1999@gmail.com;fdsfdsfdf;Cancellation
+02/03/2018;21:02:08;02/03/2018;1230PM - 0100PM;C02;harsh.pathak.temp@gmail.com;hgkjh;Booking
+02/03/2018;21:03:09;02/03/2018;0930AM - 1000AM;C02;asknihesh1999@gmail.com;fdsfds;Cancellation
+02/03/2018;21:03:17;02/03/2018;0930AM - 1000AM;C02;harsh.pathak.temp@gmail.com;kjgjh;Booking
+02/03/2018;21:05:37;02/03/2018;1000AM - 1030AM;C02;asknihesh1999@gmail.com;fdsfds;Cancellation

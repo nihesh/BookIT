@@ -306,9 +306,12 @@ public class FacultyReservationGUIController implements Initializable{
                 selectedCourses.add(courseLabels.get(i).getText());
             }
         }
-        for(int i=0;i<selectedCourses.size();i++){
-            activeUser.addCourse(selectedCourses.get(i), false);
-            Course.setInstructor(selectedCourses.get(i), activeUser.getEmail().getEmailID(), false);
+        ArrayList<String> items = Course.getFreeCourses(false);
+        for(int i=0;i<selectedCourses.size();i++) {
+            if (items.contains(selectedCourses.get(i))) {
+                activeUser.addCourse(selectedCourses.get(i), false);
+                Course.setInstructor(selectedCourses.get(i), activeUser.getEmail().getEmailID(), false);
+            }
         }
         activeUser.setActiveUser();
         loadCourses();
