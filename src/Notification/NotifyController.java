@@ -1,5 +1,6 @@
-package AdminReservation;
+package Notification;
 
+import AdminReservation.AdminReservationGUIController;
 import HelperClasses.Admin;
 import HelperClasses.BookITconstants;
 //import com.sun.jmx.remote.security.NotificationAccessController;
@@ -34,6 +35,7 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 import static HelperClasses.Notification.throwConfirmation;
+import static java.lang.Math.min;
 
 public class NotifyController {
     @FXML
@@ -109,27 +111,22 @@ public class NotifyController {
             l.setPadding(new Insets(3,5,3,5));
             l.setStyle("-fx-background-color: grey;");
             notificationPane.getChildren().add(l);
-            TextField reason_delete = new TextField();
-            reason_delete.setPromptText("Reason for cancellation(Mandatory)");
-            Button but = new Button();
-            but.setText("Delete Booking");
-            if(!((data.get(i).contains("Classroom Booking") && data.get(i).contains("Done")) || (data.get(i).contains("Room Reservation Request") && data.get(i).contains("Accepted")))){
-                but.setDisable(true);
-                reason_delete.setPromptText("");
-                reason_delete.setDisable(true);
-
-            }
-            if(AdminReservationGUIController.admin_email_used != null) {
-                notificationPane.getChildren().add(reason_delete);
-            }
-            but.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                @Override
-                public void handle(MouseEvent event) {
-                    pressDelButton(event);
+            if(!(!((data.get(i).contains("Classroom Booking") && data.get(i).contains("Done")) || (data.get(i).contains("Room Reservation Request") && data.get(i).contains("Accepted"))))){
+                TextField reason_delete = new TextField();
+                reason_delete.setPromptText("Reason for cancellation(Mandatory)");
+                Button but = new Button();
+                but.setText("Delete Booking");
+                if(AdminReservationGUIController.admin_email_used != null) {
+                    notificationPane.getChildren().add(reason_delete);
                 }
-            });
-            notificationPane.getChildren().add(but);
-
+                but.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent event) {
+                        pressDelButton(event);
+                    }
+                });
+                notificationPane.getChildren().add(but);
+            }
         }
         for(int i=0;i<1;i++) {
             StackPane s = new StackPane();
@@ -155,7 +152,7 @@ public class NotifyController {
                     Reason = (TextField)nodes.get(i - 1);
                 }
             }
-            str = Reason.getText().trim();
+            str = Reason.getText().trim().substring(0,min(200, Reason.getText().trim().length()));
             if(str.equals("")){
                 Notification.throwAlert("Error", "Please specify a reason for deletion");
                 return;

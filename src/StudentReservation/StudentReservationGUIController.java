@@ -13,7 +13,6 @@ import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.control.Button;
@@ -31,7 +30,6 @@ import javafx.scene.layout.*;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.control.Alert.AlertType;
 import javafx.event.Event;
 import javafx.scene.text.Font;
 import javafx.stage.Modality;
@@ -40,12 +38,9 @@ import javafx.stage.Stage;
 import javafx.util.Callback;
 import javafx.util.Duration;
 
-import javax.swing.*;
-import java.awt.*;
 import java.io.*;
 import java.net.Socket;
 import java.net.URL;
-import java.sql.Time;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -279,12 +274,13 @@ public class StudentReservationGUIController implements Initializable{
                 Notification.throwAlert("Information Dialog", "There are no new notifications");
                 return;
             }
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../AdminReservation/Notify.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../Notification/Notify.fxml"));
             Parent root1 = (Parent) fxmlLoader.load();
             Stage stage = new Stage();
             File file = new File("./src/BookIT_icon.jpg");
             stage.getIcons().add(new Image(file.toURI().toString()));
             stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setResizable(false);
             //stage.initStyle(StageStyle.UNDECORATED);
             Rectangle2D visualBounds = Screen.getPrimary().getVisualBounds();
             double width = visualBounds.getWidth();
@@ -1087,6 +1083,31 @@ public class StudentReservationGUIController implements Initializable{
         flyRight();
         purposeBox.clear();
         requestMessage2.clear();
+    }
+    @FXML
+    public void launchFeedbackController(){
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../Feedback/Feedback.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load();
+            Stage stage = new Stage();
+            File file = new File("./src/BookIT_icon.jpg");
+            stage.getIcons().add(new Image(file.toURI().toString()));
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setResizable(false);
+            Rectangle2D visualBounds = Screen.getPrimary().getVisualBounds();
+            double width = visualBounds.getWidth();
+            double height = visualBounds.getHeight();
+            double scaleWidth = (width) / 1366;
+            double scaleHeight = (height) / 768;
+            stage.setTitle("Feedback");
+            stage.setWidth(600 * scaleWidth);
+            stage.setHeight(400 * scaleHeight);
+            stage.setScene(new Scene(root1, 600 * scaleWidth, 400 * scaleHeight));
+            stage.show();
+        }
+        catch (Exception e){
+            System.out.println("Exception occurred while loading feedback fxml");
+        }
     }
     /**
      * Event handler for confirming booking of a room

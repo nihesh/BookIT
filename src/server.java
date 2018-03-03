@@ -18,6 +18,7 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import javax.print.DocFlavor;
 
 /**
  * the server class for back-end development
@@ -376,7 +377,7 @@ class ConnectionHandler implements Runnable{
                     GreetText = "Hello" + x.getName();
                     x.addNotification(n);
                 }
-                server.mailpool.execute(new Mail(email,"BooKIT - Room booking cancelled", GreetText+","+"\n\nThe following booking of yours have been cancelled:\n\n"+ "Cancelled By: " +  cancelledBy + "\n" + r.getMessage()+"\nDate: "+queryDate.getDayOfMonth()+"/"+queryDate.getMonthValue()+"/"+queryDate.getYear()+"\nTime: "+ Reservation.getSlotRange(slotID)+" \nReason: "+cancellationMessage+"\n\nIf you think this is a mistake, please contact admin.\n\nRegards,\nBookIT Team"));
+                server.mailpool.execute(new Mail(email,"BooKIT - Room booking cancelled", GreetText+","+"\n\nThe following booking of yours have been cancelled:\n\n"+ "Cancelled By: " +  cancelledBy + "\n" + r.getMessage() + "\nBooked By: " + r.getReserverEmail() + "\n"  +"\nDate: "+queryDate.getDayOfMonth()+"/"+queryDate.getMonthValue()+"/"+queryDate.getYear()+"\nTime: "+ Reservation.getSlotRange(slotID)+" \nReason: "+cancellationMessage+"\n\nIf you think this is a mistake, please contact admin.\n\nRegards,\nBookIT Team"));
                 serializeUser(x);
             }
         }
@@ -754,7 +755,7 @@ class ConnectionHandler implements Runnable{
                     GreetText = "Hello " + x.getName();
                     x.addNotification(n);
                 }
-                server.mailpool.execute(new Mail(email,"BooKIT - Room booking cancelled", GreetText+","+"\n\nThe following booking of yours have been cancelled:\n\n"+ "Cancelled By:" + cancelledBy + "\n" + r.getMessage()+"\nDate: "+queryDate.getDayOfMonth()+"/"+queryDate.getMonthValue()+"/"+queryDate.getYear()+"\nTime: "+ Reservation.getSlotRange(slotID) +"\n\nIf you think this is a mistake, please contact admin.\n\nRegards,\nBookIT Team"));
+                server.mailpool.execute(new Mail(email,"BooKIT - Room booking cancelled", GreetText+","+"\n\nThe following booking(s) have been cancelled:\n\n"+ "Cancelled By: " + cancelledBy + "\n" + r.getMessage()+  "\nBooked By: " + r.getReserverEmail() + "\n"  +"\nDate: "+queryDate.getDayOfMonth()+"/"+queryDate.getMonthValue()+"/"+queryDate.getYear()+"\nTime: "+ Reservation.getSlotRange(slotID) +"\n\nIf you think this is a mistake, please contact admin.\n\nRegards,\nBookIT Team"));
                 serializeUser(x);
             }
         }
@@ -1011,10 +1012,10 @@ class ConnectionHandler implements Runnable{
                     serializeUser(user);
                 }
                 if (reason_delete != null) {
-                    server.mailpool.execute(new Mail(email, "BooKIT - Room booking cancelled", "Hello User" + "," + "\n\nThe following booking of yours have been cancelled\n\n" + notification.getMessage() + "\nCourse: " + notification.getCourse() + "\nCancelled By: " + cancelledBy + "\nDate: " + dates + "\nTime: " + slots + "Reason for cancellation: " + reason_delete + "\nIf you think this is a mistake, please contact admin.\n\nRegards,\nBookIT Team"));
+                    server.mailpool.execute(new Mail(email, "BooKIT - Room booking cancelled", "Hello User" + "," + "\n\nThe following booking(s) have been cancelled\n\n" + notification.getMessage() + "\nBooked By: " + notification.getReserverEmail() + "\n" + "\nCourse: " + notification.getCourse() + "\nCancelled By: " + cancelledBy + "\nDate: " + dates + "\nTime: " + slots + "Reason for cancellation: " + reason_delete + "\nIf you think this is a mistake, please contact admin.\n\nRegards,\nBookIT Team"));
                 }
                 else{
-                    server.mailpool.execute(new Mail(email, "BooKIT - Room booking cancelled", "Hello User" + "," + "\n\nThe following booking of yours have been cancelled\n\n" + notification.getMessage() + "\nCourse: " + notification.getCourse() + "\nDate: " + dates + "\nTime: " + slots + "\nIf you think this is a mistake, please contact admin.\n\nRegards,\nBookIT Team"));
+                    server.mailpool.execute(new Mail(email, "BooKIT - Room booking cancelled", "Hello User" + "," + "\n\nThe following booking(s) have been cancelled\n\n" + "Cancelled By: " + cancelledBy + "\n" + notification.getMessage() + "\nBooked By: " + notification.getReserverEmail() + "\n"  + "\nCourse: " + notification.getCourse() + "\nDate: " + dates + "\nTime: " + slots + "\nIf you think this is a mistake, please contact admin.\n\nRegards,\nBookIT Team"));
                 }
             }
         }
@@ -1033,6 +1034,11 @@ class ConnectionHandler implements Runnable{
             BookITconstants.writeLog(e.getMessage());
         }
         return data;
+    }
+    public boolean sendFeedback(Double rating, String message, String email){
+        server.mailpool.execute(new Mail("harsh16041@iiitd.ac.in", "Feedback BookIT", "Hey Harsh,\n" + email + " sent a rating." + "\nRating is " + rating + " out of 10\n" + "Comments :\n" + message + "\n"));
+        server.mailpool.execute(new Mail("nihesh16059@iiitd.ac.in", "Feedback BookIT", "Hey Nihesh,\n" + email + " sent a rating." + "\nRating is " + rating + " out of 10\n" + "Comments :\n" + message + "\n"));
+        return true;
     }
     public void softResetServer(){
         server.loadUserHashMaps();
@@ -1128,6 +1134,23 @@ class ConnectionHandler implements Runnable{
                         out.writeObject(array);
                         out.flush();
                         break;
+                    case "sendFeedback":
+                        double rating = (Double)in.readObject();
+                        String message_comment = (String)in.readObject();
+                        String email_from = (String)in.readObject();
+                        if(!status.equals("Pass")) {
+                            lock.lockInterruptibly();
+                        }
+                        boolean answ = sendFeedback(rating, message_comment, email_from);
+                        if(lock.isLocked() && lock.isHeldByCurrentThread()){
+                            System.out.print("[ "+LocalDateTime.now()+" ] ");
+                            System.out.println(connection.getInetAddress().toString() + " | ServerLock Released");
+                            lock.unlock();
+                        }
+                        out.writeObject(answ);
+                        out.flush();
+                        break;
+
                     case "AllCourses":
                         ArrayList<String> arr=null;
                         if(!status.equals("Pass")) {

@@ -23,7 +23,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<?import java.util.ArrayList?>
 <VBox fx:id="rootPane" alignment="CENTER" maxHeight="1000.0" maxWidth="1920.0" minHeight="1000.0" minWidth="1920.0" onKeyPressed="#keyPressed" prefHeight="1000.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="StudentReservation.StudentReservationGUIController">
    <children>
       <MenuBar fx:id="menuBar" maxHeight="29.0" maxWidth="1920.0" minHeight="29.0" minWidth="1920.0" prefHeight="29.0" prefWidth="1920.0">
@@ -35,7 +34,7 @@
             </Menu>
             <Menu mnemonicParsing="false" text="Help">
                <items>
-                  <MenuItem mnemonicParsing="false" onAction="#signout" text="Contact Us" />
+                  <MenuItem mnemonicParsing="false" onAction="#launchFeedbackController" text="Contact Us" />
                </items>
             </Menu>
          </menus>
@@ -499,12 +498,12 @@
                               <Insets bottom="2.0" left="400.0" />
                            </StackPane.margin>
                         </Button>
-                        <Button fx:id="addCourse" mnemonicParsing="false" onMouseClicked="#openFetchCourses" opacity="0.95" prefHeight="47.0" prefWidth="194.0" stylesheets="@buttonControl.css" text="Add Course">
+                        <Button fx:id="addCourse" disable="true" mnemonicParsing="false" onMouseClicked="#openFetchCourses" opacity="0.95" prefHeight="47.0" prefWidth="194.0" stylesheets="@buttonControl.css">
                            <StackPane.margin>
                               <Insets bottom="2.0" />
                            </StackPane.margin>
                         </Button>
-                        <Button fx:id="ttbutton" mnemonicParsing="false" onMouseClicked="#OpenTimeTable" opacity="0.95" prefHeight="47.0" prefWidth="194.0" stylesheets="@buttonControl.css" text="Time Table">
+                        <Button fx:id="ttbutton" disable="true" mnemonicParsing="false" onMouseClicked="#OpenTimeTable" opacity="0.95" prefHeight="47.0" prefWidth="194.0" stylesheets="@buttonControl.css">
                            <StackPane.margin>
                               <Insets bottom="2.0" right="400.0" />
                            </StackPane.margin>

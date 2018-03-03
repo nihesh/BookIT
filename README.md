@@ -18,6 +18,6 @@ password - To@0L]d9
 
 ISSUES
 	- noreply email from iiitd
-	- Email spam for multiple slot booking
-	- server time issue
+	- Cap the size of input sent to server to prevent network overflow on server
+	- Check student TT consistency after removing collisions
 	

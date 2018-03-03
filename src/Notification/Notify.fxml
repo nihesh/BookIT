@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<StackPane fx:id="rootPane" maxHeight="666.0" maxWidth="1000.0" minHeight="666.0" minWidth="1000.0" prefHeight="666.0" prefWidth="1000.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="AdminReservation.NotifyController">
+<StackPane fx:id="rootPane" maxHeight="666.0" maxWidth="1000.0" minHeight="666.0" minWidth="1000.0" prefHeight="666.0" prefWidth="1000.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Notification.NotifyController">
    <children>
       <StackPane maxHeight="70.0" maxWidth="1000.0" minHeight="70.0" minWidth="1000.0" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: linear-gradient( #2C3E50,#1B2631);">
          <StackPane.margin>
