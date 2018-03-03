@@ -316,16 +316,20 @@ public class AdminReservationGUIController implements Initializable{
             File file = new File("./src/BookIT_icon.jpg");
             stage.getIcons().add(new Image(file.toURI().toString()));
             stage.initModality(Modality.APPLICATION_MODAL);
-            stage.setResizable(false);
+            stage.setResizable(true);
             Rectangle2D visualBounds = Screen.getPrimary().getVisualBounds();
             double width = visualBounds.getWidth();
             double height = visualBounds.getHeight();
-            double scaleWidth = (width) / 1366;
-            double scaleHeight = (height) / 768;
+            double scaleWidth = (width) / 1920;
+            double scaleHeight = (height) / 1040;
             stage.setTitle("Feedback");
-            stage.setWidth(600 * scaleWidth);
-            stage.setHeight(400 * scaleHeight);
-            stage.setScene(new Scene(root1, 600 * scaleWidth, 400 * scaleHeight));
+            System.out.println("ab");
+            stage.setWidth(610 * scaleWidth);
+            System.out.println(scaleHeight);
+            System.out.println(scaleWidth);
+            System.out.println("cd");
+            stage.setHeight(410 * scaleHeight);
+            stage.setScene(new Scene(root1, 610 * scaleWidth, 410 * scaleHeight));
             stage.show();
         }
         catch (Exception e){

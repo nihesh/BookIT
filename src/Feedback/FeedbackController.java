@@ -40,8 +40,12 @@ public class FeedbackController {
         Rectangle2D visualBounds = Screen.getPrimary().getVisualBounds();
         double width = visualBounds.getWidth();
         double height = visualBounds.getHeight();
-        double scaleWidth = (width)/1366;
-        double scaleHeight = (height)/768;
+        double scaleWidth = (width)/1920;
+        double scaleHeight = (height)/1040;
+        System.out.println(width);
+        System.out.println(height);
+        System.out.println(scaleWidth);
+        System.out.println(scaleHeight);
         rootPane.setScaleX(scaleWidth);
         rootPane.setScaleY(scaleHeight);
         User x=User.getActiveUser();
@@ -55,8 +59,9 @@ public class FeedbackController {
             }
             if(sendRating(rate, comments.getText().trim().substring(0,min(4000,comments.getText().trim().length())), false)){
                 TranslateTransition rocket_up = new TranslateTransition(Duration.millis(1000), rocket);
-                rocket_up.setByY(rootPane.getHeight());
-                rocket_up.setCycleCount(2);
+                rocket_up.setByY(-1.0 * rootPane.getHeight());
+                rocket_up.setCycleCount(1);
+                rocket_up.setAutoReverse(true);
                 rocket_up.play();
                 submit_btn.setDisable(true);
                 rating.setDisable(true);
