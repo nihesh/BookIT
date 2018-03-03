@@ -71,9 +71,9 @@ public class setup {
         holidays.useDelimiter("-|\\n");
         HashMap<LocalDate, Boolean> blockedDates = new HashMap<>();
         while(holidays.hasNext()){
-            int date = holidays.nextInt();
-            int month = holidays.nextInt();
-            int year = holidays.nextInt();
+            int date = Integer.parseInt(holidays.next().trim());
+            int month = Integer.parseInt(holidays.next().trim());
+            int year = Integer.parseInt(holidays.next().trim());
             blockedDates.put(LocalDate.of(year, month, date), true);
         }
         Scanner file = new Scanner(new FileReader("./src/AppData/StaticTimeTable/RoomData.csv"));

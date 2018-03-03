@@ -120,6 +120,7 @@ public class NotifyController {
 
             }
             if(AdminReservationGUIController.admin_email_used != null) {
+
                 notificationPane.getChildren().add(reason_delete);
             }
             but.setOnMouseClicked(new EventHandler<MouseEvent>() {

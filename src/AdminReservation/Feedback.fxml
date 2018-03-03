@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<StackPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="AdminReservation.FeebackController">
+   <children>
+      <Label text="So? Did you like the app?" StackPane.alignment="TOP_CENTER">
+         <font>
+            <Font name="Comic Sans MS" size="15.0" />
+         </font>
+         <StackPane.margin>
+            <Insets top="20.0" />
+         </StackPane.margin>
+      </Label>
+      <Label text=" Have any comments or want to raise any issues to us?" StackPane.alignment="TOP_CENTER">
+         <StackPane.margin>
+            <Insets top="50.0" />
+         </StackPane.margin>
+         <font>
+            <Font name="Comic Sans MS" size="15.0" />
+         </font>
+      </Label>
+      <Label text="Here is a form to do so." StackPane.alignment="TOP_CENTER">
+         <font>
+            <Font name="Comic Sans MS" size="15.0" />
+         </font>
+         <StackPane.margin>
+            <Insets top="80.0" />
+         </StackPane.margin>
+      </Label>
+      <TextArea fx:id="comments" prefHeight="200.0" prefWidth="417.0" promptText="Comments(Optional)">
+         <StackPane.margin>
+            <Insets bottom="120.0" left="200.0" right="30.0" top="120.0" />
+         </StackPane.margin>
+      </TextArea>
+      <TextField fx:id="rating" StackPane.alignment="CENTER_RIGHT">
+         <StackPane.margin>
+            <Insets left="275.0" right="300.0" top="200.0" />
+         </StackPane.margin>
+      </TextField>
+      <Label prefHeight="20.0" prefWidth="68.0" text="RATING -" StackPane.alignment="CENTER">
+         <StackPane.margin>
+            <Insets right="125.0" top="200.0" />
+         </StackPane.margin>
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label text="/10">
+         <StackPane.margin>
+            <Insets left="25.0" top="200.0" />
+         </StackPane.margin>
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Button fx:id="submit_btn" mnemonicParsing="false" prefHeight="25.0" prefWidth="59.0" text="SUBMIT">
+         <StackPane.margin>
+            <Insets left="480.0" top="200.0" />
+         </StackPane.margin>
+      </Button>
+      <ImageView fx:id="rocket" fitHeight="131.0" fitWidth="92.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="BOTTOM_LEFT">
+         <image>
+            <Image url="@ROCKET3.png" />
+         </image>
+         <StackPane.margin>
+            <Insets left="20.0" />
+         </StackPane.margin>
+      </ImageView>
+      <Label fx:id="Success" text="SUCCESS!!!" visible="false">
+         <StackPane.margin>
+            <Insets top="300.0" />
+         </StackPane.margin>
+         <font>
+            <Font name="Comic Sans MS" size="18.0" />
+         </font>
+      </Label>
+   </children>
+</StackPane>
