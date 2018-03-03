@@ -62,6 +62,7 @@ Date;Time;Booking Date;Booking Slot;Room;User;Purpose;Type
 02/03/2018;22:34:56;04/03/2018;0830AM - 0900AM;C21;harsh.pathak.hp@gmail.com;Fields and Waves;Cancellation
 02/03/2018;22:34:56;04/03/2018;0900AM - 0930AM;C21;harsh.pathak.hp@gmail.com;Fields and Waves;Cancellation
 >>>>>>> adb0d0ae9c56a1115518324b0d706bcbb215a561
+<<<<<<< HEAD
 03/03/2018;11:19:49;03/03/2018;0830AM - 0900AM;C02;nihesh16059@iiitd.ac.in;asddas;Booking
 03/03/2018;11:20:15;03/03/2018;0830AM - 0900AM;C02;nihesh16059@iiitd.ac.in;asddas;Cancellation
 03/03/2018;11:45:23;03/03/2018;0900AM - 0930AM;C01;nihesh16059@iiitd.ac.in;Advanced Operating Systems;Booking
@@ -82,3 +83,65 @@ Date;Time;Booking Date;Booking Slot;Room;User;Purpose;Type
 03/03/2018;12:21:48;04/03/2018;0800AM - 0830AM;C13;asknihesh1999@gmail.com;Advanced Operating Systems;Cancellation
 03/03/2018;12:21:48;04/03/2018;1200PM - 1230PM;C13;asknihesh1999@gmail.com;Advanced Operating Systems;Cancellation
 03/03/2018;12:21:48;04/03/2018;1230PM - 0100PM;C13;asknihesh1999@gmail.com;Advanced Operating Systems;Cancellation
+=======
+03/03/2018;11:56:36;03/03/2018;1230PM - 0100PM;C21;harsh16041@iiitd.ac.in;Advanced Internet of Things;Booking
+03/03/2018;11:56:45;03/03/2018;1230PM - 0100PM;C21;harsh16041@iiitd.ac.in;Advanced Internet of Things;Cancellation
+03/03/2018;12:02:14;03/03/2018;1230PM - 0100PM;C21;harsh.pathak.temp@gmail.com;Elements of Modern Physics;Booking
+03/03/2018;12:02:14;03/03/2018;0100PM - 0130PM;C21;harsh.pathak.temp@gmail.com;Elements of Modern Physics;Booking
+03/03/2018;12:02:52;03/03/2018;1230PM - 0100PM;C21;harsh.pathak.hp@gmail.com;Elements of Modern Physics;Cancellation
+03/03/2018;12:02:52;03/03/2018;0100PM - 0130PM;C21;harsh.pathak.hp@gmail.com;Elements of Modern Physics;Cancellation
+03/03/2018;12:34:11;03/03/2018;0700PM - 0730PM;C21;harsh.pathak.temp@gmail.com;Introduction to Computational Neuroscience;Booking
+03/03/2018;12:34:11;03/03/2018;0730PM - 0800PM;C21;harsh.pathak.temp@gmail.com;Introduction to Computational Neuroscience;Booking
+03/03/2018;12:34:11;03/03/2018;0800PM - 0830PM;C21;harsh.pathak.temp@gmail.com;Introduction to Computational Neuroscience;Booking
+03/03/2018;12:34:11;04/03/2018;0700PM - 0730PM;C21;harsh.pathak.temp@gmail.com;Introduction to Computational Neuroscience;Booking
+03/03/2018;12:34:11;04/03/2018;0730PM - 0800PM;C21;harsh.pathak.temp@gmail.com;Introduction to Computational Neuroscience;Booking
+03/03/2018;12:34:11;04/03/2018;0800PM - 0830PM;C21;harsh.pathak.temp@gmail.com;Introduction to Computational Neuroscience;Booking
+03/03/2018;12:34:11;05/03/2018;0700PM - 0730PM;C21;harsh.pathak.temp@gmail.com;Introduction to Computational Neuroscience;Booking
+03/03/2018;12:34:11;05/03/2018;0730PM - 0800PM;C21;harsh.pathak.temp@gmail.com;Introduction to Computational Neuroscience;Booking
+03/03/2018;12:34:11;05/03/2018;0800PM - 0830PM;C21;harsh.pathak.temp@gmail.com;Introduction to Computational Neuroscience;Booking
+03/03/2018;12:34:11;06/03/2018;0700PM - 0730PM;C21;harsh.pathak.temp@gmail.com;Introduction to Computational Neuroscience;Booking
+03/03/2018;12:34:11;06/03/2018;0730PM - 0800PM;C21;harsh.pathak.temp@gmail.com;Introduction to Computational Neuroscience;Booking
+03/03/2018;12:34:11;06/03/2018;0800PM - 0830PM;C21;harsh.pathak.temp@gmail.com;Introduction to Computational Neuroscience;Booking
+03/03/2018;12:34:11;07/03/2018;0700PM - 0730PM;C21;harsh.pathak.temp@gmail.com;Introduction to Computational Neuroscience;Booking
+03/03/2018;12:34:11;07/03/2018;0730PM - 0800PM;C21;harsh.pathak.temp@gmail.com;Introduction to Computational Neuroscience;Booking
+03/03/2018;12:34:11;07/03/2018;0800PM - 0830PM;C21;harsh.pathak.temp@gmail.com;Introduction to Computational Neuroscience;Booking
+03/03/2018;12:34:11;08/03/2018;0700PM - 0730PM;C21;harsh.pathak.temp@gmail.com;Introduction to Computational Neuroscience;Booking
+03/03/2018;12:34:11;08/03/2018;0730PM - 0800PM;C21;harsh.pathak.temp@gmail.com;Introduction to Computational Neuroscience;Booking
+03/03/2018;12:34:11;08/03/2018;0800PM - 0830PM;C21;harsh.pathak.temp@gmail.com;Introduction to Computational Neuroscience;Booking
+03/03/2018;12:34:11;09/03/2018;0700PM - 0730PM;C21;harsh.pathak.temp@gmail.com;Introduction to Computational Neuroscience;Booking
+03/03/2018;12:34:11;09/03/2018;0730PM - 0800PM;C21;harsh.pathak.temp@gmail.com;Introduction to Computational Neuroscience;Booking
+03/03/2018;12:34:11;09/03/2018;0800PM - 0830PM;C21;harsh.pathak.temp@gmail.com;Introduction to Computational Neuroscience;Booking
+03/03/2018;12:34:11;10/03/2018;0700PM - 0730PM;C21;harsh.pathak.temp@gmail.com;Introduction to Computational Neuroscience;Booking
+03/03/2018;12:34:11;10/03/2018;0730PM - 0800PM;C21;harsh.pathak.temp@gmail.com;Introduction to Computational Neuroscience;Booking
+03/03/2018;12:34:11;10/03/2018;0800PM - 0830PM;C21;harsh.pathak.temp@gmail.com;Introduction to Computational Neuroscience;Booking
+03/03/2018;12:34:11;11/03/2018;0700PM - 0730PM;C21;harsh.pathak.temp@gmail.com;Introduction to Computational Neuroscience;Booking
+03/03/2018;12:34:11;11/03/2018;0730PM - 0800PM;C21;harsh.pathak.temp@gmail.com;Introduction to Computational Neuroscience;Booking
+03/03/2018;12:34:11;11/03/2018;0800PM - 0830PM;C21;harsh.pathak.temp@gmail.com;Introduction to Computational Neuroscience;Booking
+03/03/2018;12:34:11;12/03/2018;0700PM - 0730PM;C21;harsh.pathak.temp@gmail.com;Introduction to Computational Neuroscience;Booking
+03/03/2018;12:34:11;12/03/2018;0730PM - 0800PM;C21;harsh.pathak.temp@gmail.com;Introduction to Computational Neuroscience;Booking
+03/03/2018;12:34:11;12/03/2018;0800PM - 0830PM;C21;harsh.pathak.temp@gmail.com;Introduction to Computational Neuroscience;Booking
+03/03/2018;12:34:11;13/03/2018;0700PM - 0730PM;C21;harsh.pathak.temp@gmail.com;Introduction to Computational Neuroscience;Booking
+03/03/2018;12:34:11;13/03/2018;0730PM - 0800PM;C21;harsh.pathak.temp@gmail.com;Introduction to Computational Neuroscience;Booking
+03/03/2018;12:34:11;13/03/2018;0800PM - 0830PM;C21;harsh.pathak.temp@gmail.com;Introduction to Computational Neuroscience;Booking
+03/03/2018;12:34:11;14/03/2018;0700PM - 0730PM;C21;harsh.pathak.temp@gmail.com;Introduction to Computational Neuroscience;Booking
+03/03/2018;12:34:11;14/03/2018;0730PM - 0800PM;C21;harsh.pathak.temp@gmail.com;Introduction to Computational Neuroscience;Booking
+03/03/2018;12:34:11;14/03/2018;0800PM - 0830PM;C21;harsh.pathak.temp@gmail.com;Introduction to Computational Neuroscience;Booking
+03/03/2018;12:34:11;15/03/2018;0700PM - 0730PM;C21;harsh.pathak.temp@gmail.com;Introduction to Computational Neuroscience;Booking
+03/03/2018;12:34:11;15/03/2018;0730PM - 0800PM;C21;harsh.pathak.temp@gmail.com;Introduction to Computational Neuroscience;Booking
+03/03/2018;12:34:11;15/03/2018;0800PM - 0830PM;C21;harsh.pathak.temp@gmail.com;Introduction to Computational Neuroscience;Booking
+03/03/2018;12:34:11;16/03/2018;0700PM - 0730PM;C21;harsh.pathak.temp@gmail.com;Introduction to Computational Neuroscience;Booking
+03/03/2018;12:34:11;16/03/2018;0730PM - 0800PM;C21;harsh.pathak.temp@gmail.com;Introduction to Computational Neuroscience;Booking
+03/03/2018;12:34:11;16/03/2018;0800PM - 0830PM;C21;harsh.pathak.temp@gmail.com;Introduction to Computational Neuroscience;Booking
+03/03/2018;12:34:11;17/03/2018;0700PM - 0730PM;C21;harsh.pathak.temp@gmail.com;Introduction to Computational Neuroscience;Booking
+03/03/2018;12:34:11;17/03/2018;0730PM - 0800PM;C21;harsh.pathak.temp@gmail.com;Introduction to Computational Neuroscience;Booking
+03/03/2018;12:34:11;17/03/2018;0800PM - 0830PM;C21;harsh.pathak.temp@gmail.com;Introduction to Computational Neuroscience;Booking
+03/03/2018;12:34:11;18/03/2018;0700PM - 0730PM;C21;harsh.pathak.temp@gmail.com;Introduction to Computational Neuroscience;Booking
+03/03/2018;12:34:11;18/03/2018;0730PM - 0800PM;C21;harsh.pathak.temp@gmail.com;Introduction to Computational Neuroscience;Booking
+03/03/2018;12:34:11;18/03/2018;0800PM - 0830PM;C21;harsh.pathak.temp@gmail.com;Introduction to Computational Neuroscience;Booking
+03/03/2018;12:34:11;19/03/2018;0700PM - 0730PM;C21;harsh.pathak.temp@gmail.com;Introduction to Computational Neuroscience;Booking
+03/03/2018;12:34:11;19/03/2018;0730PM - 0800PM;C21;harsh.pathak.temp@gmail.com;Introduction to Computational Neuroscience;Booking
+03/03/2018;12:34:11;19/03/2018;0800PM - 0830PM;C21;harsh.pathak.temp@gmail.com;Introduction to Computational Neuroscience;Booking
+03/03/2018;12:34:11;20/03/2018;0700PM - 0730PM;C21;harsh.pathak.temp@gmail.com;Introduction to Computational Neuroscience;Booking
+03/03/2018;12:34:11;20/03/2018;0730PM - 0800PM;C21;harsh.pathak.temp@gmail.com;Introduction to Computational Neuroscience;Booking
+03/03/2018;12:34:11;20/03/2018;0800PM - 0830PM;C21;harsh.pathak.temp@gmail.com;Introduction to Computational Neuroscience;Booking
+>>>>>>> c7d9c25493d6a49ac84606192c4a4a99b6ffffeb
