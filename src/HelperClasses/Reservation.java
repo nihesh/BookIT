@@ -242,6 +242,23 @@ public class Reservation implements java.io.Serializable{
         }
         return actualMessage;
     }
+    public String getMessageWOpurpose() {
+        String actualMessage = "";
+        for (int i = 0; i < message.size(); i++) {
+            String reservationPurpose = this.type;
+            if (this.type.equals("")) {
+                reservationPurpose = "N/A";
+            }
+            if (groups.get(i).equals("0"))
+                actualMessage += "Group: All groups\n";
+            else
+                actualMessage += "Group   : " + groups.get(i) + "\n";
+            actualMessage += "Venue   : " + groupVenue.get(i) + "\n";
+            actualMessage += "Purpose : " + reservationPurpose + "\n";
+        }
+        return actualMessage;
+    }
+
     /**
      * returns name of the Course, empty string if blank
      * @return String

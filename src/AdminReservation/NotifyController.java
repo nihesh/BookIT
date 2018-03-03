@@ -110,7 +110,7 @@ public class NotifyController {
             l.setStyle("-fx-background-color: grey;");
             notificationPane.getChildren().add(l);
             TextField reason_delete = new TextField();
-            reason_delete.setPromptText("Enter reason to delete this booking(Required)");
+            reason_delete.setPromptText("Reason for cancellation(Mandatory)");
             Button but = new Button();
             but.setText("Delete Booking");
             if(!((data.get(i).contains("Classroom Booking") && data.get(i).contains("Done")) || (data.get(i).contains("Room Reservation Request") && data.get(i).contains("Accepted")))){
@@ -119,7 +119,9 @@ public class NotifyController {
                 reason_delete.setDisable(true);
 
             }
-            notificationPane.getChildren().add(reason_delete);
+            if(AdminReservationGUIController.admin_email_used != null) {
+                notificationPane.getChildren().add(reason_delete);
+            }
             but.setOnMouseClicked(new EventHandler<MouseEvent>() {
                 @Override
                 public void handle(MouseEvent event) {
@@ -145,18 +147,26 @@ public class NotifyController {
         ObservableList<Node> nodes = vbox.getChildren();
         Label label = null;
         TextField Reason = null;
-        int index = -1;
-        for (int i = 0; i < nodes.size(); i++) {
-            if(nodes.get(i) == but){
-                index = i;
-                label = (Label)nodes.get(i - 3);
-                Reason = (TextField)nodes.get(i - 1);
+        String str = null;
+        if(AdminReservationGUIController.admin_email_used != null){
+            for (int i = 0; i < nodes.size(); i++) {
+                if(nodes.get(i) == but){
+                    label = (Label)nodes.get(i - 3);
+                    Reason = (TextField)nodes.get(i - 1);
+                }
+            }
+            str = Reason.getText().trim();
+            if(str.equals("")){
+                Notification.throwAlert("Error", "Please specify a reason for deletion");
+                return;
             }
         }
-        String str = Reason.getText().trim();
-        if(str.equals("")){
-            Notification.throwAlert("Error", "Please specify a reason for deletion");
-            return;
+        else{
+            for (int i = 0; i < nodes.size(); i++) {
+                if(nodes.get(i) == but){
+                    label = (Label)nodes.get(i - 2);
+                }
+            }
         }
         Boolean answer = Notification.throwConfirmation("Warning", "Are you sure you want to delete the booking?");
         if(answer == false){
