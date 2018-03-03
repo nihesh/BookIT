@@ -19,6 +19,15 @@ public class Notification implements Serializable{
     private String reserverEmail="";
     private ArrayList<Integer> slotIDs;
     private String cancelledBy = null;
+	private String reason_cancel = null;
+
+	public String getReason_cancel() {
+		return reason_cancel;
+	}
+
+	public void setReason_cancel(String reason_cancel) {
+		this.reason_cancel = reason_cancel;
+	}
 
 	public String getCancelledBy() {
 		return cancelledBy;
@@ -126,6 +135,9 @@ public class Notification implements Serializable{
 				status;
 				if(this.cancelledBy != null){
 					text += "\nCancelled By: " + this.cancelledBy;
+				}
+				if(this.reason_cancel != null){
+					text += "\nReason for cancellation: " + this.reason_cancel;
 				}
 				text += "\n" + message + "Course: "+
 				course+"\nDate: "+
