@@ -64,31 +64,24 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="server.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="server.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/server.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="198">
-              <caret line="32" column="42" lean-forward="true" selection-start-line="32" selection-start-column="42" selection-end-line="32" selection-end-column="42" />
+            <state relative-caret-position="594">
+              <caret line="33" column="42" lean-forward="false" selection-start-line="33" selection-start-column="42" selection-end-line="33" selection-end-column="42" />
               <folding>
-                <element signature="e#18142#18151#0" expanded="true" />
-                <element signature="e#22092#22101#0" expanded="true" />
-                <element signature="e#28215#28224#0" expanded="true" />
-                <element signature="e#29379#29398#0" expanded="true" />
-                <element signature="e#29538#29546#0" expanded="true" />
-                <element signature="e#31513#31522#0" expanded="true" />
-                <element signature="e#31616#31627#0" expanded="true" />
-                <element signature="e#85529#85763#0" expanded="true" />
-                <element signature="e#85762#85763#0" expanded="true" />
+                <element signature="e#86389#86623#0" expanded="true" />
+                <element signature="e#86622#86623#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BookIT.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="BookIT.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/BookIT.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="33" column="7" lean-forward="true" selection-start-line="33" selection-start-column="7" selection-end-line="33" selection-end-column="7" />
+            <state relative-caret-position="342">
+              <caret line="32" column="39" lean-forward="true" selection-start-line="32" selection-start-column="39" selection-end-line="32" selection-end-column="39" />
               <folding />
             </state>
           </provider>
@@ -551,7 +544,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.server">
+  <component name="RunManager" selected="Application.Main">
     <configuration default="false" name="setup" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <option name="MAIN_CLASS_NAME" value="setup" />
@@ -1273,29 +1266,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/server.java">
+    <entry file="file://$PROJECT_DIR$/src/BookIT.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="32" column="42" lean-forward="true" selection-start-line="32" selection-start-column="42" selection-end-line="32" selection-end-column="42" />
-          <folding>
-            <element signature="e#18142#18151#0" expanded="true" />
-            <element signature="e#22092#22101#0" expanded="true" />
-            <element signature="e#28215#28224#0" expanded="true" />
-            <element signature="e#29379#29398#0" expanded="true" />
-            <element signature="e#29538#29546#0" expanded="true" />
-            <element signature="e#31513#31522#0" expanded="true" />
-            <element signature="e#31616#31627#0" expanded="true" />
-            <element signature="e#85529#85763#0" expanded="true" />
-            <element signature="e#85762#85763#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="342">
+          <caret line="32" column="39" lean-forward="true" selection-start-line="32" selection-start-column="39" selection-end-line="32" selection-end-column="39" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/BookIT.java">
+    <entry file="file://$PROJECT_DIR$/src/server.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="33" column="7" lean-forward="true" selection-start-line="33" selection-start-column="7" selection-end-line="33" selection-end-column="7" />
-          <folding />
+        <state relative-caret-position="594">
+          <caret line="33" column="42" lean-forward="false" selection-start-line="33" selection-start-column="42" selection-end-line="33" selection-end-column="42" />
+          <folding>
+            <element signature="e#86389#86623#0" expanded="true" />
+            <element signature="e#86622#86623#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
