@@ -320,11 +320,11 @@ public class AdminReservationGUIController implements Initializable{
             Rectangle2D visualBounds = Screen.getPrimary().getVisualBounds();
             double width = visualBounds.getWidth();
             double height = visualBounds.getHeight();
-            double scaleWidth = (width) / 1366;
-            double scaleHeight = (height) / 768;
+            double scaleWidth = (width) / 1920;
+            double scaleHeight = (height) / 1037;
             stage.setTitle("Feedback");
             stage.setWidth(600 * scaleWidth);
-            stage.setHeight(400 * scaleHeight);
+            stage.setHeight(430 * scaleHeight);
             stage.setScene(new Scene(root1, 600 * scaleWidth, 400 * scaleHeight));
             stage.show();
         }
