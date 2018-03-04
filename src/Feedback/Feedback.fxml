@@ -74,7 +74,7 @@
          <children>
             <Label fx:id="Success" styleClass="fontB" text="SUCCESS!!!" textFill="#5e3a00" visible="false">
                <StackPane.margin>
-                  <Insets top="300.0" />
+                  <Insets left="60.0" top="300.0" />
                </StackPane.margin>
                <font>
                   <Font name="Comic Sans MS" size="18.0" />

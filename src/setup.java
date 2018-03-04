@@ -185,7 +185,7 @@ public class setup {
                         Reservation r = new Reservation(message, group, name, "", venue, message, currentSlot);
                         r.setTargetDate(currentDate);
                         r.setReserverEmail(Mail.from);
-                        if(!roomData.get(venue).addReservation(currentDate, currentSlot, r) && reservationSuccessFlag){
+                        if(!roomData.get(venue).addReservation(currentDate, currentSlot, r, null) && reservationSuccessFlag){
                             reservationSuccessFlag = false;
                             System.out.println(name+" "+startTime+" "+endTime+" "+venue+" has a collision with an earlier reservation. Please rectify csv");
                         }
@@ -296,7 +296,7 @@ public class setup {
                         Reservation r = new Reservation(message, group, name, "", venue, message, currentSlot);
                         r.setTargetDate(currentDate);
                         r.setReserverEmail(Mail.from);
-                        if(!roomData.get(venue).addReservation(currentDate, currentSlot, r) && reservationSuccessFlag){
+                        if(!roomData.get(venue).addReservation(currentDate, currentSlot, r, null) && reservationSuccessFlag){
                             reservationSuccessFlag = false;
                             System.out.println(name+" "+startTime+" "+endTime+" "+venue+" has a collision with an earlier reservation. Please rectify csv");
                         }

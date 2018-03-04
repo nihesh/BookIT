@@ -154,7 +154,7 @@ public class AdminReservationGUIController implements Initializable{
 		try {
 			bf = new BufferedReader(new FileReader(fileE));
 			admin_email_used = bf.readLine();
-		} catch (FileNotFoundException e) {
+            } catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {

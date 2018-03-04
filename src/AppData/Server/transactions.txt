@@ -1,1 +1,11 @@
 Date;Time;Booking Date;Booking Slot;Room;User;Purpose;Type
+04/03/2018;15:25:14;04/03/2018;1200PM - 1230PM;C21;harsh.pathak.temp@gmail.com;Advance Topics in Mobile Computing;Booking
+04/03/2018;15:29:59;04/03/2018;0100PM - 0130PM;C21;harsh.pathak.temp@gmail.com;Advanced Internet of Things;Booking
+04/03/2018;15:35:43;04/03/2018;0400PM - 0430PM;C21;harsh.pathak.temp@gmail.com;Advance Topics in Mobile Computing;Booking
+04/03/2018;15:37:14;04/03/2018;0630PM - 0700PM;C21;harsh.pathak.temp@gmail.com;Advance Topics in Mobile Computing;Booking
+04/03/2018;15:38:49;04/03/2018;0330PM - 0400PM;C21;harsh.pathak.temp@gmail.com;Advance Topics in Mobile Computing;Booking
+04/03/2018;15:46:13;04/03/2018;0800PM - 0830PM;C21;harsh.pathak.hp@gmail.com;Advanced Operating Systems;Booking
+04/03/2018;15:46:13;04/03/2018;0830PM - 0900PM;C21;harsh.pathak.hp@gmail.com;Advanced Operating Systems;Booking
+04/03/2018;15:46:13;04/03/2018;0900PM - 0930PM;C21;harsh.pathak.hp@gmail.com;Advanced Operating Systems;Booking
+04/03/2018;15:50:05;04/03/2018;0130PM - 0200PM;C21;harsh.pathak.hp@gmail.com;Advanced Internet of Things;Booking
+04/03/2018;15:50:05;04/03/2018;0200PM - 0230PM;C21;harsh.pathak.hp@gmail.com;Advanced Internet of Things;Booking

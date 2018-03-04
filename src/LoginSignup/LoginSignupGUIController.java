@@ -24,6 +24,7 @@ import java.util.List;
 
 import javax.swing.JOptionPane;
 
+import AdminReservation.AdminReservationGUIController;
 import HelperClasses.*;
 import javafx.scene.input.KeyEvent;
 import org.apache.http.HttpEntity;
@@ -222,6 +223,7 @@ public class LoginSignupGUIController {
 	
 	@FXML
 	public void initialize() {
+		AdminReservationGUIController.admin_email_used = null;
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		double width = screenSize.getWidth();
         double height = screenSize.getHeight();
