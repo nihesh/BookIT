@@ -169,11 +169,9 @@ public class NotifyController {
         if(answer == false){
             return;
         }
-        //System.out.println(label.getText());
         Notification del_notification = null;
         ArrayList<Notification> notifications = u.getNotifications(false);
         for (Notification nots: notifications) {
-           // System.out.println(nots.toString());
             if(nots.toString().equals(label.getText())){
                 del_notification = nots;
             }

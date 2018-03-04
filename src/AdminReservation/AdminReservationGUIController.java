@@ -917,7 +917,7 @@ public class AdminReservationGUIController implements Initializable{
         ArrayList<Reservation> acceptList = new ArrayList<>();
         ArrayList<Reservation> rejectList = new ArrayList<>();
         while(!b1[i].getText().equals("")){
-            if(b1[i].getText().equals("Del")) {
+            if(!b1[i].getText().equals("Del")) {
                 rejectList.add(currentRequest.get(i));
             }
             else{

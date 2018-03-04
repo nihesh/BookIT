@@ -320,6 +320,7 @@ public class StudentReservationGUIController implements Initializable{
             keywordTokens.add(word);
         }
         ArrayList<String> items = Student.searchCourse(keywordTokens, false);
+        items.sort(String::compareTo);
         int i=0;
         while(i<items.size()){
             courseLabels.add(new CheckBox());
@@ -355,8 +356,14 @@ public class StudentReservationGUIController implements Initializable{
                 selectedCourses.add(courseLabels.get(i).getText());
             }
         }
+        Boolean failed = false;
         for(int i=0;i<selectedCourses.size();i++){
-            activeUser.addCourse(selectedCourses.get(i), false);
+            if(!activeUser.addCourse(selectedCourses.get(i), false)){
+                failed = true;
+            }
+        }
+        if(failed){
+            Notification.throwAlert("Error","Some courses could not be added due to timetable clash");
         }
         activeUser.setActiveUser();
         loadCourses();

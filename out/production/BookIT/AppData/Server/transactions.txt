@@ -152,3 +152,14 @@ Date;Time;Booking Date;Booking Slot;Room;User;Purpose;Type
 03/03/2018;16:14:48;03/03/2018;0830AM - 0900AM;C02;asknihesh1999@gmail.com;Advance Topics in Mobile Computing;Cancellation
 =======
 >>>>>>> 534d8705a301d6c57307b7ec52dfd68cc9e92141
+03/03/2018;21:03:16;03/03/2018;0930AM - 1000AM;C02;asknihesh1999@gmail.com;Abstract Algebra-I;Booking
+03/03/2018;21:03:16;03/03/2018;1000AM - 1030AM;C02;asknihesh1999@gmail.com;Abstract Algebra-I;Booking
+03/03/2018;21:24:29;03/03/2018;1200PM - 1230PM;C02;asknihesh1999@gmail.com;Advance Topics in Mobile Computing;Booking
+03/03/2018;21:24:29;03/03/2018;1230PM - 0100PM;C02;asknihesh1999@gmail.com;Advance Topics in Mobile Computing;Booking
+03/03/2018;21:24:31;03/03/2018;1200PM - 1230PM;C13;asknihesh1999@gmail.com;Abstract Algebra-I;Booking
+03/03/2018;21:24:31;03/03/2018;1230PM - 0100PM;C13;asknihesh1999@gmail.com;Abstract Algebra-I;Booking
+03/03/2018;21:24:33;03/03/2018;1200PM - 1230PM;C24;asknihesh1999@gmail.com;Abstract Algebra-I;Booking
+03/03/2018;21:24:33;03/03/2018;1230PM - 0100PM;C24;asknihesh1999@gmail.com;Abstract Algebra-I;Booking
+03/03/2018;21:40:32;03/03/2018;0700PM - 0730PM;C02;asknihesh1999@gmail.com;Abstract Algebra-I;Booking
+03/03/2018;21:40:32;03/03/2018;0730PM - 0800PM;C02;asknihesh1999@gmail.com;Abstract Algebra-I;Booking
+03/03/2018;21:40:35;03/03/2018;0700PM - 0730PM;C13;asknihesh1999@gmail.com;Abstract Algebra-I;Booking
