@@ -972,20 +972,20 @@ class ConnectionHandler implements Runnable{
                     if(!(notification.getReservationStamp().equals(room_res.getCreationDate()))){
                         return false;
                     }
-                    if(course != null){
-                        Reservation course_res = room.getSchedule(date)[slot];
-                        if(!(notification.getReservationStamp().equals(course_res.getCreationDate()))){
-                            return false;
-                        }
-                    }
             }
         }
+        String group = null;
+        LocalDateTime creationDate = null;
         for (LocalDate date: targetDates) {
             for (Integer slot: time_slots) {
+                Reservation room_res = room.getSchedule(date)[slot];
+                if(room_res!=null){
+                    group = room_res.getTopGroup();
+                    creationDate = room_res.getCreationDate();
+                }
                 room.deleteReservation(date, slot, cancelledBy);
-                if(course != null){
-                    Reservation course_res = room.getSchedule(date)[slot];
-                    course.deleteReservation(date, slot, course_res.getTopGroup(), course_res.getCreationDate());
+                if(course != null && room_res!=null){
+                    course.deleteReservation(date, slot, group, creationDate);
                 }
             }
         }

@@ -1267,6 +1267,7 @@ public class AdminReservationGUIController implements Initializable{
     public void pullDownReservationPane(){
         startDate.setValue(activeDate);
         endDate.setValue(activeDate);
+        validateBulkBookingDate();
         courseBooking.setVisible(false);
         otherBooking.setVisible(false);
         preBooking.setVisible(true);
@@ -1492,13 +1493,6 @@ public class AdminReservationGUIController implements Initializable{
         if(reservation == null){
             return;
         }
-        mon.setSelected(true);
-        tue.setSelected(true);
-        wed.setSelected(true);
-        thu.setSelected(true);
-        fri.setSelected(true);
-        sat.setSelected(true);
-        sun.setSelected(true);
         selection.clear();
         updateClassStatus(action);
         classEvent = action;

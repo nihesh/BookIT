@@ -429,14 +429,18 @@ public class Course implements java.io.Serializable{
      * @param group the group for which reservation should be cancelled
      */
     public void deleteReservation(LocalDate date, int slot, String group, LocalDateTime creationTime){
+        System.out.println("hi");
         Reservation r = Schedule.get(date)[slot];
+        System.out.println("hi");
         r.deleteGroup(group, creationTime);
+        System.out.println("hi");
         if(r.getGroups().size() == 0){
             Schedule.get(date)[slot] = null;
         }
         else {
             Schedule.get(date)[slot] = r;
         }
+        System.out.println("hi");
     }
     
 }
