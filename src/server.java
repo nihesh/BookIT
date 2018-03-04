@@ -494,7 +494,7 @@ class ConnectionHandler implements Runnable{
                 reservation.removeRequestFlag();
                 x.add(reservation.getReservationSlot());
                 TimeSlots += Reservation.getSlotRange(reservation.getReservationSlot())+"\n";
-                temp.addReservation(reservation.getTargetDate(), reservation.getReservationSlot(), reservation);
+                temp.addReservation(reservation.getTargetDate(), reservation.getReservationSlot(), reservation, null);
                 temp.deleteRequest(reservation.getReserverEmail(), reservation.getTargetDate(), reservation.getReservationSlot());
                 if(ctemp!=null) {
                     ctemp.addReservation(reservation.getTargetDate(), reservation.getReservationSlot(), reservation);
@@ -603,7 +603,11 @@ class ConnectionHandler implements Runnable{
                 if (addToCourse) {
                     course.addReservation(start, time_slots.get(i), r2);
                 }
-                room.addReservation(start, time_slots.get(i), r2);
+                if(admin_email != null){
+                room.addReservation(start, time_slots.get(i), r2, admin_email);}
+                else{
+                    room.addReservation(start, time_slots.get(i), r2, null);
+                }
             }
         }
         Notification n = new Notification("Classroom Booking", "Done", reservation.getMessage(), reservation.getCourseName(), date, reservation.getRoomName(), reservation.getReserverEmail(),time_slots, reservation.getCreationDate());

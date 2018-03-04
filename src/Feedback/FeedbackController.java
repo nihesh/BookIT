@@ -5,6 +5,8 @@ import HelperClasses.BookITconstants;
 import HelperClasses.Notification;
 import HelperClasses.User;
 import javafx.animation.TranslateTransition;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.control.Button;
@@ -47,6 +49,19 @@ public class FeedbackController {
         rootPane.setScaleX(scaleWidth);
         rootPane.setScaleY(scaleHeight);
         User x=User.getActiveUser();
+        comments.lengthProperty().addListener(new ChangeListener<Number>() {
+
+            @Override
+            public void changed(ObservableValue<? extends Number> observable,
+                                Number oldValue, Number newValue) {
+                if (newValue.intValue() > oldValue.intValue()) {
+                    if (comments.getText().length() >= 250) {
+
+                        comments.setText(comments.getText().substring(0, 250));
+                    }
+                }
+            }
+        });
     }
     @FXML
     private void submit(){
@@ -55,7 +70,7 @@ public class FeedbackController {
             if(rate < 0 || rate > 10){
                 throw new Exception();
             }
-            if(sendRating(rate, comments.getText().trim().substring(0,min(4000,comments.getText().trim().length())), false)){
+            if(sendRating(rate, comments.getText().trim(), false)){
                 TranslateTransition rocket_up = new TranslateTransition(Duration.millis(1000), rocket);
                 rocket_up.setByY(-1.0 * secondPane.getHeight());
                 rocket_up.setCycleCount(1);

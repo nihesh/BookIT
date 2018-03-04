@@ -1,5 +1,7 @@
 package HelperClasses;
 
+import AdminReservation.AdminReservationGUIController;
+
 import java.io.*;
 import java.net.Socket;
 import java.time.LocalDate;
@@ -353,18 +355,26 @@ public class Room implements java.io.Serializable{
      * @param r the reservation object
      * @return true if successful, false otherwise
      */
-    public Boolean addReservation(LocalDate date, int slot, Reservation r){
+    public Boolean addReservation(LocalDate date, int slot, Reservation r, String doneby_email){
         if(Schedule.get(date)[slot] == null){
             r.setTargetDate(date);
             Schedule.get(date)[slot] = r;
             DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy;HH:mm:ss");
             DateTimeFormatter dtf2 = DateTimeFormatter.ofPattern("dd/MM/yyyy");
             LocalDateTime now = LocalDateTime.now();
-            if(r.getCourseName().equals("")){
-                BookITconstants.writeTransaction(dtf.format(now) + ";" + dtf2.format(r.getTargetDate())+";"+Reservation.getSlotRange(r.getReservationSlot()) + ";" + r.getRoomName() + ";" + r.getReserverEmail() + ";" + r.getPurpose()+";Booking");
+            if(doneby_email != null) {
+                if (r.getCourseName().equals("")) {
+                    BookITconstants.writeTransaction(dtf.format(now) + ";" + dtf2.format(r.getTargetDate()) + ";" + Reservation.getSlotRange(r.getReservationSlot()) + ";" + r.getRoomName() + ";" + doneby_email + ";" + r.getPurpose() + ";Booking");
+                } else {
+                    BookITconstants.writeTransaction(dtf.format(now) + ";" + dtf2.format(r.getTargetDate()) + ";" + Reservation.getSlotRange(r.getReservationSlot()) + ";" + r.getRoomName() + ";" + doneby_email + ";" + r.getCourseName() + ";Booking");
+                }
             }
-            else {
-                BookITconstants.writeTransaction(dtf.format(now) + ";" + dtf2.format(r.getTargetDate())+";"+Reservation.getSlotRange(r.getReservationSlot()) + ";" + r.getRoomName() + ";" + r.getReserverEmail() + ";" + r.getCourseName()+";Booking");
+            else{
+                if (r.getCourseName().equals("")) {
+                    BookITconstants.writeTransaction(dtf.format(now) + ";" + dtf2.format(r.getTargetDate()) + ";" + Reservation.getSlotRange(r.getReservationSlot()) + ";" + r.getRoomName() + ";" + r.getReserverEmail() + ";" + r.getPurpose() + ";Booking");
+                } else {
+                    BookITconstants.writeTransaction(dtf.format(now) + ";" + dtf2.format(r.getTargetDate()) + ";" + Reservation.getSlotRange(r.getReservationSlot()) + ";" + r.getRoomName() + ";" + r.getReserverEmail() + ";" + r.getCourseName() + ";Booking");
+                }
             }
             return true;
         }
