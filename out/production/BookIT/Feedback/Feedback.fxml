@@ -74,7 +74,7 @@
          <children>
             <Label fx:id="Success" styleClass="fontB" text="SUCCESS!!!" textFill="#5e3a00" visible="false">
                <StackPane.margin>
-                  <Insets top="300.0" />
+                  <Insets left="60.0" top="300.0" />
                </StackPane.margin>
                <font>
                   <Font name="Comic Sans MS" size="18.0" />
@@ -117,7 +117,7 @@
       </StackPane>
       <StackPane maxHeight="280.0" maxWidth="600.0" minHeight="280.0" minWidth="600.0" prefHeight="280.0" prefWidth="600.0" translateX="-30.0" translateY="20.0">
          <children>
-            <TextArea fx:id="comments" maxHeight="160.0" maxWidth="370.0" prefHeight="200.0" prefWidth="417.0" promptText="Comments(Optional)">
+            <TextArea fx:id="comments" maxHeight="160.0" maxWidth="370.0" prefHeight="200.0" prefWidth="417.0" promptText="Comments(Optional) - max 250 characters">
                <StackPane.margin>
                   <Insets left="180.0" right="50.0" top="100.0" />
                </StackPane.margin>

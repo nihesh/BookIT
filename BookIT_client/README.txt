@@ -14,16 +14,16 @@ sudo apt-get install oracle-java8-installer
 
 Setup procedure for linux systems
 
-Run BookIT executable to open the application. Ensure that the application is executed from the executable's 
-directory
+Change directory into project root folder and execute the BookIT executable. 
 
-Setup procedure for windows systems
+Opening procedure for windows systems
 
 Double click BookIT.exe to open the application
 
-Setup procedure for mac systems
+Opening procedure for mac systems
 
-Double click BookIT.jar file to execute the application using java jar executor
+Double click BookIT.jar file to execute the application using java jar executor. The app must be added to
+the computer's trusted applications list
 
 --------------------------------------------------------------------------------------------------------------
 

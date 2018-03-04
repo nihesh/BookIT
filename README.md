@@ -9,6 +9,8 @@ Refer to README.txt in BookIT - client and BookIT - server to set up the applica
 
 FEATURES DISABLED
 	- Spam Filter 		: Inaccurate predictions
+	- Course collisions	: Don't enable. Might not work properly
+	- Join code 		: Google auth is being used
 
 VM Details
 
@@ -19,4 +21,5 @@ password - To@0L]d9
 ISSUES
 	- noreply email from iiitd
 	- Cap the size of input sent to server to prevent network overflow on server
+	- Updating notification count
 	
