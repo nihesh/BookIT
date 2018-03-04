@@ -359,7 +359,7 @@ class ConnectionHandler implements Runnable{
         temp.serialize();
         Course c=Course.deserializeCourse(r.getCourseName());
         if(c!=null) {
-            c.deleteReservation(queryDate, slotID,r.getTopGroup());
+            c.deleteReservation(queryDate, slotID,r.getTopGroup(), r.getCreationDate());
             c.serialize();
         }
         ArrayList<LocalDate> target_date = new ArrayList<>();
@@ -570,7 +570,7 @@ class ConnectionHandler implements Runnable{
         for(LocalDate temp2 : date){
             for (int i = 0; i < time_slots.size(); i++) {
                 if (addToCourse) {
-                    if (!(course.checkReservation(temp2, time_slots.get(i), reservation) == true && room.checkReservation(temp2, time_slots.get(i), reservation) == true)) {
+                    if ((course.checkInternalCollision(reservation) == true && room.checkReservation(temp2, time_slots.get(i), reservation) == true)) {
                         return false;
                     }
                 } else {
@@ -645,7 +645,7 @@ class ConnectionHandler implements Runnable{
         Room room = Room.deserializeRoom(r.get(0).getRoomName());
         if(c!=null){
             for(int i=0;i<r.size();i++){
-                if(!c.checkReservation(r.get(i).getTargetDate(), r.get(i).getReservationSlot(),r.get(i))){
+                if(c.checkInternalCollision(r.get(i))){
                     return false;
                 }
             }
@@ -738,7 +738,7 @@ class ConnectionHandler implements Runnable{
         if(c!=null) {
             if(c.getInstructorEmail() != null) {
                 h.put(c.getInstructorEmail(), 1);}
-            c.deleteReservation(queryDate, slotID,r.getTopGroup());
+            c.deleteReservation(queryDate, slotID,r.getTopGroup(), r.getCreationDate());
             c.serialize();
         }
         ArrayList<Integer> slot= new ArrayList<Integer>();
@@ -973,7 +973,7 @@ class ConnectionHandler implements Runnable{
                         return false;
                     }
                     if(course != null){
-                        Reservation course_res = course.getSchedule(date)[slot];
+                        Reservation course_res = room.getSchedule(date)[slot];
                         if(!(notification.getReservationStamp().equals(course_res.getCreationDate()))){
                             return false;
                         }
@@ -984,8 +984,8 @@ class ConnectionHandler implements Runnable{
             for (Integer slot: time_slots) {
                 room.deleteReservation(date, slot, cancelledBy);
                 if(course != null){
-                    Reservation course_res = course.getSchedule(date)[slot];
-                    course.deleteReservation(date, slot, course_res.getTopGroup());
+                    Reservation course_res = room.getSchedule(date)[slot];
+                    course.deleteReservation(date, slot, course_res.getTopGroup(), course_res.getCreationDate());
                 }
             }
         }

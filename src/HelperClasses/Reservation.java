@@ -18,7 +18,9 @@ public class Reservation implements java.io.Serializable{
     public String facultyEmail;
     public String type;
     public ArrayList<String> groups;
+    public ArrayList<String> groupPurpose;
     public ArrayList<String> groupVenue;
+    public ArrayList<LocalDateTime> groupTimeStamp;
     public LocalDateTime creationDate;
     public LocalDate targetDate;
     public String room;
@@ -28,6 +30,9 @@ public class Reservation implements java.io.Serializable{
 
     public void setCreationDate(LocalDateTime creationDate) {
         this.creationDate = creationDate;
+        for(int i=0;i<groupTimeStamp.size();i++){
+            groupTimeStamp.set(i, creationDate);
+        }
     }
 
     public void setSlotID(int slotID) {
@@ -41,7 +46,9 @@ public class Reservation implements java.io.Serializable{
         r.facultyEmail = this.facultyEmail;
         r.type = this.type;
         r.groups = (ArrayList<String>)this.groups.clone();
+        r.groupPurpose = (ArrayList<String>)this.groupPurpose.clone();
         r.groupVenue = (ArrayList<String>)this.groupVenue.clone();
+        r.groupTimeStamp = (ArrayList<LocalDateTime>)this.groupTimeStamp.clone();
         r.creationDate = this.creationDate;
         r.targetDate = this.targetDate;
         r.room = this.room;
@@ -72,12 +79,16 @@ public class Reservation implements java.io.Serializable{
         this.facultyEmail = facultyEmail;
         this.room = room;
         this.creationDate = LocalDateTime.now();
-        this.groups = new ArrayList<String>();
-        this.groupVenue = new ArrayList<String>();
+        this.groups = new ArrayList<>();
+        this.groupVenue = new ArrayList<>();
+        this.groupPurpose = new ArrayList<>();
+        this.groupTimeStamp = new ArrayList<>();
         for(int i=0;i<group.size();i++) {
             this.groups.add(group.get(i));
             this.groupVenue.add(room);
+            this.groupPurpose.add(type);
             this.message.add(Message);
+            this.groupTimeStamp.add(this.creationDate);
         }
         this.isRequest = false;
     }
@@ -179,16 +190,17 @@ public class Reservation implements java.io.Serializable{
      * delete a group from a reservation. Results in removing a student group from that reservation
      * @param g a String that describes the group
      */
-    public void deleteGroup(String g){
+    public void deleteGroup(String g, LocalDateTime creationTimeStamp){
         int i=0;
         for(;i<groups.size();i++){
-            if(groups.get(i).equals(g)){
-                break;
+            if(groups.get(i).equals(g) && groupTimeStamp.get(i).equals(creationTimeStamp)){
+                groups.remove(i);
+                groupVenue.remove(i);
+                message.remove(i);
+                groupPurpose.remove(i);
+                groupTimeStamp.remove(i);
             }
         }
-        groups.remove(i);
-        groupVenue.remove(i);
-        message.remove(i);
     }
     /**
      * returns the top group for which reservation is made
@@ -237,7 +249,7 @@ public class Reservation implements java.io.Serializable{
             else
                 actualMessage+="Group   : "+groups.get(i)+"\n";
             actualMessage+="Venue   : "+groupVenue.get(i)+"\n";
-            actualMessage+="Purpose : "+reservationPurpose+"\n";
+            actualMessage+="Purpose : "+groupPurpose.get(i)+"\n";
             actualMessage+=message.get(i)+"\n";
         }
         return actualMessage;
@@ -272,12 +284,14 @@ public class Reservation implements java.io.Serializable{
      * @param venue the venue of the group
      * @param message message describing the reservation
      */
-    public void addGroup(ArrayList<String> group, String venue, String message){
+    public void addGroup(ArrayList<String> group, String venue, String message, Reservation r){     // r contains first 3 parameters, but it's being passed for clarity
         for(int i=0; i<group.size();i++) {
             this.groups.add(group.get(i));
+            this.groupVenue.add(venue);
+            this.message.add(message);
+            this.groupPurpose.add(r.getPurpose());
+            this.groupTimeStamp.add(r.getCreationDate());
         }
-        this.groupVenue.add(venue);
-        this.message.add(message);
     }
     /**
      * returns name of the room

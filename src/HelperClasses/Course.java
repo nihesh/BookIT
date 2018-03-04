@@ -4,6 +4,7 @@ import java.io.*;
 import java.net.Socket;
 import java.net.SocketAddress;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -412,44 +413,12 @@ public class Course implements java.io.Serializable{
         }
         else{
             r.setTargetDate(date);
-            if(Schedule.get(date)[slot].getCourseName().equals(r.getCourseName()) && checkReservation(date, slot, r)){
-                Schedule.get(date)[slot].addGroup(r.getGroups(), r.getVenueName(), r.getMessageWithoutVenue());
+            if(Schedule.get(date)[slot].getCourseName().equals(r.getCourseName()) && !checkInternalCollision(r)){
+                Schedule.get(date)[slot].addGroup(r.getGroups(), r.getVenueName(), r.getMessageWithoutVenue(), r);
                 return true;
             }
             else {
                 return false;
-            }
-        }
-    }
-    /**
-     * checks if a particular time slot is reserved for a course object on a date
-     * @param date the date on which reservation has to be checked
-     * @param slot the time slot
-     * @param r the reservation object. see also {@link Reservation}
-     * @return true if the slot is empty else false
-     */
-    public Boolean checkReservation(LocalDate date, int slot, Reservation r){
-        if(Schedule.get(date)[slot] == null){
-            return true;
-        }
-        else{
-            Reservation old = Schedule.get(date)[slot];
-            if(old.getCourseName().equals(r.getCourseName())){
-                if(old.getTopGroup().equals("0")){
-                    return false;
-                }
-                if(r.getTopGroup().equals("0")){
-                    return false;
-                }
-                for(int i=0; i<r.getGroups().size();i++) {
-                    if (old.getGroups().contains(r.getGroups().get(i))) {
-                        return false;
-                    }
-                }
-                return true;
-            }
-            else {
-                return true;
             }
         }
     }
@@ -459,19 +428,14 @@ public class Course implements java.io.Serializable{
      * @param slot the specified time slot(Integer) for which reservation should be cancelled.
      * @param group the group for which reservation should be cancelled
      */
-    public void deleteReservation(LocalDate date, int slot, String group){
-        if(group.equals("0")){
+    public void deleteReservation(LocalDate date, int slot, String group, LocalDateTime creationTime){
+        Reservation r = Schedule.get(date)[slot];
+        r.deleteGroup(group, creationTime);
+        if(r.getGroups().size() == 0){
             Schedule.get(date)[slot] = null;
         }
-        else{
-            Reservation r = Schedule.get(date)[slot];
-            r.deleteGroup(group);
-            if(r.getGroups().size() == 0){
-                Schedule.get(date)[slot] = null;
-            }
-            else {
-                Schedule.get(date)[slot] = r;
-            }
+        else {
+            Schedule.get(date)[slot] = r;
         }
     }
     

@@ -300,7 +300,6 @@ public class AdminReservationGUIController implements Initializable{
             Notification.throwAlert("Notification","Successfully generated bookings.csv and moved it to Downloads folder within the BookIT directory");
         }
         catch(IOException e){
-            System.out.println(e.getMessage());
             System.out.println("IO Exception occurred while downloading requests");
         }
         catch (ClassNotFoundException c){
@@ -393,7 +392,6 @@ public class AdminReservationGUIController implements Initializable{
             Notification.throwAlert("Notification","Successfully generated Report.txt and moved it to Downloads folder within the BookIT directory");
         }
         catch(IOException e){
-            System.out.println(e.getMessage());
             System.out.println("IO Exception occurred while downloading requests");
         }
         catch (ClassNotFoundException c){
@@ -1576,7 +1574,7 @@ public class AdminReservationGUIController implements Initializable{
                 return;
             }
             if (!Admin.checkBulkBooking(activeRoom,chosenSlots, date, false)) {
-                Notification.throwAlert("Error","The requested slots on some of the requested days can't be completed as there is some other confirmed booking in this range");
+                Notification.throwAlert("Error","There's another confirmed booking in the selected range of slots. Try a different range");
                 return;
             }
             currentPurpose = optionDropDown.getSelectionModel().getSelectedItem().toString();
