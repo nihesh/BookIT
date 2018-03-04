@@ -2,8 +2,6 @@ package HelperClasses;
 
 //import com.sun.org.apache.xpath.internal.operations.Bool;
 
-import AdminReservation.AdminReservationGUIController;
-
 import java.io.*;
 import java.net.Socket;
 import java.time.LocalDate;
@@ -320,7 +318,7 @@ public class Admin extends User{
 	 * @param RoomID the room for which reservation has to be cancelled
 	 * @return true if it is cancelled false otherwise
 	 */
-	public boolean cancelBooking(LocalDate queryDate,int slotID,String RoomID, String cancellationMessage, Boolean lock) {
+	public boolean cancelBooking(LocalDate queryDate,int slotID,String RoomID, String cancellationMessage, String admin_email_used,Boolean lock) {
 		try{
 			Socket server = new Socket(BookITconstants.serverIP, BookITconstants.serverPort);
 			ObjectOutputStream out = new ObjectOutputStream(server.getOutputStream());
@@ -342,8 +340,8 @@ public class Admin extends User{
 			out.flush();
 			out.writeObject(cancellationMessage);
 			out.flush();
-			if(AdminReservationGUIController.admin_email_used != null){
-				out.writeObject(AdminReservationGUIController.admin_email_used);
+			if(admin_email_used != null){
+				out.writeObject(admin_email_used);
 			}
 			else{
 			out.writeObject(emailID.getEmailID());
