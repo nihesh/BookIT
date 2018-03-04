@@ -274,7 +274,7 @@ public class StudentReservationGUIController implements Initializable{
                 Notification.throwAlert("Information Dialog", "There are no new notifications");
                 return;
             }
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../Notification/Notify.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Notification/Notify.fxml"));
             Parent root1 = (Parent) fxmlLoader.load();
             Stage stage = new Stage();
             File file = new File("./src/BookIT_icon.jpg");
@@ -1094,7 +1094,7 @@ public class StudentReservationGUIController implements Initializable{
     @FXML
     public void launchFeedbackController(){
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../Feedback/Feedback.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Feedback/Feedback.fxml"));
             Parent root1 = (Parent) fxmlLoader.load();
             Stage stage = new Stage();
             File file = new File("./src/BookIT_icon.jpg");

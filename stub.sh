@@ -8,4 +8,4 @@ fi
 exec "$java" $java_args -jar $MYSELF "$@"
 exit 1
 
-# cat stub.sh PROJECT.jar > PROJECT.run && chmod +x PROJECT.run
+# cat stub.sh ./BookIT_client/OSX/BookIT.jar > ./BookIT_client/Linux/BookIT && chmod +x ./BookIT_client/Linux/BookIT
