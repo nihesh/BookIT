@@ -19,7 +19,4 @@ password - To@0L]d9
 ISSUES
 	- noreply email from iiitd
 	- Cap the size of input sent to server to prevent network overflow on server
-	- Check student TT consistency after removing collisions (associate timestamps)
-	- Booking report incorrect
-	- Verify requests report
 	
