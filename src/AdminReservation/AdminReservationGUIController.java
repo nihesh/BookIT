@@ -508,7 +508,7 @@ public class AdminReservationGUIController implements Initializable{
         leftPane.setDisable(false);
         rightPane.setDisable(false);
         mainPane.setDisable(false);
-        activeUser.cancelBooking(activeDate,Reservation.getSlotID(currentlyShowingSlot),activeRoom, cancelMessageText.getText().substring(0,min(400, cancelMessageText.getText().length())), false);
+        activeUser.cancelBooking(activeDate,Reservation.getSlotID(currentlyShowingSlot),activeRoom, cancelMessageText.getText().substring(0,min(400, cancelMessageText.getText().length())), admin_email_used,false);
         Button current = slotButtons.get(Reservation.getSlotID(currentlyShowingSlot));
         current.setDisable(false);
         current.setText("Free");
