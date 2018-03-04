@@ -1,7 +1,1 @@
 Date;Time;Booking Date;Booking Slot;Room;User;Purpose;Type
-04/03/2018;13:58:24;04/03/2018;0900PM - 0930PM;C01;asknihesh1999@gmail.com;Abstract Algebra-I;Booking
-04/03/2018;13:58:24;04/03/2018;0930PM - 1000PM;C01;asknihesh1999@gmail.com;Abstract Algebra-I;Booking
-04/03/2018;13:58:26;04/03/2018;0900PM - 0930PM;C12;asknihesh1999@gmail.com;Abstract Algebra-I;Booking
-04/03/2018;13:58:26;04/03/2018;0930PM - 1000PM;C12;asknihesh1999@gmail.com;Abstract Algebra-I;Booking
-04/03/2018;13:58:28;04/03/2018;0900PM - 0930PM;C23;asknihesh1999@gmail.com;Abstract Algebra-I;Booking
-04/03/2018;13:58:28;04/03/2018;0930PM - 1000PM;C23;asknihesh1999@gmail.com;Abstract Algebra-I;Booking
