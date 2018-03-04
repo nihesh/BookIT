@@ -25,6 +25,8 @@ public class FeedbackController {
     @FXML
     private StackPane rootPane;
     @FXML
+    private StackPane secondPane;
+    @FXML
     private TextArea comments;
     @FXML
     private TextField rating;
@@ -55,7 +57,7 @@ public class FeedbackController {
             }
             if(sendRating(rate, comments.getText().trim().substring(0,min(4000,comments.getText().trim().length())), false)){
                 TranslateTransition rocket_up = new TranslateTransition(Duration.millis(1000), rocket);
-                rocket_up.setByY(-1.0 * rootPane.getHeight());
+                rocket_up.setByY(-1.0 * secondPane.getHeight());
                 rocket_up.setCycleCount(1);
                 rocket_up.setAutoReverse(true);
                 rocket_up.play();

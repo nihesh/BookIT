@@ -240,10 +240,6 @@ public class Reservation implements java.io.Serializable{
     public String getMessage(){
         String actualMessage="";
         for(int i=0;i<message.size();i++){
-            String reservationPurpose = this.type;
-            if(this.type.equals("")){
-                reservationPurpose = "N/A";
-            }
             if(groups.get(i).equals("0"))
                 actualMessage+="Group: All groups\n";
             else
