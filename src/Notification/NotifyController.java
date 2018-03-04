@@ -4,6 +4,8 @@ import AdminReservation.AdminReservationGUIController;
 import HelperClasses.Admin;
 import HelperClasses.BookITconstants;
 //import com.sun.jmx.remote.security.NotificationAccessController;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -113,10 +115,23 @@ public class NotifyController {
             notificationPane.getChildren().add(l);
             if(!(!((data.get(i).contains("Classroom Booking") && data.get(i).contains("Done")) || (data.get(i).contains("Room Reservation Request") && data.get(i).contains("Accepted"))))){
                 TextField reason_delete = new TextField();
-                reason_delete.setPromptText("Reason for cancellation(Mandatory)");
+                reason_delete.setPromptText("Reason for cancellation(Mandatory) max - 200 characters");
                 Button but = new Button();
                 but.setText("Delete Booking");
                 if(AdminReservationGUIController.admin_email_used != null) {
+                    reason_delete.lengthProperty().addListener(new ChangeListener<Number>() {
+
+                        @Override
+                        public void changed(ObservableValue<? extends Number> observable,
+                                            Number oldValue, Number newValue) {
+                            if (newValue.intValue() > oldValue.intValue()) {
+                                if (reason_delete.getText().length() >= 200) {
+
+                                    reason_delete.setText(reason_delete.getText().substring(0, 200));
+                                }
+                            }
+                        }
+                    });
                     notificationPane.getChildren().add(reason_delete);
                 }
                 but.setOnMouseClicked(new EventHandler<MouseEvent>() {
