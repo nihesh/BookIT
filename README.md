@@ -22,4 +22,5 @@ ISSUES
 	- noreply email from iiitd
 	- Cap the size of input sent to server to prevent network overflow on server
 	- Updating notification count
+	- Mention version in about app page
 	

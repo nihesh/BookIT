@@ -13,9 +13,9 @@ Option - 1
 
 -> While setting up for the first time, the following command needs to be executed
 
-./BookIT.sh  <ServerIP>  <ServerPort> (or) sh BookIT.sh  <ServerIP>  <ServerPort>  
+./Server.sh  <ServerIP>  <ServerPort> (or) sh Server.sh  <ServerIP>  <ServerPort>  
 
--> Once server IP and port are set-up, the server can be started normally using ./BookIT.sh (or) sh BookIT.sh
+-> Once server IP and port are set-up, the server can be started normally using ./Server.sh (or) sh Server.sh
 
 Option - 2
 
@@ -33,10 +33,10 @@ Once the setup is done, the jar file can be executed directly using Java 1.8+
 
 Resetting the databases to initial state:
 
-Database can be reset using Reset.jar. However, the server must be running in parallel when this jar file is 
+Database can be reset using Setup.jar. However, the server must be running in parallel when this jar file is 
 executed, else an error is thrown!
 
-Database can also be reset using ./Reset.sh or sh Reset.sh commands on linux. However, the server must be 
+Database can also be reset using ./Setup.sh or sh Setup.sh commands on linux. However, the server must be 
 running in parallel when this command is executed, else an error is thrown!
 
 Before resetting the server, admin must ensure that all the files in ./src/AppData/StaticTimeTable are filled up properly
