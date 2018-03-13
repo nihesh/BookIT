@@ -89,7 +89,7 @@ public class FacultyReservationGUIController implements Initializable{
     @FXML
     private StackPane roomGridPane;
     @FXML
-    private StackPane classStatus, slotInfoPane, changePasswordPane, listCoursesPane;
+    private StackPane classStatus, slotInfoPane, changePasswordPane, listCoursesPane, daysCheckPane;
     @FXML
     private ImageView classStatusBG, slotStatusBG, changePasswordBG, cancelSlotBookingImage;
     @FXML
@@ -127,6 +127,10 @@ public class FacultyReservationGUIController implements Initializable{
     private StackPane preBooking, courseBooking, otherBooking, HolidayMessage, BlockedDayMessage;
     @FXML
     private TextField purposeBox;
+    @FXML
+    private CheckBox mon, tue, wed, thu, fri, sat, sun;
+    @FXML
+    private DatePicker startDate, endDate;
 
     private String currentPurpose;
     private LocalDate activeDate;
