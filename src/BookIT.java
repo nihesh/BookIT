@@ -19,7 +19,7 @@ import java.net.Socket;
  *
  */
 public class BookIT extends Application{
-    public static final double BookITversion = 1.2;
+    public static final double BookITversion = 1.3;
 	/**
 	 * launches the login/signup gui
 	 * @param primaryStage stage object
@@ -143,7 +143,7 @@ public class BookIT extends Application{
     	ServerSocket ss = null;
     	int compatibilityCheck = CheckCompatibility(BookITversion, false);
         if(compatibilityCheck == 0){
-            Notification.throwAlert("Launch Error", "You are currently using BookIT v"+BookITversion+". Please download the latest version of BookIT");
+            Notification.throwAlert("Version Outdated Error", "You are currently using BookIT v"+BookITversion+". Kindly download the latest version of BookIT");
             return;
         }
         else if(compatibilityCheck == 2){

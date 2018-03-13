@@ -261,7 +261,6 @@ public class AdminReservationGUIController implements Initializable{
         cancelSlotBookingImage.setImage(image);
         joinCodeDropDown.getItems().add("Student");
         joinCodeDropDown.getItems().add("Faculty");
-        // joinCodeDropDown.getItems().add("Admin"); // Only one admin user
         joinCodeDropDown.getSelectionModel().selectFirst();
         joinCodeDropDown.setStyle("-fx-font-size : 13pt;-fx-background-color: #922B21;");
         loadDate();
@@ -1402,10 +1401,7 @@ public class AdminReservationGUIController implements Initializable{
         if(!activeUser.bookRoom(date, slots, listOfReservations.get(0),admin_email_used ,false)){
             failure = true;
         }
-        if(!failure){
-            ;
-        }
-        else{
+        if(failure){
             Notification.throwAlert("Booking Failed", "Some bookings couldn't be completed. Kindly check notifications for successful bookings");
         }
         closeReservationPane();

@@ -146,6 +146,7 @@ public class FacultyReservationGUIController implements Initializable{
     private ArrayList<CheckBox> courseLabels = new ArrayList<>();
     private LocalDate StartDate;
     private LocalDate EndDate;
+    private ArrayList<LocalDate> date;
     private static int animation = 200;
     private Boolean holiday;
     private Boolean blockedday;
@@ -213,6 +214,8 @@ public class FacultyReservationGUIController implements Initializable{
         optionDropDown.setValue("Course");
 
         datePicker.setEditable(false);
+        startDate.setEditable(false);
+        endDate.setEditable(false);
         datePicker.setValue(LocalDate.now());
         Callback<DatePicker, DateCell> dayCellFactory = dp -> new DateCell()
         {
@@ -229,6 +232,8 @@ public class FacultyReservationGUIController implements Initializable{
             }
         };
         datePicker.setDayCellFactory(dayCellFactory);
+        startDate.setDayCellFactory(dayCellFactory);
+        endDate.setDayCellFactory(dayCellFactory);
         datePicker.setValue(LocalDate.now());
         activeDate=LocalDate.now();
         listCoursesBG.setImage(image);
@@ -857,6 +862,9 @@ public class FacultyReservationGUIController implements Initializable{
      * Booking confirmation pane appears
      */
     public void pullDownReservationPane(){
+        startDate.setValue(activeDate);
+        endDate.setValue(activeDate);
+        validateBulkBookingDate();
         courseBooking.setVisible(false);
         otherBooking.setVisible(false);
         preBooking.setVisible(true);
@@ -989,8 +997,153 @@ public class FacultyReservationGUIController implements Initializable{
         ParallelTransition inParallel = new ParallelTransition(appear, appearBookBtn, appearBackBtn);
         inParallel.play();
     }
+    public void validateBulkBookingDate(){
+        LocalDate start = startDate.getValue();
+        LocalDate end = endDate.getValue();
+        if(start == null || end == null){
+            return;
+        }
+        if(end.isBefore(start)){
+            end = start;
+            endDate.setValue(start);
+        }
+        mon.setDisable(true);
+        tue.setDisable(true);
+        wed.setDisable(true);
+        thu.setDisable(true);
+        fri.setDisable(true);
+        sat.setDisable(true);
+        sun.setDisable(true);
+        mon.setSelected(false);
+        tue.setSelected(false);
+        wed.setSelected(false);
+        thu.setSelected(false);
+        fri.setSelected(false);
+        sat.setSelected(false);
+        sun.setSelected(false);
+        Boolean init = false;
+        int counter = 1;
+        while(!start.isAfter(end) && counter<=7){
+            counter+=1;
+            switch (start.getDayOfWeek().toString().toLowerCase()){
+                case "monday":
+                    if(!init){
+                        init = true;
+                        mon.setSelected(true);
+                    }
+                    else{
+                        mon.setSelected(false);
+                    }
+                    mon.setDisable(false);
+                    break;
+                case "tuesday":
+                    if(!init){
+                        init = true;
+                        tue.setSelected(true);
+                    }
+                    else{
+                        tue.setSelected(false);
+                    }
+                    tue.setDisable(false);
+                    break;
+                case "wednesday":
+                    if(!init){
+                        init = true;
+                        wed.setSelected(true);
+                    }
+                    else{
+                        wed.setSelected(false);
+                    }
+                    wed.setDisable(false);
+                    break;
+                case "thursday":
+                    if(!init){
+                        init = true;
+                        thu.setSelected(true);
+                    }
+                    else{
+                        thu.setSelected(false);
+                    }
+                    thu.setDisable(false);
+                    break;
+                case "friday":
+                    if(!init){
+                        init = true;
+                        fri.setSelected(true);
+                    }
+                    else{
+                        fri.setSelected(false);
+                    }
+                    fri.setDisable(false);
+                    break;
+                case "saturday":
+                    if(!init){
+                        init = true;
+                        sat.setSelected(true);
+                    }
+                    else{
+                        sat.setSelected(false);
+                    }
+                    sat.setDisable(false);
+                    break;
+                case "sunday":
+                    if(!init){
+                        init = true;
+                        sun.setSelected(true);
+                    }
+                    else{
+                        sun.setSelected(false);
+                    }
+                    sun.setDisable(false);
+                    break;
+            }
+            start = start.plusDays(1);
+        }
+    }
     public void preBookingProceed(){
         try {
+            if(startDate.getValue().isAfter(endDate.getValue())){
+                Notification.throwAlert("Error","Start Date is after End Date");
+                return;
+            }
+            ArrayList<Integer> daysSelected = new ArrayList<>();
+            if(mon.isSelected()){
+                daysSelected.add(1);
+            }
+            if(tue.isSelected()){
+                daysSelected.add(2);
+            }
+            if(wed.isSelected()){
+                daysSelected.add(3);
+            }
+            if(thu.isSelected()){
+                daysSelected.add(4);
+            }
+            if(fri.isSelected()){
+                daysSelected.add(5);
+            }
+            if(sat.isSelected()){
+                daysSelected.add(6);
+            }
+            if(sun.isSelected()){
+                daysSelected.add(7);
+            }
+            date = new ArrayList<>();
+            LocalDate temp = LocalDate.of(startDate.getValue().getYear(), startDate.getValue().getMonth(), startDate.getValue().getDayOfMonth());
+            while(!temp.isAfter(endDate.getValue())){
+                if(daysSelected.contains(temp.getDayOfWeek().getValue())){
+                    date.add(temp);
+                }
+                temp = temp.plusDays(1);
+            }
+            if(date.size() == 0){
+                Notification.throwAlert("Error", "No date has been selected. All the days in the selected date range will be booked");
+                return;
+            }
+            if (!Admin.checkBulkBooking(activeRoom,chosenSlots, date, false)) {
+                Notification.throwAlert("Error","There's another confirmed booking in the selected range of slots. Try a different range");
+                return;
+            }
             currentPurpose = optionDropDown.getSelectionModel().getSelectedItem().toString();
             preBooking.setVisible(false);
             if(currentPurpose.equals("Course")){
@@ -1012,7 +1165,6 @@ public class FacultyReservationGUIController implements Initializable{
     public void bookingCompleted1(){
         String chosenCourse;
         ArrayList<String> chosenGroup = new ArrayList<>();
-        Course courseObject = null;
         try {
             chosenCourse = courseDropDown.getSelectionModel().getSelectedItem().toString();
         }
@@ -1056,25 +1208,16 @@ public class FacultyReservationGUIController implements Initializable{
             r.setCreationDate(creat_time);
             r.setReserverEmail(activeUser.getEmail().getEmailID());
             listOfReservations.add(r);
-        }                                                   // GUI Integration Ends
-        ArrayList<LocalDate> date = new ArrayList<>();
+        }                                                   // GUI Integration Ends=
         ArrayList<Integer> slots = new ArrayList<>();
         Boolean failure = false;
-        System.out.println(listOfReservations.size());
         for(int i=0;i<listOfReservations.size();i++){
-            if(i > 0 && date.get(date.size() - 1).isEqual(listOfReservations.get(i).getTargetDate())){}
-            else{
-                date.add(listOfReservations.get(i).getTargetDate());
-            }
             slots.add(listOfReservations.get(i).getReservationSlot());
         }
         if(!activeUser.bookRoom(date, slots, listOfReservations.get(0), false)){
             failure = true;
         }
-        if(!failure){
-            ;
-        }
-        else{
+        if(failure){
             Notification.throwAlert("Booking Failed", "Some bookings couldn't be completed. Kindly check notifications for successful bookings");
         }
         closeReservationPane();
@@ -1103,13 +1246,8 @@ public class FacultyReservationGUIController implements Initializable{
             r.setReserverEmail(activeUser.getEmail().getEmailID());
             listOfReservations.add(r);
         }
-        ArrayList<LocalDate> date = new ArrayList<>();
         ArrayList<Integer> slots = new ArrayList<>();
         for(int i=0;i<listOfReservations.size();i++){
-            if(i > 0 && date.get(date.size() - 1).isEqual(listOfReservations.get(i).getTargetDate())){}
-            else{
-                date.add(listOfReservations.get(i).getTargetDate());
-            }
             slots.add(listOfReservations.get(i).getReservationSlot());
         }
         if(!activeUser.bookRoom(date, slots, listOfReservations.get(0), false)){
