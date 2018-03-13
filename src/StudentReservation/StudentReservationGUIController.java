@@ -1247,6 +1247,9 @@ public class StudentReservationGUIController implements Initializable{
                 }
             }
         }
+        if(blockedday){
+            Notification.throwAlert("Message", "The bookings for the rooms on this date have been blocked by Admin.");
+        }
         induceDelay(appearAfter_HoverPane);
         HoverPane.setVisible(true);
         HoverPane.setDisable(false);
