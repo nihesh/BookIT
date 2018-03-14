@@ -162,30 +162,6 @@ public class User implements Serializable{
 		}
 		return true;
 	}
-	public void mailPass(Boolean lock){
-		try {
-			Socket server = new Socket(BookITconstants.serverIP, BookITconstants.serverPort);
-			ObjectOutputStream out = new ObjectOutputStream(server.getOutputStream());
-			ObjectInputStream in = new ObjectInputStream(server.getInputStream());
-			if(lock){
-				out.writeObject("Hold");
-			}
-			else{
-				out.writeObject("Pass");
-			}
-			out.flush();
-			out.writeObject("mailPass");
-			out.flush();
-			out.writeObject(this.emailID.getEmailID());
-			out.flush();
-			out.close();
-			in.close();
-			server.close();
-		}
-		catch (IOException e){
-			System.out.println("IO exception occurred while writing to server");
-		}
-	}
 	public static String getUserType(String email, Boolean lock){
 		try {
 			Socket server = new Socket(BookITconstants.serverIP, BookITconstants.serverPort);
@@ -245,30 +221,6 @@ public class User implements Serializable{
 			System.out.println("Class not found exception occurred while getting user type");
 		}
 		return true; // Error! Block the day
-	}
-	public void generatePass(Boolean lock){
-		try {
-			Socket server = new Socket(BookITconstants.serverIP, BookITconstants.serverPort);
-			ObjectOutputStream out = new ObjectOutputStream(server.getOutputStream());
-			ObjectInputStream in = new ObjectInputStream(server.getInputStream());
-			if(lock){
-				out.writeObject("Hold");
-			}
-			else{
-				out.writeObject("Pass");
-			}
-			out.flush();
-			out.writeObject("generatePass");
-			out.flush();
-			out.writeObject(this.emailID.getEmailID());
-			out.flush();
-			out.close();
-			in.close();
-			server.close();
-		}
-		catch (IOException e){
-			System.out.println("IO exception occurred while writing to server");
-		}
 	}
 	/**
 	 * returns a user object from the database by using the user email

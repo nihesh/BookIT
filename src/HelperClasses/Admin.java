@@ -34,77 +34,7 @@ public class Admin extends User{
 	public Admin(String name, String password, Email emailID, String userType) {
 		super(name,password,emailID,userType);
 	}
-	/**
-	 * used to access all the joincodes of the users. 
-	 * Joincodes qre used to determine the usertype of a user who is signing up. 
-	 * joincode is similar to license key here
-	 * @param lock takes a lock on server if set to true
-	 * @return returns hashmap of all joincodes. The value(Int) refers to 2 values, 0 or 1 
-	 * @throws FileNotFoundException file doesn't exist
-	 * @throws IOException Io exception
-	 * @throws ClassNotFoundException de-serialize issue 
-	 */
-	public static Boolean containsJoinCode(String joinCode, Boolean lock){
-		try {
-			Socket server = new Socket(BookITconstants.serverIP, BookITconstants.serverPort);
-			ObjectOutputStream out = new ObjectOutputStream(server.getOutputStream());
-			ObjectInputStream in = new ObjectInputStream(server.getInputStream());
-			if(lock){
-				out.writeObject("Hold");
-			}
-			else{
-				out.writeObject("Pass");
-			}
-			out.flush();
-			out.writeObject("containsJoinCode");
-			out.flush();
-			out.writeObject(joinCode);
-			out.flush();
-			Boolean result = (Boolean) in.readObject();
-			out.close();
-			in.close();
-			server.close();
-			return  result;
-		}
-		catch (FileNotFoundException fe){
-			System.out.println("File not found exception occured while getting request");
-		}
-		catch (ClassNotFoundException ce){
-			System.out.println("Class not found exception occured while getting request");
-		}
-		catch (IOException ie){
-			System.out.println(ie.getMessage());
-			System.out.println("IOException occured while getting request");
-		}
-		return null;
-	}
-	public static void removeJoinCode(String joinCode, Boolean lock){
-		try {
-			Socket server = new Socket(BookITconstants.serverIP, BookITconstants.serverPort);
-			ObjectOutputStream out = new ObjectOutputStream(server.getOutputStream());
-			ObjectInputStream in = new ObjectInputStream(server.getInputStream());
-			if(lock){
-				out.writeObject("Hold");
-			}
-			else{
-				out.writeObject("Pass");
-			}
-			out.flush();
-			out.writeObject("removeJoinCode");
-			out.flush();
-			out.writeObject(joinCode);
-			out.flush();
-			out.close();
-			in.close();
-			server.close();
-		}
-		catch (FileNotFoundException fe){
-			System.out.println("File not found exception occured while getting request");
-		}
-		catch (IOException ie){
-			System.out.println("IOException occured while getting request");
-		}
-	}
+
 	public void softResetServer(Boolean lock){
 		try {
 			Socket server = new Socket(BookITconstants.serverIP, BookITconstants.serverPort);
