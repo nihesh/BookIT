@@ -109,7 +109,7 @@ public class FacultyReservationGUIController implements Initializable{
     @FXML
     private ArrayList<Button> slotButtons;
     @FXML
-    private Label slotInfoFaculty, slotInfoCourse, slotInfoMessage;
+    private Label slotInfoFaculty, slotInfoCourse, slotInfoMessage, slotInfoReserver;
     @FXML
     private TextArea requestMessage, requestMessage2;
     @FXML
@@ -673,6 +673,11 @@ public class FacultyReservationGUIController implements Initializable{
                 }
             }
             slotInfoFaculty.setText(facultyName);
+            String reserver = bookings[Reservation.getSlotID(curLabel.getText())].getReserverEmail();
+            if(reserver.equals(BookITconstants.NoReplyEmail)){
+                reserver = "Admin";
+            }
+            slotInfoReserver.setText(reserver);
             if(bookings[Reservation.getSlotID(curLabel.getText())].getCourseName().length()>30) {
                 slotInfoCourse.setText(bookings[Reservation.getSlotID(curLabel.getText())].getCourseName().substring(0,15)+"..."+bookings[Reservation.getSlotID(curLabel.getText())].getCourseName().substring(bookings[Reservation.getSlotID(curLabel.getText())].getCourseName().length()-10,bookings[Reservation.getSlotID(curLabel.getText())].getCourseName().length()));
             }
@@ -693,6 +698,7 @@ public class FacultyReservationGUIController implements Initializable{
             slotInfoFaculty.setText("N/A");
             slotInfoCourse.setText("N/A");
             slotInfoMessage.setText("N/A");
+            slotInfoReserver.setText("N/A");
         }                                                               // GUI-Helper Integration ends
     }
 
@@ -898,7 +904,7 @@ public class FacultyReservationGUIController implements Initializable{
             i++;
         }
         selectedSlotsScrollPane.setPrefSize(494,max(474,50*i));
-        ArrayList<String> allCourses = activeUser.getCourses();
+        ArrayList<String> allCourses = Course.getAllCourses();
         courseDropDown.getItems().clear();
         purposeDropDown.getItems().clear();
         groupDropDown.getItems().clear();
@@ -1173,10 +1179,6 @@ public class FacultyReservationGUIController implements Initializable{
         }
         catch(NullPointerException e){
             Notification.throwAlert("Error","Course Field can't be empty");
-            return;
-        }
-        if(!activeUser.getCourses().contains(chosenCourse)){
-            Notification.throwAlert("Error", "This course can't be chosen! Ensure to choose only those courses available in the drop down box");
             return;
         }
         try {

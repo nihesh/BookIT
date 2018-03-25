@@ -99,7 +99,7 @@ public class AdminReservationGUIController implements Initializable{
     @FXML
     private ArrayList<Button> slotButtons;
     @FXML
-    private Label slotInfoFaculty, slotInfoCourse, slotInfoMessage;
+    private Label slotInfoFaculty, slotInfoCourse, slotInfoMessage, slotInfoReserver;
     @FXML
     private PasswordField oldPass, newPass, renewPass;
     @FXML
@@ -1081,6 +1081,11 @@ public class AdminReservationGUIController implements Initializable{
                 }
             }
             slotInfoFaculty.setText(facultyName);
+            String reserver = bookings[Reservation.getSlotID(curLabel.getText())].getReserverEmail();
+            if(reserver.equals(BookITconstants.NoReplyEmail)){
+                reserver = "Admin";
+            }
+            slotInfoReserver.setText(reserver);
             if(bookings[Reservation.getSlotID(curLabel.getText())].getCourseName().length()>30) {
                 slotInfoCourse.setText(bookings[Reservation.getSlotID(curLabel.getText())].getCourseName().substring(0,15)+"..."+bookings[Reservation.getSlotID(curLabel.getText())].getCourseName().substring(bookings[Reservation.getSlotID(curLabel.getText())].getCourseName().length()-10,bookings[Reservation.getSlotID(curLabel.getText())].getCourseName().length()));
             }
@@ -1094,6 +1099,7 @@ public class AdminReservationGUIController implements Initializable{
             slotInfoFaculty.setText("N/A");
             slotInfoCourse.setText("N/A");
             slotInfoMessage.setText("N/A");
+            slotInfoReserver.setText("N/A");
         }                                                               // GUI-Helper Integration ends
     }
 
