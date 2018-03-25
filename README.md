@@ -1,4 +1,4 @@
-BookITv1.0
+BookITv1.3
 Classroom reservation software for classrooms at IIIT Delhi
 
 BookIT - client : Bundled package for client interface
@@ -11,7 +11,7 @@ FEATURES DISABLED
 	- Spam Filter 		: Inaccurate predictions
 	- Course collisions	: Don't enable. Might not work properly
 	- Join code 		: Google auth is being used
-
+	
 VM Details
 
 IP 192.168.2.103
@@ -20,7 +20,5 @@ password - To@0L]d9
 
 ISSUES
 	- noreply email from iiitd
-	- Cap the size of input sent to server to prevent network overflow on server
-	- Updating notification count
 	- Mention version in about app page
 	
