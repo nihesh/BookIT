@@ -9,6 +9,7 @@ import javafx.animation.FadeTransition;
 import javafx.animation.ParallelTransition;
 import javafx.animation.SequentialTransition;
 import javafx.animation.TranslateTransition;
+import javafx.application.HostServices;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -73,6 +74,7 @@ class SlotComparator implements Comparator<String> {
  *
  */
 public class FacultyReservationGUIController implements Initializable{
+    private HostServices hostservices = null;
     private int appearAfter_HoverPane = 200;
     @FXML
     private StackPane HoverPane;
@@ -1358,4 +1360,21 @@ public class FacultyReservationGUIController implements Initializable{
             });
         }
     }
+    @FXML
+    private void openManual(){
+        File file = new File("./src/AppData/Manual/manual.pdf");
+        if(file.exists() == false){
+            Notification.throwAlert("Error", "Unable to open the pdf");
+            return;
+        }
+        if(hostservices != null){
+            hostservices.showDocument(file.getAbsolutePath());
+        }
+
+    }
+    public void setHostservices(HostServices hostservices) {
+        this.hostservices = hostservices;
+    }
+
+
 }

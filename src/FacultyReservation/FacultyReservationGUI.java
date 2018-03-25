@@ -22,11 +22,14 @@ public class FacultyReservationGUI extends Application {
     @Override
     public void start(Stage primaryStage){
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("FacultyReservation.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("FacultyReservation.fxml"));
+            Parent root = loader.load();
             File file = new File("./src/BookIT_icon.jpg");
             primaryStage.getIcons().add(new Image(file.toURI().toString()));
             User activeUser = (User) User.getActiveUser();
             primaryStage.setTitle("BookIT - "+activeUser.getEmail().getEmailID());
+            FacultyReservationGUIController controller = loader.getController();
+            controller.setHostservices(getHostServices());
             Rectangle2D visualBounds = Screen.getPrimary().getVisualBounds();
             double width = visualBounds.getWidth();
             double height = visualBounds.getHeight();

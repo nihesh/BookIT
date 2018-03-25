@@ -10,6 +10,7 @@ import javafx.animation.FadeTransition;
 import javafx.animation.ParallelTransition;
 import javafx.animation.SequentialTransition;
 import javafx.animation.TranslateTransition;
+import javafx.application.HostServices;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -60,6 +61,7 @@ class SlotComparator implements Comparator<String>{
 }
 
 public class AdminReservationGUIController implements Initializable{
+    private HostServices hostservices = null;
 	public static String admin_email_used = null;
     private int appearAfter_HoverPane = 200;
     @FXML
@@ -329,6 +331,18 @@ public class AdminReservationGUIController implements Initializable{
         catch (Exception e){
             System.out.println("Exception occurred while loading feedback fxml");
         }
+    }
+    @FXML
+    public void openManual(){
+        File file = new File("./src/AppData/Manual/manual.pdf");
+        if(file.exists() == false){
+            Notification.throwAlert("Error", "Unable to open the pdf");
+            return;
+        }
+        if(hostservices != null){
+            hostservices.showDocument(file.getAbsolutePath());
+        }
+
     }
     /**
      * Event handler for downloading list of pending and active student requests
@@ -1672,4 +1686,9 @@ public class AdminReservationGUIController implements Initializable{
             });
         }
     }
+    public void setHostservices(HostServices hostservices) {
+        this.hostservices = hostservices;
+    }
+
+
 }

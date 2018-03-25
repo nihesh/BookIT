@@ -21,10 +21,13 @@ public class StudentReservationGUI extends Application {
     @Override
     public void start(Stage primaryStage){
         try{
-            Parent root = FXMLLoader.load(getClass().getResource("StudentReservation.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("StudentReservation.fxml"));
+            Parent root = loader.load();
             File file = new File("./src/BookIT_icon.jpg");
             primaryStage.getIcons().add(new Image(file.toURI().toString()));
             User activeUser = (User) User.getActiveUser();
+            StudentReservationGUIController controller = loader.getController();
+            controller.setHostservices(getHostServices());
             primaryStage.setTitle("BookIT - "+activeUser.getEmail().getEmailID());
             primaryStage.setMaximized(true);
             primaryStage.setResizable(true);

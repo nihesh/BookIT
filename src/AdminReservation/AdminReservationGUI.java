@@ -24,7 +24,8 @@ public class AdminReservationGUI extends Application {
     @Override
     public void start(Stage primaryStage){
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("AdminReservation.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("AdminReservation.fxml"));
+            Parent root = loader.load();
             File file = new File("./src/BookIT_icon.jpg");
             primaryStage.getIcons().add(new Image(file.toURI().toString()));
             User activeUser = (User) User.getActiveUser();
@@ -34,6 +35,8 @@ public class AdminReservationGUI extends Application {
             else {
                 primaryStage.setTitle("BookIT - " + activeUser.getEmail().getEmailID());
             }
+            AdminReservationGUIController controller = loader.getController();
+            controller.setHostservices(getHostServices());
             Rectangle2D visualBounds = Screen.getPrimary().getVisualBounds();
             double width = visualBounds.getWidth();
             double height = visualBounds.getHeight();
