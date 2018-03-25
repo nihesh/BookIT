@@ -12,12 +12,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
-import java.net.ServerSocket;
-import java.net.Socket;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.net.URL;
-import java.net.URLConnection;
+import java.net.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -98,6 +93,16 @@ public class LoginSignupGUIController {
 			}
 		default:
 			break;
+		}
+	}
+	public static boolean pingHost(String host, int port, int timeout){
+		try{
+			Socket socket = new Socket();
+			socket.connect(new InetSocketAddress(host, port),  timeout);
+			return true;
+		}
+		catch(IOException e){
+			return false;
 		}
 	}
 	@FXML
@@ -252,7 +257,12 @@ public class LoginSignupGUIController {
 		GPane.setVisible(true);
 		e=browser.getEngine();
 		e.load(PortListener.webURL1);
-		PortListener p= new PortListener();	
+		PortListener p= new PortListener();
+		if(pingHost("www.google.com", 80, 2000) == false){
+			Notification.throwAlert("Error", "It seems that your internet connection is slow or not working. Please try again");
+			Close();
+			return;
+		}
 	}
 	@FXML
 	/**
