@@ -1286,6 +1286,20 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1039">
           <caret line="84" column="25" lean-forward="true" selection-start-line="84" selection-start-column="25" selection-end-line="84" selection-end-column="25" />
+          <folding>
+            <element signature="e#417#426#0" expanded="false" />
+            <element signature="e#3150#3165#0" expanded="false" />
+            <element signature="e#3225#3241#0" expanded="false" />
+            <element signature="e#3714#3740#0" expanded="false" />
+            <element signature="e#5490#5516#0" expanded="false" />
+            <element signature="e#6127#6153#0" expanded="false" />
+            <element signature="e#9577#9592#0" expanded="false" />
+            <element signature="e#9652#9668#0" expanded="false" />
+            <element signature="e#16404#16420#0" expanded="false" />
+            <element signature="e#17296#17312#0" expanded="false" />
+            <element signature="e#18176#18192#0" expanded="false" />
+            <element signature="e#19052#19069#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1293,6 +1307,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1584">
           <caret line="33" column="50" lean-forward="false" selection-start-line="33" selection-start-column="50" selection-end-line="33" selection-end-column="50" />
+          <folding />
         </state>
       </provider>
     </entry>
