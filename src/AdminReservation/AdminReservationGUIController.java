@@ -12,6 +12,7 @@ import javafx.animation.SequentialTransition;
 import javafx.animation.TranslateTransition;
 import javafx.application.HostServices;
 import javafx.application.Platform;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -23,10 +24,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyCodeCombination;
-import javafx.scene.input.KeyCombination;
+import javafx.scene.input.*;
 import javafx.scene.layout.*;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -45,6 +43,8 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.*;
+
+import static java.lang.Math.ceil;
 import static java.lang.Math.max;
 import static java.lang.Math.min;
 
@@ -64,6 +64,9 @@ public class AdminReservationGUIController implements Initializable{
     private HostServices hostservices = null;
 	public static String admin_email_used = null;
     private int appearAfter_HoverPane = 200;
+
+    @FXML
+    private GridPane roomGrid;
     @FXML
     private StackPane HoverPane;
     @FXML
@@ -123,6 +126,7 @@ public class AdminReservationGUIController implements Initializable{
     private ArrayList<LocalDate> date;
     @FXML
     private VBox notificationOverviewBox;
+
 
     private String currentPurpose;
     private LocalDate activeDate;
@@ -266,8 +270,33 @@ public class AdminReservationGUIController implements Initializable{
         joinCodeDropDown.getSelectionModel().selectFirst();
         joinCodeDropDown.setStyle("-fx-font-size : 13pt;-fx-background-color: #922B21;");
         loadDate();
+        generateRoomTableGUI();
     }
-
+    public void generateRoomTableGUI(){
+        ArrayList<String> roomlist = Room.getRoomList(false);
+        roomGrid.setAlignment(Pos.CENTER);
+        roomGrid.setPrefHeight(((double)349/(double)5)*ceil((double)roomlist.size()/(double)4));
+        int i=0,j=0;
+        while(4*i+j<roomlist.size()){
+            while(4*i+j<roomlist.size() && j<4){
+                Button temp = new Button();
+                temp.setText(roomlist.get(4*i+j));
+                temp.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent event) {
+                        openBooking(event);
+                    }
+                });
+                temp.getStylesheets().add("./AdminReservation/button.css");
+                temp.setPrefWidth(225);
+                temp.setPrefHeight(54);
+                roomGrid.add(temp,j,i);
+                j++;
+            }
+            j=0;
+            i++;
+        }
+    }
     /**
      * Event handler for downloading a csv of all completed bookings so far
      */

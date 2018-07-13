@@ -5,6 +5,7 @@ import java.net.Socket;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 /** The Room class for modeling schedule of various venue of courses
@@ -28,6 +29,37 @@ public class Room implements java.io.Serializable{
             }
         }
         return output;
+    }
+    public static ArrayList<String> getRoomList(Boolean lock){
+        try {
+            Socket server = new Socket(BookITconstants.serverIP, BookITconstants.serverPort);
+            ObjectOutputStream out = new ObjectOutputStream(server.getOutputStream());
+            ObjectInputStream in = new ObjectInputStream(server.getInputStream());
+            if(lock){
+                out.writeObject("Hold");
+            }
+            else{
+                out.writeObject("Pass");
+            }
+            out.flush();
+            out.writeObject("getRoomList");
+            out.flush();
+            ArrayList<String> roomlist = (ArrayList<String>) in.readObject();
+            out.close();
+            in.close();
+            server.close();
+            return roomlist;
+        }
+        catch (FileNotFoundException fe){
+            System.out.println("File not found exception occured while getting room list");
+        }
+        catch (ClassNotFoundException c){
+            System.out.println("Class not found exception while getting room list");
+        }
+        catch (IOException ie){
+            System.out.println("IOException occured while getting room list");
+        }
+        return null;
     }
     public static Reservation[] getPendingReservations(String email, LocalDate date, String room, Boolean lock){
         try {

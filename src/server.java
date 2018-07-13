@@ -1049,6 +1049,23 @@ class ConnectionHandler implements Runnable{
         server.loadHolidaysList();
         server.loadBlockedDaysList();
     }
+    ArrayList<String> sendRoomList(){
+        File roomfile = new File("./src/AppData/StaticTimeTable/RoomData.csv");
+        ArrayList<String> roomlist = new ArrayList<>();
+        try {
+            Scanner readroom = new Scanner(new BufferedReader(new FileReader(roomfile)));
+            readroom.useDelimiter(",|\\n");
+            readroom.nextLine();
+            while(readroom.hasNext()){
+                roomlist.add(readroom.next().trim());
+                readroom.next();
+            }
+            return roomlist;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return null;
+    }
     public void run(){
         server.noOfConnections++;
         ObjectInputStream in=null;
@@ -1095,6 +1112,20 @@ class ConnectionHandler implements Runnable{
                 LinkedList<ArrayList<Reservation> > req;
                 String cancelledBy;
                 switch (request) {
+                    case "getRoomList":
+                        if(!status.equals("Pass")) {
+                            lock.lockInterruptibly();
+                        }
+                        ArrayList<String> roomlist = sendRoomList();
+                        if(lock.isLocked() && lock.isHeldByCurrentThread()){
+                            System.out.print("[ "+LocalDateTime.now()+" ] ");
+                            System.out.println(connection.getInetAddress().toString() + " | ServerLock Released");
+                            lock.unlock();
+                        }
+                        out.writeObject(roomlist);
+                        out.flush();
+                        break;
+
                     case "GetUser":
                         email = (String) in.readObject();
                         u = null;
