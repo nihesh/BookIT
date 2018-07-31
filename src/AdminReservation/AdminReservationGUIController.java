@@ -277,6 +277,7 @@ public class AdminReservationGUIController implements Initializable{
         roomGrid.setAlignment(Pos.CENTER);
         roomGrid.setPrefHeight(((double)349/(double)5)*ceil((double)roomlist.size()/(double)4));
         int i=0,j=0;
+        roomGrid.setVgap(20);
         while(4*i+j<roomlist.size()){
             while(4*i+j<roomlist.size() && j<4){
                 Button temp = new Button();
