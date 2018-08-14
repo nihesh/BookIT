@@ -1,5 +1,0 @@
-Students are able to classify basic signal representation; continuous time and discrete-time signals
-Students are able to determine the response of an LTI system to continuous-time or discrete-time input signals.
-Students are able to represent both continuous-time and discrete-time periodic signals as Fourier series.
- Students are able to analyze continuous-time signals and systems using Fourier transform and Laplace transform.
-Students are able to analyze discrete-time signals and systems using discrete-time Fourier transform and Z-transform.

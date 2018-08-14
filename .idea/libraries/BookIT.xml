@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="BookIT">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/BookIT_client/OSX/BookIT.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

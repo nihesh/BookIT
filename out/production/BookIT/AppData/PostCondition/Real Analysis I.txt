@@ -1,3 +1,0 @@
-Students are familiar with the real number system, can determine convergence-divergence of sequences and series, and are able to construct epsilon-delta proofs related to limits and continuity.
-Students are familiar with the concepts of differentiation and integration and are able to apply the methods of single-variable calculus. 
-Students are able to apply concepts of continuity, differentiability, extrema and integrability of multivariable functions and evaluate various integrals (line, double, triple and surface integrals).

@@ -1,5 +1,0 @@
-Be able to read, interpret and write some basic mathematical notation(s).
-be able to recognize and/or construct examples of mathematical objects introduced during the course, such as the sets and functions.
-have been introduced to several mathematical models, (e.g. propositional logic, trees) including some of those underlying computing and information technology
-have had the opportunity to develop capacity in knowing what constitutes a valid argument, and in constructing valid arguments/proofs
-have had an opportunity to develop the problem-solving skills 

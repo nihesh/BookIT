@@ -1,5 +1,8 @@
-BookITv1.3
+BookITv1.4
 Classroom reservation software for classrooms at IIIT Delhi
+
+Changelog:
+Added more rooms to the list
 
 BookIT - client : Bundled package for client interface
 BookIT - server : Bundled package for server interface

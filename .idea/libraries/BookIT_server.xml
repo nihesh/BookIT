@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="BookIT_server">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/BookIT_server/Setup.jar!/" />
+      <root url="jar://$PROJECT_DIR$/BookIT_server/Server.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

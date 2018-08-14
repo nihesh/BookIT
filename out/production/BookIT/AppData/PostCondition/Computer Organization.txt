@@ -1,4 +1,0 @@
-Write program in assembly language(RISC ISA) - Compare performance between several implementations of a computer program.
-Analyse processor performance for different implementation strategies : eg. single vs. multicycle,pipelined vs. non-pipelined execution.
-Simulate and compare performance of cache memory,compare caches with different configuration.
-Analyse basic I/O operation and their performance.

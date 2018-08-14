@@ -1,8 +1,12 @@
 ------------------------------------------------------------------------------------------------------------
 
-										BOOKIT Client Application (V1.3)
+										BOOKIT Client Application (V1.4)
 
 ------------------------------------------------------------------------------------------------------------
+
+CHANGELOG:
+
+Added more rooms to the list
 
 DEPENDENCIES:
 Oracle java8 jdk is required: 

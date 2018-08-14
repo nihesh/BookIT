@@ -256,7 +256,7 @@ public class StudentReservationGUIController implements Initializable{
                         openBooking(event);
                     }
                 });
-                temp.getStylesheets().add("./AdminReservation/button.css");
+                temp.getStylesheets().add("/AdminReservation/button.css");
                 temp.setPrefWidth(225);
                 temp.setPrefHeight(54);
                 roomGrid.add(temp,j,i);
