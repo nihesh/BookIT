@@ -208,8 +208,8 @@ Elective,ECO321,Econometrics I,Gaurav Arora,4,ECO,Friday,0230PM,0400PM,0,Lecture
 Elective,MGT310,Effective Supply Chain Management for E-Commerce,Sanjiva Dubey(G),4,SCM,Tuesday,0400PM,0530PM,0,Lecture,C03
 Elective,MGT310,Effective Supply Chain Management for E-Commerce,Sanjiva Dubey(G),4,SCM,Friday,0400PM,0530PM,0,Lecture,C03
 Elective,ESC205A,Environmnetal Sciences,Akash Sondhi(G),2,EVS,Friday,0400PM,0530PM,1,Lecture,C11
-Elective,DES303,Film Making and Radio Podcasting,Manohar Khushalani (V),4,FMRP,Tuesday,0930AM,1100AM,0,Lecture,C02/317
-Elective,DES303,Film Making and Radio Podcasting,Manohar Khushalani (V),4,FMRP,Thursday,0930AM,1100AM,0,Lecture,C02/317
+Elective,DES303,Film Making and Radio Podcasting,Manohar Khushalani (V),4,FMRP,Tuesday,0930AM,1100AM,0,Lecture,C02
+Elective,DES303,Film Making and Radio Podcasting,Manohar Khushalani (V),4,FMRP,Thursday,0930AM,1100AM,0,Lecture,C02
 Elective,CSE345/CSE545,Foundations of Computer Security,Arun Balaji,4,FCS,Monday,1130AM,0100PM,0,Lecture,C02
 Elective,CSE345/CSE545,Foundations of Computer Security,Arun Balaji,4,FCS,Thursday,1130AM,0100PM,0,Lecture,C02
 Elective,ECO331,Foundations of Finance,Pankaj Vajpayee(V),4,FF,Wednesday,1130AM,0100PM,0,Lecture,C21
@@ -305,7 +305,7 @@ Mandatory,CSE112,Computer Organization,G S Visweswaran(V),4,CO,Friday,0900AM,100
 Mandatory,CSE234,Computer Architecture and Operating Systems,Naveen Prakash(V),4,CAOS,Wednesday,0300PM,0400PM,1,Tutorial,LR1
 Mandatory,CSE234,Computer Architecture and Operating Systems,Naveen Prakash(V),4,CAOS,Wednesday,0300PM,0400PM,1,Tutorial,C11
 Mandatory,PSY201,Introduction to Psychology,Psy,Thursday,Psy,Thursday,0300PM,0400PM,2,Tutorial,C12
-Elective,MTH371,Stochastic Processes and Applicaitions,SPA,Thursday,SPA,Thursday,0900AM,1000AM,0,Tutorial,C02
+Elective,MTH371,Stochastic Processes and Applicaitions,SPA,Monday,SPA,Monday,0900AM,1000AM,0,Tutorial,C02
 Elective,DES5XX,Information System in Public Health,Drishti Sharma(V),4,ISPH,Tuesday,1000AM,1130AM,0,Lecture,C13
 Elective,DES5XX,Information System in Pulic Health,Drishti Sharma(V),4,ISPH,Thursday,1000AM,1130AM,0,Lecture,C13
 Elective,DES5XX,Introduction to 3D Animation,Anoop Ratn(V),2,I3DA,Tuesday,1000AM,1130AM,0,Lecture,B105
