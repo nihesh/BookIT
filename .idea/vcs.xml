@@ -2,6 +2,7 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/BookIT_Server" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/Client_Source" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/Server_Source" vcs="Git" />
   </component>

@@ -27,7 +27,7 @@ public class server {
     /**
      * spam filter object for detecting spam messages
      */
-    public static final double BookITversion = 1.3;
+    public static final double BookITversion = 1.4;
     public static SpamFilter spm;
     public static int noOfConnections = 0;
     public static ExecutorService mailpool = Executors.newFixedThreadPool(2);

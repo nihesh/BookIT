@@ -1,7 +1,0 @@
-To be able to write down formal Mathematical proofs. To be able to describe properties of some special
-numbertheorectic functions and their growth rates.
-To be able to explain properties of numbers of some special forms.
-To be able to describe complete solutions of some special Diophanti ne equationsand to be able to explain insolvability of some special non-linear Diophantineequations.To be able to explain the proof
-of Lagrange's four squares theorem.To be able to explain basic theory of partitions 
-To be able to explain elementary results on distributions of prime numbers
-To be able to apply numbertheoretic techniques to simply computations. 
