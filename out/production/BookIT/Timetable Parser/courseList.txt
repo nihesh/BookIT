@@ -1,0 +1,11 @@
+Core/ Elective;Course Code;Course Name;Instructor;Credit;Accronym;
+Core ;CSE102;Data Structure & Algorithms;Arun Balaji;4;DSA;
+Core ;MTH201;Probability & Statistics;Angshul Majumdar;4;P&S;
+Core ;DES130;Introduction to Engineering Design;Aman Parnami;4;IED;
+Core ;ECE113;Basic Electronics;Vivek Bohara;4;BE;
+SSH Elective;PSY301;Cognitive Psychology;Venkat Ratandeep Suri;4;CP;
+SSH Elective;SOC207;Information Techlnology and Society(New);Amrit Srinivasan;4;ITS;
+SSH Elective;SSH124;Critical Thinking  ;Raj Ayyar (V);4;CT;
+SSH Elective;SSH214;Introdcution to Study of Literature;Honey Jhalani(G);4;Lit;
+SSH Elective;SSH221;Social and Political Philosophy;Shweta Singh(G);4;SPP;
+SSH Elective;SSH321;Applied Ethics(New);Manohar Kumar;4;AE;
