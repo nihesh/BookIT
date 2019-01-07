@@ -1,61 +1,61 @@
 Mandatory/Elective,Course Code,Course Name,Instructor,Credits,Acronym,Day,Start Time,End Time,Group,Message,Venue
-Core,ECE113,Basic Electronics-Vivek Bohara,Vivek Bohara,4,BE,Monday,12:00PM,01:00PM,0,Tutorial,C23
-Core,MTH201,Probability & Statistics-Angshul Majumdar,Angshul Majumdar,4,P&S,Wednesday,02:00PM,03:30PM,0,Tutorial,C24
-Core,CSE102,Data Structure & Algorithms-Arun Balaji,Arun Balaji,4,DSA,Monday,02:00PM,03:30PM,1 2 3 4 5 6,Tutorial,C22
-SSH Elective,SSH321,Applied Ethics(New)-Manohar Kumar,Manohar Kumar,4,AE,Friday,04:00PM,05:30PM,0,Lecture,C01
-SSH Elective,SSH221,Social and Political Philosophy-Shweta Singh(G),Shweta Singh(G),4,SPP,Monday,04:00PM,05:30PM,0,Lecture,A006
-Core,MTH201,Probability & Statistics-Angshul Majumdar,Angshul Majumdar,4,P&S,Wednesday,02:00PM,03:30PM,0,Tutorial,C12
-Core,ECE113,Basic Electronics-Vivek Bohara,Vivek Bohara,4,BE,Friday,02:00PM,04:00PM,1 2 3 4 5 6,Lab,302/303/305
-Core,ECE113,Basic Electronics-Vivek Bohara,Vivek Bohara,4,BE,Monday,12:00PM,01:00PM,0,Tutorial,C22
-Core,ECE113,Basic Electronics-Vivek Bohara,Vivek Bohara,4,BE,Tuesday,10:30AM,11:30AM,0,Lecture,C101
-Core,MTH201,Probability & Statistics-Angshul Majumdar,Angshul Majumdar,4,P&S,Wednesday,02:00PM,03:30PM,0,Tutorial,LR1
-Core,CSE102,Data Structure & Algorithms-Arun Balaji,Arun Balaji,4,DSA,Monday,02:00PM,03:30PM,1 2 3 4 5 6,Tutorial,C13
-Core,DES130,Introduction to Engineering Design-Aman Parnami,Aman Parnami,4,IED,Monday,10:30AM,12:00PM,0,Lecture,B105
-SSH Elective,SSH124,Critical Thinking-Raj Ayyar (V),Raj Ayyar (V),4,CT,Wednesday,04:00PM,05:30PM,0,Lecture,A106
-SSH Elective,PSY301,Cognitive Psychology-Venkat Ratandeep Suri,Venkat Ratandeep Suri,4,CP,Monday,04:00PM,05:30PM,0,Lecture,A007
-SSH Elective,SSH214,Introdcution to Study of Literature-Honey Jhalani(G),Honey Jhalani(G),4,Lit,Friday,04:00PM,05:30PM,0,Lecture,A106
-Core,CSE102,Data Structure & Algorithms-Arun Balaji,Arun Balaji,4,DSA,Friday,09:30AM,10:30AM,0,Lecture,C101
-Core,CSE102,Data Structure & Algorithms-Arun Balaji,Arun Balaji,4,DSA,Friday,02:00PM,04:00PM,7 8,Lab,315
-Core,ECE113,Basic Electronics-Vivek Bohara,Vivek Bohara,4,BE,Monday,12:00PM,01:00PM,0,Tutorial,C03
-Core,ECE113,Basic Electronics-Vivek Bohara,Vivek Bohara,4,BE,Monday,12:00PM,01:00PM,0,Tutorial,C13
-Core,CSE102,Data Structure & Algorithms-Arun Balaji,Arun Balaji,4,DSA,Thursday,02:00PM,04:00PM,1 2 3 4 5 6,Lab,317
-SSH Elective,SOC207,Information Techlnology and Society(New)-Amrit Srinivasan,Amrit Srinivasan,4,ITS,Monday,04:00PM,05:30PM,0,Lecture,C21
-Core,CSE102,Data Structure & Algorithms-Arun Balaji,Arun Balaji,4,DSA,Thursday,02:00PM,04:00PM,1 2 3 4 5 6,Lab,320
-Core,MTH201,Probability & Statistics-Angshul Majumdar,Angshul Majumdar,4,P&S,Tuesday,11:30AM,12:30PM,0,Lecture,C101
-Core,CSE102,Data Structure & Algorithms-Arun Balaji,Arun Balaji,4,DSA,Monday,02:00PM,03:30PM,1 2 3 4 5 6,Tutorial,C03
-Core,DES130,Introduction to Engineering Design-Aman Parnami,Aman Parnami,4,IED,Tuesday,02:00PM,04:00PM,1 2 3 4 5 6,Lab,303
-Core,DES130,Introduction to Engineering Design-Aman Parnami,Aman Parnami,4,IED,Monday,10:30AM,12:00PM,0,Lecture,A106
-SSH Elective,SSH321,Applied Ethics(New)-Manohar Kumar,Manohar Kumar,4,AE,Tuesday,04:00PM,05:30PM,0,Lecture,C01
-Core,MTH201,Probability & Statistics-Angshul Majumdar,Angshul Majumdar,4,P&S,Wednesday,02:00PM,03:30PM,0,Tutorial,C02
-Core,DES130,Introduction to Engineering Design-Aman Parnami,Aman Parnami,4,IED,Wednesday,10:30AM,12:00PM,0,Lecture,A106
-Core,MTH201,Probability & Statistics-Angshul Majumdar,Angshul Majumdar,4,P&S,Wednesday,02:00PM,03:30PM,0,Tutorial,C03
-Core,CSE102,Data Structure & Algorithms-Arun Balaji,Arun Balaji,4,DSA,Monday,02:00PM,03:30PM,1 2 3 4 5 6,Tutorial,C02
-SSH Elective,SSH124,Critical Thinking-Raj Ayyar (V),Raj Ayyar (V),4,CT,Monday,04:00PM,05:30PM,0,Lecture,A106
-Core,MTH201,Probability & Statistics-Angshul Majumdar,Angshul Majumdar,4,P&S,Thursday,10:30AM,11:30AM,0,Lecture,C101
-SSH Elective,SSH221,Social and Political Philosophy-Shweta Singh(G),Shweta Singh(G),4,SPP,Wednesday,04:00PM,05:30PM,0,Lecture,A006
-Core,CSE102,Data Structure & Algorithms-Arun Balaji,Arun Balaji,4,DSA,Thursday,02:00PM,04:00PM,1 2 3 4 5 6,Lab,321
-Core,ECE113,Basic Electronics-Vivek Bohara,Vivek Bohara,4,BE,Monday,12:00PM,01:00PM,0,Tutorial,C214
-Core,CSE102,Data Structure & Algorithms-Arun Balaji,Arun Balaji,4,DSA,Friday,02:00PM,04:00PM,7 8,Lab,316
-Core,ECE113,Basic Electronics-Vivek Bohara,Vivek Bohara,4,BE,Monday,12:00PM,01:00PM,0,Tutorial,C216
-Core,DES130,Introduction to Engineering Design-Aman Parnami,Aman Parnami,4,IED,Monday,02:00PM,04:00PM,7 8,Lab,302
-Core,CSE102,Data Structure & Algorithms-Arun Balaji,Arun Balaji,4,DSA,Tuesday,02:00PM,03:30PM,7 8,Tutorial,C02
-Core,MTH201,Probability & Statistics-Angshul Majumdar,Angshul Majumdar,4,P&S,Wednesday,02:00PM,03:30PM,0,Tutorial,C13
-Core,ECE113,Basic Electronics-Vivek Bohara,Vivek Bohara,4,BE,Thursday,11:30AM,12:30PM,0,Lecture,C101
-SSH Elective,SSH214,Introdcution to Study of Literature-Honey Jhalani(G),Honey Jhalani(G),4,Lit,Tuesday,04:00PM,05:30PM,0,Lecture,A106
-Core,DES130,Introduction to Engineering Design-Aman Parnami,Aman Parnami,4,IED,Wednesday,10:30AM,12:00PM,0,Lecture,B105
-Core,CSE102,Data Structure & Algorithms-Arun Balaji,Arun Balaji,4,DSA,Tuesday,02:00PM,03:30PM,7 8,Tutorial,C03
-Core,DES130,Introduction to Engineering Design-Aman Parnami,Aman Parnami,4,IED,Tuesday,02:00PM,04:00PM,1 2 3 4 5 6,Lab,305
-Core,ECE113,Basic Electronics-Vivek Bohara,Vivek Bohara,4,BE,Thursday,02:00PM,04:00PM,7 8,Lab,303
-Core,MTH201,Probability & Statistics-Angshul Majumdar,Angshul Majumdar,4,P&S,Wednesday,02:00PM,03:30PM,0,Tutorial,C22
-Core,CSE102,Data Structure & Algorithms-Arun Balaji,Arun Balaji,4,DSA,Monday,02:00PM,03:30PM,1 2 3 4 5 6,Tutorial,C24
-Core,DES130,Introduction to Engineering Design-Aman Parnami,Aman Parnami,4,IED,Tuesday,02:00PM,04:00PM,1 2 3 4 5 6,Lab,302
-SSH Elective,PSY301,Cognitive Psychology-Venkat Ratandeep Suri,Venkat Ratandeep Suri,4,CP,Wednesday,04:00PM,05:30PM,0,Lecture,A007
-Core,CSE102,Data Structure & Algorithms-Arun Balaji,Arun Balaji,4,DSA,Thursday,09:30AM,10:30AM,0,Lecture,C101
-Core,CSE102,Data Structure & Algorithms-Arun Balaji,Arun Balaji,4,DSA,Monday,02:00PM,03:30PM,1 2 3 4 5 6,Tutorial,C23
-Core,ECE113,Basic Electronics-Vivek Bohara,Vivek Bohara,4,BE,Friday,10:30AM,11:30AM,0,Lecture,C101
-Core,MTH201,Probability & Statistics-Angshul Majumdar,Angshul Majumdar,4,P&S,Friday,11:30AM,12:30PM,0,Lecture,C101
-Core,ECE113,Basic Electronics-Vivek Bohara,Vivek Bohara,4,BE,Monday,12:00PM,01:00PM,0,Tutorial,C24
-Core,CSE102,Data Structure & Algorithms-Arun Balaji,Arun Balaji,4,DSA,Tuesday,09:30AM,10:30AM,0,Lecture,C101
-Core,MTH201,Probability & Statistics-Angshul Majumdar,Angshul Majumdar,4,P&S,Wednesday,02:00PM,03:30PM,0,Tutorial,C23
-SSH Elective,SOC207,Information Techlnology and Society(New)-Amrit Srinivasan,Amrit Srinivasan,4,ITS,Wednesday,04:00PM,05:30PM,0,Lecture,C21
-Core,ECE113,Basic Electronics-Vivek Bohara,Vivek Bohara,4,BE,Monday,12:00PM,01:00PM,0,Tutorial,C215
+SSH Elective,SSH214,Introdcution to Study of Literature-Honey Jhalani(G),Honey Jhalani(G),4,Lit,Friday,0400PM,0530PM,0,Lecture,A106
+Core,MTH201,Probability & Statistics-Angshul Majumdar,Angshul Majumdar,4,P&S,Wednesday,0200PM,0330PM,0,Tutorial,C24
+Core,ECE113,Basic Electronics-Vivek Bohara,Vivek Bohara,4,BE,Thursday,1130AM,1230PM,0,Lecture,C101
+Core,CSE102,Data Structure & Algorithms-Arun Balaji,Arun Balaji,4,DSA,Thursday,0200PM,0400PM,1 2 3 4 5 6,Lab,317
+Core,MTH201,Probability & Statistics-Angshul Majumdar,Angshul Majumdar,4,P&S,Wednesday,0200PM,0330PM,0,Tutorial,C12
+Core,DES130,Introduction to Engineering Design-Aman Parnami,Aman Parnami,4,IED,Tuesday,0200PM,0400PM,1 2 3 4 5 6,Lab,302
+Core,CSE102,Data Structure & Algorithms-Arun Balaji,Arun Balaji,4,DSA,Friday,0200PM,0400PM,7 8,Lab,315
+Core,CSE102,Data Structure & Algorithms-Arun Balaji,Arun Balaji,4,DSA,Friday,0200PM,0400PM,7 8,Lab,316
+Core,ECE113,Basic Electronics-Vivek Bohara,Vivek Bohara,4,BE,Monday,1200PM,0100PM,0,Tutorial,C215
+Core,DES130,Introduction to Engineering Design-Aman Parnami,Aman Parnami,4,IED,Wednesday,1030AM,1200PM,0,Lecture,B105
+SSH Elective,SSH221,Social and Political Philosophy-Shweta Singh(G),Shweta Singh(G),4,SPP,Monday,0400PM,0530PM,0,Lecture,A006
+Core,DES130,Introduction to Engineering Design-Aman Parnami,Aman Parnami,4,IED,Wednesday,1030AM,1200PM,0,Lecture,A106
+Core,ECE113,Basic Electronics-Vivek Bohara,Vivek Bohara,4,BE,Monday,1200PM,0100PM,0,Tutorial,C216
+Core,MTH201,Probability & Statistics-Angshul Majumdar,Angshul Majumdar,4,P&S,Friday,1130AM,1230PM,0,Lecture,C101
+Core,CSE102,Data Structure & Algorithms-Arun Balaji,Arun Balaji,4,DSA,Monday,0200PM,0330PM,1 2 3 4 5 6,Tutorial,C22
+Core,CSE102,Data Structure & Algorithms-Arun Balaji,Arun Balaji,4,DSA,Tuesday,0200PM,0330PM,7 8,Tutorial,C03
+Core,CSE102,Data Structure & Algorithms-Arun Balaji,Arun Balaji,4,DSA,Thursday,0930AM,1030AM,0,Lecture,C101
+SSH Elective,SOC207,Information Techlnology and Society(New)-Amrit Srinivasan,Amrit Srinivasan,4,ITS,Monday,0400PM,0530PM,0,Lecture,C21
+Core,MTH201,Probability & Statistics-Angshul Majumdar,Angshul Majumdar,4,P&S,Wednesday,0200PM,0330PM,0,Tutorial,LR1
+Core,CSE102,Data Structure & Algorithms-Arun Balaji,Arun Balaji,4,DSA,Monday,0200PM,0330PM,1 2 3 4 5 6,Tutorial,C02
+Core,CSE102,Data Structure & Algorithms-Arun Balaji,Arun Balaji,4,DSA,Monday,0200PM,0330PM,1 2 3 4 5 6,Tutorial,C24
+Core,ECE113,Basic Electronics-Vivek Bohara,Vivek Bohara,4,BE,Friday,0200PM,0400PM,1 2 3 4 5 6,Lab,302/303/305
+Core,ECE113,Basic Electronics-Vivek Bohara,Vivek Bohara,4,BE,Tuesday,1030AM,1130AM,0,Lecture,C101
+Core,DES130,Introduction to Engineering Design-Aman Parnami,Aman Parnami,4,IED,Tuesday,0200PM,0400PM,1 2 3 4 5 6,Lab,305
+SSH Elective,SSH214,Introdcution to Study of Literature-Honey Jhalani(G),Honey Jhalani(G),4,Lit,Tuesday,0400PM,0530PM,0,Lecture,A106
+Core,CSE102,Data Structure & Algorithms-Arun Balaji,Arun Balaji,4,DSA,Tuesday,0930AM,1030AM,0,Lecture,C101
+Core,ECE113,Basic Electronics-Vivek Bohara,Vivek Bohara,4,BE,Monday,1200PM,0100PM,0,Tutorial,C23
+Core,DES130,Introduction to Engineering Design-Aman Parnami,Aman Parnami,4,IED,Monday,0200PM,0400PM,7 8,Lab,302
+Core,ECE113,Basic Electronics-Vivek Bohara,Vivek Bohara,4,BE,Monday,1200PM,0100PM,0,Tutorial,C13
+SSH Elective,SSH124,Critical Thinking-Raj Ayyar (V),Raj Ayyar (V),4,CT,Monday,0400PM,0530PM,0,Lecture,A106
+SSH Elective,SSH124,Critical Thinking-Raj Ayyar (V),Raj Ayyar (V),4,CT,Wednesday,0400PM,0530PM,0,Lecture,A106
+Core,CSE102,Data Structure & Algorithms-Arun Balaji,Arun Balaji,4,DSA,Tuesday,0200PM,0330PM,7 8,Tutorial,C02
+Core,ECE113,Basic Electronics-Vivek Bohara,Vivek Bohara,4,BE,Monday,1200PM,0100PM,0,Tutorial,C22
+Core,MTH201,Probability & Statistics-Angshul Majumdar,Angshul Majumdar,4,P&S,Tuesday,1130AM,1230PM,0,Lecture,C101
+Core,MTH201,Probability & Statistics-Angshul Majumdar,Angshul Majumdar,4,P&S,Wednesday,0200PM,0330PM,0,Tutorial,C13
+Core,DES130,Introduction to Engineering Design-Aman Parnami,Aman Parnami,4,IED,Monday,1030AM,1200PM,0,Lecture,B105
+Core,MTH201,Probability & Statistics-Angshul Majumdar,Angshul Majumdar,4,P&S,Wednesday,0200PM,0330PM,0,Tutorial,C02
+Core,MTH201,Probability & Statistics-Angshul Majumdar,Angshul Majumdar,4,P&S,Wednesday,0200PM,0330PM,0,Tutorial,C22
+SSH Elective,SSH321,Applied Ethics(New)-Manohar Kumar,Manohar Kumar,4,AE,Friday,0400PM,0530PM,0,Lecture,C01
+Core,ECE113,Basic Electronics-Vivek Bohara,Vivek Bohara,4,BE,Monday,1200PM,0100PM,0,Tutorial,C24
+Core,CSE102,Data Structure & Algorithms-Arun Balaji,Arun Balaji,4,DSA,Monday,0200PM,0330PM,1 2 3 4 5 6,Tutorial,C03
+Core,MTH201,Probability & Statistics-Angshul Majumdar,Angshul Majumdar,4,P&S,Wednesday,0200PM,0330PM,0,Tutorial,C23
+SSH Elective,SSH221,Social and Political Philosophy-Shweta Singh(G),Shweta Singh(G),4,SPP,Wednesday,0400PM,0530PM,0,Lecture,A006
+SSH Elective,SSH321,Applied Ethics(New)-Manohar Kumar,Manohar Kumar,4,AE,Tuesday,0400PM,0530PM,0,Lecture,C01
+SSH Elective,PSY301,Cognitive Psychology-Venkat Ratandeep Suri,Venkat Ratandeep Suri,4,CP,Monday,0400PM,0530PM,0,Lecture,A007
+Core,DES130,Introduction to Engineering Design-Aman Parnami,Aman Parnami,4,IED,Tuesday,0200PM,0400PM,1 2 3 4 5 6,Lab,303
+Core,ECE113,Basic Electronics-Vivek Bohara,Vivek Bohara,4,BE,Thursday,0200PM,0400PM,7 8,Lab,303
+Core,ECE113,Basic Electronics-Vivek Bohara,Vivek Bohara,4,BE,Monday,1200PM,0100PM,0,Tutorial,C03
+Core,ECE113,Basic Electronics-Vivek Bohara,Vivek Bohara,4,BE,Friday,1030AM,1130AM,0,Lecture,C101
+Core,CSE102,Data Structure & Algorithms-Arun Balaji,Arun Balaji,4,DSA,Monday,0200PM,0330PM,1 2 3 4 5 6,Tutorial,C13
+SSH Elective,PSY301,Cognitive Psychology-Venkat Ratandeep Suri,Venkat Ratandeep Suri,4,CP,Wednesday,0400PM,0530PM,0,Lecture,A007
+Core,CSE102,Data Structure & Algorithms-Arun Balaji,Arun Balaji,4,DSA,Monday,0200PM,0330PM,1 2 3 4 5 6,Tutorial,C23
+Core,MTH201,Probability & Statistics-Angshul Majumdar,Angshul Majumdar,4,P&S,Thursday,1030AM,1130AM,0,Lecture,C101
+SSH Elective,SOC207,Information Techlnology and Society(New)-Amrit Srinivasan,Amrit Srinivasan,4,ITS,Wednesday,0400PM,0530PM,0,Lecture,C21
+Core,MTH201,Probability & Statistics-Angshul Majumdar,Angshul Majumdar,4,P&S,Wednesday,0200PM,0330PM,0,Tutorial,C03
+Core,DES130,Introduction to Engineering Design-Aman Parnami,Aman Parnami,4,IED,Monday,1030AM,1200PM,0,Lecture,A106
+Core,CSE102,Data Structure & Algorithms-Arun Balaji,Arun Balaji,4,DSA,Thursday,0200PM,0400PM,1 2 3 4 5 6,Lab,320
+Core,CSE102,Data Structure & Algorithms-Arun Balaji,Arun Balaji,4,DSA,Thursday,0200PM,0400PM,1 2 3 4 5 6,Lab,321
+Core,CSE102,Data Structure & Algorithms-Arun Balaji,Arun Balaji,4,DSA,Friday,0930AM,1030AM,0,Lecture,C101
+Core,ECE113,Basic Electronics-Vivek Bohara,Vivek Bohara,4,BE,Monday,1200PM,0100PM,0,Tutorial,C214

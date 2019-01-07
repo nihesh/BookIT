@@ -70,6 +70,7 @@ def process_time(t):
 		t+="AM"
 	else:
 		t+="PM"
+	t = t.replace(":","")
 
 	return t
 
