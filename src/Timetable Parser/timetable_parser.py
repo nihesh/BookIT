@@ -1,7 +1,9 @@
 from openpyxl import load_workbook
 from openpyxl import styles
 
-booking = []		# Every row is a 3 tuple, consisting of parseString, start time and end time
+CSV_DATA = set() 	# final data in tuple form that has to be wriiten to csv in that order
+booking = []		# Every row is a 3 tuple, consisting of parseString, start time and end time - per sheet data
+course_description = []		# Per-sheet data
 
 def process_cell_content(s):
 
@@ -15,6 +17,10 @@ def process_cell_content(s):
 	while(s.find("(") != -1):
 		s = s[:s.find("(")]+s[s.find(")")+1:]
 
+	# Invalid Cell
+	if(s.find("~") == -1):
+		return -1
+
 	# Separate out room information from string and remove spaces
 	rooms = s[s.find("~")+1:]
 	rooms = rooms.replace(" ","")
@@ -27,6 +33,7 @@ def process_cell_content(s):
 		if(s!=""):
 			new_list.append(val)
 
+	# Check if the cell corresponds to lab, tut or lecture
 	if(new_list[0].lower() == "lab"):
 		data["type"] = "Lab"
 		new_list.pop(0)
@@ -37,6 +44,15 @@ def process_cell_content(s):
 		data["type"] = "Lecture"
 
 	data["rooms"] = rooms
+	data["group"] = "0"
+	data["course_abbr"] = new_list[0]
+	i = 0
+	while(i<len(new_list) and new_list[i].lower()!="gp"):
+		i+=1
+	if(i!=len(new_list)):
+		data["group"] = new_list[i+1].replace("/"," ")
+		new_list.pop(i)
+		new_list.pop(i)
 
 	# get group info and lecture name
 
@@ -50,7 +66,7 @@ def process_time(t):
 	while(t.find(":")<2):
 		t = "0"+t
 	hours = int(t[:t.find(":")])
-	if(hours >= 7 and hours <= 11):
+	if(hours >= 7 and hours <= 11):	
 		t+="AM"
 	else:
 		t+="PM"
@@ -63,15 +79,53 @@ def process_raw_bookings():
 	Reads booking, converts raw data to a structured format and overwrites the content
 	"""
 
-	global booking
+	global booking, course_description, CSV_DATA
 
 	processed_booking = []
 
 	for entry in booking:
-		processed_booking.append([process_cell_content(entry[0]), process_time(entry[1]), process_time(entry[2])])
+		processed_booking.append([process_cell_content(entry[0]), process_time(entry[1]), process_time(entry[2]), process_day(entry[3])])
 	booking = processed_booking
 
+	course_description.pop(0)
+	data = {}
+
+	for entry in course_description:
+		data[entry[5]] = {}
+		data[entry[5]]["core/elective"] = entry[0]
+		data[entry[5]]["course_code"] = entry[1]
+		data[entry[5]]["course_name"] = entry[2]
+		data[entry[5]]["instructor"] = entry[3]
+		data[entry[5]]["credit"] = entry[4]
+
+	for entry in booking:
+
+		# skip invalid cell
+		if(entry[0] == -1):
+			continue
+
+		for room in entry[0]["rooms"]:
+			course_abbr = entry[0]["course_abbr"]
+			message = entry[0]["type"]
+			group = entry[0]["group"]
+			start_time = entry[1]
+			end_time = entry[2]
+			day = entry[3]
+			mandatory_elective = data[course_abbr]["core/elective"]
+			course_code = data[course_abbr]["course_code"]
+			instructor = data[course_abbr]["instructor"]
+			course_name = data[course_abbr]["course_name"]+"-"+instructor
+			credits = data[course_abbr]["credit"]
+			CSV_DATA.add((mandatory_elective, course_code, course_name, instructor, credits, course_abbr, day, start_time, end_time, group, message, room))
+
 	return
+
+def process_day(day):
+
+	# Remove blank spaces
+	day = day.replace(" ","")
+	Data = {"Mon":"Monday", "Tue":"Tuesday","Tues":"Tuesday","Wed":"Wednesday","Thurs":"Thursday","Thu":"Thursday","Thur":"Thursday","Fri":"Friday","Sat":"Saturday","Sun":"Sunday"}
+	return Data[day]
 
 def load_raw_data():
 
@@ -79,11 +133,14 @@ def load_raw_data():
 	Reads the raw databases and populates booking list
 	"""
 
-	global booking
+	global booking, course_description
 
 
 	wb = load_workbook('Ist Year Sec A.xlsx', data_only = True)
 	sheet = wb['NIstYrSecA']
+
+	booking = []
+	course_description = []
 
 	mergedCells = (sheet.merged_cells.ranges) #list with merged cell objects
 	dayCell_Bounds = dict()
@@ -155,8 +212,10 @@ def load_raw_data():
 					durationArr = [sheet.cell(row = 2, column = i).value for i in range(curCol, curCol + duration)]
 					starttime = durationArr[0].split("-")[0]
 					endtime = durationArr[-1].split("-")[-1]
-					booking.append([parseString,starttime,endtime])
-					print(process_cell_content(parseString), parseString, process_time(starttime) + "-" + process_time(endtime))
+
+					# Modified by Nihesh - populating data into global variable
+					booking.append([parseString,starttime,endtime,k])
+
 				curCol += 1
 			curRow += 1
 	startrow = None
@@ -173,24 +232,47 @@ def load_raw_data():
 		if(string.lower().find("duration") != -1):
 			startrow = int(splitColon[0][1:]) + 1
 			break
-	print(startrow)
-	file = open("courseList.txt", "w")
+
 	for i in range(startrow, endrow + 1):
+		now = []
 		for j in range(startcol, endcol + 1):
 			cell = sheet.cell(row = i, column = j)
 			if(cell.value is not None):
-				print(cell.value, type(cell.value))
-				file.write(str(cell.value) + ";")
-		file.write("\n")
+				now.append(str(cell.value).strip(" ").rstrip(" "))
+
+		# Modified by Nihesh - populating data into global variable
+		if(len(now)!=0):
+			course_description.append(now)
+
+	process_raw_bookings()
+
+	return
+
+def generate_csv():
+
+	global CSV_DATA
+
+	file = open("TimeTable.csv","w")
+	file.write("Mandatory/Elective,Course Code,Course Name,Instructor,Credits,Acronym,Day,Start Time,End Time,Group,Message,Venue\n")
+	for entry in CSV_DATA:
+		for i in range(len(entry)):
+			cell = entry[i]
+			if(i!=len(entry)-1):
+				file.write(cell+",")
+			else:
+				file.write(cell+"\n")
+
 	file.close()
 
 if(__name__ == "__main__"):
 
-
-	print("Loading Raw data from excel sheet\n")
+	# CSV header
+	
+	print("Loading Raw data from excel sheet")
 	load_raw_data()
-	print("Loaded Data\n")
+	print("Loaded Data")
 
-	print("Postprocessing bookings\n")
-	# process_raw_bookings()
-	print("Booking Postprocessing complete")
+	print("Writing to csv")
+	generate_csv()
+	print("Generation complete!")
+

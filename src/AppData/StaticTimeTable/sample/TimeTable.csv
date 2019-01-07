@@ -1,0 +1,317 @@
+Mandatory/Elective,Course Code,Course Name,Instructor,Credits,Acronym,Day,Start Time,End Time,Group,Message,Venue
+Mandatory,ECE111,Digital Circuits-Sumit,Sumit Darak,4,DC,Monday,1000AM,1100AM,0,Lecture,C101
+Mandatory,ECE111,Digital Circuits-Sumit,Sumit Darak,4,DC,Tuesday,1000AM,1100AM,0,Lecture,C101
+Mandatory,ECE111,Digital Circuits-Sumit,Sumit Darak,4,DC,Thursday,1000AM,1100AM,0,Lecture,C101
+Mandatory,ECE111,Digital Circuits-Sneh,Sneh Saurabh,4,DC,Tuesday,1200PM,0100PM,0,Lecture,C102
+Mandatory,ECE111,Digital Circuits-Sneh,Sneh Saurabh,4,DC,Wednesday,1030AM,1130AM,0,Lecture,C102
+Mandatory,ECE111,Digital Circuits-Sneh,Sneh Saurabh,4,DC,Friday,1030AM,1130AM,0,Lecture,C102
+Mandatory,ECE111,Digital Circuits-Sumit,Sumit Darak,4,DC,Monday,0900AM,1000AM,1,Tutorial,C208
+Mandatory,ECE111,Digital Circuits-Sumit,Sumit Darak,4,DC,Monday,0900AM,1000AM,2,Tutorial,C209
+Mandatory,ECE111,Digital Circuits-Sumit,Sumit Darak,4,DC,Monday,0900AM,1000AM,3,Tutorial,C210
+Mandatory,ECE111,Digital Circuits-Sumit,Sumit Darak,4,DC,Monday,0900AM,1000AM,4,Tutorial,C211
+Mandatory,ECE111,Digital Circuits-Sumit,Sumit Darak,4,DC,Monday,0900AM,1000AM,5,Tutorial,C212
+Mandatory,ECE111,Digital Circuits-Sumit,Sumit Darak,4,DC,Monday,0900AM,1000AM,6,Tutorial,C213
+Mandatory,ECE111,Digital Circuits-Sumit,Sumit Darak,4,DC,Monday,0900AM,1000AM,7,Tutorial,C214
+Mandatory,ECE111,Digital Circuits-Sumit,Sumit Darak,4,DC,Monday,0900AM,1000AM,8,Tutorial,C215
+Mandatory,MTH100,Math I,Samaresh Chatterji,4,M-I,Tuesday,0400PM,0530PM,1,Tutorial,C212
+Mandatory,MTH100,Math I,Samaresh Chatterji,4,M-I,Tuesday,0400PM,0530PM,1,Tutorial,C213
+Mandatory,MTH100,Math I,Samaresh Chatterji,4,M-I,Tuesday,0400PM,0530PM,1,Tutorial,C214
+Mandatory,MTH100,Math I,Samaresh Chatterji,4,M-I,Tuesday,0400PM,0530PM,1,Tutorial,C215
+Mandatory,MTH100,Math I,Samaresh Chatterji,4,M-I,Tuesday,0400PM,0530PM,1,Tutorial,C216
+Mandatory,MTH100,Math I,Samaresh Chatterji,4,M-I,Tuesday,0400PM,0530PM,1,Tutorial,LR1
+Mandatory,MTH100,Math I,Samaresh Chatterji,4,M-I,Tuesday,0400PM,0530PM,1,Tutorial,C222
+Mandatory,MTH100,Math I,Samaresh Chatterji,4,M-I,Tuesday,0400PM,0530PM,1,Tutorial,C223
+Mandatory,ECE111,Digital Circuits-Sneh,Sneh Saurabh,4,DC,Monday,1000AM,1100AM,1,Tutorial,C208
+Mandatory,ECE111,Digital Circuits-Sneh,Sneh Saurabh,4,DC,Monday,1000AM,1100AM,2,Tutorial,C209
+Mandatory,ECE111,Digital Circuits-Sneh,Sneh Saurabh,4,DC,Monday,1000AM,1100AM,3,Tutorial,C210
+Mandatory,ECE111,Digital Circuits-Sneh,Sneh Saurabh,4,DC,Monday,1000AM,1100AM,4,Tutorial,C211
+Mandatory,ECE111,Digital Circuits-Sneh,Sneh Saurabh,4,DC,Monday,1000AM,1100AM,5,Tutorial,C212
+Mandatory,ECE111,Digital Circuits-Sneh,Sneh Saurabh,4,DC,Monday,1000AM,1100AM,6,Tutorial,C213
+Mandatory,ECE111,Digital Circuits-Sneh,Sneh Saurabh,4,DC,Monday,1000AM,1100AM,7,Tutorial,C214
+Mandatory,ECE111,Digital Circuits-Sneh,Sneh Saurabh,4,DC,Monday,1000AM,1100AM,8,Tutorial,C215
+Mandatory,COM101,Communications Skills-Bijoy,Bijoy Philip V G,4,COM,Wednesday,0130PM,0430PM,1,Lecture,C208
+Mandatory,COM101,Communications Skills-Bijoy,Bijoy Philip V G,4,COM,Thursday,0130PM,0430PM,5,Lecture,C208
+Mandatory,COM101,Communications Skills-Deepti,Deepti Sharma,4,COM,Wednesday,0130PM,0430PM,2,Lecture,C209
+Mandatory,COM101,Communications Skills-Honey,Honey Jhalani,4,COM,Wednesday,0130PM,0430PM,4,Lecture,C211
+Mandatory,COM101,Communications Skills-Syeda,Syeda Asia,4,COM,Thursday,0130PM,0430PM,7,Lecture,C210
+Mandatory,COM101,Communications Skills-Utkrishti,Utkrishti Taneja,4,COM,Thursday,0130PM,0430PM,6,Lecture,C209
+Mandatory,COM101,Communications Skills-Rekha,Rekha Shorey,4,COM,Wednesday,0130PM,0430PM,3,Lecture,C210
+Mandatory,COM101,Communications Skills-Rekha,Rekha Shorey,4,COM,Thursday,0130PM,0430PM,8,Lecture,C211
+Mandatory,COM101,Communications Skills-Syeda,Syeda Asia,4,COM,Tuesday,0130PM,0430PM,1,Lecture,C208
+Mandatory,COM101,Communications Skills-Rekha,Rekha Shorey,4,COM,Tuesday,0130PM,0430PM,2,Lecture,C209
+Mandatory,COM101,Communications Skills-Honey,Honey Jhalani,4,COM,Tuesday,0130PM,0430PM,3,Lecture,C210
+Mandatory,COM101,Communications Skills-Deepti,Deepti Sharma,4,COM,Tuesday,0130PM,0430PM,4,Lecture,C211
+Mandatory,COM101,Communications Skills-Bijoy,Bijoy Philip V G,4,COM,Friday,0200PM,0500PM,5,Lecture,C208
+Mandatory,COM101,Communications Skills-Syeda,Syeda Asia,4,COM,Friday,0200PM,0500PM,6,Lecture,C209
+Mandatory,COM101,Communications Skills-Deepti,Deepti Sharma,4,COM,Friday,0200PM,0500PM,7,Lecture,C210
+Mandatory,COM101,Communications Skills-Honey,Honey Jhalani,4,COM,Friday,0200PM,0500PM,8,Lecture,C211
+Mandatory,CSE101,Introduction to Programming,Vikram Goyal,4,IP,Wednesday,0930AM,1100AM,0,Lecture,C101
+Mandatory,CSE101,Introduction to Programming,Vikram Goyal,4,IP,Wednesday,1130AM,0100PM,0,Lecture,C102
+Mandatory,CSE101,Introduction to Programming,Vikram Goyal,4,IP,Friday,0900AM,1030AM,0,Lecture,C101
+Mandatory,CSE101,Introduction to Programming,Vikram Goyal,4,IP,Friday,1130AM,0100PM,0,Lecture,C102
+Mandatory,CSE101,Introduction to Programming,Vikram Goyal,4,IP,Monday,0130PM,0230PM,1,Tutorial,C212
+Mandatory,CSE101,Introduction to Programming,Vikram Goyal,4,IP,Monday,0130PM,0230PM,2,Tutorial,C213
+Mandatory,CSE101,Introduction to Programming,Vikram Goyal,4,IP,Monday,0130PM,0230PM,3,Tutorial,C214
+Mandatory,CSE101,Introduction to Programming,Vikram Goyal,4,IP,Monday,0130PM,0230PM,4,Tutorial,C215
+Mandatory,CSE101,Introduction to Programming,Vikram Goyal,4,IP,Wednesday,0130PM,0230PM,5,Tutorial,C212
+Mandatory,CSE101,Introduction to Programming,Vikram Goyal,4,IP,Wednesday,0130PM,0230PM,6,Tutorial,C213
+Mandatory,CSE101,Introduction to Programming,Vikram Goyal,4,IP,Wednesday,0130PM,0230PM,7,Tutorial,C214
+Mandatory,CSE101,Introduction to Programming,Vikram Goyal,4,IP,Wednesday,0130PM,0230PM,8,Tutorial,C215
+Mandatory,CSE101,Introduction to Programming,Vikram Goyal,4,IP,Monday,0300PM,0400PM,5,Tutorial,C210
+Mandatory,CSE101,Introduction to Programming,Vikram Goyal,4,IP,Monday,0300PM,0400PM,6,Tutorial,C211
+Mandatory,CSE101,Introduction to Programming,Vikram Goyal,4,IP,Monday,0300PM,0400PM,7,Tutorial,C212
+Mandatory,CSE101,Introduction to Programming,Vikram Goyal,4,IP,Monday,0300PM,0400PM,8,Tutorial,C213
+Mandatory,CSE131,Systems Management,Sambuddho Chakravarty,4,SM,Monday,0300PM,0400PM,0,Lecture,C101
+Mandatory,CSE131,Systems Management,Sambuddho Chakravarty,4,SM,Monday,1100AM,1230PM,0,Lecture,C102
+Mandatory,MTH100,Math I,Samaresh Chatterji,4,M-I,Tuesday,0900AM,1000AM,0,Lecture,C101
+Mandatory,MTH100,Math I,Samaresh Chatterji,4,M-I,Wednesday,1130AM,1230PM,0,Lecture,C101
+Mandatory,MTH100,Math I,Samaresh Chatterji,4,M-I,Friday,1200PM,0100PM,0,Lecture,C101
+Mandatory,MTH100,Math I,Samaresh Chatterji,4,M-I,Tuesday,1100AM,1200PM,0,Lecture,C102
+Mandatory,MTH100,Math I,Samaresh Chatterji,4,M-I,Wednesday,0930AM,1030AM,0,Lecture,C102
+Mandatory,MTH100,Math I,Samaresh Chatterji,4,M-I,Friday,0930AM,1030AM,0,Lecture,C102
+Mandatory,MTH100,Math I,Samaresh Chatterji,4,M-I,Thursday,0930AM,1100AM,1,Tutorial,C208
+Mandatory,MTH100,Math I,Samaresh Chatterji,4,M-I,Thursday,0930AM,1100AM,2,Tutorial,C209
+Mandatory,MTH100,Math I,Samaresh Chatterji,4,M-I,Thursday,0930AM,1100AM,3,Tutorial,C210
+Mandatory,MTH100,Math I,Samaresh Chatterji,4,M-I,Thursday,0930AM,1100AM,4,Tutorial,C211
+Mandatory,MTH100,Math I,Samaresh Chatterji,4,M-I,Thursday,0930AM,1100AM,5,Tutorial,C212 
+Mandatory,MTH100,Math I,Samaresh Chatterji,4,M-I,Thursday,0930AM,1100AM,6,Tutorial,C213
+Mandatory,MTH100,Math I,Samaresh Chatterji,4,M-I,Thursday,0930AM,1100AM,7,Tutorial,C214
+Mandatory,MTH100,Math I,Samaresh Chatterji,4,M-I,Thursday,0930AM,1100AM,8,Tutorial,C215
+Mandatory,CSE121,Discrete Mathematics,Donghoon Chang,4,DM,Monday,1000AM,1130AM,0,Lecture,C11
+Mandatory,CSE121,Discrete Mathematics,Donghoon Chang,4,DM,Wednesday,1030AM,1200PM,0,Lecture,C11
+Mandatory,CSE121,Discrete Mathematics,Donghoon Chang,4,DM,Monday,0100PM,0200PM,1,Tutorial,C03
+Mandatory,CSE121,Discrete Mathematics,Donghoon Chang,4,DM,Monday,0100PM,0200PM,2,Tutorial,C13
+Mandatory,CSE201,Advanced Programming-Vivek,Vivek Kumar,4,AP,Tuesday,1130AM,0100PM,0,Lecture,C11
+Mandatory,CSE201,Advanced Programming-Vivek,Vivek Kumar,4,AP,Friday,1130AM,0100PM,0,Lecture,C11
+Mandatory,CSE201,Advanced Programming-Vivek,Vivek Kumar,4,AP,Thursday,1130AM,1230PM,1 2 3 4,Tutorial,C01
+Mandatory,CSE112,Computer Organization,G S Visweswaran(V),4,CO,Tuesday,1000AM,1130AM,0,Lecture,C11
+Mandatory,CSE112,Computer Organization,G S Visweswaran(V),4,CO,Friday,1000AM,1130AM,0,Lecture,C11
+Mandatory,CSE112,Computer Organization,G S Visweswaran(V),4,CO,Friday,0900AM,1000AM,1,Tutorial,C210
+Mandatory,CSE112,Computer Organization,G S Visweswaran(V),4,CO,Friday,0900AM,1000AM,2,Tutorial,C211
+Mandatory,CSE112,Computer Organization,G S Visweswaran(V),4,CO,Friday,0900AM,1000AM,3,Tutorial,C212
+Mandatory,CSE112,Computer Organization,G S Visweswaran(V),4,CO,Friday,0900AM,1000AM,4,Tutorial,C213
+Mandatory,MTH203,Maths III,Sarthok Sircar,4,M-III,Tuesday,0230PM,0400PM,0,Lecture,C101
+Mandatory,MTH203,Maths III,Sarthok Sircar,4,M-III,Thursday,0230PM,0400PM,0,Lecture,C101
+Mandatory,MTH203,Maths III,Sarthok Sircar,4,M-III,Thursday,1000AM,1130AM,1,Tutorial,C23
+Mandatory,MTH203,Maths III,Sarthok Sircar,4,M-III,Thursday,1000AM,1130AM,2,Tutorial,C216
+Mandatory,MTH203,Maths III,Sarthok Sircar,4,M-III,Thursday,1000AM,1130AM,3,Tutorial,C11
+Elective,MTH240,Real Analysis I,Sankha Basu,4,RA-I,Tuesday,0230PM,0400PM,0,Lecture,C11
+Elective,MTH240,Real Analysis I,Sankha Basu,4,RA-I,Thursday,0230PM,0400PM,0,Lecture,C11
+Elective,MTH240,Real Analysis I,Sankha Basu,4,RA-I,Monday,0900AM,1000AM,1,Tutorial,C23
+Elective,ECE250,Signal & Systems,Pravesh Biyani,4,S&S,Friday,0230PM,0400PM,0,Lecture,C11
+Elective,ECE250,Signal & Systems,Pravesh Biyani,4,S&S,Wednesday,1200PM,0130PM,0,Lecture,C11
+Elective,ECE250,Signal & Systems,Pravesh Biyani,4,S&S,Monday,0300PM,0400PM,0,Tutorial,C24
+Elective,MTH211,Number Theory,Anuradha Sharma,4,NT,Friday,0230PM,0400PM,0,Lecture,A007
+Elective,MTH211,Number Theory,Anuradha Sharma,4,NT,Wednesday,0900AM,1030AM,0,Lecture,A007
+Elective,MTH211,Number Theory,Anuradha Sharma,4,NT,Monday,0230PM,0400PM,0,Tutorial,C12
+Mandatory,ECE270,Embedded Logic Design,Sumit Darak,4,ELD,Monday,1200PM,0130PM,0,Lecture,C21
+Mandatory,ECE270,Embedded Logic Design,Sumit Darak,4,ELD,Thursday,1200PM,0130PM,0,Lecture,C21
+Mandatory,CSE201,Advanced Programming-Shachi,Shachi Sharma,4,AP,Tuesday,1130AM,0100PM,0,Lecture,C21
+Mandatory,CSE201,Advanced Programming-Shachi,Shachi Sharma,4,AP,Friday,1130AM,0100PM,0,Lecture,C21
+Mandatory,CSE201,Advanced Programming-Shachi,Shachi Sharma,4,AP,Monday,0300PM,0400PM,1,Tutorial,C208
+Mandatory,CSE201,Advanced Programming-Shachi,Shachi Sharma,4,AP,Monday,0300PM,0400PM,2,Tutorial,C209
+Mandatory,CSE201,Advanced Programming-Shachi,Shachi Sharma,4,AP,Monday,0300PM,0400PM,1,Tutorial,C216
+Mandatory,ECE215,Circuit Theory and Devices,Shobha Sundar Ram,4,CTD,Tuesday,1000AM,1130AM,0,Lecture,C21
+Mandatory,ECE215,Circuit Theory and Devices,Shobha Sundar Ram,4,CTD,Thursday,1000AM,1130AM,0,Lecture,C21
+Mandatory,ECE250,Signal & Systems,Pravesh Biyani,4,S&S,Wednesday,0900AM,1000AM,1,Tutorial,C12
+Mandatory,ECE250,Signal & Systems,Pravesh Biyani,4,S&S,Friday,0900AM,1000AM,1,Tutorial,C24
+Mandatory,MTH203,Maths III,Sarthok Sircar,4,M-III,Wednesday,0230PM,0400PM,1,Tutorial,C22
+Mandatory,MTH203,Maths III,Sarthok Sircar,4,M-III,Wednesday,0230PM,0400PM,2,Tutorial,C23
+Mandatory,ECE215,Circuit Theory and Devices,Shobha Sundar Ram,4,CTD,Wednesday,1000AM,1130AM,1,Tutorial,C24
+Mandatory,ECE215,Circuit Theory and Devices,Shobha Sundar Ram,4,CTD,Friday,1000AM,1130AM,2,Tutorial,C12
+Mandatory,CSE234,Computer Architecture and Operating Systems,Naveen Prakash(V),4,CAOS,Monday,1030AM,1200PM,0,Lecture,C01
+Mandatory,CSE234,Computer Architecture and Operating Systems,Naveen Prakash(V),4,CAOS,Wednesday,1030AM,1200PM,0,Lecture,C01
+Mandatory,CSE234,Computer Architecture and Operating Systems,Naveen Prakash(V),4,CAOS,Wednesday,0300PM,0400PM,1,Tutorial,C24
+Mandatory,CSE234,Computer Architecture and Operating Systems,Naveen Prakash(V),4,CAOS,Wednesday,0300PM,0400PM,2,Tutorial,C21
+Mandatory,MTH210,Discrete Structures,Rajiv Raman,4,DS,Tuesday,1000AM,1130AM,0,Lecture,C12
+Mandatory,MTH210,Discrete Structures,Rajiv Raman,4,DS,Thursday,0930AM,1100AM,0,Lecture,C12
+Mandatory,MTH210,Discrete Structures,Rajiv Raman,4,DS,Monday,0100PM,0300PM,1,Tutorial,C216
+Mandatory,MTH210,Discrete Structures,Rajiv Raman,4,DS,Monday,0100PM,0300PM,2,Tutorial,C24
+Elective,ECE250,Signal & Systems,Pravesh Biyani,4,S&S,Friday,0900AM,1000AM,1,Tutorial,C23
+Mandatory,CSE201,Advanced Programming-Shachi,Shachi Sharma,4,AP,Thursday,1100AM,1200PM,1,Tutorial,LR1
+Mandatory,CSE201,Advanced Programming-Shachi,Shachi Sharma,4,AP,Thursday,1100AM,1200PM,2,Tutorial,A106
+Mandatory,MTH203,Maths III,Sarthok Sircar,4,M-III,Friday,0230PM,0400PM,1,Tutorial,C23
+Mandatory,MTH203,Maths III,Sarthok Sircar,4,M-III,Friday,0230PM,0400PM,2,Tutorial,C24
+Mandatory,DES2xx,Visual Design and Communication,Indrani De Parkar,4,VDC,Monday,0900AM,1030AM,1,Lecture,A106
+Mandatory,DES2xx,Visual Design and Communication,Indrani De Parkar,4,VDC,Wednesday,1030AM,1200PM,1,Lecture,A106
+Mandatory,DES2xx,Visual Design and Communication,Indrani De Parkar,4,VDC,Monday,1200PM,0130PM,1,Tutorial,A106
+Mandatory,DES2xx,Visual Design and Communication,Indrani De Parkar,4,VDC,Wednesday,0230PM,0400PM,1,Tutorial,A106
+Mandatory,DES2xx,Design Perspectives and Processes,Indrani De Parkar,4,DPP,Monday,1030AM,1200PM,1,Lecture,A106
+Mandatory,DES2xx,Design Perspectives and Processes,Indrani De Parkar,4,DPP,Wednesday,0900AM,1030AM,1,Lecture,A106
+Mandatory,DES2xx,Design Perspectives and Processes,Indrani De Parkar,4,DPP,Monday,0230PM,0400PM,1,Tutorial,A106
+Mandatory,DES2xx,Design Perspectives and Processes,Indrani De Parkar,4,DPP,Wednesday,1200PM,0130PM,1,Tutorial,A106
+Mandatory,CSE201,Advanced Programming-Shachi,Shachi Sharma,4,AP,Monday,0300PM,0400PM,1,Tutorial,C214
+Mandatory,CSE201,Advanced Programming-Shachi,Shachi Sharma,4,AP,Monday,0300PM,0400PM,1,Tutorial,C215
+Mandatory,SSH201,Social Science Research Methods,Venkata Ratandeep Suri,4,SSRM,Monday,1200PM,0130PM,0,Lecture,B105
+Mandatory,SSH201,Social Science Research Methods,Venkata Ratandeep Suri,4,SSRM,Wednesday,1200PM,0130PM,0,Lecture,B105
+Mandatory,SSH201,Social Science Research Methods,Venkata Ratandeep Suri,4,SSRM,Thursday,1030AM,1130AM,1,Tutorial,C03
+Mandatory,SSH201,Social Science Research Methods,Venkata Ratandeep Suri,4,SSRM,Thursday,1130AM,1230PM,2,Tutorial,C03
+Mandatory,SOC201,Introduction to Sociology/Anthropology,Amrit Srinivasan (V),4,ISA,Tuesday,0230PM,0400PM,0,Lecture,C02
+Mandatory,SOC201,Introduction to Sociology/Anthropology,Amrit Srinivasan (V),4,ISA,Friday,0230PM,0400PM,0,Lecture,C02
+Mandatory,SOC201,Introduction to Sociology/Anthropology,Amrit Srinivasan (V),4,ISA,Monday,0930AM,1030AM,1,Tutorial,C12
+Mandatory,SOC201,Introduction to Sociology/Anthropology,Amrit Srinivasan (V),4,ISA,Tuesday,0930AM,1030AM,2,Tutorial,C03
+Mandatory,SOC201,Introduction to Sociology/Anthropology,Amrit Srinivasan (V),4,ISA,Wednesday,0930AM,1030AM,3,Tutorial,C215
+Mandatory,SOC201,Introduction to Sociology/Anthropology,Amrit Srinivasan (V),4,ISA,Thursday,0930AM,1030AM,4,Tutorial,C03
+Mandatory,SOC201,Introduction to Sociology/Anthropology,Amrit Srinivasan (V),4,ISA,Friday,0930AM,1030AM,5,Tutorial,C215
+Mandatory,PSY201,Introduction to Psychology,Akshay Kumar (V),4,Psy,Monday,0400PM,0530PM,0,Lecture,C21
+Mandatory,PSY201,Introduction to Psychology,Akshay Kumar (V),4,Psy,Wednesday,0400PM,0530PM,0,Lecture,C21
+Mandatory,PSY201,Introduction to Psychology,Akshay Kumar (V),4,Psy,Thursday,0200PM,0300PM,1,Tutorial,C12
+Elective,CSE562,Advanced Computer Vision,Chetan Arora,4,ACV,Tuesday,1130AM,0100PM,0,Lecture,C216
+Elective,CSE562,Advanced Computer Vision,Chetan Arora,4,ACV,Friday,0230PM,0400PM,0,Lecture,C216
+Elective,MTH510,Advanced Linear Algebra,Samrith Ram,4,ALA,Monday,0400PM,0530PM,0,Lecture,C03
+Elective,MTH510,Advanced Linear Algebra,Samrith Ram,4,ALA,Wednesday,0400PM,0530PM,0,Lecture,C03
+Elective,CSE642,Advanced Machine Learning,Richa Singh,4,AML,Monday,0400PM,0530PM,0,Lecture,C02
+Elective,CSE642,Advanced Machine Learning,Richa Singh,4,AML,Wednesday,0400PM,0530PM,0,Lecture,C02
+Elective,MTH512,Algebraic Number Theory,Sneha Chaubey,4,ANT,Tuesday,1130AM,0100PM,0,Lecture,LR1
+Elective,MTH512,Algebraic Number Theory,Sneha Chaubey,4,ANT,Friday,0230PM,0400PM,0,Lecture,LR1
+Elective,BIO522,Algorithms in Computation Biology,Debarka Sengupta,4,ACB,Tuesday,1000AM,1130AM,0,Lecture,C24
+Elective,BIO522,Algorithms in Computation Biology,Debarka Sengupta,4,ACB,Thursday,1000AM,1130AM,0,Lecture,C24
+Elective,ECE315/ECE515,Analog CMOS Circuit Design,G S Visweswaran(V),4,CMOS,Monday,0230PM,0400PM,0,Lecture,C01
+Elective,ECE315/ECE515,Analog CMOS Circuit Design,G S Visweswaran(V),4,CMOS,Thursday,0230PM,0400PM,0,Lecture,C01
+Elective,CSE546,Applied Cryptography,Donghoon Chang,4,AC,Tuesday,1130AM,0100PM,0,Lecture,A006
+Elective,CSE546,Applied Cryptography,Donghoon Chang,4,AC,Friday,0230PM,0400PM,0,Lecture,A006
+Elective,CSE643,Artificial Intelligence,Mayank Vatsa,4,AI,Monday,0230PM,0400PM,0,Lecture,C21
+Elective,CSE643,Artificial Intelligence,Mayank Vatsa,4,AI,Thursday,0230PM,0400PM,0,Lecture,C21
+Elective,SOC206,Business Anthropology,Shriram Venktraman,4,BA,Monday,0400PM,0530PM,0,Lecture,A106
+Elective,SOC206,Business Anthropology,Shriram Venktraman,4,BA,Wednesday,0400PM,0530PM,0,Lecture,A106
+Elective,BIO511,Cell Biology and Biochemistry,Shriram K,4,CBB,Tuesday,1130AM,0100PM,0,Lecture,C13
+Elective,BIO511,Cell Biology and Biochemistry,Shriram K,4,CBB,Friday,0230PM,0400PM,0,Lecture,C13
+Elective,CSE640,Collaborative Filtering,Angshul Majumdar,4,CF,Tuesday,0230PM,0400PM,0,Lecture,A006
+Elective,CSE640,Collaborative Filtering,Angshul Majumdar,4,CF,Friday,1130AM,0100PM,0,Lecture,A006
+Elective,CSE636/ECE636,Communication Networks,Sanjit K Kaul,4,COMN,Monday,0400PM,0530PM,0,Lecture,C13
+Elective,CSE636/ECE636,Communication Networks,Sanjit K Kaul,4,COMN,Wednesday,0400PM,0530PM,0,Lecture,C13
+Elective,CSE301/CSE601,Compilers,Piyus Kedia,4,CMP,Monday,1000AM,1130AM,0,Lecture,C03
+Elective,CSE301/CSE601,Compilers,Piyus Kedia,4,CMP,Wednesday,1000AM,1130AM,0,Lecture,C03
+Elective,MTH341,Complex Analysis,Ashish Kumar Pandey,4,CmpA,Monday,1130AM,0100PM,0,Lecture,C13
+Elective,MTH341,Complex Analysis,Ashish Kumar Pandey,4,CmpA,Thursday,1130AM,0100PM,0,Lecture,C13
+Elective,CSE621,Complexity Theory,Debajyoti Bera,4,CT,Monday,0230PM,0400PM,0,Lecture,C13
+Elective,CSE621,Complexity Theory,Debajyoti Bera,4,CT,Thursday,0230PM,0400PM,0,Lecture,C13
+Elective,ECE454/ECE554,Compressive Sensing,Anubha Gupta,4,CS,Monday,0230PM,0400PM,0,Lecture,C03
+Elective,ECE454/ECE554,Compressive Sensing,Anubha Gupta,4,CS,Thursday,0230PM,0400PM,0,Lecture,C03
+Elective,CSE511/ECE511,Computer Architecture,Sujay Deb,4,CA,Monday,1000AM,1130AM,0,Lecture,A006
+Elective,CSE511/ECE511,Computer Architecture,Sujay Deb,4,CA,Wednesday,1000AM,1130AM,0,Lecture,A006
+Elective,CSE333/CSE533,Computer Graphics,Ojaswa Sharma,4,CG,Monday,0230PM,0400PM,0,Lecture,C02
+Elective,CSE333/CSE533,Computer Graphics,Ojaswa Sharma,4,CG,Thursday,0230PM,0400PM,0,Lecture,C02
+Elective,ECE570,Control Theory,P.B. Sujit,4,CNT,Tuesday,0230PM,0400PM,0,Lecture,A007
+Elective,ECE570,Control Theory,P.B. Sujit,4,CNT,Friday,1130AM,0100PM,0,Lecture,A007
+Elective,CSE506,Data Mining,Sumit Bhatia(G),4,DMG,Friday,0100PM,0400PM,0,Lecture,C21
+Elective,DES5xx,Digital Audio,Timothy Scott Moyers Jr,4,DA,Monday,1000AM,1130AM,0,Lecture,B105
+Elective,DES5xx,Digital Audio,Timothy Scott Moyers Jr,4,DA,Wednesday,1000AM,1130AM,0,Lecture,C105
+Elective,ECE340,Digital Communication Systems,Abhijit Mitra(V),4,DCS,Tuesday,0230PM,0400PM,0,Lecture,B105
+Elective,ECE340,Digital Communication Systems,Abhijit Mitra(V),4,DCS,Friday,1130AM,0100PM,0,Lecture,B105
+Elective,ECE351,Digital Signal Processing,A.V.Subramanyam,4,DSP,Wednesday,1130AM,0100PM,0,Lecture,A007
+Elective,ECE351,Digital Signal Processing,A.V.Subramanyam,4,DSP,Friday,1000AM,1130AM,0,Lecture,A007
+Elective,ECE314/ECE514,Digital VLSI Design,Anuj Grover(G),4,DVD,Tuesday,1130AM,0100PM,0,Lecture,C01
+Elective,ECE314/ECE514,Digital VLSI Design,Anuj Grover(G),4,DVD,Friday,0230PM,0400PM,0,Lecture,C01
+Elective,ECO321,Econometrics I,Gaurav Arora,4,ECO,Tuesday,1130AM,0100PM,0,Lecture,C03
+Elective,ECO321,Econometrics I,Gaurav Arora,4,ECO,Friday,0230PM,0400PM,0,Lecture,C03
+Elective,MGT310,Effective Supply Chain Management for E-Commerce,Sanjiva Dubey(G),4,SCM,Tuesday,0400PM,0530PM,0,Lecture,C03
+Elective,MGT310,Effective Supply Chain Management for E-Commerce,Sanjiva Dubey(G),4,SCM,Friday,0400PM,0530PM,0,Lecture,C03
+Elective,ESC205A,Environmnetal Sciences,Akash Sondhi(G),2,EVS,Friday,0400PM,0530PM,1,Lecture,C11
+Elective,DES303,Film Making and Radio Podcasting,Manohar Khushalani (V),4,FMRP,Tuesday,0930AM,1100AM,0,Lecture,C02
+Elective,DES303,Film Making and Radio Podcasting,Manohar Khushalani (V),4,FMRP,Thursday,0930AM,1100AM,0,Lecture,C02
+Elective,CSE345/CSE545,Foundations of Computer Security,Arun Balaji,4,FCS,Monday,1130AM,0100PM,0,Lecture,C02
+Elective,CSE345/CSE545,Foundations of Computer Security,Arun Balaji,4,FCS,Thursday,1130AM,0100PM,0,Lecture,C02
+Elective,ECO331,Foundations of Finance,Pankaj Vajpayee(V),4,FF,Wednesday,1130AM,0100PM,0,Lecture,C21
+Elective,ECO331,Foundations of Finance,Pankaj Vajpayee(V),4,FF,Friday,1000AM,1130AM,0,Lecture,C21
+Elective,BIO601,Foundations of Modern Biology,Vibhor Kumar,4,FOMB,Monday,1000AM,1130AM,0,Lecture,C23
+Elective,BIO601,Foundations of Modern Biology,Vibhor Kumar,4,FOMB,Wednesday,1000AM,1130AM,0,Lecture,C23
+Elective,ECO311,Game Theory,Rakesh Chathurvedi,4,GMT,Monday,1130AM,0100PM,0,Lecture,C22
+Elective,ECO311,Game Theory,Rakesh Chathurvedi,4,GMT,Thursday,1130AM,0100PM,0,Lecture,C22
+Elective,CSE340/CSE540/ ECE350,Image Analysis/Digital Image Processing,A V Subramanyam,4,IA,Tuesday,1000AM,1130AM,0,Lecture,C01
+Elective,CSE340/CSE540/ ECE350,Image Analysis/Digital Image Processing,A V Subramanyam,4,IA,Thursday,1000AM,1130AM,0,Lecture,C01
+Elective,ECE5xx,Intelligent Applications Implementation on Hetrogeneous Platforms,Sumit Mediratta (V),4,IAI,Saturday,1000AM,1130AM,0,Lecture,C24
+Elective,ECE5xx,Intelligent Applications Implementation on Hetrogeneous Platforms,Sumit Mediratta (V),4,IAI,Saturday,1230PM,0200PM,0,Lecture,C24
+Elective,CSE525,Introduction to Graduate Algorithms,Debajyoti Bera,4,GA,Monday,1130AM,0100PM,0,Lecture,C11
+Elective,CSE525,Introduction to Graduate Algorithms,Debajyoti Bera,4,GA,Thursday,1130AM,0100PM,0,Lecture,C11
+Elective,SSH216,Introduction to Indian Mythology,Saumya Kulshreshtha(G),2,IIM,Tuesday,0430PM,0600PM,0,Lecture,C11
+Elective,CSEXXX/DESXXX,Introduction to Media Computing,Rajiv Ratn Shah,4,IMC,Tuesday,1130AM,0100PM,0,Lecture,A106
+Elective,CSEXXX/DESXXX,Introduction to Media Computing,Rajiv Ratn Shah,4,IMC,Friday,0230PM,0400PM,0,Lecture,A106
+Elective,SSH121,Introduction to Philosophy,Raj Ayyar (V),4,IPHI,Tuesday,0400PM,0530PM,0,Lecture,C24
+Elective,SSH121,Introduction to Philosophy,Raj Ayyar (V),4,IPHI,Friday,0400PM,0530PM,0,Lecture,C24
+Elective,CSE343/CSE543/ECE5ML,Machine Learning,Saket Anand,4,ML,Monday,0400PM,0530PM,0,Lecture,C01
+Elective,CSE343/CSE543/ECE5ML,Machine Learning,Saket Anand,4,ML,Wednesday,0400PM,0530PM,0,Lecture,C01
+Elective,BIO542,Machine Learning for Biomedical Applications,GPS Raghava,4,MLBA,Tuesday,0230PM,0400PM,0,Lecture,A106
+Elective,BIO542,Machine Learning for Biomedical Applications,GPS Raghava,4,MLBA,Friday,1130AM,0100PM,0,Lecture,A106
+Elective,ECO201,Macroeconomics,Kiriti Kanjilal,4,MA,Tuesday,0400PM,0530PM,0,Lecture,C12
+Elective,ECO201,Macroeconomics,Kiriti Kanjilal,4,MA,Friday,0400PM,0530PM,0,Lecture,C12
+Elective,ECO101,Macroeconomics,Yamini Agarwal (G),4,ME,Tuesday,0400PM,0530PM,0,Lecture,C02
+Elective,ECO101,Macroeconomics,Yamini Agarwal (G),4,ME,Friday,0830AM,1000AM,0,Lecture,C02
+Elective,CSE535,Mobile Computing,Mukulika Maitey,4,MC,Tuesday,0230PM,0400PM,0,Lecture,C01
+Elective,CSE535,Mobile Computing,Mukulika Maitey,4,MC,Friday,1130AM,0100PM,0,Lecture,C01
+Elective,CSE319/CSE519,Modern Algorithm Design,Syamantak Das,4,MAD,Monday,1000AM,1130AM,0,Lecture,C22
+Elective,CSE319/CSE519,Modern Algorithm Design,Syamantak Das,4,MAD,Wednesday,1000AM,1130AM,0,Lecture,C22
+Elective,CSE531,Multi-agent Systems,P B Sujith,4,MAS,Tuesday,1130AM,0100PM,0,Lecture,C22
+Elective,CSE531,Multi-agent Systems,P B Sujith,4,MAS,Friday,0230PM,0400PM,0,Lecture,C22
+Elective,CSE556,Natural Language Processing,Tanmoy Chakraborty,4,NLP,Monday,1130AM,0100PM,0,Lecture,A007
+Elective,CSE556,Natural Language Processing,Tanmoy Chakraborty,4,NLP,Thursday,1130AM,0100PM,0,Lecture,A007
+Elective,CSE749,Network Anonymity and Privacy,Sambuddho Chakravarty,4,NAP,Tuesday,0230PM,0400PM,0,Lecture,C22
+Elective,CSE749,Network Anonymity and Privacy,Sambuddho Chakravarty,4,NAP,Friday,1130AM,0100PM,0,Lecture,C22
+Elective,BIO532,Network Biology,Ganesh Bagler,4,NB,Monday,0230PM,0400PM,0,Lecture,C23
+Elective,BIO532,Network Biology,Ganesh Bagler,4,NB,Thursday,0230PM,0400PM,0,Lecture,C23
+Elective,CSE600A/ECE600A,Object Oriented Programming and Design,Shachi Sharma(V),2,OOPD,Monday,0830AM,1000AM,0,Lecture,C11
+Elective,CSE600A/ECE600A,Object Oriented Programming and Design,Shachi Sharma(V),2,OOPD,Friday,0400PM,0530PM,0,Lecture,C01
+Elective,SSH123,Philosophy of Religion,Raj Ayyar (V),4,POR,Monday,0400PM,0530PM,0,Lecture,B105
+Elective,SSH123,Philosophy of Religion,Raj Ayyar (V),4,POR,Wednesday,0400PM,0530PM,0,Lecture,B105
+Elective,ECE543,Principals of Digital Communication System,Anand Srivastava,4,PDCS,Tuesday,1130AM,0100PM,0,Lecture,C208
+Elective,ECE543,Principals of Digital Communication System,Anand Srivastava,4,PDCS,Thursday,1130AM,0100PM,0,Lecture,C208
+Elective,ECE501,Probability & Random Process,Anubha Gupta,4,PRP,Tuesday,0230PM,0400PM,0,Lecture,C12
+Elective,ECE501,Probability & Random Process,Anubha Gupta,4,PRP,Friday,1130AM,0100PM,0,Lecture,C12
+Elective,CSE503,Program Analysis,Rahul Purandare,4,PA,Wednesday,1130AM,0100PM,0,Lecture,A006
+Elective,CSE503,Program Analysis,Rahul Purandare,4,PA,Friday,1000AM,1130AM,0,Lecture,A006
+Elective,MTH340/MTH540,Real Analysis II,Shilpak Banerjee,4,RA-II,Monday,0230PM,0400PM,0,Lecture,C22
+Elective,MTH340/MTH540,Real Analysis II,Shilpak Banerjee,4,RA-II,Thursday,0230PM,0400PM,0,Lecture,C22
+Elective,CSE5xx/ECE5xx,Reinforcement Learning,Sanjit K Kaul,4,RL,Monday,1000AM,1130AM,0,Lecture,C13
+Elective,CSE5xx/ECE5xx,Reinforcement Learning,Sanjit K Kaul,4,RL,Wednesday,1000AM,1130AM,0,Lecture,C13
+Elective,ECE5xx,Satellite Navigation and Sensor Fusion,Sanat Biswas,4,SNSF,Wednesday,1130AM,0100PM,0,Lecture,C22
+Elective,ECE5xx,Satellite Navigation and Sensor Fusion,Sanat Biswas,4,SNSF,Friday,1000AM,1130AM,0,Lecture,C22
+Elective,MTH373/MTH573,Scientific Computing,Kaushik Kalyanaraman,4,SC,Tuesday,0230PM,0400PM,0,Lecture,C03
+Elective,MTH373/MTH573,Scientific Computing,Kaushik Kalyanaraman,4,SC,Friday,1130AM,0100PM,0,Lecture,C03
+Elective,SSH221,Social and Political Philosophy,Manohar Kumar,4,SSP,Monday,0400PM,0530PM,0,Lecture,C11
+Elective,SSH221,Social and Political Philosophy,Manohar Kumar,4,SSP,Wednesday,0400PM,0530PM,0,Lecture,C11
+Elective,SOC204,Sociology of New Media,Aasim Khan,4,SNM,Tuesday,0400PM,0530PM,0,Lecture,A006
+Elective,SOC204,Sociology of New Media,Aasim Khan,4,SNM,Friday,0400PM,0530PM,0,Lecture,A006
+Elective,CSE3XX/CSE5xx,Speech Recognition and Understanding,Saket Anand,2,SRU,Monday,1000AM,1130AM,0,Lecture,C216
+Elective,CSE3XX/CSE5xx,Speech Recognition and Understanding,Saket Anand,2,SRU,Wednesday,1000AM,1130AM,0,Lecture,C216
+Elective,MTH371,Stochastic Processes and Applicaitions,Monika Arora,4,SPA,Tuesday,0830AM,1000AM,0,Lecture,C11
+Elective,MTH371,Stochastic Processes and Applicaitions,Monika Arora,4,SPA,Thursday,0830AM,1000AM,0,Lecture,C11
+Elective,BIO562,Stochastic Simulation and Systems Biology,Subhadip Raychaudhari,4,SSSB,Wednesday,1130AM,0100PM,0,Lecture,C03
+Elective,BIO562,Stochastic Simulation and Systems Biology,Subhadip Raychaudhari,4,SSSB,Friday,1000AM,1130AM,0,Lecture,C03
+Elective,COM301A,Technical Communication,Hemant Kumar(V),2,Tcom,Wednesday,0230PM,0400PM,0,Lecture,C101
+Elective,SSH211,Theatre Appreciation,Manohar Khushalani (V),4,TA,Monday,0400PM,0530PM,0,Lecture,C12
+Elective,SSH211,Theatre Appreciation,Manohar Khushalani (V),4,TA,Wednesday,0400PM,0530PM,0,Lecture,C12
+Elective,MTH599,Variational Calculus and their Applications,Sarthok Sircar,4,VCA,Tuesday,1000AM,1130AM,0,Lecture,C22
+Elective,MTH599,Variational Calculus and their Applications,Sarthok Sircar,4,VCA,Thursday,1000AM,1130AM,0,Lecture,C22
+Elective,ECE513,VLSI Design Flow,Sneh Saurabh,4,VDF,Monday,1130AM,0100PM,0,Lecture,A006
+Elective,ECE513,VLSI Design Flow,Sneh Saurabh,4,VDF,Thursday,1130AM,0100PM,0,Lecture,A006
+Elective,DES513,Wearable Applications Research Devices Interactions,Aman Parnami,4,WARDI,Monday,0230PM,0400PM,0,Lecture,B105
+Elective,DES513,Wearable Applications Research Devices Interactions,Aman Parnami,4,WARDI,Thursday,0230PM,0400PM,0,Lecture,B105
+Elective,ECE537,Wireless Communication-Evolution from 3G to 5G,Vivek Bohara,4,WC,Monday,1000AM,1130AM,0,Lecture,C02
+Elective,ECE537,Wireless Communication-Evolution from 3G to 5G,Vivek Bohara,4,WC,Wednesday,1000AM,1130AM,0,Lecture,C02
+Elective,CSE300,Software Engineering,Manish Sharotiya,4,SE,Tuesday,0830AM,1000AM,0,Lecture,C12
+Elective,CSE300,Software Engineering,Manish Sharotiya,4,SE,Friday,0830AM,1000AM,0,Lecture,C12
+Mandatory,CSE101,Introduction to Programming,IP,Wednesday,IP,Monday,0130PM,0230PM,1,Tutorial,C208
+Mandatory,CSE101,Introduction to Programming,IP,Monday,IP,Monday,0130PM,0230PM,2,Tutorial,C209
+Mandatory,CSE101,Introduction to Programming,IP,Monday,IP,Monday,0130PM,0230PM,3,Tutorial,C210
+Mandatory,CSE101,Introduction to Programming,IP,Monday,IP,Monday,0130PM,0230PM,4,Tutorial,C211
+Mandatory,CSE121,Discrete Mathematics,Donghoon Chang,4,DM,Monday,0100PM,0200PM,3,Tutorial,C22
+Mandatory,CSE121,Discrete Mathematics,Donghoon Chang,4,DM,Monday,0100PM,0200PM,4,Tutorial,C23
+Elective,MTH240,Real Analysis I,RA-I,Monday,RA-I,Monday,0900AM,1000AM,2,Tutorial,C24
+Elective,MTH211,Number Theory,NT,Monday,NT,Thursday,1200PM,0130PM,0,Tutorial,A106
+Elective,SOC204,Sociology of New Media,SNM,Tuesday,SNM,Tuesday,0400PM,0530PM,0,Lecture,C13
+Elective,SOC204,Sociology of New Media,SNM,Tuesday,SNM,Friday,0400PM,0530PM,0,Lecture,C13
+Mandatory,CSE112,Computer Organization,G S Visweswaran(V),4,CO,Friday,0900AM,1000AM,1,Tutorial,C208
+Mandatory,CSE112,Computer Organization,G S Visweswaran(V),4,CO,Friday,0900AM,1000AM,2,Tutorial,C209
+Mandatory,CSE234,Computer Architecture and Operating Systems,Naveen Prakash(V),4,CAOS,Wednesday,0300PM,0400PM,1,Tutorial,LR1
+Mandatory,CSE234,Computer Architecture and Operating Systems,Naveen Prakash(V),4,CAOS,Wednesday,0300PM,0400PM,1,Tutorial,C11
+Mandatory,PSY201,Introduction to Psychology,Psy,Thursday,Psy,Thursday,0300PM,0400PM,2,Tutorial,C12
+Elective,MTH371,Stochastic Processes and Applicaitions,SPA,Monday,SPA,Monday,0900AM,1000AM,0,Tutorial,C02
+Elective,DES5XX,Information System in Public Health,Drishti Sharma(V),4,ISPH,Tuesday,1000AM,1130AM,0,Lecture,C13
+Elective,DES5XX,Information System in Pulic Health,Drishti Sharma(V),4,ISPH,Thursday,1000AM,1130AM,0,Lecture,C13
+Elective,DES5XX,Introduction to 3D Animation,Anoop Ratn(V),2,I3DA,Tuesday,1000AM,1130AM,0,Lecture,B105
+Elective,DES5XX,Introduction to 3D Animation,Anoop Ratn(V),2,I3DA,Thursday,1000AM,1130AM,0,Lecture,B105
+Elective,ENT401,Entrepreneurship I,Hemant Kumar(V),2,ENT,Tuesday,1000AM,1130AM,0,Lecture,C23
+Elective,ESC205A,Environmnetal Sciences,EVS,Friday,EVS,Friday,0400PM,0530PM,2,Lecture,C21
+Elective,ESC2XXA,Ecology Evolution and Environment,Swapna Purnadare,2,EEE,Friday,0400PM,0530PM,0,Lecture,A007
+Elective,CSE232,Computer Networks,Pushpendra Singh,4,CN,Monday,1000AM,1130AM,0,Lecture,C21
+Elective,CSE232,Computer Networks,Pushpendra Singh,4,CN,Wednesday,1000AM,1130AM,0,Lecture,C21
