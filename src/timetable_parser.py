@@ -4,7 +4,6 @@ from openpyxl import styles
 CSV_DATA = set() 	# final data in tuple form that has to be wriiten to csv in that order
 booking = []		# Every row is a 3 tuple, consisting of parseString, start time and end time - per sheet data
 course_description = []		# Per-sheet data
-
 data = {}
 
 def process_cell_content(s):
@@ -25,6 +24,7 @@ def process_cell_content(s):
 	# Separate out room information from string and remove spaces
 	rooms = s[s.find("~")+1:]
 	rooms = rooms.replace(" ","")
+	rooms = rooms.replace("/",",")
 	rooms = rooms.split(",")
 	s = s[:s.find("~")]
 
@@ -94,8 +94,8 @@ def process_raw_bookings():
 	for entry in course_description:
 		if(entry[5] not in data):
 			data[entry[5]] = {}
-			data[entry[5]]["core/elective"] = "Elective" 	# all the courses are electives. Just a hack. (Might be a duplicate)
-			data[entry[5]]["course_code"] = "XXXXXX"	# all the course codes are XXXXXX. Just another hack. We like hacking stuff ;)
+			data[entry[5]]["core/elective"] = "Elective"	# Who cares about this? Life's complicated enough already. Make everything elective!!!
+			data[entry[5]]["course_code"] = "XXXXXX"	# chuck it man, chuck it. Why do you need that?
 			data[entry[5]]["course_name"] = entry[2]
 			data[entry[5]]["instructor"] = entry[3]
 			data[entry[5]]["credit"] = entry[4]
@@ -109,7 +109,7 @@ def process_raw_bookings():
 		for room in entry[0]["rooms"]:
 			course_abbr = entry[0]["course_abbr"]
 			message = entry[0]["type"]
-			group = entry[0]["group"]
+			group = "0"			# Who cares about groups? It's just a mess on top of a bunch of mess
 			start_time = entry[1]
 			end_time = entry[2]
 			day = entry[3]
@@ -197,6 +197,15 @@ def load_raw_data():
 							if(condition1 and condition2):
 								duration = candidateMergeCell.max_col - candidateMergeCell.min_col + 1 
 								isMerged = 1
+								tempCol = candidateMergeCell.max_col + 1
+								originalColor = (cellObj.fill.start_color.index)
+								while(tempCol <= maxcol + 3):
+									cellObj2 = sheet.cell(row = curRow, column = tempCol)
+									if(cellObj2.fill.start_color.index == originalColor and (cellObj2.value is None or cellObj2.value.strip() == "")):
+										duration += 1
+										tempCol += 1
+									else:
+										break	
 								break
 						parseString = cellObj.value.replace("\n", "")
 						originalColor = (cellObj.fill.start_color.index)
@@ -204,9 +213,9 @@ def load_raw_data():
 						tempCol = curCol + 1
 						#if not part of merged cell, use size of same color sequence to find time duration
 						if(not isMerged):
-							while(tempCol <= maxcol):
+							while(tempCol <= maxcol + 3):
 								cellObj2 = sheet.cell(row = curRow, column = tempCol)
-								if(cellObj2.fill.start_color.index == originalColor and cellObj2.value is None):
+								if(cellObj2.fill.start_color.index == originalColor and (cellObj2.value is None or cellObj2.value.strip() == "")):
 									duration += 1
 									tempCol += 1
 								else:
