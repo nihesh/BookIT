@@ -149,7 +149,7 @@ def load_raw_data():
 		c = 0
 		x = mergedCells[0] 
 		for cell in mergedCells:
-			stringBounds = cell.ref #"A23:A30"
+			stringBounds = cell.coord #"A23:A30"
 			splitColon = stringBounds.split(":")
 			#extract alphabet and number from each element in splitColon
 			alphabetA = splitColon[0][0] #assumption - alphabet is of length 1
@@ -233,7 +233,7 @@ def load_raw_data():
 		startcol = 1
 		endcol = sheet.max_column
 		for cell in mergedCells:
-			stringBounds = cell.ref #"A23:A30"
+			stringBounds = cell.coord #"A23:A30"
 			splitColon = stringBounds.split(":")
 			#extract alphabet and number from each element in splitColon
 			string = sheet[splitColon[0]].value
