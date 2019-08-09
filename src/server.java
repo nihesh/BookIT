@@ -4,6 +4,7 @@ import HelperClasses.*;
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.nio.file.Files;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.*;
@@ -27,7 +28,7 @@ public class server {
     /**
      * spam filter object for detecting spam messages
      */
-    public static final double BookITversion = 1.4;
+    public static final double BookITversion = 1.5;
     public static SpamFilter spm;
     public static int noOfConnections = 0;
     public static ExecutorService mailpool = Executors.newFixedThreadPool(2);
@@ -874,6 +875,23 @@ class ConnectionHandler implements Runnable{
         }
         temp.setPassword(sb.toString());
         serializeUser(temp);
+    }
+    public static String execCmd(String cmd) throws java.io.IOException {
+        Process proc = Runtime.getRuntime().exec(cmd);
+        java.io.InputStream is = proc.getInputStream();
+        java.util.Scanner s = new java.util.Scanner(is).useDelimiter("\\A");
+        Scanner s2 = new Scanner(proc.getErrorStream()).useDelimiter("\\A");
+        String val = "";
+        if (s.hasNext()) {
+            val = s.next();
+        }
+        else {
+            val = "";
+        }
+        if(s2.hasNext()) {
+            val += s2.next();
+        }
+        return val;
     }
     public String getUserType(String email){
         String ans=null;
@@ -1815,6 +1833,22 @@ class ConnectionHandler implements Runnable{
                             lock.unlock();
                         }
                         out.writeObject(bookingReport);
+                        out.flush();
+                        break;
+                    case "admin_uploadData":
+                        if(!status.equals("Pass")) {
+                            lock.lockInterruptibly();
+                        }
+                        byte[] settings = (byte[]) in.readObject();
+                        File target = new File("./settings.zip");
+                        Files.write(target.toPath(), settings);
+
+                        if(lock.isLocked() && lock.isHeldByCurrentThread()){
+                            System.out.print("[ "+LocalDateTime.now()+" ] ");
+                            System.out.println(connection.getInetAddress().toString() + " | ServerLock Released");
+                            lock.unlock();
+                        }
+                        out.writeObject(execCmd("./Setup.sh"));
                         out.flush();
                         break;
                     case "checkHoliday":

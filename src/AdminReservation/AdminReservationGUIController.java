@@ -32,6 +32,7 @@ import javafx.scene.control.*;
 import javafx.event.Event;
 import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
+import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
@@ -40,9 +41,12 @@ import javafx.util.Duration;
 import java.io.*;
 import java.net.Socket;
 import java.net.URL;
+import java.nio.file.Files;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.*;
+import java.util.zip.ZipException;
+import java.util.zip.ZipFile;
 
 import static java.lang.Math.ceil;
 import static java.lang.Math.max;
@@ -523,6 +527,66 @@ public class AdminReservationGUIController implements Initializable{
         rootPane.setDisable(true);
         activeUser.softResetServer(false);
         Notification.throwAlert("Notification","Server has been successfully restarted");
+        rootPane.setDisable(false);
+    }
+
+    /**
+     * Event handler for getting settings.zip
+     */
+    public void uploadData(){
+        rootPane.setDisable(true);
+        FileChooser fileChooser = new FileChooser();
+        Stage stage = (Stage) mainPane.getScene().getWindow();
+        File selectedFile = fileChooser.showOpenDialog(stage);
+        try{
+            ZipFile zip = new ZipFile(selectedFile);
+        }
+        catch (ZipException z) {
+            Notification.throwAlert("Notification","Unable to parse zip file. Please upload zipped version of settings file.");
+            rootPane.setDisable(false);
+            return;
+        }
+        catch(IOException e){
+            System.out.println("IO Exception occurred while uploading data");
+        }
+        try{
+            Socket server = new Socket(BookITconstants.serverIP, BookITconstants.serverPort);
+            ObjectOutputStream out = new ObjectOutputStream(server.getOutputStream());
+            ObjectInputStream in = new ObjectInputStream(server.getInputStream());
+            if(false){
+                out.writeObject("Hold");
+            }
+            else{
+                out.writeObject("Pass");
+            }
+            out.flush();
+            out.writeObject("admin_uploadData");
+            out.flush();
+
+            // Upload selected file to outstream
+            out.writeObject(Files.readAllBytes(selectedFile.toPath()));
+            out.flush();
+
+            // Read output
+            String error_log = (String) in.readObject();
+            File f = new File("./Downloads");
+            f.mkdirs();
+            f = new File("./Downloads/Upload_log.txt");
+            FileWriter file = new FileWriter(f, false);
+            file.write(error_log);
+            file.close();
+
+            out.close();
+            in.close();
+            server.close();
+        }
+        catch(IOException e){
+            System.out.println("IO Exception occurred while uploading data");
+        }
+        catch (ClassNotFoundException c){
+            System.out.println("Class not found exception occurred while uploading data");
+        }
+        Notification.throwAlert("Notification","Upload_log.txt has been generated and moved to Downloads folder within the BookIT directory");
         rootPane.setDisable(false);
     }
 

@@ -1,289 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="Server:jar" />
+    </artifacts-to-build>
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="51086309-d288-48b9-8853-0cd9a0fece48" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AppData/Course/Advanced Computer Vision.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AppData/Course/Advanced Linear Algebra.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AppData/Course/Advanced Machine Learning.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AppData/Course/Advanced Programming-Shachi.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AppData/Course/Advanced Programming-Vivek.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AppData/Course/Algebraic Number Theory.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AppData/Course/Algorithms in Computation Biology.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AppData/Course/Analog CMOS Circuit Design.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AppData/Course/Applied Cryptography.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AppData/Course/Artificial Intelligence.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AppData/Course/Business Anthropology.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AppData/Course/Cell Biology and Biochemistry.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AppData/Course/Circuit Theory and Devices.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AppData/Course/Collaborative Filtering.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AppData/Course/Communication Networks.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AppData/Course/Communications Skills-Bijoy.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AppData/Course/Communications Skills-Deepti.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AppData/Course/Communications Skills-Honey.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AppData/Course/Communications Skills-Rekha.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AppData/Course/Communications Skills-Syeda.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AppData/Course/Communications Skills-Utkrishti.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AppData/Course/Compilers.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AppData/Course/Complex Analysis.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AppData/Course/Complexity Theory.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AppData/Course/Compressive Sensing.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AppData/Course/Computer Architecture and Operating Systems.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AppData/Course/Computer Architecture.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AppData/Course/Computer Graphics.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AppData/Course/Computer Networks.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AppData/Course/Computer Organization.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AppData/Course/Control Theory.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AppData/Course/Data Mining.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AppData/Course/Design Perspectives and Processes.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AppData/Course/Digital Audio.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AppData/Course/Digital Circuits-Sneh.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AppData/Course/Digital Circuits-Sumit.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AppData/Course/Digital Communication Systems.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AppData/Course/Digital Signal Processing.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AppData/Course/Digital VLSI Design.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AppData/Course/Discrete Mathematics.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AppData/Course/Discrete Structures.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AppData/Course/Ecology Evolution and Environment.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AppData/Course/Econometrics I.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AppData/Course/Effective Supply Chain Management for E-Commerce.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AppData/Course/Embedded Logic Design.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AppData/Course/Entrepreneurship I.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AppData/Course/Environmnetal Sciences.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AppData/Course/Film Making and Radio Podcasting.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AppData/Course/Foundations of Computer Security.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AppData/Course/Foundations of Finance.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AppData/Course/Foundations of Modern Biology.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AppData/Course/Game Theory.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AppData/Course/Image Analysis~Digital Image Processing.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AppData/Course/Information System in Public Health.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AppData/Course/Information System in Pulic Health.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AppData/Course/Intelligent Applications Implementation on Hetrogeneous Platforms.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AppData/Course/Introduction to 3D Animation.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AppData/Course/Introduction to Graduate Algorithms.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AppData/Course/Introduction to Indian Mythology.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AppData/Course/Introduction to Media Computing.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AppData/Course/Introduction to Philosophy.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AppData/Course/Introduction to Programming.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AppData/Course/Introduction to Psychology.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AppData/Course/Introduction to Sociology~Anthropology.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AppData/Course/Machine Learning for Biomedical Applications.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AppData/Course/Machine Learning.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AppData/Course/Macroeconomics.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AppData/Course/Math I.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AppData/Course/Maths III.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AppData/Course/Mobile Computing.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AppData/Course/Modern Algorithm Design.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AppData/Course/Multi-agent Systems.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AppData/Course/Natural Language Processing.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AppData/Course/Network Anonymity and Privacy.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AppData/Course/Network Biology.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AppData/Course/Number Theory.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AppData/Course/Object Oriented Programming and Design.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AppData/Course/Philosophy of Religion.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AppData/Course/Principals of Digital Communication System.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AppData/Course/Probability &amp; Random Process.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AppData/Course/Program Analysis.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AppData/Course/Real Analysis I.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AppData/Course/Real Analysis II.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AppData/Course/Reinforcement Learning.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AppData/Course/Satellite Navigation and Sensor Fusion.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AppData/Course/Scientific Computing.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AppData/Course/Signal &amp; Systems.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AppData/Course/Social Science Research Methods.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AppData/Course/Social and Political Philosophy.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AppData/Course/Sociology of New Media.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AppData/Course/Software Engineering.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AppData/Course/Speech Recognition and Understanding.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AppData/Course/Stochastic Processes and Applicaitions.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AppData/Course/Stochastic Simulation and Systems Biology.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AppData/Course/Systems Management.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AppData/Course/Technical Communication.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AppData/Course/Theatre Appreciation.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AppData/Course/VLSI Design Flow.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AppData/Course/Variational Calculus and their Applications.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AppData/Course/Visual Design and Communication.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AppData/Course/Wearable Applications Research Devices Interactions.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AppData/Course/Wireless Communication-Evolution from 3G to 5G.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AppData/Room/A006.dat" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BookIT/AppData/Room/A006.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AppData/Room/A007.dat" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BookIT/AppData/Room/A007.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AppData/Room/A106.dat" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BookIT/AppData/Room/A106.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AppData/Room/B105.dat" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BookIT/AppData/Room/B105.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AppData/Room/C01.dat" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BookIT/AppData/Room/C01.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AppData/Room/C02.dat" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BookIT/AppData/Room/C02.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AppData/Room/C03.dat" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BookIT/AppData/Room/C03.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AppData/Room/C101.dat" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BookIT/AppData/Room/C101.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AppData/Room/C102.dat" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BookIT/AppData/Room/C102.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AppData/Room/C105.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AppData/Room/C11.dat" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BookIT/AppData/Room/C11.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AppData/Room/C12.dat" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BookIT/AppData/Room/C12.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AppData/Room/C13.dat" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BookIT/AppData/Room/C13.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AppData/Room/C201.dat" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BookIT/AppData/Room/C201.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AppData/Room/C208.dat" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BookIT/AppData/Room/C208.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AppData/Room/C209.dat" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BookIT/AppData/Room/C209.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AppData/Room/C21.dat" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BookIT/AppData/Room/C21.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AppData/Room/C210.dat" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BookIT/AppData/Room/C210.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AppData/Room/C211.dat" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BookIT/AppData/Room/C211.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AppData/Room/C212.dat" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BookIT/AppData/Room/C212.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AppData/Room/C213.dat" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BookIT/AppData/Room/C213.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AppData/Room/C214.dat" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BookIT/AppData/Room/C214.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AppData/Room/C215.dat" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BookIT/AppData/Room/C215.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AppData/Room/C216.dat" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BookIT/AppData/Room/C216.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AppData/Room/C22.dat" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BookIT/AppData/Room/C22.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AppData/Room/C222.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AppData/Room/C223.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AppData/Room/C23.dat" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BookIT/AppData/Room/C23.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AppData/Room/C24.dat" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BookIT/AppData/Room/C24.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AppData/Room/LR1.dat" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BookIT/AppData/Room/LR1.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AppData/Room/LR2.dat" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BookIT/AppData/Room/LR2.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AppData/Room/LR3.dat" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BookIT/AppData/Room/LR3.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AppData/Room/S01.dat" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BookIT/AppData/Room/S01.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AppData/Room/S02.dat" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BookIT/AppData/Room/S02.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AppData/Server/EndDate.dat" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BookIT/AppData/Server/EndDate.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AppData/StaticTimeTable/TimeTable.csv" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BookIT/AppData/StaticTimeTable/TimeTable.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookIT/Timetable Parser/.~lock.Ist Year Sec A.xlsx#" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BookIT/Timetable Parser/.~lock.Ist Year Sec A.xlsx#" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookIT/Timetable Parser/courseList.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookIT/Timetable Parser/timetable_parser.py" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BookIT/Timetable Parser/timetable_parser.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppData/Course/Advanced Computer Vision.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppData/Course/Advanced Linear Algebra.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppData/Course/Advanced Machine Learning.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppData/Course/Advanced Programming-Shachi.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppData/Course/Advanced Programming-Vivek.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppData/Course/Algebraic Number Theory.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppData/Course/Algorithms in Computation Biology.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppData/Course/Analog CMOS Circuit Design.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppData/Course/Applied Cryptography.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppData/Course/Artificial Intelligence.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppData/Course/Business Anthropology.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppData/Course/Cell Biology and Biochemistry.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppData/Course/Circuit Theory and Devices.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppData/Course/Collaborative Filtering.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppData/Course/Communication Networks.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppData/Course/Communications Skills-Bijoy.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppData/Course/Communications Skills-Deepti.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppData/Course/Communications Skills-Honey.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppData/Course/Communications Skills-Rekha.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppData/Course/Communications Skills-Syeda.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppData/Course/Communications Skills-Utkrishti.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppData/Course/Compilers.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppData/Course/Complex Analysis.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppData/Course/Complexity Theory.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppData/Course/Compressive Sensing.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppData/Course/Computer Architecture and Operating Systems.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppData/Course/Computer Architecture.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppData/Course/Computer Graphics.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppData/Course/Computer Networks.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppData/Course/Computer Organization.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppData/Course/Control Theory.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppData/Course/Data Mining.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppData/Course/Design Perspectives and Processes.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppData/Course/Digital Audio.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppData/Course/Digital Circuits-Sneh.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppData/Course/Digital Circuits-Sumit.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppData/Course/Digital Communication Systems.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppData/Course/Digital Signal Processing.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppData/Course/Digital VLSI Design.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppData/Course/Discrete Mathematics.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppData/Course/Discrete Structures.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppData/Course/Ecology Evolution and Environment.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppData/Course/Econometrics I.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppData/Course/Effective Supply Chain Management for E-Commerce.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppData/Course/Embedded Logic Design.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppData/Course/Entrepreneurship I.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppData/Course/Environmnetal Sciences.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppData/Course/Film Making and Radio Podcasting.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppData/Course/Foundations of Computer Security.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppData/Course/Foundations of Finance.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppData/Course/Foundations of Modern Biology.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppData/Course/Game Theory.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppData/Course/Image Analysis~Digital Image Processing.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppData/Course/Information System in Public Health.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppData/Course/Information System in Pulic Health.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppData/Course/Intelligent Applications Implementation on Hetrogeneous Platforms.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppData/Course/Introduction to 3D Animation.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppData/Course/Introduction to Graduate Algorithms.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppData/Course/Introduction to Indian Mythology.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppData/Course/Introduction to Media Computing.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppData/Course/Introduction to Philosophy.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppData/Course/Introduction to Programming.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppData/Course/Introduction to Psychology.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppData/Course/Introduction to Sociology~Anthropology.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppData/Course/Machine Learning for Biomedical Applications.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppData/Course/Machine Learning.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppData/Course/Macroeconomics.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppData/Course/Math I.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppData/Course/Maths III.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppData/Course/Mobile Computing.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppData/Course/Modern Algorithm Design.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppData/Course/Multi-agent Systems.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppData/Course/Natural Language Processing.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppData/Course/Network Anonymity and Privacy.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppData/Course/Network Biology.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppData/Course/Number Theory.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppData/Course/Object Oriented Programming and Design.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppData/Course/Philosophy of Religion.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppData/Course/Principals of Digital Communication System.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppData/Course/Probability &amp; Random Process.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppData/Course/Program Analysis.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppData/Course/Real Analysis I.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppData/Course/Real Analysis II.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppData/Course/Reinforcement Learning.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppData/Course/Satellite Navigation and Sensor Fusion.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppData/Course/Scientific Computing.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppData/Course/Signal &amp; Systems.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppData/Course/Social Science Research Methods.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppData/Course/Social and Political Philosophy.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppData/Course/Sociology of New Media.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppData/Course/Software Engineering.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppData/Course/Speech Recognition and Understanding.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppData/Course/Stochastic Processes and Applicaitions.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppData/Course/Stochastic Simulation and Systems Biology.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppData/Course/Systems Management.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppData/Course/Technical Communication.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppData/Course/Theatre Appreciation.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppData/Course/VLSI Design Flow.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppData/Course/Variational Calculus and their Applications.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppData/Course/Visual Design and Communication.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppData/Course/Wearable Applications Research Devices Interactions.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppData/Course/Wireless Communication-Evolution from 3G to 5G.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppData/Room/A006.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppData/Room/A006.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppData/Room/A007.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppData/Room/A007.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppData/Room/A106.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppData/Room/A106.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppData/Room/B105.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppData/Room/B105.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppData/Room/C01.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppData/Room/C01.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppData/Room/C02.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppData/Room/C02.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppData/Room/C03.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppData/Room/C03.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppData/Room/C101.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppData/Room/C101.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppData/Room/C102.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppData/Room/C102.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppData/Room/C105.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppData/Room/C11.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppData/Room/C11.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppData/Room/C12.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppData/Room/C12.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppData/Room/C13.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppData/Room/C13.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppData/Room/C201.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppData/Room/C201.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppData/Room/C208.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppData/Room/C208.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppData/Room/C209.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppData/Room/C209.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppData/Room/C21.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppData/Room/C21.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppData/Room/C210.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppData/Room/C210.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppData/Room/C211.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppData/Room/C211.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppData/Room/C212.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppData/Room/C212.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppData/Room/C213.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppData/Room/C213.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppData/Room/C214.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppData/Room/C214.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppData/Room/C215.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppData/Room/C215.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppData/Room/C216.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppData/Room/C216.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppData/Room/C22.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppData/Room/C22.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppData/Room/C222.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppData/Room/C223.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppData/Room/C23.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppData/Room/C23.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppData/Room/C24.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppData/Room/C24.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppData/Room/LR1.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppData/Room/LR1.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppData/Room/LR2.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppData/Room/LR2.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppData/Room/LR3.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppData/Room/LR3.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppData/Room/S01.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppData/Room/S01.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppData/Room/S02.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppData/Room/S02.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppData/Server/EndDate.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppData/Server/EndDate.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppData/StaticTimeTable/TimeTable.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppData/StaticTimeTable/TimeTable.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Timetable Parser/TimeTable.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/Timetable Parser/TimeTable.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Timetable Parser/timetable_parser.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/Timetable Parser/timetable_parser.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AdminReservation/AdminReservation.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BookIT/AdminReservation/AdminReservation.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AdminReservation/AdminReservationGUIController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BookIT/AdminReservation/AdminReservationGUIController$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AdminReservation/AdminReservationGUIController$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BookIT/AdminReservation/AdminReservationGUIController$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AdminReservation/AdminReservationGUIController$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BookIT/AdminReservation/AdminReservationGUIController$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AdminReservation/AdminReservationGUIController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BookIT/AdminReservation/AdminReservationGUIController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AdminReservation/SlotComparator.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BookIT/AdminReservation/SlotComparator.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AppData/Server/ServerBugs.txt" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BookIT/AppData/Server/ServerBugs.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AppData/StaticTimeTable/sample/AdminEmails.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AppData/StaticTimeTable/sample/Day-Date-Reload.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AppData/StaticTimeTable/sample/FacultyEmails.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AppData/StaticTimeTable/sample/NoReply.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AppData/StaticTimeTable/sample/RoomData.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AppData/StaticTimeTable/sample/StudentEmails.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AppData/StaticTimeTable/sample/TimeTable.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AppData/StaticTimeTable/sample/blocked_days.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AppData/StaticTimeTable/sample/holidays.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BookIT/BookIT.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BookIT/BookIT.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BookIT/ConnectionHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BookIT/ConnectionHandler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BookIT/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BookIT/META-INF/MANIFEST.MF" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BookIT/Mail$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BookIT/Mail$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BookIT/Mail.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BookIT/Mail.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BookIT/Timetable Parser/.~lock.Ist Year Sec A.xlsx#" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BookIT/Timetable Parser/Ist Year Sec A.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BookIT/Timetable Parser/TimeTable.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BookIT/Timetable Parser/timetable_parser.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BookIT/server.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BookIT/server.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BookIT/timetable_parser.py" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BookIT/timetable_parser.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AdminReservation/AdminReservation.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/AdminReservation/AdminReservation.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AdminReservation/AdminReservationGUIController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AdminReservation/AdminReservationGUIController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AppData/Server/ServerBugs.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppData/Server/ServerBugs.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/BookIT.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BookIT.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/settings.zip" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -332,21 +90,40 @@
     <session id="-141573166">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="2" />
+          <entry key="project.closed" value="5" />
+          <entry key="project.open.time.18" value="1" />
           <entry key="project.open.time.2" value="1" />
+          <entry key="project.open.time.24" value="1" />
           <entry key="project.open.time.25" value="1" />
+          <entry key="project.open.time.3" value="1" />
           <entry key="project.open.time.7" value="1" />
-          <entry key="project.opened" value="3" />
+          <entry key="project.opened" value="6" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
+          <entry key="java" value="1578" />
           <entry key="txt" value="7" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
+          <entry key="JAVA" value="1578" />
           <entry key="PLAIN_TEXT" value="7" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="fxml" value="1" />
+          <entry key="java" value="1" />
+          <entry key="txt" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="JAVA" value="1" />
+          <entry key="PLAIN_TEXT" value="1" />
+          <entry key="XML" value="1" />
         </counts>
       </usages-collector>
     </session>
@@ -356,26 +133,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/AdminReservation/AdminReservationGUIController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="5412">
-              <caret line="292" column="39" selection-start-line="292" selection-start-column="39" selection-end-line="292" selection-end-column="39" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/FacultyReservation/FacultyReservationGUIController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4774">
-              <caret line="265" column="27" selection-start-line="265" selection-start-column="27" selection-end-line="265" selection-end-column="27" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/StudentReservation/StudentReservationGUIController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4730">
-              <caret line="265" column="16" selection-start-line="265" selection-start-column="16" selection-end-line="265" selection-end-column="16" />
+            <state relative-caret-position="10890">
+              <caret line="545" column="39" selection-start-line="545" selection-start-column="39" selection-end-line="545" selection-end-column="39" />
             </state>
           </provider>
         </entry>
@@ -383,8 +142,36 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/server.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="36" column="44" selection-start-line="36" selection-start-column="44" selection-end-line="36" selection-end-column="44" />
+            <state relative-caret-position="246">
+              <caret line="1850" column="57" selection-start-line="1850" selection-start-column="57" selection-end-line="1850" selection-end-column="57" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/BookIT.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="242">
+              <caret line="24" column="39" selection-start-line="24" selection-start-column="39" selection-end-line="24" selection-end-column="39" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/AppData/Server/ServerInfo.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="44">
+              <caret line="2" selection-start-line="2" selection-end-line="2" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/AdminReservation/AdminReservation.fxml">
+          <provider editor-type-id="JavaFX-Scene-Builder" />
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="16698">
+              <caret line="759" column="34" selection-start-line="759" selection-start-column="34" selection-end-line="759" selection-end-column="34" />
             </state>
           </provider>
         </entry>
@@ -397,6 +184,14 @@
       <find>button.css</find>
       <find>button.cs</find>
       <find>1.3</find>
+      <find>uplo</find>
+      <find>Array</find>
+      <find>server</find>
+      <find>getbooki</find>
+      <find>download</find>
+      <find>uploa</find>
+      <find>execCm</find>
+      <find>upload</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -406,16 +201,17 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/src/setup.java" />
-        <option value="$PROJECT_DIR$/src/AdminReservation/AdminReservationGUIController.java" />
         <option value="$PROJECT_DIR$/src/FacultyReservation/FacultyReservationGUIController.java" />
         <option value="$PROJECT_DIR$/src/StudentReservation/StudentReservationGUIController.java" />
-        <option value="$PROJECT_DIR$/src/server.java" />
-        <option value="$PROJECT_DIR$/src/BookIT.java" />
         <option value="$PROJECT_DIR$/src/AppData/Server/ServerInfo.txt" />
+        <option value="$PROJECT_DIR$/src/AdminReservation/AdminReservation.fxml" />
+        <option value="$PROJECT_DIR$/src/AdminReservation/AdminReservationGUIController.java" />
+        <option value="$PROJECT_DIR$/src/BookIT.java" />
+        <option value="$PROJECT_DIR$/src/server.java" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="260" />
     <option name="y" value="26" />
     <option name="width" value="1400" />
@@ -427,7 +223,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -444,29 +240,22 @@
               <item name="BookIT_Dev" type="b2602c69:ProjectViewProjectNode" />
               <item name="BookIT_Dev" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="AppData" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="BookIT_Dev" type="b2602c69:ProjectViewProjectNode" />
-              <item name="BookIT_Dev" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="AppData" type="462c0819:PsiDirectoryNode" />
-              <item name="Server" type="462c0819:PsiDirectoryNode" />
+              <item name="server.java" type="529ef68f:ClassesTreeStructureProvider$PsiClassOwnerTreeNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
       <pane id="AndroidView" />
-      <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1534328649416" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="project.structure.last.edited" value="Project" />
-    <property name="project.structure.proportion" value="0.0" />
-    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1565338507228" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Server_Source" />
+    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
   </component>
   <component name="RunDashboard">
@@ -510,9 +299,9 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.server" />
         <item itemvalue="Application.BookIT" />
         <item itemvalue="Application.setup" />
-        <item itemvalue="Application.server" />
       </list>
     </recent_temporary>
   </component>
@@ -530,10 +319,9 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1" y="0" width="1922" height="1053" extended-state="7" />
-    <editor active="true" />
+    <frame x="-1" y="0" width="1922" height="1053" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.29297298" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.3091892" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -541,8 +329,8 @@
       <window_info id="Capture Tool" order="5" />
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32912844" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32912844" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32912844" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -565,10 +353,38 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/setup.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="764">
+          <caret line="222" column="23" selection-start-line="222" selection-start-column="23" selection-end-line="222" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/FacultyReservation/FacultyReservationGUIController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="477">
+          <caret line="265" column="27" selection-start-line="265" selection-start-column="27" selection-end-line="265" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/StudentReservation/StudentReservationGUIController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="477">
+          <caret line="265" column="16" selection-start-line="265" selection-start-column="16" selection-end-line="265" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AdminReservation/AdminReservationGUIController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="10890">
+          <caret line="545" column="39" selection-start-line="545" selection-start-column="39" selection-end-line="545" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/BookIT.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="27" column="45" selection-start-line="27" selection-start-column="45" selection-end-line="27" selection-end-column="45" />
+        <state relative-caret-position="242">
+          <caret line="24" column="39" selection-start-line="24" selection-start-column="39" selection-end-line="24" selection-end-column="39" />
         </state>
       </provider>
     </entry>
@@ -579,38 +395,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/setup.java">
+    <entry file="file://$PROJECT_DIR$/src/AdminReservation/AdminReservation.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder" />
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="764">
-          <caret line="222" column="23" selection-start-line="222" selection-start-column="23" selection-end-line="222" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AdminReservation/AdminReservationGUIController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5412">
-          <caret line="292" column="39" selection-start-line="292" selection-start-column="39" selection-end-line="292" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/FacultyReservation/FacultyReservationGUIController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4774">
-          <caret line="265" column="27" selection-start-line="265" selection-start-column="27" selection-end-line="265" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/StudentReservation/StudentReservationGUIController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4730">
-          <caret line="265" column="16" selection-start-line="265" selection-start-column="16" selection-end-line="265" selection-end-column="16" />
+        <state relative-caret-position="16698">
+          <caret line="759" column="34" selection-start-line="759" selection-start-column="34" selection-end-line="759" selection-end-column="34" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/server.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="36" column="44" selection-start-line="36" selection-start-column="44" selection-end-line="36" selection-end-column="44" />
+        <state relative-caret-position="246">
+          <caret line="1850" column="57" selection-start-line="1850" selection-start-column="57" selection-end-line="1850" selection-end-column="57" />
         </state>
       </provider>
     </entry>
@@ -620,10 +416,12 @@
       <state key="ArtifactsStructureConfigurable.UI">
         <settings>
           <artifact-editor />
+          <last-edited>Server:jar</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
                 <option value="0.2" />
+                <option value="0.5" />
               </list>
             </option>
           </splitter-proportions>
