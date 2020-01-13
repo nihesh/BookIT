@@ -1,4 +1,4 @@
-BookITv1.4
+BookITv1.6
 Classroom reservation software for classrooms at IIIT Delhi
 
 Changelog:

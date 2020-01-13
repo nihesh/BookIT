@@ -6,22 +6,7 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="51086309-d288-48b9-8853-0cd9a0fece48" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookIT/AppData/Server/ServerInfo.txt" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BookIT/AppData/Server/ServerInfo.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookIT/BookIT.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BookIT/BookIT.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookIT/ConnectionHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BookIT/ConnectionHandler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookIT/LoginSignup/LoginSignupGUIController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BookIT/LoginSignup/LoginSignupGUIController$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookIT/LoginSignup/LoginSignupGUIController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BookIT/LoginSignup/LoginSignupGUIController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookIT/LoginSignup/PortListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BookIT/LoginSignup/PortListener.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookIT/Mail$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BookIT/Mail$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookIT/Mail.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BookIT/Mail.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookIT/server.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BookIT/server.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppData/Server/ServerInfo.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppData/Server/ServerInfo.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/BookIT.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BookIT.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LoginSignup/LoginSignupGUIController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LoginSignup/LoginSignupGUIController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server.java" afterDir="false" />
-    </list>
+    <list default="true" id="51086309-d288-48b9-8853-0cd9a0fece48" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -69,14 +54,15 @@
     <session id="-141573166">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="7" />
+          <entry key="project.closed" value="8" />
+          <entry key="project.open.time.1" value="1" />
           <entry key="project.open.time.18" value="1" />
           <entry key="project.open.time.2" value="1" />
           <entry key="project.open.time.24" value="2" />
           <entry key="project.open.time.25" value="2" />
           <entry key="project.open.time.3" value="1" />
           <entry key="project.open.time.7" value="1" />
-          <entry key="project.opened" value="8" />
+          <entry key="project.opened" value="9" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
@@ -121,7 +107,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/server.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="158">
+            <state relative-caret-position="40128">
               <caret line="1846" column="42" selection-start-line="1846" selection-start-column="42" selection-end-line="1846" selection-end-column="42" />
             </state>
           </provider>
@@ -131,7 +117,7 @@
         <entry file="file://$PROJECT_DIR$/src/BookIT.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="198">
-              <caret line="22" column="7" lean-forward="true" selection-start-line="22" selection-start-column="7" selection-end-line="22" selection-end-column="7" />
+              <caret line="22" column="7" selection-start-line="22" selection-start-column="7" selection-end-line="22" selection-end-column="7" />
             </state>
           </provider>
         </entry>
@@ -140,7 +126,7 @@
         <entry file="file://$PROJECT_DIR$/src/LoginSignup/LoginSignupGUIController.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="308">
-              <caret line="210" column="17" lean-forward="true" selection-start-line="210" selection-start-column="17" selection-end-line="210" selection-end-column="17" />
+              <caret line="210" column="17" selection-start-line="210" selection-start-column="17" selection-end-line="210" selection-end-column="17" />
             </state>
           </provider>
         </entry>
@@ -218,9 +204,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="AndroidView" />
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -269,11 +252,14 @@
           <select />
         </subPane>
       </pane>
+      <pane id="AndroidView" />
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1565338507228" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Client_Source" />
     <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -343,7 +329,7 @@
     <frame x="-1" y="0" width="1922" height="1053" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.32054055" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.3264865" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -403,11 +389,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AdminReservation/AdminReservation.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
+    <entry file="file://$PROJECT_DIR$/src/server.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="16698">
-          <caret line="759" column="34" selection-start-line="759" selection-start-column="34" selection-end-line="759" selection-end-column="34" />
+        <state relative-caret-position="40128">
+          <caret line="1846" column="42" selection-start-line="1846" selection-start-column="42" selection-end-line="1846" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/BookIT.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="22" column="7" selection-start-line="22" selection-start-column="7" selection-end-line="22" selection-end-column="7" />
         </state>
       </provider>
     </entry>
@@ -418,24 +410,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/BookIT.java">
+    <entry file="file://$PROJECT_DIR$/src/AdminReservation/AdminReservation.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder" />
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="22" column="7" lean-forward="true" selection-start-line="22" selection-start-column="7" selection-end-line="22" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/server.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="158">
-          <caret line="1846" column="42" selection-start-line="1846" selection-start-column="42" selection-end-line="1846" selection-end-column="42" />
+        <state relative-caret-position="16698">
+          <caret line="759" column="34" selection-start-line="759" selection-start-column="34" selection-end-line="759" selection-end-column="34" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/LoginSignup/LoginSignupGUIController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="308">
-          <caret line="210" column="17" lean-forward="true" selection-start-line="210" selection-start-column="17" selection-end-line="210" selection-end-column="17" />
+          <caret line="210" column="17" selection-start-line="210" selection-start-column="17" selection-end-line="210" selection-end-column="17" />
         </state>
       </provider>
     </entry>
