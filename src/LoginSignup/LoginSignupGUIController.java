@@ -263,7 +263,6 @@ public class LoginSignupGUIController {
 			e = browser.getEngine();
 		}
 		e.load(PortListener.webURL1);
-		System.out.println(PortListener.webURL1);
 		PortListener p= new PortListener();
 		if(pingHost("www.google.com", 80, 2000) == false){
 			Notification.throwAlert("Error", "It seems that your internet connection is slow or not working. Please try again");
@@ -331,7 +330,6 @@ class PortListener implements Runnable{
 				System.out.println(e);
 			}
 		}
-		System.out.println("closing");
 	}
 	public static String getStatus() {
 		return status;
@@ -359,8 +357,6 @@ class PortListener implements Runnable{
 		}
 		clientID = sc.next();
 		clientSecret = sc.next();
-		System.out.println(clientID);
-		System.out.println(clientSecret);
 		webURL1 = "https://accounts.google.com/o/oauth2/v2/auth?scope=" + apiScope + "&access_type=offline&redirect_uri=" + "http://127.0.0.1:9004" + "&response_type=code&client_id=" + clientID;
 	}
 	public PortListener() {
@@ -373,7 +369,6 @@ class PortListener implements Runnable{
 		try {
 			try {
 				sock = serversocket.accept();
-				System.out.println(sock);
 			}
 			catch(Exception e) {
 			}
@@ -409,7 +404,6 @@ class PortListener implements Runnable{
 			HttpPost httppost = new HttpPost("https://www.googleapis.com/oauth2/v4/token");
 
 			// Request parameters and other properties.
-				System.out.println(authcode);
 			List<NameValuePair> params = new ArrayList<NameValuePair>(5);
 			params.add(new BasicNameValuePair("code",authcode ));
 			params.add(new BasicNameValuePair("client_id", clientID));
@@ -421,13 +415,11 @@ class PortListener implements Runnable{
 			//Execute and get the response.
 			org.apache.http.HttpResponse response = httpclient.execute(httppost);
 			HttpEntity entity = response.getEntity();
-			System.out.println(entity);
 			if (entity != null) {
 			    InputStream instream = entity.getContent();
 			    try {
 			    java.util.Scanner s = new java.util.Scanner(instream).useDelimiter("\\A");
 			    String result = s.hasNext() ? s.next() : "";
-			    System.out.println(result);
 			    List<String> allMatches = new ArrayList<String>();
 			    Pattern pattern = Pattern.compile("\"[A-Za-z0-9-._~+/]+\"");
 			    Matcher match_obj = pattern.matcher(result);
@@ -443,12 +435,9 @@ class PortListener implements Runnable{
 			    InputStream responseID = connection.getInputStream();
 			    s = new java.util.Scanner(responseID).useDelimiter("\\A");
 			    String result2 = s.hasNext() ? s.next() : "";
-			    System.out.println(result2);
 				String []splitfields = result2.split("[,:\n]");
 			    Name = splitfields[11].substring(2, splitfields[11].length() - 1);
 			    email = splitfields[5].substring(2, splitfields[5].length() - 1);
-			    System.out.println(Name);
-				System.out.println(email);
 			    status = "Updated";
 			    PrintWriter out = new PrintWriter(sock.getOutputStream());
 			    out.println("HTTP/1.1 200 OK");
