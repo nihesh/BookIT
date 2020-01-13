@@ -141,7 +141,7 @@ public class BookIT extends Application{
         	fileex.delete();
         }
     	ServerSocket ss = null;
-    	int compatibilityCheck = CheckCompatibility(BookITversion, false);
+        int compatibilityCheck = CheckCompatibility(BookITversion, false);
         if(compatibilityCheck == 0){
             Notification.throwAlert("Version Outdated Error", "You are currently using BookIT v"+BookITversion+". Kindly download the latest version of BookIT");
             return;
@@ -207,7 +207,9 @@ public class BookIT extends Application{
         }
     }
     public static void main(String[] args) throws IOException{
+        System.setProperty("sun.net.http.allowRestrictedHeaders", "true");
         BookITconstants b = new BookITconstants("Client");
         launch(args);
+
     }
 }

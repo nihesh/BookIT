@@ -16,9 +16,11 @@ import java.net.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javax.sound.sampled.Port;
 import javax.swing.JOptionPane;
 
 import AdminReservation.AdminReservationGUIController;
@@ -251,14 +253,17 @@ public class LoginSignupGUIController {
         FirstPane.setScaleY(scaleHeight);
         //Cred_Pane.setTranslateX((width)/1366.0 * Cred_Pane.getTranslateX());
         init_Cred_Pane = Cred_Pane.getTranslateX();
-        
+		PortListener.fill_ID_Secret();
 			
 	}
 	@FXML
 	private void PressG() {
 		GPane.setVisible(true);
-		e=browser.getEngine();
+		if(e == null){
+			e = browser.getEngine();
+		}
 		e.load(PortListener.webURL1);
+		System.out.println(PortListener.webURL1);
 		PortListener p= new PortListener();
 		if(pingHost("www.google.com", 80, 2000) == false){
 			Notification.throwAlert("Error", "It seems that your internet connection is slow or not working. Please try again");
@@ -302,21 +307,31 @@ class PortListener implements Runnable{
 	static String authcode="none";
 	static ServerSocket serversocket = null;
 	static Socket sock=null;
-	static String webURL1 ="https://accounts.google.com/o/oauth2/v2/auth?\r\n" + 
-			"scope=https://www.googleapis.com/auth/userinfo.email%20profile&\r\n" + 
-			"response_type=code&\r\n" +  
-			"redirect_uri=http://127.0.0.1:9004&\r\n" + 
-			"client_id=675553038343-joaegqsglukqdti0ukkga8in6st1gl3k.apps.googleusercontent.com";
-	static String webURL2 ="none";
-	Thread t;
+	static String clientID = null;
+	static String clientSecret = null;
+	static String apiScope = "https://www.googleapis.com/auth/userinfo.email%20profile";
+	static String webURL1 = null;
+	private volatile static Thread t = null;
 	public static void closeSocket() {
 		if(sock!=null) {
+			System.out.println("enter");
 			try {
-			sock.close();}
+				sock.close();
+			}
 			catch(Exception e) {
 				System.out.println("error");
 			}
 		}
+		if(serversocket != null){
+			try {
+				serversocket.close();
+				t = null;
+			}
+			catch(Exception e) {
+				System.out.println(e);
+			}
+		}
+		System.out.println("closing");
 	}
 	public static String getStatus() {
 		return status;
@@ -325,7 +340,7 @@ class PortListener implements Runnable{
 		return serversocket;
 	}
 	public void getPort() {
-		if(serversocket==null) {
+		if(serversocket == null) {
 			try {
 				serversocket=new ServerSocket(9004);
 			} catch (IOException e) {
@@ -335,16 +350,30 @@ class PortListener implements Runnable{
 		}
 		
 	}
+	public static void fill_ID_Secret(){
+		Scanner sc = null;
+		try {
+			sc = new Scanner(new BufferedReader(new FileReader("./src/AppData/GoogleAPIConsole/ApiInfo.txt")));
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		clientID = sc.next();
+		clientSecret = sc.next();
+		System.out.println(clientID);
+		System.out.println(clientSecret);
+		webURL1 = "https://accounts.google.com/o/oauth2/v2/auth?scope=" + apiScope + "&access_type=offline&redirect_uri=" + "http://127.0.0.1:9004" + "&response_type=code&client_id=" + clientID;
+	}
 	public PortListener() {
 		// TODO Auto-generated constructor stub
 		getPort();
-		t=new Thread(this);
+		t = new Thread(this);
 		t.start();
 	}
 	public void startAuth() {
 		try {
 			try {
-				sock=serversocket.accept();
+				sock = serversocket.accept();
+				System.out.println(sock);
 			}
 			catch(Exception e) {
 			}
@@ -368,16 +397,23 @@ class PortListener implements Runnable{
 				return;
 			}
 			else {
-				authcode=authcode.substring(11,authcode.length()-9);
-							}
+				URLDecoder decoder = new URLDecoder();
+				authcode = decoder.decode(authcode, "utf-8");
+				//System.out.println(authcode);
+				int sindex = authcode.indexOf("code=");
+				int eindex = authcode.indexOf("&scope");
+				sindex += 5;
+				authcode = authcode.substring(sindex, eindex);
+			}
 			HttpClient httpclient = HttpClients.createDefault();
 			HttpPost httppost = new HttpPost("https://www.googleapis.com/oauth2/v4/token");
 
 			// Request parameters and other properties.
+				System.out.println(authcode);
 			List<NameValuePair> params = new ArrayList<NameValuePair>(5);
-			params.add(new BasicNameValuePair("code",authcode+"&" ));
-			params.add(new BasicNameValuePair("client_id", "675553038343-joaegqsglukqdti0ukkga8in6st1gl3k.apps.googleusercontent.com"));
-			params.add(new BasicNameValuePair("client_secret", "p8m6oBuodC2IyT1PaalafAHi"));
+			params.add(new BasicNameValuePair("code",authcode ));
+			params.add(new BasicNameValuePair("client_id", clientID));
+			params.add(new BasicNameValuePair("client_secret", clientSecret));
 			params.add(new BasicNameValuePair("redirect_uri", "http://127.0.0.1:9004"));
 			params.add(new BasicNameValuePair("grant_type", "authorization_code"));
 			httppost.setEntity(new UrlEncodedFormEntity(params, "UTF-8"));
@@ -385,14 +421,13 @@ class PortListener implements Runnable{
 			//Execute and get the response.
 			org.apache.http.HttpResponse response = httpclient.execute(httppost);
 			HttpEntity entity = response.getEntity();
-
+			System.out.println(entity);
 			if (entity != null) {
 			    InputStream instream = entity.getContent();
-			    
 			    try {
 			    java.util.Scanner s = new java.util.Scanner(instream).useDelimiter("\\A");
 			    String result = s.hasNext() ? s.next() : "";
-			    //System.out.println(result);
+			    System.out.println(result);
 			    List<String> allMatches = new ArrayList<String>();
 			    Pattern pattern = Pattern.compile("\"[A-Za-z0-9-._~+/]+\"");
 			    Matcher match_obj = pattern.matcher(result);
@@ -408,12 +443,12 @@ class PortListener implements Runnable{
 			    InputStream responseID = connection.getInputStream();
 			    s = new java.util.Scanner(responseID).useDelimiter("\\A");
 			    String result2 = s.hasNext() ? s.next() : "";
-			    //System.out.println(result2);
+			    System.out.println(result2);
 				String []splitfields = result2.split("[,:\n]");
 			    Name = splitfields[11].substring(2, splitfields[11].length() - 1);
 			    email = splitfields[5].substring(2, splitfields[5].length() - 1);
-			    //System.out.println(Name);
-				//System.out.println(email);
+			    System.out.println(Name);
+				System.out.println(email);
 			    status = "Updated";
 			    PrintWriter out = new PrintWriter(sock.getOutputStream());
 			    out.println("HTTP/1.1 200 OK");
@@ -438,7 +473,9 @@ class PortListener implements Runnable{
 	@Override
 	public void run() {
 		// TODO Auto-generated method stub
-		startAuth();
-				
+		while(PortListener.t != null){
+			startAuth();
+		}
+
 	}}
 
