@@ -15,13 +15,4 @@ FEATURES DISABLED
 	- Course collisions	: Don't enable. Might not work properly
 	- Join code 		: Google auth is being used
 	
-VM Details
-
-IP 192.168.2.103
-User - iiitd
-password - To@0L]d9
-
-ISSUES
-	- noreply email from iiitd
-	- Mention version in about app page
 	
